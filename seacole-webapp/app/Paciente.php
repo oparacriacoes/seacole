@@ -28,4 +28,9 @@ class Paciente extends Model
     'auxilio_terceiros',
     'tarefas_autocuidado'
   ];
+
+  public function user()
+  {
+    return $this->belongsTo('App\User');
+  }
 }

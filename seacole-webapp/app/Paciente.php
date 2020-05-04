@@ -33,4 +33,29 @@ class Paciente extends Model
   {
     return $this->belongsTo('App\User');
   }
+
+  public function sintomas()
+  {
+    return $this->hasMany('App\Sintoma');
+  }
+
+  public function tipos_ajuda()
+  {
+    return $this->hasMany('App\AjudaTipo');
+  }
+
+  public function estado_emocional()
+  {
+    return $this->hasOne('App\EstadoEmocional');
+  }
+
+  public function observacao()
+  {
+    return $this->hasOne('App\Observacao');
+  }
+
+  public function doencas_cronicas()
+  {
+    return $this->hasMany('App\DoencaCronica');
+  }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Hash;
 use App\User;
 use App\Agente;
 
@@ -16,9 +17,7 @@ class AgenteController extends Controller
      */
     public function index()
     {
-      $agentes = User::where('role', 'agente')->get();
-
-      return response()->json(['agentes' => $agentes]);
+      return null;
     }
 
     /**
@@ -32,7 +31,8 @@ class AgenteController extends Controller
       $user = new User;
       $user->name = $request->input('name');
       $user->email = $request->input('email');
-      $user->password = $request->input('password');
+      //$user->password = $request->input('password');
+      $user->password = Hash::make($request->input('email'));
       $user->role = 'agente';
       try {
         $user->save();
@@ -52,7 +52,8 @@ class AgenteController extends Controller
         }
       }
 
-      return response()->json(['message' => 'Cadastro feito com sucesso.']);
+      //return response()->json(['message' => 'Cadastro feito com sucesso.']);
+      return view('pages.agente.create')->with(['success' => 'Cadastro feito com sucesso.']);
     }
 
     /**
@@ -63,7 +64,7 @@ class AgenteController extends Controller
      */
     public function show($id)
     {
-        //
+      return null;
     }
 
     /**
@@ -75,7 +76,30 @@ class AgenteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $user = User::find($id);
+      $agente = $user->agente;
+      $user->name = $request->input('name');
+      $user->email = $request->input('email');
+      $user->password = Hash::make($request->input('email'));
+      $user->role = 'agente';
+      try {
+        $user->save();
+      } catch(\Exception $exception) {
+        return response()->json(['message' => $exception->getMessage()]);
+      }
+
+      if($user){
+        //$agente = new Agente;
+        $agente->user_id = $user->id;
+        $agente->fone_fixo = $request->input('fone_fixo');
+        $agente->fone_celular = $request->input('fone_celular');
+        try {
+          $agente->save();
+        } catch(\Exception $exception) {
+          return response()->json(['message' => $exception->getMessage()]);
+        }
+      }
+      return view('pages.agente.create')->with(['success' => 'Cadastro atualizado com sucesso.']);
     }
 
     /**

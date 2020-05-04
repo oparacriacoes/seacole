@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>AdminLTE 3 | Starter</title>
+  <title>Seacole</title>
 
   <!-- Font Awesome Icons -->
   <!--<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">-->
@@ -19,6 +19,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('/bower_components/admin-lte/dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.mask.js') }}" defer></script>
+  <script type="text/javascript" src="{{ asset('js/functions.js') }}" defer></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

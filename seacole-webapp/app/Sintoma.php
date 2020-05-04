@@ -16,4 +16,9 @@ class Sintoma extends Model
     'cansaco_saturacao',
     'cansaco_frequencia_respiratoria',
   ];
+
+  public function paciente()
+  {
+    return $this->belongsTo('App\Paciente');
+  }
 }

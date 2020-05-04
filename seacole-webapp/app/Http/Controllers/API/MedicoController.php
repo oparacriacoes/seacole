@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Hash;
 use App\User;
 use App\Medico;
 
@@ -16,9 +17,7 @@ class MedicoController extends Controller
      */
     public function index()
     {
-      $medicos = User::where('role', 'medico')->get();
-
-      return response()->json(['medicos' => $medicos]);
+      return null;
     }
 
     /**
@@ -32,7 +31,7 @@ class MedicoController extends Controller
       $user = new User;
       $user->name = $request->input('name');
       $user->email = $request->input('email');
-      $user->password = $request->input('password');
+      $user->password = Hash::make($request->input('email'));
       $user->role = 'medico';
       try {
         $user->save();
@@ -52,7 +51,8 @@ class MedicoController extends Controller
         }
       }
 
-      return response()->json(['message' => 'Cadastro feito com sucesso.']);
+      //return response()->json(['message' => 'Cadastro feito com sucesso.']);
+      return view('pages.medico.create')->with(['success' => 'Cadastro feito com sucesso.']);
     }
 
     /**
@@ -63,10 +63,7 @@ class MedicoController extends Controller
      */
     public function show($id)
     {
-      $medico = Medico::find($id);
-      $medico->user;
-
-      return response()->json(['medico' => $medico]);
+      return null;
     }
 
     /**
@@ -78,8 +75,30 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $user = User::find($id);
+      $medico = $user->medico;
+      $user->name = $request->input('name');
+      $user->email = $request->input('email');
+      $user->password = Hash::make($request->input('email'));
+      $user->role = 'medico';
+      try {
+        $user->save();
+      } catch(\Exception $exception) {
+        return response()->json(['message', $exception->getMessage()]);
+      }
+
+      if($user){
+        $medico->user_id = $user->id;
+        $medico->fone_fixo = $request->input('fone_fixo');
+        $medico->fone_celular = $request->input('fone_celular');
+        try {
+          $medico->save();
+        } catch(\Exception $exception) {
+          return response()->json(['message' => $exception->getMessage()]);
+        }
     }
+    return view('pages.medico.create')->with(['success' => 'Cadastro atualizado com sucesso.']);
+  }
 
     /**
      * Remove the specified resource from storage.

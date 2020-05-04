@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Observacao extends Model
+class DoencaCronica extends Model
 {
   protected $fillable = [
-    'paciente_id', 'comentarios',
+    'paciente_id', 'tipo',
   ];
 
   public function paciente()

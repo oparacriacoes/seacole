@@ -117,3 +117,94 @@ function cancelEdit() {
   $('#btn-edit').text('Editar');
   $("#btn-edit").attr("onclick","editForm()");
 }
+
+function kitItems(id) {
+  cartilha = $('#cartilha');
+  termometro = $('#termometro');
+  mascaras = $('#mascaras');
+  limpeza = $('#limpeza');
+  dipirona = $('#dipirona');
+  paracetamol = $('#paracetamol');
+  oximetro = $('#oximetro');
+  data = new Array();
+
+  if(cartilha.prop('checked') === true){
+    data.push(cartilha.val());
+  }
+  if(termometro.prop('checked') === true){
+    data.push(termometro.val());
+  }
+  if(mascaras.prop('checked') === true){
+    data.push(mascaras.val());
+  }
+  if(limpeza.prop('checked') === true){
+    data.push(limpeza.val());
+  }
+  if(dipirona.prop('checked') === true){
+    data.push(dipirona.val());
+  }
+  if(paracetamol.prop('checked') === true){
+    data.push(paracetamol.val());
+  }
+  if(oximetro.prop('checked') === true){
+    data.push(oximetro.val());
+  }
+
+  $.ajax({
+    method: "POST",
+    url: "http://localhost:8000/api/item",
+    data: {
+      'paciente_id':id,
+      data,
+    }
+  })
+    .done(function(msg) {
+      alert(msg.message);
+    });
+}
+
+function updateKitItems(id) {
+  console.log(id);
+  cartilha = $('#cartilha');
+  termometro = $('#termometro');
+  mascaras = $('#mascaras');
+  limpeza = $('#limpeza');
+  dipirona = $('#dipirona');
+  paracetamol = $('#paracetamol');
+  oximetro = $('#oximetro');
+  data = new Array();
+
+  if(cartilha.prop('checked') === true){
+    data.push(cartilha.val());
+  }
+  if(termometro.prop('checked') === true){
+    data.push(termometro.val());
+  }
+  if(mascaras.prop('checked') === true){
+    data.push(mascaras.val());
+  }
+  if(limpeza.prop('checked') === true){
+    data.push(limpeza.val());
+  }
+  if(dipirona.prop('checked') === true){
+    data.push(dipirona.val());
+  }
+  if(paracetamol.prop('checked') === true){
+    data.push(paracetamol.val());
+  }
+  if(oximetro.prop('checked') === true){
+    data.push(oximetro.val());
+  }
+  console.log(data);
+  $.ajax({
+    method: "PUT",
+    url: "http://localhost:8000/api/item/"+id,
+    data: {
+      'item_id':id,
+      data,
+    }
+  })
+    .done(function(msg) {
+      alert(msg.message);
+    });
+}

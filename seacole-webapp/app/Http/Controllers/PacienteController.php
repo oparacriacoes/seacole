@@ -28,7 +28,8 @@ class PacienteController extends Controller
     $emocional = $dados->estado_emocional;
     $observacao = $dados->observacao;
     $cronicas = $dados->doencas_cronicas;
+    $items = $dados->items;
 
-    return view('pages.paciente.edit')->with(compact('paciente','dados', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas'));
+    return view('pages.paciente.edit')->with(compact('paciente','dados', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items'));
   }
 }

@@ -58,4 +58,9 @@ class Paciente extends Model
   {
     return $this->hasMany('App\DoencaCronica');
   }
+
+  public function items()
+  {
+    return $this->hasOne('App\Item');
+  }
 }

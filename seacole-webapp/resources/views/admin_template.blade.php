@@ -55,19 +55,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <section class="content">
       @yield('sample')
+      @yield('controlSideBar')
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
+  <!--<aside class="control-sidebar control-sidebar-dark">
     <div class="p-3">
       <h5>Title</h5>
       <p>Sidebar content</p>
     </div>
-  </aside>
+  </aside>-->
   <!-- /.control-sidebar -->
 
   <!-- Footer -->

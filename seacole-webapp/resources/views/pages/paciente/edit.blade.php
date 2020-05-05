@@ -297,11 +297,11 @@
           <div class="col-12">
             <label class="form-check-label">Tem acompanhamento médico?</label>
             <div class="form-check form-check-inline">
-              <input name="acompanhamento_medico" class="form-check-input" type="radio" id="sim" value="sim" <?php if($dados->acompanhamento_medico === 'sim'){ echo 'checked=checked'; }; ?> >
+              <input name="acompanhamento_medico" class="form-check-input" type="radio" id="sim" value="sim" <?php if($dados->acompanhamento_medico === 'sim'){ echo 'checked=checked'; }; ?> disabled>
               <label class="form-check-label" for="acompanhamento_medico">Sim</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="acompanhamento_medico" class="form-check-input" type="radio" id="nao" value="não" <?php if($dados->acompanhamento_medico === 'não'){ echo 'checked=checked'; }; ?> >
+              <input name="acompanhamento_medico" class="form-check-input" type="radio" id="nao" value="não" <?php if($dados->acompanhamento_medico === 'não'){ echo 'checked=checked'; }; ?> disabled>
               <label class="form-check-label" for="acompanhamento_medico">Não</label>
             </div>
           </div>
@@ -311,11 +311,11 @@
           <div class="col-12">
             <label class="form-check-label">Há condição de ficar isolada, sozinha, em um cômodo da casa?</label>
             <div class="form-check form-check-inline">
-              <input name="isolamento_residencial" class="form-check-input" type="radio" id="sim" value="sim" <?php if($dados->isolamento_residencial === 'sim'){ echo 'checked=checked'; }; ?> >
+              <input name="isolamento_residencial" class="form-check-input" type="radio" id="sim" value="sim" <?php if($dados->isolamento_residencial === 'sim'){ echo 'checked=checked'; }; ?> disabled>
               <label class="form-check-label" for="isolamento_residencial">Sim</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="isolamento_residencial" class="form-check-input" type="radio" id="nao" value="não" <?php if($dados->isolamento_residencial === 'não'){ echo 'checked=checked'; }; ?> >
+              <input name="isolamento_residencial" class="form-check-input" type="radio" id="nao" value="não" <?php if($dados->isolamento_residencial === 'não'){ echo 'checked=checked'; }; ?> disabled>
               <label class="form-check-label" for="isolamento_residencial">Não</label>
             </div>
           </div>
@@ -325,11 +325,11 @@
           <div class="col-12">
             <label class="form-check-label">Tem comida disponível, sem precisar sair?</label>
             <div class="form-check form-check-inline">
-              <input name="alimentacao_disponivel" class="form-check-input" type="radio" id="sim" value="sim" <?php if($dados->alimentacao_disponivel === 'sim'){ echo 'checked=checked'; }; ?> >
+              <input name="alimentacao_disponivel" class="form-check-input" type="radio" id="sim" value="sim" <?php if($dados->alimentacao_disponivel === 'sim'){ echo 'checked=checked'; }; ?> disabled>
               <label class="form-check-label" for="alimentacao_disponivel">Sim</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="alimentacao_disponivel" class="form-check-input" type="radio" id="nao" value="não" <?php if($dados->alimentacao_disponivel === 'não'){ echo 'checked=checked'; }; ?> >
+              <input name="alimentacao_disponivel" class="form-check-input" type="radio" id="nao" value="não" <?php if($dados->alimentacao_disponivel === 'não'){ echo 'checked=checked'; }; ?> disabled>
               <label class="form-check-label" for="alimentacao_disponivel">Não</label>
             </div>
           </div>
@@ -339,11 +339,11 @@
           <div class="col-12">
             <label class="form-check-label">Tem alguém para auxiliá-lo(a)?</label>
             <div class="form-check form-check-inline">
-              <input name="auxilio_terceiros" class="form-check-input" type="radio" id="sim" value="sim" <?php if($dados->auxilio_terceiros === 'sim'){ echo 'checked=checked'; }; ?> >
+              <input name="auxilio_terceiros" class="form-check-input" type="radio" id="sim" value="sim" <?php if($dados->auxilio_terceiros === 'sim'){ echo 'checked=checked'; }; ?> disabled>
               <label class="form-check-label" for="auxilio_terceiros">Sim</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="auxilio_terceiros" class="form-check-input" type="radio" id="nao" value="não" <?php if($dados->auxilio_terceiros === 'não'){ echo 'checked=checked'; }; ?> >
+              <input name="auxilio_terceiros" class="form-check-input" type="radio" id="nao" value="não" <?php if($dados->auxilio_terceiros === 'não'){ echo 'checked=checked'; }; ?> disabled>
               <label class="form-check-label" for="auxilio_terceiros">Não</label>
             </div>
           </div>
@@ -353,11 +353,11 @@
           <div class="col-12">
             <label class="form-check-label">Consegue realizar tarefas de autocuidado? (como tomar banho, cozinhar,  lavar a própria roupa)</label>
             <div class="form-check form-check-inline">
-              <input name="tarefas_autocuidado" class="form-check-input" type="radio" id="sim" value="sim" <?php if($dados->tarefas_autocuidado === 'sim'){ echo 'checked=checked'; }; ?> >
+              <input name="tarefas_autocuidado" class="form-check-input" type="radio" id="sim" value="sim" <?php if($dados->tarefas_autocuidado === 'sim'){ echo 'checked=checked'; }; ?> disabled>
               <label class="form-check-label" for="tarefas_autocuidado">Sim</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="tarefas_autocuidado" class="form-check-input" type="radio" id="nao" value="não" <?php if($dados->tarefas_autocuidado === 'não'){ echo 'checked=checked'; }; ?> >
+              <input name="tarefas_autocuidado" class="form-check-input" type="radio" id="nao" value="não" <?php if($dados->tarefas_autocuidado === 'não'){ echo 'checked=checked'; }; ?> disabled>
               <label class="form-check-label" for="tarefas_autocuidado">Não</label>
             </div>
           </div>
@@ -370,31 +370,37 @@
           <div class="col-12">
             <label class="form-check-label">Precisa de algum tipo de ajuda?</label>
           </div>
-          @foreach($ajudas as $ajuda)
+          @foreach($ajudas as $ajuda) @endforeach
+          <?php
+          //echo $ajuda->tipo;
+          $remedios = 0;
+          $alimentos = 0;
+          if(strpos($ajuda->tipo, 'compra_de_remedios') !== false){
+            $remedios = 1;
+          }
+          if(strpos($ajuda->tipo, 'compra_de_alimentos') !== false){
+            $alimentos = 1;
+          }
+          //echo $remedios;
+          //echo $alimentos;
+          ?>
           <div class="col">
             <div class="form-check form-check-inline">
-              <input name="ajuda_tipo[]" class="form-check-input" type="checkbox" value="{{ $ajuda->tipo }}" checked disabled>
-              <label class="form-check-label" for="inlineCheckbox1">{{ $ajuda->tipo }}</label>
-            </div>
-          </div>
-          @endforeach
-          <!--<div class="col">
-            <div class="form-check form-check-inline">
-              <input name="ajuda_tipo[]" class="form-check-input" type="checkbox" id="remedios" value="compra de remédios" >
-              <label class="form-check-label" for="inlineCheckbox1">Comprar remédios de uso contínuo</label>
+              <input name="ajuda_tipo[]" class="form-check-input" type="checkbox" id="remedios" value="compra_de_remedios" <?php if($remedios === 1){ echo 'checked=checked'; }; ?> disabled>
+              <label class="form-check-label" for="ajuda_tipo">Comprar remédios de uso contínuo</label>
             </div>
           </div>
           <div class="col-12">
             <div class="form-check form-check-inline">
-              <input name="ajuda_tipo[]" class="form-check-input" type="checkbox" id="alimento_ou_necessidade_basica" value="compra de alimentos" >
-              <label class="form-check-label" for="inlineCheckbox2">Comprar alimento ou outro produtos de necessidade básica</label>
+              <input name="ajuda_tipo[]" class="form-check-input" type="checkbox" id="alimento_ou_necessidade_basica" value="compra_de_alimentos" <?php if($alimentos === 1){ echo 'checked=checked'; }; ?> disabled>
+              <label class="form-check-label" for="ajuda_tipo">Comprar alimento ou outro produtos de necessidade básica</label>
             </div>
           </div>
           <div class="col">
             <div class="form-check form-check-inline">
-              <input name="ajuda_tipo[]" class="form-control" type="text" id="outros" placeholder="Outro tipo de ajuda (digite)" >
+              <input name="ajuda_tipo[]" class="form-control" type="text" id="outros" placeholder="Outro tipo de ajuda (digite)" readonly>
             </div>
-          </div>-->
+          </div>
         </div>
 
         <hr>

@@ -188,14 +188,12 @@ class PacienteController extends Controller
       $sintomas_search = $paciente->sintomas;
       $sintomas = Sintoma::find($sintomas_search[0]->id);
       $ajudas_search = $paciente->tipos_ajuda;
+      //dd($ajudas_search[0]);
       $ajuda = AjudaTipo::find($ajudas_search[0]->id);
       $emocionais_search = $paciente->estado_emocional;
       $emocional = EstadoEmocional::find($emocionais_search->id);
-      $observacoes_search = $paciente->observacao;
-      //dd($observacoes_search);
-      $observacoes_search ? $observacao = Observacao::find($observacoes_search->id) : $observacao = '';
-      //$observacao = Observacao::find($observacoes_search->id);
-      $observacoes = $paciente->observacao;
+      $observacao_search = $paciente->observacao;
+      $observacao_search ? $observacao = Observacao::find($paciente->observacao->id) : $observacao = new Observacao;
 
       $user->name = $request->input('name');
       $user->email = $request->input('email');
@@ -259,7 +257,6 @@ class PacienteController extends Controller
       //$current_cronicas = array_unique(array_merge($old_cronicas, $new_cronicas));
 
       if(!$current_cronicas){
-        echo 'não houve alteração';
         $cronicas->tipo = json_encode($request->input('doenca_cronica'));
       } else {
         $cronicas->tipo = $new_cronicas;
@@ -353,7 +350,29 @@ class PacienteController extends Controller
       }*/
 
       $ajudas = $request->input('ajuda_tipo');
+      $old_ajudas = json_decode($ajuda->tipo);
+      $new_ajudas = [];
+      $ajuda->paciente_id = $paciente->id;
+
       for($a = 0; $a < count($ajudas); $a++){
+        if($ajudas[$a] !== null){
+          array_push($new_ajudas, $ajuda->tipo = $ajudas[$a]);
+        }
+      }
+      $current_ajudas =  array_values(array_diff(array_merge($old_ajudas, $new_ajudas),array_intersect($old_ajudas, $new_ajudas)));
+      if(!$current_ajudas){
+        $ajuda->tipo = $old_ajudas;
+      } else {
+        $ajuda->tipo = $new_ajudas;
+      }
+      try {
+        $ajuda->save();
+      } catch(\Exception $exception) {
+        echo 'ajuda response:';
+        return response()->json(['message' => $exception->getMessage()], 500);
+      }
+
+      /*for($a = 0; $a < count($ajudas); $a++){
         if($ajudas[$a] !== null){
           $ajuda->paciente_id = $paciente->id;
           $ajuda->tipo = $ajudas[$a];
@@ -364,7 +383,7 @@ class PacienteController extends Controller
             return response()->json(['message' => $exception->getMessage()], 500);
           }
         }
-      }
+      }*/
 
       //$emocionais = $request->input('estado_emocional');
       $emocional->paciente_id = $paciente->id;
@@ -378,9 +397,8 @@ class PacienteController extends Controller
       }
 
       $observacoes = $request->input('observacoes');
-      //dd($observacoes);
+
       if($observacoes){
-        //$observacao = new Observacao;
         $observacao->paciente_id = $paciente->id;
         $observacao->comentarios = $observacoes;
         try {

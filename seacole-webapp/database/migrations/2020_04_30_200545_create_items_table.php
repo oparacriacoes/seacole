@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->bigInteger('paciente_id')->unsigned();
             $table->foreign('paciente_id')->references('id')->on('pacientes');
-            $table->string('nome_item');
+            $table->string('nome_item')->nullable();
             $table->timestamps();
         });
     }

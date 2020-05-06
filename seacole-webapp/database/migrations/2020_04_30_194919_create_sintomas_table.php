@@ -17,8 +17,8 @@ class CreateSintomasTable extends Migration
             $table->id();
             $table->bigInteger('paciente_id')->unsigned();
             $table->foreign('paciente_id')->references('id')->on('pacientes');
-            $table->date('data_inicio_sintoma');
-            $table->string('sintoma_manifestado');
+            $table->date('data_inicio_sintoma')->nullable();
+            $table->string('sintoma_manifestado')->nullable();
             $table->decimal('febre_temperatura_maxima')->nullable();
             $table->date('data_medicao_temperatura')->nullable();
             $table->decimal('temperatura_atual')->nullable();

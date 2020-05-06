@@ -113,7 +113,8 @@
 
   <div class="row pb-4">
     <div class="col">
-      <form method="POST" action="{{ route('paciente.update', $paciente->id) }}">
+      <form id="updatePacienteForm" method="POST" action="{{ route('paciente.update', $paciente->id) }}">
+        <input id="id" type="hidden" value="{{ $paciente->id }}">
         @method('PUT')
         @csrf
         <div class="row">
@@ -517,8 +518,8 @@
           </div>
           <div class="col-12 col-md-6">
             <div class="form-group">
-              <label for="cansaco_frequencia_respiratoria">Tem medos?</label>
-              <input name="medo" type="text" class="form-control" aria-describedby="medoHelp" placeholder="Digite" readonly <?php if($emocional->situacao !== 'tranquilo'){ echo 'value="'.$emocional->medo.'"'; } ?> >
+              <label for="medo">Tem medos?</label>
+              <input name="medo" type="text" class="form-control" aria-describedby="medoHelp" placeholder="Digite" readonly <?php if($emocional->medo !== null){ echo 'value="'.$emocional->medo.'"'; } ?> >
             </div>
           </div>
         </div>
@@ -535,10 +536,9 @@
           </div>
         </div>
         <button type="button" class="btn btn-danger" name="button" id="btn-edit" onclick="editForm()">Editar</button>
-        <button type="submit" class="btn btn-primary" id="btn-save" disabled>Salvar</button>
+        <button type="submit" class="btn btn-primary btn-save" id="updatePaciente" disabled>Salvar</button>
       </form>
     </div>
   </div>
-  <!-- /.row -->
-</div><!-- /.container-fluid -->
+</div>
 @stop

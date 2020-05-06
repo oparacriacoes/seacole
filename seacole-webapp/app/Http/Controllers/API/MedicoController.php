@@ -28,10 +28,14 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
+      //return response()->json(['message' => $request->input('data')['name']]);
       $user = new User;
-      $user->name = $request->input('name');
-      $user->email = $request->input('email');
-      $user->password = Hash::make($request->input('email'));
+      //$user->name = $request->input('name');
+      $user->name = $request->input('data')['name'];
+      //$user->email = $request->input('email');
+      $user->email = $request->input('data')['email'];
+      //$user->password = Hash::make($request->input('email'));
+      $user->password = Hash::make($request->input('data')['email']);
       $user->role = 'medico';
       try {
         $user->save();
@@ -42,8 +46,10 @@ class MedicoController extends Controller
       if($user){
         $medico = new Medico;
         $medico->user_id = $user->id;
-        $medico->fone_fixo = $request->input('fone_fixo');
-        $medico->fone_celular = $request->input('fone_celular');
+        //$medico->fone_fixo = $request->input('fone_fixo');
+        $medico->fone_fixo = $request->input('data')['fone_fixo'];
+        //$medico->fone_celular = $request->input('fone_celular');
+        $medico->fone_celular = $request->input('data')['fone_celular'];
         try {
           $medico->save();
         } catch(\Exception $exception) {
@@ -51,8 +57,8 @@ class MedicoController extends Controller
         }
       }
 
-      //return response()->json(['message' => 'Cadastro feito com sucesso.']);
-      return view('pages.medico.create')->with(['success' => 'Cadastro feito com sucesso.']);
+      return response()->json(['message' => 'Cadastro feito com sucesso.']);
+      //return view('pages.medico.create')->with(['success' => 'Cadastro feito com sucesso.']);
     }
 
     /**
@@ -77,9 +83,12 @@ class MedicoController extends Controller
     {
       $user = User::find($id);
       $medico = $user->medico;
-      $user->name = $request->input('name');
-      $user->email = $request->input('email');
-      $user->password = Hash::make($request->input('email'));
+      //$user->name = $request->input('name');
+      $user->name = $request->input('data')['name'];
+      //$user->email = $request->input('email');
+      $user->email = $request->input('data')['email'];
+      //$user->password = Hash::make($request->input('email'));
+      $user->password = Hash::make($request->input('data')['email']);
       $user->role = 'medico';
       try {
         $user->save();
@@ -89,15 +98,19 @@ class MedicoController extends Controller
 
       if($user){
         $medico->user_id = $user->id;
-        $medico->fone_fixo = $request->input('fone_fixo');
-        $medico->fone_celular = $request->input('fone_celular');
+        //$medico->fone_fixo = $request->input('fone_fixo');
+        $medico->fone_fixo = $request->input('data')['fone_fixo'];
+        //$medico->fone_celular = $request->input('fone_celular');
+        $medico->fone_celular = $request->input('data')['fone_celular'];
         try {
           $medico->save();
         } catch(\Exception $exception) {
           return response()->json(['message' => $exception->getMessage()]);
         }
     }
-    return view('pages.medico.create')->with(['success' => 'Cadastro atualizado com sucesso.']);
+
+    return response()->json(['message' => 'Cadastro atualizado com sucesso.']);
+    //return view('pages.medico.create')->with(['success' => 'Cadastro atualizado com sucesso.']);
   }
 
     /**

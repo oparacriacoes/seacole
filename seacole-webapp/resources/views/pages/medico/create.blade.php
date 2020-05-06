@@ -48,10 +48,9 @@
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button id="createMedico" type="submit" class="btn btn-primary">Cadastrar</button>
       </form>
     </div>
   </div>
-  <!-- /.row -->
-</div><!-- /.container-fluid -->
+</div>
 @stop

@@ -11,7 +11,7 @@
 
   <div class="row pb-4">
     <div class="col">
-      <form method="POST" action="/api/paciente">
+      <form id="createPacienteForm" method="POST" action="/api/paciente">
         @csrf
         <div class="row">
           <div class="col-12 col-md-4">
@@ -361,7 +361,7 @@
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary" id="createPaciente">Cadastrar</button>
       </form>
     </div>
   </div>

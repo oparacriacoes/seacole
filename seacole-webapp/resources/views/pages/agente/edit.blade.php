@@ -18,6 +18,7 @@
   <div class="row pb-4">
     <div class="col">
       <form method="POST" action="{{ route('agente.update', $agente->id) }}">
+        <input id="id" type="hidden" name="" value="{{ $agente->id }}">
         @method('PUT')
         @csrf
         <div class="row">
@@ -71,7 +72,7 @@
           </div>
         </div>
         <button type="button" class="btn btn-danger" name="button" id="btn-edit" onclick="editForm()">Editar</button>
-        <button type="submit" class="btn btn-primary" id="btn-save" disabled>Salvar</button>
+        <button type="submit" class="btn btn-primary btn-save" id="updateAgente" disabled>Salvar</button>
       </form>
     </div>
   </div>

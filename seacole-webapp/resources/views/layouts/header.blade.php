@@ -115,10 +115,15 @@
         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
       </div>
     </li>
+    @if(strpos(\Request::path(), 'admin/paciente/edit') !== false)
     <li class="nav-item">
-      <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
-          class="fas fa-tasks"></i></a>
+      @if(isset($items))
+      <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i class="fas fa-tasks" style="color: #007bff;"></i></a>
+      @else
+      <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i class="fas fa-tasks" style="color: #dc3545;"></i></a>
+      @endif
     </li>
+    @endif
   </ul>
 </nav>
 <!-- /.navbar -->

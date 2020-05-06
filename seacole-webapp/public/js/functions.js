@@ -160,6 +160,7 @@ function kitItems(id) {
   })
     .done(function(msg) {
       alert(msg.message);
+      window.location.reload();
     });
 }
 
@@ -206,5 +207,6 @@ function updateKitItems(id) {
   })
     .done(function(msg) {
       alert(msg.message);
+      window.location.reload();
     });
 }

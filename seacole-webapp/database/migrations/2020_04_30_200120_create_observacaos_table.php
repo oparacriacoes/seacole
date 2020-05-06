@@ -17,7 +17,7 @@ class CreateObservacaosTable extends Migration
             $table->id();
             $table->bigInteger('paciente_id')->unsigned();
             $table->foreign('paciente_id')->references('id')->on('pacientes');
-            $table->longText('comentarios');
+            $table->longText('comentarios')->nullable();
             $table->timestamps();
         });
     }

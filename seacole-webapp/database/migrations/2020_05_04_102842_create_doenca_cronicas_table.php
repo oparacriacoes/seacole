@@ -17,7 +17,7 @@ class CreateDoencaCronicasTable extends Migration
             $table->id();
             $table->bigInteger('paciente_id')->unsigned();
             $table->foreign('paciente_id')->references('id')->on('pacientes');
-            $table->string('tipo');
+            $table->string('tipo')->nullable();
             $table->timestamps();
         });
     }

@@ -1,6 +1,11 @@
 @extends('admin_template')
 @section('sample')
 <div class="container-fluid">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1>Médicos</h1>
+    </div>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>

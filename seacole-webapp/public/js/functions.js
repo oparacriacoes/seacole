@@ -134,7 +134,6 @@ $("#createPaciente").click(function(e) {
     .done(function(msg) {
       //console.log(msg.message);
       alert(msg.message);
-      //window.location.reload();
       window.location.replace('http://localhost:8000/admin/paciente');
     });
 });

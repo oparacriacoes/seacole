@@ -303,32 +303,32 @@
             <label>Sintomas manifestados:</label>
             <div class="form-check form-check-inline">
               @foreach($sintomas as $sintoma) @endforeach
-
               <?php
               $tosse = 0;
               $febre = 0;
               $sonolencia = 0;
               $pressao_baixa = 0;
               $falta_de_ar = 0;
-              for($s = 0; $s < count(json_decode($sintoma->sintoma_manifestado)); $s++){
-                if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'tosse') !== false){
-                  $tosse = 1;
-                }
-                if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'febre') !== false){
-                  $febre = 1;
-                }
-                if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'sonolência') !== false){
-                  $sonolencia = 1;
-                }
-                if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'pressão baixa') !== false){
-                  $pressao_baixa = 1;
-                }
-                if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'falta de ar') !== false){
-                  $falta_de_ar = 1;
+              if(isset($sintoma)){
+                for($s = 0; $s < count(json_decode($sintoma->sintoma_manifestado)); $s++){
+                  if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'tosse') !== false){
+                    $tosse = 1;
+                  }
+                  if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'febre') !== false){
+                    $febre = 1;
+                  }
+                  if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'sonolência') !== false){
+                    $sonolencia = 1;
+                  }
+                  if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'pressão baixa') !== false){
+                    $pressao_baixa = 1;
+                  }
+                  if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'falta de ar') !== false){
+                    $falta_de_ar = 1;
+                  }
                 }
               }
               ?>
-
               <input name="sintomas[]" class="form-check-input" id="tosse" type="checkbox" value="tosse" <?php if($tosse === 1){ echo 'checked=checked'; } ?> disabled>
               <label class="form-check-label" for="tosse">Tosse</label>
             </div>
@@ -356,19 +356,31 @@
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="febre_temperatura_maxima">Temperatura máxima (em graus)</label>
+              @if(isset($sintoma))
               <input name="febre_temperatura_maxima" type="number" class="form-control" id="febre_temperatura_maxima" aria-describedby="febre_temperatura_maximaHelp" readonly value="{{ $sintoma->febre_temperatura_maxima }}">
+              @else
+              <input name="febre_temperatura_maxima" type="number" class="form-control" id="febre_temperatura_maxima" aria-describedby="febre_temperatura_maximaHelp" readonly value="">
+              @endif
             </div>
           </div>
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="data_medicao_temperatura">Data temperatura máxima</label>
+              @if(isset($sintoma))
               <input name="data_medicao_temperatura" type="date" class="form-control" id="data_medicao_temperatura" aria-describedby="data_medicao_temperaturaHelp" readonly value="{{ $sintoma->data_medicao_temperatura }}">
+              @else
+              <input name="data_medicao_temperatura" type="date" class="form-control" id="data_medicao_temperatura" aria-describedby="data_medicao_temperaturaHelp" readonly value="">
+              @endif
             </div>
           </div>
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="temperatura_atual">Temperatura atual (em graus)</label>
+              @if(isset($sintoma))
               <input name="temperatura_atual" type="number" class="form-control" id="temperatura_atual" aria-describedby="temperatura_atualHelp" readonly value="{{ $sintoma->temperatura_atual }}">
+              @else
+              <input name="temperatura_atual" type="number" class="form-control" id="temperatura_atual" aria-describedby="temperatura_atualHelp" readonly value="">
+              @endif
             </div>
           </div>
         </div>
@@ -377,19 +389,31 @@
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="cansaco_saturacao">Saturação</label>
+              @if(isset($sintoma))
               <input name="cansaco_saturacao" type="number" class="form-control" id="cansaco_saturacao" aria-describedby="cansaco_saturacaoHelp" readonly value="{{ $sintoma->cansaco_saturacao }}">
+              @else
+              <input name="cansaco_saturacao" type="number" class="form-control" id="cansaco_saturacao" aria-describedby="cansaco_saturacaoHelp" readonly value="">
+              @endif
             </div>
           </div>
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="cansaco_frequencia_respiratoria">Frequência respiratória</label>
+              @if(isset($sintoma))
               <input name="cansaco_frequencia_respiratoria" type="number" class="form-control" id="cansaco_frequencia_respiratoria" aria-describedby="cansaco_frequencia_respiratoriaHelp" readonly value="{{ $sintoma->cansaco_frequencia_respiratoria }}">
+              @else
+              <input name="cansaco_frequencia_respiratoria" type="number" class="form-control" id="cansaco_frequencia_respiratoria" aria-describedby="cansaco_frequencia_respiratoriaHelp" readonly value="">
+              @endif
             </div>
           </div>
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="data_inicio_sintoma">Data início sintomas</label>
+              @if(isset($sintoma))
               <input name="data_inicio_sintoma" type="date" class="form-control" id="data_inicio_sintoma" aria-describedby="data_inicio_sintomaHelp" readonly value="{{ $sintoma->data_inicio_sintoma }}">
+              @else
+              <input name="data_inicio_sintoma" type="date" class="form-control" id="data_inicio_sintoma" aria-describedby="data_inicio_sintomaHelp" readonly value="">
+              @endif
             </div>
           </div>
         </div>
@@ -478,11 +502,13 @@
           //echo $ajuda->tipo;
           $remedios = 0;
           $alimentos = 0;
-          if(strpos($ajuda->tipo, 'compra_de_remedios') !== false){
-            $remedios = 1;
-          }
-          if(strpos($ajuda->tipo, 'compra_de_alimentos') !== false){
-            $alimentos = 1;
+          if(isset($ajuda)){
+            if(strpos($ajuda->tipo, 'compra_de_remedios') !== false){
+              $remedios = 1;
+            }
+            if(strpos($ajuda->tipo, 'compra_de_alimentos') !== false){
+              $alimentos = 1;
+            }
           }
           //echo $remedios;
           //echo $alimentos;
@@ -512,14 +538,22 @@
           <div class="col-12 col-md-6">
             <label>Qual o estado emocional?</label>
             <div class="form-check form-check-inline">
+              @if(isset($emocional))
               <input name="estado_emocional" class="form-check-input" type="checkbox" value="tranquilo" <?php if($emocional->situacao === 'tranquilo'){ echo 'checked=checked'; } ?> disabled>
+              @else
+              <input name="estado_emocional" class="form-check-input" type="checkbox" value="tranquilo" disabled>
+              @endif
               <label class="form-check-label" for="estado_emocional">Se sente tranquilo(a)?</label>
             </div>
           </div>
           <div class="col-12 col-md-6">
             <div class="form-group">
               <label for="medo">Tem medos?</label>
+              @if(isset($emocional))
               <input name="medo" type="text" class="form-control" aria-describedby="medoHelp" placeholder="Digite" readonly <?php if($emocional->medo !== null){ echo 'value="'.$emocional->medo.'"'; } ?> >
+              @else
+              <input name="medo" type="text" class="form-control" aria-describedby="medoHelp" placeholder="Digite" readonly >
+              @endif
             </div>
           </div>
         </div>

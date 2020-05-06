@@ -12,6 +12,7 @@
   <div class="row pb-4">
     <div class="col">
       <form id="createPacienteForm" method="POST" action="/api/paciente">
+        <input type="hidden" name="me" value="{{ Auth::user()->id }}">
         @csrf
         <div class="row">
           <div class="col-12 col-md-4">

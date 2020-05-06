@@ -99,7 +99,7 @@ $(document).ready(function() {
 });
 
 function editForm() {
-  $('#btn-save').attr('disabled', false);
+  $('.btn-save').attr('disabled', false);
   $('.form-control').attr('readonly', false);
   $('.form-check-input').attr('disabled', false);
   $('#btn-edit').removeClass("btn-danger");
@@ -110,13 +110,137 @@ function editForm() {
 
 function cancelEdit() {
   $('.form-control').attr('readonly', true);
-  $('#btn-save').attr('disabled', true);
+  $('.btn-save').attr('disabled', true);
   $('.form-check-input').attr('disabled', true);
   $('#btn-edit').removeClass("btn-secondary");
   $('#btn-edit').addClass("btn-danger");
   $('#btn-edit').text('Editar');
   $("#btn-edit").attr("onclick","editForm()");
 }
+
+//AJAX
+$("#createPaciente").click(function(e) {
+  e.preventDefault();
+  let url = "http://localhost:8000/api/paciente/";
+  let inputs = $('input');
+  let data = inputs.serializeJSON();
+  $.ajax({
+    method: "POST",
+    url: url,
+    data: {
+      data,
+    }
+  })
+    .done(function(msg) {
+      //console.log(msg.message);
+      alert(msg.message);
+      //window.location.reload();
+      window.location.replace('http://localhost:8000/admin/paciente');
+    });
+});
+
+$("#updatePaciente").click(function(e) {
+  e.preventDefault();
+  let id = $('#id').val();
+  let url = "http://localhost:8000/api/paciente/"+id;
+  let inputs = $('input');
+  let data = inputs.serializeJSON();
+  $.ajax({
+    method: "PUT",
+    url: url,
+    data: {
+      data,
+    }
+  })
+    .done(function(msg) {
+      //console.log(msg.message);
+      alert(msg.message);
+      window.location.reload();
+    });
+});
+
+$("#createAgente").click(function(e) {
+  e.preventDefault();
+  let url = "http://localhost:8000/api/agente/";
+  let inputs = $('input');
+  let data = inputs.serializeJSON();
+  $.ajax({
+    method: "POST",
+    url: url,
+    data: {
+      data,
+    }
+  })
+    .done(function(msg) {
+      console.log(msg.message);
+      alert(msg.message);
+      window.location.replace('http://localhost:8000/admin/agente');
+    });
+});
+
+$("#updateAgente").click(function(e) {
+  e.preventDefault();
+  let id = $('#id').val();
+  //console.log(id);
+  let url = "http://localhost:8000/api/agente/"+id;
+  let inputs = $('input');
+  let data = inputs.serializeJSON();
+  //console.log(data);
+  $.ajax({
+    method: "PUT",
+    url: url,
+    data: {
+      data,
+    }
+  })
+    .done(function(msg) {
+      //console.log(msg.message);
+      alert(msg.message);
+      window.location.reload();
+    });
+});
+
+$("#createMedico").click(function(e) {
+  e.preventDefault();
+  let url = "http://localhost:8000/api/medico/";
+  let inputs = $('input');
+  let data = inputs.serializeJSON();
+  //console.log(data);
+  $.ajax({
+    method: "POST",
+    url: url,
+    data: {
+      data,
+    }
+  })
+    .done(function(msg) {
+      //console.log(msg.message);
+      alert(msg.message);
+      window.location.replace('http://localhost:8000/admin/medico');
+    });
+});
+
+$("#updateMedico").click(function(e) {
+  e.preventDefault();
+  let id = $('#id').val();
+  //console.log(id);
+  let url = "http://localhost:8000/api/medico/"+id;
+  let inputs = $('input');
+  let data = inputs.serializeJSON();
+  //console.log(data);
+  $.ajax({
+    method: "PUT",
+    url: url,
+    data: {
+      data,
+    }
+  })
+    .done(function(msg) {
+      //console.log(msg.message);
+      alert(msg.message);
+      window.location.reload();
+    });
+});
 
 function kitItems(id) {
   cartilha = $('#cartilha');

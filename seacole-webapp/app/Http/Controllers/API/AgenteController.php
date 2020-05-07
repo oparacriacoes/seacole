@@ -29,12 +29,8 @@ class AgenteController extends Controller
     public function store(Request $request)
     {
       $user = new User;
-      //$user->name = $request->input('name');
       $user->name = $request->input('data')['name'];
-      //$user->email = $request->input('email');
       $user->email = $request->input('data')['email'];
-      //$user->password = $request->input('password');
-      //$user->password = Hash::make($request->input('email'));
       $user->password = Hash::make($request->input('data')['email']);
       $user->role = 'agente';
       try {
@@ -46,9 +42,7 @@ class AgenteController extends Controller
       if($user){
         $agente = new Agente;
         $agente->user_id = $user->id;
-        //$agente->fone_fixo = $request->input('fone_fixo');
         $agente->fone_fixo = $request->input('data')['fone_fixo'];
-        //$agente->fone_celular = $request->input('fone_celular');
         $agente->fone_celular = $request->input('data')['fone_celular'];
         try {
           $agente->save();
@@ -58,7 +52,6 @@ class AgenteController extends Controller
       }
 
       return response()->json(['message' => 'Cadastro feito com sucesso.']);
-      //return view('pages.agente.create')->with(['success' => 'Cadastro feito com sucesso.']);
     }
 
     /**
@@ -81,14 +74,10 @@ class AgenteController extends Controller
      */
     public function update(Request $request, $id)
     {
-      //return response()->json(['message' => $request->input('data')['name']]);
       $user = User::find($id);
       $agente = $user->agente;
-      //$user->name = $request->input('name');
       $user->name = $request->input('data')['name'];
-      //$user->email = $request->input('email');
       $user->email = $request->input('data')['email'];
-      //$user->password = Hash::make($request->input('email'));
       $user->password = Hash::make($request->input('data')['email']);
       $user->role = 'agente';
       try {
@@ -98,11 +87,8 @@ class AgenteController extends Controller
       }
 
       if($user){
-        //$agente = new Agente;
         $agente->user_id = $user->id;
-        //$agente->fone_fixo = $request->input('fone_fixo');
         $agente->fone_fixo = $request->input('data')['fone_fixo'];
-        //$agente->fone_celular = $request->input('fone_celular');
         $agente->fone_celular = $request->input('data')['fone_celular'];
         try {
           $agente->save();
@@ -112,7 +98,6 @@ class AgenteController extends Controller
       }
 
       return response()->json(['message' => 'Cadastro atualizado com sucesso.']);
-      //return view('pages.agente.create')->with(['success' => 'Cadastro atualizado com sucesso.']);
     }
 
     /**
@@ -123,6 +108,6 @@ class AgenteController extends Controller
      */
     public function destroy($id)
     {
-        //
+      return null;
     }
 }

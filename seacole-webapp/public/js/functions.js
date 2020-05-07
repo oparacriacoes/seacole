@@ -288,7 +288,6 @@ function kitItems(id) {
 }
 
 function updateKitItems(id) {
-  console.log(id);
   cartilha = $('#cartilha');
   termometro = $('#termometro');
   mascaras = $('#mascaras');
@@ -319,7 +318,7 @@ function updateKitItems(id) {
   if(oximetro.prop('checked') === true){
     data.push(oximetro.val());
   }
-  console.log(data);
+
   $.ajax({
     method: "PUT",
     url: "http://localhost:8000/api/item/"+id,
@@ -329,6 +328,7 @@ function updateKitItems(id) {
     }
   })
     .done(function(msg) {
+      //console.log(msg.message);
       alert(msg.message);
       window.location.reload();
     });

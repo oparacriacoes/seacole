@@ -1,3 +1,6 @@
+const API_URL = 'http://localhost:8000/api';
+const APP_URL = 'http://localhost:8000';
+
 $(document).ready(function() {
   //ViaCEP
   function limpa_formulário_cep() {
@@ -121,7 +124,7 @@ function cancelEdit() {
 //AJAX
 $("#createPaciente").click(function(e) {
   e.preventDefault();
-  let url = "http://localhost:8000/api/paciente/";
+  let url = API_URL + "/paciente/";
   let inputs = $('input');
   let data = inputs.serializeJSON();
   $.ajax({
@@ -134,14 +137,14 @@ $("#createPaciente").click(function(e) {
     .done(function(msg) {
       //console.log(msg.message);
       alert(msg.message);
-      window.location.replace('http://localhost:8000/admin/paciente');
+      window.location.replace(APP_URL + '/admin/paciente');
     });
 });
 
 $("#updatePaciente").click(function(e) {
   e.preventDefault();
   let id = $('#id').val();
-  let url = "http://localhost:8000/api/paciente/"+id;
+  let url = API_URL + "/paciente/"+id;
   let inputs = $('input');
   let data = inputs.serializeJSON();
   $.ajax({
@@ -160,7 +163,7 @@ $("#updatePaciente").click(function(e) {
 
 $("#createAgente").click(function(e) {
   e.preventDefault();
-  let url = "http://localhost:8000/api/agente/";
+  let url = API_URL + "/agente/";
   let inputs = $('input');
   let data = inputs.serializeJSON();
   $.ajax({
@@ -173,7 +176,7 @@ $("#createAgente").click(function(e) {
     .done(function(msg) {
       //console.log(msg.message);
       alert(msg.message);
-      window.location.replace('http://localhost:8000/admin/agente');
+      window.location.replace(APP_URL + '/admin/agente');
     });
 });
 
@@ -181,7 +184,7 @@ $("#updateAgente").click(function(e) {
   e.preventDefault();
   let id = $('#id').val();
   //console.log(id);
-  let url = "http://localhost:8000/api/agente/"+id;
+  let url = API_URL + "/agente/"+id;
   let inputs = $('input');
   let data = inputs.serializeJSON();
   //console.log(data);
@@ -201,7 +204,7 @@ $("#updateAgente").click(function(e) {
 
 $("#createMedico").click(function(e) {
   e.preventDefault();
-  let url = "http://localhost:8000/api/medico/";
+  let url = API_URL + "/medico/";
   let inputs = $('input');
   let data = inputs.serializeJSON();
   //console.log(data);
@@ -215,7 +218,7 @@ $("#createMedico").click(function(e) {
     .done(function(msg) {
       //console.log(msg.message);
       alert(msg.message);
-      window.location.replace('http://localhost:8000/admin/medico');
+      window.location.replace(APP_URL + '/admin/medico');
     });
 });
 
@@ -223,7 +226,7 @@ $("#updateMedico").click(function(e) {
   e.preventDefault();
   let id = $('#id').val();
   //console.log(id);
-  let url = "http://localhost:8000/api/medico/"+id;
+  let url = API_URL + "/medico/"+id;
   let inputs = $('input');
   let data = inputs.serializeJSON();
   //console.log(data);
@@ -275,7 +278,7 @@ function kitItems(id) {
 
   $.ajax({
     method: "POST",
-    url: "http://localhost:8000/api/item",
+    url: API_URL + "/item",
     data: {
       'paciente_id':id,
       data,
@@ -321,7 +324,7 @@ function updateKitItems(id) {
 
   $.ajax({
     method: "PUT",
-    url: "http://localhost:8000/api/item/"+id,
+    url: API_URL + "/item/"+id,
     data: {
       'item_id':id,
       data,

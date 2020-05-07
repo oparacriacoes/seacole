@@ -64,9 +64,11 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
       $nomes = [];
-      $nomes_input = $request->data;
-      for($n = 0; $n < count($nomes_input); $n++){
-        array_push($nomes, $nomes_input[$n]);
+      if(isset($request->data)){
+        $nomes_input = $request->data;
+        for($n = 0; $n < count($nomes_input); $n++){
+          array_push($nomes, $nomes_input[$n]);
+        }
       }
       $item = Item::find($request->input('item_id'));
       $item->nome_item = json_encode($nomes);

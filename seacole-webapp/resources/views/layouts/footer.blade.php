@@ -1,9 +1,9 @@
 <!-- Main Footer -->
 <footer class="main-footer">
   <!-- To the right -->
-  <div class="float-right d-none d-sm-inline">
+  <!--<div class="float-right d-none d-sm-inline">
     Anything you want
-  </div>
+  </div>-->
   <!-- Default to the left -->
-  <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+  <strong>Seacole</a></strong> - Agentes populares de saúde.
 </footer>

@@ -61,7 +61,7 @@
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="name">Data Nascimento</label>
-              <input name="data_nascimento" type="date" class="form-control" id="data_nascimento" aria-describedby="data_nascimentoHelp" required>
+              <input name="data_nascimento" type="text" class="form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp" required>
             </div>
           </div>
         </div>
@@ -231,7 +231,7 @@
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="data_medicao_temperatura">Data temperatura máxima</label>
-              <input name="data_medicao_temperatura" type="date" class="form-control" id="data_medicao_temperatura" aria-describedby="data_medicao_temperaturaHelp">
+              <input name="data_medicao_temperatura" type="text" class="form-control date" id="data_medicao_temperatura" aria-describedby="data_medicao_temperaturaHelp">
             </div>
           </div>
           <div class="col-12 col-md-4">
@@ -258,7 +258,7 @@
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="data_inicio_sintoma">Data início sintomas</label>
-              <input name="data_inicio_sintoma" type="date" class="form-control" id="data_inicio_sintoma" aria-describedby="data_inicio_sintomaHelp">
+              <input name="data_inicio_sintoma" type="text" class="form-control date" id="data_inicio_sintoma" aria-describedby="data_inicio_sintomaHelp">
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\User;
 use App\Paciente;
 use App\Sintoma;
@@ -47,7 +48,7 @@ class PacienteController extends Controller
       if($user){
         $paciente = new Paciente;
         $paciente->user_id = $user->id;
-        $paciente->data_nascimento = $request->input('data')['data_nascimento'];
+        $paciente->data_nascimento = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_nascimento'])->format('Y-m-d');
         $paciente->endereco_cep = $request->input('data')['endereco_cep'];
         $paciente->endereco_rua = $request->input('data')['endereco_rua'];
         $paciente->endereco_numero = $request->input('data')['endereco_numero'];
@@ -105,10 +106,10 @@ class PacienteController extends Controller
         $sintomas = json_encode($request->input('data')['sintomas']);
         $sintoma = new Sintoma;
         $sintoma->paciente_id = $paciente->id;
-        $sintoma->data_inicio_sintoma = $request->input('data')['data_inicio_sintoma'];
+        $sintoma->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_inicio_sintoma'])->format('Y-m-d');
         $sintoma->sintoma_manifestado = $sintomas;
         $sintoma->febre_temperatura_maxima = $request->input('data')['febre_temperatura_maxima'];
-        $sintoma->data_medicao_temperatura = $request->input('data')['data_medicao_temperatura'];
+        $sintoma->data_medicao_temperatura = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_medicao_temperatura'])->format('Y-m-d');
         $sintoma->temperatura_atual = $request->input('data')['temperatura_atual'];
         $sintoma->cansaco_saturacao = $request->input('data')['cansaco_saturacao'];
         $sintoma->cansaco_frequencia_respiratoria = $request->input('data')['cansaco_frequencia_respiratoria'];
@@ -221,7 +222,7 @@ class PacienteController extends Controller
 
       if($user){
         $paciente->user_id = $user->id;
-        $paciente->data_nascimento = $request->input('data')['data_nascimento'];
+        $paciente->data_nascimento = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_nascimento'])->format('Y-m-d');
         $paciente->endereco_cep = $request->input('data')['endereco_cep'];
         $paciente->endereco_rua = $request->input('data')['endereco_rua'];
         $paciente->endereco_numero = $request->input('data')['endereco_numero'];
@@ -319,9 +320,9 @@ class PacienteController extends Controller
           $sintomas->sintoma_manifestado = json_encode($new_sintomas);
         }
         $sintomas->paciente_id = $paciente->id;
-        $sintomas->data_inicio_sintoma = $request->input('data')['data_inicio_sintoma'];
+        $sintomas->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_inicio_sintoma'])->format('Y-m-d');
         $sintomas->febre_temperatura_maxima = $request->input('data')['febre_temperatura_maxima'];
-        $sintomas->data_medicao_temperatura = $request->input('data')['data_medicao_temperatura'];
+        $sintomas->data_medicao_temperatura = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_medicao_temperatura'])->format('Y-m-d');
         $sintomas->temperatura_atual = $request->input('data')['temperatura_atual'];
         $sintomas->cansaco_saturacao = $request->input('data')['cansaco_saturacao'];
         $sintomas->cansaco_frequencia_respiratoria = $request->input('data')['cansaco_frequencia_respiratoria'];

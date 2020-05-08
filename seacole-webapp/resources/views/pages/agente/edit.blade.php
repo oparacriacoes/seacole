@@ -46,27 +46,27 @@
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="form-group">
-              <label for="fone_fixo">Telefone fixo</label>
+              <label for="fone_celular_1">Telefone celular 1</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <a href="tel:{{ $agente->fone_fixo }}">
+                  <a href="tel:{{ $agente->fone_celular_1 }}">
                     <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-phone-square-alt" style="font-size: 1.5rem; color:#007bff;"></i></div>
                   </a>
                 </div>
-                <input name="fone_fixo" type="text" class="form-control phone_with_ddd" id="fone_fixo" aria-describedby="fone_fixoHelp" value="{{ $agente->fone_fixo }}" readonly>
+                <input name="fone_celular_1" type="text" class="form-control mobile_with_ddd" id="fone_celular_1" aria-describedby="fone_celular_1Help" value="{{ $agente->fone_celular_1 }}" readonly>
               </div>
             </div>
           </div>
           <div class="col-12 col-md-6">
             <div class="form-group">
-              <label for="fone_celular">Telefone celular</label>
+              <label for="fone_celular_2">Telefone celular 2</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <a href="tel:{{ $agente->fone_celular }}">
+                  <a href="tel:{{ $agente->fone_celular_2 }}">
                     <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-mobile-alt" style="font-size: 1.5rem; color:#007bff;"></i></div>
                   </a>
                 </div>
-                <input name="fone_celular" type="text" class="form-control mobile_with_ddd" id="fone_celular" aria-describedby="fone_celularHelp" value="{{ $agente->fone_celular }}" readonly>
+                <input name="fone_celular_2" type="text" class="form-control mobile_with_ddd" id="fone_celular_2" aria-describedby="fone_celular_2Help" value="{{ $agente->fone_celular_2 }}" readonly>
               </div>
             </div>
           </div>

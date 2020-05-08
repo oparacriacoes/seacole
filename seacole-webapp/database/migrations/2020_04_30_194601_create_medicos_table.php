@@ -17,8 +17,8 @@ class CreateMedicosTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('fone_fixo')->nullable();
-            $table->string('fone_celular')->nullable();
+            $table->string('fone_celular_1')->nullable();
+            $table->string('fone_celular_2')->nullable();
             $table->timestamps();
         });
     }

@@ -37,14 +37,14 @@
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="form-group">
-              <label for="fone_fixo">Telefone fixo</label>
-              <input name="fone_fixo" type="text" class="form-control phone_with_ddd" id="fone_fixo" aria-describedby="fone_fixoHelp">
+              <label for="fone_celular_1">Telefone celular 1</label>
+              <input name="fone_celular_1" type="text" class="form-control mobile_with_ddd" id="fone_celular_1" aria-describedby="fone_celular_1Help">
             </div>
           </div>
           <div class="col-12 col-md-6">
             <div class="form-group">
-              <label for="fone_celular">Telefone celular</label>
-              <input name="fone_celular" type="text" class="form-control mobile_with_ddd" id="fone_celular" aria-describedby="fone_celularHelp">
+              <label for="fone_celular_2">Telefone celular 2</label>
+              <input name="fone_celular_2" type="text" class="form-control mobile_with_ddd" id="fone_celular_2" aria-describedby="fone_celular_2Help">
             </div>
           </div>
         </div>

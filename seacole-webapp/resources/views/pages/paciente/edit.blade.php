@@ -164,8 +164,12 @@
           </div>
           <div class="col-12 col-md-4">
             <div class="form-group">
-              <label for="name">Data Nascimento</label>
+              <label for="name">Data Nascimento</label><?php echo $paciente->data_nascimento; ?>
+              @if(isset($paciente->data_nascimento))
               <input name="data_nascimento" type="text" class="form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp" required readonly value="{{ \Carbon\Carbon::parse($paciente->data_nascimento)->format('d/m/Y') }}">
+              @else
+              <input name="data_nascimento" type="text" class="form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp" required readonly>
+              @endif
             </div>
           </div>
         </div>

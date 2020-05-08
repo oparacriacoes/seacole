@@ -28,7 +28,6 @@ class PacienteController extends Controller
   {
     $paciente = Paciente::find($id);
     $sintomas = $paciente->sintomas;
-    //dd(\Carbon\Carbon::parse($sintomas[0]->data_inicio_sintoma)->format('d/m/Y'));
     $ajudas = $paciente->tipos_ajuda;
     $emocional = $paciente->estado_emocional;
     $observacao = $paciente->observacao;

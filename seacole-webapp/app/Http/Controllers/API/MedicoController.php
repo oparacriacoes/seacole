@@ -42,8 +42,8 @@ class MedicoController extends Controller
       if($user){
         $medico = new Medico;
         $medico->user_id = $user->id;
-        $medico->fone_fixo = $request->input('data')['fone_fixo'];
-        $medico->fone_celular = $request->input('data')['fone_celular'];
+        $medico->fone_celular_1 = $request->input('data')['fone_celular_1'];
+        $medico->fone_celular_2 = $request->input('data')['fone_celular_2'];
         try {
           $medico->save();
         } catch(\Exception $exception) {
@@ -89,8 +89,8 @@ class MedicoController extends Controller
 
       if($user){
         $medico->user_id = $user->id;
-        $medico->fone_fixo = $request->input('data')['fone_fixo'];
-        $medico->fone_celular = $request->input('data')['fone_celular'];
+        $medico->fone_celular_1 = $request->input('data')['fone_celular_1'];
+        $medico->fone_celular_2 = $request->input('data')['fone_celular_2'];
         try {
           $medico->save();
         } catch(\Exception $exception) {

@@ -42,8 +42,8 @@ class AgenteController extends Controller
       if($user){
         $agente = new Agente;
         $agente->user_id = $user->id;
-        $agente->fone_fixo = $request->input('data')['fone_fixo'];
-        $agente->fone_celular = $request->input('data')['fone_celular'];
+        $agente->fone_celular_1 = $request->input('data')['fone_celular_1'];
+        $agente->fone_celular_2 = $request->input('data')['fone_celular_2'];
         try {
           $agente->save();
         } catch(\Exception $exception) {
@@ -88,8 +88,8 @@ class AgenteController extends Controller
 
       if($user){
         $agente->user_id = $user->id;
-        $agente->fone_fixo = $request->input('data')['fone_fixo'];
-        $agente->fone_celular = $request->input('data')['fone_celular'];
+        $agente->fone_celular_1 = $request->input('data')['fone_celular_1'];
+        $agente->fone_celular_2 = $request->input('data')['fone_celular_2'];
         try {
           $agente->save();
         } catch(\Exception $exception) {

@@ -20,6 +20,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    public const HOME = '/admin';
 
     /**
      * Where to redirect users after login.

@@ -10,16 +10,24 @@
     <thead>
       <tr>
         <th scope="col">Nome</th>
-        <th scope="col">Email</th>
-        <th scope="col">Data Cadastro</th>
+        <th scope="col">Agente Responsável</th>
+        <th scope="col">Médico Responsável</th>
       </tr>
     </thead>
     <tbody>
       @foreach($pacientes as $paciente)
       <tr>
-        <td><a href="{{ route('paciente/edit', $paciente->id) }}">{{ $paciente->name }}</a></td>
-        <td>{{ $paciente->email }}</td>
-        <td>@php $data = \Carbon\Carbon::parse($paciente->created_at); @endphp {{ $data->format('d/m/Y') }}</td>
+        <td><a href="{{ route('paciente/edit', $paciente->id) }}">{{ $paciente->user->name }}</a></td>
+        @if($paciente->agente)
+        <td><a href="{{ route('agente/edit', $paciente->agente->id) }}">{{ $paciente->agente->user->name }}</a></td>
+        @else
+        <td></td>
+        @endif
+        @if($paciente->medico)
+        <td><a href="{{ route('medico/edit', $paciente->medico->id) }}">{{ $paciente->medico->user->name }}</a></td>
+        @else
+        <td></td>
+        @endif
       </tr>
       @endforeach
     </tbody>

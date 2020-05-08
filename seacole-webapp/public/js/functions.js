@@ -104,6 +104,7 @@ $(document).ready(function() {
 function editForm() {
   $('.btn-save').attr('disabled', false);
   $('.form-control').attr('readonly', false);
+  $('.form-control').attr('disabled', false);
   $('.form-check-input').attr('disabled', false);
   $('#btn-edit').removeClass("btn-danger");
   $('#btn-edit').addClass("btn-secondary");
@@ -113,6 +114,7 @@ function editForm() {
 
 function cancelEdit() {
   $('.form-control').attr('readonly', true);
+  $('.form-control').attr('disabled', true);
   $('.btn-save').attr('disabled', true);
   $('.form-check-input').attr('disabled', true);
   $('#btn-edit').removeClass("btn-secondary");
@@ -126,7 +128,8 @@ $("#createPaciente").click(function(e) {
   e.preventDefault();
   let url = API_URL + "/paciente/";
   let inputs = $('input');
-  let data = inputs.serializeJSON();
+  let selects = $('select');
+  let data = {...inputs.serializeJSON(), ...selects.serializeJSON()};
   $.ajax({
     method: "POST",
     url: url,
@@ -146,7 +149,8 @@ $("#updatePaciente").click(function(e) {
   let id = $('#id').val();
   let url = API_URL + "/paciente/"+id;
   let inputs = $('input');
-  let data = inputs.serializeJSON();
+  let selects = $('select');
+  let data = {...inputs.serializeJSON(), ...selects.serializeJSON()};
   $.ajax({
     method: "PUT",
     url: url,
@@ -225,11 +229,9 @@ $("#createMedico").click(function(e) {
 $("#updateMedico").click(function(e) {
   e.preventDefault();
   let id = $('#id').val();
-  //console.log(id);
   let url = API_URL + "/medico/"+id;
   let inputs = $('input');
   let data = inputs.serializeJSON();
-  //console.log(data);
   $.ajax({
     method: "PUT",
     url: url,

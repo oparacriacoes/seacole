@@ -12,8 +12,32 @@
   <div class="row pb-4">
     <div class="col">
       <form id="createPacienteForm" method="POST" action="/api/paciente">
-        <input type="hidden" name="me" value="{{ Auth::user()->id }}">
         @csrf
+        <div class="row">
+          <div class="col">
+            <label for="agente">Agente Responsável</label>
+            <select name="agente" class="form-control">
+              <option value="null">Selecione</option>
+              @foreach($agentes as $agente)
+              <option value="{{ $agente->id }}">{{ $agente->user->name }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="medico">Médico Responsável</label>
+              <select name="medico" class="form-control">
+                <option value="null">Selecione</option>
+                @foreach($medicos as $medico)
+                <option value="{{ $medico->id }}">{{ $medico->user->name }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
         <div class="row">
           <div class="col-12 col-md-4">
             <div class="form-group">

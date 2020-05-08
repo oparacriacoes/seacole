@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Medico;
 
 class MedicoController extends Controller
 {
   public function index()
   {
-    $medicos = User::where('role', 'medico')->get();
+    $medicos = Medico::get();
 
     return view('pages.medico.index')->with(compact('medicos'));
   }
@@ -21,9 +21,8 @@ class MedicoController extends Controller
 
   public function edit($id)
   {
-    $medico = User::find($id);
-    $dados = $medico->medico;
+    $medico = Medico::find($id);
 
-    return view('pages.medico.edit')->with(compact('medico','dados'));
+    return view('pages.medico.edit')->with(compact('medico'));
   }
 }

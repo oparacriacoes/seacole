@@ -8,6 +8,8 @@ class Paciente extends Model
 {
   protected $fillable = [
     'user_id',
+    'agente_id',
+    'medico_id',
     'data_nascimento',
     'endereco_cep',
     'endereco_rua',
@@ -32,6 +34,16 @@ class Paciente extends Model
   public function user()
   {
     return $this->belongsTo('App\User');
+  }
+
+  public function agente()
+  {
+    return $this->belongsTo('App\Agente');
+  }
+
+  public function medico()
+  {
+    return $this->belongsTo('App\Medico');
   }
 
   public function sintomas()

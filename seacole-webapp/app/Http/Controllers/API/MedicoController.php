@@ -74,7 +74,8 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $user = User::find($id);
+      $medico = Medico::find($id);
+      $user = $medico->user;
       $medico = $user->medico;
       $user->name = $request->input('data')['name'];
       $user->email = $request->input('data')['email'];

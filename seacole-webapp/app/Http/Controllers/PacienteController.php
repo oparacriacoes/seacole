@@ -3,33 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Paciente;
+use App\Agente;
+use App\Medico;
 
 class PacienteController extends Controller
 {
   public function index()
   {
-    $pacientes = User::where('role', 'paciente')->get();
+    $pacientes = Paciente::get();
 
     return view('pages.paciente.index')->with(compact('pacientes'));
   }
 
   public function add()
   {
-    return view('pages.paciente.create');
+    $agentes = Agente::get();
+    $medicos = Medico::get();
+
+    return view('pages.paciente.create')->with(compact('agentes', 'medicos'));
   }
 
   public function edit($id)
   {
-    $paciente = User::find($id);
-    $dados = $paciente->paciente;
-    $sintomas = $dados->sintomas;
-    $ajudas = $dados->tipos_ajuda;
-    $emocional = $dados->estado_emocional;
-    $observacao = $dados->observacao;
-    $cronicas = $dados->doencas_cronicas;
-    $items = $dados->items;
+    $paciente = Paciente::find($id);
+    $sintomas = $paciente->sintomas;
+    $ajudas = $paciente->tipos_ajuda;
+    $emocional = $paciente->estado_emocional;
+    $observacao = $paciente->observacao;
+    $cronicas = $paciente->doencas_cronicas;
+    $items = $paciente->items;
+    $agentes = Agente::get();
+    $medicos = Medico::get();
 
-    return view('pages.paciente.edit')->with(compact('paciente','dados', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items'));
+    return view('pages.paciente.edit')->with(compact('paciente', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos'));
   }
 }

@@ -74,8 +74,8 @@ class AgenteController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $user = User::find($id);
-      $agente = $user->agente;
+      $agente = Agente::find($id);
+      $user = User::find($agente->user->id);
       $user->name = $request->input('data')['name'];
       $user->email = $request->input('data')['email'];
       $user->password = Hash::make($request->input('data')['email']);

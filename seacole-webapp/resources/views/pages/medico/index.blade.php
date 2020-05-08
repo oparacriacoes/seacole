@@ -17,8 +17,8 @@
     <tbody>
       @foreach($medicos as $medico)
       <tr>
-        <td><a href="{{ route('medico/edit', $medico->id) }}">{{ $medico->name }}</a></td>
-        <td>{{ $medico->email }}</td>
+        <td><a href="{{ route('medico/edit', $medico->id) }}">{{ $medico->user->name }}</a></td>
+        <td>{{ $medico->user->email }}</td>
         <td>@php $data = \Carbon\Carbon::parse($medico->created_at); @endphp {{ $data->format('d/m/Y') }}</td>
       </tr>
       @endforeach

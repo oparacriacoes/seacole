@@ -60,6 +60,12 @@ class PacienteController extends Controller
         $paciente->numero_pessoas_residencia = $request->input('data')['numero_pessoas_residencia'];
         $paciente->outras_doencas = $request->input('data')['outras_doencas'];
         $paciente->remedios_consumidos = $request->input('data')['remedios_consumidos'];
+        if($request->input('data')['agente'] !== 'null'){
+          $paciente->agente_id = $request->input('data')['agente'];
+        }
+        if($request->input('data')['medico'] !== 'null'){
+          $paciente->medico_id = $request->input('data')['medico'];
+        }
         if(isset($request->input('data')['acompanhamento_medico'])){
           $paciente->acompanhamento_medico = $request->input('data')['acompanhamento_medico'];
         }
@@ -75,8 +81,6 @@ class PacienteController extends Controller
         if(isset($request->input('data')['tarefas_autocuidado'])){
           $paciente->tarefas_autocuidado = $request->input('data')['tarefas_autocuidado'];
         }
-        $paciente->agente_id = $request->input('data')['me'];
-        $paciente->medico_id = $request->input('data')['me'];
         try {
           $paciente->save();
         } catch(\Exception $exception) {
@@ -181,8 +185,9 @@ class PacienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $user = User::find($id);
-      $paciente = $user->paciente;
+      $paciente = Paciente::find($id);
+      $user = $paciente->user;
+
       $cronica_search = $paciente->doencas_cronicas;
       $cronicas = DoencaCronica::find($cronica_search[0]->id);
 
@@ -200,6 +205,7 @@ class PacienteController extends Controller
       if($emocionais_search != null){
         $emocional = EstadoEmocional::find($emocionais_search->id);
       }
+
       $observacao_search = $paciente->observacao;
       $observacao_search ? $observacao = Observacao::find($paciente->observacao->id) : $observacao = new Observacao;
 
@@ -228,6 +234,12 @@ class PacienteController extends Controller
         $paciente->numero_pessoas_residencia = $request->input('data')['numero_pessoas_residencia'];
         $paciente->outras_doencas = $request->input('data')['outras_doencas'];
         $paciente->remedios_consumidos = $request->input('data')['remedios_consumidos'];
+        if($request->input('data')['agente'] !== 'null'){
+          $paciente->agente_id = $request->input('data')['agente'];
+        }
+        if($request->input('data')['medico'] !== 'null'){
+          $paciente->medico_id = $request->input('data')['medico'];
+        }
         if(isset($request->input('data')['acompanhamento_medico'])){
           $paciente->acompanhamento_medico = $request->input('data')['acompanhamento_medico'];
         }

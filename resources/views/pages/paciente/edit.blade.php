@@ -5,7 +5,7 @@
   <!-- Control sidebar content goes here -->
   <div class="row p-3">
     <div class="col-12">
-      <h5><i class="fas fa-id-badge nav-icon"></i> {{ $paciente->name }}</h5>
+      <h5><i class="fas fa-id-badge nav-icon"></i> {{ $paciente->user->name }}</h5>
       <p>Cheklist de entrega</p>
     </div>
     @php

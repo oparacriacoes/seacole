@@ -6,7 +6,7 @@
       <h1>Médicos</h1>
     </div>
   </div>
-  <table class="table table-striped">
+  <table id="medicos" class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Nome</th>

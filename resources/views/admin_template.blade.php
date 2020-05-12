@@ -28,6 +28,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}"/>
   <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}" defer></script>
 
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.all.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.css">
+
   <script type="text/javascript" src="{{ asset('js/functions.js') }}" defer></script>
 </head>
 <body class="hold-transition sidebar-mini">

@@ -276,10 +276,14 @@ class PacienteController extends Controller
       for($o = 0; $o < count($cronicas_decode); $o++){
         array_push($old_cronicas, $cronicas_decode[$o]);
       }
-      for($i = 0; $i < count($input_cronicas); $i++){
-        if($input_cronicas[$i] !== null){
-          array_push($new_cronicas, $input_cronicas[$i]);
+      if( count($request->input('data')['doenca_cronica']) > 1 ){
+        for($i = 0; $i < count($input_cronicas); $i++){
+          if($input_cronicas[$i] !== null){
+            array_push($new_cronicas, $input_cronicas[$i]);
+          }
         }
+      } else {
+        $new_cronicas = [null];
       }
 
       $current_cronicas =  array_values(array_diff(array_merge($old_cronicas, $new_cronicas),array_intersect($old_cronicas, $new_cronicas)));

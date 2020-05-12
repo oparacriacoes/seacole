@@ -76,7 +76,6 @@ class MedicoController extends Controller
     {
       $medico = Medico::find($id);
       $user = $medico->user;
-      $medico = $user->medico;
       $user->name = $request->input('data')['name'];
       $user->email = $request->input('data')['email'];
       $user->password = Hash::make($request->input('data')['email']);

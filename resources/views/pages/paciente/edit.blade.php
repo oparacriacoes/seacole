@@ -146,7 +146,7 @@
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="name">Nome Completo</label>
-              <input name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" required readonly value="{{ $paciente->user->name }}">
+              <input name="name" type="text" class="required form-control" id="name" aria-describedby="nameHelp" required readonly value="{{ $paciente->user->name }}">
             </div>
           </div>
           <div class="col-12 col-md-4">
@@ -164,11 +164,11 @@
           </div>
           <div class="col-12 col-md-4">
             <div class="form-group">
-              <label for="name">Data Nascimento</label><?php echo $paciente->data_nascimento; ?>
+              <label for="name">Data Nascimento</label>
               @if(isset($paciente->data_nascimento))
-              <input name="data_nascimento" type="text" class="form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp" required readonly value="{{ \Carbon\Carbon::parse($paciente->data_nascimento)->format('d/m/Y') }}">
+              <input name="data_nascimento" type="text" class="required form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp" readonly value="{{ \Carbon\Carbon::parse($paciente->data_nascimento)->format('d/m/Y') }}">
               @else
-              <input name="data_nascimento" type="text" class="form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp" required readonly>
+              <input name="data_nascimento" type="text" class="required form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp" readonly>
               @endif
             </div>
           </div>
@@ -406,7 +406,7 @@
             <div class="form-group">
               <label for="temperatura_atual">Temperatura atual (em graus)</label>
               @if(isset($sintoma))
-              <input name="temperatura_atual" type="number" class="form-control" id="temperatura_atual" aria-describedby="temperatura_atualHelp" readonly value="{{ \Carbon\Carbon::parse($sintoma->temperatura_atual)->format('d/m/Y') }}">
+              <input name="temperatura_atual" type="number" class="form-control" id="temperatura_atual" aria-describedby="temperatura_atualHelp" readonly value="{{ $sintoma->temperatura_atual }}">
               @else
               <input name="temperatura_atual" type="number" class="form-control" id="temperatura_atual" aria-describedby="temperatura_atualHelp" readonly value="">
               @endif

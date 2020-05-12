@@ -95,7 +95,7 @@ $(document).ready(function() {
         }
     }
   };
-  
+
   $('#pacientes').DataTable({
     //"pageLength": 25,
     "language": langOptions
@@ -148,6 +148,18 @@ $(document).ready(function() {
 
 });
 
+function requiredField() {
+  //CAMPOS DE PREENCHIMENTO OBRIGATÓRIO
+  el = $('.required');
+  for(e = 0; e < el.length; e++){
+    el[e].value === '' ? [Swal.fire({title:'Atenção!',text:'Informação de preenchimento obrigatório.',icon:'warning'}), el[e].style.border = '2px solid #dc3545', abort()] : '';
+  }
+}
+
+function abort() {
+  throw new Error('Isto não é um erro. Apenas abortando a execução...');
+}
+
 function editForm() {
   $('.btn-save').attr('disabled', false);
   $('.form-control').attr('readonly', false);
@@ -173,6 +185,7 @@ function cancelEdit() {
 //AJAX
 $("#createPaciente").click(function(e) {
   e.preventDefault();
+  requiredField();
   let url = API_URL + "/paciente/";
   let inputs = $('input');
   let selects = $('select');
@@ -186,13 +199,21 @@ $("#createPaciente").click(function(e) {
   })
     .done(function(msg) {
       //console.log(msg.message);
-      alert(msg.message);
-      window.location.replace(APP_URL + '/admin/paciente');
+      Swal.fire({
+        icon: 'info',
+        title: msg.message,
+        showConfirmButton: false,
+        timer: 1990
+      })
+      window.setTimeout(function(){
+        location.replace(APP_URL + '/admin/paciente');
+      } ,2000);
     });
 });
 
 $("#updatePaciente").click(function(e) {
   e.preventDefault();
+  requiredField();
   let id = $('#id').val();
   let url = API_URL + "/paciente/"+id;
   let inputs = $('input');
@@ -207,8 +228,15 @@ $("#updatePaciente").click(function(e) {
   })
     .done(function(msg) {
       //console.log(msg.message);
-      alert(msg.message);
-      window.location.reload();
+      Swal.fire({
+        icon: 'info',
+        title: msg.message,
+        showConfirmButton: false,
+        timer: 1990
+      })
+      window.setTimeout(function(){
+        location.reload();
+      } ,2000);
     });
 });
 
@@ -226,8 +254,15 @@ $("#createAgente").click(function(e) {
   })
     .done(function(msg) {
       //console.log(msg.message);
-      alert(msg.message);
-      window.location.replace(APP_URL + '/admin/agente');
+      Swal.fire({
+        icon: 'info',
+        title: msg.message,
+        showConfirmButton: false,
+        timer: 1990
+      })
+      window.setTimeout(function(){
+        location.replace(APP_URL + '/admin/agente');
+      } ,2000);
     });
 });
 
@@ -248,8 +283,15 @@ $("#updateAgente").click(function(e) {
   })
     .done(function(msg) {
       //console.log(msg.message);
-      alert(msg.message);
-      window.location.reload();
+      Swal.fire({
+        icon: 'info',
+        title: msg.message,
+        showConfirmButton: false,
+        timer: 1990
+      })
+      window.setTimeout(function(){
+        location.reload();
+      } ,2000);
     });
 });
 
@@ -268,8 +310,15 @@ $("#createMedico").click(function(e) {
   })
     .done(function(msg) {
       //console.log(msg.message);
-      alert(msg.message);
-      window.location.replace(APP_URL + '/admin/medico');
+      Swal.fire({
+        icon: 'info',
+        title: msg.message,
+        showConfirmButton: false,
+        timer: 1990
+      })
+      window.setTimeout(function(){
+        location.replace(APP_URL + '/admin/medico');
+      } ,2000);
     });
 });
 
@@ -288,8 +337,15 @@ $("#updateMedico").click(function(e) {
   })
     .done(function(msg) {
       //console.log(msg.message);
-      alert(msg.message);
-      window.location.reload();
+      Swal.fire({
+        icon: 'info',
+        title: msg.message,
+        showConfirmButton: false,
+        timer: 1990
+      })
+      window.setTimeout(function(){
+        location.reload();
+      } ,2000);
     });
 });
 

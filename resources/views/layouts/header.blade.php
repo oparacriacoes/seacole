@@ -8,36 +8,19 @@
     <li class="nav-item d-none d-sm-inline-block">
       <a href="{{ route('admin') }}" class="nav-link">Home</a>
     </li>
-    <!--<li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Contact</a>
-    </li>-->
   </ul>
-
-  <!-- SEARCH FORM -->
-  <!--<form class="form-inline ml-3">
-    <div class="input-group input-group-sm">
-      <input class="form-control form-control-navbar" type="search" placeholder="Busca" aria-label="Search">
-      <div class="input-group-append">
-        <button class="btn btn-navbar" type="submit">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-    </div>
-  </form>-->
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <!-- Messages Dropdown Menu -->
-    <li class="nav-item dropdown">
+    <!--<li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-comments"></i>
         <span class="badge badge-danger navbar-badge">3</span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <a href="#" class="dropdown-item">
-          <!-- Message Start -->
           <div class="media">
-            <!--<img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">-->
             <img src="{{ asset('/bower_components/admin-lte/dist/img/user1-128x128.jpg') }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
             <div class="media-body">
               <h3 class="dropdown-item-title">
@@ -48,13 +31,10 @@
               <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
             </div>
           </div>
-          <!-- Message End -->
         </a>
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
-          <!-- Message Start -->
           <div class="media">
-            <!--<img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">-->
             <img src="{{ asset('/bower_components/admin-lte/dist/img/user8-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
             <div class="media-body">
               <h3 class="dropdown-item-title">
@@ -65,13 +45,10 @@
               <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
             </div>
           </div>
-          <!-- Message End -->
         </a>
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item">
-          <!-- Message Start -->
           <div class="media">
-            <!--<img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">-->
             <img src="{{ asset('/bower_components/admin-lte/dist/img/user3-128x128.jpg') }}" alt="User Avatar" class="img-size-50 img-circle mr-3">
             <div class="media-body">
               <h3 class="dropdown-item-title">
@@ -82,39 +59,46 @@
               <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
             </div>
           </div>
-          <!-- Message End -->
         </a>
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
       </div>
-    </li>
+    </li>-->
+
     <!-- Notifications Dropdown Menu -->
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-bell"></i>
-        <span class="badge badge-warning navbar-badge">15</span>
+        <span class="badge badge-warning navbar-badge"><?php echo count(\Auth::user()->agente->unreadNotifications); ?></span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <span class="dropdown-header">15 Notifications</span>
+        <span class="dropdown-header">Notificações</span>
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
+        <!--<a href="#" class="dropdown-item">
           <i class="fas fa-envelope mr-2"></i> 4 new messages
           <span class="float-right text-muted text-sm">3 mins</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
+        </a>-->
+        <!--<div class="dropdown-divider"></div>-->
+        <!--<a href="#" class="dropdown-item">
           <i class="fas fa-users mr-2"></i> 8 friend requests
           <span class="float-right text-muted text-sm">12 hours</span>
+        </a>-->
+        <!--<div class="dropdown-divider"></div>-->
+        @if(\Auth::user()->role === 'agente')
+        @foreach(\Auth::user()->agente->unreadNotifications as $notification)
+        <a href="{{ route('paciente/notify/dismiss', [$notification->id,$notification->data['paciente_id']]) }}" class="dropdown-item">
+          <i class="fas fa-check-circle mr-2"></i> {{ \App\Paciente::find($notification->data['paciente_id'])->user->name }}
+          <span class="float-right text-muted text-sm">{{ $notification->data['action'] }}</span>
         </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-file mr-2"></i> 3 new reports
-          <span class="float-right text-muted text-sm">2 days</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        <div class="pl-2 pr-2">
+          <div class="dropdown-divider"></div>
+        </div>
+        @endforeach
+        @endif
+        <a href="#" class="dropdown-item dropdown-footer">Ver tudo</a>
       </div>
     </li>
+
     @if(strpos(\Request::path(), 'admin/paciente/edit') !== false)
     <li class="nav-item">
       @if(isset($items))

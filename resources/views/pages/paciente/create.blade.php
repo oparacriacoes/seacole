@@ -42,7 +42,7 @@
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="name">Nome Completo</label>
-              <input name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" required>
+              <input name="name" type="text" class="required form-control" id="name" aria-describedby="nameHelp">
             </div>
           </div>
           <div class="col-12 col-md-4">
@@ -61,7 +61,7 @@
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="name">Data Nascimento</label>
-              <input name="data_nascimento" type="text" class="form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp" required>
+              <input name="data_nascimento" type="text" class="required form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp">
             </div>
           </div>
         </div>
@@ -70,19 +70,19 @@
           <div class="col-6 col-md-4">
             <div class="form-group">
               <label for="name">CEP</label>
-              <input name="endereco_cep" type="text" class="form-control cep" id="endereco_cep" aria-describedby="endereco_cepHelp" required>
+              <input name="endereco_cep" type="text" class="form-control cep" id="endereco_cep" aria-describedby="endereco_cepHelp">
             </div>
           </div>
           <div class="col-6 col-md-4">
             <div class="form-group">
               <label for="endereco_rua">Logradouro</label>
-              <input name="endereco_rua" type="text" class="form-control" id="endereco_rua" aria-describedby="endereco_ruaHelp" required>
+              <input name="endereco_rua" type="text" class="form-control" id="endereco_rua" aria-describedby="endereco_ruaHelp">
             </div>
           </div>
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="endereco_numero">Número</label>
-              <input name="endereco_numero" type="text" class="form-control" id="endereco_numero" aria-describedby="endereco_numeroHelp" required>
+              <input name="endereco_numero" type="text" class="form-control" id="endereco_numero" aria-describedby="endereco_numeroHelp">
             </div>
           </div>
         </div>
@@ -91,19 +91,19 @@
           <div class="col-6 col-md-4">
             <div class="form-group">
               <label for="endereco_bairro">Bairro</label>
-              <input name="endereco_bairro" type="text" class="form-control" id="endereco_bairro" aria-describedby="endereco_bairroHelp" required>
+              <input name="endereco_bairro" type="text" class="form-control" id="endereco_bairro" aria-describedby="endereco_bairroHelp">
             </div>
           </div>
           <div class="col-6 col-md-4">
             <div class="form-group">
               <label for="endereco_cidade">Cidade</label>
-              <input name="endereco_cidade" type="text" class="form-control" id="endereco_cidade" aria-describedby="endereco_cidadeHelp" required>
+              <input name="endereco_cidade" type="text" class="form-control" id="endereco_cidade" aria-describedby="endereco_cidadeHelp">
             </div>
           </div>
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="endereco_uf">UF</label>
-              <input name="endereco_uf" type="text" class="form-control" id="endereco_uf" aria-describedby="endereco_ufHelp" required>
+              <input name="endereco_uf" type="text" class="form-control" id="endereco_uf" aria-describedby="endereco_ufHelp">
             </div>
           </div>
         </div>
@@ -143,7 +143,7 @@
           <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="numero_pessoas_residencia">Nº Pessoas na Residência</label>
-              <input name="numero_pessoas_residencia" type="number" class="form-control" id="numero_pessoas_residencia" aria-describedby="numero_pessoas_residenciaHelp" required>
+              <input name="numero_pessoas_residencia" type="number" class="form-control" id="numero_pessoas_residencia" aria-describedby="numero_pessoas_residenciaHelp">
             </div>
           </div>
         </div>
@@ -184,13 +184,13 @@
           <div class="col-12 col-md-6">
             <div class="form-group">
               <label for="outras_doencas">Tem outras doenças?</label>
-              <input name="outras_doencas" type="text" class="form-control" id="outras_doencas" aria-describedby="outras_doencasHelp" required>
+              <input name="outras_doencas" type="text" class="form-control" id="outras_doencas" aria-describedby="outras_doencasHelp">
             </div>
           </div>
           <div class="col-12 col-md-6">
             <div class="form-group">
               <label for="remedios_consumidos">Toma outros remédios?</label>
-              <input name="remedios_consumidos" type="text" class="form-control" id="remedios_consumidos" aria-describedby="remedios_consumidosHelp" required>
+              <input name="remedios_consumidos" type="text" class="form-control" id="remedios_consumidos" aria-describedby="remedios_consumidosHelp">
             </div>
           </div>
         </div>
@@ -269,11 +269,11 @@
           <div class="col-12">
             <label class="form-check-label">Tem acompanhamento médico?</label>
             <div class="form-check form-check-inline">
-              <input name="acompanhamento_medico" class="form-check-input" type="radio" id="sim" value="sim">
+              <input name="acompanhamento_medico" class="form-check-input" type="radio" value="sim">
               <label class="form-check-label" for="acompanhamento_medico">Sim</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="acompanhamento_medico" class="form-check-input" type="radio" id="nao" value="não">
+              <input name="acompanhamento_medico" class="form-check-input" type="radio" value="não">
               <label class="form-check-label" for="acompanhamento_medico">Não</label>
             </div>
           </div>
@@ -283,11 +283,11 @@
           <div class="col-12">
             <label class="form-check-label">Há condição de ficar isolada, sozinha, em um cômodo da casa?</label>
             <div class="form-check form-check-inline">
-              <input name="isolamento_residencial" class="form-check-input" type="radio" id="sim" value="sim">
+              <input name="isolamento_residencial" class="form-check-input" type="radio" value="sim">
               <label class="form-check-label" for="isolamento_residencial">Sim</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="isolamento_residencial" class="form-check-input" type="radio" id="nao" value="não">
+              <input name="isolamento_residencial" class="form-check-input" type="radio" value="não">
               <label class="form-check-label" for="isolamento_residencial">Não</label>
             </div>
           </div>
@@ -297,11 +297,11 @@
           <div class="col-12">
             <label class="form-check-label">Tem comida disponível, sem precisar sair?</label>
             <div class="form-check form-check-inline">
-              <input name="alimentacao_disponivel" class="form-check-input" type="radio" id="sim" value="sim">
+              <input name="alimentacao_disponivel" class="form-check-input" type="radio" value="sim">
               <label class="form-check-label" for="alimentacao_disponivel">Sim</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="alimentacao_disponivel" class="form-check-input" type="radio" id="nao" value="não">
+              <input name="alimentacao_disponivel" class="form-check-input" type="radio" value="não">
               <label class="form-check-label" for="alimentacao_disponivel">Não</label>
             </div>
           </div>
@@ -311,11 +311,11 @@
           <div class="col-12">
             <label class="form-check-label">Tem alguém para auxiliá-lo(a)?</label>
             <div class="form-check form-check-inline">
-              <input name="auxilio_terceiros" class="form-check-input" type="radio" id="sim" value="sim">
+              <input name="auxilio_terceiros" class="form-check-input" type="radio" value="sim">
               <label class="form-check-label" for="auxilio_terceiros">Sim</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="auxilio_terceiros" class="form-check-input" type="radio" id="nao" value="não">
+              <input name="auxilio_terceiros" class="form-check-input" type="radio" value="não">
               <label class="form-check-label" for="auxilio_terceiros">Não</label>
             </div>
           </div>
@@ -325,11 +325,11 @@
           <div class="col-12">
             <label class="form-check-label">Consegue realizar tarefas de autocuidado? (como tomar banho, cozinhar,  lavar a própria roupa)</label>
             <div class="form-check form-check-inline">
-              <input name="tarefas_autocuidado" class="form-check-input" type="radio" id="sim" value="sim">
+              <input name="tarefas_autocuidado" class="form-check-input" type="radio"  value="sim">
               <label class="form-check-label" for="tarefas_autocuidado">Sim</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="tarefas_autocuidado" class="form-check-input" type="radio" id="nao" value="não">
+              <input name="tarefas_autocuidado" class="form-check-input" type="radio" value="não">
               <label class="form-check-label" for="tarefas_autocuidado">Não</label>
             </div>
           </div>

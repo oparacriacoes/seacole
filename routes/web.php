@@ -23,10 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
   Route::get('/admin', function() {
-    $user = Auth::user();
-    session(['me' => $user->name]);
     return view('sample');
   })->name('admin');
+
   Route::get('/admin/agente', 'AgenteController@index')->name('agente');
   Route::get('/admin/agente/add', 'AgenteController@add')->name('agente/add');
   Route::get('/admin/agente/edit/{id}', 'AgenteController@edit')->name('agente/edit');
@@ -38,4 +37,6 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/admin/paciente', 'PacienteController@index')->name('paciente');
   Route::get('/admin/paciente/add', 'PacienteController@add')->name('paciente/add');
   Route::get('/admin/paciente/edit/{id}', 'PacienteController@edit')->name('paciente/edit');
+  Route::get('/admin/paciente/notify', 'NotifyController@notify')->name('paciente/notify');
+  Route::get('/admin/paciente/notify/dismiss/{notification_id}/{paciente_id}', 'NotifyController@dismiss')->name('paciente/notify/dismiss');
 });

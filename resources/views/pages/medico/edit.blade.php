@@ -53,7 +53,7 @@
                     <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-phone-square-alt" style="font-size: 1.5rem; color:#007bff;"></i></div>
                   </a>
                 </div>
-                <input name="fone_fixo" type="text" class="form-control mobile_with_ddd" id="fone_fixo" aria-describedby="fone_fixoHelp" value="{{ $medico->fone_celular_1 }}" readonly>
+                <input name="fone_celular_1" type="text" class="form-control mobile_with_ddd" id="fone_fixo" aria-describedby="fone_fixoHelp" value="{{ $medico->fone_celular_1 }}" readonly>
               </div>
             </div>
           </div>
@@ -66,7 +66,7 @@
                     <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-mobile-alt" style="font-size: 1.5rem; color:#007bff;"></i></div>
                   </a>
                 </div>
-                <input name="fone_celular" type="text" class="form-control mobile_with_ddd" id="fone_celular" aria-describedby="fone_celularHelp" value="{{ $medico->fone_celular_2 }}" readonly>
+                <input name="fone_celular_2" type="text" class="form-control mobile_with_ddd" id="fone_celular" aria-describedby="fone_celularHelp" value="{{ $medico->fone_celular_2 }}" readonly>
               </div>
             </div>
           </div>

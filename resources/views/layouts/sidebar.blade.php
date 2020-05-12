@@ -18,7 +18,7 @@
         <img src="{{ asset('/bower_components/admin-lte/dist/img/user-avatar.png') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="{{ route('admin') }}" class="d-block">{{ session('me') }}</a>
+        <a href="{{ route('admin') }}" class="d-block">{{ \Auth::user()->name }}</a>
       </div>
     </div>
 

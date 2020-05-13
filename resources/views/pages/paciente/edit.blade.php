@@ -571,18 +571,13 @@
 
         <div class="row">
           <div class="col-12 col-md-6">
-            <!--<label>Qual o estado emocional?</label>
-            <div class="form-check form-check-inline">
-              @if(isset($emocional))
-              <input name="estado_emocional" class="form-check-input" type="checkbox" value="tranquilo" <?php if($emocional->situacao === 'tranquilo'){ echo 'checked=checked'; } ?> disabled>
-              @else
-              <input name="estado_emocional" class="form-check-input" type="checkbox" value="tranquilo" disabled>
-              @endif
-              <label class="form-check-label" for="estado_emocional">Se sente tranquilo(a)?</label>
-            </div>-->
             <div class="form-group">
               <label for="estado_emocional">Qual o estado emocional?</label>
+              @if($emocional->situacao)
               <input name="estado_emocional" type="text" class="form-control" aria-describedby="estado_emocionalHelp" placeholder="Digite" value="{{ $emocional->situacao }}" disabled>
+              @else
+              <input name="estado_emocional" type="text" class="form-control" aria-describedby="estado_emocionalHelp" placeholder="Digite" disabled>
+              @endif
             </div>
           </div>
           <div class="col-12 col-md-6">

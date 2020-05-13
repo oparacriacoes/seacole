@@ -104,8 +104,14 @@
 @section('sample')
 <div class="container-fluid">
   <div class="row">
-    <div class="col-12 text-center">
+    <div class="col-12 col-md-6 text-center">
       <h1>Dados do Paciente</h1>
+    </div>
+    <div class="col-12 col-md-6 text-center">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProntuario">
+        <i class="fas fa-book-medical nav-icon"></i> Prontuário
+      </button>
     </div>
   </div>
 
@@ -603,5 +609,60 @@
       </form>
     </div>
   </div>
+
+  <!-- MODAL DO PRONTUÁRIO INÍCIO -->
+  <div class="modal fade" id="modalProntuario" tabindex="-1" role="dialog" aria-labelledby="modalProntuarioLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-id-badge nav-icon"></i> Paciente: {{ $paciente->user->name }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-responsive-sm">
+            <thead>
+              <tr>
+                <th scope="col">Registro</th>
+                <th scope="col">Início sintoma</th>
+                <th scope="col">Sintomas</th>
+                <th scope="col">Temp. Máxima</th>
+                <th scope="col">Temp. Atual</th>
+                <th scope="col">Medição em</th>
+                <th scope="col">Saturação</th>
+                <th scope="col">Freq. respiratória</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($dados as $dado)
+              <tr>
+                <td><?php echo \Carbon\Carbon::parse($dado->created_at)->format('d/m/Y'); ?></td>
+                <td><?php echo \Carbon\Carbon::parse($dado->data_inicio_sintoma)->format('d/m/Y'); ?></td>
+                <td>
+                  <?php
+                    for( $d = 0; $d < count(json_decode($dado->sintoma_manifestado)); $d++ ){
+                      echo json_decode($dado->sintoma_manifestado)[$d] . ' ';
+                    };
+                  ?>
+                </td>
+                <td>{{ $dado->febre_temperatura_maxima }}</td>
+                <td>{{ $dado->temperatura_atual }}</td>
+                <td><?php echo \Carbon\Carbon::parse($dado->data_medicao_temperatura)->format('d/m/Y'); ?></td>
+                <td>{{ $dado->cansaco_saturacao }}</td>
+                <td>{{ $dado->cansaco_frequencia_respiratoria }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL DO PRONTUÁRIO FIM -->
+
 </div>
 @stop

@@ -145,7 +145,7 @@
         <div class="row">
           <div class="col-12 col-md-4">
             <div class="form-group">
-              <label for="name">Nome Completo</label>
+              <label for="name">Nome Completo (obrigatório)</label>
               <input name="name" type="text" class="required form-control" id="name" aria-describedby="nameHelp" required readonly value="{{ $paciente->user->name }}">
             </div>
           </div>
@@ -164,7 +164,7 @@
           </div>
           <div class="col-12 col-md-4">
             <div class="form-group">
-              <label for="name">Data Nascimento</label>
+              <label for="name">Data Nascimento (obrigatório)</label>
               @if(isset($paciente->data_nascimento))
               <input name="data_nascimento" type="text" class="required form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp" readonly value="{{ \Carbon\Carbon::parse($paciente->data_nascimento)->format('d/m/Y') }}">
               @else

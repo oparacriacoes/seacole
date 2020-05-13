@@ -12,6 +12,8 @@ use App\AjudaTipo;
 use App\EstadoEmocional;
 use App\Observacao;
 use App\DoencaCronica;
+use App\Events\SintomaEvolucao;
+use App\EvolucaoSintoma;
 
 class PacienteController extends Controller
 {
@@ -330,7 +332,9 @@ class PacienteController extends Controller
         $sintomas->paciente_id = $paciente->id;
         $sintomas->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_inicio_sintoma'])->format('Y-m-d');
         $sintomas->febre_temperatura_maxima = $request->input('data')['febre_temperatura_maxima'];
-        $sintomas->data_medicao_temperatura = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_medicao_temperatura'])->format('Y-m-d');
+        if( isset($request->input('data')['data_medicao_temperatura']) ){
+          $sintomas->data_medicao_temperatura = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_medicao_temperatura'])->format('Y-m-d');
+        }
         $sintomas->temperatura_atual = $request->input('data')['temperatura_atual'];
         $sintomas->cansaco_saturacao = $request->input('data')['cansaco_saturacao'];
         $sintomas->cansaco_frequencia_respiratoria = $request->input('data')['cansaco_frequencia_respiratoria'];
@@ -408,6 +412,8 @@ class PacienteController extends Controller
           return response()->json(['message' => $exception->getMessage()], 500);
         }
       }
+
+      event(new SintomaEvolucao(new EvolucaoSintoma(json_decode(json_encode($sintomas), true))));
 
       return response()->json(['message' => 'Cadastro atualizado com sucesso.'], 200);
     }

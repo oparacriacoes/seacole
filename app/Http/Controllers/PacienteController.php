@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Paciente;
 use App\Agente;
 use App\Medico;
+use App\EvolucaoSintoma;
 
 class PacienteController extends Controller
 {
@@ -35,7 +36,9 @@ class PacienteController extends Controller
     $items = $paciente->items;
     $agentes = Agente::get();
     $medicos = Medico::get();
+    $dados = $paciente->dados;
+    //dd($dados);
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos'));
+    return view('pages.paciente.edit')->with(compact('paciente', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'dados'));
   }
 }

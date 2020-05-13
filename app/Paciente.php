@@ -75,4 +75,9 @@ class Paciente extends Model
   {
     return $this->hasOne('App\Item');
   }
+
+  public function dados()
+  {
+    return $this->hasMany('App\EvolucaoSintoma');
+  }
 }

@@ -302,7 +302,7 @@ class PacienteController extends Controller
         return response()->json(['message' => $exception->getMessage()], 500);
       }
 
-      if(isset($request->input('data')['sintomas'])){
+      if( array_key_exists('sintomas', $request->input('data')) ){
         $input_sintomas = $paciente->sintomas = $request->input('data')['sintomas'];
         $old_sintomas = [];
         $new_sintomas = [];
@@ -310,6 +310,7 @@ class PacienteController extends Controller
         if($sintomas_search->isEmpty()){
           $sintomas = new Sintoma;
         }
+
         $sintomas_decode = (array) json_decode($sintomas->sintoma_manifestado);
 
         for($o = 0; $o < count($sintomas_decode); $o++){
@@ -413,7 +414,9 @@ class PacienteController extends Controller
         }
       }
 
-      event(new SintomaEvolucao(new EvolucaoSintoma(json_decode(json_encode($sintomas), true))));
+      if( isset($sintomas) ) {
+        event(new SintomaEvolucao(new EvolucaoSintoma(json_decode(json_encode($sintomas), true))));
+      }
 
       return response()->json(['message' => 'Cadastro atualizado com sucesso.'], 200);
     }

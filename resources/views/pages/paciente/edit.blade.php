@@ -573,7 +573,7 @@
           <div class="col-12 col-md-6">
             <div class="form-group">
               <label for="estado_emocional">Qual o estado emocional?</label>
-              @if($emocional->situacao)
+              @if( isset($emocional->situacao) )
               <input name="estado_emocional" type="text" class="form-control" aria-describedby="estado_emocionalHelp" placeholder="Digite" value="{{ $emocional->situacao }}" disabled>
               @else
               <input name="estado_emocional" type="text" class="form-control" aria-describedby="estado_emocionalHelp" placeholder="Digite" disabled>

@@ -37,7 +37,6 @@ class PacienteController extends Controller
     $agentes = Agente::get();
     $medicos = Medico::get();
     $dados = $paciente->dados;
-    //dd($dados);
 
     return view('pages.paciente.edit')->with(compact('paciente', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'dados'));
   }

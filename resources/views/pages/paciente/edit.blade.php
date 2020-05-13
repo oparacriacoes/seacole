@@ -395,7 +395,7 @@
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="data_medicao_temperatura">Data temperatura máxima</label>
-              @if(isset($sintoma))
+              @if( isset($sintoma) && $sintoma->data_medicao_temperatura !== NULL )
               <input name="data_medicao_temperatura" type="text" class="form-control date" id="data_medicao_temperatura" aria-describedby="data_medicao_temperaturaHelp" readonly value="{{ \Carbon\Carbon::parse($sintoma->data_medicao_temperatura)->format('d/m/Y') }}">
               @else
               <input name="data_medicao_temperatura" type="text" class="form-control date" id="data_medicao_temperatura" aria-describedby="data_medicao_temperaturaHelp" readonly value="">

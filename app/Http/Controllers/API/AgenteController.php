@@ -78,7 +78,9 @@ class AgenteController extends Controller
       $user = User::find($agente->user->id);
       $user->name = $request->input('data')['name'];
       $user->email = $request->input('data')['email'];
-      $user->password = Hash::make($request->input('data')['email']);
+      if( $request->input('data')['password_confirm'] !== null ){
+        $user->password = Hash::make($request->input('data')['password_confirm']);
+      }
       $user->role = 'agente';
       try {
         $user->save();

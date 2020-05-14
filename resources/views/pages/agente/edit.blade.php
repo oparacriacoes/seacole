@@ -72,6 +72,20 @@
           </div>
         </div>
         @if( \Auth::user()->role === 'administrador' ||  isset(\Auth::user()->agente->id) && \Auth::user()->agente->id === $agente->id )
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label for="password">Nova senha</label>
+              <input id="password_1" name="password" type="password" class="form-control" aria-describedby="passwordHelp" readonly>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label for="password_confirm">Confirma nova senha</label>
+              <input id="password_2" name="password_confirm" type="password" class="form-control" aria-describedby="password_confirmHelp" readonly>
+            </div>
+          </div>
+        </div>
         <button type="button" class="btn btn-danger" name="button" id="btn-edit" onclick="editForm()">Editar</button>
         <button type="submit" class="btn btn-primary btn-save" id="updateAgente" disabled>Salvar</button>
         @endif

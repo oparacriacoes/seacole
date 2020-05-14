@@ -152,12 +152,25 @@ function requiredField() {
   //CAMPOS DE PREENCHIMENTO OBRIGATÓRIO
   el = $('.required');
   for(e = 0; e < el.length; e++){
-    el[e].value === '' ? [Swal.fire({title:'Atenção!',text:'Informação de preenchimento obrigatório.',icon:'warning'}), el[e].style.border = '2px solid #dc3545', abort()] : '';
+    //el[e].value === '' ? [Swal.fire({title:'Atenção!',text:'Informação de preenchimento obrigatório.',icon:'warning'}), el[e].style.border = '2px solid #dc3545', abort()] : '';
+    el[e].value === '' ? [el[e].style.border = '2px solid #dc3545', abort('Informação com preenchimento obrigatório')] : '';
   }
 }
 
-function abort() {
+function abort(info) {
+  Swal.fire({
+    icon: 'info',
+    title: info,
+    showConfirmButton: false,
+    timer: 1990
+  })
   throw new Error('Isto não é um erro. Apenas abortando a execução...');
+}
+
+function validaSenha(){
+  let senha1 = $('#password_1').val();
+  let senha2 = $('#password_2').val();
+  senha1 !== senha2 ? abort('Senhas não conferem.') : '';
 }
 
 function editForm() {
@@ -269,10 +282,10 @@ $("#createAgente").click(function(e) {
 $("#updateAgente").click(function(e) {
   e.preventDefault();
   let id = $('#id').val();
-  //console.log(id);
   let url = API_URL + "/agente/"+id;
   let inputs = $('input');
   let data = inputs.serializeJSON();
+  validaSenha();
   //console.log(data);
   $.ajax({
     method: "PUT",
@@ -293,7 +306,7 @@ $("#updateAgente").click(function(e) {
         location.reload();
       } ,2000);
     });
-});
+  });
 
 $("#createMedico").click(function(e) {
   e.preventDefault();
@@ -328,6 +341,7 @@ $("#updateMedico").click(function(e) {
   let url = API_URL + "/medico/"+id;
   let inputs = $('input');
   let data = inputs.serializeJSON();
+  validaSenha();
   $.ajax({
     method: "PUT",
     url: url,

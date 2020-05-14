@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Paciente;
 use App\Agente;
 use App\Medico;
@@ -12,7 +13,13 @@ class PacienteController extends Controller
 {
   public function index()
   {
-    $pacientes = Paciente::get();
+    if( Auth::user()->role === 'agente' ){
+      $pacientes = Auth::user()->agente->pacientes;
+    } elseif ( Auth::user()->role === 'medico' ) {
+      $pacientes = Auth::user()->medico->pacientes;
+    } else {
+      $pacientes = Paciente::get();
+    }
 
     return view('pages.paciente.index')->with(compact('pacientes'));
   }

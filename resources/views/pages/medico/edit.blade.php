@@ -71,8 +71,10 @@
             </div>
           </div>
         </div>
+        @if( \Auth::user()->role === 'administrador' || isset(\Auth::user()->medico->id) && \Auth::user()->medico->id === $medico->id )
         <button type="button" class="btn btn-danger" name="button" id="btn-edit" onclick="editForm()">Editar</button>
         <button id="updateMedico" type="submit" class="btn btn-primary btn-save" id="" disabled>Salvar</button>
+        @endif
       </form>
     </div>
   </div>

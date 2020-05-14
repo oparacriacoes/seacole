@@ -20,16 +20,25 @@
       <form method="POST" action="{{ route('medico.store') }}">
         @csrf
         <div class="row">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="name">Nome completo</label>
               <input name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp">
             </div>
           </div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="email">Email</label>
               <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="psicologo">É psicólogo?</label>
+              <select name="psicologo" class="form-control" id="psicologo">
+                <option value="1">Sim</option>
+                <option value="0" selected>Não</option>
+              </select>
             </div>
           </div>
           <input type="hidden" name="role" value="medico">

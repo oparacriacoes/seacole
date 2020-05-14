@@ -20,16 +20,18 @@ class PacienteController extends Controller
     } else {
       $pacientes = Paciente::get();
     }
+    $psicologos = Medico::where('psicologo', 1)->get();
 
-    return view('pages.paciente.index')->with(compact('pacientes'));
+    return view('pages.paciente.index')->with(compact('pacientes', 'psicologos'));
   }
 
   public function add()
   {
     $agentes = Agente::get();
     $medicos = Medico::get();
+    $psicologos = Medico::where('psicologo', 1)->get();
 
-    return view('pages.paciente.create')->with(compact('agentes', 'medicos'));
+    return view('pages.paciente.create')->with(compact('agentes', 'medicos', 'psicologos'));
   }
 
   public function edit($id)
@@ -43,8 +45,9 @@ class PacienteController extends Controller
     $items = $paciente->items;
     $agentes = Agente::get();
     $medicos = Medico::get();
+    $psicologos = Medico::where('psicologo', 1)->get();
     $dados = $paciente->dados;
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'dados'));
+    return view('pages.paciente.edit')->with(compact('paciente', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados'));
   }
 }

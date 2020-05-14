@@ -312,7 +312,8 @@ $("#createMedico").click(function(e) {
   e.preventDefault();
   let url = API_URL + "/medico/";
   let inputs = $('input');
-  let data = inputs.serializeJSON();
+  let selects = $('select');
+  let data = {...inputs.serializeJSON(), ...selects.serializeJSON()};
   //console.log(data);
   $.ajax({
     method: "POST",
@@ -340,8 +341,10 @@ $("#updateMedico").click(function(e) {
   let id = $('#id').val();
   let url = API_URL + "/medico/"+id;
   let inputs = $('input');
-  let data = inputs.serializeJSON();
+  let selects = $('select');
+  let data = {...inputs.serializeJSON(), ...selects.serializeJSON()};
   validaSenha();
+
   $.ajax({
     method: "PUT",
     url: url,

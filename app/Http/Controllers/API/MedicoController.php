@@ -42,6 +42,7 @@ class MedicoController extends Controller
       if($user){
         $medico = new Medico;
         $medico->user_id = $user->id;
+        $medico->psicologo = $request->input('data')['psicologo'];
         $medico->fone_celular_1 = $request->input('data')['fone_celular_1'];
         $medico->fone_celular_2 = $request->input('data')['fone_celular_2'];
         try {
@@ -90,6 +91,7 @@ class MedicoController extends Controller
 
       if($user){
         $medico->user_id = $user->id;
+        $medico->psicologo = $request->input('data')['psicologo'];
         $medico->fone_celular_1 = $request->input('data')['fone_celular_1'];
         $medico->fone_celular_2 = $request->input('data')['fone_celular_2'];
         try {

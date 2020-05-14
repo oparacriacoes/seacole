@@ -71,6 +71,9 @@ class PacienteController extends Controller
         if($request->input('data')['medico'] !== 'null'){
           $paciente->medico_id = $request->input('data')['medico'];
         }
+        if( $request->input('data')['psicologo_id'] !== 'null' ){
+          $paciente->psicologo_id = $request->input('data')['psicologo_id'];
+        }
         if(isset($request->input('data')['acompanhamento_medico'])){
           $paciente->acompanhamento_medico = $request->input('data')['acompanhamento_medico'];
         }
@@ -246,6 +249,11 @@ class PacienteController extends Controller
         }
         if($request->input('data')['medico'] !== 'null'){
           $paciente->medico_id = $request->input('data')['medico'];
+        }
+        if( $request->input('data')['psicologo_id'] !== 'null' ){
+          $paciente->psicologo_id = $request->input('data')['psicologo_id'];
+        } else {
+          $paciente->psicologo_id = NULL;
         }
         if(isset($request->input('data')['acompanhamento_medico'])){
           $paciente->acompanhamento_medico = $request->input('data')['acompanhamento_medico'];

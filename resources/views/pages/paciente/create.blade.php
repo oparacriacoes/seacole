@@ -34,6 +34,17 @@
               </select>
             </div>
           </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="medico">Psicólogo Responsável</label>
+              <select name="psicologo_id" class="form-control">
+                <option value="null">Selecione</option>
+                @foreach($psicologos as $psicologo)
+                <option value="{{ $psicologo->id }}">{{ $psicologo->user->name }}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
         </div>
 
         <hr>

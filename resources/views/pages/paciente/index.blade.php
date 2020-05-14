@@ -12,6 +12,7 @@
         <th scope="col">Nome</th>
         <th scope="col">Agente Responsável</th>
         <th scope="col">Médico Responsável</th>
+        <th scope="col">Psicólogo</th>
       </tr>
     </thead>
     <tbody>
@@ -25,6 +26,12 @@
         @endif
         @if($paciente->medico)
         <td><a href="{{ route('medico/edit', $paciente->medico->id) }}">{{ $paciente->medico->user->name }}</a></td>
+        @else
+        <td></td>
+        @endif
+        @if($paciente->psicologo_id)
+        <?php $psicologo = \App\Medico::where('id', $paciente->psicologo_id)->first(); ?>
+        <td><a href="{{ route('medico/edit', $paciente->psicologo_id) }}">{{ $psicologo->user->name }}</a></td>
         @else
         <td></td>
         @endif

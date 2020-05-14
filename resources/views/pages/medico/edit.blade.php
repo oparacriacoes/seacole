@@ -22,13 +22,13 @@
         @method('PUT')
         @csrf
         <div class="row">
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="name">Nome completo</label>
               <input name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" value="{{ $medico->user->name }}" readonly>
             </div>
           </div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="email">Email</label>
               <div class="input-group">
@@ -39,6 +39,15 @@
                 </div>
                 <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{ $medico->user->email }}" readonly>
               </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="psicologo">É psicólogo?</label>
+              <select name="psicologo" class="form-control" id="psicologo" readonly>
+                <option value="1" <?php if( $medico->psicologo === 1 ){ echo 'selected=selected'; }; ?> >Sim</option>
+                <option value="0" <?php if( $medico->psicologo === 0 ){ echo 'selected=selected'; }; ?> >Não</option>
+              </select>
             </div>
           </div>
           <input type="hidden" name="role" value="medico">

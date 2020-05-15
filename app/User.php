@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
       return $this->hasOne('App\Medico');
     }
+
+    public function psicologo()
+    {
+      return $this->hasOne('App\Psicologo');
+    }
 }

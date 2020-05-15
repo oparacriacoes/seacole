@@ -614,8 +614,10 @@
             </div>
           </div>
         </div>
+        @if(\Auth::user()->role === 'administrador' || \Auth::user()->role === 'agente' || \Auth::user()->role === 'medico')
         <button type="button" class="btn btn-danger" name="button" id="btn-edit" onclick="editForm()">Editar</button>
         <button type="submit" class="btn btn-primary btn-save" id="updatePaciente" disabled>Salvar</button>
+        @endif
       </form>
     </div>
   </div>

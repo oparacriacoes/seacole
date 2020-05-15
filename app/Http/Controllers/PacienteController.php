@@ -21,7 +21,6 @@ class PacienteController extends Controller
     } else {
       $pacientes = Paciente::get();
     }
-    //dd($pacientes);
 
     return view('pages.paciente.index')->with(compact('pacientes'));
   }

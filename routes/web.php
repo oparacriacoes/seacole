@@ -34,6 +34,10 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/admin/medico/add', 'MedicoController@add')->name('medico/add');
   Route::get('/admin/medico/edit/{id}', 'MedicoController@edit')->name('medico/edit');
 
+  Route::get('/admin/psicologo', 'PsicologoController@index')->name('psicologo');
+  Route::get('/admin/psicologo/add', 'PsicologoController@add')->name('psicologo/add');
+  Route::get('/admin/psicologo/edit/{id}', 'PsicologoController@edit')->name('psicologo/edit');
+
   Route::get('/admin/paciente', 'PacienteController@index')->name('paciente');
   Route::get('/admin/paciente/add', 'PacienteController@add')->name('paciente/add');
   Route::get('/admin/paciente/edit/{id}', 'PacienteController@edit')->name('paciente/edit');

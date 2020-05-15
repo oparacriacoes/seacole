@@ -3,21 +3,21 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 text-center">
-      <h1>Dados do Médico</h1>
+      <h1>Dados do Psicólogo</h1>
     </div>
   </div>
 
   <div class="row pb-4">
     <div class="col">
-      <form method="POST" action="{{ route('medico.update', $medico->id) }}">
-        <input id="id" type="hidden" name="" value="{{ $medico->id }}">
+      <form method="POST" action="{{ route('psicologo.update', $psicologo->id) }}">
+        <input id="id" type="hidden" name="" value="{{ $psicologo->id }}">
         @method('PUT')
         @csrf
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="form-group">
               <label for="name">Nome completo</label>
-              <input name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" value="{{ $medico->user->name }}" readonly>
+              <input name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" value="{{ $psicologo->user->name }}" readonly>
             </div>
           </div>
           <div class="col-12 col-md-6">
@@ -25,15 +25,15 @@
               <label for="email">Email</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <a href="mailto:{{ $medico->email }}">
+                  <a href="mailto:{{ $psicologo->email }}">
                     <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-envelope" style="font-size: 1.5rem; color:#007bff;"></i></div>
                   </a>
                 </div>
-                <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{ $medico->user->email }}" readonly>
+                <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{ $psicologo->user->email }}" readonly>
               </div>
             </div>
           </div>
-          <input type="hidden" name="role" value="medico">
+          <input type="hidden" name="role" value="psicologo">
         </div>
         <div class="row">
           <div class="col-12 col-md-6">
@@ -41,11 +41,11 @@
               <label for="fone_fixo">Telefone celular 1</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <a href="tel:{{ $medico->fone_fixo }}">
+                  <a href="tel:{{ $psicologo->fone_fixo }}">
                     <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-phone-square-alt" style="font-size: 1.5rem; color:#007bff;"></i></div>
                   </a>
                 </div>
-                <input name="fone_celular_1" type="text" class="form-control mobile_with_ddd" id="fone_fixo" aria-describedby="fone_fixoHelp" value="{{ $medico->fone_celular_1 }}" readonly>
+                <input name="fone_celular_1" type="text" class="form-control mobile_with_ddd" id="fone_fixo" aria-describedby="fone_fixoHelp" value="{{ $psicologo->fone_celular_1 }}" readonly>
               </div>
             </div>
           </div>
@@ -54,16 +54,16 @@
               <label for="fone_celular">Telefone celular 2</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <a href="tel:{{ $medico->fone_celular }}">
+                  <a href="tel:{{ $psicologo->fone_celular }}">
                     <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-mobile-alt" style="font-size: 1.5rem; color:#007bff;"></i></div>
                   </a>
                 </div>
-                <input name="fone_celular_2" type="text" class="form-control mobile_with_ddd" id="fone_celular" aria-describedby="fone_celularHelp" value="{{ $medico->fone_celular_2 }}" readonly>
+                <input name="fone_celular_2" type="text" class="form-control mobile_with_ddd" id="fone_celular" aria-describedby="fone_celularHelp" value="{{ $psicologo->fone_celular_2 }}" readonly>
               </div>
             </div>
           </div>
         </div>
-        @if( \Auth::user()->role === 'administrador' || isset(\Auth::user()->medico->id) && \Auth::user()->medico->id === $medico->id )
+        @if( \Auth::user()->role === 'administrador' || isset(\Auth::user()->psicologo->id) && \Auth::user()->psicologo->id === $psicologo->id )
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="form-group">
@@ -79,7 +79,7 @@
           </div>
         </div>
         <button type="button" class="btn btn-danger" name="button" id="btn-edit" onclick="editForm()">Editar</button>
-        <button id="updateMedico" type="submit" class="btn btn-primary btn-save" id="" disabled>Salvar</button>
+        <button id="updatePsicologo" type="submit" class="btn btn-primary btn-save" id="" disabled>Salvar</button>
         @endif
       </form>
     </div>

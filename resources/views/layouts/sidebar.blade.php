@@ -72,6 +72,7 @@
             @endif
           </ul>
         </li>
+
         <li class="nav-item has-treeview ">
           <a href="#" class="nav-link active">
             <i class="fas fa-stethoscope nav-icon"></i>
@@ -92,6 +93,32 @@
               <a href="{{ route('medico/add') }}" class="nav-link">
                 <i class="fas fa-plus-circle nav-icon"></i>
                 <p>Cadastrar Médico</p>
+              </a>
+            </li>
+            @endif
+          </ul>
+        </li>
+
+        <li class="nav-item has-treeview ">
+          <a href="#" class="nav-link active">
+            <i class="fas fa-hands-helping nav-icon"></i>
+            <p>
+              Psicólogos
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('psicologo') }}" class="nav-link">
+                <i class="fas fa-list-ul nav-icon"></i>
+                <p>Listar Psicólogos</p>
+              </a>
+            </li>
+            @if( \Auth::user()->role === 'administrador' )
+            <li class="nav-item">
+              <a href="{{ route('psicologo/add') }}" class="nav-link">
+                <i class="fas fa-plus-circle nav-icon"></i>
+                <p>Cadastrar Psicólogo</p>
               </a>
             </li>
             @endif

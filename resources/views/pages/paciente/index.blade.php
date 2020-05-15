@@ -29,9 +29,8 @@
         @else
         <td></td>
         @endif
-        @if($paciente->psicologo_id)
-        <?php $psicologo = \App\Medico::where('id', $paciente->psicologo_id)->first(); ?>
-        <td><a href="{{ route('medico/edit', $paciente->psicologo_id) }}">{{ $psicologo->user->name }}</a></td>
+        @if($paciente->psicologo)
+        <td><a href="{{ route('psicologo/edit', $paciente->psicologo->id) }}">{{ $paciente->psicologo->user->name }}</a></td>
         @else
         <td></td>
         @endif

@@ -106,6 +106,11 @@ $(document).ready(function() {
     "language": langOptions
   });
 
+  $('#psicologos').DataTable({
+    //"pageLength": 25,
+    "language": langOptions
+  });
+
   $('#agentes').DataTable({
     //"pageLength": 25,
     "language": langOptions
@@ -340,6 +345,64 @@ $("#updateMedico").click(function(e) {
   e.preventDefault();
   let id = $('#id').val();
   let url = API_URL + "/medico/"+id;
+  let inputs = $('input');
+  let selects = $('select');
+  let data = {...inputs.serializeJSON(), ...selects.serializeJSON()};
+  validaSenha();
+
+  $.ajax({
+    method: "PUT",
+    url: url,
+    data: {
+      data,
+    }
+  })
+    .done(function(msg) {
+      //console.log(msg.message);
+      Swal.fire({
+        icon: 'info',
+        title: msg.message,
+        showConfirmButton: false,
+        timer: 1990
+      })
+      window.setTimeout(function(){
+        location.reload();
+      } ,2000);
+    });
+});
+
+$("#createPsicologo").click(function(e) {
+  e.preventDefault();
+  let url = API_URL + "/psicologo/";
+  let inputs = $('input');
+  let selects = $('select');
+  let data = {...inputs.serializeJSON(), ...selects.serializeJSON()};
+  //console.log(data);
+  $.ajax({
+    method: "POST",
+    url: url,
+    data: {
+      data,
+    }
+  })
+    .done(function(msg) {
+      //console.log(msg.message);
+      Swal.fire({
+        icon: 'info',
+        title: msg.message,
+        showConfirmButton: false,
+        timer: 1990
+      })
+      window.setTimeout(function(){
+        location.replace(APP_URL + '/admin/psicologo');
+      } ,2000);
+    });
+});
+
+$("#updatePsicologo").click(function(e) {
+  e.preventDefault();
+  let id = $('#id').val();
+  let url = API_URL + "/psicologo/"+id;
   let inputs = $('input');
   let selects = $('select');
   let data = {...inputs.serializeJSON(), ...selects.serializeJSON()};

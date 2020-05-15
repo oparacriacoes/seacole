@@ -3,13 +3,13 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 text-center">
-      <h1>Cadastrar Médico</h1>
+      <h1>Cadastrar Psicólogo</h1>
     </div>
   </div>
 
   <div class="row pb-4">
     <div class="col">
-      <form method="POST" action="{{ route('medico.store') }}">
+      <form method="POST" action="{{ route('psicologo.store') }}">
         @csrf
         <div class="row">
           <div class="col-12 col-md-6">
@@ -24,7 +24,7 @@
               <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
             </div>
           </div>
-          <input type="hidden" name="role" value="medico">
+          <input type="hidden" name="role" value="psicologo">
         </div>
         <div class="row">
           <div class="col-12 col-md-6">
@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-        <button id="createMedico" type="submit" class="btn btn-primary">Cadastrar</button>
+        <button id="createPsicologo" type="submit" class="btn btn-primary">Cadastrar</button>
       </form>
     </div>
   </div>

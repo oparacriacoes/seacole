@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Hash;
 use App\User;
-use App\Medico;
+use App\Psicologo;
 
-class MedicoController extends Controller
+class PsicologoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,7 +32,7 @@ class MedicoController extends Controller
       $user->name = $request->input('data')['name'];
       $user->email = $request->input('data')['email'];
       $user->password = Hash::make($request->input('data')['email']);
-      $user->role = 'medico';
+      $user->role = 'psicologo';
       try {
         $user->save();
       } catch(\Exception $exception) {
@@ -40,12 +40,12 @@ class MedicoController extends Controller
       }
 
       if($user){
-        $medico = new Medico;
-        $medico->user_id = $user->id;
-        $medico->fone_celular_1 = $request->input('data')['fone_celular_1'];
-        $medico->fone_celular_2 = $request->input('data')['fone_celular_2'];
+        $psicologo = new Psicologo;
+        $psicologo->user_id = $user->id;
+        $psicologo->fone_celular_1 = $request->input('data')['fone_celular_1'];
+        $psicologo->fone_celular_2 = $request->input('data')['fone_celular_2'];
         try {
-          $medico->save();
+          $psicologo->save();
         } catch(\Exception $exception) {
           return response()->json(['message' => $exception->getMessage()]);
         }
@@ -74,14 +74,14 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $medico = Medico::find($id);
-      $user = $medico->user;
+      $psicologo = Psicologo::find($id);
+      $user = $psicologo->user;
       $user->name = $request->input('data')['name'];
       $user->email = $request->input('data')['email'];
       if( $request->input('data')['password_confirm'] !== null ){
         $user->password = Hash::make($request->input('data')['password_confirm']);
       }
-      $user->role = 'medico';
+      $user->role = 'psicologo';
       try {
         $user->save();
       } catch(\Exception $exception) {
@@ -89,11 +89,11 @@ class MedicoController extends Controller
       }
 
       if($user){
-        $medico->user_id = $user->id;
-        $medico->fone_celular_1 = $request->input('data')['fone_celular_1'];
-        $medico->fone_celular_2 = $request->input('data')['fone_celular_2'];
+        $psicologo->user_id = $user->id;
+        $psicologo->fone_celular_1 = $request->input('data')['fone_celular_1'];
+        $psicologo->fone_celular_2 = $request->input('data')['fone_celular_2'];
         try {
-          $medico->save();
+          $psicologo->save();
         } catch(\Exception $exception) {
           return response()->json(['message' => $exception->getMessage()]);
         }

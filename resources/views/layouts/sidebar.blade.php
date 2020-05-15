@@ -12,7 +12,19 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{ asset('/bower_components/admin-lte/dist/img/user-avatar.png') }}" class="img-circle elevation-2" alt="User Image">
+        <!--<img src="{{ asset('/bower_components/admin-lte/dist/img/user-avatar.png') }}" class="img-circle elevation-2" alt="User Image">-->
+        @if(\Auth::user()->role === 'administrador')
+        <i class="fas fa-user-shield" style="color: #fff; font-size:28px;"></i>
+        @endif
+        @if(\Auth::user()->role === 'agente')
+        <i class="fas fa-user-tie" style="color: #fff; font-size:28px;"></i>
+        @endif
+        @if(\Auth::user()->role === 'medico')
+        <i class="fas fa-user-md" style="color: #fff; font-size:28px;"></i>
+        @endif
+        @if(\Auth::user()->role === 'psicologo')
+        <i class="fas fa-user-friends" style="color: #fff; font-size:28px;"></i>
+        @endif
       </div>
       <div class="info">
         <a href="{{ route('admin') }}" class="d-block">{{ \Auth::user()->name }}</a>

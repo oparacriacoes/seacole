@@ -7,6 +7,7 @@ use Auth;
 use App\Paciente;
 use App\Agente;
 use App\Medico;
+use App\Psicologo;
 use App\EvolucaoSintoma;
 
 class PacienteController extends Controller
@@ -20,16 +21,16 @@ class PacienteController extends Controller
     } else {
       $pacientes = Paciente::get();
     }
-    $psicologos = Medico::where('psicologo', 1)->get();
+    //dd($pacientes);
 
-    return view('pages.paciente.index')->with(compact('pacientes', 'psicologos'));
+    return view('pages.paciente.index')->with(compact('pacientes'));
   }
 
   public function add()
   {
     $agentes = Agente::get();
     $medicos = Medico::get();
-    $psicologos = Medico::where('psicologo', 1)->get();
+    $psicologos = Psicologo::all();
 
     return view('pages.paciente.create')->with(compact('agentes', 'medicos', 'psicologos'));
   }
@@ -45,7 +46,7 @@ class PacienteController extends Controller
     $items = $paciente->items;
     $agentes = Agente::get();
     $medicos = Medico::get();
-    $psicologos = Medico::where('psicologo', 1)->get();
+    $psicologos = Psicologo::all();
     $dados = $paciente->dados;
 
     return view('pages.paciente.edit')->with(compact('paciente', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados'));

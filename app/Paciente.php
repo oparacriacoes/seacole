@@ -47,6 +47,11 @@ class Paciente extends Model
     return $this->belongsTo('App\Medico');
   }
 
+  public function psicologo()
+  {
+    return $this->belongsTo('App\Psicologo');
+  }
+
   public function sintomas()
   {
     return $this->hasMany('App\Sintoma');

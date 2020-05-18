@@ -258,6 +258,28 @@ $("#updatePaciente").click(function(e) {
     });
 });
 
+function deletePaciente(id){
+  let url = API_URL + "/paciente/"+id;
+  console.log(id);
+  console.log(url);
+  $.ajax({
+    type: "DELETE",
+    url: url
+  })
+    .done(function(msg) {
+      //console.log(msg.message);
+      Swal.fire({
+        icon: 'info',
+        title: msg.message,
+        showConfirmButton: false,
+        timer: 1990
+      })
+      window.setTimeout(function(){
+        location.reload();
+      } ,2000);
+    });
+}
+
 $("#createAgente").click(function(e) {
   e.preventDefault();
   let url = API_URL + "/agente/";
@@ -312,6 +334,28 @@ $("#updateAgente").click(function(e) {
       } ,2000);
     });
   });
+
+  function deleteAgente(id){
+    let url = API_URL + "/agente/"+id;
+    console.log(id);
+    console.log(url);
+    $.ajax({
+      type: "DELETE",
+      url: url
+    })
+      .done(function(msg) {
+        //console.log(msg.message);
+        Swal.fire({
+          icon: 'info',
+          title: msg.message,
+          showConfirmButton: false,
+          timer: 1990
+        })
+        window.setTimeout(function(){
+          location.reload();
+        } ,2000);
+      });
+  }
 
 $("#createMedico").click(function(e) {
   e.preventDefault();
@@ -371,6 +415,28 @@ $("#updateMedico").click(function(e) {
     });
 });
 
+function deleteMedico(id){
+  let url = API_URL + "/medico/"+id;
+  console.log(id);
+  console.log(url);
+  $.ajax({
+    type: "DELETE",
+    url: url
+  })
+    .done(function(msg) {
+      //console.log(msg.message);
+      Swal.fire({
+        icon: 'info',
+        title: msg.message,
+        showConfirmButton: false,
+        timer: 1990
+      })
+      window.setTimeout(function(){
+        location.reload();
+      } ,2000);
+    });
+}
+
 $("#createPsicologo").click(function(e) {
   e.preventDefault();
   let url = API_URL + "/psicologo/";
@@ -428,6 +494,28 @@ $("#updatePsicologo").click(function(e) {
       } ,2000);
     });
 });
+
+function deletePsicologo(id){
+  let url = API_URL + "/psicologo/"+id;
+  console.log(id);
+  console.log(url);
+  $.ajax({
+    type: "DELETE",
+    url: url
+  })
+    .done(function(msg) {
+      //console.log(msg.message);
+      Swal.fire({
+        icon: 'info',
+        title: msg.message,
+        showConfirmButton: false,
+        timer: 1990
+      })
+      window.setTimeout(function(){
+        location.reload();
+      } ,2000);
+    });
+}
 
 function kitItems(id) {
   cartilha = $('#cartilha');

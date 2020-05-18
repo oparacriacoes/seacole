@@ -110,6 +110,12 @@ class PsicologoController extends Controller
      */
     public function destroy($id)
     {
-      return null;
+      $psicologo = Psicologo::find($id);
+      $user = User::find($psicologo->user_id);
+
+      $delete_psicologo = Psicologo::destroy($id);
+      $delete_user = User::destroy($user->id);
+
+      return response()->json(['message' => 'Psicólogo excluído com sucesso.']);
     }
 }

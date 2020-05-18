@@ -9,6 +9,7 @@ use App\Agente;
 use App\Medico;
 use App\Psicologo;
 use App\EvolucaoSintoma;
+use App\User;
 
 class PacienteController extends Controller
 {

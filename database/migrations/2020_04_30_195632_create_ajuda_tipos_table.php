@@ -15,7 +15,7 @@ class CreateAjudaTiposTable extends Migration
     {
         Schema::create('ajuda_tipos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('paciente_id')->unsigned();
+            $table->bigInteger('paciente_id')->unsigned()->onDelete('cascade');
             $table->foreign('paciente_id')->references('id')->on('pacientes');
             $table->string('tipo')->nullable();
             $table->timestamps();

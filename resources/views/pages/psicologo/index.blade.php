@@ -12,6 +12,7 @@
         <th scope="col">Nome</th>
         <th scope="col">Email</th>
         <th scope="col">Data Cadastro</th>
+        <th scope="col">Ação</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
         <td><a href="{{ route('psicologo/edit', $psicologo->id) }}">{{ $psicologo->user->name }}</a></td>
         <td>{{ $psicologo->user->email }}</td>
         <td>@php $data = \Carbon\Carbon::parse($psicologo->created_at); @endphp {{ $data->format('d/m/Y') }}</td>
+        <td><button class="btn btn-sm btn-danger" type="button" name="button" onclick="deletePsicologo({{ $psicologo->id }})">Excluir</button></td>
       </tr>
       @endforeach
     </tbody>

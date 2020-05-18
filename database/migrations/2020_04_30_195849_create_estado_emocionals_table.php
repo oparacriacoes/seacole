@@ -15,7 +15,7 @@ class CreateEstadoEmocionalsTable extends Migration
     {
         Schema::create('estado_emocionals', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('paciente_id')->unsigned();
+            $table->bigInteger('paciente_id')->unsigned()->onDelete('cascade');
             $table->foreign('paciente_id')->references('id')->on('pacientes');
             $table->string('situacao')->nullable();
             $table->string('medo')->nullable();

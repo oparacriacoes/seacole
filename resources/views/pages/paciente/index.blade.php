@@ -13,6 +13,7 @@
         <th scope="col">Agente Responsável</th>
         <th scope="col">Médico Responsável</th>
         <th scope="col">Psicólogo</th>
+        <th scope="col">Ação</th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
         @else
         <td></td>
         @endif
+        <td><button class="btn btn-sm btn-danger" type="button" name="button" onclick="deletePaciente({{ $paciente->id }})">Excluir</button></td>
       </tr>
       @endforeach
     </tbody>

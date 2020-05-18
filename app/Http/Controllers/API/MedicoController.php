@@ -110,6 +110,12 @@ class MedicoController extends Controller
      */
     public function destroy($id)
     {
-      return null;
+      $medico = Medico::find($id);
+      $user = User::find($medico->user_id);
+
+      $delete_medico = Medico::destroy($id);
+      $delete_user = User::destroy($user->id);
+
+      return response()->json(['message' => 'Médico excluído com sucesso.']);
     }
 }

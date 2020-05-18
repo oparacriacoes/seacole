@@ -437,6 +437,12 @@ class PacienteController extends Controller
      */
     public function destroy($id)
     {
-      return null;
+      $paciente = Paciente::find($id);
+      $user = User::find($paciente->user_id);
+
+      $delete_paciente = Paciente::destroy($id);
+      $delete_user = User::destroy($user->id);
+
+      return response()->json(['message' => 'Paciente removido com sucesso']);
     }
 }

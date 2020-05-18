@@ -110,6 +110,12 @@ class AgenteController extends Controller
      */
     public function destroy($id)
     {
-      return null;
+      $agente = Agente::find($id);
+      $user = User::find($agente->user_id);
+
+      $delete_agente = Agente::destroy($id);
+      $delete_user = User::destroy($user->id);
+
+      return response()->json(['message' => 'Agente excluído com sucesso.']);
     }
 }

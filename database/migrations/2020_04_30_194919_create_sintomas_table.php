@@ -15,7 +15,7 @@ class CreateSintomasTable extends Migration
     {
         Schema::create('sintomas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('paciente_id')->unsigned();
+            $table->bigInteger('paciente_id')->unsigned()->onDelete('cascade');
             $table->foreign('paciente_id')->references('id')->on('pacientes');
             $table->date('data_inicio_sintoma')->nullable();
             $table->string('sintoma_manifestado')->nullable();

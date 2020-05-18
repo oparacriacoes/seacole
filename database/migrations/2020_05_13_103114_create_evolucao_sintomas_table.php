@@ -16,7 +16,7 @@ class CreateEvolucaoSintomasTable extends Migration
         Schema::create('evolucao_sintomas', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('paciente_id')->unsigned();
-            $table->foreign('paciente_id')->references('id')->on('pacientes');
+            $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');
             $table->date('data_inicio_sintoma')->nullable();
             $table->string('sintoma_manifestado')->nullable();
             $table->decimal('febre_temperatura_maxima')->nullable();

@@ -432,7 +432,7 @@
         </div>
 
         <div class="row">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="cansaco_saturacao">Saturação</label>
               @if(isset($sintoma))
@@ -442,7 +442,7 @@
               @endif
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="cansaco_frequencia_respiratoria">Frequência respiratória</label>
               @if(isset($sintoma))
@@ -452,13 +452,23 @@
               @endif
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="data_inicio_sintoma">Data início sintomas</label>
               @if(isset($sintoma))
               <input name="data_inicio_sintoma" type="text" class="form-control date" id="data_inicio_sintoma" aria-describedby="data_inicio_sintomaHelp" readonly value="{{ \Carbon\Carbon::parse($sintoma->data_inicio_sintoma)->format('d/m/Y') }}">
               @else
               <input name="data_inicio_sintoma" type="text" class="form-control date" id="data_inicio_sintoma" aria-describedby="data_inicio_sintomaHelp" readonly value="">
+              @endif
+            </div>
+          </div>
+          <div class="col-12 col-md-3">
+            <div class="form-group">
+              <label for="horario_sintoma">Horário</label>
+              @if(isset($sintoma))
+              <input name="horario_sintoma" type="text" class="form-control time" id="horario_sintoma" aria-describedby="horario_sintomaHelp" readonly value="{{ $sintoma->horario_sintoma }}">
+              @else
+              <input name="horario_sintoma" type="text" class="form-control time" id="horario_sintoma" aria-describedby="horario_sintomaHelp" readonly value="">
               @endif
             </div>
           </div>
@@ -637,6 +647,7 @@
             <thead>
               <tr>
                 <th scope="col">Registro</th>
+                <th scope="col">Horário</th>
                 <th scope="col">Início sintoma</th>
                 <th scope="col">Sintomas</th>
                 <th scope="col">Temp. Máxima</th>
@@ -650,6 +661,7 @@
               @foreach($dados as $dado)
               <tr>
                 <td><?php echo \Carbon\Carbon::parse($dado->created_at)->format('d/m/Y'); ?></td>
+                <td>{{ $dado->horario_sintoma }}</td>
                 <td><?php echo \Carbon\Carbon::parse($dado->data_inicio_sintoma)->format('d/m/Y'); ?></td>
                 <td>
                   <?php

@@ -9,6 +9,7 @@ class EvolucaoSintoma extends Model
   protected $fillable = [
     'paciente_id',
     'data_inicio_sintoma',
+    'horario_sintoma',
     'sintoma_manifestado',
     'febre_temperatura_maxima',
     'data_medicao_temperatura',

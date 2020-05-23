@@ -236,7 +236,7 @@
           <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="febre_temperatura_maxima">Temperatura máxima (em graus)</label>
-              <input name="febre_temperatura_maxima" type="text" class="form-control" id="febre_temperatura_maxima" aria-describedby="febre_temperatura_maximaHelp">
+              <input name="febre_temperatura_maxima" type="number" class="form-control" id="febre_temperatura_maxima" aria-describedby="febre_temperatura_maximaHelp">
             </div>
           </div>
           <div class="col-12 col-md-4">
@@ -254,22 +254,28 @@
         </div>
 
         <div class="row">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="cansaco_saturacao">Saturação</label>
               <input name="cansaco_saturacao" type="number" class="form-control" id="cansaco_saturacao" aria-describedby="cansaco_saturacaoHelp">
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="cansaco_frequencia_respiratoria">Frequência respiratória</label>
               <input name="cansaco_frequencia_respiratoria" type="number" class="form-control" id="cansaco_frequencia_respiratoria" aria-describedby="cansaco_frequencia_respiratoriaHelp">
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="data_inicio_sintoma">Data início sintomas</label>
               <input name="data_inicio_sintoma" type="text" class="form-control date" id="data_inicio_sintoma" aria-describedby="data_inicio_sintomaHelp">
+            </div>
+          </div>
+          <div class="col-12 col-md-3">
+            <div class="form-group">
+              <label for="horario_sintoma">Horário</label>
+              <input name="horario_sintoma" type="text" class="form-control time" id="horario_sintoma" aria-describedby="horario_sintomaHelp">
             </div>
           </div>
         </div>

@@ -114,6 +114,7 @@ class PacienteController extends Controller
         $sintoma = new Sintoma;
         $sintoma->paciente_id = $paciente->id;
         $sintoma->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_inicio_sintoma'])->format('Y-m-d');
+        $sintoma->horario_sintoma = $request->input('data')['horario_sintoma'];
         $sintoma->sintoma_manifestado = $sintomas;
         $sintoma->febre_temperatura_maxima = $request->input('data')['febre_temperatura_maxima'];
         $sintoma->data_medicao_temperatura = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_medicao_temperatura'])->format('Y-m-d');
@@ -168,6 +169,10 @@ class PacienteController extends Controller
           echo 'observacao response:';
           return response()->json(['message' => $exception->getMessage()], 500);
         }
+      }
+
+      if( isset($sintoma) ) {
+        event(new SintomaEvolucao(new EvolucaoSintoma(json_decode(json_encode($sintoma), true))));
       }
 
       return response()->json(['message' => 'Cadastro feito com sucesso.'], 200);
@@ -340,6 +345,7 @@ class PacienteController extends Controller
         }
         $sintomas->paciente_id = $paciente->id;
         $sintomas->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_inicio_sintoma'])->format('Y-m-d');
+        $sintomas->horario_sintoma = $request->input('data')['horario_sintoma'];
         $sintomas->febre_temperatura_maxima = $request->input('data')['febre_temperatura_maxima'];
         if( isset($request->input('data')['data_medicao_temperatura']) ){
           $sintomas->data_medicao_temperatura = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_medicao_temperatura'])->format('Y-m-d');

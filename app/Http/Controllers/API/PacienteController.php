@@ -53,6 +53,7 @@ class PacienteController extends Controller
         if($request->input('data')['data_nascimento'] !== null){
           $paciente->data_nascimento = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_nascimento'])->format('Y-m-d');
         }
+        $paciente->cor_raca = $request->input('data')['cor_raca'];
         $paciente->endereco_cep = $request->input('data')['endereco_cep'];
         $paciente->endereco_rua = $request->input('data')['endereco_rua'];
         $paciente->endereco_numero = $request->input('data')['endereco_numero'];
@@ -237,6 +238,7 @@ class PacienteController extends Controller
         if($request->input('data')['data_nascimento'] !== null){
           $paciente->data_nascimento = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_nascimento'])->format('Y-m-d');
         }
+        $paciente->cor_raca = $request->input('data')['cor_raca'];
         $paciente->endereco_cep = $request->input('data')['endereco_cep'];
         $paciente->endereco_rua = $request->input('data')['endereco_rua'];
         $paciente->endereco_numero = $request->input('data')['endereco_numero'];

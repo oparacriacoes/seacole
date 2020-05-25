@@ -50,13 +50,13 @@
         <hr>
 
         <div class="row">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="name">Nome Completo (obrigatório)</label>
               <input name="name" type="text" class="required form-control" id="name" aria-describedby="nameHelp">
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="email">Email</label>
               <div class="input-group">
@@ -69,10 +69,23 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="name">Data Nascimento (obrigatório)</label>
               <input name="data_nascimento" type="text" class="required form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+            </div>
+          </div>
+          <div class="col-12 col-md-3">
+            <div class="form-group">
+              <label for="cor_raca">Raça / Cor</label>
+              <select name="cor_raca" class="form-control">
+                <option value="" selected>Selecione</option>
+                <option value="negra">Negra</option>
+                <option value="branca">Branca</option>
+                <option value="parda">Parda</option>
+                <option value="amarela">Amarela</option>
+                <option value="indigena">Indígena</option>
+              </select>
             </div>
           </div>
         </div>

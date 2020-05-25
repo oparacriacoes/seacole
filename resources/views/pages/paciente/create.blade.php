@@ -29,7 +29,7 @@
               <select name="medico" class="form-control">
                 <option value="null">Selecione</option>
                 @foreach($medicos as $medico)
-                <option value="{{ $medico->id }}">{{ $medico->user->name }}</option>
+                <option value="{{ $medico->id }}" <?php if( \Auth::user()->role === 'medico' && \Auth::user()->medico->id === $medico->id ){ echo 'selected=selected'; } ?> >{{ $medico->user->name }}</option>
                 @endforeach
               </select>
             </div>
@@ -40,7 +40,7 @@
               <select name="psicologo_id" class="form-control">
                 <option value="null">Selecione</option>
                 @foreach($psicologos as $psicologo)
-                <option value="{{ $psicologo->id }}">{{ $psicologo->user->name }}</option>
+                <option value="{{ $psicologo->id }}" <?php if( \Auth::user()->role === 'psicologo' && \Auth::user()->psicologo->id === $psicologo->id ){ echo 'selected=selected'; } ?> >{{ $psicologo->user->name }}</option>
                 @endforeach
               </select>
             </div>

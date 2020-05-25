@@ -17,8 +17,10 @@ class PacienteController extends Controller
   {
     if( Auth::user()->role === 'agente' ){
       $pacientes = Auth::user()->agente->pacientes;
-    } elseif ( Auth::user()->role === 'medico' ) {
+    } elseif( Auth::user()->role === 'medico' ) {
       $pacientes = Auth::user()->medico->pacientes;
+    } elseif( Auth::user()->role === 'psicologo' ) {
+      $pacientes = Auth::user()->psicologo->pacientes;
     } else {
       $pacientes = Paciente::get();
     }

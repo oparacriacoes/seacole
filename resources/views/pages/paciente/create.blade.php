@@ -138,13 +138,13 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-12 col-md-3">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="endereco_complemento">Complemento</label>
               <input name="endereco_complemento" type="text" class="form-control" id="endereco_complemento" aria-describedby="endereco_complementoHelp">
             </div>
           </div>
-          <div class="col-6 col-md-3">
+          <div class="col-6 col-md-4">
             <div class="form-group">
               <label for="fone_fixo">Telefone fixo</label>
               <div class="input-group">
@@ -157,7 +157,7 @@
               </div>
             </div>
           </div>
-          <div class="col-6 col-md-3">
+          <div class="col-6 col-md-4">
             <div class="form-group">
               <label for="fone_celular">Telefone celular</label>
               <div class="input-group">
@@ -170,10 +170,18 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-3">
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="numero_pessoas_residencia">Nº Pessoas na Residência</label>
               <input name="numero_pessoas_residencia" type="number" class="form-control" id="numero_pessoas_residencia" aria-describedby="numero_pessoas_residenciaHelp">
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="responsavel_residencia">Responsável</label>
+              <input name="responsavel_residencia" type="text" class="form-control" id="responsavel_residencia" aria-describedby="responsavel_residenciaHelp">
             </div>
           </div>
         </div>

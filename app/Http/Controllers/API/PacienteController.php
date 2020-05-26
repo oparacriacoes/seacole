@@ -65,6 +65,7 @@ class PacienteController extends Controller
         $paciente->fone_fixo = $request->input('data')['fone_fixo'];
         $paciente->fone_celular = $request->input('data')['fone_celular'];
         $paciente->numero_pessoas_residencia = $request->input('data')['numero_pessoas_residencia'];
+        $paciente->responsavel_residencia = $request->input('data')['responsavel_residencia'];
         $paciente->outras_doencas = $request->input('data')['outras_doencas'];
         $paciente->remedios_consumidos = $request->input('data')['remedios_consumidos'];
         if($request->input('data')['agente'] !== 'null'){
@@ -251,6 +252,7 @@ class PacienteController extends Controller
         $paciente->fone_fixo = $request->input('data')['fone_fixo'];
         $paciente->fone_celular = $request->input('data')['fone_celular'];
         $paciente->numero_pessoas_residencia = $request->input('data')['numero_pessoas_residencia'];
+        $paciente->responsavel_residencia = $request->input('data')['responsavel_residencia'];
         $paciente->outras_doencas = $request->input('data')['outras_doencas'];
         $paciente->remedios_consumidos = $request->input('data')['remedios_consumidos'];
         if($request->input('data')['agente'] !== 'null'){

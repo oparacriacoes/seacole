@@ -112,22 +112,28 @@
         </div>
 
         <div class="row">
-          <div class="col-6 col-md-4">
+          <div class="col-6 col-md-3">
             <div class="form-group">
               <label for="endereco_bairro">Bairro</label>
               <input name="endereco_bairro" type="text" class="form-control" id="endereco_bairro" aria-describedby="endereco_bairroHelp">
             </div>
           </div>
-          <div class="col-6 col-md-4">
+          <div class="col-6 col-md-3">
             <div class="form-group">
               <label for="endereco_cidade">Cidade</label>
               <input name="endereco_cidade" type="text" class="form-control" id="endereco_cidade" aria-describedby="endereco_cidadeHelp">
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="endereco_uf">UF</label>
               <input name="endereco_uf" type="text" class="form-control" id="endereco_uf" aria-describedby="endereco_ufHelp">
+            </div>
+          </div>
+          <div class="col-12 col-md-3">
+            <div class="form-group">
+              <label for="ponto_referencia">Ponto de referência</label>
+              <input name="ponto_referencia" type="text" class="form-control" id="ponto_referencia" aria-describedby="ponto_referenciaHelp">
             </div>
           </div>
         </div>

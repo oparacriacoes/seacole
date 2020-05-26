@@ -60,6 +60,7 @@ class PacienteController extends Controller
         $paciente->endereco_bairro = $request->input('data')['endereco_bairro'];
         $paciente->endereco_cidade = $request->input('data')['endereco_cidade'];
         $paciente->endereco_uf = $request->input('data')['endereco_uf'];
+        $paciente->ponto_referencia = $request->input('data')['ponto_referencia'];
         $paciente->endereco_complemento = $request->input('data')['endereco_complemento'];
         $paciente->fone_fixo = $request->input('data')['fone_fixo'];
         $paciente->fone_celular = $request->input('data')['fone_celular'];
@@ -245,6 +246,7 @@ class PacienteController extends Controller
         $paciente->endereco_bairro = $request->input('data')['endereco_bairro'];
         $paciente->endereco_cidade = $request->input('data')['endereco_cidade'];
         $paciente->endereco_uf = $request->input('data')['endereco_uf'];
+        $paciente->ponto_referencia = $request->input('data')['ponto_referencia'];
         $paciente->endereco_complemento = $request->input('data')['endereco_complemento'];
         $paciente->fone_fixo = $request->input('data')['fone_fixo'];
         $paciente->fone_celular = $request->input('data')['fone_celular'];

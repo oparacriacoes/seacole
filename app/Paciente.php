@@ -19,6 +19,7 @@ class Paciente extends Model
     'endereco_bairro',
     'endereco_cidade',
     'endereco_uf',
+    'ponto_referencia',
     'endereco_complemento',
     'fone_fixo',
     'fone_celular',

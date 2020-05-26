@@ -25,6 +25,7 @@ class Paciente extends Model
     'fone_celular',
     'numero_pessoas_residencia',
     'responsavel_residencia',
+    'renda_residencia',
     'doenca_cronica',
     'outras_doencas',
     'remedios_consumidos',

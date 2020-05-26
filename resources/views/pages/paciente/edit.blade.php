@@ -298,6 +298,12 @@
               <input name="responsavel_residencia" type="text" class="form-control" id="responsavel_residencia" aria-describedby="responsavel_residenciaHelp" value="{{ $paciente->responsavel_residencia }}" readonly>
             </div>
           </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="renda_residencia">Renda da casa (somente números)</label>
+              <input name="renda_residencia" type="text" class="form-control money" id="renda_residencia" aria-describedby="renda_residenciaHelp" value="{{ $paciente->renda_residencia }}" readonly>
+            </div>
+          </div>
         </div>
 
         <hr>

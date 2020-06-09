@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\AjudaTipo;
+use App\DoencaCronica;
+use App\EstadoEmocional;
+use App\Events\SintomaEvolucao;
+use App\Observacao;
+use App\Sintoma;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
 use App\Paciente;

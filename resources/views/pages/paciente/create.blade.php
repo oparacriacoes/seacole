@@ -11,7 +11,7 @@
 
   <div class="row pb-4">
     <div class="col">
-      <form id="createPacienteForm" method="POST" action="/api/paciente">
+      <form id="createPacienteForm" method="POST" action="{{ route('paciente') }}">
         @csrf
         <div class="row">
           <div class="col">
@@ -202,15 +202,15 @@
               <label class="form-check-label" for="inlineCheckbox1">Cardiovasculares</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="doenca_cronica[]" class="form-check-input" type="checkbox" value="respiratórias">
+              <input name="doenca_cronica[]" class="form-check-input" type="checkbox" value="respiratorias">
               <label class="form-check-label" for="inlineCheckbox2">Respiratórias</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="doenca_cronica[]" class="form-check-input" type="checkbox" value="hipertensão">
+              <input name="doenca_cronica[]" class="form-check-input" type="checkbox" value="hipertensao">
               <label class="form-check-label" for="inlineCheckbox3">Hipertensão</label>
             </div>
             <div class="form-check form-check-inline">
-              <input name="doenca_cronica[]" class="form-check-input" type="checkbox" value="câncer">
+              <input name="doenca_cronica[]" class="form-check-input" type="checkbox" value="cancer">
               <label class="form-check-label" for="inlineCheckbox3">Câncer</label>
             </div>
             <div class="form-check form-check-inline">
@@ -262,6 +262,25 @@
               <input name="sintomas[]" class="form-check-input" id="falta_de_ar" type="checkbox" value="falta de ar">
               <label class="form-check-label" for="falta_de_ar">Falta de ar</label>
             </div>
+            <div class="form-check form-check-inline">
+              <input name="sintomas[]" class="form-check-input" type="checkbox" value="perda de olfato">
+              <label class="form-check-label" for="inlineCheckbox3">Perda do olfato</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input name="sintomas[]" class="form-check-input" type="checkbox" value="perda do paladar">
+              <label class="form-check-label" for="inlineCheckbox3">Perda do paladar</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input name="sintomas[]" class="form-check-input" type="checkbox" value="enjoo">
+              <label class="form-check-label" for="inlineCheckbox3">Enjoo</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input name="sintomas[]" class="form-check-input" type="checkbox" value="dor de cabeça">
+              <label class="form-check-label" for="inlineCheckbox3">Dor de Cabeça</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input name="sintomas[]" class="form-control" type="text" placeholder="Outros (digite)">
+            </div>
           </div>
         </div>
 
@@ -287,25 +306,34 @@
         </div>
 
         <div class="row">
-          <div class="col-12 col-md-3">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="cansaco_saturacao">Saturação</label>
               <input name="cansaco_saturacao" type="number" class="form-control" id="cansaco_saturacao" aria-describedby="cansaco_saturacaoHelp">
             </div>
           </div>
-          <div class="col-12 col-md-3">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="cansaco_frequencia_respiratoria">Frequência respiratória</label>
               <input name="cansaco_frequencia_respiratoria" type="number" class="form-control" id="cansaco_frequencia_respiratoria" aria-describedby="cansaco_frequencia_respiratoriaHelp">
             </div>
           </div>
-          <div class="col-12 col-md-3">
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="cansaco_pressao_arterial">Pressão Arterial Atual (mmHg)</label>
+              <input name="cansaco_pressao_arterial" type="number" class="form-control" id="cansaco_pressao_arterial" aria-describedby="cansaco_pressao_arterial">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="data_inicio_sintoma">Data início sintomas</label>
               <input name="data_inicio_sintoma" type="text" class="form-control date" id="data_inicio_sintoma" aria-describedby="data_inicio_sintomaHelp">
             </div>
           </div>
-          <div class="col-12 col-md-3">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="horario_sintoma">Horário</label>
               <input name="horario_sintoma" type="text" class="form-control time" id="horario_sintoma" aria-describedby="horario_sintomaHelp">
@@ -392,7 +420,7 @@
           <div class="col-12">
             <label class="form-check-label">Precisa de algum tipo de ajuda?</label>
           </div>
-          <div class="col">
+          <div class="col-12">
             <div class="form-check form-check-inline">
               <input name="ajuda_tipo[]" class="form-check-input" type="checkbox" id="remedios" value="compra de remédios" >
               <label class="form-check-label" for="inlineCheckbox1">Comprar remédios de uso contínuo</label>
@@ -436,11 +464,11 @@
           <div class="col">
             <div class="form-group">
               <label for="cansaco_frequencia_respiratoria">Algo mais que queira dizer?</label>
-              <input name="observacoes" type="text" class="form-control" aria-describedby="observacoesHelp" placeholder="Digite">
+              <textarea name="observacoes" class="form-control" aria-describedby="observacoesHelp" placeholder="Digite"></textarea>
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary" id="createPaciente">Cadastrar</button>
+        <button class="btn btn-primary" name="createPaciente" id="createPaciente">Cadastrar</button>
       </form>
     </div>
   </div>

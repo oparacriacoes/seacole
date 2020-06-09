@@ -311,28 +311,30 @@
         <div class="row">
           <div class="col">
             <label>Doenças crônicas?</label>
+            @foreach($cronicas as $cronica) @endforeach
             <?php
             $cardiovasculares = 0;
             $respiratorias = 0;
             $hipertensao = 0;
             $cancer = 0;
             $diabetes = 0;
-            for($c = 0; $c < count($cronicas); $c++){
-              if(strpos($cronicas[$c]->tipo, 'cardiovasculares') !== false){
-                $cardiovasculares = 1;
-              }
-              if(strpos($cronicas[$c]->tipo, 'respiratorias') !== false){
-                $respiratorias = 1;
-              }
-              if(strpos($cronicas[$c]->tipo, 'hipertensao') !== false){
-                $hipertensao = 1;
-              }
-              if(strpos($cronicas[$c]->tipo, 'cancer') !== false){
-                $cancer = 1;
-              }
-              if(strpos($cronicas[$c]->tipo, 'diabetes') !== false){
-                $diabetes = 1;
-              }
+            $outrasdoencas = '';
+            if(isset($cronica)){
+                for($c = 0; $c < count(json_decode($cronica->tipo)); $c++){
+                  if(strpos(json_decode($cronica->tipo)[$c], 'cardiovasculares') !== false){
+                    $cardiovasculares = 1;
+                  } elseif(strpos(json_decode($cronica->tipo)[$c], 'respiratorias') !== false){
+                    $respiratorias = 1;
+                  } elseif(strpos(json_decode($cronica->tipo)[$c], 'hipertensao') !== false){
+                    $hipertensao = 1;
+                  } elseif(strpos(json_decode($cronica->tipo)[$c], 'cancer') !== false){
+                    $cancer = 1;
+                  } elseif(strpos(json_decode($cronica->tipo)[$c], 'diabetes') !== false){
+                    $diabetes = 1;
+                  } else {
+                    $outrasdoencas = json_decode($cronica->tipo)[$c];
+                  }
+                }
             }
             ?>
             <div class="form-check form-check-inline">
@@ -357,7 +359,7 @@
             </div>
             <div class="form-check form-check-inline">
               <!--<label class="form-check-label" for="inlineCheckbox3">Outras </label>-->
-              <input name="doenca_cronica[]" class="form-control" type="text" placeholder="Outra (digite)" readonly>
+              <input name="doenca_cronica[]" class="form-control" type="text" placeholder="Outra (digite)" readonly value="{{ $outrasdoencas }}">
             </div>
           </div>
         </div>
@@ -388,22 +390,33 @@
               $sonolencia = 0;
               $pressao_baixa = 0;
               $falta_de_ar = 0;
+              $perda_de_olfato = 0;
+              $perda_do_paladar = 0;
+              $enjoo = 0;
+              $dor_de_cabeca = 0;
+              $outrosintoma = '';
               if(isset($sintoma)){
                 for($s = 0; $s < count(json_decode($sintoma->sintoma_manifestado)); $s++){
                   if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'tosse') !== false){
                     $tosse = 1;
-                  }
-                  if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'febre') !== false){
+                  } elseif(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'febre') !== false){
                     $febre = 1;
-                  }
-                  if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'sonolência') !== false){
+                  } elseif(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'sonolência') !== false){
                     $sonolencia = 1;
-                  }
-                  if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'pressão baixa') !== false){
+                  } elseif(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'pressão baixa') !== false){
                     $pressao_baixa = 1;
-                  }
-                  if(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'falta de ar') !== false){
+                  } elseif(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'falta de ar') !== false){
                     $falta_de_ar = 1;
+                  } elseif(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'perda de olfato') !== false){
+                    $perda_de_olfato = 1;
+                  } elseif(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'perda do paladar') !== false){
+                    $perda_do_paladar = 1;
+                  } elseif(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'enjoo') !== false){
+                    $enjoo = 1;
+                  } elseif(strpos(json_decode($sintoma->sintoma_manifestado)[$s], 'dor de cabeça') !== false){
+                    $dor_de_cabeca = 1;
+                  } else {
+                    $outrosintoma = json_decode($sintoma->sintoma_manifestado)[$s];
                   }
                 }
               }
@@ -424,10 +437,28 @@
               <label class="form-check-label" for="pressao_baixa">Pressão baixa</label>
             </div>
             <div class="form-check form-check-inline">
+              <input name="sintomas[]" class="form-check-input" type="checkbox" value="perda de olfato" <?php if($perda_de_olfato === 1){ echo 'checked=checked'; } ?> disabled>
+              <label class="form-check-label" for="inlineCheckbox3">Perda do olfato</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input name="sintomas[]" class="form-check-input" type="checkbox" value="perda do paladar" <?php if($perda_do_paladar === 1){ echo 'checked=checked'; } ?> disabled>
+              <label class="form-check-label" for="inlineCheckbox3">Perda do paladar</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input name="sintomas[]" class="form-check-input" type="checkbox" value="enjoo" <?php if($enjoo === 1){ echo 'checked=checked'; } ?> disabled>
+              <label class="form-check-label" for="inlineCheckbox3">Enjoo</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input name="sintomas[]" class="form-check-input" type="checkbox" value="dor de cabeça" <?php if($dor_de_cabeca === 1){ echo 'checked=checked'; } ?> disabled>
+              <label class="form-check-label" for="inlineCheckbox3">Dor de Cabeça</label>
+            </div>
+            <div class="form-check form-check-inline">
               <input name="sintomas[]" class="form-check-input" id="falta_de_ar" type="checkbox" value="falta de ar" <?php if($falta_de_ar === 1){ echo 'checked=checked'; } ?> disabled>
               <label class="form-check-label" for="falta_de_ar">Falta de ar</label>
             </div>
-
+            <div class="form-check form-check-inline">
+              <input name="sintomas[]" class="form-control" type="text" placeholder="Outros (digite)" readonly value="{{$outrosintoma}}">
+            </div>
           </div>
         </div>
 
@@ -465,7 +496,7 @@
         </div>
 
         <div class="row">
-          <div class="col-12 col-md-3">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="cansaco_saturacao">Saturação</label>
               @if(isset($sintoma))
@@ -475,7 +506,7 @@
               @endif
             </div>
           </div>
-          <div class="col-12 col-md-3">
+          <div class="col-12 col-md-4">
             <div class="form-group">
               <label for="cansaco_frequencia_respiratoria">Frequência respiratória</label>
               @if(isset($sintoma))
@@ -485,6 +516,19 @@
               @endif
             </div>
           </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="cansaco_pressao_arterial">Pressão Arterial Atual (mmHg)</label>
+              @if(isset($sintoma))
+                <input name="cansaco_pressao_arterial" type="number" class="form-control" id="cansaco_pressao_arterial" aria-describedby="cansaco_pressao_arterial" readonly value="{{ $sintoma->pressao_arterial }}">
+              @else
+                <input name="cansaco_pressao_arterial" type="number" class="form-control" id="cansaco_pressao_arterial" aria-describedby="cansaco_pressao_arterial" readonly value="">
+              @endif
+          </div>
+        </div>
+        </div>
+
+        <div class="row">
           <div class="col-12 col-md-3">
             <div class="form-group">
               <label for="data_inicio_sintoma">Data início sintomas</label>
@@ -588,19 +632,21 @@
           </div>
           @foreach($ajudas as $ajuda) @endforeach
           <?php
-          //echo $ajuda->tipo;
           $remedios = 0;
           $alimentos = 0;
+          $outrotipodeajuda = '';
           if(isset($ajuda)){
-            if(strpos($ajuda->tipo, 'compra_de_remedios') !== false){
-              $remedios = 1;
-            }
-            if(strpos($ajuda->tipo, 'compra_de_alimentos') !== false){
-              $alimentos = 1;
-            }
+              $tipoajudas = explode(",", $ajuda->tipo);
+              for ($a = 0; $a < count($tipoajudas); $a++) {
+                  if(strpos($tipoajudas[$a], 'compra_de_remedios') !== false){
+                      $remedios = 1;
+                  } elseif(strpos($tipoajudas[$a], 'compra_de_alimentos') !== false){
+                      $alimentos = 1;
+                  } else {
+                      $outrotipodeajuda = str_replace(['[',']','"'], ['','',''], $tipoajudas[$a]);
+                  }
+              }
           }
-          //echo $remedios;
-          //echo $alimentos;
           ?>
           <div class="col">
             <div class="form-check form-check-inline">
@@ -616,7 +662,7 @@
           </div>
           <div class="col">
             <div class="form-check form-check-inline">
-              <input name="ajuda_tipo[]" class="form-control" type="text" id="outros" placeholder="Outro tipo de ajuda (digite)" readonly>
+              <input name="ajuda_tipo[]" class="form-control" type="text" id="outros" placeholder="Outro tipo de ajuda (digite)" readonly value="{{$outrotipodeajuda}}">
             </div>
           </div>
         </div>
@@ -649,11 +695,7 @@
           <div class="col">
             <div class="form-group">
               <label for="observacoes">Algo mais que queira dizer?</label>
-              @if($observacao !== null)
-              <input name="observacoes" type="text" class="form-control" aria-describedby="observacoesHelp" placeholder="Digite" readonly value="{{ $observacao->comentarios }}">
-              @else
-              <input name="observacoes" type="text" class="form-control" aria-describedby="observacoesHelp" placeholder="Digite" readonly >
-              @endif
+              <textarea name="observacoes" class="form-control" aria-describedby="observacoesHelp" placeholder="Digite" readonly>{{ $observacao->comentarios }}</textarea>
             </div>
           </div>
         </div>

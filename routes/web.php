@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/admin/psicologo/edit/{id}', 'PsicologoController@edit')->name('psicologo/edit');
 
   Route::get('/admin/paciente', 'PacienteController@index')->name('paciente');
+  Route::post('/admin/paciente', 'PacienteController@store')->name('admin.paciente.store');
   Route::get('/admin/paciente/add', 'PacienteController@add')->name('paciente/add');
   Route::get('/admin/paciente/edit/{id}', 'PacienteController@edit')->name('paciente/edit');
   Route::get('/admin/paciente/notify', 'NotifyController@notify')->name('paciente/notify');

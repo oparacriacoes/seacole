@@ -14,6 +14,7 @@ use App\Observacao;
 use App\DoencaCronica;
 use App\Events\SintomaEvolucao;
 use App\EvolucaoSintoma;
+use Illuminate\Support\Facades\DB;
 
 class PacienteController extends Controller
 {
@@ -35,6 +36,7 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
+      DB::beginTransaction();
       $user = new User;
       $user->name = $request->input('data')['name'];
       $user->email = $request->input('data')['email'];
@@ -43,8 +45,11 @@ class PacienteController extends Controller
       try {
         $user->save();
       } catch(\Exception $exception) {
-        echo 'user response:';
-        return response()->json(['message' => $exception->getMessage()], 500);
+        DB::rollBack();
+        $retorna['success'] = false;
+        $retorna['message'] = $exception->getMessage();
+        echo json_encode($retorna);
+        return;
       }
 
       if($user){
@@ -96,8 +101,11 @@ class PacienteController extends Controller
         try {
           $paciente->save();
         } catch(\Exception $exception) {
-          echo 'paciente response:';
-          return response()->json(['message' => $exception->getMessage()], 500);
+          DB::rollBack();
+          $retorna['success'] = false;
+          $retorna['message'] = $exception->getMessage();
+          echo json_encode($retorna);
+          return;
         }
       }
 
@@ -108,8 +116,11 @@ class PacienteController extends Controller
         try {
           $cronica->save();
         } catch(\Exception $exception) {
-          echo 'cronica response:';
-          return response()->json(['message' => $exception->getMessage()], 500);
+          DB::rollBack();
+          $retorna['success'] = false;
+          $retorna['message'] = $exception->getMessage();
+          echo json_encode($retorna);
+          return;
         }
       }
 
@@ -125,28 +136,50 @@ class PacienteController extends Controller
         $sintoma->temperatura_atual = $request->input('data')['temperatura_atual'];
         $sintoma->cansaco_saturacao = $request->input('data')['cansaco_saturacao'];
         $sintoma->cansaco_frequencia_respiratoria = $request->input('data')['cansaco_frequencia_respiratoria'];
+        $sintoma->pressao_arterial = $request->input('data')['cansaco_pressao_arterial'];
         try {
           $sintoma->save();
         } catch(\Exception $exception) {
-          echo 'sintoma response:';
-          return response()->json(['message' => $exception->getMessage()], 500);
+          DB::rollBack();
+          $retorna['success'] = false;
+          $retorna['message'] = $exception->getMessage();
+          echo json_encode($retorna);
+          return;
         }
       }
 
-      $ajudas = $request->input('data')['ajuda_tipo'];
-      for($a = 0; $a < count($ajudas); $a++){
-        if($ajudas[$a] !== null){
-          $ajuda = new AjudaTipo;
-          $ajuda->paciente_id = $paciente->id;
-          $ajuda->tipo = $ajudas[$a];
-          try {
-            $ajuda->save();
-          } catch(\Exception $exception) {
-            echo 'ajuda response:';
-            return response()->json(['message' => $exception->getMessage()], 500);
-          }
+      if(isset($request->input('data')['ajuda_tipo'])){
+        $ajuda = new AjudaTipo;
+        $ajuda->paciente_id = $paciente->id;
+        $ajuda->tipo = json_encode($request->input('data')['ajuda_tipo']);
+        try {
+          $ajuda->save();
+        } catch(\Exception $exception) {
+          DB::rollBack();
+          $retorna['success'] = false;
+          $retorna['message'] = $exception->getMessage();
+          echo json_encode($retorna);
+          return;
         }
       }
+//
+//      $ajudas = $request->input('data')['ajuda_tipo'];
+//      for($a = 0; $a < count($ajudas); $a++){
+//        if($ajudas[$a] !== null){
+//          $ajuda = new AjudaTipo;
+//          $ajuda->paciente_id = $paciente->id;
+//          $ajuda->tipo = $ajudas[$a];
+//          try {
+//            $ajuda->save();
+//          } catch(\Exception $exception) {
+//            DB::rollBack();
+//            $retorna['success'] = false;
+//            $retorna['message'] = $exception->getMessage();
+//            echo json_encode($retorna);
+//            return;
+//          }
+//        }
+//      }
 
       if(isset($request->input('data')['estado_emocional'])){
         $emocionais = $request->input('data')['estado_emocional'];
@@ -157,8 +190,11 @@ class PacienteController extends Controller
         try {
           $emocional->save();
         } catch(\Exception $exception) {
-          echo 'emocional response:';
-          return response()->json(['message' => $exception->getMessage()], 500);
+          DB::rollBack();
+          $retorna['success'] = false;
+          $retorna['message'] = $exception->getMessage();
+          echo json_encode($retorna);
+          return;
         }
       }
 
@@ -170,8 +206,11 @@ class PacienteController extends Controller
         try {
           $observacao->save();
         } catch(\Exception $exception) {
-          echo 'observacao response:';
-          return response()->json(['message' => $exception->getMessage()], 500);
+          DB::rollBack();
+          $retorna['success'] = false;
+          $retorna['message'] = $exception->getMessage();
+          echo json_encode($retorna);
+          return;
         }
       }
 
@@ -179,7 +218,11 @@ class PacienteController extends Controller
         event(new SintomaEvolucao(new EvolucaoSintoma(json_decode(json_encode($sintoma), true))));
       }
 
-      return response()->json(['message' => 'Cadastro feito com sucesso.'], 200);
+      DB::commit();
+        $retorna['success'] = true;
+        $retorna['message'] = 'Cadastro feito com sucesso.';
+        echo json_encode($retorna);
+        return;
     }
 
     /**
@@ -202,6 +245,7 @@ class PacienteController extends Controller
      */
     public function update(Request $request, $id)
     {
+      DB::beginTransaction();
       $paciente = Paciente::find($id);
       $user = $paciente->user;
 
@@ -232,8 +276,11 @@ class PacienteController extends Controller
       try {
         $user->save();
       } catch(\Exception $exception) {
-        echo 'user response:';
-        return response()->json(['message' => $exception->getMessage()], 500);
+          DB::rollBack();
+          $retorna['success'] = false;
+          $retorna['message'] = $exception->getMessage();
+          echo json_encode($retorna);
+          return;
       }
 
       if($user){
@@ -286,8 +333,11 @@ class PacienteController extends Controller
         try {
           $paciente->save();
         } catch(\Exception $exception) {
-          echo 'paciente response:';
-          return response()->json(['message' => $exception->getMessage()], 500);
+            DB::rollBack();
+            $retorna['success'] = false;
+            $retorna['message'] = $exception->getMessage();
+            echo json_encode($retorna);
+            return;
         }
       }
 
@@ -319,8 +369,11 @@ class PacienteController extends Controller
       try {
         $cronicas->save();
       } catch(\Exception $exception) {
-        echo 'cronica response:';
-        return response()->json(['message' => $exception->getMessage()], 500);
+          DB::rollBack();
+          $retorna['success'] = false;
+          $retorna['message'] = $exception->getMessage();
+          echo json_encode($retorna);
+          return;
       }
 
       if( array_key_exists('sintomas', $request->input('data')) ){
@@ -361,18 +414,22 @@ class PacienteController extends Controller
         $sintomas->temperatura_atual = $request->input('data')['temperatura_atual'];
         $sintomas->cansaco_saturacao = $request->input('data')['cansaco_saturacao'];
         $sintomas->cansaco_frequencia_respiratoria = $request->input('data')['cansaco_frequencia_respiratoria'];
+        $sintomas->pressao_arterial = $request->input('data')['cansaco_pressao_arterial'];
         try {
           $sintomas->save();
         } catch(\Exception $exception) {
-          echo 'cronica response:';
-          return response()->json(['message' => $exception->getMessage()], 500);
+            DB::rollBack();
+            $retorna['success'] = false;
+            $retorna['message'] = $exception->getMessage();
+            echo json_encode($retorna);
+            return;
         }
       }
 
-      if($request->input('data')['ajuda_tipo'][0] != null){
+//      if($request->input('data')['ajuda_tipo'][0] != null){
         $ajudas = $request->input('data')['ajuda_tipo'];
+        $ajuda = new AjudaTipo;
         if(!isset($ajuda)){
-          $ajuda = new AjudaTipo;
           $old_ajudas = [];
         } else { $old_ajudas = json_decode($ajuda->tipo); };
 
@@ -384,21 +441,27 @@ class PacienteController extends Controller
             array_push($new_ajudas, $ajuda->tipo = $ajudas[$a]);
           }
         }
+        if (empty($old_ajudas)) {$old_ajudas = [];}
+        if (empty($new_ajudas)) {$new_ajudas = [];}
 
-        $current_ajudas =  array_values(array_diff(array_merge($old_ajudas, $new_ajudas),array_intersect($old_ajudas, $new_ajudas)));
-
-        if(!$current_ajudas){
-          $ajuda->tipo = json_encode($old_ajudas);
-        } else {
-          $ajuda->tipo = json_encode($new_ajudas);
-        }
+//        $current_ajudas =  array_values(array_diff(array_merge($old_ajudas, $new_ajudas),array_intersect($old_ajudas, $new_ajudas)));
+//        if(!$current_ajudas){
+//          $ajuda->tipo = json_encode($old_ajudas);
+//        } else {
+//          $ajuda->tipo = json_encode($new_ajudas);
+//        }
+        $ajuda->tipo = json_encode($request->input('data')['ajuda_tipo']);
+//        $ajuda->tipo = json_encode($new_ajudas);
         try {
           $ajuda->save();
         } catch(\Exception $exception) {
-          echo 'ajuda response:';
-          return response()->json(['message' => $exception->getMessage()], 500);
+            DB::rollBack();
+            $retorna['success'] = false;
+            $retorna['message'] = $exception->getMessage();
+            echo json_encode($retorna);
+            return;
         }
-      }
+//      }
 
       if(array_key_exists('estado_emocional', $request->input('data'))) {
         if(!isset($emocional)){ $emocional = new EstadoEmocional; };
@@ -408,8 +471,11 @@ class PacienteController extends Controller
         try {
           $emocional->save();
         } catch(\Exception $exception) {
-          echo 'emocional response:';
-          return response()->json(['message' => $exception->getMessage()], 500);
+            DB::rollBack();
+            $retorna['success'] = false;
+            $retorna['message'] = $exception->getMessage();
+            echo json_encode($retorna);
+            return;
         }
       } elseif(!array_key_exists('estado_emocional', $request->input('data'))) {
         if(!isset($emocional)){ $emocional = new EstadoEmocional; };
@@ -419,8 +485,11 @@ class PacienteController extends Controller
         try {
           $emocional->save();
         } catch(\Exception $exception) {
-          echo 'emocional response:';
-          return response()->json(['message' => $exception->getMessage()], 500);
+            DB::rollBack();
+            $retorna['success'] = false;
+            $retorna['message'] = $exception->getMessage();
+            echo json_encode($retorna);
+            return;
         }
       }
 
@@ -431,8 +500,11 @@ class PacienteController extends Controller
         try {
           $observacao->save();
         } catch(\Exception $exception) {
-          echo 'observacao response:';
-          return response()->json(['message' => $exception->getMessage()], 500);
+            DB::rollBack();
+            $retorna['success'] = false;
+            $retorna['message'] = $exception->getMessage();
+            echo json_encode($retorna);
+            return;
         }
       }
 
@@ -440,7 +512,12 @@ class PacienteController extends Controller
         event(new SintomaEvolucao(new EvolucaoSintoma(json_decode(json_encode($sintomas), true))));
       }
 
-      return response()->json(['message' => 'Cadastro atualizado com sucesso.'], 200);
+
+        DB::commit();
+        $retorna['success'] = true;
+        $retorna['message'] = 'Cadastro atualizado com sucesso.';
+        echo json_encode($retorna);
+        return;
     }
 
     /**

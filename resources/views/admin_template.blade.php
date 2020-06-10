@@ -32,6 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.css">
 
   <script type="text/javascript" src="{{ asset('js/functions.js') }}" defer></script>
+  <link rel="stylesheet" href="{{ asset('css/custom-styles.css') }}" >
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

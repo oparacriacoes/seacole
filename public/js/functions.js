@@ -208,54 +208,126 @@ $("#createPaciente").click(function(e) {
   let url = API_URL + "/paciente/";
   let inputs = $('input');
   let selects = $('select');
-  let data = {...inputs.serializeJSON(), ...selects.serializeJSON()};
+  let textareas = $('textarea');
+  let data = {...inputs.serializeJSON(), ...selects.serializeJSON(), ...textareas.serializeJSON()};
+
+  $("#createPaciente").addClass('disabled');
+
   $.ajax({
-    method: "POST",
+    type: "post",
     url: url,
+    dataType: "json",
     data: {
-      data,
+    data,
+    },
+    success: function(response) {
+        console.log('Sucesso');
+        console.log(response);
+
+        $("#createPaciente").removeClass('disabled');
+
+        if (response.success === true) {
+            Swal.fire({
+                icon: 'info',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1990
+            });
+            window.setTimeout(function(){
+                location.replace(APP_URL + '/admin/paciente');
+            } ,2000);
+        } else {
+            //ERRO!
+            Swal.fire({
+                icon: 'error',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 5990
+            });
+            window.setTimeout(function(){
+            } ,6000);
+        }
+    },
+    error: function(response) {
+        console.log('Erro');
+        console.log(response);
+
+        $("#createPaciente").removeClass('disabled');
+
+        //ERRO!
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro não tratado\nVerifique os campos postados.',
+            showConfirmButton: false,
+            timer: 5990
+        });
+        window.setTimeout(function(){
+        } ,6000);
     }
   })
-    .done(function(msg) {
-      //console.log(msg.message);
-      Swal.fire({
-        icon: 'info',
-        title: msg.message,
-        showConfirmButton: false,
-        timer: 1990
-      })
-      window.setTimeout(function(){
-        location.replace(APP_URL + '/admin/paciente');
-      } ,2000);
-    });
 });
 
 $("#updatePaciente").click(function(e) {
-  e.preventDefault();
-  requiredField();
-  let id = $('#id').val();
-  let url = API_URL + "/paciente/"+id;
-  let inputs = $('input');
-  let selects = $('select');
-  let data = {...inputs.serializeJSON(), ...selects.serializeJSON()};
-  $.ajax({
-    method: "PUT",
-    url: url,
-    data: {
-      data,
-    }
-  })
-    .done(function(msg) {
-      //console.log(msg.message);
-      Swal.fire({
-        icon: 'info',
-        title: msg.message,
-        showConfirmButton: false,
-        timer: 1990
-      })
-      window.setTimeout(function(){
-        location.reload();
-      } ,2000);
+    e.preventDefault();
+    requiredField();
+    let id = $('#id').val();
+    let url = API_URL + "/paciente/"+id;
+    let inputs = $('input');
+    let selects = $('select');
+    let textareas = $('textarea');
+    let data = {...inputs.serializeJSON(), ...selects.serializeJSON(), ...textareas.serializeJSON()};
+
+    $("#updatePaciente").addClass('disabled');
+
+    $.ajax({
+        type: "put",
+        url: url,
+        dataType: "json",
+        data: {
+            data,
+        },
+        success: function(response) {
+
+            $("#updatePaciente").removeClass('disabled');
+
+            if (response.success === true) {
+                Swal.fire({
+                    icon: 'info',
+                    title: response.message,
+                    showConfirmButton: false,
+                    timer: 1990
+                });
+                window.setTimeout(function(){
+                    // location.replace(APP_URL + '/admin/paciente');
+                } ,2000);
+            } else {
+                //ERRO!
+                Swal.fire({
+                    icon: 'error',
+                    title: response.message,
+                    showConfirmButton: false,
+                    timer: 5990
+                });
+                window.setTimeout(function(){
+                } ,6000);
+            }
+        },
+        error: function(response) {
+            console.log('Erro');
+            console.log(response);
+
+            $("#updatePaciente").removeClass('disabled');
+
+            //ERRO!
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro não tratado\nVerifique os campos postados.',
+                showConfirmButton: false,
+                timer: 5990
+            });
+            window.setTimeout(function(){
+            } ,6000);
+        }
     });
 });
 

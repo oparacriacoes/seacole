@@ -16,6 +16,7 @@ class EvolucaoSintoma extends Model
     'temperatura_atual',
     'cansaco_saturacao',
     'cansaco_frequencia_respiratoria',
+    'pressao_arterial',
   ];
 
   public function paciente()

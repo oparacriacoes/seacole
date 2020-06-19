@@ -695,7 +695,11 @@
           <div class="col">
             <div class="form-group">
               <label for="observacoes">Algo mais que queira dizer?</label>
+              @if( isset($observacao->comentarios) )
               <textarea name="observacoes" class="form-control" aria-describedby="observacoesHelp" placeholder="Digite" readonly>{{ $observacao->comentarios }}</textarea>
+              @else
+              <textarea name="observacoes" class="form-control" aria-describedby="observacoesHelp" placeholder="Digite" readonly></textarea>
+              @endif
             </div>
           </div>
         </div>

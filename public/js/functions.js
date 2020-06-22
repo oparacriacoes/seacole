@@ -7,6 +7,7 @@ $(document).ready(function() {
                   // Limpa valores do formulário de cep.
                   $("#endereco_rua").val("");
                   $("#endereco_bairro").val("");
+                  $("#endereco_bairro").val("");
                   $("#endereco_cidade").val("");
                   $("#endereco_uf").val("");
                   //$("#ibge").val("");
@@ -595,6 +596,7 @@ function kitItems(id) {
   termometro = $('#termometro');
   mascaras = $('#mascaras');
   limpeza = $('#limpeza');
+  cesta = $('#cesta');
   dipirona = $('#dipirona');
   paracetamol = $('#paracetamol');
   oximetro = $('#oximetro');
@@ -611,6 +613,9 @@ function kitItems(id) {
   }
   if(limpeza.prop('checked') === true){
     data.push(limpeza.val());
+  }
+  if(cesta.prop('checked') === true){
+    data.push(cesta.val());
   }
   if(dipirona.prop('checked') === true){
     data.push(dipirona.val());
@@ -641,6 +646,7 @@ function updateKitItems(id) {
   termometro = $('#termometro');
   mascaras = $('#mascaras');
   limpeza = $('#limpeza');
+  cesta = $('#cesta');
   dipirona = $('#dipirona');
   paracetamol = $('#paracetamol');
   oximetro = $('#oximetro');
@@ -657,6 +663,9 @@ function updateKitItems(id) {
   }
   if(limpeza.prop('checked') === true){
     data.push(limpeza.val());
+  }
+  if(cesta.prop('checked') === true){
+    data.push(cesta.val());
   }
   if(dipirona.prop('checked') === true){
     data.push(dipirona.val());

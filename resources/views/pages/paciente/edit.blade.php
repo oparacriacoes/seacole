@@ -13,6 +13,7 @@
     $termometro = 0;
     $mascaras = 0;
     $limpeza = 0;
+    $cesta = 0;
     $dipirona = 0;
     $paracetamol = 0;
     $oximetro = 0;
@@ -30,6 +31,9 @@
     }
     if(strpos($items->nome_item, 'limpeza') !== false){
       $limpeza = 1;
+    }
+    if(strpos($items->nome_item, 'cesta') !== false){
+      $cesta = 1;
     }
     if(strpos($items->nome_item, 'dipirona') !== false){
       $dipirona = 1;
@@ -65,6 +69,12 @@
         <input class="form-check-input" type="checkbox" value="limpeza" id="limpeza" <?php if($limpeza === 1){ echo 'checked=checked'; }; ?> >
         <label class="form-check-label" for="limpeza">
           Material de limpeza
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="cesta" id="cesta" <?php if($cesta === 1){ echo 'checked=checked'; }; ?> >
+        <label class="form-check-label" for="cartilha">
+          Cesta Básica
         </label>
       </div>
       <hr>

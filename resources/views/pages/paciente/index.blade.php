@@ -9,6 +9,7 @@
   <table id="pacientes" class="table table-striped">
     <thead>
       <tr>
+        <th scope="col">Situação</th>
         <th scope="col">Nome</th>
         <th scope="col">Agente Responsável</th>
         <th scope="col">Médico Responsável</th>
@@ -19,6 +20,7 @@
     <tbody>
       @foreach($pacientes as $paciente)
       <tr>
+        <td>{{ $paciente->situacao }}</td>
         <td><a href="{{ route('paciente/edit', $paciente->id) }}">{{ $paciente->user->name }}</a></td>
         @if($paciente->agente)
         <td><a href="{{ route('agente/edit', $paciente->agente->id) }}">{{ $paciente->agente->user->name }}</a></td>

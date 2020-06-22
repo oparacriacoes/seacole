@@ -11,6 +11,7 @@ class Paciente extends Model
     'agente_id',
     'medico_id',
     'psicologo_id',
+    'situacao',
     'data_nascimento',
     'cor_raca',
     'endereco_cep',

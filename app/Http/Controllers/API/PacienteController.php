@@ -58,6 +58,7 @@ class PacienteController extends Controller
         if($request->input('data')['data_nascimento'] !== null){
           $paciente->data_nascimento = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_nascimento'])->format('Y-m-d');
         }
+        $paciente->situacao = $request->input('data')['situacao'];
         $paciente->cor_raca = $request->input('data')['cor_raca'];
         $paciente->endereco_cep = $request->input('data')['endereco_cep'];
         $paciente->endereco_rua = $request->input('data')['endereco_rua'];
@@ -129,13 +130,13 @@ class PacienteController extends Controller
         $sintoma = new Sintoma;
         $sintoma->paciente_id = $paciente->id;
         if($request->input('data')['data_inicio_sintoma'] !== null){
-          $sintomas->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_inicio_sintoma'])->format('Y-m-d');
+          $sintoma->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_inicio_sintoma'])->format('Y-m-d');
         }
         $sintoma->horario_sintoma = $request->input('data')['horario_sintoma'];
         $sintoma->sintoma_manifestado = $sintomas;
         $sintoma->febre_temperatura_maxima = $request->input('data')['febre_temperatura_maxima'];
         if($request->input('data')['data_medicao_temperatura'] !== null){
-          $sintomas->data_medicao_temperatura = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_medicao_temperatura'])->format('Y-m-d');
+          $sintoma->data_medicao_temperatura = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_medicao_temperatura'])->format('Y-m-d');
         }
         $sintoma->temperatura_atual = $request->input('data')['temperatura_atual'];
         $sintoma->cansaco_saturacao = $request->input('data')['cansaco_saturacao'];
@@ -292,6 +293,7 @@ class PacienteController extends Controller
         if($request->input('data')['data_nascimento'] !== null){
           $paciente->data_nascimento = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_nascimento'])->format('Y-m-d');
         }
+        $paciente->situacao = $request->input('data')['situacao'];
         $paciente->cor_raca = $request->input('data')['cor_raca'];
         $paciente->endereco_cep = $request->input('data')['endereco_cep'];
         $paciente->endereco_rua = $request->input('data')['endereco_rua'];

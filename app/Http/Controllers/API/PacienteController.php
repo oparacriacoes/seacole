@@ -47,7 +47,7 @@ class PacienteController extends Controller
       } catch(\Exception $exception) {
         DB::rollBack();
         $retorna['success'] = false;
-        $retorna['message'] = $exception->getMessage();
+        $retorna['message'] = 'Erro na criação de usuário. Descrição do erro: ' . $exception->getMessage();
         echo json_encode($retorna);
         return;
       }
@@ -103,7 +103,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
           DB::rollBack();
           $retorna['success'] = false;
-          $retorna['message'] = $exception->getMessage();
+          $retorna['message'] = 'Erro na criação de paciente. Descrição do erro: ' . $exception->getMessage();
           echo json_encode($retorna);
           return;
         }
@@ -118,7 +118,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
           DB::rollBack();
           $retorna['success'] = false;
-          $retorna['message'] = $exception->getMessage();
+          $retorna['message'] = 'Erro ao salvar doenças crônica. Descrição do erro: ' . $exception->getMessage();
           echo json_encode($retorna);
           return;
         }
@@ -128,11 +128,15 @@ class PacienteController extends Controller
         $sintomas = json_encode($request->input('data')['sintomas']);
         $sintoma = new Sintoma;
         $sintoma->paciente_id = $paciente->id;
-        $sintoma->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_inicio_sintoma'])->format('Y-m-d');
+        if($request->input('data')['data_inicio_sintoma'] !== null){
+          $sintomas->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_inicio_sintoma'])->format('Y-m-d');
+        }
         $sintoma->horario_sintoma = $request->input('data')['horario_sintoma'];
         $sintoma->sintoma_manifestado = $sintomas;
         $sintoma->febre_temperatura_maxima = $request->input('data')['febre_temperatura_maxima'];
-        $sintoma->data_medicao_temperatura = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_medicao_temperatura'])->format('Y-m-d');
+        if($request->input('data')['data_medicao_temperatura'] !== null){
+          $sintomas->data_medicao_temperatura = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_medicao_temperatura'])->format('Y-m-d');
+        }
         $sintoma->temperatura_atual = $request->input('data')['temperatura_atual'];
         $sintoma->cansaco_saturacao = $request->input('data')['cansaco_saturacao'];
         $sintoma->cansaco_frequencia_respiratoria = $request->input('data')['cansaco_frequencia_respiratoria'];
@@ -142,7 +146,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
           DB::rollBack();
           $retorna['success'] = false;
-          $retorna['message'] = $exception->getMessage();
+          $retorna['message'] = 'Erro ao salvar sintomas. Descrição do erro: ' . $exception->getMessage();
           echo json_encode($retorna);
           return;
         }
@@ -157,7 +161,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
           DB::rollBack();
           $retorna['success'] = false;
-          $retorna['message'] = $exception->getMessage();
+          $retorna['message'] = 'Erro ao salvar ajudas. Descrição do erro: ' . $exception->getMessage();
           echo json_encode($retorna);
           return;
         }
@@ -192,7 +196,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
           DB::rollBack();
           $retorna['success'] = false;
-          $retorna['message'] = $exception->getMessage();
+          $retorna['message'] = 'Erro ao salvar estados emocional. Descrição do erro: ' . $exception->getMessage();
           echo json_encode($retorna);
           return;
         }
@@ -208,7 +212,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
           DB::rollBack();
           $retorna['success'] = false;
-          $retorna['message'] = $exception->getMessage();
+          $retorna['message'] = 'Erro ao salvar observações. Descrição do erro: ' . $exception->getMessage();
           echo json_encode($retorna);
           return;
         }
@@ -278,7 +282,7 @@ class PacienteController extends Controller
       } catch(\Exception $exception) {
           DB::rollBack();
           $retorna['success'] = false;
-          $retorna['message'] = $exception->getMessage();
+          $retorna['message'] = 'Erro ao salvar usuário. Descrição do erro: ' . $exception->getMessage();
           echo json_encode($retorna);
           return;
       }
@@ -335,7 +339,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
             DB::rollBack();
             $retorna['success'] = false;
-            $retorna['message'] = $exception->getMessage();
+            $retorna['message'] = 'Erro ao salvar paciente. Descrição do erro: ' . $exception->getMessage();
             echo json_encode($retorna);
             return;
         }
@@ -371,7 +375,7 @@ class PacienteController extends Controller
       } catch(\Exception $exception) {
           DB::rollBack();
           $retorna['success'] = false;
-          $retorna['message'] = $exception->getMessage();
+          $retorna['message'] = 'Erro ao salvar doenças crônicas. Descrição do erro: ' . $exception->getMessage();
           echo json_encode($retorna);
           return;
       }
@@ -405,10 +409,12 @@ class PacienteController extends Controller
           $sintomas->sintoma_manifestado = json_encode($new_sintomas);
         }
         $sintomas->paciente_id = $paciente->id;
-        $sintomas->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_inicio_sintoma'])->format('Y-m-d');
+        if($request->input('data')['data_inicio_sintoma'] !== null){
+            $sintomas->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_inicio_sintoma'])->format('Y-m-d');
+        }
         $sintomas->horario_sintoma = $request->input('data')['horario_sintoma'];
         $sintomas->febre_temperatura_maxima = $request->input('data')['febre_temperatura_maxima'];
-        if( isset($request->input('data')['data_medicao_temperatura']) ){
+        if($request->input('data')['data_medicao_temperatura'] !== null){
           $sintomas->data_medicao_temperatura = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_medicao_temperatura'])->format('Y-m-d');
         }
         $sintomas->temperatura_atual = $request->input('data')['temperatura_atual'];
@@ -420,7 +426,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
             DB::rollBack();
             $retorna['success'] = false;
-            $retorna['message'] = $exception->getMessage();
+            $retorna['message'] = 'Erro ao salvar sintomas. Descrição do erro: ' . $exception->getMessage();
             echo json_encode($retorna);
             return;
         }
@@ -457,7 +463,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
             DB::rollBack();
             $retorna['success'] = false;
-            $retorna['message'] = $exception->getMessage();
+            $retorna['message'] = 'Erro ao salvar ajuda. Descrição do erro: ' . $exception->getMessage();
             echo json_encode($retorna);
             return;
         }
@@ -473,7 +479,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
             DB::rollBack();
             $retorna['success'] = false;
-            $retorna['message'] = $exception->getMessage();
+            $retorna['message'] = 'Erro ao salvar estado emocional. Descrição do erro: ' . $exception->getMessage();
             echo json_encode($retorna);
             return;
         }
@@ -487,7 +493,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
             DB::rollBack();
             $retorna['success'] = false;
-            $retorna['message'] = $exception->getMessage();
+            $retorna['message'] = 'Erro ao salvar estado emocional. Descrição do erro: ' . $exception->getMessage();
             echo json_encode($retorna);
             return;
         }
@@ -502,7 +508,7 @@ class PacienteController extends Controller
         } catch(\Exception $exception) {
             DB::rollBack();
             $retorna['success'] = false;
-            $retorna['message'] = $exception->getMessage();
+            $retorna['message'] = 'Erro ao salvar observação. Descrição do erro: ' . $exception->getMessage();
             echo json_encode($retorna);
             return;
         }

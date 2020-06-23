@@ -322,13 +322,13 @@
         <div class="row">
           <div class="col-12 col-md-4">
             <div class="form-group">
-              <label for="cansaco_saturacao">Saturação</label>
+              <label for="cansaco_saturacao">Saturação atual</label>
               <input name="cansaco_saturacao" type="number" class="form-control" id="cansaco_saturacao" aria-describedby="cansaco_saturacaoHelp">
             </div>
           </div>
           <div class="col-12 col-md-4">
             <div class="form-group">
-              <label for="cansaco_frequencia_respiratoria">Frequência respiratória</label>
+              <label for="cansaco_frequencia_respiratoria">Frequência respiratória atual</label>
               <input name="cansaco_frequencia_respiratoria" type="number" class="form-control" id="cansaco_frequencia_respiratoria" aria-describedby="cansaco_frequencia_respiratoriaHelp">
             </div>
           </div>

@@ -482,6 +482,39 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="caso_confirmado">Caso Confirmado?</label>
+              <select name="caso_confirmado" class="form-control">
+                <option value="" selected>Selecione</option>
+                <option value="Sim">Sim</option>
+                <option value="Ainda não - suspeito">Ainda não - suspeito</option>
+                <option value="Descartado coronavírus">Descartado coronavírus</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="data_teste_confirmatorio">Data do teste confirmatório</label>
+              <input name="data_teste_confirmatorio" type="text" class="form-control date" id="data_teste_confirmatorio" aria-describedby="data_teste_confirmatorioHelp">
+           </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="teste_utilizado">Teste utilizado</label>
+              <input name="teste_utilizado" type="text" class="form-control" id="teste_utilizado" aria-describedby="teste_utilizadoHelp" placeholder="(PCR, sorologias IGg/IGM) - ESCREVA">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="sintomas_iniciais">Sintomas iniciais</label>
+              <textarea name="sintomas_iniciais" class="form-control" aria-describedby="sintomas_iniciaisHelp" placeholder="Descreva a evolução dos sintomas do início até primeiro registro"></textarea>
+            </div>
+          </div>
+        </div>
         <button class="btn btn-primary" name="createPaciente" id="createPaciente">Cadastrar</button>
       </form>
     </div>

@@ -99,6 +99,18 @@ class PacienteController extends Controller
         if(isset($request->input('data')['tarefas_autocuidado'])){
           $paciente->tarefas_autocuidado = $request->input('data')['tarefas_autocuidado'];
         }
+        if(isset($request->input('data')['caso_confirmado'])){
+          $paciente->caso_confirmado = $request->input('data')['caso_confirmado'];
+        }
+        if($request->input('data')['data_teste_confirmatorio'] !== null){
+          $paciente->data_teste_confirmatorio = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_teste_confirmatorio'])->format('Y-m-d');
+        }
+        if(isset($request->input('data')['teste_utilizado'])){
+          $paciente->teste_utilizado = $request->input('data')['teste_utilizado'];
+        }
+        if(isset($request->input('data')['sintomas_iniciais'])){
+          $paciente->sintomas_iniciais = $request->input('data')['sintomas_iniciais'];
+        }
         try {
           $paciente->save();
         } catch(\Exception $exception) {
@@ -336,6 +348,27 @@ class PacienteController extends Controller
         if(isset($request->input('data')['tarefas_autocuidado'])){
           $paciente->tarefas_autocuidado = $request->input('data')['tarefas_autocuidado'];
         }
+        if(isset($request->input('data')['caso_confirmado'])){
+          $paciente->caso_confirmado = $request->input('data')['caso_confirmado'];
+        } else {
+          $paciente->caso_confirmado = null;
+        }
+        if($request->input('data')['data_teste_confirmatorio'] !== null){
+          $paciente->data_teste_confirmatorio = Carbon::createFromFormat('d/m/Y', $request->input('data')['data_teste_confirmatorio'])->format('Y-m-d');
+        } else {
+          $paciente->data_teste_confirmatorio = null;
+        }
+        if(isset($request->input('data')['teste_utilizado'])){
+          $paciente->teste_utilizado = $request->input('data')['teste_utilizado'];
+        } else {
+          $paciente->teste_utilizado = null;
+        }
+        //NAO ATUALIZA OS SINTOMAS INICIAIS
+//        if(isset($request->input('data')['sintomas_iniciais'])){
+//          $paciente->sintomas_iniciais = $request->input('data')['sintomas_iniciais'];
+//        } else {
+//          $paciente->sintomas_iniciais = null;
+//        }
         try {
           $paciente->save();
         } catch(\Exception $exception) {

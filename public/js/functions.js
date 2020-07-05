@@ -183,6 +183,7 @@ function validaSenha(){
 function editForm() {
   $('.btn-save').attr('disabled', false);
   $('.form-control').attr('readonly', false);
+  $('textarea[name="sintomas_iniciais"]').attr('readonly', true);
   $('.form-control').attr('disabled', false);
   $('.form-check-input').attr('disabled', false);
   $('#btn-edit').removeClass("btn-danger");

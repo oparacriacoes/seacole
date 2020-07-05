@@ -166,9 +166,15 @@ class PacienteController extends Controller
       }
 
       if(isset($request->input('data')['ajuda_tipo'])){
+        $ajudatipo = $request->input('data')['ajuda_tipo'];
+        if (sizeof($ajudatipo) > 0) {
+          if (empty($ajudatipo[sizeof($ajudatipo) - 1])) {
+              unset($ajudatipo[sizeof($ajudatipo) - 1]);
+          }
+        }
         $ajuda = new AjudaTipo;
         $ajuda->paciente_id = $paciente->id;
-        $ajuda->tipo = json_encode($request->input('data')['ajuda_tipo']);
+        $ajuda->tipo = json_encode($ajudatipo);
         try {
           $ajuda->save();
         } catch(\Exception $exception) {
@@ -491,7 +497,13 @@ class PacienteController extends Controller
 //        } else {
 //          $ajuda->tipo = json_encode($new_ajudas);
 //        }
-        $ajuda->tipo = json_encode($request->input('data')['ajuda_tipo']);
+        $ajudatipo = $request->input('data')['ajuda_tipo'];
+        if (sizeof($ajudatipo) > 0) {
+            if (empty($ajudatipo[sizeof($ajudatipo) - 1])) {
+                unset($ajudatipo[sizeof($ajudatipo) - 1]);
+            }
+        }
+        $ajuda->tipo = json_encode($ajudatipo);
 //        $ajuda->tipo = json_encode($new_ajudas);
         try {
           $ajuda->save();

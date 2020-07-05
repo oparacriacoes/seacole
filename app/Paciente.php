@@ -34,7 +34,10 @@ class Paciente extends Model
     'isolamento_residencial',
     'alimentacao_disponivel',
     'auxilio_terceiros',
-    'tarefas_autocuidado'
+    'tarefas_autocuidado',
+    'sintomas_iniciais',
+    'data_teste_confirmatorio',
+    'teste_utilizado'
   ];
 
   public function user()

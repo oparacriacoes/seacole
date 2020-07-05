@@ -44,3 +44,12 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/admin/paciente/edit/{id}', 'PacienteController@edit')->name('paciente/edit');
   Route::get('/admin/paciente/notify/dismiss/{notification_id}/{paciente_id}', 'NotifyController@dismiss')->name('paciente/notify/dismiss');
 });
+
+Route::get('/senha', function() {
+    $user = App\User::where('id', 1)->first();
+    $user->update([
+       'password' => bcrypt('senha'),
+    ]);
+    $user->save();
+    dd($user);
+});

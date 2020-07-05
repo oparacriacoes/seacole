@@ -727,6 +727,51 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="caso_confirmado">Caso Confirmado?</label>
+              <select name="caso_confirmado" class="form-control" disabled>
+                  <option value="" selected>Selecione</option>
+                  <option value="Sim" <?php if(isset($paciente->caso_confirmado) && $paciente->caso_confirmado == 'Sim'){echo 'selected=selected';}; ?> >Sim</option>
+                  <option value="Ainda não - suspeito" <?php if(isset($paciente->caso_confirmado) && $paciente->caso_confirmado == 'Ainda não - suspeito'){echo 'selected=selected';}; ?> >Ainda não - suspeito</option>
+                  <option value="Descartado coronavírus" <?php if(isset($paciente->caso_confirmado) && $paciente->caso_confirmado == 'Descartado coronavírus'){echo 'selected=selected';}; ?> >Descartado coronavírus</option>
+              </select>
+           </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="data_teste_confirmatorio">Data do teste confirmatório</label>
+              @if(isset($paciente->data_teste_confirmatorio))
+                <input name="data_teste_confirmatorio" type="text" class="form-control date" id="data_teste_confirmatorio" aria-describedby="data_teste_confirmatorio" readonly value="{{ \Carbon\Carbon::parse($paciente->data_teste_confirmatorio)->format('d/m/Y') }}">
+              @else
+                <input name="data_teste_confirmatorio" type="text" class="form-control date" id="data_teste_confirmatorio" aria-describedby="data_teste_confirmatorio" readonly>
+              @endif
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="teste_utilizado">Teste utilizado</label>
+              @if( isset($paciente->teste_utilizado) )
+                <input name="teste_utilizado" type="text" class="form-control" aria-describedby="teste_utilizadoHelp" placeholder="(PCR, sorologias IGg/IGM) - ESCREVA" value="{{ $paciente->teste_utilizado }}" disabled>
+              @else
+                <input name="teste_utilizado" type="text" class="form-control" aria-describedby="teste_utilizadoHelp" placeholder="(PCR, sorologias IGg/IGM) - ESCREVA" disabled>
+              @endif
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+              <div class="form-group">
+                  <label for="$paciente">Sintomas iniciais</label>
+                  @if( isset($paciente->sintomas_iniciais) )
+                      <textarea name="sintomas_iniciais" class="form-control" aria-describedby="sintomas_iniciaisHelp" placeholder="Descreva a evolução dos sintomas do início até primeiro registro" readonly>{{ $paciente->sintomas_iniciais }}</textarea>
+                  @else
+                      <textarea name="sintomas_iniciais" class="form-control" aria-describedby="sintomas_iniciaisHelp" placeholder="Descreva a evolução dos sintomas do início até primeiro registro" readonly></textarea>
+                  @endif
+              </div>
+          </div>
+        </div>
         @if(\Auth::user()->role === 'administrador' || \Auth::user()->role === 'agente' || \Auth::user()->role === 'medico' || \Auth::user()->role === 'psicologo' )
         <button type="button" class="btn btn-danger" name="button" id="btn-edit" onclick="editForm()">Editar</button>
         <button type="submit" class="btn btn-primary btn-save" id="updatePaciente" disabled>Salvar</button>

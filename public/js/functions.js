@@ -99,7 +99,7 @@ $(document).ready(function() {
 
   $('#pacientes').DataTable({
     //"pageLength": 25,
-    "language": langOptions
+    "language": langOptions,
   });
 
   $('#medicos').DataTable({

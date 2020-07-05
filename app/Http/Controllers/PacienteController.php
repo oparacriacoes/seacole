@@ -6,6 +6,7 @@ use App\AjudaTipo;
 use App\DoencaCronica;
 use App\EstadoEmocional;
 use App\Events\SintomaEvolucao;
+use App\Exports\PacientesExport;
 use App\Observacao;
 use App\Sintoma;
 use Carbon\Carbon;
@@ -17,6 +18,7 @@ use App\Medico;
 use App\Psicologo;
 use App\EvolucaoSintoma;
 use App\User;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PacienteController extends Controller
 {
@@ -59,5 +61,10 @@ class PacienteController extends Controller
     $dados = $paciente->dados;
 
     return view('pages.paciente.edit')->with(compact('paciente', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados'));
+  }
+
+  public function ExportarExcelPacientes()
+  {
+    return Excel::download(new PacientesExport(), 'pacientes.xlsx');
   }
 }

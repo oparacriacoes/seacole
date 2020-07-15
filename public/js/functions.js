@@ -1,5 +1,6 @@
-const API_URL = 'http://localhost:8000/api';
-const APP_URL = 'http://localhost:8000';
+// Estas const urls foram movidas para a view admin_template_blade.php, carregando dinamicamente a APP_URL da instalação.
+// const API_URL = 'http://localhost:8000/api';
+// const APP_URL = 'http://localhost:8000';
 
 $(document).ready(function() {
   //ViaCEP
@@ -207,7 +208,7 @@ function cancelEdit() {
 $("#createPaciente").click(function(e) {
   e.preventDefault();
   requiredField();
-  let url = API_URL + "/paciente/";
+  let url = API_URL + "/paciente";
   let inputs = $('input');
   let selects = $('select');
   let textareas = $('textarea');

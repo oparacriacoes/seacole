@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -30,6 +32,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.all.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.css">
+
+  <script>
+    const API_URL = "{{ env("APP_URL") }}" + "/api";
+    const APP_URL = "{{ env("APP_URL") }}";      
+  </script>  
 
   <script type="text/javascript" src="{{ asset('js/functions.js') }}" defer></script>
   <link rel="stylesheet" href="{{ asset('css/custom-styles.css') }}" >

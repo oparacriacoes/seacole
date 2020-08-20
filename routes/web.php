@@ -22,8 +22,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
+  // Route::get('/admin', function() {
+  //   return view('sample');
+  // })->name('admin');
+
   Route::get('/admin', function() {
-    return view('sample');
+    return view('dashboard');
   })->name('admin');
 
   Route::get('/admin/agente', 'AgenteController@index')->name('agente');

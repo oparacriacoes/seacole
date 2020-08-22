@@ -11,12 +11,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Projeto Seacole, mais descrição em breve...">
     <meta name="msapplication-tap-highlight" content="no">
-    <link href="{{ asset('assets/main.css') }}" rel="stylesheet"></head>
+    <link href="{{ asset('assets/main.css') }}" rel="stylesheet">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.9.0/jquery.serializejson.min.js" defer></script>
+
+    <script type="text/javascript" src="{{ asset('js/jquery.mask.js') }}" defer></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}"/>
+    <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}" defer></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.css">
+
+    <script>
+        const API_URL = "{{ env("APP_URL") }}" + "/api";
+        const APP_URL = "{{ env("APP_URL") }}";      
+    </script>  
+    <script type="text/javascript" src="{{ asset('js/functions.js') }}" defer></script>
+</head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
-                <div class="logo-srcw"><h2>Seacole</h2></div>
+                <div class="logo-srcw">
+                    <a href="{{ route('admin') }}">
+                        <h2>Seacole</h2>
+                    </a>
+                </div>
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -161,15 +186,16 @@
                     <div class="app-sidebar__inner">
                         <ul class="vertical-nav-menu">
                             <!-- Pacientes -->
-                            <li class="app-sidebar__heading"><i class="fas metismenu-state-icon fa-procedures nav-icon"></i> Pacientes</li>
+                            <li class="app-sidebar__heading">
+                                <i class="fas metismenu-state-icon fa-procedures nav-icon"></i> Pacientes</li>
                             <li>
-                                <a href="index.html">
+                                <a href="{{ route('paciente') }}">
                                     <i class="fa fa-list-ul nav-icon caret-left"></i>
                                     Listar
                                 </a>
                             </li>
                             <li>
-                                <a href="index.html">
+                                <a href="{{ route('paciente/add') }}">
                                     <i class="fa fa-plus-circle nav-icon caret-left"></i>
                                     Cadastrar
                                 </a>
@@ -220,10 +246,45 @@
                     </div>
                 </div>
             </div>  
-
-            <main class="py-4">
-                @yield('content')
-            </main>
+            <div class="app-main__outer">
+                <main class="py-4">
+                    @yield('content')
+                </main>
+                <div class="app-wrapper-footer">
+                    <div class="app-footer">
+                        <div class="app-footer__inner">
+                            <div class="app-footer-left">
+                                <ul class="nav">
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0);" class="nav-link">
+                                            Agentes Populares de Saúde
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0);" class="nav-link">
+                                            Uneafro
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="app-footer-right">
+                                <ul class="nav">
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0);" class="nav-link">
+                                            Instituto Peregum
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0);" class="nav-link">
+                                            FAQ
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

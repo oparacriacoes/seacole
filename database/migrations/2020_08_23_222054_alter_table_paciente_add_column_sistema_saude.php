@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class addColumnNovasImplementacaoTable extends Migration
+class AlterTablePacienteAddColumnSistemaSaude extends Migration
 {
     /**
      * Run the migrations.

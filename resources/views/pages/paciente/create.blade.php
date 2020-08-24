@@ -100,6 +100,8 @@
           </ul>
           <div class="tab-content">
               <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                <form id="createPacienteForm" method="POST" action="{{ route('paciente') }}">
+                  @csrf
                   <div class="main-card mb-3 card">
                       <div class="card-body">
                           <h5 class="card-title">SITUAÇÃO DO CASO</h5>
@@ -151,11 +153,9 @@
                                           </label>
                                           <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
                                               <option value="">Selecione</option>
-                                              <option>Value 1</option>
-                                              <option>Value 2</option>
-                                              <option>Value 3</option>
-                                              <option>Value 4</option>
-                                              <option>Value 5</option>
+                                              @foreach($agentes as $agente)
+                                              <option value="{{ $agente->id }}" <?php if( \Auth::user()->role === 'agente' && \Auth::user()->agente->id === $agente->id ){ echo 'selected=selected'; } ?> >{{ $agente->user->name }}</option>
+                                              @endforeach
                                           </select>
                                       </div>
                                   </div>
@@ -166,11 +166,9 @@
                                           </label>
                                           <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
                                               <option value="">Selecione</option>
-                                              <option>Value 1</option>
-                                              <option>Value 2</option>
-                                              <option>Value 3</option>
-                                              <option>Value 4</option>
-                                              <option>Value 5</option>
+                                              @foreach($medicos as $medico)
+                                              <option value="{{ $medico->id }}" <?php if( \Auth::user()->role === 'medico' && \Auth::user()->medico->id === $medico->id ){ echo 'selected=selected'; } ?> >{{ $medico->user->name }}</option>
+                                              @endforeach
                                           </select>
                                       </div>
                                   </div>
@@ -181,11 +179,9 @@
                                           </label>
                                           <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
                                               <option value="">Selecione</option>
-                                              <option>Value 1</option>
-                                              <option>Value 2</option>
-                                              <option>Value 3</option>
-                                              <option>Value 4</option>
-                                              <option>Value 5</option>
+                                              @foreach($psicologos as $psicologo)
+                                              <option value="{{ $psicologo->id }}" <?php if( \Auth::user()->role === 'psicologo' && \Auth::user()->psicologo->id === $psicologo->id ){ echo 'selected=selected'; } ?> >{{ $psicologo->user->name }}</option>
+                                              @endforeach
                                           </select>
                                       </div>
                                   </div>
@@ -476,100 +472,97 @@
                       </div>
                   </div>
 
+                  <div class="main-card mb-3 card">
+                      <div class="card-body"><h5 class="card-title">CONDIÇÕES DE SAÚDE</h5>
+                          <div class="position-relative form-group">
+                              <label for="exampleCustomSelect" class="">
+                                  Condições gerais de saúde
+                              </label>
 
-                          <div class="main-card mb-3 card">
-                              <div class="card-body"><h5 class="card-title">CONDIÇÕES DE SAÚDE</h5>
-                                  <div class="position-relative form-group">
-                                      <label for="exampleCustomSelect" class="">
-                                          Condições gerais de saúde
+                              <div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Hipertensão arterial sistêmica (HAS)
                                       </label>
-
-                                      <div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Hipertensão arterial sistêmica (HAS)
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Diabetes Mellitus (DM)
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Dislipidemia 
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Asma / Bronquite
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Tuberculose ativa
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Cardiopatias e outras doenças cardiovasculares
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Outras doenças Respiratórias
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Artrite/Artrose/Reumatismo
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Doença autoimune
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Doença renal
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Doença neurológica
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Câncer
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Ansiedade
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Depressão
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Demência
-                                              </label>
-                                          </div>
-                                          <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
-                                              <label class="custom-control-label" for="exampleCustomInline">
-                                                  Outras questões de saúde mental
-                                              </label>
-                                          </div>
-                                      </div>
                                   </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Diabetes Mellitus (DM)
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Dislipidemia 
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Asma / Bronquite
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Tuberculose ativa
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Cardiopatias e outras doenças cardiovasculares
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Outras doenças Respiratórias
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Artrite/Artrose/Reumatismo
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Doença autoimune
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Doença renal
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Doença neurológica
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Câncer
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Ansiedade
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Depressão
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Demência
+                                      </label>
+                                  </div>
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                      <label class="custom-control-label" for="exampleCustomInline">
+                                          Outras questões de saúde mental
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
                               
-
-                      
                               <div class="position-relative form-group">
                                   <label for="exampleCustomSelect" class="">
                                       Descreva as doenças assinaladas
@@ -769,13 +762,13 @@
 
                       <div class="position-relatives row fdorm-check">
                           <div class="col-sm-12 offset-sm-2s"><br />
-                              <button class="btn btn-secondary">Enviar</button>
+                              <button name="createPaciente" id="createPaciente" class="btn btn-secondary">Enviar</button>
                           </div>
                       </div>
                       </div>
                   </div>
+                </form>
               </div>
-
 
               <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
                   <div class="main-card mb-3 card">

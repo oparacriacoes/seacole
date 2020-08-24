@@ -18,6 +18,7 @@ use App\Medico;
 use App\Psicologo;
 use App\EvolucaoSintoma;
 use App\User;
+use App\Articuladora;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PacienteController extends Controller
@@ -42,8 +43,9 @@ class PacienteController extends Controller
     $agentes = Agente::get();
     $medicos = Medico::get();
     $psicologos = Psicologo::all();
+    $articuladoras = Articuladora::all();
 
-    return view('pages.paciente.create')->with(compact('agentes', 'medicos', 'psicologos'));
+    return view('pages.paciente.create')->with(compact('agentes', 'medicos', 'psicologos', 'articuladoras'));
   }
 
   public function edit($id)

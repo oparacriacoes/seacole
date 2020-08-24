@@ -37,6 +37,8 @@ class AlterTablePacienteAddColumnSistemaSaude extends Migration
             $table->date('data_ultima_consulta')->nullable();
             $table->string('sistema_saude')->nullable();
             $table->string('acompanhamento_ubs')->nullable();
+            $table->string('valor_familia')->nullable();
+            $table->string('outras_informacao')->nullable();
             $table->string('resultado_teste')->after('teste_utilizado')->nullable();
 
             $table->bigInteger('articuladora_responsavel')->unsigned()->after('medico_id')->nullable();

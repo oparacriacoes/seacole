@@ -110,19 +110,19 @@
                                   <div class="col-12 col-md-3">
                                       <div class="form-group">
                                           <label for="name">Data início sintomas *</label>
-                                          <input name="data_nascimento" type="text" class="date required form-control" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="data_inicio_sintoma" type="text" class="date required form-control" id="data_inicio_sintoma" aria-describedby="data_nascimentoHelp">
                                       </div>
                                   </div>
                                   <div class="col-12 col-md-3">
                                       <div class="form-group">
                                           <label for="name">Data início monitoramento *</label>
-                                          <input name="data_nascimento" type="text" class="required form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="data_inicio_monitoramento" type="text" class="required form-control date" id="data_inicio_monitoramento" aria-describedby="data_nascimentoHelp">
                                       </div>
                                   </div>
                                   <div class="col-12 col-md-3">
                                       <div class="form-group">
                                           <label for="name">Data de finalização do caso (alta) *</label>
-                                          <input name="data_nascimento" type="text" class="required form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="data_finalizacao_caso" type="text" class="required form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp">
                                       </div>
                                   </div>
                                   <div class="col-md-3">
@@ -130,17 +130,17 @@
                                           <label for="exampleCustomSelect" class="">
                                               SITUAÇÃO
                                           </label>
-                                          <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
+                                          <select type="select" id="situacao" aria-describedby="situacaoHelp" name="situacao" class="custom-select">
                                               <option value="">Selecione</option>
-                                              <option>Caso ativo GRAVE</option>
-                                              <option>Caso ativo LEVE</option>
-                                              <option>Contato com caso confirmado - ativo</option>
-                                              <option>Outras situações (sem relação com COVID-19) - ativos</option>
-                                              <option>Caso finalizado GRAVE</option>
-                                              <option>Caso finalizado LEVE</option>
-                                              <option>Contato com caso confirmado - finalizado</option>
-                                              <option>Outras situações (sem relação com COVID-19) - finalizado</option>
-                                              <option>Monitoramento encerrado - segue apenas com psicólogos</option>
+                                              <option value="Caso ativo GRAVE">Caso ativo GRAVE</option>
+                                              <option value="Caso ativo LEVE">Caso ativo LEVE</option>
+                                              <option value="Contato com caso confirmado - ativo">Contato com caso confirmado - ativo</option>
+                                              <option value="Outras situações (sem relação com COVID-19) - ativos">Outras situações (sem relação com COVID-19) - ativos</option>
+                                              <option value="Caso finalizado GRAVE">Caso finalizado GRAVE</option>
+                                              <option value="Caso finalizado LEVE">Caso finalizado LEVE</option>
+                                              <option value="Contato com caso confirmado - finalizado">Contato com caso confirmado - finalizado</option>
+                                              <option value="Outras situações (sem relação com COVID-19) - finalizado">Outras situações (sem relação com COVID-19) - finalizado</option>
+                                              <option value="Monitoramento encerrado - segue apenas com psicólogos">Monitoramento encerrado - segue apenas com psicólogos</option>
                                           </select>
                                       </div>
                                   </div>
@@ -151,7 +151,7 @@
                                           <label for="exampleCustomSelect" class="">
                                               Agente Responsável
                                           </label>
-                                          <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
+                                          <select type="select" name="agente" class="custom-select">
                                               <option value="">Selecione</option>
                                               @foreach($agentes as $agente)
                                               <option value="{{ $agente->id }}" <?php if( \Auth::user()->role === 'agente' && \Auth::user()->agente->id === $agente->id ){ echo 'selected=selected'; } ?> >{{ $agente->user->name }}</option>
@@ -164,7 +164,7 @@
                                           <label for="exampleCustomSelect" class="">
                                               Médica Responsável
                                           </label>
-                                          <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
+                                          <select type="select" name="medico" class="custom-select">
                                               <option value="">Selecione</option>
                                               @foreach($medicos as $medico)
                                               <option value="{{ $medico->id }}" <?php if( \Auth::user()->role === 'medico' && \Auth::user()->medico->id === $medico->id ){ echo 'selected=selected'; } ?> >{{ $medico->user->name }}</option>
@@ -177,7 +177,7 @@
                                           <label for="exampleCustomSelect" class="">
                                               Psicóloga Responsável
                                           </label>
-                                          <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
+                                          <select type="select" name="psicologo_id" class="custom-select">
                                               <option value="">Selecione</option>
                                               @foreach($psicologos as $psicologo)
                                               <option value="{{ $psicologo->id }}" <?php if( \Auth::user()->role === 'psicologo' && \Auth::user()->psicologo->id === $psicologo->id ){ echo 'selected=selected'; } ?> >{{ $psicologo->user->name }}</option>
@@ -190,10 +190,11 @@
                                           <label for="exampleCustomSelect" class="">
                                               Articuladora Responsável
                                           </label>
-                                          <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
+                                          <select type="select" name="articuladora_responsavel" class="custom-select">
                                               <option value="">Selecione</option>
-                                              <option>Débora</option>
-                                              <option>Luciana</option>
+                                              @foreach($articuladoras as $articuladora)
+                                              <option value="{{ $articuladora->id }}">{{ $articuladora->name }}</option>
+                                              @endforeach
                                           </select>
                                       </div>
                                   </div>
@@ -213,7 +214,7 @@
                                           <label for="exampleEmail11" class="">
                                           Nome Completo (obrigatório)
                                           </label>
-                                          <input name="email" id="exampleEmail11" placeholder="Nome Completo" type="text" class="form-control">
+                                          <input name="name" iid="name" aria-describedby="nameHelp" placeholder="Nome Completo" type="text" class="form-control">
                                       </div>
                                   </div>
                                   <div class="col-md-6">
@@ -221,7 +222,7 @@
                                           <label for="exampleEmail11" class="">
                                           Nome Social
                                           </label>
-                                          <input name="email" id="exampleEmail11" placeholder="Nome Social" type="text" class="form-control">
+                                          <input name="name_social" id="name_social" placeholder="Nome Social" type="text" class="form-control">
                                       </div>
                                   </div>
                               </div>
@@ -232,7 +233,7 @@
                                           <label for="exampleEmail11" class="">
                                               Telefone fixo
                                           </label>
-                                          <input name="email" id="exampleEmail11" placeholder="Somente número e com DDDD" type="text" class="form-control phone_with_ddd">
+                                          <input name="fone_fixo" id="fone_fixo" placeholder="Somente número e com DDDD" type="text" class="form-control phone_with_ddd">
                                       </div>
                                   </div>
                                   <div class="col-md-4">
@@ -240,7 +241,7 @@
                                           <label for="exampleEmail11" class="">
                                               Telefone celular
                                           </label>
-                                          <input name="email" id="exampleEmail11" placeholder="Somente número e com DDDD" type="text" class="form-control mobile_with_ddd">
+                                          <input name="fone_celular" id="fone_celular" placeholder="Somente número e com DDDD" type="text" class="form-control mobile_with_ddd">
                                       </div>
                                   </div>
                                   <div class="col-md-4">
@@ -257,20 +258,20 @@
                                   <div class="col-md-4">
                                       <div class="form-group">
                                           <label for="name">Responsável</label>
-                                          <input name="data_nascimento" type="text" class="required form-control ddate" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="responsavel_residencia" type="text" class="required form-control ddate" id="responsavel_residencia" aria-describedby="responsavel_residenciaHelp">
                                       </div>
                                   </div>
 
                                   <div class="col-md-4">
                                       <div class="form-group">
                                           <label for="name">Email</label>
-                                          <input name="data_nascimento" type="text" class="required form-control ddate" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="email" type="email" class="required form-control ddate" id="email" aria-describedby="emailHelp">
                                       </div>
                                   </div>
                                   <div class="col-md-4">
                                       <div class="form-group">
                                           <label for="name">CEP</label>
-                                          <input name="data_nascimento" placeholder="Somente números" type="text" class="required form-control cep" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="endereco_cep" placeholder="Somente números" type="text" class="required form-control cep" id="endereco_cep" aria-describedby="endereco_cepHelp">
                                       </div>
                                   </div>
                               </div>
@@ -280,20 +281,20 @@
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label for="name">Logradouro</label>
-                                          <input name="data_nascimento" type="text" class="required form-control ddate" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="endereco_rua" type="text" class="required form-control ddate" id="endereco_rua" aria-describedby="endereco_ruaHelp">
                                       </div>
                                   </div>
 
                                   <div class="col-md-2">
                                       <div class="form-group">
                                           <label for="name">Número</label>
-                                          <input name="data_nascimento" type="text" class="required form-control ddate" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="endereco_numero" type="text" class="required form-control ddate" id="endereco_numero" aria-describedby="endereco_numeroHelp">
                                       </div>
                                   </div>
                                   <div class="col-md-4">
                                       <div class="form-group">
                                           <label for="name">Complemento</label>
-                                          <input name="data_nascimento" type="text" class="required form-control ddate" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="endereco_complemento" type="text" class="required form-control ddate" id="endereco_complemento" aria-describedby="endereco_complementoHelp">
                                       </div>
                                   </div>
                               </div>
@@ -303,26 +304,26 @@
                                   <div class="col-md-3">
                                       <div class="form-group">
                                           <label for="name">Bairro</label>
-                                          <input name="data_nascimento" type="text" class="required form-control ddate" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="endereco_bairro" type="text" class="required form-control ddate" id="endereco_bairro" aria-describedby="endereco_bairroHelp">
                                       </div>
                                   </div>
 
                                   <div class="col-md-3">
                                       <div class="form-group">
                                           <label for="name">Cidade</label>
-                                          <input name="data_nascimento" type="text" class="required form-control ddate" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="endereco_cidade" type="text" class="required form-control ddate" id="endereco_cidade" aria-describedby="endereco_cidadeHelp">
                                       </div>
                                   </div>
                                   <div class="col-md-2">
                                       <div class="form-group">
                                           <label for="name">UF</label>
-                                          <input name="data_nascimento" type="text" class="required form-control ddate" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="endereco_uf" type="text" class="required form-control ddate" id="endereco_uf" aria-describedby="endereco_ufHelp">
                                       </div>
                                   </div>
                                   <div class="col-md-4">
                                       <div class="form-group">
                                           <label for="name">Ponto de referência</label>
-                                          <input name="data_nascimento" type="text" class="required form-control ddate" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                          <input name="ponto_referencia" type="text" class="required form-control ddate" id="ponto_referencia" aria-describedby="ponto_referenciaHelp">
                                       </div>
                                   </div>
                               </div>
@@ -334,7 +335,7 @@
                                           <label for="exampleCustomSelect" class="">
                                               Identidade de genero
                                           </label>
-                                          <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
+                                          <select type="select" id="identidade_genero" name="identidade_genero" class="custom-select">
                                               <option value="">Selecione</option>
                                               <option>mulher cis</option>
                                               <option>mulher trans</option>
@@ -350,7 +351,7 @@
                                           <label for="exampleCustomSelect" class="">
                                               Orientação sexual
                                           </label>
-                                          <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
+                                          <select type="select" id="orientacao_sexual" name="orientacao_sexual" class="custom-select">
                                               <option value="">Selecione</option>
                                               <option>heterossexual</option>
                                               <option>homossexual</option>
@@ -364,7 +365,7 @@
                                           <label for="exampleCustomSelect" class="">
                                               Raça / Cor
                                           </label>
-                                          <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
+                                          <select type="select" id="cor_raca" name="cor_raca" class="custom-select">
                                               <option value="">Selecione</option>
                                               <option>Preta</option>
                                               <option>Parda</option>
@@ -379,20 +380,20 @@
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="name">Nº Pessoas na Residência</label>
-                                              <input name="data_nascimento" type="text" class="required form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                              <input name="numero_pessoas_residencia" type="text" class="required form-control date" id="numero_pessoas_residencia" aria-describedby="numero_pessoas_residenciaHelp">
                                           </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="name">Recebe auxílio emergencial</label>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input"> Sim</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input"> Não</label></div>
                                           </div>
                                       </div>
                                       <div class="col-md-4">
                                           <div class="form-group">
                                               <label for="name">Valor exato da renda familiar</label>
-                                              <input name="data_nascimento" type="text" placeholder="0.000,00" class="required form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                              <input name="valor_familia" type="text" placeholder="0.000,00" class="required form-control date" id="valor_familia" aria-describedby="data_nascimentoHelp">
                                           </div>
                                       </div>
                                   </div>
@@ -412,7 +413,7 @@
                                       <label for="exampleCustomSelect" class="">
                                           DIAGNÓSTICO DE COVID-19
                                       </label>
-                                      <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
+                                      <select type="select" id="sintomas_iniciais" name="sintomas_iniciais" class="custom-select">
                                           <option value="">Selecione</option>
                                           <option>suspeito</option>
                                           <option>confirmado</option>
@@ -425,7 +426,7 @@
                                       <label for="examplePassword11" class="">
                                           Data do teste confirmatório
                                       </label>
-                                      <input name="data_nascimento" placeholder="Data do teste confirmatório" type="text" class="required form-control date" id="data_nascimento" aria-describedby="data_nascimentoHelp">
+                                      <input name="data_teste_confirmatorio" placeholder="Data do teste confirmatório" type="text" class="required form-control date" id="data_teste_confirmatorio" aria-describedby="data_teste_confirmatorioHelp">
                                   </div>
                               </div>
                               <div class="col-md-3">
@@ -433,7 +434,7 @@
                                   Testes realizados?
                                   
                               </label>
-                              <select multiple="" type="select" id="exampleCustomMutlipleSelect" name="customSelect" class="custom-select">
+                              <select multiple="" type="select" id="teste_utilizado" name="teste_utilizado" class="custom-select">
                                   <option value="">Selecione</option>
                                   <option>PCR</option>
                                   <option>sorologias (IgM/IgG)</option>
@@ -449,7 +450,7 @@
                                       <label for="exampleCustomSelect" class="">
                                           Resultados encontrados
                                       </label>
-                                      <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
+                                      <select type="select" id="resultado_teste" name="resultado_teste" class="custom-select">
                                           <option value="">Selecione</option>
                                           <option>PCR positivo</option>
                                           <option>PCR negativo</option>
@@ -465,7 +466,7 @@
                               <div class="col-md-12">
                                   <div class="form-group">
                                       <label for="name">Outras informações sobre teste</label>
-                                      <textarea name="text" placeholder="ex: repetiu teste, novas datas de testes, etc" id="exampleText" class="form-control"></textarea>
+                                      <textarea name="outras_informacao" placeholder="ex: repetiu teste, novas datas de testes, etc" id="outras_informacao" class="form-control"></textarea>
                                   </div>
                               </div>
                           </div>
@@ -480,82 +481,82 @@
                               </label>
 
                               <div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Hipertensão arterial sistêmica (HAS)
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Diabetes Mellitus (DM)
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Dislipidemia 
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Asma / Bronquite
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Tuberculose ativa
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Cardiopatias e outras doenças cardiovasculares
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Outras doenças Respiratórias
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Artrite/Artrose/Reumatismo
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Doença autoimune
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Doença renal
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Doença neurológica
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Câncer
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Ansiedade
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Depressão
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Demência
                                       </label>
                                   </div>
-                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" id="exampleCustomInline" class="custom-control-input">
+                                  <div class="custom-checkbox custom-control custom-control-inline"><input type="checkbox" name="doenca_cronica[]" id="exampleCustomInline" class="custom-control-input">
                                       <label class="custom-control-label" for="exampleCustomInline">
                                           Outras questões de saúde mental
                                       </label>
@@ -570,7 +571,7 @@
 
                               <div class="position-relative row form-group">
                                   <div class="col-sm-10">
-                                      <textarea name="text" placeholder="(ex: qual doença neurológica) e outras condições de saúde:" id="exampleText" class="form-control"></textarea>
+                                      <textarea name="descreve_doencas" placeholder="(ex: qual doença neurológica) e outras condições de saúde:" id="descreve_doencas" class="form-control"></textarea>
                                   </div>
                               </div>
 
@@ -579,8 +580,8 @@
                                       <div class="position-relative form-group">
                                           <div class="form-group">
                                               <label for="name">Já teve tuberculose?</label>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="tuberculose" type="radio" class="form-check-input"> Sim</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="tuberculose" type="radio" class="form-check-input"> Não</label></div>
                                           </div>
                                       </div>
                                   </div>
@@ -588,8 +589,8 @@
                                       <div class="position-relative form-group">
                                           <div class="form-group">
                                               <label for="name">É tabagista?</label>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input"> Sim</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input"> Não</label></div>
                                           </div>
                                       </div>
                                   </div> 
@@ -597,8 +598,8 @@
                                       <div class="position-relative form-group">
                                           <div class="form-group">
                                               <label for="name">Faz uso crônico de alcool?</label>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input"> Sim</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input"> Não</label></div>
                                           </div>
                                       </div>
                                   </div> 
@@ -606,8 +607,8 @@
                                       <div class="position-relative form-group">
                                           <div class="form-group">
                                               <label for="name">Faz uso crônico de outras drogas?</label>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input"> Sim</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input"> Não</label></div>
                                           </div>
                                       </div>
                                   </div> 
@@ -620,7 +621,7 @@
                                           <label for="exampleEmail11" class="">
                                               Toma remédio(s) de uso contínuo? Qual(is)?
                                           </label>
-                                          <input name="email" id="exampleEmail11" placeholder="Qual(is)?" type="text" class="form-control">
+                                          <input name="remedios_consumidos" id="remedios_consumidos" placeholder="Qual(is)?" type="text" class="form-control">
                                       </div>
                                   </div>
                               </div>
@@ -632,8 +633,8 @@
                                       <div class="position-relative form-group">
                                           <div class="form-group">
                                               <label for="name">Está gestante?</label>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestante" type="radio" class="form-check-input"> Sim</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestante" type="radio" class="form-check-input"> Não</label></div>
                                           </div>
                                       </div>
                                   </div>
@@ -642,8 +643,8 @@
                                       <div class="position-relative form-group">
                                           <div class="form-group">
                                               <label for="name">Amamenta?</label>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input"> Sim</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input"> Não</label></div>
                                           </div>
                                       </div>
                                   </div> 
@@ -652,8 +653,8 @@
                                       <div class="position-relative form-group">
                                           <div class="form-group">
                                               <label for="name">Gestação é ou foi de alto risco?</label>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestacao_alto_risco" type="radio" class="form-check-input"> Sim</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestacao_alto_risco" type="radio" class="form-check-input"> Não</label></div>
                                           </div>
                                       </div>
                                   </div>
@@ -661,8 +662,8 @@
                                       <div class="position-relative form-group">
                                           <div class="form-group">
                                               <label for="name">Está no pós-parto (40 dias após o parto)?</label>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input"> Sim</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input"> Não</label></div>
                                           </div>
                                       </div>
                                   </div> 
@@ -675,7 +676,7 @@
                                           <label for="exampleEmail11" class="">
                                               Data do parto
                                           </label>
-                                          <input name="email" id="exampleEmail11" placeholder="00/00/0000" type="text" class="form-control">
+                                          <input name="data_parto" id="data_parto" placeholder="00/00/0000" type="text" class="form-control">
                                       </div>
                                   </div> 
 
@@ -684,7 +685,7 @@
                                           <label for="exampleEmail11" class="">
                                               Data da última menstruação (DUM)
                                           </label>
-                                          <input name="email" id="exampleEmail11" placeholder="00/00/0000" type="text" class="form-control">
+                                          <input name="data_ultima_mestrucao" id="data_ultima_mestrucao" placeholder="00/00/0000" type="text" class="form-control">
                                       </div>
                                   </div> 
 
@@ -693,7 +694,7 @@
                                           <label for="exampleCustomSelect" class="">
                                               Trimestre da gestação no início do monitoramento
                                           </label>
-                                          <select type="select" id="exampleCustomSelect" name="customSelect" class="custom-select">
+                                          <select type="select" id="trimestre_gestacao" name="trimestre_gestacao" class="custom-select">
                                               <option value="">Selecione</option>
                                               <option>1o trimestre</option>
                                               <option>2o trimestre</option>
@@ -709,7 +710,7 @@
                                           <label for="exampleEmail11" class="">
                                               Motivo do risco elevado na gravidez
                                           </label>
-                                          <input name="email" id="exampleEmail11" placeholder="Qual(is)?" type="text" class="form-control">
+                                          <input name="motivo_risco_gravidez" id="motivo_risco_gravidez" placeholder="Qual(is)?" type="text" class="form-control">
                                       </div>
                                   </div>
                               </div>
@@ -719,8 +720,8 @@
                                       <div class="position-relative form-group">
                                           <div class="form-group">
                                               <label for="name">Tem algum acompanhamento médico contínuo?</label>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_medico" type="radio" class="form-check-input"> Sim</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_medico" type="radio" class="form-check-input"> Não</label></div>
                                           </div>
                                       </div>
                                   </div>
@@ -729,7 +730,7 @@
                                           <label for="exampleEmail11" class="">
                                               Qual a data da última consulta médica?
                                           </label>
-                                          <input name="data" placeholder="00/00/0000" type="text" class="form-control date">
+                                          <input name="data_ultima_consulta" placeholder="00/00/0000" type="text" class="form-control date">
                                       </div>
                                   </div>
 
@@ -738,7 +739,7 @@
                                           <label for="exampleCustomSelect" class="">
                                               Onde/como acessa o sistema de saúde?
                                           </label>
-                                          <select multiple="" type="select" id="exampleCustomMutlipleSelect" name="customSelect" class="custom-select">
+                                          <select multiple="" type="select" id="sistema_saude" name="sistema_saude" class="custom-select">
                                               <option value="">Selecione</option>
                                               <option>É usuária/o do SUS (público)</option>
                                               <option>Tem convênio/plano de saúde</option>
@@ -752,8 +753,8 @@
                                       <div class="position-relative form-group">
                                           <div class="form-group">
                                               <label for="name">Tem acompanhamento médico na Unidade Básica de Saúde (UBS - posto) de referência?</label>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input"> Sim</label></div>
+                                              <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input"> Não</label></div>
                                           </div>
                                       </div>
                                   </div> 

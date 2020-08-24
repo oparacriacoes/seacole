@@ -63,6 +63,8 @@ class Paciente extends Model
     'acompanhamento_ubs',
     'resultado_teste',
     'articuladora_responsavel',
+    'valor_familia',
+    'outras_informacao',
   ];
 
   public function user()
@@ -123,11 +125,6 @@ class Paciente extends Model
   public function dados()
   {
     return $this->hasMany('App\EvolucaoSintoma');
-  }
-
-  public function articuladoras()
-  {
-    return $this->hasMany('App\Articuladora');
   }
 
   public function insumos_oferecidos()

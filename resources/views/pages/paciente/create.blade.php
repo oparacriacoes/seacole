@@ -434,7 +434,7 @@
                                     Testes realizados?
                                     
                                 </label>
-                                <select multiple="" type="select" id="teste_utilizado" name="teste_utilizado" class="custom-select">
+                                <select multiple="" type="select" id="teste_utilizado" name="teste_utilizado[]" class="custom-select">
                                     <option value="">Selecione</option>
                                     <option>PCR</option>
                                     <option>sorologias (IgM/IgG)</option>
@@ -751,7 +751,7 @@
                                             <label for="exampleCustomSelect" class="">
                                                 Onde/como acessa o sistema de saúde?
                                             </label>
-                                            <select multiple="" type="select" id="sistema_saude" name="sistema_saude" class="custom-select">
+                                            <select multiple="" type="select" id="sistema_saude" name="sistema_saude[]" class="custom-select">
                                                 <option value="">Selecione</option>
                                                 <option>É usuária/o do SUS (público)</option>
                                                 <option>Tem convênio/plano de saúde</option>

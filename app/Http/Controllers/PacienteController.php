@@ -81,6 +81,21 @@ class PacienteController extends Controller
       $paciente->renda_residencia = $dataForm['renda_residencia'];
       $paciente->outras_informacao = $dataForm['outras_informacao'];
       $paciente->remedios_consumidos = $dataForm['remedios_consumidos'];
+      $paciente->identidade_genero = $dataForm['identidade_genero'];
+      $paciente->orientacao_sexual = $dataForm['orientacao_sexual'];
+      $paciente->auxilio_emergencial = $dataForm['auxilio_emergencial'];
+      $paciente->descreve_doencas = $dataForm['descreve_doencas'];
+      $paciente->tuberculose = $dataForm['tuberculose'];
+      $paciente->tabagista = $dataForm['tabagista'];
+      $paciente->cronico_alcool = $dataForm['cronico_alcool'];
+      $paciente->outras_drogas = $dataForm['outras_drogas'];
+      $paciente->gestante = $dataForm['gestante'];
+      $paciente->amamenta = $dataForm['amamenta'];
+      $paciente->gestacao_alto_risco = $dataForm['gestacao_alto_risco'];
+      $paciente->pos_parto = $dataForm['pos_parto'];
+      $paciente->trimestre_gestacao = $dataForm['trimestre_gestacao'];
+      $paciente->motivo_risco_gravidez = $dataForm['motivo_risco_gravidez'];
+      $paciente->acompanhamento_ubs = $dataForm['acompanhamento_ubs'];
       if($dataForm['agente'] !== 'null'){
         $paciente->agente_id = $dataForm['agente'];
       }
@@ -90,6 +105,12 @@ class PacienteController extends Controller
       if( $dataForm['psicologo_id'] !== 'null' ){
         $paciente->psicologo_id = $dataForm['psicologo_id'];
       }
+      if( $dataForm['articuladora_responsavel'] !== 'null' ){
+        $paciente->articuladora_responsavel = $dataForm['articuladora_responsavel'];
+      }
+      if( $dataForm['name_social'] !== 'null' ){
+        $paciente->name_social = $dataForm['name_social'];
+      }
       if(isset($dataForm['acompanhamento_medico'])){
         $paciente->acompanhamento_medico = $dataForm['acompanhamento_medico'];
       }
@@ -98,11 +119,36 @@ class PacienteController extends Controller
         $paciente->data_teste_confirmatorio = Carbon::createFromFormat('d/m/Y', $dataForm['data_teste_confirmatorio'])->format('Y-m-d');
       }
       if(isset($dataForm['teste_utilizado'])){
-        $paciente->teste_utilizado = $dataForm['teste_utilizado'];
+        $paciente->teste_utilizado = json_encode($dataForm['teste_utilizado']);
+      }
+      if(isset($dataForm['sistema_saude'])){
+        $paciente->sistema_saude = json_encode($dataForm['sistema_saude']);
+      }
+      if(isset($dataForm['doenca_cronica'])){
+        $paciente->doenca_cronica = json_encode($dataForm['doenca_cronica']);
+      }
+      if(isset($dataForm['resultado_teste'])){
+        $paciente->resultado_teste = $dataForm['resultado_teste'];
       }
       if(isset($dataForm['sintomas_iniciais'])){
         $paciente->sintomas_iniciais = $dataForm['sintomas_iniciais'];
       }
+      if($dataForm['data_inicio_monitoramento'] !== null) {
+        $paciente->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $dataForm['data_inicio_monitoramento'])->format('Y-m-d');
+      }
+      if($dataForm['data_finalizacao_caso'] !== null) {
+        $paciente->data_finalizacao_caso = Carbon::createFromFormat('d/m/Y', $dataForm['data_finalizacao_caso'])->format('Y-m-d');
+      }
+      if($dataForm['data_parto'] !== null) {
+        $paciente->data_parto = Carbon::createFromFormat('d/m/Y', $dataForm['data_parto'])->format('Y-m-d');
+      }
+      if($dataForm['data_ultima_mestrucao'] !== null) {
+        $paciente->data_ultima_mestrucao = Carbon::createFromFormat('d/m/Y', $dataForm['data_ultima_mestrucao'])->format('Y-m-d');
+      }
+      if($dataForm['data_ultima_consulta'] !== null) {
+        $paciente->data_ultima_consulta = Carbon::createFromFormat('d/m/Y', $dataForm['data_ultima_consulta'])->format('Y-m-d');
+      }
+
       try {
         $paciente->save();
       } catch(\Exception $exception) {
@@ -129,14 +175,12 @@ class PacienteController extends Controller
       }
     }
 
-    if(isset($dataForm['sintomas'])){
-      $sintomas = json_encode($dataForm['sintomas']);
+
       $sintoma = new Sintoma;
       $sintoma->paciente_id = $paciente->id;
-      if($dataForm['data_inicio_sintoma'] !== null){
+      if($dataForm['data_inicio_sintoma'] !== null) {
         $sintoma->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $dataForm['data_inicio_sintoma'])->format('Y-m-d');
       }
-      $sintoma->sintoma_manifestado = $sintomas;
      
       try {
         $sintoma->save();
@@ -147,7 +191,6 @@ class PacienteController extends Controller
         echo json_encode($retorna);
         return;
       }
-    }
 
     if(isset($dataForm['ajuda_tipo'])){
       $ajudatipo = $dataForm['ajuda_tipo'];

@@ -20,6 +20,8 @@ $(document).ready(function() {
                   //Nova variável "cep" somente com dígitos.
                   var cep = $(this).val().replace(/\D/g, '');
 
+                  console.log(cep);
+
                   //Verifica se campo cep possui valor informado.
                   if (cep != "") {
 
@@ -212,8 +214,8 @@ $("#createPaciente").click(function(e) {
   let inputs = $('input');
   let selects = $('select');
   let textareas = $('textarea');
+  let datas = '...';
   let datas = {...inputs.serializeJSON(), ...selects.serializeJSON(), ...textareas.serializeJSON()};
-  let datas = 'teste';
 
   $("#createPaciente").addClass('disabled');
 
@@ -226,7 +228,7 @@ $("#createPaciente").click(function(e) {
     },
     success: function(response) {
         console.log('Sucesso');
-        console.log(response); return false;
+        console.log(response);
 
         $("#createPaciente").removeClass('disabled');
 
@@ -338,7 +340,7 @@ $("#updatePaciente").click(function(e) {
 function deletePaciente(id){
   let url = API_URL + "/paciente/"+id;
   console.log(id);
-  console.log(url);
+  console.log(url); return false;
   $.ajax({
     type: "DELETE",
     url: url

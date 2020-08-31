@@ -21,9 +21,6 @@
 
     <script type="text/javascript" src="{{ asset('js/jquery.mask.js') }}" defer></script>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}"/>
     <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}" defer></script>
 

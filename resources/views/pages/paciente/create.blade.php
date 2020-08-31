@@ -99,8 +99,8 @@
 
           </ul>
           <div class="tab-content">
-                <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
-                    <form id="createPacienteForm" method="POST" action="{{ route('paciente') }}">
+              <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                <form id="createPacienteForm" method="POST" action="{{ route('paciente') }}">
                     @csrf
                     <div class="main-card mb-3 card">
                         <div class="card-body">
@@ -214,7 +214,7 @@
                                             <label for="exampleEmail11" class="">
                                             Nome Completo (obrigatório)
                                             </label>
-                                            <input name="name" iid="name" aria-describedby="nameHelp" placeholder="Nome Completo" type="text" class="form-control">
+                                            <input name="name" iid="name" aria-describedby="nameHelp" placeholder="Nome Completo" type="text" class="required form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -386,14 +386,14 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="name">Recebe auxílio emergencial</label>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input"> Sim</label></div>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input"> Não</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="name">Valor exato da renda familiar</label>
-                                                <input name="valor_familia" type="text" placeholder="0.000,00" class=" form-control money" id="valor_familia" aria-describedby="data_nascimentoHelp">
+                                                <input name="renda_residencia" type="text" placeholder="0.000,00" class=" form-control money" id="renda_residencia" aria-describedby="data_nascimentoHelp">
                                             </div>
                                         </div>
                                     </div>
@@ -596,8 +596,8 @@
                                         <div class="position-relative form-group">
                                             <div class="form-group">
                                                 <label for="name">Já teve tuberculose?</label>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="tuberculose" type="radio" class="form-check-input"> Sim</label></div>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="tuberculose" type="radio" class="form-check-input"> Não</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="tuberculose" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="tuberculose" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
                                     </div>
@@ -605,8 +605,8 @@
                                         <div class="position-relative form-group">
                                             <div class="form-group">
                                                 <label for="name">É tabagista?</label>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input"> Sim</label></div>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input"> Não</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
                                     </div> 
@@ -614,8 +614,8 @@
                                         <div class="position-relative form-group">
                                             <div class="form-group">
                                                 <label for="name">Faz uso crônico de alcool?</label>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input"> Sim</label></div>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input"> Não</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
                                     </div> 
@@ -623,8 +623,8 @@
                                         <div class="position-relative form-group">
                                             <div class="form-group">
                                                 <label for="name">Faz uso crônico de outras drogas?</label>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input"> Sim</label></div>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input"> Não</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
                                     </div> 
@@ -646,8 +646,8 @@
                                         <div class="position-relative form-group">
                                             <div class="form-group">
                                                 <label for="name">Está gestante?</label>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestante" type="radio" class="form-check-input"> Sim</label></div>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestante" type="radio" class="form-check-input"> Não</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestante" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestante" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
                                     </div>
@@ -656,8 +656,8 @@
                                         <div class="position-relative form-group">
                                             <div class="form-group">
                                                 <label for="name">Amamenta?</label>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input"> Sim</label></div>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input"> Não</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
                                     </div> 
@@ -666,8 +666,8 @@
                                         <div class="position-relative form-group">
                                             <div class="form-group">
                                                 <label for="name">Gestação é ou foi de alto risco?</label>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestacao_alto_risco" type="radio" class="form-check-input"> Sim</label></div>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestacao_alto_risco" type="radio" class="form-check-input"> Não</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestacao_alto_risco" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestacao_alto_risco" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
                                     </div>
@@ -675,8 +675,8 @@
                                         <div class="position-relative form-group">
                                             <div class="form-group">
                                                 <label for="name">Está no pós-parto (40 dias após o parto)?</label>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input"> Sim</label></div>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input"> Não</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
                                     </div> 
@@ -732,8 +732,8 @@
                                         <div class="position-relative form-group">
                                             <div class="form-group">
                                                 <label for="name">Tem algum acompanhamento médico contínuo?</label>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_medico" type="radio" class="form-check-input"> Sim</label></div>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_medico" type="radio" class="form-check-input"> Não</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_medico" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_medico" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
                                     </div>
@@ -765,8 +765,8 @@
                                         <div class="position-relative form-group">
                                             <div class="form-group">
                                                 <label for="name">Tem acompanhamento médico na Unidade Básica de Saúde (UBS - posto) de referência?</label>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input"> Sim</label></div>
-                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input"> Não</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
                                     </div> 
@@ -775,12 +775,12 @@
 
                         <div class="position-relatives row fdorm-check">
                             <div class="col-sm-12 offset-sm-2s"><br />
-                                <button name="createPaciente" id="createPaciente" class="btn btn-secondary">Enviar</button>
+                                <button type="submit" name="createPaciente" id="createPaciente" class="btn btn-secondary">Enviar</button>
                             </div>
                         </div>
                         </div>
                     </div>
-                    </form>
+                </form>
                 </div>
 
                 <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
@@ -975,8 +975,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Algum sinal de gravidade nesse monitoramento?</label>
-                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input" value="não"> Não</label></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -990,8 +990,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Equipe médica do projeto prescreveu algum medicamento?</label>
-                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input" value="não"> Não</label></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -1015,15 +1015,15 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="name">Fazendo uso de alguma PIC (prática integrativa complementar - ex: medicina chinesa)?</label>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input" value="não"> Não</label></div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="name">Fez escaldapés (atenção para restrições - ex: gestantes e diabeticos)</label>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input" value="sim"> Sim</label></div>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input" value="não"> Não</label></div>
                                         </div>
                                     </div>
                                 </div>

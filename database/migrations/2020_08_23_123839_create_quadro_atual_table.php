@@ -17,17 +17,14 @@ class CreateQuadroAtualTable extends Migration
             $table->id();
             $table->bigInteger('paciente_id')->unsigned();
             $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');
-            $table->string('precisou_servico')->nullable();
-            $table->string('quant_ida_servico')->nullable();
-            $table->string('recebeu_med_covid')->nullable();
-            $table->string('nome_medicamento')->nullable();
-            $table->string('teve_algum_problema')->nullable();
-            $table->string('descreva_problema')->nullable();
-            $table->string('precisou_internacao')->nullable();
-            $table->string('precisou_ambulancia')->nullable();
-            $table->string('local_internacao')->nullable();
-            $table->string('nome_hospital')->nullable();
-            $table->string('tempo_internacao')->nullable();
+            $table->string('primeira_sintoma')->nullable();
+            $table->string('sintomas_manifestados')->nullable();
+            $table->string('temperatura_max')->nullable();
+            $table->string('saturacao_baixa')->nullable();
+            $table->string('frequencia_max')->nullable();
+            $table->string('data_temp_max')->nullable();
+            $table->string('data_sat_max')->nullable();
+            $table->string('data_freq_max')->nullable();
             $table->timestamps();
         });
     }

@@ -272,6 +272,71 @@ $("#createPaciente").click(function(e) {
     }
   })
 });
+$("#createPacienteQA").click(function(e) {
+  e.preventDefault();
+  requiredField();
+  let url = API_URL + "/paciente";
+  let inputs = $('input');
+  let selects = $('select');
+  let textareas = $('textarea');
+  let datas = '...';
+  let datas = {...inputs.serializeJSON(), ...selects.serializeJSON(), ...textareas.serializeJSON()};
+
+  $("#createPacienteQA").addClass('disabled');
+
+  $.ajax({
+    type: "post",
+    url: url,
+    dataType: "json",
+    data: {
+      datas,
+    },
+    success: function(response) {
+        console.log('Sucesso');
+        console.log(response);
+
+        $("#createPacienteQA").removeClass('disabled');
+
+        if (response.success === true) {
+            Swal.fire({
+                icon: 'info',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1990
+            });
+            window.setTimeout(function(){
+                location.replace(APP_URL + '/admin/paciente');
+            } ,2000);
+        } else {
+            //ERRO!
+            Swal.fire({
+                icon: 'error',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 5990
+            });
+            window.setTimeout(function(){
+            } ,6000);
+        }
+    },
+    error: function(response) {
+        console.log('Erro');
+        console.log(response);
+
+        $("#createPacienteQA").removeClass('disabled');
+
+        //ERRO!
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro não tratado\nVerifique os campos postados.',
+            showConfirmButton: false,
+            timer: 5990
+        });
+        window.setTimeout(function(){
+        } ,6000);
+    }
+  })
+});
 
 $("#updatePaciente").click(function(e) {
     e.preventDefault();

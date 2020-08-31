@@ -8,17 +8,14 @@ class QuadroAtual extends Model
 {
     protected $fillable = [
         'paciente_id',
-        'precisou_servico',
-        'quant_ida_servico',
-        'recebeu_med_covid',
-        'nome_medicamento',
-        'teve_algum_problema',
-        'descreva_problema',
-        'precisou_internacao',
-        'precisou_ambulancia',
-        'local_internacao',
-        'nome_hospital',
-        'tempo_internacao',
+        'primeira_sintoma',
+        'sintomas_manifestados',
+        'temperatura_max',
+        'saturacao_baixa',
+        'frequencia_max',
+        'data_temp_max',
+        'data_sat_max',
+        'data_freq_max',
       ];
     
       public function pacientes()

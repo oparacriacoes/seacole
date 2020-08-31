@@ -83,19 +83,9 @@ class PacienteController extends Controller
       $paciente->remedios_consumidos = $dataForm['remedios_consumidos'];
       $paciente->identidade_genero = $dataForm['identidade_genero'];
       $paciente->orientacao_sexual = $dataForm['orientacao_sexual'];
-      $paciente->auxilio_emergencial = $dataForm['auxilio_emergencial'];
       $paciente->descreve_doencas = $dataForm['descreve_doencas'];
-      $paciente->tuberculose = $dataForm['tuberculose'];
-      $paciente->tabagista = $dataForm['tabagista'];
-      $paciente->cronico_alcool = $dataForm['cronico_alcool'];
-      $paciente->outras_drogas = $dataForm['outras_drogas'];
-      $paciente->gestante = $dataForm['gestante'];
-      $paciente->amamenta = $dataForm['amamenta'];
-      $paciente->gestacao_alto_risco = $dataForm['gestacao_alto_risco'];
-      $paciente->pos_parto = $dataForm['pos_parto'];
       $paciente->trimestre_gestacao = $dataForm['trimestre_gestacao'];
       $paciente->motivo_risco_gravidez = $dataForm['motivo_risco_gravidez'];
-      $paciente->acompanhamento_ubs = $dataForm['acompanhamento_ubs'];
       if($dataForm['agente'] !== 'null'){
         $paciente->agente_id = $dataForm['agente'];
       }
@@ -113,6 +103,36 @@ class PacienteController extends Controller
       }
       if(isset($dataForm['acompanhamento_medico'])){
         $paciente->acompanhamento_medico = $dataForm['acompanhamento_medico'];
+      }
+      if(isset($dataForm['auxilio_emergencial'])){
+        $paciente->auxilio_emergencial = $dataForm['auxilio_emergencial'];
+      }
+      if(isset($dataForm['tuberculose'])){
+        $paciente->tuberculose = $dataForm['tuberculose'];
+      }
+      if(isset($dataForm['tabagista'])){
+        $paciente->tuberculose = $dataForm['tabagista'];
+      }
+      if(isset($dataForm['cronico_alcool'])){
+        $paciente->cronico_alcool = $dataForm['cronico_alcool'];
+      }
+      if(isset($dataForm['outras_drogas'])){
+        $paciente->outras_drogas = $dataForm['outras_drogas'];
+      }
+      if(isset($dataForm['gestante'])){
+        $paciente->gestante = $dataForm['gestante'];
+      }
+      if(isset($dataForm['amamenta'])){
+        $paciente->amamenta = $dataForm['amamenta'];
+      }
+      if(isset($dataForm['gestacao_alto_risco'])){
+        $paciente->gestacao_alto_risco = $dataForm['gestacao_alto_risco'];
+      }
+      if(isset($dataForm['pos_parto'])){
+        $paciente->pos_parto = $dataForm['pos_parto'];
+      }
+      if(isset($dataForm['acompanhamento_ubs'])){
+        $paciente->acompanhamento_ubs = $dataForm['acompanhamento_ubs'];
       }
     
       if($dataForm['data_teste_confirmatorio'] !== null){
@@ -254,7 +274,8 @@ class PacienteController extends Controller
       $retorna['success'] = true;
       $retorna['message'] = 'Cadastro feito com sucesso.';
       echo json_encode($retorna);
-      // return $retorna;
+
+      return redirect('admin/paciente');
   }
 
   public function add()
@@ -291,8 +312,9 @@ class PacienteController extends Controller
     $medicos = Medico::get();
     $psicologos = Psicologo::all();
     $dados = $paciente->dados;
+    $articuladoras = Articuladora::all();
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados'));
+    return view('pages.paciente.edit')->with(compact('paciente', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras'));
   }
 
   public function ExportarExcelPacientes()

@@ -72,27 +72,27 @@
                   </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" id="tab2" data-toggle="tab" href="#tab-content-1">
+                  <a class="nav-link" id="tab2" data-toggle="tab" href="#">
                       <span>Quadro Atual</span>
                   </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" id="tab3" data-toggle="tab" href="#tab-content-2">
+                  <a class="nav-link" id="tab3" data-toggle="tab" href="#">
                       <span>Monitoramento</span>
                   </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" id="tab4" data-toggle="tab" href="#tab-content-3">
+                  <a class="nav-link" id="tab4" data-toggle="tab" href="#">
                       <span>Saúde mental</span>
                   </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" id="tab5" data-toggle="tab" href="#tab-content-4">
+                  <a class="nav-link" id="tab5" data-toggle="tab" href="#">
                       <span>Serviços de Referência e Internação</span>
                   </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" id="tab6" data-toggle="tab" href="#tab-content-5">
+                  <a class="nav-link" id="tab6" data-toggle="tab" href="#t">
                       <span>Insumos Oferecidos pelo Projeto</span>
                   </a>
               </li>
@@ -121,7 +121,7 @@
                                     </div>
                                     <div class="col-12 col-md-3">
                                         <div class="form-group">
-                                            <label for="name">Data de finalização do caso (alta) *</label>
+                                            <label for="name">Data finalização do caso (alta) *</label>
                                             <input name="data_finalizacao_caso" type="text" class=" form-control date" id="data_finalizacao_caso" aria-describedby="data_nascimentoHelp">
                                         </div>
                                     </div>
@@ -784,9 +784,10 @@
                 </div>
 
                 <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
-                    <div class="main-card mb-3 card">
-                        <div class="card-body"><h5 class="card-title">Quadro atual</h5>
-                            {{-- <form class=""> --}}
+                    <form id="createPacienteQAForm" method="POST" action="{{ route('paciente') }}">
+                        @csrf
+                        <div class="main-card mb-3 card">
+                            <div class="card-body"><h5 class="card-title">Quadro atual</h5>
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -865,52 +866,52 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="main-card mb-3 card">
-                            <div class="card-body">
-                                <div class="form-row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="name">Temperatura máxima (em graus)</label>
-                                            <input name="data_nascimentod" type="text" placeholder="00,0" class=" form-control date" id="sfsfsfs" aria-describedby="data_nascimentoHelp">
+                            <div class="main-card mb-3 card">
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Temperatura máxima (em graus)</label>
+                                                <input name="data_nascimentod" type="text" placeholder="00,0" class=" form-control date" id="sfsfsfs" aria-describedby="data_nascimentoHelp">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name">Data temperatura máxima</label>
+                                                <input name="data_nascimentoddd" type="text" class=" form-control date" id="data_nascisfsfsfsmento" aria-describedby="data_nascimentoHelp">
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="name">Data temperatura máxima</label>
-                                            <input name="data_nascimentoddd" type="text" class=" form-control date" id="data_nascisfsfsfsmento" aria-describedby="data_nascimentoHelp">
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Saturação mais baixa registrada (%)</label>
+                                                <input name="data_nascimsentosfsfsfs" type="text" placeholder="00 %" class=" form-control date" id="data_nasfsfsfcimento" aria-describedby="data_nascimentoHelp">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name">Data da saturação mais baixa</label>
+                                                <input name="data_nascimentosffsf" type="text" class=" form-control date" id="data_nasfsfssssfcimento" aria-describedby="data_nascimentoHelp">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">Frequência respiratória máxima</label>
+                                                <input name="data_nascimentossfsf" type="text" placeholder="respirações por minuto - rpm" class=" form-control date" id="data_nasfsfscimento" aria-describedby="data_nascimentoHelp">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name">Data da Frequência respiratória máxima</label>
+                                                <input name="data_nascimentosfsfsfs" type="text" class=" form-control date" id="data_nascimsfsfsfento" aria-describedby="data_nascimentoHelp">
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="name">Saturação mais baixa registrada (%)</label>
-                                            <input name="data_nascimsentosfsfsfs" type="text" placeholder="00 %" class=" form-control date" id="data_nasfsfsfcimento" aria-describedby="data_nascimentoHelp">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Data da saturação mais baixa</label>
-                                            <input name="data_nascimentosffsf" type="text" class=" form-control date" id="data_nasfsfssssfcimento" aria-describedby="data_nascimentoHelp">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="name">Frequência respiratória máxima</label>
-                                            <input name="data_nascimentossfsf" type="text" placeholder="respirações por minuto - rpm" class=" form-control date" id="data_nasfsfscimento" aria-describedby="data_nascimentoHelp">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Data da Frequência respiratória máxima</label>
-                                            <input name="data_nascimentosfsfsfs" type="text" class=" form-control date" id="data_nascimsfsfsfento" aria-describedby="data_nascimentoHelp">
+                                    <div class="pos2ition-relative row form-chec2k">
+                                        <div class="col-sm-12 2offset-sm-2">
+                                            <button type="submit" name="createPacienteQA" id="createPacienteQA" class="btn btn-secondary">Salvar</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="pos2ition-relative row form-chec2k">
-                                    <div class="col-sm-12 2offset-sm-2">
-                                        <button class="btn btn-secondary">Salvar</button>
-                                    </div>
-                                </div>
-                            {{-- </form> --}}
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div class="tab-pane tabs-animation fade" id="tab-content-2" role="tabpanel">

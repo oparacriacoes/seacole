@@ -63,7 +63,8 @@
                               </ul>
                           </div>
                       </div>
-                  </div>    </div>
+                  </div>
+                </div>
           </div>
           <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
               <li class="nav-item">
@@ -375,7 +376,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                            
+
                                     <div class="form-row">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -432,7 +433,7 @@
                                 <div class="col-md-3">
                                 <div class="position-relative form-group"><label for="exampleCustomMutlipleSelect" class="">
                                     Testes realizados?
-                                    
+
                                 </label>
                                 <select multiple="" type="select" id="teste_utilizado" name="teste_utilizado[]" class="custom-select">
                                     <option value="">Selecione</option>
@@ -496,7 +497,7 @@
                                     <div class="custom-checkbox custom-control custom-control-inline">
                                         <input type="checkbox" name="doenca_cronica[]" id="dislipidemia" class="custom-control-input" value="3">
                                         <label class="custom-control-label" for="dislipidemia">
-                                            Dislipidemia 
+                                            Dislipidemia
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
@@ -579,7 +580,7 @@
                                     </div>
                                 </div>
                             </div>
-                                
+
                                 <div class="position-relative form-group">
                                     <label for="exampleCustomSelect" class="">
                                         Descreva as doenças assinaladas
@@ -609,7 +610,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <div class="form-group">
@@ -618,7 +619,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <div class="form-group">
@@ -627,7 +628,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div class="form-row">
@@ -660,7 +661,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
@@ -679,7 +680,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div class="form-row">
@@ -690,7 +691,7 @@
                                             </label>
                                             <input name="data_parto" id="data_parto" placeholder="00/00/0000" type="text" class="form-control date">
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
@@ -699,7 +700,7 @@
                                             </label>
                                             <input name="data_ultima_mestrucao" id="data_ultima_mestrucao" placeholder="00/00/0000" type="text" class="form-control date">
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <div class="col-md-4">
                                         <div class="position-relative form-group">
@@ -713,7 +714,7 @@
                                                 <option>3o trimestre</option>
                                             </select>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div class="form-row">
@@ -760,7 +761,7 @@
                                             </select>
                                             <small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <div class="form-group">
@@ -769,7 +770,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                         </div>
 
@@ -1266,7 +1267,7 @@
 
                                 <div class="divider">
                                 </div>
-                                
+
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-group">

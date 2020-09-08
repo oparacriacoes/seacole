@@ -29,8 +29,8 @@
 
     <script>
         const API_URL = "{{ env("APP_URL") }}" + "/api";
-        const APP_URL = "{{ env("APP_URL") }}";      
-    </script>  
+        const APP_URL = "{{ env("APP_URL") }}";
+    </script>
     <script type="text/javascript" src="{{ asset('js/functions.js') }}" defer></script>
 </head>
 <body>
@@ -69,7 +69,7 @@
                         </span>
                     </button>
                 </span>
-            </div>    
+            </div>
             <div class="app-header__content">
                 <div class="app-header-left">
                     <div class="search-wrapper">
@@ -98,7 +98,7 @@
                                 Contatos
                             </a>
                         </li>
-                    </ul>        
+                    </ul>
                 </div>
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
@@ -203,13 +203,13 @@
                             <!-- Agentes -->
                             <li class="app-sidebar__heading"><i class="fas metismenu-state-icon fa-medkit nav-icon"></i> Agentes</li>
                             <li>
-                                <a href="index.html">
+                                <a href="{{ route('agente') }}">
                                     <i class="fa fa-list-ul nav-icon caret-left"></i>
                                     Listar
                                 </a>
                             </li>
                             <li>
-                                <a href="index.html">
+                                <a href="{{ route('agente/add') }}">
                                     <i class="fa fa-plus-circle nav-icon caret-left"></i>
                                     Cadastrar
                                 </a>
@@ -217,13 +217,13 @@
                             <!-- Médicas/os -->
                             <li class="app-sidebar__heading"><i class="fas metismenu-state-icon fa-stethoscope nav-icon"></i> Médicas/os</li>
                             <li>
-                                <a href="index.html">
+                                <a href="{{ route('medico') }}">
                                     <i class="fa fa-list-ul nav-icon caret-left"></i>
                                     Listar
                                 </a>
                             </li>
                             <li>
-                                <a href="index.html">
+                                <a href="{{ route('medico/add') }}">
                                     <i class="fa fa-plus-circle nav-icon caret-left"></i>
                                     Cadastrar
                                 </a>
@@ -231,13 +231,13 @@
                             <!-- Psicólogas/os -->
                             <li class="app-sidebar__heading"><i class="fas metismenu-state-icon fa-hands-helping nav-icon"></i> Psicólogas/os</li>
                             <li>
-                                <a href="index.html">
+                                <a href="{{ route('psicologo') }}">
                                     <i class="fa fa-list-ul nav-icon caret-left"></i>
                                     Listar
                                 </a>
                             </li>
                             <li>
-                                <a href="index.html">
+                                <a href="{{ route('psicologo/add') }}">
                                     <i class="fa fa-plus-circle nav-icon caret-left"></i>
                                     Cadastrar
                                 </a>
@@ -245,7 +245,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>  
+            </div>
             <div class="app-main__outer">
                 <main class="py-4">
                     @yield('content')
@@ -283,7 +283,7 @@
                             </div>
                         </div>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
     </div>

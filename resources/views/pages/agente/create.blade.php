@@ -1,11 +1,20 @@
-@extends('admin_template')
-@section('sample')
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12 text-center">
-      <h1>Cadastrar Agente</h1>
-    </div>
+@extends('layouts.app_new')
+@section('content')
+<div class="app-main__inner">
+  <div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-graph text-success">
+                </i>
+            </div>
+            <div>Agentes
+                <div class="page-title-subheading">Todas os conteúdos são somente teste.</div>
+            </div>
+        </div>
+      </div>
   </div>
+
   @if(!empty($success))
   <div class="row">
     <div class="col">
@@ -15,8 +24,10 @@
     </div>
   </div>
   @endif
-  <div class="row pb-4">
-    <div class="col">
+
+  <div class="main-card mb-3 card">
+    <div class="card-body">
+
       <form method="POST" action="{{ route('agente.store') }}">
         @csrf
         <div class="row">
@@ -50,8 +61,9 @@
         </div>
         <button id="createAgente" type="submit" class="btn btn-primary">Cadastrar</button>
       </form>
+
     </div>
   </div>
-  <!-- /.row -->
-</div><!-- /.container-fluid -->
+</div>
+
 @stop

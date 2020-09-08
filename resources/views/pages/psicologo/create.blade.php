@@ -1,14 +1,23 @@
-@extends('admin_template')
-@section('sample')
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12 text-center">
-      <h1>Cadastrar Psicólogo</h1>
-    </div>
+@extends('layouts.app_new')
+@section('content')
+<div class="app-main__inner">
+  <div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-graph text-success">
+                </i>
+            </div>
+            <div>Psicólogos
+                <div class="page-title-subheading">Todas os conteúdos são somente teste.
+                </div>
+            </div>
+        </div>
+      </div>
   </div>
+  <div class="main-card mb-3 card">
+    <div class="card-body">
 
-  <div class="row pb-4">
-    <div class="col">
       <form method="POST" action="{{ route('psicologo.store') }}">
         @csrf
         <div class="row">
@@ -42,6 +51,7 @@
         </div>
         <button id="createPsicologo" type="submit" class="btn btn-primary">Cadastrar</button>
       </form>
+
     </div>
   </div>
 </div>

@@ -134,7 +134,7 @@ class PacienteController extends Controller
       if(isset($dataForm['acompanhamento_ubs'])){
         $paciente->acompanhamento_ubs = $dataForm['acompanhamento_ubs'];
       }
-    
+
       if($dataForm['data_teste_confirmatorio'] !== null){
         $paciente->data_teste_confirmatorio = Carbon::createFromFormat('d/m/Y', $dataForm['data_teste_confirmatorio'])->format('Y-m-d');
       }
@@ -201,7 +201,7 @@ class PacienteController extends Controller
       if($dataForm['data_inicio_sintoma'] !== null) {
         $sintoma->data_inicio_sintoma = Carbon::createFromFormat('d/m/Y', $dataForm['data_inicio_sintoma'])->format('Y-m-d');
       }
-     
+
       try {
         $sintoma->save();
       } catch(\Exception $exception) {

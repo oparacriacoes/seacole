@@ -63,8 +63,30 @@
                               </ul>
                           </div>
                       </div>
-                  </div>    </div>
+                  </div>
+                </div>
           </div>
+
+          <!-- ALERTS DE RETORNO DO BACKEND -->
+          @if(session('success'))
+          <div class="row">
+            <div class="col">
+              <div class="alert alert-success info" role="alert">
+                {{ session('success') }}
+              </div>
+            </div>
+          </div>
+          @endif
+          @if(session('error'))
+          <div class="row">
+            <div class="col">
+              <div class="alert alert-danger info" role="alert">
+                {{ session('error') }}
+              </div>
+            </div>
+          </div>
+          @endif
+
           <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
               <li class="nav-item">
                   <a class="nav-link active" id="tab0" data-toggle="tab" href="#tab-content-0">
@@ -375,7 +397,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                            
+
                                     <div class="form-row">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -432,7 +454,7 @@
                                 <div class="col-md-3">
                                 <div class="position-relative form-group"><label for="exampleCustomMutlipleSelect" class="">
                                     Testes realizados?
-                                    
+
                                 </label>
                                 <select multiple="" type="select" id="teste_utilizado" name="teste_utilizado[]" class="custom-select">
                                     <option value="">Selecione</option>
@@ -496,7 +518,7 @@
                                     <div class="custom-checkbox custom-control custom-control-inline">
                                         <input type="checkbox" name="doenca_cronica[]" id="dislipidemia" class="custom-control-input" value="3">
                                         <label class="custom-control-label" for="dislipidemia">
-                                            Dislipidemia 
+                                            Dislipidemia
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
@@ -579,7 +601,7 @@
                                     </div>
                                 </div>
                             </div>
-                                
+
                                 <div class="position-relative form-group">
                                     <label for="exampleCustomSelect" class="">
                                         Descreva as doenças assinaladas
@@ -609,7 +631,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <div class="form-group">
@@ -618,7 +640,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <div class="form-group">
@@ -627,7 +649,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div class="form-row">
@@ -660,7 +682,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
@@ -679,7 +701,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div class="form-row">
@@ -690,7 +712,7 @@
                                             </label>
                                             <input name="data_parto" id="data_parto" placeholder="00/00/0000" type="text" class="form-control date">
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
@@ -699,7 +721,7 @@
                                             </label>
                                             <input name="data_ultima_mestrucao" id="data_ultima_mestrucao" placeholder="00/00/0000" type="text" class="form-control date">
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <div class="col-md-4">
                                         <div class="position-relative form-group">
@@ -713,7 +735,7 @@
                                                 <option>3o trimestre</option>
                                             </select>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div class="form-row">
@@ -760,7 +782,7 @@
                                             </select>
                                             <small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <div class="form-group">
@@ -769,7 +791,7 @@
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input" value="não"> Não</label></div>
                                             </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                         </div>
 
@@ -784,82 +806,83 @@
                 </div>
 
                 <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
-                    <form id="createPacienteQAForm" method="POST" action="{{ route('paciente') }}">
+                    <form id="createPacienteQAForm" method="POST" action="{{ route('paciente.quadro-atual') }}">
                         @csrf
+                        <input type="hidden" name="paciente_id" value="{{ $paciente->id }}">
                         <div class="main-card mb-3 card">
                             <div class="card-body"><h5 class="card-title">Quadro atual</h5>
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Primeiros sintomas</label>
-                                            <textarea name="text" placeholder="descreva a evolução dos sintomas do início do quadro até o primeiro registro" id="examplsgwrweText" class="form-control"></textarea>
+                                            <label for="primeira_sintoma">Primeiros sintomas</label>
+                                            <textarea name="primeira_sintoma" placeholder="descreva a evolução dos sintomas do início do quadro até o primeiro registro" id="primeira_sintoma" class="form-control">{{ $quadro->primeira_sintoma }}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Sintomas manifestados</label><br />
+                                            <label for="sintomas_manifestados">Sintomas manifestados</label><br />
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="tosse" type="checkbox" value="tosse">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="tosse" type="checkbox" value="tosse" <?php if( in_array('tosse', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="tosse">Tosse</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="falta_de_ar" type="checkbox" value="falta de ar">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="falta_de_ar" type="checkbox" value="falta de ar" <?php if( in_array('falta de ar', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="febre">Falta de ar</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="febre" type="checkbox" value="febre">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="febre" type="checkbox" value="febre" <?php if( in_array('febre', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="febre">Febre</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" type="checkbox" value="dor de cabeça">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="dor de cabeça" <?php if( in_array('dor de cabeça', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="inlineCheckbox3">Dor de Cabeça</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" type="checkbox" value="perda de olfato">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="perda de olfato" <?php if( in_array('perda de olfato', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="inlineCheckbox3">Perda do olfato</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" type="checkbox" value="perda do paladar">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="perda do paladar" <?php if( in_array('perda do paladar', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="inlineCheckbox3">Perda do paladar</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" type="checkbox" value="enjoo">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="enjoo" <?php if( in_array('enjoo', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="inlineCheckbox3">Enjoo ou vômitos</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="diarreia" type="checkbox" value="diarreia">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="diarreia" type="checkbox" value="diarreia" <?php if( in_array('diarreia', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="diarreia">Diarréia</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="aumento_da_pressao" type="checkbox" value="aumento da pressão">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="aumento_da_pressao" type="checkbox" value="aumento da pressão" <?php if( in_array('aumento da pressão', $sintomas ) ) { echo 'checked=checked'; } ?>>
                                                 <label class="form-check-label" for="aumento_da_pressao">Aumento da pressão</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="queda_brusca_de_pressao" type="checkbox" value="queda brusca de Pressão">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="queda_brusca_de_pressao" type="checkbox" value="queda brusca de Pressão" <?php if( in_array('queda brusca de Pressão', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="sonolencia">Queda brusca de Pressão</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="pressao_baixa" type="checkbox" value="pressão baixa">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="pressao_baixa" type="checkbox" value="pressão baixa" <?php if( in_array('pressão baixa', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="pressao_baixa">Dor torácica (dor no peito) </label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="sonolência_cansaco_importantes" type="checkbox" value="sonolência ou cansaço importantes">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="sonolência_cansaco_importantes" type="checkbox" value="sonolência ou cansaço importantes" <?php if( in_array('sonolência ou cansaço importantes', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="sonolência_cansaco_importantes">Sonolência ou cansaço importantes</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="confusao_mental" type="checkbox" value="confusão mental">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="confusao_mental" type="checkbox" value="confusão mental" <?php if( in_array('confusão mental', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="confusao_mental">Confusão mental</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="desmaio" type="checkbox" value="desmaio">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="desmaio" type="checkbox" value="desmaio" <?php if( in_array('desmaio', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="desmaio">Desmaio</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="convulsao" type="checkbox" value="convulsao">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="convulsao" type="checkbox" value="convulsao" <?php if( in_array('convulsao', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="convulsao">Convulsão</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="outros" type="checkbox" value="outros">
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="outros" type="checkbox" value="outros" <?php if( in_array('outros', $sintomas ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="outros">Outros</label>
                                             </div>
                                         </div>
@@ -867,54 +890,53 @@
                                 </div>
                             </div>
 
-                            <div class="main-card mb-3 card">
-                                <div class="card-body">
-                                    <div class="form-row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="name">Temperatura máxima (em graus)</label>
-                                                <input name="data_nascimentod" type="text" placeholder="00,0" class=" form-control date" id="sfsfsfs" aria-describedby="data_nascimentoHelp">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="name">Data temperatura máxima</label>
-                                                <input name="data_nascimentoddd" type="text" class=" form-control date" id="data_nascisfsfsfsmento" aria-describedby="data_nascimentoHelp">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="name">Saturação mais baixa registrada (%)</label>
-                                                <input name="data_nascimsentosfsfsfs" type="text" placeholder="00 %" class=" form-control date" id="data_nasfsfsfcimento" aria-describedby="data_nascimentoHelp">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="name">Data da saturação mais baixa</label>
-                                                <input name="data_nascimentosffsf" type="text" class=" form-control date" id="data_nasfsfssssfcimento" aria-describedby="data_nascimentoHelp">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="name">Frequência respiratória máxima</label>
-                                                <input name="data_nascimentossfsf" type="text" placeholder="respirações por minuto - rpm" class=" form-control date" id="data_nasfsfscimento" aria-describedby="data_nascimentoHelp">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="name">Data da Frequência respiratória máxima</label>
-                                                <input name="data_nascimentosfsfsfs" type="text" class=" form-control date" id="data_nascimsfsfsfento" aria-describedby="data_nascimentoHelp">
-                                            </div>
-                                        </div>
+                            <div class="card-body">
+                              <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="temperatura_max">Temperatura máxima (em graus)</label>
+                                        <input name="temperatura_max" type="text" placeholder="00,0" class="form-control temperature" id="temperatura_max" value="{{ $quadro->temperatura_max }}">
                                     </div>
-                                    <div class="pos2ition-relative row form-chec2k">
-                                        <div class="col-sm-12 2offset-sm-2">
-                                            <button type="submit" name="createPacienteQA" id="createPacienteQA" class="btn btn-secondary">Salvar</button>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="data_temp_max">Data temperatura máxima</label>
+                                        <input name="data_temp_max" type="text" class=" form-control date" id="data_temp_max" value="{{ $quadro->data_temp_max }}">
                                     </div>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="saturacao_baixa">Saturação mais baixa registrada (%)</label>
+                                        <input name="saturacao_baixa" type="text" placeholder="00 %" class=" form-control saturation" id="saturacao_baixa" value="{{ $quadro->saturacao_baixa }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="data_sat_max">Data da saturação mais baixa</label>
+                                        <input name="data_sat_max" type="text" class=" form-control date" id="data_sat_max" value="{{ $quadro->data_sat_max }}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="frequencia_max">Frequência respiratória máxima</label>
+                                        <input name="frequencia_max" type="text" placeholder="respirações por minuto - rpm" class=" form-control" id="frequencia_max" value="{{ $quadro->frequencia_max }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="data_freq_max">Data da Frequência respiratória máxima</label>
+                                        <input name="data_freq_max" type="text" class=" form-control date" id="data_freq_max" value="{{ $quadro->data_freq_max }}">
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="pos2ition-relative row form-chec2k">
+                                  <div class="col-sm-12 2offset-sm-2">
+                                      <button type="submit" id="createPacienteQA" class="btn btn-secondary">Salvar</button>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                     </form>
                 </div>
 
                 <div class="tab-pane tabs-animation fade" id="tab-content-2" role="tabpanel">
+                  <!-- ABRE FORM MONITORAMENTO -->
                     <div class="main-card mb-3 card">
                         <div class="card-body"><h5 class="card-title">Monitoramento</h5>
                             <div class="form-row">
@@ -1069,6 +1091,7 @@
                             {{-- </form> --}}
                         </div>
                     </div>
+                    <!-- FECHA FORM MONITORAMENTO -->
                 </div>
 
                 <div class="tab-pane tabs-animation fade" id="tab-content-3" role="tabpanel">
@@ -1266,7 +1289,7 @@
 
                                 <div class="divider">
                                 </div>
-                                
+
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -1413,4 +1436,17 @@
                 </div>
           </div>
       </div>
+@endsection
+
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://seacole.uneafrobrasil.org/js/jquery.mask.js"></script>
+<script>
+$('.temperature').mask('00,0');
+$('.saturation').mask('00');
+$('.info').css('cursor', 'pointer');
+$('.info').click(function(){
+  $(this).fadeOut();
+})
+</script>
 @endsection

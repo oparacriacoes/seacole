@@ -21,6 +21,7 @@ use App\User;
 use App\Articuladora;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
+use App\QuadroAtual;
 
 class PacienteController extends Controller
 {
@@ -302,19 +303,22 @@ class PacienteController extends Controller
   public function edit($id)
   {
     $paciente = Paciente::find($id);
-    $sintomas = $paciente->sintomas;
+    //$sintomas = $paciente->sintomas;
     $ajudas = $paciente->tipos_ajuda;
     $emocional = $paciente->estado_emocional;
     $observacao = $paciente->observacao;
     $cronicas = $paciente->doencas_cronicas;
     $items = $paciente->items;
+    $quadro = QuadroAtual::where('paciente_id', $id)->first();
+    $sintomas = unserialize($quadro->sintomas_manifestados);
+    //dd($sintomas);
     $agentes = Agente::get();
     $medicos = Medico::get();
     $psicologos = Psicologo::all();
     $dados = $paciente->dados;
     $articuladoras = Articuladora::all();
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras'));
+    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras'));
   }
 
   public function ExportarExcelPacientes()

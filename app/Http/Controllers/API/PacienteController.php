@@ -36,6 +36,7 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
+      dd($request->all());
       DB::beginTransaction();
       $user = new User;
       $user->name = $request->input('data')['name'];

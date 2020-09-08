@@ -37,7 +37,34 @@ class Paciente extends Model
     'tarefas_autocuidado',
     'sintomas_iniciais',
     'data_teste_confirmatorio',
-    'teste_utilizado'
+    'teste_utilizado',
+    'data_inicio_sintoma',
+    'data_inicio_monitoramento',
+    'data_finalizacao_caso',
+    'name_social',
+    'identidade_genero',
+    'orientacao_sexual',
+    'auxilio_emergencial',
+    'descreve_doencas',
+    'tuberculose',
+    'tabagista',
+    'cronico_alcool',
+    'outras_drogas',
+    'gestante',
+    'amamenta',
+    'gestacao_alto_risco',
+    'pos_parto',
+    'data_parto',
+    'data_ultima_mestrucao',
+    'trimestre_gestacao',
+    'motivo_risco_gravidez',
+    'data_ultima_consulta',
+    'sistema_saude',
+    'acompanhamento_ubs',
+    'resultado_teste',
+    'articuladora_responsavel',
+    'valor_familia',
+    'outras_informacao',
   ];
 
   public function user()
@@ -58,6 +85,11 @@ class Paciente extends Model
   public function psicologo()
   {
     return $this->belongsTo('App\Psicologo');
+  }
+
+  public function articuladora()
+  {
+    return $this->belongsTo('App\Articuladora');
   }
 
   public function sintomas()
@@ -93,5 +125,25 @@ class Paciente extends Model
   public function dados()
   {
     return $this->hasMany('App\EvolucaoSintoma');
+  }
+
+  public function insumos_oferecidos()
+  {
+    return $this->hasMany('App\InsumosOferecido');
+  }
+
+  public function quadro_atual()
+  {
+    return $this->hasMany('App\QuadroAtual');
+  }
+
+  public function saude_mental()
+  {
+    return $this->hasMany('App\SaudeMental');
+  }
+
+  public function servico_internacao()
+  {
+    return $this->hasMany('App\ServicoInternacao');
   }
 }

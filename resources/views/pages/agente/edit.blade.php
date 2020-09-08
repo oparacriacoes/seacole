@@ -1,11 +1,20 @@
-@extends('admin_template')
-@section('sample')
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12 text-center">
-      <h1>Dados do Agente</h1>
-    </div>
+@extends('layouts.app_new')
+@section('content')
+<div class="app-main__inner">
+  <div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-graph text-success">
+                </i>
+            </div>
+            <div>Agentes
+                <div class="page-title-subheading">Todas os conteúdos são somente teste.</div>
+            </div>
+        </div>
+      </div>
   </div>
+
   @if(!empty($success))
   <div class="row">
     <div class="col">
@@ -15,8 +24,10 @@
     </div>
   </div>
   @endif
-  <div class="row pb-4">
-    <div class="col">
+
+  <div class="main-card mb-3 card">
+    <div class="card-body">
+
       <form method="POST" action="{{ route('agente.update', $agente->id) }}">
         <input id="id" type="hidden" name="" value="{{ $agente->id }}">
         @method('PUT')
@@ -50,7 +61,7 @@
               <div class="input-group">
                 <div class="input-group-prepend">
                   <a href="tel:{{ $agente->fone_celular_1 }}">
-                    <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-phone-square-alt" style="font-size: 1.5rem; color:#007bff;"></i></div>
+                    <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-mobile-alt" style="font-size: 1.5rem; color:#007bff;"></i></div>
                   </a>
                 </div>
                 <input name="fone_celular_1" type="text" class="form-control mobile_with_ddd" id="fone_celular_1" aria-describedby="fone_celular_1Help" value="{{ $agente->fone_celular_1 }}" readonly>
@@ -90,8 +101,9 @@
         <button type="submit" class="btn btn-primary btn-save" id="updateAgente" disabled>Salvar</button>
         @endif
       </form>
+
     </div>
   </div>
-  <!-- /.row -->
-</div><!-- /.container-fluid -->
+
+</div>
 @stop

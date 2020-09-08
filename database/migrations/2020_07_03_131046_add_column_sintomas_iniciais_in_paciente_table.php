@@ -17,7 +17,7 @@ class AddColumnSintomasIniciaisInPacienteTable extends Migration
             $table->text('sintomas_iniciais')->nullable()->after('tarefas_autocuidado')->nullable();
             $table->string('caso_confirmado', 50)->nullable()->after('tarefas_autocuidado')->nullable();
             $table->date('data_teste_confirmatorio')->nullable()->after('tarefas_autocuidado')->nullable();
-            $table->string('teste_utilizado', 50)->nullable()->after('tarefas_autocuidado')->nullable();
+            $table->string('teste_utilizado')->nullable()->after('tarefas_autocuidado')->nullable();
         });
     }
 

@@ -1,14 +1,24 @@
-@extends('admin_template')
-@section('sample')
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12 text-center">
-      <h1>Dados do Médico</h1>
-    </div>
+@extends('layouts.app_new')
+@section('content')
+<div class="app-main__inner">
+  <div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-graph text-success">
+                </i>
+            </div>
+            <div>Médicos
+                <div class="page-title-subheading">Todas os conteúdos são somente teste.
+                </div>
+            </div>
+        </div>
+      </div>
   </div>
 
-  <div class="row pb-4">
-    <div class="col">
+  <div class="main-card mb-3 card">
+    <div class="card-body">
+
       <form method="POST" action="{{ route('medico.update', $medico->id) }}">
         <input id="id" type="hidden" name="" value="{{ $medico->id }}">
         @method('PUT')
@@ -42,7 +52,7 @@
               <div class="input-group">
                 <div class="input-group-prepend">
                   <a href="tel:{{ $medico->fone_fixo }}">
-                    <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-phone-square-alt" style="font-size: 1.5rem; color:#007bff;"></i></div>
+                    <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-mobile-alt" style="font-size: 1.5rem; color:#007bff;"></i></div>
                   </a>
                 </div>
                 <input name="fone_celular_1" type="text" class="form-control mobile_with_ddd" id="fone_fixo" aria-describedby="fone_fixoHelp" value="{{ $medico->fone_celular_1 }}" readonly>
@@ -82,8 +92,9 @@
         <button id="updateMedico" type="submit" class="btn btn-primary btn-save" id="" disabled>Salvar</button>
         @endif
       </form>
+
     </div>
   </div>
-  <!-- /.row -->
-</div><!-- /.container-fluid -->
+
+</div>
 @stop

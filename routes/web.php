@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/admin/paciente', 'PacienteController@store')->name('admin.paciente.store');
   Route::get('/admin/paciente/add', 'PacienteController@add')->name('paciente/add');
   Route::get('/admin/paciente/edit/{id}', 'PacienteController@edit')->name('paciente/edit');
+  Route::post('/admin/paciente/update/{id}', 'PacienteController@update')->name('paciente.update');
   Route::get('/admin/paciente/notify/dismiss/{notification_id}/{paciente_id}', 'NotifyController@dismiss')->name('paciente/notify/dismiss');
   Route::post('/admin/paciente/quadro-atual', 'QuadroAtualController@store')->name('paciente.quadro-atual');
 

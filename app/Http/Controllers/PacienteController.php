@@ -22,6 +22,7 @@ use App\Articuladora;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use App\QuadroAtual;
+use App\SituacaoCaso;
 
 class PacienteController extends Controller
 {
@@ -303,22 +304,104 @@ class PacienteController extends Controller
   public function edit($id)
   {
     $paciente = Paciente::find($id);
-    //$sintomas = $paciente->sintomas;
+    $sintomas = $paciente->sintomas;
     $ajudas = $paciente->tipos_ajuda;
     $emocional = $paciente->estado_emocional;
     $observacao = $paciente->observacao;
-    $cronicas = $paciente->doencas_cronicas;
+    //$cronicas = $paciente->doencas_cronicas;
+    $cronicas = unserialize($paciente->doenca_cronica);
+    $sistema_saude = unserialize($paciente->sistema_saude);
+    $teste_utilizado = unserialize($paciente->teste_utilizado);
+    //dd($teste_utilizado);
     $items = $paciente->items;
     $quadro = QuadroAtual::where('paciente_id', $id)->first();
-    $sintomas = unserialize($quadro->sintomas_manifestados);
-    //dd($sintomas);
+    $sintomas_quadro = unserialize($quadro->sintomas_manifestados);
     $agentes = Agente::get();
     $medicos = Medico::get();
     $psicologos = Psicologo::all();
     $dados = $paciente->dados;
     $articuladoras = Articuladora::all();
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras'));
+    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado'));
+  }
+
+  public function update(Request $request, $id)
+  {
+    //dd($request->all());
+    $paciente = Paciente::find($id);
+    //dd($paciente);
+    $dados = [
+      'user_id' => $paciente->user_id,
+      'agente_id' => $request->agente,
+      'medico_id' => $request->medico,
+      'articuladora_responsavel' => $request->articuladora_responsavel,
+      'psicologo_id' => $request->psicologo_id,
+      'situacao' => $request->situacao,
+      'data_nascimento' => $request->data_nascimento,
+      'cor_raca' => $request->cor_raca,
+      'endereco_cep' => $request->endereco_cep,
+      'endereco_rua' => $request->endereco_rua,
+      'endereco_numero' => $request->endereco_numero,
+      'endereco_bairro' => $request->endereco_bairro,
+      'endereco_cidade' => $request->endereco_cidade,
+      'endereco_uf' => $request->endereco_uf,
+      'ponto_referencia' => $request->ponto_referencia,
+      'endereco_complemento' => $request->endereco_complemento,
+      'fone_fixo' => $request->fone_fixo,
+      'fone_celular' => $request->fone_celular,
+      'numero_pessoas_residencia' => $request->numero_pessoas_residencia,
+      'responsavel_residencia' => $request->responsavel_residencia,
+      'renda_residencia' => $request->renda_residencia,
+      'doenca_cronica' => serialize($request->doenca_cronica),
+      'outras_doencas' => $request->outras_informacao,
+      'remedios_consumidos' => $request->remedios_consumidos,
+      'acompanhamento_medico' => $request->acompanhamento_medico,
+      'isolamento_residencial' => $request->isolamento_residencial,
+      'alimentacao_disponivel' => $request->alimentacao_disponivel,
+      'auxilio_terceiros' => $request->auxilio_terceiros,
+      'tarefas_autocuidado' => $request->tarefas_autocuidado,
+      'teste_utilizado' => serialize($request->teste_utilizado),
+      'resultado_teste' => $request->resultado_teste,
+      'data_teste_confirmatorio' => $request->data_teste_confirmatorio,
+      //'caso_confirmado' => '',
+      'sintomas_iniciais' => $request->sintomas_iniciais,
+      'data_inicio_sintoma' => $request->data_inicio_sintoma,
+      'data_inicio_monitoramento' => $request->data_inicio_monitoramento,
+      'data_finalizacao_caso' => $request->data_finalizacao_caso,
+      'name_social' => $request->name_social,
+      'identidade_genero' => $request->identidade_genero,
+      'orientacao_sexual' => $request->orientacao_sexual,
+      'auxilio_emergencial' => $request->auxilio_emergencial,
+      'descreve_doencas' => $request->descreve_doencas,
+      'tuberculose' => $request->tuberculose,
+      'tabagista' => $request->tabagista,
+      'cronico_alcool' => $request->cronico_alcool,
+      'outras_drogas' => $request->outras_drogas,
+      'gestante' => $request->gestante,
+      'amamenta' => $request->amamenta,
+      'gestacao_alto_risco' => $request->gestacao_alto_risco,
+      'pos_parto' => $request->pos_parto,
+      'data_parto' => $request->data_parto,
+      'data_ultima_mestrucao' => $request->data_ultima_mestrucao,
+      'trimestre_gestacao' => $request->trimestre_gestacao,
+      'motivo_risco_gravidez' => $request->motivo_risco_gravidez,
+      'data_ultima_consulta' => $request->data_ultima_consulta,
+      'sistema_saude' => serialize($request->sistema_saude),
+      'acompanhamento_ubs' => $request->acompanhamento_ubs,
+      //'valor_familia' => '',
+      //'outras_informacao' => '',
+    ];
+    //dd($dados);
+    DB::beginTransaction();
+    try {
+      DB::commit();
+      $paciente->update($dados);
+      return redirect()->back()->with('success', 'Dados atualizados com sucesso.');
+    } catch (\Exception $e) {
+      DB::rollback();
+      \Log::info($e);
+      return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
+    }
   }
 
   public function ExportarExcelPacientes()

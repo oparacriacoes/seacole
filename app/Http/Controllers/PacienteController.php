@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\DB;
 use App\QuadroAtual;
 use App\SituacaoCaso;
 use App\Monitoramento;
+use App\SaudeMental;
 
 class PacienteController extends Controller
 {
@@ -334,8 +335,9 @@ class PacienteController extends Controller
     } else {
       $monitoramento_sintomas = [];
     }
+    $saude_mental = SaudeMental::where('paciente_id', $paciente->id)->first();
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas'));
+    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental'));
   }
 
   public function update(Request $request, $id)

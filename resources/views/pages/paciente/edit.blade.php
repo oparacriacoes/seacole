@@ -1098,18 +1098,20 @@
                 <div class="tab-pane tabs-animation fade" id="tab-content-3" role="tabpanel">
                     <div class="main-card mb-3 card">
                         <div class="card-body"><h5 class="card-title">Saúde mental</h5>
+                          <form action="{{ route('paciente.saude-mental', $paciente->id) }}" method="post">
+                            @csrf
                             <div class="form-row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">Quadro atual intensifica medos, angústias, ansiedade, tristezas ou preocupação?</label>
-                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                        <label for="quadro_atual">Quadro atual intensifica medos, angústias, ansiedade, tristezas ou preocupação?</label>
+                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="quadro_atual" type="radio" class="form-check-input" value="sim" <?php if( $saude_mental && $saude_mental->quadro_atual === 'sim' ){ echo 'checked=checked'; } ?> > Sim</label></div>
+                                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="quadro_atual" type="radio" class="form-check-input" value="não" <?php if( $saude_mental && $saude_mental->quadro_atual === 'não' ){ echo 'checked=checked'; } ?> > Não</label></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">Escreva sobre o estado emocional e detalhe os medos</label>
-                                        <textarea name="text" id="exampleTsffsext" class="form-control"></textarea>
+                                        <label for="detalhes_medos">Escreva sobre o estado emocional e detalhe os medos</label>
+                                        <textarea name="detalhes_medos" id="detalhes_medos" class="form-control">@if($saude_mental) {{ $saude_mental->detalhes_medos }} @endif</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1118,6 +1120,7 @@
                                     <button class="btn btn-secondary">Enviar</button>
                                 </div>
                             </div>
+                          </form>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Monitoramento;
+use DB;
+
+class MonitoramentoController extends Controller
+{
+  public function store(Request $request, $id)
+  {
+    $dados = [
+      'paciente_id' => $id,
+      'horario_monotiramento' => $request->horario_monotiramento,
+      'sintomas_atuais' => serialize($request->sintomas_atuais),
+      'sintomas_outro' => $request->sintomas_outro,
+      'temperatura_atual' => $request->temperatura_atual,
+      'frequencia_cardiaca_atual' => $request->frequencia_cardiaca_atual,
+      'algum_sinal' => $request->algum_sinal,
+      'saturacao_atual' => $request->saturacao_atual,
+      'pressao_arterial_atual' => $request->pressao_arterial_atual,
+      'equipe_medica' => $request->equipe_medica,
+      'frequencia_respiratoria_atual' => $request->frequencia_respiratoria_atual,
+      'medicamento' => $request->medicamento,
+      'fazendo_uso_pic' => $request->fazendo_uso_pic,
+      'fez_escalapes' => $request->fez_escalapes,
+      'melhora_sintoma_escaldapes' => $request->melhora_sintoma_escaldapes,
+      'fes_inalacao' => $request->fes_inalacao,
+      'melhoria_sintomas_inalacao' => $request->melhoria_sintomas_inalacao,
+    ];
+
+    $monitoramento = Monitoramento::where('paciente_id', $id)->first();
+
+    if( !$monitoramento ){
+      DB::beginTransaction();
+      try {
+        $monitoramento = Monitoramento::create($dados);
+        DB::commit();
+        return redirect()->back()->with('success', 'Dados atualizados com sucesso.');
+      } catch (\Exception $e) {
+        DB::rollback();
+        \Log::info($e);
+        return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
+      }
+    } else {
+      DB::beginTransaction();
+      try {
+        $monitoramento->update($dados);
+        DB::commit();
+        return redirect()->back()->with('success', 'Dados atualizados com sucesso.');
+      } catch (\Exception $e) {
+        DB::rollback();
+        \Log::info($e);
+        return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
+      }
+    }
+  }
+
+}

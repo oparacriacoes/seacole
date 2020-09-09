@@ -23,6 +23,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use App\QuadroAtual;
 use App\SituacaoCaso;
+use App\Monitoramento;
 
 class PacienteController extends Controller
 {
@@ -326,8 +327,15 @@ class PacienteController extends Controller
     $psicologos = Psicologo::all();
     $dados = $paciente->dados;
     $articuladoras = Articuladora::all();
+    $monitoramento = Monitoramento::where('paciente_id', $paciente->id)->first();
+    //dd($monitoramento);
+    if( $monitoramento ){
+      $monitoramento_sintomas = unserialize($monitoramento->sintomas_atuais);
+    } else {
+      $monitoramento_sintomas = [];
+    }
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado'));
+    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas'));
   }
 
   public function update(Request $request, $id)

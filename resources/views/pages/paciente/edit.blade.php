@@ -154,15 +154,15 @@
                                             </label>
                                             <select type="select" id="situacao" aria-describedby="situacaoHelp" name="situacao" class="custom-select">
                                                 <option value="">Selecione</option>
-                                                <option value="Caso ativo GRAVE">Caso ativo GRAVE</option>
-                                                <option value="Caso ativo LEVE">Caso ativo LEVE</option>
-                                                <option value="Contato com caso confirmado - ativo">Contato com caso confirmado - ativo</option>
-                                                <option value="Outras situações (sem relação com COVID-19) - ativos">Outras situações (sem relação com COVID-19) - ativos</option>
-                                                <option value="Caso finalizado GRAVE">Caso finalizado GRAVE</option>
-                                                <option value="Caso finalizado LEVE">Caso finalizado LEVE</option>
-                                                <option value="Contato com caso confirmado - finalizado">Contato com caso confirmado - finalizado</option>
-                                                <option value="Outras situações (sem relação com COVID-19) - finalizado">Outras situações (sem relação com COVID-19) - finalizado</option>
-                                                <option value="Monitoramento encerrado - segue apenas com psicólogos">Monitoramento encerrado - segue apenas com psicólogos</option>
+                                                <option value="Caso ativo GRAVE" <?php if( $paciente->situacao === 'Caso ativo GRAVE' ){ echo 'selected=selected'; } ?> >Caso ativo GRAVE</option>
+                                                <option value="Caso ativo LEVE" <?php if( $paciente->situacao === 'Caso ativo LEVE' ){ echo 'selected=selected'; } ?> >Caso ativo LEVE</option>
+                                                <option value="Contato com caso confirmado - ativo" <?php if( $paciente->situacao === 'Contato com caso confirmado - ativo' ){ echo 'selected=selected'; } ?> >Contato com caso confirmado - ativo</option>
+                                                <option value="Outras situações (sem relação com COVID-19) - ativos" <?php if( $paciente->situacao === 'Outras situações (sem relação com COVID-19) - ativos' ){ echo 'selected=selected'; } ?> >Outras situações (sem relação com COVID-19) - ativos</option>
+                                                <option value="Caso finalizado GRAVE" <?php if( $paciente->situacao === 'Caso finalizado GRAVE' ){ echo 'selected=selected'; } ?> >Caso finalizado GRAVE</option>
+                                                <option value="Caso finalizado LEVE" <?php if( $paciente->situacao === 'Caso finalizado LEVE' ){ echo 'selected=selected'; } ?> >Caso finalizado LEVE</option>
+                                                <option value="Contato com caso confirmado - finalizado" <?php if( $paciente->situacao === 'Contato com caso confirmado - finalizado' ){ echo 'selected=selected'; } ?> >Contato com caso confirmado - finalizado</option>
+                                                <option value="Outras situações (sem relação com COVID-19) - finalizado" <?php if( $paciente->situacao === 'Outras situações (sem relação com COVID-19) - finalizado' ){ echo 'selected=selected'; } ?> >Outras situações (sem relação com COVID-19) - finalizado</option>
+                                                <option value="Monitoramento encerrado - segue apenas com psicólogos" <?php if( $paciente->situacao === 'Monitoramento encerrado - segue apenas com psicólogos' ){ echo 'selected=selected'; } ?> >Monitoramento encerrado - segue apenas com psicólogos</option>
                                             </select>
                                         </div>
                                     </div>
@@ -458,10 +458,10 @@
                                 </label>
                                 <select multiple="" type="select" id="teste_utilizado" name="teste_utilizado[]" class="custom-select">
                                     <option value="">Selecione</option>
-                                    <option <?php if( in_array('PCR', $teste_utilizado) ){ echo 'selected=selected'; } ?> >PCR</option>
-                                    <option <?php if( in_array('sorologias (IgM/IgG)', $teste_utilizado) ){ echo 'selected=selected'; } ?> >sorologias (IgM/IgG)</option>
-                                    <option <?php if( in_array('teste rápido', $teste_utilizado) ){ echo 'selected=selected'; } ?> >teste rápido</option>
-                                    <option <?php if( in_array('não informado', $teste_utilizado) ){ echo 'selected=selected'; } ?> >não informado</option>
+                                    <option <?php if( $teste_utilizado && in_array('PCR', $teste_utilizado) ){ echo 'selected=selected'; } ?> >PCR</option>
+                                    <option <?php if( $teste_utilizado && in_array('sorologias (IgM/IgG)', $teste_utilizado) ){ echo 'selected=selected'; } ?> >sorologias (IgM/IgG)</option>
+                                    <option <?php if( $teste_utilizado && in_array('teste rápido', $teste_utilizado) ){ echo 'selected=selected'; } ?> >teste rápido</option>
+                                    <option <?php if( $teste_utilizado && in_array('não informado', $teste_utilizado) ){ echo 'selected=selected'; } ?> >não informado</option>
                                 </select>
                                 <small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>
                                 </div>
@@ -504,97 +504,97 @@
 
                                 <div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="hipertensao_arterial_sistemica" class="custom-control-input" value="1" <?php if( in_array('1', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="hipertensao_arterial_sistemica" class="custom-control-input" value="1" <?php if( $cronicas && in_array('1', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="hipertensao_arterial_sistemica">
                                             Hipertensão arterial sistêmica (HAS)
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="diabetes_mellitus" class="custom-control-input" value="2" <?php if( in_array('2', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="diabetes_mellitus" class="custom-control-input" value="2" <?php if( $cronicas && in_array('2', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="diabetes_mellitus">
                                             Diabetes Mellitus (DM)
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="dislipidemia" class="custom-control-input" value="3" <?php if( in_array('3', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="dislipidemia" class="custom-control-input" value="3" <?php if( $cronicas && in_array('3', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="dislipidemia">
                                             Dislipidemia
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="asma_bronquite" class="custom-control-input" value="4" <?php if( in_array('4', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="asma_bronquite" class="custom-control-input" value="4" <?php if( $cronicas && in_array('4', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="asma_bronquite">
                                             Asma / Bronquite
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="tuberculose_ativa" class="custom-control-input" value="5" <?php if( in_array('5', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="tuberculose_ativa" class="custom-control-input" value="5" <?php if( $cronicas && in_array('5', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="tuberculose_ativa">
                                             Tuberculose ativa
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="cardiopatias_cardiovasculares" class="custom-control-input" value="6" <?php if( in_array('6', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="cardiopatias_cardiovasculares" class="custom-control-input" value="6" <?php if( $cronicas && in_array('6', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="cardiopatias_cardiovasculares">
                                             Cardiopatias e outras doenças cardiovasculares
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="outras_respiratorias" class="custom-control-input" value="7" <?php if( in_array('7', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="outras_respiratorias" class="custom-control-input" value="7" <?php if( $cronicas && in_array('7', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="outras_respiratorias">
                                             Outras doenças Respiratórias
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="artrite_artrose_reumatismo" class="custom-control-input" value="8" <?php if( in_array('8', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="artrite_artrose_reumatismo" class="custom-control-input" value="8" <?php if( $cronicas && in_array('8', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="artrite_artrose_reumatismo">
                                             Artrite/Artrose/Reumatismo
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="doenca_autoimune" class="custom-control-input" value="9" <?php if( in_array('9', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="doenca_autoimune" class="custom-control-input" value="9" <?php if( $cronicas && in_array('9', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="doenca_autoimune">
                                             Doença autoimune
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="doenca_renal" class="custom-control-input" value="10" <?php if( in_array('10', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="doenca_renal" class="custom-control-input" value="10" <?php if( $cronicas && in_array('10', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="doenca_renal">
                                             Doença renal
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="doenca_neurologica" class="custom-control-input" value="11" <?php if( in_array('11', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="doenca_neurologica" class="custom-control-input" value="11" <?php if( $cronicas && in_array('11', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="doenca_neurologica">
                                             Doença neurológica
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="cancer" class="custom-control-input" value="12" <?php if( in_array('12', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="cancer" class="custom-control-input" value="12" <?php if( $cronicas && in_array('12', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="cancer">
                                             Câncer
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="ansiedade" class="custom-control-input" value="13" <?php if( in_array('13', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="ansiedade" class="custom-control-input" value="13" <?php if( $cronicas && in_array('13', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="ansiedade">
                                             Ansiedade
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="depressao" class="custom-control-input" value="14" <?php if( in_array('14', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="depressao" class="custom-control-input" value="14" <?php if( $cronicas && in_array('14', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="depressao">
                                             Depressão
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="demencia" class="custom-control-input" value="15" <?php if( in_array('15', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="demencia" class="custom-control-input" value="15" <?php if( $cronicas && in_array('15', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="demencia">
                                             Demência
                                         </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                        <input type="checkbox" name="doenca_cronica[]" id="outras_questoes_mental" class="custom-control-input" value="16" <?php if( in_array('16', $cronicas) ){ echo 'checked=checked'; } ?> >
+                                        <input type="checkbox" name="doenca_cronica[]" id="outras_questoes_mental" class="custom-control-input" value="16" <?php if( $cronicas && in_array('16', $cronicas) ){ echo 'checked=checked'; } ?> >
                                         <label class="custom-control-label" for="outras_questoes_mental">
                                             Outras questões de saúde mental
                                         </label>
@@ -775,10 +775,10 @@
                                             </label>
                                             <select multiple="" type="select" id="sistema_saude" name="sistema_saude[]" class="custom-select">
                                                 <option value="">Selecione</option>
-                                                <option <?php if( in_array('É usuária/o do SUS (público)', $sistema_saude) ){ echo 'selected=selected'; } ?> >É usuária/o do SUS (público)</option>
-                                                <option <?php if( in_array('Tem convênio/plano de saúde', $sistema_saude) ){ echo 'selected=selected'; } ?> >Tem convênio/plano de saúde</option>
-                                                <option <?php if( in_array('Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)', $sistema_saude) ){ echo 'selected=selected'; } ?> >Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)</option>
-                                                <option <?php if( in_array('Usuária/o de serviços particulares não cobertos por convênios', $sistema_saude) ){ echo 'selected=selected'; } ?> >Usuária/o de serviços particulares não cobertos por convênios</option>
+                                                <option <?php if( $sistema_saude && in_array('É usuária/o do SUS (público)', $sistema_saude) ){ echo 'selected=selected'; } ?> >É usuária/o do SUS (público)</option>
+                                                <option <?php if( $sistema_saude && in_array('Tem convênio/plano de saúde', $sistema_saude) ){ echo 'selected=selected'; } ?> >Tem convênio/plano de saúde</option>
+                                                <option <?php if( $sistema_saude && in_array('Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)', $sistema_saude) ){ echo 'selected=selected'; } ?> >Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)</option>
+                                                <option <?php if( $sistema_saude && in_array('Usuária/o de serviços particulares não cobertos por convênios', $sistema_saude) ){ echo 'selected=selected'; } ?> >Usuária/o de serviços particulares não cobertos por convênios</option>
                                             </select>
                                             <small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>
                                         </div>
@@ -815,7 +815,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="primeira_sintoma">Primeiros sintomas</label>
-                                            <textarea name="primeira_sintoma" placeholder="descreva a evolução dos sintomas do início do quadro até o primeiro registro" id="primeira_sintoma" class="form-control">{{ $quadro->primeira_sintoma }}</textarea>
+                                            <textarea name="primeira_sintoma" placeholder="descreva a evolução dos sintomas do início do quadro até o primeiro registro" id="primeira_sintoma" class="form-control">@if($quadro) {{ $quadro->primeira_sintoma }} @endif</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -895,33 +895,33 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="temperatura_max">Temperatura máxima (em graus)</label>
-                                        <input name="temperatura_max" type="text" placeholder="00,0" class="form-control temperature" id="temperatura_max" value="{{ $quadro->temperatura_max }}">
+                                        <input name="temperatura_max" type="text" placeholder="00,0" class="form-control temperature" id="temperatura_max" value="@if($quadro) {{ $quadro->temperatura_max }} @endif">
                                     </div>
                                     <div class="form-group">
                                         <label for="data_temp_max">Data temperatura máxima</label>
-                                        <input name="data_temp_max" type="text" class=" form-control date" id="data_temp_max" value="{{ $quadro->data_temp_max }}">
+                                        <input name="data_temp_max" type="text" class=" form-control date" id="data_temp_max" value="@if($quadro) {{ $quadro->data_temp_max }} @endif">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="saturacao_baixa">Saturação mais baixa registrada (%)</label>
-                                        <input name="saturacao_baixa" type="text" placeholder="00 %" class=" form-control saturation" id="saturacao_baixa" value="{{ $quadro->saturacao_baixa }}">
+                                        <input name="saturacao_baixa" type="text" placeholder="00 %" class=" form-control saturation" id="saturacao_baixa" value="@if($quadro) {{ $quadro->saturacao_baixa }} @endif">
                                     </div>
                                     <div class="form-group">
                                         <label for="data_sat_max">Data da saturação mais baixa</label>
-                                        <input name="data_sat_max" type="text" class=" form-control date" id="data_sat_max" value="{{ $quadro->data_sat_max }}">
+                                        <input name="data_sat_max" type="text" class=" form-control date" id="data_sat_max" value="@if($quadro) {{ $quadro->data_sat_max }} @endif">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="frequencia_max">Frequência respiratória máxima</label>
-                                        <input name="frequencia_max" type="text" placeholder="respirações por minuto - rpm" class=" form-control" id="frequencia_max" value="{{ $quadro->frequencia_max }}">
+                                        <input name="frequencia_max" type="text" placeholder="respirações por minuto - rpm" class=" form-control" id="frequencia_max" value="@if($quadro) {{ $quadro->frequencia_max }} @endif">
                                     </div>
                                     <div class="form-group">
                                         <label for="data_freq_max">Data da Frequência respiratória máxima</label>
-                                        <input name="data_freq_max" type="text" class=" form-control date" id="data_freq_max" value="{{ $quadro->data_freq_max }}">
+                                        <input name="data_freq_max" type="text" class=" form-control date" id="data_freq_max" value="@if($quadro) {{ $quadro->data_freq_max }} @endif">
                                     </div>
                                 </div>
                               </div>
@@ -939,6 +939,7 @@
                   <!-- ABRE FORM MONITORAMENTO -->
                     <div class="main-card mb-3 card">
                         <div class="card-body"><h5 class="card-title">Monitoramento</h5>
+                          <form id="monitoramento_form" >
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -1033,7 +1034,6 @@
 
                     <div class="main-card mb-3 card">
                         <div class="card-body">
-                            {{-- <form class=""> --}}
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -1088,7 +1088,7 @@
                                         <button class="btn btn-secondary">Enviar</button>
                                     </div>
                                 </div>
-                            {{-- </form> --}}
+                            </form>
                         </div>
                     </div>
                     <!-- FECHA FORM MONITORAMENTO -->

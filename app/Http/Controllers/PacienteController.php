@@ -315,7 +315,12 @@ class PacienteController extends Controller
     //dd($teste_utilizado);
     $items = $paciente->items;
     $quadro = QuadroAtual::where('paciente_id', $id)->first();
-    $sintomas_quadro = unserialize($quadro->sintomas_manifestados);
+    //dd($quadro);
+    if( $quadro ){
+      $sintomas_quadro = unserialize($quadro->sintomas_manifestados);
+    } else {
+      $sintomas_quadro = [];
+    }
     $agentes = Agente::get();
     $medicos = Medico::get();
     $psicologos = Psicologo::all();
@@ -353,7 +358,7 @@ class PacienteController extends Controller
       'responsavel_residencia' => $request->responsavel_residencia,
       'renda_residencia' => $request->renda_residencia,
       'doenca_cronica' => serialize($request->doenca_cronica),
-      'outras_doencas' => $request->outras_informacao,
+      //'outras_doencas' => '',
       'remedios_consumidos' => $request->remedios_consumidos,
       'acompanhamento_medico' => $request->acompanhamento_medico,
       'isolamento_residencial' => $request->isolamento_residencial,
@@ -389,7 +394,7 @@ class PacienteController extends Controller
       'sistema_saude' => serialize($request->sistema_saude),
       'acompanhamento_ubs' => $request->acompanhamento_ubs,
       //'valor_familia' => '',
-      //'outras_informacao' => '',
+      'outras_informacao' => $request->outras_informacao,
     ];
     //dd($dados);
     DB::beginTransaction();

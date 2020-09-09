@@ -26,6 +26,7 @@ use App\SituacaoCaso;
 use App\Monitoramento;
 use App\SaudeMental;
 use App\ServicoInternacao;
+use App\InsumosOferecido;
 
 class PacienteController extends Controller
 {
@@ -347,8 +348,17 @@ class PacienteController extends Controller
       $internacao_problema = [];
       $internacao_local = [];
     }
+    
+    $insumos = InsumosOferecido::where('paciente_id', $paciente->id)->first();
+    if( $insumos ){
+      $insumos_ajuda = unserialize($insumos->precisa_tipo_ajuda);
+      $insumos_tratamento = unserialize($insumos->tratamento_financiado);
+    } else {
+      $insumos_ajuda = [];
+      $insumos_tratamento = [];
+    }
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local'));
+    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento'));
   }
 
   public function update(Request $request, $id)

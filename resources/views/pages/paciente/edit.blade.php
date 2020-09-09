@@ -1350,34 +1350,35 @@
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <h5 class="card-title">Insumos Oferecidos pelo Projeto</h5>
-                            {{-- <form class=""> --}}
+                            <form id="insumo_form" action="{{ route('paciente.insumos', $paciente->id) }}" method="post">
+                              @csrf
                                 <div class="form-row">
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="isolamento_residencial">Há condição de ficar isolada, sozinha, em um cômodo da casa?</label>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="isolamento_residencial" type="radio" class="form-check-input"> Sim</label></div>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="isolamento_residencial" type="radio" class="form-check-input"> Não</label></div>
+                                            <label for="condicao_ficar_isolada">Há condição de ficar isolada, sozinha, em um cômodo da casa?</label>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="condicao_ficar_isolada" type="radio" class="form-check-input" value="sim" <?php if( $insumos && $insumos->condicao_ficar_isolada === 'sim' ){ echo 'checked=checked'; } ?> > Sim</label></div>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="condicao_ficar_isolada" type="radio" class="form-check-input" value="não" <?php if( $insumos && $insumos->condicao_ficar_isolada === 'não' ){ echo 'checked=checked'; } ?> > Não</label></div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="alimentacao_disponivel">Tem comida disponível, sem precisar sair?</label>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="alimentacao_disponivel" type="radio" class="form-check-input"> Sim</label></div>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="alimentacao_disponivel" type="radio" class="form-check-input"> Não</label></div>
+                                            <label for="tem_comida">Tem comida disponível, sem precisar sair?</label>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tem_comida" type="radio" class="form-check-input" value="sim" <?php if( $insumos && $insumos->tem_comida === 'sim' ){ echo 'checked=checked'; } ?> > Sim</label></div>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tem_comida" type="radio" class="form-check-input" value="não" <?php if( $insumos && $insumos->tem_comida === 'não' ){ echo 'checked=checked'; } ?> > Não</label></div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="auxilio_terceiros">Tem alguém para auxiliá-lo(a)?</label>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_terceiros" type="radio" class="form-check-input"> Sim</label></div>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_terceiros" type="radio" class="form-check-input"> Não</label></div>
+                                            <label for="tem_alguem">Tem alguém para auxiliá-lo(a)?</label>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tem_alguem" type="radio" class="form-check-input" value="sim" <?php if( $insumos && $insumos->tem_alguem === 'sim' ){ echo 'checked=checked'; } ?> > Sim</label></div>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tem_alguem" type="radio" class="form-check-input" value="não" <?php if( $insumos && $insumos->tem_alguem === 'não' ){ echo 'checked=checked'; } ?> > Não</label></div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="tarefas_autocuidado">Consegue realizar tarefas de autocuidado? (como tomar banho, cozinhar,  lavar a própria roupa)</label>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tarefas_autocuidado" type="radio" class="form-check-input"> Sim</label></div>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tarefas_autocuidado" type="radio" class="form-check-input"> Não</label></div>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tarefas_autocuidado" type="radio" class="form-check-input" value="sim" <?php if( $insumos && $insumos->tarefas_autocuidado === 'sim' ){ echo 'checked=checked'; } ?> > Sim</label></div>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tarefas_autocuidado" type="radio" class="form-check-input" value="não" <?php if( $insumos && $insumos->tarefas_autocuidado === 'não' ){ echo 'checked=checked'; } ?> > Não</label></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1388,21 +1389,21 @@
                                 <div class="form-row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="name"><strong>Precisa de algum tipo de ajuda?</strong></label><br />
+                                            <label for="precisa_tipo_ajuda"><strong>Precisa de algum tipo de ajuda?</strong></label><br />
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="comprar_remedios_continuo" type="checkbox" value="Comprar remédios de uso contínuo">
+                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_remedios_continuo" type="checkbox" value="Comprar remédios de uso contínuo" <?php if( $insumos &&  in_array('Comprar remédios de uso contínuo', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="comprar_remedios_continuo">Comprar remédios de uso contínuo</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="comprar_remedios" type="checkbox" value="Comprar remédios para o tratamento do quadro atual">
+                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_remedios" type="checkbox" value="Comprar remédios para o tratamento do quadro atual" <?php if( $insumos &&  in_array('Comprar remédios para o tratamento do quadro atual', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="comprar_remedios">Comprar remédios para o tratamento do quadro atual</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="comprar_alimento" type="checkbox" value="Comprar alimento ou outro produtos de necessidade básica">
+                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_alimento" type="checkbox" value="Comprar alimento ou outro produtos de necessidade básica" <?php if( $insumos &&  in_array('Comprar alimento ou outro produtos de necessidade básica', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="comprar_alimento">Comprar alimento ou outro produtos de necessidade básica</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" type="checkbox" value="Outros">
+                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" type="checkbox" value="Outros" <?php if( $insumos &&  in_array('Outros', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="Outros">Outros</label>
                                             </div>
                                         </div>
@@ -1410,21 +1411,21 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="name"><strong>Tratamento foi prescrito por algum médico do projeto?</strong></label>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Sim</label></div>
-                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="radio2" type="radio" class="form-check-input"> Não</label></div>
+                                            <label for="tratamento_prescrito"><strong>Tratamento foi prescrito por algum médico do projeto?</strong></label>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tratamento_prescrito" type="radio" class="form-check-input" value="sim" <?php if( $insumos && $insumos->tratamento_prescrito === 'sim' ){ echo 'checked=checked'; } ?> > Sim</label></div>
+                                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tratamento_prescrito" type="radio" class="form-check-input" value="não" <?php if( $insumos && $insumos->tratamento_prescrito === 'não' ){ echo 'checked=checked'; } ?> > Não</label></div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="name"><strong>Tratamento financiado</strong></label><br />
+                                            <label for="tratamento_financiado"><strong>Tratamento financiado</strong></label><br />
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="alopatico" type="checkbox" value="Alopático (medicamentos convencionais)">
+                                                <input name="tratamento_financiado[]" class="form-check-input" id="alopatico" type="checkbox" value="Alopático (medicamentos convencionais)" <?php if( $insumos &&  in_array('Alopático (medicamentos convencionais)', $insumos_tratamento) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="alopatico">Alopático (medicamentos convencionais)</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas[]" class="form-check-input" id="pics" type="checkbox" value="PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)">
+                                                <input name="tratamento_financiado[]" class="form-check-input" id="pics" type="checkbox" value="PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)" <?php if( $insumos &&  in_array('PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)', $insumos_tratamento) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="febre">PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)</label>
                                             </div>
                                         </div>
@@ -1435,7 +1436,7 @@
                                         <button class="btn btn-secondary">Enviar</button>
                                     </div>
                                 </div>
-                            {{-- </form> --}}
+                            </form>
                         </div>
                     </div>
                 </div>

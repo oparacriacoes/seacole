@@ -25,6 +25,7 @@ use App\QuadroAtual;
 use App\SituacaoCaso;
 use App\Monitoramento;
 use App\SaudeMental;
+use App\ServicoInternacao;
 
 class PacienteController extends Controller
 {
@@ -310,14 +311,11 @@ class PacienteController extends Controller
     $ajudas = $paciente->tipos_ajuda;
     $emocional = $paciente->estado_emocional;
     $observacao = $paciente->observacao;
-    //$cronicas = $paciente->doencas_cronicas;
     $cronicas = unserialize($paciente->doenca_cronica);
     $sistema_saude = unserialize($paciente->sistema_saude);
     $teste_utilizado = unserialize($paciente->teste_utilizado);
-    //dd($teste_utilizado);
     $items = $paciente->items;
     $quadro = QuadroAtual::where('paciente_id', $id)->first();
-    //dd($quadro);
     if( $quadro ){
       $sintomas_quadro = unserialize($quadro->sintomas_manifestados);
     } else {
@@ -329,15 +327,28 @@ class PacienteController extends Controller
     $dados = $paciente->dados;
     $articuladoras = Articuladora::all();
     $monitoramento = Monitoramento::where('paciente_id', $paciente->id)->first();
-    //dd($monitoramento);
     if( $monitoramento ){
       $monitoramento_sintomas = unserialize($monitoramento->sintomas_atuais);
     } else {
       $monitoramento_sintomas = [];
     }
+
     $saude_mental = SaudeMental::where('paciente_id', $paciente->id)->first();
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental'));
+    $internacao = ServicoInternacao::where('paciente_id', $paciente->id)->first();
+    if( $internacao ){
+      $internacao_servico = unserialize($internacao->precisou_servico);
+      $internacao_remedio = unserialize($internacao->recebeu_med_covid);
+      $internacao_problema = unserialize($internacao->teve_algum_problema);
+      $internacao_local = unserialize($internacao->local_internacao);
+    } else {
+      $internacao_servico = [];
+      $internacao_remedio = [];
+      $internacao_problema = [];
+      $internacao_local = [];
+    }
+
+    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local'));
   }
 
   public function update(Request $request, $id)

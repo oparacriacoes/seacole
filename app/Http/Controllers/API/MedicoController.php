@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Hash;
+use DB;
 use App\User;
 use App\Medico;
 
@@ -28,30 +29,39 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
-      $user = new User;
-      $user->name = $request->input('data')['name'];
-      $user->email = $request->input('data')['email'];
-      $user->password = Hash::make($request->input('data')['email']);
-      $user->role = 'medico';
+      //dd($request->all());
+      DB::beginTransaction();
       try {
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->email);
+        $user->role = 'medico';
         $user->save();
-      } catch(\Exception $exception) {
-        return response()->json(['message', $exception->getMessage()]);
+        DB::commit();
+      } catch(\Exception $e) {
+        DB::rollback();
+        \Log::info($e);
+        return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
       }
 
       if($user){
-        $medico = new Medico;
-        $medico->user_id = $user->id;
-        $medico->fone_celular_1 = $request->input('data')['fone_celular_1'];
-        $medico->fone_celular_2 = $request->input('data')['fone_celular_2'];
+        DB::beginTransaction();
         try {
+          $medico = new Medico;
+          $medico->user_id = $user->id;
+          $medico->fone_celular_1 = $request->fone_celular_1;
+          $medico->fone_celular_2 = $request->fone_celular_2;
           $medico->save();
-        } catch(\Exception $exception) {
-          return response()->json(['message' => $exception->getMessage()]);
+          DB::commit();
+          return redirect()->route('medico')->with('success', 'Dados salvos com sucesso.');
+        } catch(\Exception $e) {
+          DB::rollback();
+          \Log::info($e);
+          return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
         }
       }
 
-      return response()->json(['message' => 'Cadastro feito com sucesso.']);
     }
 
     /**

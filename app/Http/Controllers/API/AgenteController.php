@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Hash;
 use App\User;
 use App\Agente;
+use DB;
 
 class AgenteController extends Controller
 {
@@ -28,30 +29,40 @@ class AgenteController extends Controller
      */
     public function store(Request $request)
     {
+      //dd($request->all());
       $user = new User;
-      $user->name = $request->input('data')['name'];
-      $user->email = $request->input('data')['email'];
-      $user->password = Hash::make($request->input('data')['email']);
+      $user->name = $request->name;
+      $user->email = $request->email;
+      $user->password = Hash::make($request->email);
       $user->role = 'agente';
+      DB::beginTransaction();
       try {
+        DB::commit();
         $user->save();
       } catch(\Exception $exception) {
-        return response()->json(['message' => $exception->getMessage()]);
+        //return response()->json(['message' => $exception->getMessage()]);
+        DB::rollback();
+        \Log::info($exception);
+        return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
       }
 
       if($user){
         $agente = new Agente;
         $agente->user_id = $user->id;
-        $agente->fone_celular_1 = $request->input('data')['fone_celular_1'];
-        $agente->fone_celular_2 = $request->input('data')['fone_celular_2'];
+        $agente->fone_celular_1 = $request->fone_celular_1;
+        $agente->fone_celular_2 = $request->fone_celular_2;
+        DB::beginTransaction();
         try {
+          DB::commit();
           $agente->save();
+          return redirect()->route('agente')->with('success', 'Cadastro efetuado com sucesso.');
         } catch(\Exception $exception) {
-          return response()->json(['message' => $exception->getMessage()]);
+          DB::rollback();
+          \Log::info($exception);
+          //return response()->json(['message' => $exception->getMessage()]);
+          return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
         }
       }
-
-      return response()->json(['message' => 'Cadastro feito com sucesso.']);
     }
 
     /**

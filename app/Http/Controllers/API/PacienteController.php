@@ -584,10 +584,11 @@ class PacienteController extends Controller
     {
       $paciente = Paciente::find($id);
       $user = User::find($paciente->user_id);
+      //dd($paciente);
 
       $delete_paciente = Paciente::destroy($id);
       $delete_user = User::destroy($user->id);
 
-      return response()->json(['message' => 'Paciente removido com sucesso']);
+      return redirect()->back()->with('success', 'Paciente excluído com sucesso.');
     }
 }

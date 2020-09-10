@@ -51,7 +51,13 @@
                             @else
                             <td></td>
                             @endif
-                            <td><button class="btn btn-sm btn-danger" type="button" name="button" onclick="deletePaciente({{ $paciente->id }})">Excluir</button></td>
+                            <td>
+                              <form action="{{ route('paciente.destroy', $paciente->id) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-sm btn-danger" type="submit" name="button">Excluir</button>
+                              </form>
+                            </td>
                           </tr>
                           @endforeach
                         </tbody>

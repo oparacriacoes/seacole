@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Monitoramento;
 use DB;
+use App\Events\SintomaEvolucao;
+use App\EvolucaoSintoma;
 
 class MonitoramentoController extends Controller
 {
@@ -37,6 +39,12 @@ class MonitoramentoController extends Controller
       try {
         $monitoramento = Monitoramento::create($dados);
         DB::commit();
+
+        //REGISTRA NO PRONTUÁRIO
+        if( $dados ) {
+          event(new SintomaEvolucao(new EvolucaoSintoma($dados)));
+        }
+
         return redirect()->back()->with('success', 'Dados atualizados com sucesso.');
       } catch (\Exception $e) {
         DB::rollback();
@@ -48,6 +56,12 @@ class MonitoramentoController extends Controller
       try {
         $monitoramento->update($dados);
         DB::commit();
+
+        //REGISTRA NO PRONTUÁRIO
+        if( $dados ) {
+          event(new SintomaEvolucao(new EvolucaoSintoma($dados)));
+        }
+
         return redirect()->back()->with('success', 'Dados atualizados com sucesso.');
       } catch (\Exception $e) {
         DB::rollback();

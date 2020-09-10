@@ -371,8 +371,6 @@ class PacienteController extends Controller
     try {
       $paciente = Paciente::create($dados);
       DB::commit();
-      session_start();
-      $_SESSION["paciente_id"] = $paciente->id;
       return redirect()->route('paciente/edit', $paciente->id)->with('success', 'Dados salvos com sucesso.');
     } catch (\Exception $e) {
       DB::rollback();
@@ -474,7 +472,10 @@ class PacienteController extends Controller
       $insumos_tratamento = [];
     }
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento'));
+    $prontuarios = EvolucaoSintoma::where('paciente_id', $id)->get();
+    //dd($prontuarios);
+
+    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento', 'prontuarios'));
   }
 
   public function update(Request $request, $id)

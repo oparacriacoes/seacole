@@ -8,15 +8,22 @@ class EvolucaoSintoma extends Model
 {
   protected $fillable = [
     'paciente_id',
-    'data_inicio_sintoma',
-    'horario_sintoma',
-    'sintoma_manifestado',
-    'febre_temperatura_maxima',
-    'data_medicao_temperatura',
+    'horario_monotiramento',
+    'sintomas_atuais',
+    'sintomas_outro',
     'temperatura_atual',
-    'cansaco_saturacao',
-    'cansaco_frequencia_respiratoria',
-    'pressao_arterial',
+    'frequencia_cardiaca_atual',
+    'algum_sinal',
+    'saturacao_atual',
+    'pressao_arterial_atual',
+    'equipe_medica',
+    'frequencia_respiratoria_atual',
+    'medicamento',
+    'fazendo_uso_pic',
+    'fez_escalapes',
+    'melhora_sintoma_escaldapes',
+    'fes_inalacao',
+    'melhoria_sintomas_inalacao',
   ];
 
   public function paciente()

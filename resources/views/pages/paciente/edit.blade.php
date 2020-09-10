@@ -118,7 +118,11 @@
                       <span>Insumos Oferecidos pelo Projeto</span>
                   </a>
               </li>
-
+              <li class="nav-item">
+                  <a class="nav-link" id="tab6" data-toggle="tab" href="#tab-content-6">
+                      <span>Prontuário</span>
+                  </a>
+              </li>
           </ul>
           <div class="tab-content">
               <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
@@ -1439,6 +1443,51 @@
                             </form>
                         </div>
                     </div>
+                </div>
+                <div class="tab-pane tabs-animation fade" id="tab-content-6" role="tabpanel">
+                  <div class="main-card mb-3 card">
+                    <div class="card-body">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Horário</th>
+                            <th scope="col">Sintomas</th>
+                            <th scope="col">Temperatura</th>
+                            <th scope="col">Freq. Card.</th>
+                            <th scope="col">Saturação</th>
+                            <th scope="col">Pressão Art.</th>
+                            <th scope="col">Medicamento</th>
+                            <th scope="col">PIC</th>
+                            <th scope="col">Escaldapés</th>
+                            <th scope="col">Inalação</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach($prontuarios as $prontuario)
+                          <tr>
+                            <td>{{ $prontuario->horario_monotiramento }}</td>
+                            <td>
+                              <?php
+                              $sintomas = unserialize($prontuario->sintomas_atuais);
+                              for($c=0;$c<count($sintomas);$c++){
+                                echo $sintomas[$c].' ';
+                              }
+                              ?>
+                            </td>
+                            <td>{{ $prontuario->temperatura_atual }}</td>
+                            <td>{{ $prontuario->frequencia_cardiaca_atual }}</td>
+                            <td>{{ $prontuario->saturacao_atual }}</td>
+                            <td>{{ $prontuario->pressao_arterial_atual }}</td>
+                            <td>{{ $prontuario->medicamento }}</td>
+                            <td>{{ $prontuario->fazendo_uso_pic }}</td>
+                            <td>{{ $prontuario->fez_escalapes }} ({{ $prontuario->melhora_sintoma_escaldapes }})</td>
+                            <td>{{ $prontuario->fes_inalacao }} ({{ $prontuario->melhoria_sintomas_inalacao }})</td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
           </div>
       </div>

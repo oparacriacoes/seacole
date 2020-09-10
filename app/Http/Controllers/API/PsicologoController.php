@@ -130,9 +130,17 @@ class PsicologoController extends Controller
       $psicologo = Psicologo::find($id);
       $user = User::find($psicologo->user_id);
 
-      $delete_psicologo = Psicologo::destroy($id);
-      $delete_user = User::destroy($user->id);
+      DB::beginTransaction();
+      try {
+        $delete_psicologo = Psicologo::destroy($id);
+        $delete_user = User::destroy($user->id);
+        DB::commit();
+        return redirect('admin/psicologo')->with('success', 'Psicólogo excluído com sucesso.');
+      } catch (\Exception $e) {
+        DB::rollback();
+        \Log::info($e);
+        return redirect('admin/psicologo')->with('error', 'Não foi possível realizar esta operação.');
+      }
 
-      return redirect()->back()->with('success', 'Psicólogo excluído com sucesso.');
     }
 }

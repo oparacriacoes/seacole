@@ -15,6 +15,26 @@
         </div>
       </div>
   </div>
+
+  @if(session('success'))
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-success info" role="alert">
+        {{ session('success') }}
+      </div>
+    </div>
+  </div>
+  @endif
+  @if(session('error'))
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger info" role="alert">
+        {{ session('error') }}
+      </div>
+    </div>
+  </div>
+  @endif
+
   <div class="row">
     <div class="col">
       <div class="main-card mb-3 card">
@@ -52,3 +72,13 @@
 </div>
 
 @stop
+
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$('.info').css('cursor', 'pointer');
+$('.info').click(function(){
+  $(this).fadeOut();
+})
+</script>
+@endsection

@@ -55,7 +55,13 @@
                 <td><a href="{{ route('agente/edit', $agente->id) }}">{{ $agente->user->name }}</a></td>
                 <td>{{ $agente->user->email }}</td>
                 <td>@php $data = \Carbon\Carbon::parse($agente->created_at); @endphp {{ $data->format('d/m/Y') }}</td>
-                <td><button class="btn btn-sm btn-danger" type="button" name="button" onclick="deleteAgente({{ $agente->id }})">Excluir</button></td>
+                <td>
+                  <form action="{{ route('agente.destroy', $agente->id) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-sm btn-danger" type="submit" name="button">Excluir</button>
+                  </form>
+                </td>
               </tr>
               @endforeach
             </tbody>

@@ -84,28 +84,37 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $medico = Medico::find($id);
-      $user = $medico->user;
-      $user->name = $request->input('data')['name'];
-      $user->email = $request->input('data')['email'];
-      if( $request->input('data')['password_confirm'] !== null ){
-        $user->password = Hash::make($request->input('data')['password_confirm']);
-      }
-      $user->role = 'medico';
+      DB::beginTransaction();
       try {
+        $medico = Medico::find($id);
+        $user = $medico->user;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if( $request->password !== null ){
+          $user->password = Hash::make($request->password_confirm);
+        }
+        $user->role = 'medico';
         $user->save();
-      } catch(\Exception $exception) {
-        return response()->json(['message', $exception->getMessage()]);
+        DB::commit();
+      } catch(\Exception $e) {
+        DB::rollback();
+        \Log::info($e);
+        return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
       }
 
       if($user){
-        $medico->user_id = $user->id;
-        $medico->fone_celular_1 = $request->input('data')['fone_celular_1'];
-        $medico->fone_celular_2 = $request->input('data')['fone_celular_2'];
+        DB::beginTransaction();
         try {
+          $medico->user_id = $user->id;
+          $medico->fone_celular_1 = $request->input('data')['fone_celular_1'];
+          $medico->fone_celular_2 = $request->input('data')['fone_celular_2'];
           $medico->save();
-        } catch(\Exception $exception) {
-          return response()->json(['message' => $exception->getMessage()]);
+          DB::commit();
+          return redirect()->route('medico')->with('success', 'Dados atualizados com sucesso.');
+        } catch(\Exception $e) {
+          DB::rollback();
+          \Log::info($e);
+          return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
         }
     }
 
@@ -126,6 +135,6 @@ class MedicoController extends Controller
       $delete_medico = Medico::destroy($id);
       $delete_user = User::destroy($user->id);
 
-      return response()->json(['message' => 'Médico excluído com sucesso.']);
+      return redirect()->back()->with('success', 'Médico excluído com sucesso.');
     }
 }

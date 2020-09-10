@@ -85,32 +85,41 @@ class AgenteController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $agente = Agente::find($id);
-      $user = User::find($agente->user->id);
-      $user->name = $request->input('data')['name'];
-      $user->email = $request->input('data')['email'];
-      if( $request->input('data')['password_confirm'] !== null ){
-        $user->password = Hash::make($request->input('data')['password_confirm']);
-      }
-      $user->role = 'agente';
+      //dd($request->all());
+      DB::beginTransaction();
       try {
+        $agente = Agente::find($id);
+        $user = User::find($agente->user->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if( $request->password_confirm !== null ){
+          $user->password = Hash::make($request->password_confirm);
+        }
+        $user->role = 'agente';
         $user->save();
-      } catch(\Exception $exception) {
-        return response()->json(['message' => $exception->getMessage()]);
+        DB::commit();
+      } catch(\Exception $e) {
+        DB::rollback();
+        \Log::info($e);
+        return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
       }
 
       if($user){
-        $agente->user_id = $user->id;
-        $agente->fone_celular_1 = $request->input('data')['fone_celular_1'];
-        $agente->fone_celular_2 = $request->input('data')['fone_celular_2'];
+        DB::beginTransaction();
         try {
+          $agente->user_id = $user->id;
+          $agente->fone_celular_1 = $request->input('data')['fone_celular_1'];
+          $agente->fone_celular_2 = $request->input('data')['fone_celular_2'];
           $agente->save();
-        } catch(\Exception $exception) {
-          return response()->json(['message' => $exception->getMessage()]);
+          DB::commit();
+          return redirect()->route('')->with('success', 'Dados alterados com sucesso.');
+        } catch(\Exception $e) {
+          DB::rollback();
+          \Log::info($e);
+          return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
         }
       }
 
-      return response()->json(['message' => 'Cadastro atualizado com sucesso.']);
     }
 
     /**
@@ -127,6 +136,6 @@ class AgenteController extends Controller
       $delete_agente = Agente::destroy($id);
       $delete_user = User::destroy($user->id);
 
-      return response()->json(['message' => 'Agente excluído com sucesso.']);
+      return redirect()->back()->with('success', 'Agente removido com sucesso.');
     }
 }

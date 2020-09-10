@@ -29,7 +29,6 @@ class PsicologoController extends Controller
      */
     public function store(Request $request)
     {
-      //dd($request->all());
       DB::beginTransaction();
       try {
         $user = new User;
@@ -84,32 +83,40 @@ class PsicologoController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $psicologo = Psicologo::find($id);
-      $user = $psicologo->user;
-      $user->name = $request->input('data')['name'];
-      $user->email = $request->input('data')['email'];
-      if( $request->input('data')['password_confirm'] !== null ){
-        $user->password = Hash::make($request->input('data')['password_confirm']);
-      }
-      $user->role = 'psicologo';
+      //dd($request->all());
+      DB::beginTransaction();
       try {
+        $psicologo = Psicologo::find($id);
+        $user = $psicologo->user;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if( $request->password_confirm !== null ){
+          $user->password = Hash::make($request->password_confirm);
+        }
+        $user->role = 'psicologo';
         $user->save();
-      } catch(\Exception $exception) {
-        return response()->json(['message', $exception->getMessage()]);
+        DB::commit();
+      } catch(\Exception $e) {
+        DB::rollback();
+        return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
       }
 
       if($user){
-        $psicologo->user_id = $user->id;
-        $psicologo->fone_celular_1 = $request->input('data')['fone_celular_1'];
-        $psicologo->fone_celular_2 = $request->input('data')['fone_celular_2'];
+        DB::beginTransaction();
         try {
+          $psicologo->user_id = $user->id;
+          $psicologo->fone_celular_1 = $request->fone_celular_1;
+          $psicologo->fone_celular_2 = $request->fone_celular_2;
           $psicologo->save();
-        } catch(\Exception $exception) {
-          return response()->json(['message' => $exception->getMessage()]);
+          DB::commit();
+          return redirect()->route('psicologo')->with('success', 'Dados atualizados com sucesso.');
+        } catch(\Exception $e) {
+          DB::rollback();
+          \Log::info($e);
+          return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
         }
     }
 
-    return response()->json(['message' => 'Cadastro atualizado com sucesso.']);
   }
 
     /**
@@ -126,6 +133,6 @@ class PsicologoController extends Controller
       $delete_psicologo = Psicologo::destroy($id);
       $delete_user = User::destroy($user->id);
 
-      return response()->json(['message' => 'Psicólogo excluído com sucesso.']);
+      return redirect()->back()->with('success', 'Psicólogo excluído com sucesso.');
     }
 }

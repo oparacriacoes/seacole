@@ -481,7 +481,7 @@ class PacienteController extends Controller
   {
     //dd($request->all());
     $paciente = Paciente::find($id);
-    //dd($paciente);
+
     $dados = [
       'user_id' => $paciente->user_id,
       'agente_id' => $request->agente,
@@ -504,7 +504,7 @@ class PacienteController extends Controller
       'numero_pessoas_residencia' => $request->numero_pessoas_residencia,
       'responsavel_residencia' => $request->responsavel_residencia,
       'renda_residencia' => $request->renda_residencia,
-      'doenca_cronica' => serialize($request->doenca_cronica),
+      'doenca_cronica' => $request->doenca_cronica ? serialize($request->doenca_cronica) : NULL,
       //'outras_doencas' => '',
       'remedios_consumidos' => $request->remedios_consumidos,
       'acompanhamento_medico' => $request->acompanhamento_medico,
@@ -512,7 +512,7 @@ class PacienteController extends Controller
       'alimentacao_disponivel' => $request->alimentacao_disponivel,
       'auxilio_terceiros' => $request->auxilio_terceiros,
       'tarefas_autocuidado' => $request->tarefas_autocuidado,
-      'teste_utilizado' => serialize($request->teste_utilizado),
+      'teste_utilizado' => $request->teste_utilizado ? serialize($request->teste_utilizado) : NULL,
       'resultado_teste' => $request->resultado_teste,
       'data_teste_confirmatorio' => $request->data_teste_confirmatorio,
       //'caso_confirmado' => '',
@@ -538,12 +538,12 @@ class PacienteController extends Controller
       'trimestre_gestacao' => $request->trimestre_gestacao,
       'motivo_risco_gravidez' => $request->motivo_risco_gravidez,
       'data_ultima_consulta' => $request->data_ultima_consulta,
-      'sistema_saude' => serialize($request->sistema_saude),
+      'sistema_saude' => $request->sistema_saude ? serialize($request->sistema_saude) : NULL,
       'acompanhamento_ubs' => $request->acompanhamento_ubs,
       //'valor_familia' => '',
       'outras_informacao' => $request->outras_informacao,
     ];
-    //dd($dados);
+
     DB::beginTransaction();
     try {
       DB::commit();

@@ -986,7 +986,7 @@
 
                                         <div class="form-check form-check-inline">
                                             <input name="sintomas_outro" class="form-control" type="text" placeholder="Outro (digite)" value="@if($monitoramento) {{ $monitoramento->sintomas_outro }} @endif">
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

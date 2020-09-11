@@ -1141,7 +1141,7 @@
                                             <label for="precisou_servico">A pessoa precisou ir a algum serviço de saúde?</label><br />
                                             <div class="form-check form-check-inline">
                                                 <input name="precisou_servico[]" class="form-check-input" id="ubs" type="checkbox" value="UBS (Unidade Básica de Saúde - posto de saúde)" <?php if( $internacao_servico && in_array('UBS (Unidade Básica de Saúde - posto de saúde)', $internacao_servico) ){ echo 'checked=checked'; } ?> >
-                                                <label class="form-check-label" for="tosse">UBS (Unidade Básica de Saúde - posto de saúde)</label>
+                                                <label class="form-check-label" for="ubs">UBS (Unidade Básica de Saúde - posto de saúde)</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input name="precisou_servico[]" class="form-check-input" id="upa" type="checkbox" value="UPA (Unidade de Pronto Atendimento)" <?php if( $internacao_servico && in_array('UPA (Unidade de Pronto Atendimento)', $internacao_servico) ){ echo 'checked=checked'; } ?> >
@@ -1395,19 +1395,19 @@
                                         <div class="form-group">
                                             <label for="precisa_tipo_ajuda"><strong>Precisa de algum tipo de ajuda?</strong></label><br />
                                             <div class="form-check form-check-inline">
-                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_remedios_continuo" type="checkbox" value="Comprar remédios de uso contínuo" <?php if( $insumos &&  in_array('Comprar remédios de uso contínuo', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
+                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_remedios_continuo" type="checkbox" value="Comprar remédios de uso contínuo" <?php if( $insumos_ajuda &&  in_array('Comprar remédios de uso contínuo', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="comprar_remedios_continuo">Comprar remédios de uso contínuo</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_remedios" type="checkbox" value="Comprar remédios para o tratamento do quadro atual" <?php if( $insumos &&  in_array('Comprar remédios para o tratamento do quadro atual', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
+                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_remedios" type="checkbox" value="Comprar remédios para o tratamento do quadro atual" <?php if( $insumos_ajuda &&  in_array('Comprar remédios para o tratamento do quadro atual', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="comprar_remedios">Comprar remédios para o tratamento do quadro atual</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_alimento" type="checkbox" value="Comprar alimento ou outro produtos de necessidade básica" <?php if( $insumos &&  in_array('Comprar alimento ou outro produtos de necessidade básica', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
+                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_alimento" type="checkbox" value="Comprar alimento ou outro produtos de necessidade básica" <?php if( $insumos_ajuda &&  in_array('Comprar alimento ou outro produtos de necessidade básica', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="comprar_alimento">Comprar alimento ou outro produtos de necessidade básica</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" type="checkbox" value="Outros" <?php if( $insumos &&  in_array('Outros', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
+                                                <input name="precisa_tipo_ajuda[]" class="form-check-input" type="checkbox" value="Outros" <?php if( $insumos_ajuda &&  in_array('Outros', $insumos_ajuda) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="Outros">Outros</label>
                                             </div>
                                         </div>
@@ -1425,11 +1425,11 @@
                                         <div class="form-group">
                                             <label for="tratamento_financiado"><strong>Tratamento financiado</strong></label><br />
                                             <div class="form-check form-check-inline">
-                                                <input name="tratamento_financiado[]" class="form-check-input" id="alopatico" type="checkbox" value="Alopático (medicamentos convencionais)" <?php if( $insumos &&  in_array('Alopático (medicamentos convencionais)', $insumos_tratamento) ){ echo 'checked=checked'; } ?> >
+                                                <input name="tratamento_financiado[]" class="form-check-input" id="alopatico" type="checkbox" value="Alopático (medicamentos convencionais)" <?php if( $insumos_tratamento &&  in_array('Alopático (medicamentos convencionais)', $insumos_tratamento) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="alopatico">Alopático (medicamentos convencionais)</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="tratamento_financiado[]" class="form-check-input" id="pics" type="checkbox" value="PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)" <?php if( $insumos &&  in_array('PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)', $insumos_tratamento) ){ echo 'checked=checked'; } ?> >
+                                                <input name="tratamento_financiado[]" class="form-check-input" id="pics" type="checkbox" value="PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)" <?php if( $insumos_tratamento &&  in_array('PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)', $insumos_tratamento) ){ echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="febre">PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)</label>
                                             </div>
                                         </div>

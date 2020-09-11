@@ -469,11 +469,10 @@ class PacienteController extends Controller
       $insumos_tratamento = unserialize($insumos->tratamento_financiado);
     } else {
       $insumos_ajuda = [];
-      $insumos_tratamento = [];
+      $insumos_tratamento = array();
     }
 
     $prontuarios = EvolucaoSintoma::where('paciente_id', $id)->get();
-    //dd($prontuarios);
 
     return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento', 'prontuarios'));
   }

@@ -153,15 +153,15 @@
                                             </label>
                                             <select type="select" id="situacao" aria-describedby="situacaoHelp" name="situacao" class="custom-select">
                                                 <option value="">Selecione</option>
-                                                <option value="Caso ativo GRAVE" @if(old('situacao') === 'Caso ativo GRAVE'){{ 'selected' }} @endif>Caso ativo GRAVE</option>
-                                                <option value="Caso ativo LEVE" @if(old('situacao') === 'Caso ativo LEVE'){{ 'selected' }} @endif>Caso ativo LEVE</option>
-                                                <option value="Contato com caso confirmado - ativo" @if(old('situacao') === 'Contato com caso confirmado - ativo'){{ 'selected' }} @endif>Contato com caso confirmado - ativo</option>
-                                                <option value="Outras situações (sem relação com COVID-19) - ativos" @if(old('situacao') === 'Outras situações (sem relação com COVID-19) - ativos'){{ 'selected' }} @endif>Outras situações (sem relação com COVID-19) - ativos</option>
-                                                <option value="Caso finalizado GRAVE" @if(old('situacao') === 'Caso finalizado GRAVE'){{ 'selected' }} @endif>Caso finalizado GRAVE</option>
-                                                <option value="Caso finalizado LEVE" @if(old('situacao') === 'Caso finalizado LEVE'){{ 'selected' }} @endif>Caso finalizado LEVE</option>
-                                                <option value="Contato com caso confirmado - finalizado" @if(old('situacao') === 'Contato com caso confirmado - finalizado'){{ 'selected' }} @endif>Contato com caso confirmado - finalizado</option>
-                                                <option value="Outras situações (sem relação com COVID-19) - finalizado" @if(old('situacao') === 'Outras situações (sem relação com COVID-19) - finalizado'){{ 'selected' }} @endif>Outras situações (sem relação com COVID-19) - finalizado</option>
-                                                <option value="Monitoramento encerrado - segue apenas com psicólogos" @if(old('situacao') === 'Monitoramento encerrado - segue apenas com psicólogos'){{ 'selected' }} @endif>Monitoramento encerrado - segue apenas com psicólogos</option>
+                                                <option value="1" @if(old('situacao') === '1'){{ 'selected' }} @endif>Caso ativo GRAVE</option>
+                                                <option value="2" @if(old('situacao') === '2'){{ 'selected' }} @endif>Caso ativo LEVE</option>
+                                                <option value="3" @if(old('situacao') === '3'){{ 'selected' }} @endif>Contato com caso confirmado - ativo</option>
+                                                <option value="4" @if(old('situacao') === '4'){{ 'selected' }} @endif>Outras situações (sem relação com COVID-19) - ativos</option>
+                                                <option value="5" @if(old('situacao') === '5'){{ 'selected' }} @endif>Caso finalizado GRAVE</option>
+                                                <option value="6" @if(old('situacao') === '6'){{ 'selected' }} @endif>Caso finalizado LEVE</option>
+                                                <option value="7" @if(old('situacao') === '7'){{ 'selected' }} @endif>Contato com caso confirmado - finalizado</option>
+                                                <option value="8" @if(old('situacao') === '8'){{ 'selected' }} @endif>Outras situações (sem relação com COVID-19) - finalizado</option>
+                                                <option value="9" @if(old('situacao') === '9'){{ 'selected' }} @endif>Monitoramento encerrado - segue apenas com psicólogos</option>
                                             </select>
                                         </div>
                                     </div>

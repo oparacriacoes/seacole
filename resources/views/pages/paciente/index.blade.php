@@ -34,7 +34,51 @@
                         <tbody>
                           @foreach($pacientes as $paciente)
                           <tr>
-                            <td>{{ $paciente->situacao }}</td>
+                            <td>
+                              <?php
+                              switch ($paciente->situacao) {
+                                case '1':
+                                  echo 'Caso ativo GRAVE';
+                                  break;
+
+                                case '2':
+                                  echo 'Caso ativo LEVE';
+                                  break;
+
+                                case '3':
+                                  echo 'Contato com caso confirmado - ativo';
+                                  break;
+
+                                case '4':
+                                  echo 'Outras situações (sem relação com COVID-19) - ativos';
+                                  break;
+
+                                case '5':
+                                  echo 'Caso finalizado GRAVE';
+                                  break;
+
+                                case '6':
+                                  echo 'Caso finalizado LEVE';
+                                  break;
+
+                                case '7':
+                                  echo 'Contato com caso confirmado - finalizado';
+                                  break;
+
+                                case '8':
+                                  echo 'Outras situações (sem relação com COVID-19) - finalizado';
+                                  break;
+
+                                case '9':
+                                  echo 'Monitoramento encerrado - segue apenas com psicólogos';
+                                  break;
+
+                                default:
+                                  echo 'Não Informado';
+                                  break;
+                              }
+                              ?>
+                            </td>
                             <td><a href="{{ route('paciente/edit', $paciente->id) }}">{{ $paciente->user->name }}</a></td>
                             @if($paciente->agente)
                             <td><a href="{{ route('agente/edit', $paciente->agente->id) }}">{{ $paciente->agente->user->name }}</a></td>

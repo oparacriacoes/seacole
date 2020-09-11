@@ -158,15 +158,15 @@
                                             </label>
                                             <select type="select" id="situacao" aria-describedby="situacaoHelp" name="situacao" class="custom-select">
                                                 <option value="">Selecione</option>
-                                                <option value="Caso ativo GRAVE" <?php if( $paciente->situacao === 'Caso ativo GRAVE' ){ echo 'selected=selected'; } ?> >Caso ativo GRAVE</option>
-                                                <option value="Caso ativo LEVE" <?php if( $paciente->situacao === 'Caso ativo LEVE' ){ echo 'selected=selected'; } ?> >Caso ativo LEVE</option>
-                                                <option value="Contato com caso confirmado - ativo" <?php if( $paciente->situacao === 'Contato com caso confirmado - ativo' ){ echo 'selected=selected'; } ?> >Contato com caso confirmado - ativo</option>
-                                                <option value="Outras situações (sem relação com COVID-19) - ativos" <?php if( $paciente->situacao === 'Outras situações (sem relação com COVID-19) - ativos' ){ echo 'selected=selected'; } ?> >Outras situações (sem relação com COVID-19) - ativos</option>
-                                                <option value="Caso finalizado GRAVE" <?php if( $paciente->situacao === 'Caso finalizado GRAVE' ){ echo 'selected=selected'; } ?> >Caso finalizado GRAVE</option>
-                                                <option value="Caso finalizado LEVE" <?php if( $paciente->situacao === 'Caso finalizado LEVE' ){ echo 'selected=selected'; } ?> >Caso finalizado LEVE</option>
-                                                <option value="Contato com caso confirmado - finalizado" <?php if( $paciente->situacao === 'Contato com caso confirmado - finalizado' ){ echo 'selected=selected'; } ?> >Contato com caso confirmado - finalizado</option>
-                                                <option value="Outras situações (sem relação com COVID-19) - finalizado" <?php if( $paciente->situacao === 'Outras situações (sem relação com COVID-19) - finalizado' ){ echo 'selected=selected'; } ?> >Outras situações (sem relação com COVID-19) - finalizado</option>
-                                                <option value="Monitoramento encerrado - segue apenas com psicólogos" <?php if( $paciente->situacao === 'Monitoramento encerrado - segue apenas com psicólogos' ){ echo 'selected=selected'; } ?> >Monitoramento encerrado - segue apenas com psicólogos</option>
+                                                <option value="1" <?php if( $paciente->situacao === '1' ){ echo 'selected=selected'; } ?> >Caso ativo GRAVE</option>
+                                                <option value="2" <?php if( $paciente->situacao === '2' ){ echo 'selected=selected'; } ?> >Caso ativo LEVE</option>
+                                                <option value="3" <?php if( $paciente->situacao === '3' ){ echo 'selected=selected'; } ?> >Contato com caso confirmado - ativo</option>
+                                                <option value="4" <?php if( $paciente->situacao === '4' ){ echo 'selected=selected'; } ?> >Outras situações (sem relação com COVID-19) - ativos</option>
+                                                <option value="5" <?php if( $paciente->situacao === '5' ){ echo 'selected=selected'; } ?> >Caso finalizado GRAVE</option>
+                                                <option value="6" <?php if( $paciente->situacao === '6' ){ echo 'selected=selected'; } ?> >Caso finalizado LEVE</option>
+                                                <option value="7" <?php if( $paciente->situacao === '7' ){ echo 'selected=selected'; } ?> >Contato com caso confirmado - finalizado</option>
+                                                <option value="8" <?php if( $paciente->situacao === '8' ){ echo 'selected=selected'; } ?> >Outras situações (sem relação com COVID-19) - finalizado</option>
+                                                <option value="9" <?php if( $paciente->situacao === '9' ){ echo 'selected=selected'; } ?> >Monitoramento encerrado - segue apenas com psicólogos</option>
                                             </select>
                                         </div>
                                     </div>
@@ -1160,7 +1160,7 @@
                                                 <label class="form-check-label" for="hospital_privado">Hospital privado</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="precisou_servico_outro" class="form-control" type="text" placeholder="outro (qual?)" value="@if($internacao->precisou_servico_outro) {{ $internacao->precisou_servico_outro }} @endif">
+                                                <input name="precisou_servico_outro" class="form-control" type="text" placeholder="outro (qual?)" value="@if($internacao) {{ $internacao->precisou_servico_outro }} @endif">
                                             </div>
                                         </div>
                                     </div>

@@ -34,13 +34,13 @@ class PacienteController extends Controller
   public function index()
   {
     if( Auth::user()->role === 'agente' ){
-      $pacientes = Auth::user()->agente->pacientes;
+      $pacientes = Auth::user()->agente->pacientes->sortBy('situacao');
     } elseif( Auth::user()->role === 'medico' ) {
-      $pacientes = Paciente::get();
+      $pacientes = Paciente::orderBy('situacao')->get();
     } elseif( Auth::user()->role === 'psicologo' ) {
-      $pacientes = Auth::user()->psicologo->pacientes;
+      $pacientes = Auth::user()->psicologo->pacientes->sortBy('situacao');
     } else {
-      $pacientes = Paciente::get();
+      $pacientes = Paciente::orderBy('situacao')->get();
     }
 
     return view('pages.paciente.index')->with(compact('pacientes'));

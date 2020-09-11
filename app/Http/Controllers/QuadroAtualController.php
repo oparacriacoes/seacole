@@ -20,7 +20,7 @@ class QuadroAtualController extends Controller
     $dados = [
       'paciente_id' => $request->paciente_id,
       'primeira_sintoma' => $request->primeira_sintoma,
-      'sintomas_manifestados' => serialize($request->sintomas_manifestados),
+      'sintomas_manifestados' => $request->sintomas_manifestados ? serialize($request->sintomas_manifestados) : NULL,
       'temperatura_max' => $request->temperatura_max,
       'saturacao_baixa' => $request->saturacao_baixa,
       'frequencia_max' => $request->frequencia_max,

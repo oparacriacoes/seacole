@@ -10,7 +10,6 @@ class ServicoInternacaoController extends Controller
 {
   public function store(Request $request, $id)
   {
-    //dd($request->all());
     $internacao = ServicoInternacao::where('paciente_id', $id)->first();
 
     $dados = [

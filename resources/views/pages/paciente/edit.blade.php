@@ -826,67 +826,67 @@
                                         <div class="form-group">
                                             <label for="sintomas_manifestados">Sintomas manifestados</label><br />
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="tosse" type="checkbox" value="tosse" <?php if( in_array('tosse', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="tosse" type="checkbox" value="tosse" <?php if( $sintomas_quadro && in_array('tosse', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="tosse">Tosse</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="falta_de_ar" type="checkbox" value="falta de ar" <?php if( in_array('falta de ar', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="falta_de_ar" type="checkbox" value="falta de ar" <?php if( $sintomas_quadro && in_array('falta de ar', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="febre">Falta de ar</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="febre" type="checkbox" value="febre" <?php if( in_array('febre', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="febre" type="checkbox" value="febre" <?php if( $sintomas_quadro && in_array('febre', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="febre">Febre</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="dor de cabeça" <?php if( in_array('dor de cabeça', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="dor de cabeça" <?php if( $sintomas_quadro && in_array('dor de cabeça', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="inlineCheckbox3">Dor de Cabeça</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="perda de olfato" <?php if( in_array('perda de olfato', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="perda de olfato" <?php if( $sintomas_quadro && in_array('perda de olfato', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="inlineCheckbox3">Perda do olfato</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="perda do paladar" <?php if( in_array('perda do paladar', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="perda do paladar" <?php if( $sintomas_quadro && in_array('perda do paladar', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="inlineCheckbox3">Perda do paladar</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="enjoo" <?php if( in_array('enjoo', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="enjoo" <?php if( $sintomas_quadro && in_array('enjoo', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="inlineCheckbox3">Enjoo ou vômitos</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="diarreia" type="checkbox" value="diarreia" <?php if( in_array('diarreia', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="diarreia" type="checkbox" value="diarreia" <?php if( $sintomas_quadro && in_array('diarreia', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="diarreia">Diarréia</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="aumento_da_pressao" type="checkbox" value="aumento da pressão" <?php if( in_array('aumento da pressão', $sintomas_quadro ) ) { echo 'checked=checked'; } ?>>
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="aumento_da_pressao" type="checkbox" value="aumento da pressão" <?php if( $sintomas_quadro && in_array('aumento da pressão', $sintomas_quadro ) ) { echo 'checked=checked'; } ?>>
                                                 <label class="form-check-label" for="aumento_da_pressao">Aumento da pressão</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="queda_brusca_de_pressao" type="checkbox" value="queda brusca de Pressão" <?php if( in_array('queda brusca de Pressão', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="queda_brusca_de_pressao" type="checkbox" value="queda brusca de Pressão" <?php if( $sintomas_quadro && in_array('queda brusca de Pressão', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="sonolencia">Queda brusca de Pressão</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="pressao_baixa" type="checkbox" value="pressão baixa" <?php if( in_array('pressão baixa', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="pressao_baixa" type="checkbox" value="pressão baixa" <?php if( $sintomas_quadro && in_array('pressão baixa', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="pressao_baixa">Dor torácica (dor no peito) </label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="sonolência_cansaco_importantes" type="checkbox" value="sonolência ou cansaço importantes" <?php if( in_array('sonolência ou cansaço importantes', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="sonolência_cansaco_importantes" type="checkbox" value="sonolência ou cansaço importantes" <?php if( $sintomas_quadro && in_array('sonolência ou cansaço importantes', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="sonolência_cansaco_importantes">Sonolência ou cansaço importantes</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="confusao_mental" type="checkbox" value="confusão mental" <?php if( in_array('confusão mental', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="confusao_mental" type="checkbox" value="confusão mental" <?php if( $sintomas_quadro && in_array('confusão mental', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="confusao_mental">Confusão mental</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="desmaio" type="checkbox" value="desmaio" <?php if( in_array('desmaio', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="desmaio" type="checkbox" value="desmaio" <?php if( $sintomas_quadro && in_array('desmaio', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="desmaio">Desmaio</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="convulsao" type="checkbox" value="convulsao" <?php if( in_array('convulsao', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="convulsao" type="checkbox" value="convulsao" <?php if( $sintomas_quadro && in_array('convulsao', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="convulsao">Convulsão</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="sintomas_manifestados[]" class="form-check-input" id="outros" type="checkbox" value="outros" <?php if( in_array('outros', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
+                                                <input name="sintomas_manifestados[]" class="form-check-input" id="outros" type="checkbox" value="outros" <?php if( $sintomas_quadro && in_array('outros', $sintomas_quadro ) ) { echo 'checked=checked'; } ?> >
                                                 <label class="form-check-label" for="outros">Outros</label>
                                             </div>
                                         </div>

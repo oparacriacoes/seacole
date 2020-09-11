@@ -1447,45 +1447,47 @@
                 <div class="tab-pane tabs-animation fade" id="tab-content-6" role="tabpanel">
                   <div class="main-card mb-3 card">
                     <div class="card-body">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th scope="col">Horário</th>
-                            <th scope="col">Sintomas</th>
-                            <th scope="col">Temperatura</th>
-                            <th scope="col">Freq. Card.</th>
-                            <th scope="col">Saturação</th>
-                            <th scope="col">Pressão Art.</th>
-                            <th scope="col">Medicamento</th>
-                            <th scope="col">PIC</th>
-                            <th scope="col">Escaldapés</th>
-                            <th scope="col">Inalação</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          @foreach($prontuarios as $prontuario)
-                          <tr>
-                            <td>{{ $prontuario->horario_monotiramento }}</td>
-                            <td>
-                              <?php
-                              $sintomas = unserialize($prontuario->sintomas_atuais);
-                              for($c=0;$c<count($sintomas);$c++){
-                                echo $sintomas[$c].' ';
-                              }
-                              ?>
-                            </td>
-                            <td>{{ $prontuario->temperatura_atual }}</td>
-                            <td>{{ $prontuario->frequencia_cardiaca_atual }}</td>
-                            <td>{{ $prontuario->saturacao_atual }}</td>
-                            <td>{{ $prontuario->pressao_arterial_atual }}</td>
-                            <td>{{ $prontuario->medicamento }}</td>
-                            <td>{{ $prontuario->fazendo_uso_pic }}</td>
-                            <td>{{ $prontuario->fez_escalapes }} ({{ $prontuario->melhora_sintoma_escaldapes }})</td>
-                            <td>{{ $prontuario->fes_inalacao }} ({{ $prontuario->melhoria_sintomas_inalacao }})</td>
-                          </tr>
-                          @endforeach
-                        </tbody>
-                      </table>
+
+                      <div class="row">
+                        @foreach($prontuarios as $prontuario)
+                        <div class="col-4 col-md-4">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Data: {{ $prontuario->created_at->format('d/m/Y') }} - Hora: {{ $prontuario->horario_monotiramento }}</h5>
+                              <p class="card-text">
+                                <strong>Sintomas: </strong>
+                                <?php
+                                $sintomas = unserialize($prontuario->sintomas_atuais);
+                                for($c=0;$c<count($sintomas);$c++){
+                                  echo ucfirst($sintomas[$c]).', ';
+                                }
+                                ?>
+                              </p>
+                              <p class="card-text"><strong>Outros Sintomas: </strong>{{ ucfirst($prontuario->sintomas_outro) }}</p>
+                              <p class="card-text"><strong>Temperatura: </strong>{{ $prontuario->temperatura_atual }}</p>
+                              <p class="card-text"><strong>Frequência Cardíaca: </strong>{{ $prontuario->frequencia_cardiaca_atual }}</p>
+                              <p class="card-text"><strong>Frequência Respiratória: </strong>{{ $prontuario->frequencia_respiratoria_atual }}</p>
+                              <p class="card-text"><strong>Saturação: </strong>{{ $prontuario->saturacao_atual }}</p>
+                              <p class="card-text"><strong>Pressão Arterial: </strong>{{ $prontuario->pressao_arterial_atual }}</p>
+                              <p class="card-text"><strong>Medicamento Prescrito? </strong>{{ ucfirst($prontuario->equipe_medica) }}</p>
+                              @if($prontuario->equipe_medica === 'sim')<p class="card-text"><strong>Qual? </strong>{{ ucfirst($prontuario->medicamento) }}</p>@endif
+                              <p class="card-text"><strong>Sinal de Gravidade: </strong>{{ ucfirst($prontuario->algum_sinal) }}</p>
+                              <p class="card-text"><strong>PIC: </strong>{{ ucfirst($prontuario->fazendo_uso_pic) }}</p>
+                              <p class="card-text"><strong>Escaldapés: </strong>{{ ucfirst($prontuario->fez_escalapes) }}</p>
+                              <p class="card-text"><strong>Sentiu Melhoras com Escaldapés: </strong>{{ ucfirst($prontuario->melhora_sintoma_escaldapes) }}</p>
+                              <p class="card-text"><strong>Inalação/Vaporização: </strong>{{ ucfirst($prontuario->fes_inalacao) }}</p>
+                              <p class="card-text"><strong>Sentiu Melhoras com Inalação/Vaporização: </strong>{{ ucfirst($prontuario->melhoria_sintomas_inalacao) }}</p>
+                            </div>
+                          </div>
+                        </div>
+                        @endforeach
+                        @if($prontuarios->isEmpty())
+                        <div class="col-12 col-md-12">
+                          Sem dados no prontuário.
+                        </div>
+                        @endif
+                      </div>
+
                     </div>
                   </div>
                 </div>

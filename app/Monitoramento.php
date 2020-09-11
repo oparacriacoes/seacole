@@ -8,6 +8,10 @@ class Monitoramento extends Model
 {
   protected $table = 'monitoramentos';
 
+  protected $dates = [
+    'created_at',
+  ];
+
   protected $fillable = [
     'paciente_id',
     'horario_monotiramento',

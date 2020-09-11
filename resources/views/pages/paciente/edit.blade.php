@@ -1160,8 +1160,8 @@
                                                 <label class="form-check-label" for="hospital_privado">Hospital privado</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="precisou_servico_outro" class="form-control" type="text" placeholder="outro (qual?)" value="@if($internacao) {{ $internacao->precisou_servico_outro }} @endif" >
-                                                </div>
+                                                <input name="precisou_servico_outro" class="form-control" type="text" placeholder="outro (qual?)" value="@if($internacao->precisou_servico_outro) {{ $internacao->precisou_servico_outro }} @endif">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">

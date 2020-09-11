@@ -10,21 +10,22 @@ class ServicoInternacaoController extends Controller
 {
   public function store(Request $request, $id)
   {
+    //dd($request->all());
     $internacao = ServicoInternacao::where('paciente_id', $id)->first();
 
     $dados = [
       'paciente_id' => $id,
-      'precisou_servico' => serialize($request->precisou_servico),
+      'precisou_servico' => $request->precisou_servico ? serialize($request->precisou_servico) : NULL,
       'precisou_servico_outro' => $request->precisou_servico_outro,
       'quant_ida_servico' => $request->quant_ida_servico,
-      'recebeu_med_covid' => serialize($request->recebeu_med_covid),
-      'recebeu_med_covid_outro' => $request->recebeu_med_covid_outro,
+      'recebeu_med_covid' => $request->recebeu_med_covid ? serialize($request->recebeu_med_covid) : NULL,
+      //'recebeu_med_covid_outro' => $request->recebeu_med_covid_outro,
       'nome_medicamento' => $request->nome_medicamento,
-      'teve_algum_problema' => serialize($request->teve_algum_problema),
+      'teve_algum_problema' => $request->teve_algum_problema ? serialize($request->teve_algum_problema) : NULL,
       'descreva_problema' => $request->descreva_problema,
       'precisou_internacao' => $request->precisou_internacao,
       'precisou_ambulancia' => $request->precisou_ambulancia,
-      'local_internacao' => serialize($request->local_internacao),
+      'local_internacao' => $request->local_internacao ? serialize($request->local_internacao) : NULL,
       'nome_hospital' => $request->nome_hospital,
       'tempo_internacao' => $request->tempo_internacao,
     ];

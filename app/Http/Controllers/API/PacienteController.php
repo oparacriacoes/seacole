@@ -584,9 +584,10 @@ class PacienteController extends Controller
     {
       $paciente = Paciente::find($id);
       $user = User::find($paciente->user_id);
-      //dd($paciente);
+      $sintoma = Sintoma::where('paciente_id', $id)->first();
 
-      $delete_paciente = Paciente::destroy($id);
+      $delete_sintoma = Sintoma::destroy($sintoma->id);
+      $delete_paciente = Paciente::destroy($paciente->id);
       $delete_user = User::destroy($user->id);
 
       return redirect()->back()->with('success', 'Paciente excluído com sucesso.');

@@ -1153,11 +1153,11 @@
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input name="precisou_servico[]" class="form-check-input" id="hospital_publico" type="checkbox" value="Hospital público" <?php if( $internacao_servico && in_array('Hospital público', $internacao_servico) ){ echo 'checked=checked'; } ?> >
-                                                <label class="form-check-label" for="inlineCheckbox3">Hospital público</label>
+                                                <label class="form-check-label" for="hospital_publico">Hospital público</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input name="precisou_servico[]" class="form-check-input" id="hospital_privado" type="checkbox" value="hospital privado" <?php if( $internacao_servico && in_array('hospital privado', $internacao_servico) ){ echo 'checked=checked'; } ?> >
-                                                <label class="form-check-label" for="inlineCheckbox3">Hospital privado</label>
+                                                <label class="form-check-label" for="hospital_privado">Hospital privado</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input name="precisou_servico_outro" class="form-control" type="text" placeholder="outro (qual?)" value="@if($internacao) {{ $internacao->precisou_servico_outro }} @endif" >
@@ -1244,23 +1244,23 @@
                                             <label for="teve_algum_problema"><strong>A pessoa teve algum problema com serviços de referência?</strong></label><br />
                                             <div class="form-check form-check-inline">
                                                 <input name="teve_algum_problema[]" class="form-check-input" id="ubs2" type="checkbox" value="UBS (Unidade Básica de Saúde - posto de saúde)" <?php if( $internacao_problema && in_array('UBS (Unidade Básica de Saúde - posto de saúde)', $internacao_problema) ){ echo 'checked=checked'; } ?> >
-                                                <label class="form-check-label" for="ubs">UBS (Unidade Básica de Saúde - posto de saúde)</label>
+                                                <label class="form-check-label" for="ubs2">UBS (Unidade Básica de Saúde - posto de saúde)</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input name="teve_algum_problema[]" class="form-check-input" id="upa2" type="checkbox" value="UPA (Unidade de Pronto Atendimento)" <?php if( $internacao_problema && in_array('UPA (Unidade de Pronto Atendimento)', $internacao_problema) ){ echo 'checked=checked'; } ?> >
-                                                <label class="form-check-label" for="upa">UPA (Unidade de Pronto Atendimento)</label>
+                                                <label class="form-check-label" for="upa2">UPA (Unidade de Pronto Atendimento)</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input name="teve_algum_problema[]" class="form-check-input" id="ama2" type="checkbox" value="ama" <?php if( $internacao_problema && in_array('ama', $internacao_problema) ){ echo 'checked=checked'; } ?> >
-                                                <label class="form-check-label" for="ama">AMA</label>
+                                                <label class="form-check-label" for="ama2">AMA</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="teve_algum_problema[]" class="form-check-input" type="checkbox" value="Hospital público" <?php if( $internacao_problema && in_array('Hospital público', $internacao_problema) ){ echo 'checked=checked'; } ?> >
-                                                <label class="form-check-label" for="publico">Hospital público</label>
+                                                <input name="teve_algum_problema[]" class="form-check-input" id="hospital_publico_2" type="checkbox" value="Hospital público" <?php if( $internacao_problema && in_array('Hospital público', $internacao_problema) ){ echo 'checked=checked'; } ?> >
+                                                <label class="form-check-label" for="hospital_publico_2">Hospital público</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input name="teve_algum_problema[]" class="form-check-input" type="checkbox" value="Hospital privado" <?php if( $internacao_problema && in_array('Hospital privado', $internacao_problema) ){ echo 'checked=checked'; } ?> >
-                                                <label class="form-check-label" for="privado">Hospital privado</label>
+                                                <input name="teve_algum_problema[]" class="form-check-input" id="hospital_privado_2" type="checkbox" value="Hospital privado" <?php if( $internacao_problema && in_array('Hospital privado', $internacao_problema) ){ echo 'checked=checked'; } ?> >
+                                                <label class="form-check-label" for="hospital_privado_2">Hospital privado</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input name="teve_algum_problema[]" class="form-check-input" type="checkbox" value="Outro (qual?)" <?php if( $internacao_problema && in_array('Outro (qual?)', $internacao_problema) ){ echo 'checked=checked'; } ?> >

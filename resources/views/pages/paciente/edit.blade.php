@@ -805,17 +805,41 @@
 
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
-                                            <label for="exampleCustomSelect" class="">
+                                            <label class="">
                                                 Onde/como acessa o sistema de saúde?
                                             </label>
-                                            <select multiple="" type="select" id="sistema_saude" name="sistema_saude[]" class="custom-select">
+                                            <div class="custom-checkbox custom-control custom-control-inline">
+                                              <input type="checkbox" name="sistema_saude[]" id="sus" class="custom-control-input" value="É usuária/o do SUS (público)" <?php if( $sistema_saude && in_array('É usuária/o do SUS (público)', $sistema_saude) ){ echo 'checked=checked'; } ?> >
+                                              <label class="custom-control-label" for="sus">
+                                                  É usuária/o do SUS (público)
+                                              </label>
+                                            </div>
+                                            <div class="custom-checkbox custom-control custom-control-inline">
+                                              <input type="checkbox" name="sistema_saude[]" id="convenio" class="custom-control-input" value="Tem convênio/plano de saúde" <?php if( $sistema_saude && in_array('Tem convênio/plano de saúde', $sistema_saude) ){ echo 'checked=checked'; } ?> >
+                                              <label class="custom-control-label" for="convenio">
+                                                  Tem convênio/plano de saúde
+                                              </label>
+                                            </div>
+                                            <div class="custom-checkbox custom-control custom-control-inline">
+                                              <input type="checkbox" name="sistema_saude[]" id="pagos_populares" class="custom-control-input" value="Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)" <?php if( $sistema_saude && in_array('Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)', $sistema_saude) ){ echo 'checked=checked'; } ?> >
+                                              <label class="custom-control-label" for="pagos_populares">
+                                                  Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)
+                                              </label>
+                                            </div>
+                                            <div class="custom-checkbox custom-control custom-control-inline">
+                                              <input type="checkbox" name="sistema_saude[]" id="particulares" class="custom-control-input" value="Usuária/o de serviços particulares não cobertos por convênios" <?php if( $sistema_saude && in_array('Usuária/o de serviços particulares não cobertos por convênios', $sistema_saude) ){ echo 'checked=checked'; } ?> >
+                                              <label class="custom-control-label" for="particulares">
+                                                  Usuária/o de serviços particulares não cobertos por convênios
+                                              </label>
+                                            </div>
+                                            <!--<select multiple="" type="select" id="sistema_saude" name="sistema_saude[]" class="custom-select">
                                                 <option value="">Selecione</option>
                                                 <option <?php if( $sistema_saude && in_array('É usuária/o do SUS (público)', $sistema_saude) ){ echo 'selected=selected'; } ?> >É usuária/o do SUS (público)</option>
                                                 <option <?php if( $sistema_saude && in_array('Tem convênio/plano de saúde', $sistema_saude) ){ echo 'selected=selected'; } ?> >Tem convênio/plano de saúde</option>
                                                 <option <?php if( $sistema_saude && in_array('Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)', $sistema_saude) ){ echo 'selected=selected'; } ?> >Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)</option>
                                                 <option <?php if( $sistema_saude && in_array('Usuária/o de serviços particulares não cobertos por convênios', $sistema_saude) ){ echo 'selected=selected'; } ?> >Usuária/o de serviços particulares não cobertos por convênios</option>
                                             </select>
-                                            <small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>
+                                            <small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>-->
                                         </div>
                                     </div>
                                     <div class="col-md-3">

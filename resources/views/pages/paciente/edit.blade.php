@@ -1661,5 +1661,49 @@ $('.info').css('cursor', 'pointer');
 $('.info').click(function(){
   $(this).fadeOut();
 })
+
+//VIACEP
+function limpa_formulário_cep() {
+    $("#address_street").val("");
+    $("#address_neighborhood").val("");
+    $("#address_city").val("");
+    $("#address_state").val("");
+}
+
+$("#endereco_cep").blur(function() {
+    var cep = $(this).val().replace(/\D/g, '');
+
+    if (cep != "") {
+        var validacep = /^[0-9]{8}$/;
+
+        if(validacep.test(cep)) {
+            $("#endereco_rua").val("...");
+            $("#endereco_bairro").val("...");
+            $("#endereco_cidade").val("...");
+            $("#endereco_uf").val("...");
+
+            $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                if (!("erro" in dados)) {
+                    $("#endereco_rua").val(dados.logradouro);
+                    $("#endereco_bairro").val(dados.bairro);
+                    $("#endereco_cidade").val(dados.localidade);
+                    $("#endereco_uf").val(dados.uf);
+                }
+                else {
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            });
+        }
+        else {
+            limpa_formulário_cep();
+            alert("Formato de CEP inválido.");
+        }
+    }
+    else {
+        limpa_formulário_cep();
+    }
+});
+//VIACEP FIM
 </script>
 @endsection

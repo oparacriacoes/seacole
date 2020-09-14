@@ -452,18 +452,44 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                <div class="position-relative form-group"><label for="exampleCustomMutlipleSelect" class="">
-                                    Testes realizados?
-                                </label>
-                                <select multiple="" type="select" id="teste_utilizado" name="teste_utilizado[]" class="custom-select">
-                                    <option value="">Selecione</option>
-                                    <option @if(old('teste_utilizado') === 'PCR' ){{ 'selected' }} @endif>PCR</option>
-                                    <option @if(old('teste_utilizado') === 'sorologias (IgM/IgG)' ){{ 'selected' }} @endif>sorologias (IgM/IgG)</option>
-                                    <option @if(old('teste_utilizado') === 'teste rápido' ){{ 'selected' }} @endif>teste rápido</option>
-                                    <option @if(old('teste_utilizado') === 'não informado' ){{ 'selected' }} @endif>não informado</option>
-                                </select>
-                                <small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>
-                                </div>
+                                  <div class="position-relative form-group">
+                                    <label class="">
+                                        Testes realizados?
+                                    </label>
+                                    <br>
+                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                      <input type="checkbox" name="teste_utilizado[]" id="pcr" class="custom-control-input" value="PCR" @if(old('teste_utilizado') === 'PCR' ){{ 'checked' }} @endif >
+                                      <label class="custom-control-label" for="pcr">
+                                          PCR
+                                      </label>
+                                    </div>
+                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                      <input type="checkbox" name="teste_utilizado[]" id="sorologias" class="custom-control-input" value="sorologias (IgM/IgG)" @if(old('teste_utilizado') === 'sorologias (IgM/IgG)' ){{ 'checked' }} @endif >
+                                      <label class="custom-control-label" for="sorologias">
+                                          sorologias (IgM/IgG)
+                                      </label>
+                                    </div>
+                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                      <input type="checkbox" name="teste_utilizado[]" id="teste_rapido" class="custom-control-input" value="teste rápido" @if(old('teste_utilizado') === 'teste rápido' ){{ 'checked' }} @endif >
+                                      <label class="custom-control-label" for="teste_rapido">
+                                          Teste Rápido
+                                      </label>
+                                    </div>
+                                    <div class="custom-checkbox custom-control custom-control-inline">
+                                      <input type="checkbox" name="teste_utilizado[]" id="nao_informado" class="custom-control-input" value="não informado" @if(old('teste_utilizado') === 'não informado' ){{ 'checked' }} @endif >
+                                      <label class="custom-control-label" for="nao_informado">
+                                          Não Informado
+                                      </label>
+                                    </div>
+                                  <!--<select multiple="" type="select" id="teste_utilizado" name="teste_utilizado[]" class="custom-select">
+                                      <option value="">Selecione</option>
+                                      <option @if(old('teste_utilizado') === 'PCR' ){{ 'selected' }} @endif>PCR</option>
+                                      <option @if(old('teste_utilizado') === 'sorologias (IgM/IgG)' ){{ 'selected' }} @endif>sorologias (IgM/IgG)</option>
+                                      <option @if(old('teste_utilizado') === 'teste rápido' ){{ 'selected' }} @endif>teste rápido</option>
+                                      <option @if(old('teste_utilizado') === 'não informado' ){{ 'selected' }} @endif>não informado</option>
+                                  </select>-->
+                                  <!--<small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>-->
+                                  </div>
                                 </div>
 
                                 <div class="col-md-3">

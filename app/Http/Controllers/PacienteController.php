@@ -297,6 +297,7 @@ class PacienteController extends Controller
 
   public function storeGeral(Request $request)
   {
+    //dd($request->all());
     DB::beginTransaction();
     try {
       $user = User::create([
@@ -317,6 +318,13 @@ class PacienteController extends Controller
       'agente_id' => $request->agente,
       'medico_id' => $request->medico,
       'articuladora_responsavel' => $request->articuladora_responsavel,
+      'saude_mental' => $request->saude_mental,
+      'acompanhamento_psicologico' => $request->acompanhamento_psicologico ? serialize($request->acompanhamento_psicologico) : NULL,
+      'atendimento_semanal_psicologia' => $request->atendimento_semanal_psicologia,
+      'horario_at_psicologia' => $request->horario_at_psicologia,
+      'como_chegou_ao_projeto' => $request->como_chegou_ao_projeto,
+      'como_chegou_ao_projeto_outro' => $request->como_chegou_ao_projeto_outro,
+      'nucleo_uneafro_qual' => $request->nucleo_uneafro_qual,
       'psicologo_id' => $request->psicologo_id,
       'situacao' => $request->situacao,
       'data_nascimento' => $request->data_nascimento,
@@ -474,7 +482,9 @@ class PacienteController extends Controller
 
     $prontuarios = EvolucaoSintoma::where('paciente_id', $id)->get();
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento', 'prontuarios'));
+    $acompanhamento_psicologico = unserialize($paciente->acompanhamento_psicologico);
+
+    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento', 'prontuarios', 'acompanhamento_psicologico'));
   }
 
   public function update(Request $request, $id)
@@ -487,6 +497,13 @@ class PacienteController extends Controller
       'agente_id' => $request->agente,
       'medico_id' => $request->medico,
       'articuladora_responsavel' => $request->articuladora_responsavel,
+      'saude_mental' => $request->saude_mental,
+      'acompanhamento_psicologico' => $request->acompanhamento_psicologico ? serialize($request->acompanhamento_psicologico) : NULL,
+      'atendimento_semanal_psicologia' => $request->atendimento_semanal_psicologia,
+      'horario_at_psicologia' => $request->horario_at_psicologia,
+      'como_chegou_ao_projeto' => $request->como_chegou_ao_projeto,
+      'como_chegou_ao_projeto_outro' => $request->como_chegou_ao_projeto_outro,
+      'nucleo_uneafro_qual' => $request->nucleo_uneafro_qual,
       'psicologo_id' => $request->psicologo_id,
       'situacao' => $request->situacao,
       'data_nascimento' => $request->data_nascimento,

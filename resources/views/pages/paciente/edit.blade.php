@@ -225,6 +225,54 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-3">
+                                      <div class="position-relative form-group">
+                                        <label for="saude_mental" class="">
+                                            Saúde Mental
+                                        </label>
+                                        <select type="select" name="saude_mental" class="custom-select">
+                                            <option value="">Selecione</option>
+                                            <option value="ativo" @if($paciente->saude_mental === 'ativo'){{ 'selected' }}@endif >Exclusivo psicologia ativo</option>
+                                            <option value="encerrado" @if($paciente->saude_mental === 'encerrado'){{ 'selected' }}@endif >Exclusivo psicologia encerrado</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <div class="position-relative form-group">
+                                        <label for="acompanhamento_psicologico" class="">
+                                            Acompanhamento psicológico
+                                        </label>
+                                        <br>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="acompanhamento_psicologico[]" id="individual" class="custom-control-input" value="individual" <?php if($acompanhamento_psicologico && in_array('individual', $acompanhamento_psicologico)){ echo 'checked=checked'; } ?> >
+                                          <label class="custom-control-label" for="individual">
+                                              Individual
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <div class="position-relative form-group">
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="acompanhamento_psicologico[]" id="em_grupo" class="custom-control-input" value="em grupo" <?php if($acompanhamento_psicologico && in_array('em grupo', $acompanhamento_psicologico)){ echo 'checked=checked'; } ?> >
+                                          <label class="custom-control-label" for="em_grupo">
+                                              Em grupo
+                                          </label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                          <label for="atendimento_semanal_psicologia">Atendimento semanal psicologia</label>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="seg" @if($paciente->atendimento_semanal_psicologia === 'seg'){{ 'checked' }} @endif > Segunda</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="ter" @if($paciente->atendimento_semanal_psicologia === 'ter'){{ 'checked' }} @endif > Terça</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="qua" @if($paciente->atendimento_semanal_psicologia === 'qua'){{ 'checked' }} @endif > Quarta</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="qui" @if($paciente->atendimento_semanal_psicologia === 'qui'){{ 'checked' }} @endif > Quinta</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="sex" @if($paciente->atendimento_semanal_psicologia === 'sex'){{ 'checked' }} @endif > Sexta</label></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <label for="horario_at_psicologia">Horário at. psicologia</label>
+                                      <input name="horario_at_psicologia" id="horario_at_psicologia" placeholder="Horário atendimento" type="text" class="required form-control hour" value="{{ $paciente->horario_at_psicologia }}">
+                                    </div>
                                 </div>
                             {{-- </form> --}}
                         </div>
@@ -404,24 +452,76 @@
                                     </div>
 
                                     <div class="form-row">
-                                        <div class="col-md-4">
+                                        <div class="col">
                                             <div class="form-group">
                                                 <label for="name">Nº Pessoas na Residência</label>
                                                 <input name="numero_pessoas_residencia" type="number" class=" form-control" id="numero_pessoas_residencia" value="{{ $paciente->numero_pessoas_residencia }}">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col">
                                             <div class="form-group">
                                                 <label for="name">Recebe auxílio emergencial</label>
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input" value="sim" <?php if( $paciente->auxilio_emergencial === 'sim' ){ echo 'checked=checked'; } ?> > Sim</label></div>
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input" value="não" <?php if( $paciente->auxilio_emergencial === 'não' ){ echo 'checked=checked'; } ?> > Não</label></div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col">
                                             <div class="form-group">
                                                 <label for="name">Valor exato da renda familiar</label>
                                                 <input name="renda_residencia" type="text" placeholder="0.000,00" class=" form-control money" id="renda_residencia" value="{{ $paciente->renda_residencia }}">
                                             </div>
+                                        </div>
+                                        <div class="col">
+                                          <label for="como_chegou_ao_projeto">Como chegou ao projeto?</label>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="núcleo da Uneafro" @if($paciente->como_chegou_ao_projeto === 'núcleo da Uneafro'){{ 'checked' }} @endif > núcleo da Uneafro</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="faixa ou cartaz na rua" @if($paciente->como_chegou_ao_projeto === 'faixa ou cartaz na rua'){{ 'checked' }} @endif > faixa ou cartaz na rua</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="carro ou bicicleta de som" @if($paciente->como_chegou_ao_projeto === 'carro ou bicicleta de som'){{ 'checked' }} @endif > carro ou bicicleta de som</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="whatsapp" @if($paciente->como_chegou_ao_projeto === 'whatsapp'){{ 'checked' }} @endif > whatsapp</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="instagram" @if($paciente->como_chegou_ao_projeto === 'instagram'){{ 'checked' }} @endif > instagram</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="facebook" @if($paciente->como_chegou_ao_projeto === 'facebook'){{ 'checked' }} @endif > facebook</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="twitter" @if($paciente->como_chegou_ao_projeto === 'twitter'){{ 'checked' }} @endif > twitter</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="e-mail" @if($paciente->como_chegou_ao_projeto === 'e-mail'){{ 'checked' }} @endif > e-mail</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="indicação de amigo, vizinho ou familiar" @if($paciente->como_chegou_ao_projeto === 'indicação de amigo, vizinho ou familiar'){{ 'checked' }} @endif > indicação de amigo, vizinho ou familiar</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="Outro" @if($paciente->como_chegou_ao_projeto === 'Outro'){{ 'checked' }} @endif > Outro</label></div>
+                                          <input name="como_chegou_ao_projeto_outro" type="text" placeholder="Outro qual?" class=" form-control" id="como_chegou_ao_projeto_outro" value="{{ $paciente->como_chegou_ao_projeto_outro }}">
+                                        </div>
+                                        <div class="col">
+                                          <label for="nucleo_uneafro_qual">Núcleo da Uneafro: qual?</label>
+                                          <select type="select" id="nucleo_uneafro_qual" name="nucleo_uneafro_qual" class="custom-select">
+                                              <option value="">Selecione</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'CONCEIÇÃO EVARISTO'){{ 'selected' }} @endif >CONCEIÇÃO EVARISTO</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'UNEAFRO YABÁS'){{ 'selected' }} @endif >UNEAFRO YABÁS</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'MANDELA'){{ 'selected' }} @endif >MANDELA</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'GUERREIROS ALVINÓPOLIS'){{ 'selected' }} @endif >GUERREIROS ALVINÓPOLIS</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'MARIELLE FRANCO'){{ 'selected' }} @endif >MARIELLE FRANCO</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'KLEBER CRIOULO'){{ 'selected' }} @endif >KLEBER CRIOULO</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'VILA FÁTIMA'){{ 'selected' }} @endif >VILA FÁTIMA</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'UNEAFRO MABEL ASSIS'){{ 'selected' }} @endif >UNEAFRO MABEL ASSIS</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'BOM PASTOR'){{ 'selected' }} @endif >BOM PASTOR</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'UNEAFRO ASSIS'){{ 'selected' }} @endif >UNEAFRO ASSIS</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'MARGARIDA ALVES'){{ 'selected' }} @endif >MARGARIDA ALVES</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'DONA NAZINHA'){{ 'selected' }} @endif >DONA NAZINHA</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'LUIZA MAHIN'){{ 'selected' }} @endif >LUIZA MAHIN</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'CLEMENTINA DE JESUS'){{ 'selected' }} @endif >CLEMENTINA DE JESUS</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'NÚCLEO LÁ DA LESTE'){{ 'selected' }} @endif >NÚCLEO LÁ DA LESTE</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'SÉRGIO LAPALOMA'){{ 'selected' }} @endif >SÉRGIO LAPALOMA</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'SUELI CARNEIRO'){{ 'selected' }} @endif >SUELI CARNEIRO</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'TIA JURA'){{ 'selected' }} @endif >TIA JURA</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'NOVA PALESTINA'){{ 'selected' }} @endif >NOVA PALESTINA</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'RAQUEL TRINDADE'){{ 'selected' }} @endif >RAQUEL TRINDADE</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'ASSATA SHAKUR'){{ 'selected' }} @endif >ASSATA SHAKUR</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'ILDA MARTINS'){{ 'selected' }} @endif >ILDA MARTINS</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'UNEAFRO MOGI'){{ 'selected' }} @endif >UNEAFRO MOGI</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'CAROLINA MARIA DE JESUS'){{ 'selected' }} @endif >CAROLINA MARIA DE JESUS</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'UNEAFRO NA DISCIPLINA'){{ 'selected' }} @endif >UNEAFRO NA DISCIPLINA</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'UNEAFRO QUILOMBAQUE'){{ 'selected' }} @endif >UNEAFRO QUILOMBAQUE</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'XI DE AGOSTO'){{ 'selected' }} @endif >XI DE AGOSTO</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'EDUCAÇÃO LIBERTA'){{ 'selected' }} @endif >EDUCAÇÃO LIBERTA</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'ROSA PARKS'){{ 'selected' }} @endif >ROSA PARKS</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'ANTÔNIO CANDEIA FILHO'){{ 'selected' }} @endif >ANTÔNIO CANDEIA FILHO</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'UNEAFRO MSTC'){{ 'selected' }} @endif >UNEAFRO MSTC</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'UNEAFRO LUZ'){{ 'selected' }} @endif >UNEAFRO LUZ</option>
+                                          </select>
                                         </div>
                                     </div>
                                 </div>
@@ -821,7 +921,7 @@
                                               </label>
                                             </div>
                                             <div class="custom-checkbox custom-control custom-control-inline">
-                                              <input type="checkbox" name="sistema_saude[]" id="pagos_populares" class="custom-control-input" value="Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)" <?php if( $sistema_saude && in_array('Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)', $sistema_saude) ){ echo 'checked=checked'; } ?> >
+                                              <input type="checkbox" name="sistema_saude[]" id="pagos_populares" class="custom-control-input" value="Usuária/o de serviços pagos 'populares' (Ex: Dr Consulta)" <?php if( $sistema_saude && in_array("Usuária/o de serviços pagos 'populares' (Ex: Dr Consulta)", $sistema_saude) ){ echo 'checked=checked'; } ?> >
                                               <label class="custom-control-label" for="pagos_populares">
                                                   Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)
                                               </label>

@@ -220,6 +220,54 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-3">
+                                      <div class="position-relative form-group">
+                                        <label for="saude_mental" class="">
+                                            Saúde Mental
+                                        </label>
+                                        <select type="select" name="saude_mental" class="custom-select">
+                                            <option value="">Selecione</option>
+                                            <option value="ativo">Exclusivo psicologia ativo</option>
+                                            <option value="encerrado">Exclusivo psicologia encerrado</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <div class="position-relative form-group">
+                                        <label for="acompanhamento_psicologico" class="">
+                                            Acompanhamento psicológico
+                                        </label>
+                                        <br>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="acompanhamento_psicologico[]" id="individual" class="custom-control-input" value="individual" >
+                                          <label class="custom-control-label" for="individual">
+                                              Individual
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <div class="position-relative form-group">
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="acompanhamento_psicologico[]" id="em_grupo" class="custom-control-input" value="em grupo" >
+                                          <label class="custom-control-label" for="em_grupo">
+                                              Em grupo
+                                          </label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                          <label for="atendimento_semanal_psicologia">Atendimento semanal psicologia</label>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="seg"> Segunda</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="ter"> Terça</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="qua"> Quarta</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="qui"> Quinta</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="sex"> Sexta</label></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <label for="horario_at_psicologia">Horário at. psicologia</label>
+                                      <input name="horario_at_psicologia" id="horario_at_psicologia" placeholder="Horário atendimento" type="text" class="required form-control hour">
+                                    </div>
                                 </div>
                             {{-- </form> --}}
                         </div>
@@ -399,24 +447,76 @@
                                     </div>
 
                                     <div class="form-row">
-                                        <div class="col-md-4">
+                                        <div class="col">
                                             <div class="form-group">
                                                 <label for="name">Nº Pessoas na Residência</label>
                                                 <input name="numero_pessoas_residencia" type="number" class=" form-control" id="numero_pessoas_residencia" value="{{ old('numero_pessoas_residencia') }}">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col">
                                             <div class="form-group">
                                                 <label for="name">Recebe auxílio emergencial</label>
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input" value="sim" @if(old('auxilio_emergencial') === 'sim' ){{ 'checked' }} @endif> Sim</label></div>
                                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input" value="não" @if(old('auxilio_emergencial') === 'não' ){{ 'checked' }} @endif> Não</label></div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col">
                                             <div class="form-group">
-                                                <label for="name">Valor exato da renda familiar</label>
+                                                <label for="renda_residencia">Valor exato da renda familiar</label>
                                                 <input name="renda_residencia" type="text" placeholder="0.000,00" class=" form-control money" id="renda_residencia" value="{{ old('renda_residencia') }}">
                                             </div>
+                                        </div>
+                                        <div class="col">
+                                          <label for="como_chegou_ao_projeto">Como chegou ao projeto?</label>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="núcleo da Uneafro"> núcleo da Uneafro</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="faixa ou cartaz na rua"> faixa ou cartaz na rua</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="carro ou bicicleta de som"> carro ou bicicleta de som</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="whatsapp"> whatsapp</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="instagram"> instagram</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="facebook"> facebook</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="twitter"> twitter</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="e-mail"> e-mail</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="indicação de amigo, vizinho ou familiar"> indicação de amigo, vizinho ou familiar</label></div>
+                                          <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="Outro"> Outro</label></div>
+                                          <input name="como_chegou_ao_projeto_outro" type="text" placeholder="Outro qual?" class=" form-control" id="como_chegou_ao_projeto_outro">
+                                        </div>
+                                        <div class="col">
+                                          <label for="nucleo_uneafro_qual">Núcleo da Uneafro: qual?</label>
+                                          <select type="select" id="nucleo_uneafro_qual" name="nucleo_uneafro_qual" class="custom-select">
+                                              <option value="">Selecione</option>
+                                              <option>CONCEIÇÃO EVARISTO</option>
+                                              <option>UNEAFRO YABÁS</option>
+                                              <option>MANDELA</option>
+                                              <option>GUERREIROS ALVINÓPOLIS</option>
+                                              <option>MARIELLE FRANCO</option>
+                                              <option>KLEBER CRIOULO</option>
+                                              <option>VILA FÁTIMA</option>
+                                              <option>UNEAFRO MABEL ASSIS</option>
+                                              <option>BOM PASTOR</option>
+                                              <option>UNEAFRO ASSIS</option>
+                                              <option>MARGARIDA ALVES</option>
+                                              <option>DONA NAZINHA</option>
+                                              <option>LUIZA MAHIN</option>
+                                              <option>CLEMENTINA DE JESUS</option>
+                                              <option>NÚCLEO LÁ DA LESTE</option>
+                                              <option>SÉRGIO LAPALOMA</option>
+                                              <option>SUELI CARNEIRO</option>
+                                              <option>TIA JURA</option>
+                                              <option>NOVA PALESTINA</option>
+                                              <option>RAQUEL TRINDADE</option>
+                                              <option>ASSATA SHAKUR</option>
+                                              <option>ILDA MARTINS</option>
+                                              <option>UNEAFRO MOGI</option>
+                                              <option>CAROLINA MARIA DE JESUS</option>
+                                              <option>UNEAFRO NA DISCIPLINA</option>
+                                              <option>UNEAFRO QUILOMBAQUE</option>
+                                              <option>XI DE AGOSTO</option>
+                                              <option>EDUCAÇÃO LIBERTA</option>
+                                              <option>ROSA PARKS</option>
+                                              <option>ANTÔNIO CANDEIA FILHO</option>
+                                              <option>UNEAFRO MSTC</option>
+                                              <option>UNEAFRO LUZ</option>
+                                          </select>
                                         </div>
                                     </div>
                                 </div>

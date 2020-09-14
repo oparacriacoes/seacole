@@ -162,6 +162,8 @@
                                                 <option value="7" @if(old('situacao') === '7'){{ 'selected' }} @endif>Contato com caso confirmado - finalizado</option>
                                                 <option value="8" @if(old('situacao') === '8'){{ 'selected' }} @endif>Outras situações (sem relação com COVID-19) - finalizado</option>
                                                 <option value="9" @if(old('situacao') === '9'){{ 'selected' }} @endif>Monitoramento encerrado - segue apenas com psicólogos</option>
+                                                <option value="10" @if(old('situacao') === '10'){{ 'selected' }} @endif >Exclusivo psicologia ativo</option>
+                                                <option value="11" @if(old('situacao') === '11'){{ 'selected' }} @endif >Exclusivo psicologia encerrado</option>
                                             </select>
                                         </div>
                                     </div>
@@ -220,7 +222,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <!--<div class="col-md-3">
                                       <div class="position-relative form-group">
                                         <label for="saude_mental" class="">
                                             Saúde Mental
@@ -231,7 +233,7 @@
                                             <option value="encerrado">Exclusivo psicologia encerrado</option>
                                         </select>
                                       </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col-md-3">
                                       <div class="position-relative form-group">
                                         <label for="acompanhamento_psicologico" class="">

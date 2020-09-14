@@ -167,6 +167,8 @@
                                                 <option value="7" <?php if( $paciente->situacao === '7' ){ echo 'selected=selected'; } ?> >Contato com caso confirmado - finalizado</option>
                                                 <option value="8" <?php if( $paciente->situacao === '8' ){ echo 'selected=selected'; } ?> >Outras situações (sem relação com COVID-19) - finalizado</option>
                                                 <option value="9" <?php if( $paciente->situacao === '9' ){ echo 'selected=selected'; } ?> >Monitoramento encerrado - segue apenas com psicólogos</option>
+                                                <option value="10" <?php if( $paciente->situacao === '10' ){ echo 'selected=selected'; } ?> >Exclusivo psicologia ativo</option>
+                                                <option value="11" <?php if( $paciente->situacao === '11' ){ echo 'selected=selected'; } ?> >Exclusivo psicologia encerrado</option>
                                             </select>
                                         </div>
                                     </div>
@@ -225,7 +227,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <!--<div class="col-md-3">
                                       <div class="position-relative form-group">
                                         <label for="saude_mental" class="">
                                             Saúde Mental
@@ -236,7 +238,7 @@
                                             <option value="encerrado" @if($paciente->saude_mental === 'encerrado'){{ 'selected' }}@endif >Exclusivo psicologia encerrado</option>
                                         </select>
                                       </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col-md-3">
                                       <div class="position-relative form-group">
                                         <label for="acompanhamento_psicologico" class="">

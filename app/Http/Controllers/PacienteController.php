@@ -346,7 +346,7 @@ class PacienteController extends Controller
       'remedios_consumidos' => $request->remedios_consumidos,
       'acompanhamento_medico' => $request->acompanhamento_medico,
       'teste_utilizado' => $request->teste_utilizado ? serialize($request->teste_utilizado) : NULL,
-      'resultado_teste' => $request->resultado_teste,
+      'resultado_teste' => $request->resultado_teste ? serialize($request->resultado_teste) : NULL,
       'data_teste_confirmatorio' => $request->data_teste_confirmatorio,
       'sintomas_iniciais' => $request->sintomas_iniciais,
       'data_inicio_sintoma' => $request->data_inicio_sintoma,
@@ -484,7 +484,14 @@ class PacienteController extends Controller
 
     $acompanhamento_psicologico = unserialize($paciente->acompanhamento_psicologico);
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento', 'prontuarios', 'acompanhamento_psicologico'));
+    $resultado_teste = @unserialize($paciente->resultado_teste);
+    if( $resultado_teste === false ){
+      $resultado_teste = $paciente->resultado_teste;
+    } else {
+      $resultado_teste = unserialize($paciente->resultado_teste);
+    }
+
+    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento', 'prontuarios', 'acompanhamento_psicologico', 'resultado_teste'));
   }
 
   public function update(Request $request, $id)
@@ -530,7 +537,7 @@ class PacienteController extends Controller
       'auxilio_terceiros' => $request->auxilio_terceiros,
       'tarefas_autocuidado' => $request->tarefas_autocuidado,
       'teste_utilizado' => $request->teste_utilizado ? serialize($request->teste_utilizado) : NULL,
-      'resultado_teste' => $request->resultado_teste,
+      'resultado_teste' => $request->resultado_teste ? serialize($request->resultado_teste) : NULL,
       'data_teste_confirmatorio' => $request->data_teste_confirmatorio,
       //'caso_confirmado' => '',
       'sintomas_iniciais' => $request->sintomas_iniciais,

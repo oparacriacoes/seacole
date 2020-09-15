@@ -599,10 +599,47 @@
 
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
-                                        <label for="exampleCustomSelect" class="">
+                                        <label for="resultado_teste" class="">
                                             Resultados encontrados
                                         </label>
-                                        <select type="select" id="resultado_teste" name="resultado_teste" class="custom-select">
+                                        <br>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="pcr_positivo" class="custom-control-input" value="PCR positivo"  >
+                                          <label class="custom-control-label" for="pcr_positivo">
+                                              PCR positivo
+                                          </label>
+                                        </div>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="pcr_negativo" class="custom-control-input" value="PCR negativo"  >
+                                          <label class="custom-control-label" for="pcr_negativo">
+                                              PCR negativo
+                                          </label>
+                                        </div>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="igm_positivo" class="custom-control-input" value="IgM positivo"  >
+                                          <label class="custom-control-label" for="igm_positivo">
+                                              IgM positivo
+                                          </label>
+                                        </div>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="igm_negativo" class="custom-control-input" value="IgM negativo"  >
+                                          <label class="custom-control-label" for="igm_negativo">
+                                              IgM negativo
+                                          </label>
+                                        </div>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="igg_positivo" class="custom-control-input" value="IgG positivo"  >
+                                          <label class="custom-control-label" for="igg_positivo">
+                                              IgG positivo
+                                          </label>
+                                        </div>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="igg_negativo" class="custom-control-input" value="IgG negativo"  >
+                                          <label class="custom-control-label" for="igg_negativo">
+                                              IgG negativo
+                                          </label>
+                                        </div>
+                                        <!--<select type="select" id="resultado_teste" name="resultado_teste" class="custom-select">
                                             <option value="">Selecione</option>
                                             <option @if(old('resultado_teste') === 'PCR positivo' ){{ 'selected' }} @endif>PCR positivo</option>
                                             <option @if(old('resultado_teste') === 'PCR negativo' ){{ 'selected' }} @endif>PCR negativo</option>
@@ -610,7 +647,7 @@
                                             <option @if(old('resultado_teste') === 'IgM negativo' ){{ 'selected' }} @endif>IgM negativo</option>
                                             <option @if(old('resultado_teste') === 'IgG positivo' ){{ 'selected' }} @endif>IgG positivo</option>
                                             <option @if(old('resultado_teste') === 'IgG negativo' ){{ 'selected' }} @endif>IgG negativo</option>
-                                        </select>
+                                        </select>-->
                                     </div>
                                 </div>
                             </div>

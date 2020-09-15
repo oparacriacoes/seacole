@@ -612,7 +612,44 @@
                                         <label for="exampleCustomSelect" class="">
                                             Resultados encontrados
                                         </label>
-                                        <select type="select" id="resultado_teste" name="resultado_teste" class="custom-select">
+                                        <br>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="pcr_positivo" class="custom-control-input" value="PCR positivo" <?php if( $resultado_teste && is_array($resultado_teste) && in_array('PCR positivo', $resultado_teste ) ){ echo 'checked=checked'; } elseif( $resultado_teste === 'PCR positivo' ){ echo 'checked=checked'; } ?> >
+                                          <label class="custom-control-label" for="pcr_positivo">
+                                              PCR positivo
+                                          </label>
+                                        </div>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="pcr_negativo" class="custom-control-input" value="PCR negativo" <?php if( $resultado_teste && is_array($resultado_teste) && in_array('PCR negativo', $resultado_teste ) ){ echo 'checked=checked'; } elseif( $resultado_teste === 'PCR negativo' ){ echo 'checked=checked'; } ?> >
+                                          <label class="custom-control-label" for="pcr_negativo">
+                                              PCR negativo
+                                          </label>
+                                        </div>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="igm_positivo" class="custom-control-input" value="IgM positivo" <?php if( $resultado_teste && is_array($resultado_teste) && in_array('IgM positivo', $resultado_teste ) ){ echo 'checked=checked'; } elseif( $resultado_teste === 'IgM positivo' ){ echo 'checked=checked'; } ?> >
+                                          <label class="custom-control-label" for="igm_positivo">
+                                              IgM positivo
+                                          </label>
+                                        </div>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="igm_negativo" class="custom-control-input" value="IgM negativo" <?php if( $resultado_teste && is_array($resultado_teste) && in_array('IgM negativo', $resultado_teste ) ){ echo 'checked=checked'; } elseif( $resultado_teste === 'IgM negativo' ){ echo 'checked=checked'; } ?> >
+                                          <label class="custom-control-label" for="igm_negativo">
+                                              IgM negativo
+                                          </label>
+                                        </div>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="igg_positivo" class="custom-control-input" value="IgG positivo" <?php if( $resultado_teste && is_array($resultado_teste) && in_array('IgG positivo', $resultado_teste ) ){ echo 'checked=checked'; } elseif( $resultado_teste === 'IgG positivo' ){ echo 'checked=checked'; } ?> >
+                                          <label class="custom-control-label" for="igg_positivo">
+                                              IgG positivo
+                                          </label>
+                                        </div>
+                                        <div class="custom-checkbox custom-control custom-control-inline">
+                                          <input type="checkbox" name="resultado_teste[]" id="igg_negativo" class="custom-control-input" value="IgG negativo" <?php if( $resultado_teste && is_array($resultado_teste) && in_array('IgG negativo', $resultado_teste ) ){ echo 'checked=checked'; } elseif( $resultado_teste === 'IgG negativo' ){ echo 'checked=checked'; } ?> >
+                                          <label class="custom-control-label" for="igg_negativo">
+                                              IgG negativo
+                                          </label>
+                                        </div>
+                                        <!--<select type="select" id="resultado_teste" name="resultado_teste" class="custom-select">
                                             <option value="">Selecione</option>
                                             <option <?php if( $paciente->resultado_teste === 'PCR positivo' ){ echo 'selected=selected'; } ?> >PCR positivo</option>
                                             <option <?php if( $paciente->resultado_teste === 'PCR negativo' ){ echo 'selected=selected'; } ?> >PCR negativo</option>
@@ -620,7 +657,7 @@
                                             <option <?php if( $paciente->resultado_teste === 'IgM negativo' ){ echo 'selected=selected'; } ?> >IgM negativo</option>
                                             <option <?php if( $paciente->resultado_teste === 'IgG positivo' ){ echo 'selected=selected'; } ?> >IgG positivo</option>
                                             <option <?php if( $paciente->resultado_teste === 'IgG negativo' ){ echo 'selected=selected'; } ?> >IgG negativo</option>
-                                        </select>
+                                        </select>-->
                                     </div>
                                 </div>
                             </div>

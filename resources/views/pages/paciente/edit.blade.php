@@ -1382,7 +1382,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="data_ultima_ida_servico_de_saude">Data da última ida a serviço de saúde</label>
-                                            <input name="data_ultima_ida_servico_de_saude" type="text" placeholder="dd/mm/aaaa" class="form-control date" id="data_ultima_ida_servico_de_saude" value="{{ $internacao->data_ultima_ida_servico_de_saude }}">
+                                            <input name="data_ultima_ida_servico_de_saude" type="text" placeholder="dd/mm/aaaa" class="form-control date" id="data_ultima_ida_servico_de_saude" value="@if($internacao) {{ $internacao->data_ultima_ida_servico_de_saude }} @endif">
                                         </div>
                                     </div>
                                 </div>
@@ -1555,13 +1555,13 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="data_entrada_internacao">Data de entrada da internação</label>
-                                            <input name="data_entrada_internacao" id="data_entrada_internacao" placeholder="dd/mm/aaaa" type="text" class="date form-control" value="{{ $internacao->data_entrada_internacao }}">
+                                            <input name="data_entrada_internacao" id="data_entrada_internacao" placeholder="dd/mm/aaaa" type="text" class="date form-control" value="@if($internacao) {{ $internacao->data_entrada_internacao }} @endif">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="data_alta_hospitalar">Data da alta hospitalar</label>
-                                            <input name="data_alta_hospitalar" id="data_alta_hospitalar" placeholder="dd/mm/aaaa" type="text" class="date form-control" value="{{ $internacao->data_alta_hospitalar }}">
+                                            <input name="data_alta_hospitalar" id="data_alta_hospitalar" placeholder="dd/mm/aaaa" type="text" class="date form-control" value="@if($internacao) {{ $internacao->data_alta_hospitalar }} @endif">
                                         </div>
                                     </div>
                                 </div>

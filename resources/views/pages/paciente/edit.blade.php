@@ -1548,8 +1548,20 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="tempo_internacao">tempo de internação</label>
+                                            <label for="tempo_internacao">Tempo de internação</label>
                                             <input name="tempo_internacao" id="tempo_internacao" placeholder="em dias - número" type="text" class="form-control" value="@if($internacao) {{ $internacao->tempo_internacao }} @endif" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="data_entrada_internacao">Data de entrada da internação</label>
+                                            <input name="data_entrada_internacao" id="data_entrada_internacao" placeholder="dd/mm/aaaa" type="text" class="date form-control" value="{{ $internacao->data_entrada_internacao }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="data_alta_hospitalar">Data da alta hospitalar</label>
+                                            <input name="data_alta_hospitalar" id="data_alta_hospitalar" placeholder="dd/mm/aaaa" type="text" class="date form-control" value="{{ $internacao->data_alta_hospitalar }}">
                                         </div>
                                     </div>
                                 </div>

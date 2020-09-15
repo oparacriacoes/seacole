@@ -29,6 +29,8 @@ class ServicoInternacaoController extends Controller
       'local_internacao' => $request->local_internacao ? serialize($request->local_internacao) : NULL,
       'nome_hospital' => $request->nome_hospital,
       'tempo_internacao' => $request->tempo_internacao,
+      'data_entrada_internacao' => $request->data_entrada_internacao,
+      'data_alta_hospitalar' => $request->data_alta_hospitalar,
     ];
 
     if( !$internacao ){

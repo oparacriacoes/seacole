@@ -160,15 +160,18 @@
                                                 <option value="">Selecione</option>
                                                 <option value="1" <?php if( $paciente->situacao === '1' ){ echo 'selected=selected'; } ?> >Caso ativo GRAVE</option>
                                                 <option value="2" <?php if( $paciente->situacao === '2' ){ echo 'selected=selected'; } ?> >Caso ativo LEVE</option>
-                                                <option value="3" <?php if( $paciente->situacao === '3' ){ echo 'selected=selected'; } ?> >Contato com caso confirmado - ativo</option>
+                                                <option value="3" <?php if( $paciente->situacao === '3' ){ echo 'selected=selected'; } ?> >Contato caso confirmado - ativo</option>
                                                 <option value="4" <?php if( $paciente->situacao === '4' ){ echo 'selected=selected'; } ?> >Outras situações (sem relação com COVID-19) - ativos</option>
-                                                <option value="5" <?php if( $paciente->situacao === '5' ){ echo 'selected=selected'; } ?> >Caso finalizado GRAVE</option>
-                                                <option value="6" <?php if( $paciente->situacao === '6' ){ echo 'selected=selected'; } ?> >Caso finalizado LEVE</option>
-                                                <option value="7" <?php if( $paciente->situacao === '7' ){ echo 'selected=selected'; } ?> >Contato com caso confirmado - finalizado</option>
-                                                <option value="8" <?php if( $paciente->situacao === '8' ){ echo 'selected=selected'; } ?> >Outras situações (sem relação com COVID-19) - finalizado</option>
-                                                <option value="9" <?php if( $paciente->situacao === '9' ){ echo 'selected=selected'; } ?> >Monitoramento encerrado - segue apenas com psicólogos</option>
-                                                <option value="10" <?php if( $paciente->situacao === '10' ){ echo 'selected=selected'; } ?> >Exclusivo psicologia ativo</option>
-                                                <option value="11" <?php if( $paciente->situacao === '11' ){ echo 'selected=selected'; } ?> >Exclusivo psicologia encerrado</option>
+                                                <option value="5" <?php if( $paciente->situacao === '5' ){ echo 'selected=selected'; } ?> >Exclusivo psicologia - ativo</option>
+                                                <option value="6" <?php if( $paciente->situacao === '6' ){ echo 'selected=selected'; } ?> >Monitoramento encerrado GRAVE - segue apenas com psicólogos</option>
+                                                <option value="7" <?php if( $paciente->situacao === '7' ){ echo 'selected=selected'; } ?> >Monitoramento encerrado LEVE - segue apenas com psicólogos</option>
+                                                <option value="8" <?php if( $paciente->situacao === '8' ){ echo 'selected=selected'; } ?> >Monitoramento encerrado contato - segue apenas com psicólogos</option>
+                                                <option value="9" <?php if( $paciente->situacao === '9' ){ echo 'selected=selected'; } ?> >Monitoramento encerrado outros - segue apenas com psicólogos</option>
+                                                <option value="10" <?php if( $paciente->situacao === '10' ){ echo 'selected=selected'; } ?> >Caso finalizado GRAVE</option>
+                                                <option value="11" <?php if( $paciente->situacao === '11' ){ echo 'selected=selected'; } ?> >Caso finalizado LEVE</option>
+                                                <option value="12" <?php if( $paciente->situacao === '12' ){ echo 'selected=selected'; } ?> >Contato com caso confirmado - finalizado</option>
+                                                <option value="13" <?php if( $paciente->situacao === '13' ){ echo 'selected=selected'; } ?> >Outras situações (sem relação com COVID-19) - finalizado</option>
+                                                <option value="14" <?php if( $paciente->situacao === '14' ){ echo 'selected=selected'; } ?> >Exclusivo psicologia - finalizado</option>
                                             </select>
                                         </div>
                                     </div>

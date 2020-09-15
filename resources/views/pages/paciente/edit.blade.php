@@ -488,7 +488,7 @@
                                                 <input name="renda_residencia" type="text" placeholder="0.000,00" class=" form-control money" id="renda_residencia" value="{{ $paciente->renda_residencia }}">
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12">
                                           <label for="como_chegou_ao_projeto">Como chegou ao projeto?</label>
                                           <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="núcleo da Uneafro" @if($paciente->como_chegou_ao_projeto === 'núcleo da Uneafro'){{ 'checked' }} @endif > núcleo da Uneafro</label></div>
                                           <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="faixa ou cartaz na rua" @if($paciente->como_chegou_ao_projeto === 'faixa ou cartaz na rua'){{ 'checked' }} @endif > faixa ou cartaz na rua</label></div>

@@ -46,7 +46,7 @@
                                   break;
 
                                 case '3':
-                                  echo 'Contato com caso confirmado - ativo';
+                                  echo 'Contato caso confirmado - ativo';
                                   break;
 
                                 case '4':
@@ -54,23 +54,43 @@
                                   break;
 
                                 case '5':
-                                  echo 'Caso finalizado GRAVE';
+                                  echo 'Exclusivo psicologia - ativo';
                                   break;
 
                                 case '6':
-                                  echo 'Caso finalizado LEVE';
+                                  echo 'Monitoramento encerrado GRAVE - segue apenas com psicólogos';
                                   break;
 
                                 case '7':
-                                  echo 'Contato com caso confirmado - finalizado';
+                                  echo 'Monitoramento encerrado LEVE - segue apenas com psicólogos';
                                   break;
 
                                 case '8':
-                                  echo 'Outras situações (sem relação com COVID-19) - finalizado';
+                                  echo 'Monitoramento encerrado contato - segue apenas com psicólogos';
                                   break;
 
                                 case '9':
-                                  echo 'Monitoramento encerrado - segue apenas com psicólogos';
+                                  echo 'Monitoramento encerrado outros - segue apenas com psicólogos';
+                                  break;
+
+                                case '10':
+                                  echo 'Caso finalizado GRAVE';
+                                  break;
+
+                                case '11':
+                                  echo 'Caso finalizado LEVE';
+                                  break;
+
+                                case '12':
+                                  echo 'Contato com caso confirmado - finalizado';
+                                  break;
+
+                                case '13';
+                                  echo 'Outras situações (sem relação com COVID-19) - finalizado';
+                                  break;
+
+                                case '14':
+                                  echo 'Exclusivo psicologia - finalizado';
                                   break;
 
                                 default:

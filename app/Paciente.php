@@ -48,6 +48,8 @@ class Paciente extends Model
     'data_inicio_sintoma',
     'data_inicio_monitoramento',
     'data_finalizacao_caso',
+    'data_inicio_ac_psicologico',
+    'data_encerramento_ac_psicologico',
     'name_social',
     'identidade_genero',
     'orientacao_sexual',

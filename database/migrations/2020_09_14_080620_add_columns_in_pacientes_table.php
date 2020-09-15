@@ -32,13 +32,13 @@ class AddColumnsInPacientesTable extends Migration
     public function down()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          Schema::dropIfExists('saude_mental');
-          Schema::dropIfExists('acompanhamento_psicologico');
-          Schema::dropIfExists('atendimento_semanal_psicologia');
-          Schema::dropIfExists('horario_at_psicologia');
-          Schema::dropIfExists('como_chegou_ao_projeto');
-          Schema::dropIfExists('como_chegou_ao_projeto_outro');
-          Schema::dropIfExists('nucleo_uneafro_qual');
+          Schema::dropColumn('saude_mental');
+          Schema::dropColumn('acompanhamento_psicologico');
+          Schema::dropColumn('atendimento_semanal_psicologia');
+          Schema::dropColumn('horario_at_psicologia');
+          Schema::dropColumn('como_chegou_ao_projeto');
+          Schema::dropColumn('como_chegou_ao_projeto_outro');
+          Schema::dropColumn('nucleo_uneafro_qual');
         });
     }
 }

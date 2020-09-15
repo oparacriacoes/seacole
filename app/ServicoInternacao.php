@@ -11,6 +11,7 @@ class ServicoInternacao extends Model
         'precisou_servico',
         'precisou_servico_outro',
         'quant_ida_servico',
+        'data_ultima_ida_servico_de_saude',
         'recebeu_med_covid',
         'recebeu_med_covid_outro',
         'nome_medicamento',

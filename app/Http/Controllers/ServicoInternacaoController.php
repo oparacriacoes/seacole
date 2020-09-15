@@ -10,6 +10,7 @@ class ServicoInternacaoController extends Controller
 {
   public function store(Request $request, $id)
   {
+    //dd($request->all());
     $internacao = ServicoInternacao::where('paciente_id', $id)->first();
 
     $dados = [
@@ -17,6 +18,7 @@ class ServicoInternacaoController extends Controller
       'precisou_servico' => $request->precisou_servico ? serialize($request->precisou_servico) : NULL,
       'precisou_servico_outro' => $request->precisou_servico_outro,
       'quant_ida_servico' => $request->quant_ida_servico,
+      'data_ultima_ida_servico_de_saude' => $request->data_ultima_ida_servico_de_saude,
       'recebeu_med_covid' => $request->recebeu_med_covid ? serialize($request->recebeu_med_covid) : NULL,
       //'recebeu_med_covid_outro' => $request->recebeu_med_covid_outro,
       'nome_medicamento' => $request->nome_medicamento,

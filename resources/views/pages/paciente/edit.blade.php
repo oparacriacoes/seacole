@@ -1373,10 +1373,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="quant_ida_servico">Quantas idas a serviços de saúde?</label>
-                                            <input name="quant_ida_servico" type="text" placeholder="somente números" class=" form-control date" id="quant_ida_servico" value="@if($internacao) {{ $internacao->quant_ida_servico }} @endif" >
+                                            <input name="quant_ida_servico" type="text" placeholder="somente números" class=" form-control" id="quant_ida_servico" value="@if($internacao) {{ $internacao->quant_ida_servico }} @endif" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="data_ultima_ida_servico_de_saude">Data da última ida a serviço de saúde</label>
+                                            <input name="data_ultima_ida_servico_de_saude" type="text" placeholder="dd/mm/aaaa" class="form-control date" id="data_ultima_ida_servico_de_saude" value="{{ $internacao->data_ultima_ida_servico_de_saude }}">
                                         </div>
                                     </div>
                                 </div>

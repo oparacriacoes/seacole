@@ -135,19 +135,19 @@
                                 <div class="form-row">
                                     <div class="col-12 col-md-3">
                                         <div class="form-group">
-                                            <label for="name">Data início sintomas *</label>
+                                            <label for="name">Data início sintomas de COVID-19</label>
                                             <input name="data_inicio_sintoma" type="text" class="date  form-control" id="data_inicio_sintoma" aria-describedby="data_nascimentoHelp" value="{{ $paciente->data_inicio_sintoma }}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-3">
                                         <div class="form-group">
-                                            <label for="name">Data início monitoramento *</label>
+                                            <label for="name">Data início monitoramento Agentes</label>
                                             <input name="data_inicio_monitoramento" type="text" class=" form-control date" id="data_inicio_monitoramento" aria-describedby="data_nascimentoHelp" value="{{ $paciente->data_inicio_monitoramento }}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-3">
                                         <div class="form-group">
-                                            <label for="name">Data finalização do caso (alta) *</label>
+                                            <label for="name">Data finalização do monitoramento Agentes (alta)</label>
                                             <input name="data_finalizacao_caso" type="text" class=" form-control date" id="data_finalizacao_caso" aria-describedby="data_nascimentoHelp" value="{{ $paciente->data_finalizacao_caso }}">
                                         </div>
                                     </div>

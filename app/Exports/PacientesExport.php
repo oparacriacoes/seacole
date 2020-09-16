@@ -125,7 +125,14 @@ class PacientesExport implements FromArray, WithHeadings
     {
       $pacientes = Paciente::get();
       $pacientes_array = [];
+
       foreach($pacientes as $paciente){
+
+        $resultado_teste = @unserialize($paciente->resultado_teste);
+        if( $resultado_teste === false ){
+          $resultado_teste = $paciente->resultado_teste;
+        }
+
         array_push($pacientes_array, [
           'nome' => $paciente->user->name,
           'name_social' => $paciente->name_social ? $paciente->name_social : '',
@@ -166,7 +173,7 @@ class PacientesExport implements FromArray, WithHeadings
           'auxilio_terceiros' => $paciente->auxilio_terceiros ? $paciente->auxilio_terceiros : '',
           'tarefas_autocuidado' => $paciente->tarefas_autocuidado ? $paciente->tarefas_autocuidado : '',
           'teste_utilizado' => $paciente->teste_utilizado ? unserialize($paciente->teste_utilizado) : '',
-          'resultado_teste' => $paciente->resultado_teste ? unserialize($paciente->resultado_teste) : '',
+          'resultado_teste' => $resultado_teste ? $resultado_teste : '',
           'outras_informacao' => $paciente->outras_informacao ? $paciente->outras_informacao : '',
           'data_teste_confirmatorio' => $paciente->data_teste_confirmatorio ? $paciente->data_teste_confirmatorio : '',
           'data_inicio_sintoma' => $paciente->data_inicio_sintoma ? $paciente->data_inicio_sintoma : '',

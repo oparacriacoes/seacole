@@ -592,6 +592,8 @@ class PacienteController extends Controller
 
   public function ExportarExcelPacientes()
   {
-    return Excel::download(new PacientesExport(), 'pacientes.xlsx');
+    $date = Carbon::now();
+
+    return Excel::download(new PacientesExport(), 'pacientes_' . $date->format('d-m-Y-h:m') . '.xlsx');
   }
 }

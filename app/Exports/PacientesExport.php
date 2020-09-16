@@ -138,6 +138,103 @@ class PacientesExport implements FromArray, WithHeadings
           $teste_utilizado = $paciente->teste_utilizado;
         }
 
+        $doenca_cronica = [];
+        $doenca = $paciente->doenca_cronica ? unserialize($paciente->doenca_cronica) : [];
+
+        if(in_array('1', $doenca)){
+          array_push($doenca_cronica, 'Hipertensão arterial sistêmica (HAS)');
+        }
+        if(in_array('2', $doenca)){
+          array_push($doenca_cronica, 'Diabetes Mellitus (DM)');
+        }
+        if(in_array('3', $doenca)){
+          array_push($doenca_cronica, 'Dislipidemia');
+        }
+        if(in_array('4', $doenca)){
+          array_push($doenca_cronica, 'Asma / Bronquite');
+        }
+        if(in_array('5', $doenca)){
+          array_push($doenca_cronica, 'Tuberculose ativa');
+        }
+        if(in_array('6', $doenca)){
+          array_push($doenca_cronica, 'Cardiopatias e outras doenças cardiovasculares');
+        }
+        if(in_array('7', $doenca)){
+          array_push($doenca_cronica, 'Outras doenças Respiratórias');
+        }
+        if(in_array('8', $doenca)){
+          array_push($doenca_cronica, 'Artrite/Artrose/Reumatismo');
+        }
+        if(in_array('9', $doenca)){
+          array_push($doenca_cronica, 'Doença autoimune');
+        }
+        if(in_array('10', $doenca)){
+          array_push($doenca_cronica, 'Doença renal');
+        }
+        if(in_array('11', $doenca)){
+          array_push($doenca_cronica, 'Doença neurológica');
+        }
+        if(in_array('12', $doenca)){
+          array_push($doenca_cronica, 'Câncer');
+        }
+        if(in_array('13', $doenca)){
+          array_push($doenca_cronica, 'Ansiedade');
+        }
+        if(in_array('14', $doenca)){
+          array_push($doenca_cronica, 'Depressão');
+        }
+        if(in_array('15', $doenca)){
+          array_push($doenca_cronica, 'Demência');
+        }
+        if(in_array('16', $doenca)){
+          array_push($doenca_cronica, 'Outras questões de saúde mental');
+        }
+
+        $situacao_array = [];
+        //$situacao = $paciente->situacao ? unserialize($paciente->situacao) : [];
+        if($paciente->situacao === '1'){
+          array_push($situacao_array, 'Caso ativo GRAVE');
+        }
+        if($paciente->situacao === '2'){
+          array_push($situacao_array, 'Caso ativo LEVE');
+        }
+        if($paciente->situacao === '3'){
+          array_push($situacao_array, 'Contato caso confirmado - ativo');
+        }
+        if($paciente->situacao === '4'){
+          array_push($situacao_array, 'Outras situações (sem relação com COVID-19) - ativos');
+        }
+        if($paciente->situacao === '5'){
+          array_push($situacao_array, 'Exclusivo psicologia - ativo');
+        }
+        if($paciente->situacao === '6'){
+          array_push($situacao_array, 'Monitoramento encerrado GRAVE - segue apenas com psicólogos');
+        }
+        if($paciente->situacao === '7'){
+          array_push($situacao_array, 'Monitoramento encerrado LEVE - segue apenas com psicólogos');
+        }
+        if($paciente->situacao === '8'){
+          array_push($situacao_array, 'Monitoramento encerrado contato - segue apenas com psicólogos');
+        }
+        if($paciente->situacao === '9'){
+          array_push($situacao_array, 'Monitoramento encerrado outros - segue apenas com psicólogos');
+        }
+        if($paciente->situacao === '10'){
+          array_push($situacao_array, 'Caso finalizado GRAVE');
+        }
+        if($paciente->situacao === '11'){
+          array_push($situacao_array, 'Caso finalizado LEVE');
+        }
+        if($paciente->situacao === '12'){
+          array_push($situacao_array, 'Contato com caso confirmado - finalizado');
+        }
+        if($paciente->situacao === '13'){
+          array_push($situacao_array, 'Outras situações (sem relação com COVID-19) - finalizado');
+        }
+        if($paciente->situacao === '14'){
+          array_push($situacao_array, 'Exclusivo psicologia - finalizado');
+        }
+
         array_push($pacientes_array, [
           'nome' => $paciente->user->name,
           'name_social' => $paciente->name_social ? $paciente->name_social : '',
@@ -153,7 +250,8 @@ class PacientesExport implements FromArray, WithHeadings
           'nucleo_uneafro_qual' => $paciente->nucleo_uneafro_qual ? $paciente->nucleo_uneafro_qual : '',
           'como_chegou_ao_projeto_outro' => $paciente->como_chegou_ao_projeto_outro ? $paciente->como_chegou_ao_projeto_outro : '',
           'psicologo' => $paciente->psicologo ? $paciente->psicologo->user->name : '',
-          'situacao' => $paciente->situacao ? $paciente->situacao : '',
+          //'situacao' => $paciente->situacao ? $paciente->situacao : '',
+          'situacao' => implode(', ', $situacao_array),
           'data_nascimento' => $paciente->data_nascimento ? $paciente->data_nascimento : '',
           'cor_raca' => $paciente->cor_raca ? $paciente->cor_raca : '',
           'endereco_cep' => $paciente->endereco_cep ? $paciente->endereco_cep : '',
@@ -169,7 +267,8 @@ class PacientesExport implements FromArray, WithHeadings
           'numero_pessoas_residencia' => $paciente->numero_pessoas_residencia ? $paciente->numero_pessoas_residencia : '',
           'responsavel_residencia' => $paciente->responsavel_residencia ? $paciente->responsavel_residencia : '',
           'renda_residencia' => $paciente->renda_residencia ? $paciente->renda_residencia : '',
-          'doenca_cronica' => $paciente->doenca_cronica ? implode(', ', unserialize($paciente->doenca_cronica)) : '',
+          //'doenca_cronica' => $paciente->doenca_cronica ? unserialize($paciente->doenca_cronica) : '',
+          'doenca_cronica' => implode(', ', $doenca_cronica),
           'descreve_doencas' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
           'remedios_consumidos' => $paciente->remedios_consumidos ? $paciente->remedios_consumidos : '',
           'acompanhamento_medico' => $paciente->acompanhamento_medico ? $paciente->acompanhamento_medico : '',

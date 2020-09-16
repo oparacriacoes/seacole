@@ -584,8 +584,15 @@ class PacienteController extends Controller
       $paciente = Paciente::find($id);
       $user = User::find($paciente->user_id);
       $sintoma = Sintoma::where('paciente_id', $id)->first();
+      if( $sintoma ){
+        $delete_sintoma = Sintoma::destroy($sintoma->id);
+      }
 
-      $delete_sintoma = Sintoma::destroy($sintoma->id);
+      $ajuda_tipo = AjudaTipo::where('paciente_id', $paciente->id)->first();
+      if( $ajuda_tipo ){
+        $delete_ajuda_tipo = AjudaTipo::destroy($ajuda_tipo->id);
+      }
+
       $delete_paciente = Paciente::destroy($paciente->id);
       $delete_user = User::destroy($user->id);
 

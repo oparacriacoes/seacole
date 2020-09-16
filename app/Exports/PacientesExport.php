@@ -128,12 +128,12 @@ class PacientesExport implements FromArray, WithHeadings
 
       foreach($pacientes as $paciente){
 
-        $resultado_teste = @unserialize($paciente->resultado_teste);
+        $resultado_teste = @implode(', ', unserialize($paciente->resultado_teste));
         if( $resultado_teste === false ){
           $resultado_teste = $paciente->resultado_teste;
         }
 
-        $teste_utilizado = @unserialize($paciente->teste_utilizado);
+        $teste_utilizado = @implode(', ', unserialize($paciente->teste_utilizado));
         if( $teste_utilizado === false ){
           $teste_utilizado = $paciente->teste_utilizado;
         }
@@ -147,7 +147,7 @@ class PacientesExport implements FromArray, WithHeadings
           'medico' => $paciente->medico ? $paciente->medico->user->name : '',
           'articuladora' => $paciente->articuladora_responsavel ? Articuladora::where('id', $paciente->articuladora_responsavel)->first()->name : '',
           'atendimento_semanal_psicologia' => $paciente->atendimento_semanal_psicologia ? $paciente->atendimento_semanal_psicologia : '',
-          'acompanhamento_psicologico' => $paciente->acompanhamento_psicologico ? unserialize($paciente->acompanhamento_psicologico) : '',
+          'acompanhamento_psicologico' => $paciente->acompanhamento_psicologico ? implode(', ', unserialize($paciente->acompanhamento_psicologico)) : '',
           'horario_at_psicologia' => $paciente->horario_at_psicologia ? $paciente->horario_at_psicologia : '',
           'como_chegou_ao_projeto' => $paciente->como_chegou_ao_projeto ? $paciente->como_chegou_ao_projeto : '',
           'nucleo_uneafro_qual' => $paciente->nucleo_uneafro_qual ? $paciente->nucleo_uneafro_qual : '',
@@ -169,7 +169,7 @@ class PacientesExport implements FromArray, WithHeadings
           'numero_pessoas_residencia' => $paciente->numero_pessoas_residencia ? $paciente->numero_pessoas_residencia : '',
           'responsavel_residencia' => $paciente->responsavel_residencia ? $paciente->responsavel_residencia : '',
           'renda_residencia' => $paciente->renda_residencia ? $paciente->renda_residencia : '',
-          'doenca_cronica' => $paciente->doenca_cronica ? unserialize($paciente->doenca_cronica) : '',
+          'doenca_cronica' => $paciente->doenca_cronica ? implode(', ', unserialize($paciente->doenca_cronica)) : '',
           'descreve_doencas' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
           'remedios_consumidos' => $paciente->remedios_consumidos ? $paciente->remedios_consumidos : '',
           'acompanhamento_medico' => $paciente->acompanhamento_medico ? $paciente->acompanhamento_medico : '',
@@ -202,7 +202,7 @@ class PacientesExport implements FromArray, WithHeadings
           'trimestre_gestacao' => $paciente->trimestre_gestacao ? $paciente->trimestre_gestacao : '',
           'motivo_risco_gravidez' => $paciente->motivo_risco_gravidez ? $paciente->motivo_risco_gravidez : '',
           'data_ultima_consulta' => $paciente->data_ultima_consulta ? $paciente->data_ultima_consulta : '',
-          'sistema_saude'  => $paciente->sistema_saude ? unserialize($paciente->sistema_saude) : '',
+          'sistema_saude'  => $paciente->sistema_saude ? implode(', ', unserialize($paciente->sistema_saude)) : '',
           'acompanhamento_ubs' => $paciente->acompanhamento_ubs ? $paciente->acompanhamento_ubs : '',
         ]);
       }

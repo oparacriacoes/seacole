@@ -80,12 +80,14 @@
                         <button class="close"></button>
                     </div>
                     <ul class="header-menu nav">
+                      @if(\Auth::user()->role === 'administrador')
                         <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
+                            <a href="{{ route('paciente/exportar') }}" class="nav-link">
                                 <i class="nav-link-icon fa fa-database"> </i>
-                                Calendário
+                                Exportar Pacientes
                             </a>
                         </li>
+                      @endif
                         <li class="btn-group nav-item">
                             <a href="javascript:void(0);" class="nav-link">
                                 <i class="nav-link-icon fa fa-edit"></i>

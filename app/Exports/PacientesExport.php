@@ -133,6 +133,11 @@ class PacientesExport implements FromArray, WithHeadings
           $resultado_teste = $paciente->resultado_teste;
         }
 
+        $teste_utilizado = @unserialize($paciente->teste_utilizado);
+        if( $teste_utilizado === false ){
+          $teste_utilizado = $paciente->teste_utilizado;
+        }
+
         array_push($pacientes_array, [
           'nome' => $paciente->user->name,
           'name_social' => $paciente->name_social ? $paciente->name_social : '',
@@ -172,7 +177,8 @@ class PacientesExport implements FromArray, WithHeadings
           'alimentacao_disponivel' => $paciente->alimentacao_disponivel ? $paciente->alimentacao_disponivel : '',
           'auxilio_terceiros' => $paciente->auxilio_terceiros ? $paciente->auxilio_terceiros : '',
           'tarefas_autocuidado' => $paciente->tarefas_autocuidado ? $paciente->tarefas_autocuidado : '',
-          'teste_utilizado' => $paciente->teste_utilizado ? unserialize($paciente->teste_utilizado) : '',
+          //'teste_utilizado' => $paciente->teste_utilizado ? unserialize($paciente->teste_utilizado) : '',
+          'teste_utilizado' => $teste_utilizado,
           'resultado_teste' => $resultado_teste ? $resultado_teste : '',
           'outras_informacao' => $paciente->outras_informacao ? $paciente->outras_informacao : '',
           'data_teste_confirmatorio' => $paciente->data_teste_confirmatorio ? $paciente->data_teste_confirmatorio : '',

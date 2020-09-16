@@ -538,6 +538,7 @@
                                               <option @if($paciente->nucleo_uneafro_qual === 'ANTÔNIO CANDEIA FILHO'){{ 'selected' }} @endif >ANTÔNIO CANDEIA FILHO</option>
                                               <option @if($paciente->nucleo_uneafro_qual === 'UNEAFRO MSTC'){{ 'selected' }} @endif >UNEAFRO MSTC</option>
                                               <option @if($paciente->nucleo_uneafro_qual === 'UNEAFRO LUZ'){{ 'selected' }} @endif >UNEAFRO LUZ</option>
+                                              <option @if($paciente->nucleo_uneafro_qual === 'NÚCLEO OBARÁ'){{ 'selected' }} @endif >NÚCLEO OBARÁ</option>
                                           </select>
                                         </div>
                                     </div>

@@ -438,7 +438,14 @@ class PacienteController extends Controller
     $observacao = $paciente->observacao;
     $cronicas = unserialize($paciente->doenca_cronica);
     $sistema_saude = unserialize($paciente->sistema_saude);
-    $teste_utilizado = unserialize($paciente->teste_utilizado);
+
+    $teste_utilizado = @unserialize($paciente->teste_utilizado);
+    if( $teste_utilizado === false ){
+      $teste_utilizado = $paciente->teste_utilizado;
+    } else {
+      $resultado_teste = unserialize($paciente->resultado_teste);
+    }
+
     $items = $paciente->items;
     $quadro = QuadroAtual::where('paciente_id', $id)->first();
     if( $quadro ){

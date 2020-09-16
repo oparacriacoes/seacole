@@ -580,43 +580,30 @@
                                     </label>
                                     <br>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input type="checkbox" name="teste_utilizado[]" id="pcr" class="custom-control-input" value="PCR" <?php if( $teste_utilizado && in_array('PCR', $teste_utilizado) ){ echo 'checked=checked'; } ?> >
+                                      <input type="checkbox" name="teste_utilizado[]" id="pcr" class="custom-control-input" value="PCR" <?php if( $teste_utilizado && is_array($teste_utilizado) && in_array('PCR', $teste_utilizado) ){ echo 'checked=checked'; } elseif( $teste_utilizado === 'PCR' ){ echo 'checked=checked'; } ?> >
                                       <label class="custom-control-label" for="pcr">
                                           PCR
                                       </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input type="checkbox" name="teste_utilizado[]" id="sorologias" class="custom-control-input" value="sorologias (IgM/IgG)" <?php if( $teste_utilizado && in_array('sorologias (IgM/IgG)', $teste_utilizado) ){ echo 'checked=checked'; } ?> >
+                                      <input type="checkbox" name="teste_utilizado[]" id="sorologias" class="custom-control-input" value="sorologias (IgM/IgG)" <?php if( $teste_utilizado && is_array($teste_utilizado) && in_array('sorologias (IgM/IgG)', $teste_utilizado) ){ echo 'checked=checked'; } elseif( $teste_utilizado === 'sorologias (IgM/IgG)' ){ echo 'checked=checked'; } ?> >
                                       <label class="custom-control-label" for="sorologias">
                                           sorologias (IgM/IgG)
                                       </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input type="checkbox" name="teste_utilizado[]" id="teste_rapido" class="custom-control-input" value="teste rápido" <?php if( $teste_utilizado && in_array('teste rápido', $teste_utilizado) ){ echo 'checked=checked'; } ?> >
+                                      <input type="checkbox" name="teste_utilizado[]" id="teste_rapido" class="custom-control-input" value="teste rápido" <?php if( $teste_utilizado && is_array($teste_utilizado) && in_array('teste rápido', $teste_utilizado) ){ echo 'checked=checked'; } elseif( $teste_utilizado === 'teste rápido' ){ echo 'checked=checked'; } ?> >
                                       <label class="custom-control-label" for="teste_rapido">
                                           Teste Rápido
                                       </label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input type="checkbox" name="teste_utilizado[]" id="nao_informado" class="custom-control-input" value="não informado" <?php if( $teste_utilizado && in_array('não informado', $teste_utilizado) ){ echo 'checked=checked'; } ?> >
+                                      <input type="checkbox" name="teste_utilizado[]" id="nao_informado" class="custom-control-input" value="não informado" <?php if( $teste_utilizado && is_array($teste_utilizado) && in_array('não informado', $teste_utilizado) ){ echo 'checked=checked'; } elseif( $teste_utilizado === 'não informado' ){ echo 'checked=checked'; } ?> >
                                       <label class="custom-control-label" for="nao_informado">
                                           Não Informado
                                       </label>
                                     </div>
                                   </div>
-                                <!--<div class="position-relative form-group">
-                                  <label for="exampleCustomMutlipleSelect" class="">
-                                    Testes realizados?
-                                </label>
-                                <select multiple="" type="select" id="teste_utilizado" name="teste_utilizado[]" class="custom-select">
-                                    <option value="">Selecione</option>
-                                    <option <?php if( $teste_utilizado && in_array('PCR', $teste_utilizado) ){ echo 'selected=selected'; } ?> >PCR</option>
-                                    <option <?php if( $teste_utilizado && in_array('sorologias (IgM/IgG)', $teste_utilizado) ){ echo 'selected=selected'; } ?> >sorologias (IgM/IgG)</option>
-                                    <option <?php if( $teste_utilizado && in_array('teste rápido', $teste_utilizado) ){ echo 'selected=selected'; } ?> >teste rápido</option>
-                                    <option <?php if( $teste_utilizado && in_array('não informado', $teste_utilizado) ){ echo 'selected=selected'; } ?> >não informado</option>
-                                </select>
-                                <small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>
-                              </div>-->
                                 </div>
 
                                 <div class="col-md-3">

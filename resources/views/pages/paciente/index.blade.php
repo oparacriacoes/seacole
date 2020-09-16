@@ -10,7 +10,7 @@
                     </i>
                 </div>
                 <div>Pacientes
-                    <div class="page-title-subheading">Todas os conteúdos são somente teste.
+                    <div class="page-title-subheading">Projeto Agentes Populares de Saúde.
                     </div>
                 </div>
             </div>

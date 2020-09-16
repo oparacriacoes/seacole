@@ -488,7 +488,7 @@ class PacienteController extends Controller
       $insumos_tratamento = array();
     }
 
-    $prontuarios = EvolucaoSintoma::where('paciente_id', $id)->get();
+    $prontuarios = EvolucaoSintoma::where('paciente_id', $id)->orderBy('data_monitoramento')->get();
 
     $acompanhamento_psicologico = unserialize($paciente->acompanhamento_psicologico);
 

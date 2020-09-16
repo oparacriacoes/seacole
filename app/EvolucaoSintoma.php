@@ -8,6 +8,7 @@ class EvolucaoSintoma extends Model
 {
   protected $fillable = [
     'paciente_id',
+    'data_monitoramento',
     'horario_monotiramento',
     'sintomas_atuais',
     'sintomas_outro',

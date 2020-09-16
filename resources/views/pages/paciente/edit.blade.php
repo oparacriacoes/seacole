@@ -1144,6 +1144,12 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="data_monitoramento">Data do monitoramento</label>
+                                        <input name="data_monitoramento" type="text" class="date form-control" id="data_monitoramento" value="@if($monitoramento) {{ $monitoramento->data_monitoramento }} @endif">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="horario_monotiramento">Horário do monitoramento</label>
                                         <input name="horario_monotiramento" type="text" class=" form-control hour" id="horario_monotiramento" value="@if($monitoramento) {{ $monitoramento->horario_monotiramento }} @endif">
                                     </div>
@@ -1667,13 +1673,15 @@
                         <div class="col-4 col-md-4">
                           <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title">Data: {{ $prontuario->created_at->format('d/m/Y') }} - Hora: {{ $prontuario->horario_monotiramento }}</h5>
+                              <h5 class="card-title">Data: {{ $prontuario->data_monitoramento }} - Hora: {{ $prontuario->horario_monotiramento }}</h5>
                               <p class="card-text">
                                 <strong>Sintomas: </strong>
                                 <?php
                                 $sintomas = unserialize($prontuario->sintomas_atuais);
-                                for($c=0;$c<count($sintomas);$c++){
-                                  echo ucfirst($sintomas[$c]).', ';
+                                if($sintomas){
+                                  for($c=0;$c<count($sintomas);$c++){
+                                    echo ucfirst($sintomas[$c]).', ';
+                                  }
                                 }
                                 ?>
                               </p>

@@ -14,6 +14,7 @@ class MonitoramentoController extends Controller
   {
     $dados = [
       'paciente_id' => $id,
+      'data_monitoramento' => $request->data_monitoramento,
       'horario_monotiramento' => $request->horario_monotiramento,
       'sintomas_atuais' => $request->sintomas_atuais ? serialize($request->sintomas_atuais) : NULL,
       'sintomas_outro' => $request->sintomas_outro,

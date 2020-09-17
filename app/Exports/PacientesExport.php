@@ -70,6 +70,7 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'Nº pessoas residência',
           'Responsável residência',
           'Renda residência',
+          'Classe Social',
           'Doença crônica',
           'Descrição doenças crônicas',
           'Remédios consumidos',
@@ -146,6 +147,27 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
       $to_date = date('Y-m-d', $date_time);
       $date_parse = Carbon::parse($to_date);
       return $date_parse->diffInYears();
+    }
+
+    public function incomeClass($income)
+    {
+      $income_parse = (float)$income;
+
+      if( $income_parse >= 0 && $income_parse <= 1254 ){
+        return 'CLASSE E';
+      }
+      if( $income_parse >= 1255 && $income_parse <= 2004 ){
+        return 'CLASSE D';
+      }
+      if( $income_parse >= 2005 && $income_parse <= 8640 ){
+        return 'CLASSE C';
+      }
+      if( $income_parse >= 8641 && $income_parse <= 11261 ){
+        return 'CLASSE B';
+      }
+      if( $income_parse >= 11262 ){
+        return 'CLASSE A';
+      }
     }
 
     public function array(): array
@@ -260,8 +282,17 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           array_push($situacao_array, 'Exclusivo psicologia - finalizado');
         }
 
+        //CALCULA A IDADE DO PACIENTE
         if( $paciente->data_nascimento ){
           $age = $this->ageCalc($paciente->data_nascimento);
+        }
+
+        //CLASSIFICA POR RENDA
+        if( $paciente->renda_residencia ){
+          $classe = $this->incomeClass($paciente->renda_residencia);
+          //dd($classe);
+        } else {
+          $classe = '';
         }
 
         array_push($pacientes_array, [
@@ -296,6 +327,7 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'Nº pessoas residência' => $paciente->numero_pessoas_residencia ? $paciente->numero_pessoas_residencia : '',
           'Responsável residência' => $paciente->responsavel_residencia ? $paciente->responsavel_residencia : '',
           'Renda residência' => $paciente->renda_residencia ? $paciente->renda_residencia : '',
+          'Classe Social' => $classe,
           'Doença crônica' => implode(', ', $doenca_cronica),
           'Descrição doenças crônicas' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
           'Remédios consumidos' => $paciente->remedios_consumidos ? $paciente->remedios_consumidos : '',

@@ -296,6 +296,8 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
         //CALCULA A IDADE DO PACIENTE
         if( $paciente->data_nascimento ){
           $age = $this->ageCalc($paciente->data_nascimento);
+        } else {
+          $age = '';
         }
 
         //CLASSIFICA POR RENDA

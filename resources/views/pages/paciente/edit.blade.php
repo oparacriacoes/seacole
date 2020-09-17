@@ -1608,8 +1608,7 @@
                                     </div>
                                 </div>
 
-                                <div class="divider">
-                                </div>
+                                <div class="divider"></div>
 
                                 <div class="form-row">
                                     <div class="col-md-4">
@@ -1656,6 +1655,15 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="divider"></div>
+
+                                <div class="form-row">
+                                  <div class="col-md-4">
+                                    >>> KIT <<<
+                                  </div>
+                                </div>
+
                                 <div class="position-relatives row fdorm-check">
                                     <div class="col-sm-12 offset-sm-2s"><br />
                                         <button class="btn btn-secondary">Enviar</button>

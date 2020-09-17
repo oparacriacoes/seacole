@@ -37,6 +37,10 @@ class InsumosOferecidoExport implements FromArray, WithHeadings, WithTitle
 
     foreach($insumos as $insumo){
       $paciente = Paciente::where('id', $insumo->paciente_id)->first();
+      $precisa_ajuda = @implode(', ', unserialize($insumo->precisa_tipo_ajuda));
+      if( $precisa_ajuda === null ){
+        $precisa_ajuda = $insumo->precisa_tipo_ajuda;
+      }
 
       array_push($insumos_array, [
         'Paciente' => $paciente->user->name,
@@ -44,7 +48,8 @@ class InsumosOferecidoExport implements FromArray, WithHeadings, WithTitle
         'Comida disponível?' => $insumo->tem_comida,
         'Alguém para ajudar?' => $insumo->tem_alguem,
         'Realiza taref. autocuidado?' => $insumo->tarefas_autocuidado,
-        'Precisa ajuda?' => $insumo->precisa_tipo_ajuda ? implode(', ', unserialize($insumo->precisa_tipo_ajuda)) : '',
+        //'Precisa ajuda?' => $insumo->precisa_tipo_ajuda ? implode(', ', unserialize($insumo->precisa_tipo_ajuda)) : '',
+        'Precisa ajuda?' => $precisa_ajuda,
         'Tratam. prescrito' => $insumo->tratamento_prescrito,
         'Tratam. financiado' => $insumo->tratamento_financiado ? implode(', ', unserialize($insumo->tratamento_financiado)) : '',
       ]);

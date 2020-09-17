@@ -71,6 +71,7 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'Responsável residência',
           'Renda residência',
           'Classe Social',
+          'Renda per capta',
           'Doença crônica',
           'Descrição doenças crônicas',
           'Remédios consumidos',
@@ -168,6 +169,16 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
       if( $income_parse >= 11262 ){
         return 'CLASSE A';
       }
+    }
+
+    public function perCapitaIncome($income, $people)
+    {
+      $income_parse = (float)$income;
+      $people_parse = (integer)$people;
+      $result = $income_parse/$people_parse;
+      $perCapta_format = number_format($result, 2, ',', '.');
+
+      return $perCapta_format;
     }
 
     public function array(): array
@@ -295,6 +306,13 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           $classe = '';
         }
 
+        //CALCULA A RENDA PER CAPTA
+        if( $paciente->renda_residencia && $paciente->numero_pessoas_residencia ){
+          $perCapta = $this->perCapitaIncome($paciente->renda_residencia, $paciente->numero_pessoas_residencia);
+        } else {
+          $perCapta = 'Dados insuficientes';
+        }
+
         array_push($pacientes_array, [
           'Nome' => $paciente->user->name,
           'Nome social' => $paciente->name_social ? $paciente->name_social : '',
@@ -326,8 +344,9 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'Tel. celular' => $paciente->fone_celular ? $paciente->fone_celular : '',
           'Nº pessoas residência' => $paciente->numero_pessoas_residencia ? $paciente->numero_pessoas_residencia : '',
           'Responsável residência' => $paciente->responsavel_residencia ? $paciente->responsavel_residencia : '',
-          'Renda residência' => $paciente->renda_residencia ? $paciente->renda_residencia : '',
+          'Renda residência' => $paciente->renda_residencia ? number_format((float)$paciente->renda_residencia, 2, ',', '.') : '',
           'Classe Social' => $classe,
+          'Renda per capta' => $perCapta,
           'Doença crônica' => implode(', ', $doenca_cronica),
           'Descrição doenças crônicas' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
           'Remédios consumidos' => $paciente->remedios_consumidos ? $paciente->remedios_consumidos : '',

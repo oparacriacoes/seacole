@@ -18,9 +18,9 @@ class InsumosOferecidoController extends Controller
       'tem_comida' => $request->tem_comida,
       'tem_alguem' => $request->tem_alguem,
       'tarefas_autocuidado' => $request->tarefas_autocuidado,
-      'precisa_tipo_ajuda' => serialize($request->precisa_tipo_ajuda),
+      'precisa_tipo_ajuda' => $request->precisa_tipo_ajuda ? serialize($request->precisa_tipo_ajuda) : NULL,
       'tratamento_prescrito' => $request->tratamento_prescrito,
-      'tratamento_financiado' => serialize($request->tratamento_financiado),
+      'tratamento_financiado' => $request->tratamento_financiado ? serialize($request->tratamento_financiado) : NULL,
     ];
 
     if( !$insumos ){

@@ -27,6 +27,8 @@ class InsumosOferecidoExport implements FromArray, WithHeadings, WithTitle
       'Precisa ajuda?',
       'Tratam. prescrito',
       'Tratam. financiado',
+      'Material entregue',
+      'Oxímetro devolvido?',
     ];
   }
 
@@ -48,10 +50,11 @@ class InsumosOferecidoExport implements FromArray, WithHeadings, WithTitle
         'Comida disponível?' => $insumo->tem_comida,
         'Alguém para ajudar?' => $insumo->tem_alguem,
         'Realiza taref. autocuidado?' => $insumo->tarefas_autocuidado,
-        //'Precisa ajuda?' => $insumo->precisa_tipo_ajuda ? implode(', ', unserialize($insumo->precisa_tipo_ajuda)) : '',
         'Precisa ajuda?' => $precisa_ajuda,
         'Tratam. prescrito' => $insumo->tratamento_prescrito,
         'Tratam. financiado' => $insumo->tratamento_financiado ? implode(', ', unserialize($insumo->tratamento_financiado)) : '',
+        'Material entregue' => $insumo->material_entregue ? implode(', ', unserialize($insumo->material_entregue)) : '',
+        'Oxímetro devolvido?' => $insumo->oximetro_devolvido,
       ]);
     }
 

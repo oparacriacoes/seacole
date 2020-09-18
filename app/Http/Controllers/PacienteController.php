@@ -297,7 +297,6 @@ class PacienteController extends Controller
 
   public function storeGeral(Request $request)
   {
-    //dd($request->all());
     DB::beginTransaction();
     try {
       $user = User::create([
@@ -440,7 +439,6 @@ class PacienteController extends Controller
     $sistema_saude = unserialize($paciente->sistema_saude);
 
     $teste_utilizado = @unserialize($paciente->teste_utilizado);
-    //dd($teste_utilizado);
     if( $teste_utilizado === false ){
       $teste_utilizado = $paciente->teste_utilizado;
     }
@@ -480,12 +478,15 @@ class PacienteController extends Controller
     }
 
     $insumos = InsumosOferecido::where('paciente_id', $paciente->id)->first();
+
     if( $insumos ){
       $insumos_ajuda = unserialize($insumos->precisa_tipo_ajuda);
       $insumos_tratamento = unserialize($insumos->tratamento_financiado);
+      $insumos_materiais = @unserialize($insumos->material_entregue);
     } else {
       $insumos_ajuda = [];
       $insumos_tratamento = array();
+      $insumos_materiais = [];
     }
 
     $prontuarios = EvolucaoSintoma::where('paciente_id', $id)->orderBy('data_monitoramento')->get();
@@ -495,16 +496,13 @@ class PacienteController extends Controller
     $resultado_teste = @unserialize($paciente->resultado_teste);
     if( $resultado_teste === false ){
       $resultado_teste = $paciente->resultado_teste;
-    } /*else {
-      $resultado_teste = unserialize($paciente->resultado_teste);
-    }*/
+    }
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento', 'prontuarios', 'acompanhamento_psicologico', 'resultado_teste'));
+    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento', 'prontuarios', 'acompanhamento_psicologico', 'resultado_teste', 'insumos_materiais'));
   }
 
   public function update(Request $request, $id)
   {
-    //dd($request->all());
     $paciente = Paciente::find($id);
 
     $dados = [
@@ -537,7 +535,6 @@ class PacienteController extends Controller
       'responsavel_residencia' => $request->responsavel_residencia,
       'renda_residencia' => $request->renda_residencia,
       'doenca_cronica' => $request->doenca_cronica ? serialize($request->doenca_cronica) : NULL,
-      //'outras_doencas' => '',
       'remedios_consumidos' => $request->remedios_consumidos,
       'acompanhamento_medico' => $request->acompanhamento_medico,
       'isolamento_residencial' => $request->isolamento_residencial,
@@ -547,7 +544,6 @@ class PacienteController extends Controller
       'teste_utilizado' => $request->teste_utilizado ? serialize($request->teste_utilizado) : NULL,
       'resultado_teste' => $request->resultado_teste ? serialize($request->resultado_teste) : NULL,
       'data_teste_confirmatorio' => $request->data_teste_confirmatorio,
-      //'caso_confirmado' => '',
       'sintomas_iniciais' => $request->sintomas_iniciais,
       'data_inicio_sintoma' => $request->data_inicio_sintoma,
       'data_inicio_monitoramento' => $request->data_inicio_monitoramento,
@@ -574,7 +570,6 @@ class PacienteController extends Controller
       'data_ultima_consulta' => $request->data_ultima_consulta,
       'sistema_saude' => $request->sistema_saude ? serialize($request->sistema_saude) : NULL,
       'acompanhamento_ubs' => $request->acompanhamento_ubs,
-      //'valor_familia' => '',
       'outras_informacao' => $request->outras_informacao,
     ];
 

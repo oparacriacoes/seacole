@@ -21,6 +21,8 @@ class InsumosOferecidoController extends Controller
       'precisa_tipo_ajuda' => $request->precisa_tipo_ajuda ? serialize($request->precisa_tipo_ajuda) : NULL,
       'tratamento_prescrito' => $request->tratamento_prescrito,
       'tratamento_financiado' => $request->tratamento_financiado ? serialize($request->tratamento_financiado) : NULL,
+      'material_entregue' => $request->material_entregue ? serialize($request->material_entregue) : NULL,
+      'oximetro_devolvido' => $request->oximetro_devolvido,
     ];
 
     if( !$insumos ){

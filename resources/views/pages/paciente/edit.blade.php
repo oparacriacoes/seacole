@@ -1659,8 +1659,64 @@
                                 <div class="divider"></div>
 
                                 <div class="form-row">
-                                  <div class="col-md-4">
-                                    >>> KIT <<<
+                                  <div class="col-md-12 mb-2">
+                                    <strong>Foi entregue:</strong>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="Cartilha de cuidados" id="cartilha" name="material_entregue[]" <?php if( $insumos_materiais && in_array('Cartilha de cuidados', $insumos_materiais) ){ echo 'checked=checked'; } ?> >
+                                      <label class="form-check-label" for="cartilha">
+                                        Cartilha de cuidados
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="Termometro" id="termometro" name="material_entregue[]" <?php if( $insumos_materiais && in_array('Termometro', $insumos_materiais) ){ echo 'checked=checked'; } ?> >
+                                      <label class="form-check-label" for="termometro">
+                                        Termômetro
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="Dipirona" id="dipirona" name="material_entregue[]" <?php if( $insumos_materiais && in_array('Dipirona', $insumos_materiais) ){ echo 'checked=checked'; } ?> >
+                                      <label class="form-check-label" for="dipirona">
+                                        Dipirona
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="Paracetamol" id="paracetamol" name="material_entregue[]" <?php if( $insumos_materiais && in_array('Paracetamol', $insumos_materiais) ){ echo 'checked=checked'; } ?> >
+                                      <label class="form-check-label" for="paracetamol">
+                                        Paracetamol
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="Oximetro" id="oximetro" name="material_entregue[]" <?php if( $insumos_materiais && in_array('Oximetro', $insumos_materiais) ){ echo 'checked=checked'; } ?> >
+                                      <label class="form-check-label" for="oximetro">
+                                        Oxímetro
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="Mascaras de tecido" id="mascaras" name="material_entregue[]" <?php if( $insumos_materiais && in_array('Mascaras de tecido', $insumos_materiais) ){ echo 'checked=checked'; } ?> >
+                                      <label class="form-check-label" for="mascaras">
+                                        Máscaras de tecido
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="Material de limpeza" id="material_limpeza" name="material_entregue[]" <?php if( $insumos_materiais && in_array('Material de limpeza', $insumos_materiais) ){ echo 'checked=checked'; } ?> >
+                                      <label class="form-check-label" for="material_limpeza">
+                                        Material de limpeza
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="Cesta basica" id="cesta_basica" name="material_entregue[]" <?php if( $insumos_materiais && in_array('Cesta basica', $insumos_materiais) ){ echo 'checked=checked'; } ?> >
+                                      <label class="form-check-label" for="cesta_basica">
+                                        Cesta Básica
+                                      </label>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="oximetro_devolvido"><strong>Se o caso já tiver sido encerrado: oxímetro foi devolvido?</strong></label>
+                                        <div class="position-relative1 form-check"><label class="form-check-label"><input id="oximetro_devolvido" name="oximetro_devolvido" type="radio" class="form-check-input" value="sim" <?php if( $insumos && $insumos->oximetro_devolvido === 'sim' ){ echo 'checked=checked'; } ?> > Sim</label></div>
+                                        <div class="position-relative1 form-check"><label class="form-check-label"><input id="oximetro_devolvido" name="oximetro_devolvido" type="radio" class="form-check-input" value="não" <?php if( $insumos && $insumos->oximetro_devolvido === 'não' ){ echo 'checked=checked'; } ?> > Não</label></div>
+                                    </div>
                                   </div>
                                 </div>
 

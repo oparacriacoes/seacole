@@ -115,7 +115,7 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
 
     public function incomeClass($income)
     {
-      $income_parse = (float)$income;
+      $income_parse = (int)$income;
 
       if( $income_parse >= 0 && $income_parse <= 1254 ){
         return 'CLASSE E';
@@ -136,8 +136,8 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
 
     public function perCapitaIncome($income, $people)
     {
-      $income_parse = (float)$income;
-      $people_parse = (integer)$people;
+      $income_parse = (int)$income;
+      $people_parse = (int)$people;
       $result = $income_parse/$people_parse;
       $perCapta_format = number_format($result, 2, ',', '.');
 
@@ -265,15 +265,18 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
 
         //CLASSIFICA POR RENDA
         if( $paciente->renda_residencia ){
-          $classe = $this->incomeClass($paciente->renda_residencia);
-          //dd($classe);
+          $renda = $paciente->renda_residencia;
+          $renda_replace = str_replace('.','',$renda);
+          $classe = $this->incomeClass($renda_replace);
         } else {
           $classe = '';
         }
 
         //CALCULA A RENDA PER CAPTA
         if( $paciente->renda_residencia && $paciente->numero_pessoas_residencia ){
-          $perCapta = $this->perCapitaIncome($paciente->renda_residencia, $paciente->numero_pessoas_residencia);
+          $renda = $paciente->renda_residencia;
+          $renda_replace = str_replace('.','',$renda);
+          $perCapta = $this->perCapitaIncome($renda_replace, $paciente->numero_pessoas_residencia);
         } else {
           $perCapta = 'Dados insuficientes';
         }
@@ -309,7 +312,7 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'Tel. celular' => $paciente->fone_celular ? $paciente->fone_celular : '',
           'Nº pessoas residência' => $paciente->numero_pessoas_residencia ? $paciente->numero_pessoas_residencia : '',
           'Responsável residência' => $paciente->responsavel_residencia ? $paciente->responsavel_residencia : '',
-          'Renda residência' => $paciente->renda_residencia ? number_format((float)$paciente->renda_residencia, 2, ',', '.') : '',
+          'Renda residência' => $paciente->renda_residencia ? $paciente->renda_residencia : '',
           'Classe Social' => $classe,
           'Renda per capta' => $perCapta,
           'Doença crônica' => implode(', ', $doenca_cronica),

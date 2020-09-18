@@ -480,8 +480,8 @@ class PacienteController extends Controller
     $insumos = InsumosOferecido::where('paciente_id', $paciente->id)->first();
 
     if( $insumos ){
-      $insumos_ajuda = unserialize($insumos->precisa_tipo_ajuda);
-      $insumos_tratamento = unserialize($insumos->tratamento_financiado);
+      $insumos_ajuda = @unserialize($insumos->precisa_tipo_ajuda);
+      $insumos_tratamento = @unserialize($insumos->tratamento_financiado);
       $insumos_materiais = @unserialize($insumos->material_entregue);
     } else {
       $insumos_ajuda = [];

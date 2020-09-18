@@ -52,8 +52,8 @@ class InsumosOferecidoExport implements FromArray, WithHeadings, WithTitle
         'Realiza taref. autocuidado?' => $insumo->tarefas_autocuidado,
         'Precisa ajuda?' => $precisa_ajuda,
         'Tratam. prescrito' => $insumo->tratamento_prescrito,
-        'Tratam. financiado' => $insumo->tratamento_financiado ? implode(', ', unserialize($insumo->tratamento_financiado)) : '',
-        'Material entregue' => $insumo->material_entregue ? implode(', ', unserialize($insumo->material_entregue)) : '',
+        'Tratam. financiado' => $insumo->tratamento_financiado ? @implode(', ', unserialize($insumo->tratamento_financiado)) : '',
+        'Material entregue' => $insumo->material_entregue ? @implode(', ', unserialize($insumo->material_entregue)) : '',
         'Oxímetro devolvido?' => $insumo->oximetro_devolvido,
       ]);
     }

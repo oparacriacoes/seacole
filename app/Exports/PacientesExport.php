@@ -35,71 +35,98 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
         return [
           'Nome',
           'Nome social',
-          'Identidade gênero',
-          'Orientação sexual',
-          'Agente',
-          'Médico',
-          'Articuladora',
-          'At. semanal psicol.',
-          'Acompanhamento psicol.',
-          'Hor. at. psicol.',
-          'Como chegou ao projeto',
-          'Núcleo UNEAFRO qual?',
-          'Como chegou ao projeto outro',
-          'Psicólogo',
-          'Situação',
+          'Tel. fixo',
+          'Tel. celular',
           'Data nascimento',
           'Idade',
-          'Cor/Raça',
+          'Faixa Etária',
+          'Responsável residência',
+          'Email',
           'CEP',
           'Rua',
           'Número',
+          'Complemento',
           'Bairro',
           'Cidade',
           'UF',
           'Ponto referência',
-          'Complemento',
-          'Tel. fixo',
-          'Tel. celular',
+          'Identidade gênero',
+          'Orientação sexual',
+          'Cor/Raça',
           'Nº pessoas residência',
-          'Responsável residência',
+          'Auxílio emergencial',
           'Renda residência',
-          'Classe Social',
+          'Classe Social (Renda Total)',
           'Renda per capta',
-          'Doença crônica',
-          'Descrição doenças crônicas',
-          'Remédios consumidos',
-          'Acompanhamento médico',
-          'Isolamento residencial',
-          'Alimentacao disponível',
-          'Auxílio terceiros',
-          'Tarefas autocuidado',
-          'Teste utilizado',
-          'Resultado teste',
-          'Outras inf. sobre o teste',
-          'Data teste confirmatório',
+          'Classe Social (Renda Per Capta)',
+          'Como chegou ao projeto',
+          'Núcleo UNEAFRO qual?',
+          'Como chegou ao projeto outro',
           'Data início sintoma',
           'Data início monitoramento',
+          'Data finalização caso',
+          'Total dias monitoramento',
+          'Situação',
+          'Agente',
+          'Médico',
+          'Articuladora',
+          'Psicólogo',
           'Data início ac. psicológico',
           'Data encerramento ac. psicológico',
-          'Data finalização caso',
-          'Auxílio emergencial',
-          'Descrição doenças',
+          'Acomp. psicol. individual',
+          'Acomp. psicol. em grupo',
+          'At. semanal psicol.',
+          'Hor. at. psicol.',
+          //'Diagnóstico', // A FAZER
+          'Testes Realizados? PCR',
+          'Testes Realizados? Sorologias (IgM/IgG)',
+          'Testes Realizados? Teste Rápido',
+          'Testes Realizados? Não Informado',
+
+          'Resultados Encontrados - PCR positivo',
+          'Resultados Encontrados - PCR negativo',
+          'Resultados Encontrados - IgM positivo',
+          'Resultados Encontrados - IgM negativo',
+          'Resultados Encontrados - IgG positivo',
+          'Resultados Encontrados - IgG negativo',
+
+          'Outras inf. sobre o teste',
+
+          'Doença crônica', // DEMEMBRAR (SIM/NÃO)
+
+          'Descrição doenças crônicas',
           'Tuberculose',
           'Tabagista',
           'Alcool crônico',
           'Outras drogas',
           'Gestante',
+          'Pós parto',
           'Amamenta',
           'Gestação alto risco',
-          'Pós parto',
-          'Data parto',
-          'Data última mestruação',
-          'Trimestre gestacao',
           'Motivo risco gravidez',
+          'Data parto',
+          'Data última menstruação',
+          'Trimestre gestacao',
+          'Acompanhamento médico',
           'Data última consulta',
-          'Sistema saúde',
-          'Acompanhamento UBS',
+
+          'Sistema saúde', // DEMEMBRAR (SIM/NÃO)
+
+          // AQUI VÃO AS INFORMAÇÕES DA ABA 'QUADRO ATUAL' - A FAZER
+          // AQUI VÃO AS INFORMAÇÕES DA ABA 'SAÚDE MENTAL' - A FAZER
+          // AQUI VÃO AS INFORMAÇÕES DA ABA 'SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO' - A FAZER
+          // AQUI VÃO AS INFORMAÇÕES DA ABA 'INSUMOS OFERECIDOS PELO PROJETO' - A FAZER
+
+          // IDENTIFICAR ONDE ENTRARÃO ESTAS INFOS - INICIO
+          /*'Remédios consumidos',
+          'Isolamento residencial',
+          'Alimentacao disponível',
+          'Auxílio terceiros',
+          'Tarefas autocuidado',
+          'Data teste confirmatório',
+          'Descrição doenças',
+          'Acompanhamento UBS',*/
+          // IDENTIFICAR ONDE ENTRARÃO ESTAS INFOS - FIM
         ];
     }
 
@@ -144,22 +171,94 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
       return $perCapta_format;
     }
 
+    public function ageRange($age)
+    {
+      if( $age >= 0 && $age <= 4 ){
+        return '0-4';
+      }
+      if( $age >= 5 && $age <= 9 ){
+        return '5-9';
+      }
+      if( $age >= 10 && $age <= 14 ){
+        return '10-14';
+      }
+      if( $age >= 15 && $age <= 19 ){
+        return '15-19';
+      }
+      if( $age >= 20 && $age <= 24 ){
+        return '20-24';
+      }
+      if( $age >= 25 && $age <= 29 ){
+        return '25-29';
+      }
+      if( $age >= 30 && $age <= 34 ){
+        return '30-34';
+      }
+      if( $age >= 35 && $age <= 39 ){
+        return '35-39';
+      }
+      if( $age >= 40 && $age <= 44 ){
+        return '40-44';
+      }
+      if( $age >= 45 && $age <= 49 ){
+        return '45-49';
+      }
+      if( $age >= 50 && $age <= 54 ){
+        return '50-54';
+      }
+      if( $age >= 55 && $age <= 59 ){
+        return '55-59';
+      }
+      if( $age >= 60 && $age <= 64 ){
+        return '60-64';
+      }
+      if( $age >= 65 && $age <= 69 ){
+        return '65-69';
+      }
+      if( $age >= 70 && $age <= 74 ){
+        return '70-74';
+      }
+      if( $age >= 75 && $age <= 79 ){
+        return '75-79';
+      }
+      if( $age >= 80 && $age <= 84 ){
+        return '80-84';
+      }
+      if( $age >= 85 && $age <= 89 ){
+        return '85-89';
+      }
+      if( $age >= 90 && $age <= 94 ){
+        return '90-94';
+      }
+      if( $age >= 95 && $age <= 99 ){
+        return '95-99';
+      }
+      if( $age >= 100 && $age <= 104 ){
+        return '100-104';
+      }
+    }
+
+    public function monitoringDays($date1, $date2)
+    {
+      $date1_replace = str_replace('/', '-', $date1);
+      $date2_replace = str_replace('/', '-', $date2);
+      $date1_time = strtotime($date1_replace);
+      $date2_time = strtotime($date2_replace);
+      $from_date = date('Y-m-d', $date1_time);
+      $to_date = date('Y-m-d', $date2_time);
+      $from_parse = Carbon::parse($from_date);
+      $to_parse = Carbon::parse($to_date);
+      $monitoringDays = $from_parse->diffInDays($to_parse);
+
+      return $monitoringDays;
+    }
+
     public function array(): array
     {
       $pacientes = Paciente::get();
       $pacientes_array = [];
 
       foreach($pacientes as $paciente){
-
-        $resultado_teste = @implode(', ', unserialize($paciente->resultado_teste));
-        if( $resultado_teste === false ){
-          $resultado_teste = $paciente->resultado_teste;
-        }
-
-        $teste_utilizado = @implode(', ', unserialize($paciente->teste_utilizado));
-        if( $teste_utilizado === false ){
-          $teste_utilizado = $paciente->teste_utilizado;
-        }
 
         $doenca_cronica = [];
         $doenca = $paciente->doenca_cronica ? unserialize($paciente->doenca_cronica) : [];
@@ -281,74 +380,176 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           $perCapta = 'Dados insuficientes';
         }
 
+        //CLASSIFICA POR RENDA PER-CAPTA
+        if( $paciente->renda_residencia && $paciente->numero_pessoas_residencia ){
+          $percapta_replace = str_replace('.','',$perCapta);
+          $classe_percapta = $this->incomeClass($percapta_replace);
+        } else {
+          $classe_percapta = 'Dados insuficientes';
+        }
+
+        //CALCULA A FAIXA ETÁRIA
+        if( $age ){
+          $age_range = $this->ageRange($age);
+        } else {
+          $age_range = '';
+        };
+
+        //DETERMINA A RAÇA (PARDA & PRETA = NEGRA)
+        if( $paciente->cor_raca === 'Preta' || $paciente->cor_raca === 'Parda' ){
+          $raca_cor = 'Negra';
+        } else {
+          $raca_cor = $paciente->cor_raca;
+        };
+
+        //CALCULA O TOTAL DE DIAS DE MONITORAMENTO
+        if( $paciente->data_inicio_monitoramento && $paciente->data_finalizacao_caso ){
+          $monitoring_days = $this->monitoringDays($paciente->data_inicio_monitoramento, $paciente->data_finalizacao_caso);
+        } else {
+          $monitoring_days = '';
+        }
+
+        if( $paciente->acompanhamento_psicologico ){
+          $acompanhamento = @unserialize($paciente->acompanhamento_psicologico);
+          in_array('individual', $acompanhamento) ? $acompanhamento_individual = 'Sim' : $acompanhamento_individual = 'Não';
+          in_array('em grupo', $acompanhamento) ? $acompanhamento_grupo = 'Sim' : $acompanhamento_grupo = 'Não';
+        } else {
+          $acompanhamento_individual = '';
+          $acompanhamento_grupo = '';
+        };
+
+        if( $paciente->teste_utilizado ){
+          $teste = @unserialize($paciente->teste_utilizado);
+          if($teste === false){
+            $paciente->teste_utilizado === 'PCR' ? $pcr = 'Sim' : $pcr = 'Não';
+            $paciente->teste_utilizado === 'sorologias (IgM/IgG)' ? $sorologias = 'Sim' : $sorologias = 'Não';
+            $paciente->teste_utilizado ===  'teste rápido' ? $teste_rapido = 'Sim' : $teste_rapido = 'Não';
+            $paciente->teste_utilizado === 'não informado' ? $nao_informado = 'Sim' : $nao_informado = 'Não';
+          } else {
+            in_array('PCR', $teste) ? $pcr = 'Sim' : $pcr = 'Não';
+            in_array('sorologias (IgM/IgG)', $teste) ? $sorologias = 'Sim' : $sorologias = 'Não';
+            in_array('teste rápido', $teste) ? $teste_rapido = 'Sim' : $teste_rapido = 'Não';
+            in_array('não informado', $teste) ? $nao_informado = 'Sim' : $nao_informado = 'Não';
+          }
+        } else {
+          $pcr = '';
+          $sorologias = '';
+          $teste_rapido = '';
+          $nao_informado = '';
+        };
+
+        if( $paciente->resultado_teste ){
+          $resultado = @unserialize($paciente->resultado_teste);
+          if( $resultado === false ){
+            $paciente->resultado_teste === 'PCR positivo' ? $pcr_positivo = 'Sim' : $pcr_positivo = 'Não';
+            $paciente->resultado_teste === 'PCR negativo' ? $pcr_negativo = 'Sim' : $pcr_negativo = 'Não';
+            $paciente->resultado_teste === 'IgM positivo' ? $igm_positivo = 'Sim' : $igm_positivo = 'Não';
+            $paciente->resultado_teste === 'IgM negativo' ? $igm_negativo = 'Sim' : $igm_negativo = 'Não';
+            $paciente->resultado_teste === 'IgG positivo' ? $igg_positivo = 'Sim' : $igg_positivo = 'Não';
+            $paciente->resultado_teste === 'IgG negativo' ? $igg_negativo = 'Sim' : $igg_negativo = 'Não';
+          } else {
+            in_array('PCR positivo', $resultado) ? $pcr_positivo = 'Sim' : $pcr_positivo = 'Não';
+            in_array('PCR negativo', $resultado) ? $pcr_negativo = 'Sim' : $pcr_negativo = 'Não';
+            in_array('IgM positivo', $resultado) ? $igm_positivo = 'Sim' : $igm_positivo = 'Não';
+            in_array('IgM negativo', $resultado) ? $igm_negativo = 'Sim' : $igm_negativo = 'Não';
+            in_array('IgG positivo', $resultado) ? $igg_positivo = 'Sim' : $igg_positivo = 'Não';
+            in_array('IgG negativo', $resultado) ? $igg_negativo = 'Sim' : $igg_negativo = 'Não';
+          }
+        } else {
+          $pcr_positivo = '';
+          $pcr_negativo = '';
+          $igm_positivo = '';
+          $igm_negativo = '';
+          $igg_positivo = '';
+          $igg_negativo = '';
+        };
+
         array_push($pacientes_array, [
           'Nome' => $paciente->user->name,
           'Nome social' => $paciente->name_social ? $paciente->name_social : '',
-          'Identidade gênero' => $paciente->identidade_genero ? $paciente->identidade_genero : '',
-          'Orientação sexual' => $paciente->orientacao_sexual ? $paciente->orientacao_sexual : '',
-          'Agente' => $paciente->agente ? $paciente->agente->user->name : '',
-          'Médico' => $paciente->medico ? $paciente->medico->user->name : '',
-          'Articuladora' => $paciente->articuladora_responsavel ? Articuladora::where('id', $paciente->articuladora_responsavel)->first()->name : '',
-          'At. semanal psicol.' => $paciente->atendimento_semanal_psicologia ? $paciente->atendimento_semanal_psicologia : '',
-          'Acompanhamento psicol.' => $paciente->acompanhamento_psicologico ? implode(', ', unserialize($paciente->acompanhamento_psicologico)) : '',
-          'Hor. at. psicol.' => $paciente->horario_at_psicologia ? $paciente->horario_at_psicologia : '',
-          'Como chegou ao projeto' => $paciente->como_chegou_ao_projeto ? $paciente->como_chegou_ao_projeto : '',
-          'Núcleo UNEAFRO qual?' => $paciente->nucleo_uneafro_qual ? $paciente->nucleo_uneafro_qual : '',
-          'Como chegou ao projeto outro' => $paciente->como_chegou_ao_projeto_outro ? $paciente->como_chegou_ao_projeto_outro : '',
-          'Psicólogo' => $paciente->psicologo ? $paciente->psicologo->user->name : '',
-          'Situação' => implode(', ', $situacao_array),
+          'Tel. fixo' => $paciente->fone_fixo ? $paciente->fone_fixo : '',
+          'Tel. celular' => $paciente->fone_celular ? $paciente->fone_celular : '',
           'Data nascimento' => $paciente->data_nascimento ? $paciente->data_nascimento : '',
           'Idade' => $age,
-          'Cor/Raça' => $paciente->cor_raca ? $paciente->cor_raca : '',
+          'Faixa Etária' => $age_range,
+          'Responsável residência' => $paciente->responsavel_residencia ? $paciente->responsavel_residencia : '',
+          'Email' => $paciente->user->email ? $paciente->user->email : '',
           'CEP' => $paciente->endereco_cep ? $paciente->endereco_cep : '',
           'Rua' => $paciente->endereco_rua ? $paciente->endereco_rua : '',
           'Número' => $paciente->endereco_numero ? $paciente->endereco_numero : '',
+          'Complemento' => $paciente->endereco_complemento ? $paciente->endereco_complemento : '',
           'Bairro' => $paciente->endereco_bairro ? $paciente->endereco_bairro : '',
           'Cidade' => $paciente->endereco_cidade ? $paciente->endereco_cidade : '',
           'UF' => $paciente->endereco_uf ? $paciente->endereco_uf : '',
           'Ponto referência' => $paciente->ponto_referencia ? $paciente->ponto_referencia : '',
-          'Complemento' => $paciente->endereco_complemento ? $paciente->endereco_complemento : '',
-          'Tel. fixo' => $paciente->fone_fixo ? $paciente->fone_fixo : '',
-          'Tel. celular' => $paciente->fone_celular ? $paciente->fone_celular : '',
+          'Identidade gênero' => $paciente->identidade_genero ? $paciente->identidade_genero : '',
+          'Orientação sexual' => $paciente->orientacao_sexual ? $paciente->orientacao_sexual : '',
+          'Cor/Raça' => $raca_cor ? $raca_cor : '',
           'Nº pessoas residência' => $paciente->numero_pessoas_residencia ? $paciente->numero_pessoas_residencia : '',
-          'Responsável residência' => $paciente->responsavel_residencia ? $paciente->responsavel_residencia : '',
+          'Auxílio emergencial' => $paciente->auxilio_emergencial ? $paciente->auxilio_emergencial : '',
           'Renda residência' => $paciente->renda_residencia ? $paciente->renda_residencia : '',
           'Classe Social' => $classe,
           'Renda per capta' => $perCapta,
-          'Doença crônica' => implode(', ', $doenca_cronica),
-          'Descrição doenças crônicas' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
-          'Remédios consumidos' => $paciente->remedios_consumidos ? $paciente->remedios_consumidos : '',
-          'Acompanhamento médico' => $paciente->acompanhamento_medico ? $paciente->acompanhamento_medico : '',
-          'Isolamento residencial' => $paciente->isolamento_residencial ? $paciente->isolamento_residencial : '',
-          'Alimentacao disponível' => $paciente->alimentacao_disponivel ? $paciente->alimentacao_disponivel : '',
-          'Auxílio terceiros' => $paciente->auxilio_terceiros ? $paciente->auxilio_terceiros : '',
-          'Tarefas autocuidado' => $paciente->tarefas_autocuidado ? $paciente->tarefas_autocuidado : '',
-          'Teste utilizado' => $teste_utilizado,
-          'Resultado teste' => $resultado_teste ? $resultado_teste : '',
-          'Outras inf. sobre o teste' => $paciente->outras_informacao ? $paciente->outras_informacao : '',
-          'Data teste confirmatório' => $paciente->data_teste_confirmatorio ? $paciente->data_teste_confirmatorio : '',
+          'Classe Social (Renda Per Capta)' => $classe_percapta,
+          'Como chegou ao projeto' => $paciente->como_chegou_ao_projeto ? $paciente->como_chegou_ao_projeto : '',
+          'Núcleo UNEAFRO qual?' => $paciente->nucleo_uneafro_qual ? $paciente->nucleo_uneafro_qual : '',
+          'Como chegou ao projeto outro' => $paciente->como_chegou_ao_projeto_outro ? $paciente->como_chegou_ao_projeto_outro : '',
           'Data início sintoma' => $paciente->data_inicio_sintoma ? $paciente->data_inicio_sintoma : '',
           'Data início monitoramento' => $paciente->data_inicio_monitoramento ? $paciente->data_inicio_monitoramento : '',
+          'Data finalização caso' => $paciente->data_finalizacao_caso ? $paciente->data_finalizacao_caso : '',
+          'Total dias monitoramento' => $monitoring_days,
+          'Situação' => implode(', ', $situacao_array),
+          'Agente' => $paciente->agente ? $paciente->agente->user->name : '',
+          'Médico' => $paciente->medico ? $paciente->medico->user->name : '',
+          'Articuladora' => $paciente->articuladora_responsavel ? Articuladora::where('id', $paciente->articuladora_responsavel)->first()->name : '',
+          'Psicólogo' => $paciente->psicologo ? $paciente->psicologo->user->name : '',
           'Data início ac. psicológico' => $paciente->data_inicio_ac_psicologico ? $paciente->data_inicio_ac_psicologico : '',
           'Data encerramento ac. psicológico' => $paciente->data_encerramento_ac_psicologico ? $paciente->data_encerramento_ac_psicologico : '',
-          'Data finalização caso' => $paciente->data_finalizacao_caso ? $paciente->data_finalizacao_caso : '',
-          'Auxílio emergencial' => $paciente->auxilio_emergencial ? $paciente->auxilio_emergencial : '',
-          'Descrição doenças' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
+          'Acomp. psicol. individual' => $acompanhamento_individual,
+          'Acomp. psicol. em grupo' => $acompanhamento_grupo,
+          'At. semanal psicol.' => $paciente->atendimento_semanal_psicologia ? $paciente->atendimento_semanal_psicologia : '',
+          'Hor. at. psicol.' => $paciente->horario_at_psicologia ? $paciente->horario_at_psicologia : '',
+          'PCR' => $pcr,
+          'sorologias (IgM/IgG)' => $sorologias,
+          'Teste Rápido' => $teste_rapido,
+          'Não Informado' => $nao_informado,
+
+          'PCR positivo' => $pcr_positivo,
+          'PCR negativo' => $pcr_negativo,
+          'IgM positivo' => $igm_positivo,
+          'IgM negativo' => $igm_negativo,
+          'IgG positivo' => $igg_positivo,
+          'IgG negativo' => $igg_negativo,
+
+          'Outras inf. sobre o teste' => $paciente->outras_informacao ? $paciente->outras_informacao : '',
+          'Doença crônica' => implode(', ', $doenca_cronica),
+          'Descrição doenças crônicas' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
           'Tuberculose' => $paciente->tuberculose ? $paciente->tuberculose : '',
           'Tabagista' => $paciente->tabagista ? $paciente->tabagista : '',
           'Alcool crônico' => $paciente->cronico_alcool ? $paciente->cronico_alcool : '',
           'Outras drogas' => $paciente->outras_drogas ? $paciente->outras_drogas : '',
           'Gestante' => $paciente->gestante ? $paciente->gestante : '',
+          'Pós parto' => $paciente->pos_parto ? $paciente->pos_parto : '',
           'Amamenta' => $paciente->amamenta ? $paciente->amamenta : '',
           'Gestação alto risco' => $paciente->gestacao_alto_risco ? $paciente->gestacao_alto_risco : '',
-          'Pós parto' => $paciente->pos_parto ? $paciente->pos_parto : '',
+          'Motivo risco gravidez' => $paciente->motivo_risco_gravidez ? $paciente->motivo_risco_gravidez : '',
           'Data parto' => $paciente->data_parto ? $paciente->data_parto : '',
           'Data última mestruação' => $paciente->data_ultima_mestrucao ? $paciente->data_ultima_mestrucao : '',
           'Trimestre gestacao' => $paciente->trimestre_gestacao ? $paciente->trimestre_gestacao : '',
-          'Motivo risco gravidez' => $paciente->motivo_risco_gravidez ? $paciente->motivo_risco_gravidez : '',
+          'Acompanhamento médico' => $paciente->acompanhamento_medico ? $paciente->acompanhamento_medico : '',
           'Data última consulta' => $paciente->data_ultima_consulta ? $paciente->data_ultima_consulta : '',
           'Sistema saúde'  => $paciente->sistema_saude ? implode(', ', unserialize($paciente->sistema_saude)) : '',
-          'Acompanhamento UBS' => $paciente->acompanhamento_ubs ? $paciente->acompanhamento_ubs : '',
+
+          // INFOS A SEREM VERIFICADAS ONDE ESTARÃO INSERIDAS - INICIO
+          /*'Remédios consumidos' => $paciente->remedios_consumidos ? $paciente->remedios_consumidos : '',
+          'Isolamento residencial' => $paciente->isolamento_residencial ? $paciente->isolamento_residencial : '',
+          'Alimentacao disponível' => $paciente->alimentacao_disponivel ? $paciente->alimentacao_disponivel : '',
+          'Auxílio terceiros' => $paciente->auxilio_terceiros ? $paciente->auxilio_terceiros : '',
+          'Tarefas autocuidado' => $paciente->tarefas_autocuidado ? $paciente->tarefas_autocuidado : '',
+          'Data teste confirmatório' => $paciente->data_teste_confirmatorio ? $paciente->data_teste_confirmatorio : '',
+          'Descrição doenças' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
+          'Acompanhamento UBS' => $paciente->acompanhamento_ubs ? $paciente->acompanhamento_ubs : '',*/
+          // INFOS A SEREM VERIFICADAS ONDE ESTARÃO INSERIDAS - FIM
         ]);
       }
 

@@ -92,9 +92,24 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
 
           'Outras inf. sobre o teste',
 
-          'Doença crônica', // DEMEMBRAR (SIM/NÃO)
+          'Condições Gerais de Saúde: Hipertensão arterial sistêmica (HAS)',
+          'Condições Gerais de Saúde: Diabetes Mellitus (DM)',
+          'Condições Gerais de Saúde: Dislipidemia',
+          'Condições Gerais de Saúde: Asma / Bronquite',
+          'Condições Gerais de Saúde: Tuberculose ativa',
+          'Condições Gerais de Saúde: Cardiopatias e outras doenças cardiovasculares',
+          'Condições Gerais de Saúde: Outras doenças respiratórias',
+          'Condições Gerais de Saúde: Artrite/Artrose/Reumatismo',
+          'Condições Gerais de Saúde: Doença autoimune',
+          'Condições Gerais de Saúde: Doença renal',
+          'Condições Gerais de Saúde: Doença neurológica',
+          'Condições Gerais de Saúde: Câncer',
+          'Condições Gerais de Saúde: Ansiedade',
+          'Condições Gerais de Saúde: Depressão',
+          'Condições Gerais de Saúde: Demência',
+          'Condições Gerais de Saúde: Outras questões de saúde mental',
+          'Condições Gerais de Saúde: Descreva as doenças assinaladas',
 
-          'Descrição doenças crônicas',
           'Tuberculose',
           'Tabagista',
           'Alcool crônico',
@@ -110,7 +125,10 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'Acompanhamento médico',
           'Data última consulta',
 
-          'Sistema saúde', // DEMEMBRAR (SIM/NÃO)
+          'Onde/como acessa o sistema de saúde? - É usuária/o do SUS (público)',
+          'Onde/como acessa o sistema de saúde? - Tem convênio/plano de saúde',
+          'Onde/como acessa o sistema de saúde? Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)',
+          'Onde/como acessa o sistema de saúde? - Usuária/o de serviços particulares não cobertos por convênios',
 
           // AQUI VÃO AS INFORMAÇÕES DA ABA 'QUADRO ATUAL' - A FAZER
           // AQUI VÃO AS INFORMAÇÕES DA ABA 'SAÚDE MENTAL' - A FAZER
@@ -260,56 +278,23 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
 
       foreach($pacientes as $paciente){
 
-        $doenca_cronica = [];
         $doenca = $paciente->doenca_cronica ? unserialize($paciente->doenca_cronica) : [];
-        if(in_array('1', $doenca)){
-          array_push($doenca_cronica, 'Hipertensão arterial sistêmica (HAS)');
-        }
-        if(in_array('2', $doenca)){
-          array_push($doenca_cronica, 'Diabetes Mellitus (DM)');
-        }
-        if(in_array('3', $doenca)){
-          array_push($doenca_cronica, 'Dislipidemia');
-        }
-        if(in_array('4', $doenca)){
-          array_push($doenca_cronica, 'Asma / Bronquite');
-        }
-        if(in_array('5', $doenca)){
-          array_push($doenca_cronica, 'Tuberculose ativa');
-        }
-        if(in_array('6', $doenca)){
-          array_push($doenca_cronica, 'Cardiopatias e outras doenças cardiovasculares');
-        }
-        if(in_array('7', $doenca)){
-          array_push($doenca_cronica, 'Outras doenças Respiratórias');
-        }
-        if(in_array('8', $doenca)){
-          array_push($doenca_cronica, 'Artrite/Artrose/Reumatismo');
-        }
-        if(in_array('9', $doenca)){
-          array_push($doenca_cronica, 'Doença autoimune');
-        }
-        if(in_array('10', $doenca)){
-          array_push($doenca_cronica, 'Doença renal');
-        }
-        if(in_array('11', $doenca)){
-          array_push($doenca_cronica, 'Doença neurológica');
-        }
-        if(in_array('12', $doenca)){
-          array_push($doenca_cronica, 'Câncer');
-        }
-        if(in_array('13', $doenca)){
-          array_push($doenca_cronica, 'Ansiedade');
-        }
-        if(in_array('14', $doenca)){
-          array_push($doenca_cronica, 'Depressão');
-        }
-        if(in_array('15', $doenca)){
-          array_push($doenca_cronica, 'Demência');
-        }
-        if(in_array('16', $doenca)){
-          array_push($doenca_cronica, 'Outras questões de saúde mental');
-        }
+        in_array('1', $doenca) ? $has = 'Sim' : $has = 'Não';
+        in_array('2', $doenca) ? $dm = 'Sim' : $dm = 'Não';
+        in_array('3', $doenca) ? $dislipidemia = 'Sim' : $dislipidemia = 'Não';
+        in_array('4', $doenca) ? $asma_bronquite = 'Sim' : $asma_bronquite = 'Não';
+        in_array('5', $doenca) ? $tuberculose_ativa = 'Sim' : $tuberculose_ativa = 'Não';
+        in_array('6', $doenca) ? $cardiopatias = 'Sim' : $cardiopatias = 'Não';
+        in_array('7', $doenca) ? $outras_doencas_respiratorias = 'Sim' : $outras_doencas_respiratorias = 'Não';
+        in_array('8', $doenca) ? $artrite_artrose_reumatismo = 'Sim' : $artrite_artrose_reumatismo = 'Não';
+        in_array('9', $doenca) ? $doenca_autoimune = 'Sim' : $doenca_autoimune = 'Não';
+        in_array('10', $doenca) ? $doenca_renal = 'Sim' : $doenca_renal = 'Não';
+        in_array('11', $doenca) ? $doenca_neurologica = 'Sim' : $doenca_neurologica = 'Não';
+        in_array('12', $doenca) ? $cancer = 'Sim' : $cancer = 'Não';
+        in_array('13', $doenca) ? $ansiedade = "Sim" : $ansiedade = 'Não';
+        in_array('14', $doenca) ? $depressao = 'Sim' : $depressao = 'Não';
+        in_array('15', $doenca) ? $demencia = 'Sim' : $demencia = 'Não';
+        in_array('16', $doenca) ? $outras_questoes_saude_mental = 'Sim' : $outras_questoes_saude_mental = 'Não';
 
         $situacao_array = [];
         if($paciente->situacao === '1'){
@@ -464,6 +449,12 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           $igg_negativo = '';
         };
 
+        $sistema_saude = $paciente->sistema_saude ? unserialize($paciente->sistema_saude) : [];
+        in_array('É usuária/o do SUS (público)', $sistema_saude) ? $sus_publico = 'Sim' : $sus_publico = 'Não';
+        in_array('Tem convênio/plano de saúde', $sistema_saude) ? $convenio_plano_saude = 'Sim' : $convenio_plano_saude = 'Não';
+        in_array("Usuária/o de serviços pagos 'populares' (Ex: Dr Consulta)", $sistema_saude) ? $pagos_populares = 'Sim' : $pagos_populares = 'Não';
+        in_array('Usuária/o de serviços particulares não cobertos por convênios', $sistema_saude) ? $nao_cobertos_convenios = 'Sim' : $nao_cobertos_convenios = 'Não';
+
         array_push($pacientes_array, [
           'Nome' => $paciente->user->name,
           'Nome social' => $paciente->name_social ? $paciente->name_social : '',
@@ -520,10 +511,26 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'IgM negativo' => $igm_negativo,
           'IgG positivo' => $igg_positivo,
           'IgG negativo' => $igg_negativo,
-
           'Outras inf. sobre o teste' => $paciente->outras_informacao ? $paciente->outras_informacao : '',
-          'Doença crônica' => implode(', ', $doenca_cronica),
-          'Descrição doenças crônicas' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
+
+          'has' => $has,
+          'dm' => $dm,
+          'dislipidemia' => $dislipidemia,
+          'asma_bronquite' => $asma_bronquite,
+          'tuberculose_ativa' => $tuberculose_ativa,
+          'cardiopatias' => $cardiopatias,
+          'outras_doencas_respiratorias' => $outras_doencas_respiratorias,
+          'artrite_artrose_reumatismo' => $artrite_artrose_reumatismo,
+          'doenca_autoimune' => $doenca_autoimune,
+          'doenca_renal' => $doenca_renal,
+          'doenca_neurologica' => $doenca_neurologica,
+          'cancer' => $cancer,
+          'ansiedade' => $ansiedade,
+          'depressao' => $depressao,
+          'demencia' => $demencia,
+          'outras_questoes_saude_mental' => $outras_questoes_saude_mental,
+          'descreva_doencas_assinaladas' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
+
           'Tuberculose' => $paciente->tuberculose ? $paciente->tuberculose : '',
           'Tabagista' => $paciente->tabagista ? $paciente->tabagista : '',
           'Alcool crônico' => $paciente->cronico_alcool ? $paciente->cronico_alcool : '',
@@ -538,7 +545,11 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'Trimestre gestacao' => $paciente->trimestre_gestacao ? $paciente->trimestre_gestacao : '',
           'Acompanhamento médico' => $paciente->acompanhamento_medico ? $paciente->acompanhamento_medico : '',
           'Data última consulta' => $paciente->data_ultima_consulta ? $paciente->data_ultima_consulta : '',
-          'Sistema saúde'  => $paciente->sistema_saude ? implode(', ', unserialize($paciente->sistema_saude)) : '',
+
+          'sus_publico' => $sus_publico,
+          'convenio_plano_saude' => $convenio_plano_saude,
+          'pagos_populares' => $pagos_populares,
+          'nao_cobertos_convenios' => $nao_cobertos_convenios,
 
           // INFOS A SEREM VERIFICADAS ONDE ESTARÃO INSERIDAS - INICIO
           /*'Remédios consumidos' => $paciente->remedios_consumidos ? $paciente->remedios_consumidos : '',

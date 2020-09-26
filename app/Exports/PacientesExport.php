@@ -4,6 +4,8 @@ namespace App\Exports;
 
 use App\Paciente;
 use App\Articuladora;
+use App\QuadroAtual;
+use App\SaudeMental;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -130,8 +132,35 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'Onde/como acessa o sistema de saúde? Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)',
           'Onde/como acessa o sistema de saúde? - Usuária/o de serviços particulares não cobertos por convênios',
 
-          // AQUI VÃO AS INFORMAÇÕES DA ABA 'QUADRO ATUAL' - A FAZER
-          // AQUI VÃO AS INFORMAÇÕES DA ABA 'SAÚDE MENTAL' - A FAZER
+          //'QUADRO ATUAL'
+          'Primeiros sintomas',
+          'SINTOMAS MANIFESTADOS - Tosse',
+          'SINTOMAS MANIFESTADOS - Falta de ar',
+          'SINTOMAS MANIFESTADOS - Febre',
+          'SINTOMAS MANIFESTADOS - Dor de cabeça',
+          'SINTOMAS MANIFESTADOS - Perda de olfato',
+          'SINTOMAS MANIFESTADOS Perda de paladar',
+          'SINTOMAS MANIFESTADOS Enjoo ou vomitos',
+          'SINTOMAS MANIFESTADOS Diarreia',
+          'SINTOMAS MANIFESTADOS Aumento da pressão',
+          'SINTOMAS MANIFESTADOS Queda brusca da pressão',
+          'SINTOMAS MANIFESTADOS Dor torácica (dor no peito)',
+          'SINTOMAS MANIFESTADOS Sonolência ou cansaço importantes',
+          'SINTOMAS MANIFESTADOS Confusão mental',
+          'SINTOMAS MANIFESTADOS Desmaio',
+          'SINTOMAS MANIFESTADOS Convulsão',
+          'SINTOMAS MANIFESTADOS Outros',
+          'Temperatura máxima (em graus)',
+          'Data temperatura máxima',
+          'Saturação mais baixa registrada (%)',
+          'Data da saturação mais baixa',
+          'Frequência respiratória máxima',
+          'Data da Frequência respiratória máxima',
+
+          //'SAÚDE MENTAL'
+          'Quadro atual intensifica medos, angústias, ansiedade, tristezas ou preocupação?',
+          'Escreva sobre o estado emocional e detalhe os medos',
+
           // AQUI VÃO AS INFORMAÇÕES DA ABA 'SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO' - A FAZER
           // AQUI VÃO AS INFORMAÇÕES DA ABA 'INSUMOS OFERECIDOS PELO PROJETO' - A FAZER
 
@@ -455,6 +484,46 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
         in_array("Usuária/o de serviços pagos 'populares' (Ex: Dr Consulta)", $sistema_saude) ? $pagos_populares = 'Sim' : $pagos_populares = 'Não';
         in_array('Usuária/o de serviços particulares não cobertos por convênios', $sistema_saude) ? $nao_cobertos_convenios = 'Sim' : $nao_cobertos_convenios = 'Não';
 
+        $quadro = QuadroAtual::where('paciente_id', $paciente->id)->first();
+        $sintomas_manifestados = @unserialize($quadro->sintomas_manifestados);
+        if( $sintomas_manifestados === false ){
+          $tosse = 'Não Informado';
+          $falta_de_ar = 'Não Informado';
+          $febre = 'Não Informado';
+          $dor_de_cabeca = 'Não Informado';
+          $perda_de_olfato = 'Não Informado';
+          $perda_de_paladar = 'Não Informado';
+          $enjoo_vomitos = 'Não Informado';
+          $diarreia = 'Não Informado';
+          $aumento_pressao = 'Não Informado';
+          $queda_pressao = 'Não Informado';
+          $dor_toracica = 'Não Informado';
+          $sonolencia_cansaco = 'Não Informado';
+          $confusao_mental = 'Não Informado';
+          $desmaio = 'Não Informado';
+          $convulsao = 'Não Informado';
+          $outros_sintomas = 'Não Informado';
+        } else {
+          in_array('tosse', $sintomas_manifestados) ? $tosse = 'Sim' : $tosse = 'Não';
+          in_array('falta de ar', $sintomas_manifestados) ? $falta_de_ar = 'Sim' : $falta_de_ar = 'Não';
+          in_array('febre', $sintomas_manifestados) ? $febre = 'Sim' : $febre = 'Não';
+          in_array('dor de cabeça', $sintomas_manifestados) ? $dor_de_cabeca = 'Sim' : $dor_de_cabeca = 'Não';
+          in_array('perda de olfato', $sintomas_manifestados) ? $perda_de_olfato = 'Sim' : $perda_de_olfato = 'Não';
+          in_array('perda do paladar', $sintomas_manifestados) ? $perda_de_paladar = 'Sim' : $perda_de_paladar = 'Não';
+          in_array('enjoo', $sintomas_manifestados) ? $enjoo_vomitos = 'Sim' : $enjoo_vomitos = 'Não';
+          in_array('diarreia', $sintomas_manifestados) ? $diarreia = 'Sim' : $diarreia = 'Não';
+          in_array('aumento da pressão', $sintomas_manifestados) ? $aumento_pressao = 'Sim' : $aumento_pressao = 'Não';
+          in_array('queda brusca de Pressão', $sintomas_manifestados) ? $queda_pressao = 'Sim' : $queda_pressao = 'Não';
+          in_array('pressão baixa', $sintomas_manifestados) ? $dor_toracica = 'Sim' : $dor_toracica = 'Não';
+          in_array('sonolência ou cansaço importantes', $sintomas_manifestados) ? $sonolencia_cansaco = 'Sim' : $sonolencia_cansaco = 'Não';
+          in_array('confusão mental', $sintomas_manifestados) ? $confusao_mental = 'Sim' : $confusao_mental = 'Não';
+          in_array('desmaio', $sintomas_manifestados) ? $desmaio = 'Sim' : $desmaio = 'Não';
+          in_array('convulsao', $sintomas_manifestados) ? $convulsao = 'Sim' : $convulsao = 'Não';
+          in_array('outros', $sintomas_manifestados) ? $outros_sintomas = 'Sim' : $outros_sintomas = 'Não';
+        }
+
+        $saude_mental = SaudeMental::where('paciente_id', $paciente->id)->first();
+
         array_push($pacientes_array, [
           'Nome' => $paciente->user->name,
           'Nome social' => $paciente->name_social ? $paciente->name_social : '',
@@ -550,6 +619,33 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'convenio_plano_saude' => $convenio_plano_saude,
           'pagos_populares' => $pagos_populares,
           'nao_cobertos_convenios' => $nao_cobertos_convenios,
+
+          'primeiros_sintomas' => $quadro ? $quadro->primeira_sintoma : 'Não informado',
+          'tosse' => $tosse ? $tosse : 'Não Informado',
+          'falta_de_ar' => $falta_de_ar ? $falta_de_ar : 'Não Informado',
+          'febre' => $febre ? $febre : 'Não Informado',
+          'dor_de_cabeca' => $dor_de_cabeca ? $dor_de_cabeca : 'Não Informado',
+          'perda_de_olfato' => $perda_de_olfato ? $perda_de_olfato : 'Não Informado',
+          'perda_de_paladar' => $perda_de_paladar ? $perda_de_paladar : 'Não Informado',
+          'enjoo_vomitos' => $enjoo_vomitos ? $enjoo_vomitos : 'Não Informado',
+          'diarreia' => $diarreia ? $diarreia : 'Não Informado',
+          'aumento_pressao' => $aumento_pressao ? $aumento_pressao : 'Não Informado',
+          'queda_pressao' => $queda_pressao ? $queda_pressao : 'Não Informado',
+          'dor_toracica' => $dor_toracica ? $dor_toracica : 'Não Informado',
+          'sonolencia_cansaco' => $sonolencia_cansaco ? $sonolencia_cansaco : 'Não Informado',
+          'confusao_mental' => $confusao_mental ? $confusao_mental : 'Não Informado',
+          'desmaio' => $desmaio ? $desmaio : 'Não Informado',
+          'convulsao' => $convulsao ? $convulsao : 'Não Informado',
+          'outros_sintomas' => $outros_sintomas ? $outros_sintomas : 'Não Informado',
+          'temperatura_maxima' => $quadro ? $quadro->temperatura_max : 'Não Informado',
+          'data_temperatura_maxima' => $quadro ? $quadro->data_temp_max : 'Não Informado',
+          'saturacao_baixa' => $quadro ? $quadro->saturacao_baixa : 'Não Informado',
+          'data_saturacao_baixa' => $quadro ? $quadro->data_sat_max : 'Não Informado',
+          'frequencia_respiratoria' => $quadro ? $quadro->frequencia_max : 'Não Informado',
+          'data_frequencia_respiratoria' => $quadro ? $quadro->data_freq_max : 'Não Informado',
+
+          'intensifica_medos' => $saude_mental ? $saude_mental->quadro_atual : 'Não Informado',
+          'detalhe_medos' => $saude_mental ? $saude_mental->detalhes_medos : 'Não Informado',
 
           // INFOS A SEREM VERIFICADAS ONDE ESTARÃO INSERIDAS - INICIO
           /*'Remédios consumidos' => $paciente->remedios_consumidos ? $paciente->remedios_consumidos : '',

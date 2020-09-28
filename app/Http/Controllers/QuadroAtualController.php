@@ -27,6 +27,10 @@ class QuadroAtualController extends Controller
       'data_temp_max' => $request->data_temp_max,
       'data_sat_max' => $request->data_sat_max,
       'data_freq_max' => $request->data_freq_max,
+      'desfecho' => $request->desfecho,
+      'sequelas' => $request->sequelas ? serialize($request->sequelas) : NULL,
+      'outra_sequela_qual' => $request->outra_sequela_qual,
+      'algo_mais_sobre_caso' => $request->algo_mais_sobre_caso,
     ];
 
     if( !$quadro ){

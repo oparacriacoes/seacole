@@ -152,7 +152,18 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           'Frequência respiratória máxima',
           'Data da Frequência respiratória máxima',
 
-          //'DESFECHO', // A FAZER
+          //'DESFECHO e SEQUELAS'
+          'DESFECHO:',
+          'SEQUELAS: perda persistente de olfato',
+          'SEQUELAS: perda persistente de paladar',
+          'SEQUELAS: tosse persistente',
+          'SEQUELAS: falta de ar persistente',
+          'SEQUELAS: dor de cabeça persistente',
+          'SEQUELAS: eventos tromboliticos',
+          'SEQUELAS: danos renais',
+          'SEQUELAS: outros',
+          'SEQUELAS: outros QUAIS?',
+          'Algo mais que queira descrever sobre o caso?',
 
           //'SAÚDE MENTAL'
           'Quadro atual intensifica medos, angústias, ansiedade, tristezas ou preocupação?',
@@ -567,6 +578,26 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           in_array('convulsao', $sintomas_manifestados) ? $convulsao = 'Sim' : $convulsao = 'Não';
           in_array('outros', $sintomas_manifestados) ? $outros_sintomas = 'Sim' : $outros_sintomas = 'Não';
         }
+        $sequelas = @unserialize($quadro->sequelas);
+        if( $sequelas === false ){
+          $perda_persistente_olfato = '';
+          $perda_persistente_paladar = '';
+          $tosse_persistente = '';
+          $falta_ar_persistente = '';
+          $dor_cabeca_persistente = '';
+          $eventos_tromboliticos = '';
+          $danos_renais = '';
+          $sequelas_outros = '';
+        } else {
+          in_array('perda persistente de olfato', $sequelas) ? $perda_persistente_olfato = 'Sim' : $perda_persistente_olfato = 'Não';
+          in_array('perda persistente de paladar', $sequelas) ? $perda_persistente_paladar = 'Sim' : $perda_persistente_paladar = 'Não';
+          in_array('tosse persistente', $sequelas) ? $tosse_persistente = 'Sim' : $tosse_persistente = 'Não';
+          in_array('falta de ar persistente', $sequelas) ? $falta_ar_persistente = 'Sim' : $falta_ar_persistente = 'Não';
+          in_array('dor de cabeça persistente', $sequelas) ? $dor_cabeca_persistente = 'Sim' : $dor_cabeca_persistente = 'Não';
+          in_array('eventos tromboliticos', $sequelas) ? $eventos_tromboliticos = 'Sim' : $eventos_tromboliticos = 'Não';
+          in_array('danos renais', $sequelas) ? $danos_renais = 'Sim' : $danos_renais = 'Não';
+          in_array('outros: quais?', $sequelas) ? $sequelas_outros = 'Sim' : $sequelas_outros = 'Não';
+        }
 
         $saude_mental = SaudeMental::where('paciente_id', $paciente->id)->first();
 
@@ -809,6 +840,17 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           'data_saturacao_baixa' => $quadro ? $quadro->data_sat_max : 'Não Informado',
           'frequencia_respiratoria' => $quadro ? $quadro->frequencia_max : 'Não Informado',
           'data_frequencia_respiratoria' => $quadro ? $quadro->data_freq_max : 'Não Informado',
+          'DESFECHO:' => $quadro ? $quadro->desfecho : '',
+          'perda_persistente_olfato' => $perda_persistente_olfato,
+          'perda_persistente_paladar' => $perda_persistente_paladar,
+          'tosse_persistente' => $tosse_persistente,
+          'falta_ar_persistente' => $falta_ar_persistente,
+          'dor_cabeca_persistente' => $dor_cabeca_persistente,
+          'eventos_tromboliticos' => $eventos_tromboliticos,
+          'danos_renais' => $danos_renais,
+          'sequelas_outros' => $sequelas_outros,
+          'SEQUELAS: outros QUAIS?' => $quadro ? $quadro->outra_sequela_qual : '',
+          'Algo mais que queira descrever sobre o caso?' => $quadro ? $quadro->algo_mais_sobre_caso : '',
 
           'intensifica_medos' => $saude_mental ? $saude_mental->quadro_atual : 'Não Informado',
           'detalhe_medos' => $saude_mental ? $saude_mental->detalhes_medos : 'Não Informado',

@@ -18,6 +18,10 @@ class QuadroAtual extends Model
       'data_temp_max',
       'data_sat_max',
       'data_freq_max',
+      'desfecho',
+      'sequelas',
+      'outra_sequela_qual',
+      'algo_mais_sobre_caso',
     ];
 
     public function paciente()

@@ -447,8 +447,10 @@ class PacienteController extends Controller
     $quadro = QuadroAtual::where('paciente_id', $id)->first();
     if( $quadro ){
       $sintomas_quadro = unserialize($quadro->sintomas_manifestados);
+      $sequelas = unserialize($quadro->sequelas);
     } else {
       $sintomas_quadro = [];
+      $sequelas = [];
     }
     $agentes = Agente::get();
     $medicos = Medico::get();
@@ -498,7 +500,7 @@ class PacienteController extends Controller
       $resultado_teste = $paciente->resultado_teste;
     }
 
-    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento', 'prontuarios', 'acompanhamento_psicologico', 'resultado_teste', 'insumos_materiais'));
+    return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento', 'prontuarios', 'acompanhamento_psicologico', 'resultado_teste', 'insumos_materiais', 'sequelas'));
   }
 
   public function update(Request $request, $id)

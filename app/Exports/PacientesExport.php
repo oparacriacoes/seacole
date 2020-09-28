@@ -6,22 +6,19 @@ use App\Paciente;
 use App\Articuladora;
 use App\QuadroAtual;
 use App\SaudeMental;
+use App\ServicoInternacao;
+use App\InsumosOferecido;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, WithTitle
+class PacientesExport implements FromArray, WithHeadings, WithTitle
 {
     public function sheets(): array
     {
         $sheets = [
           new PacientesExport(),
-          new QuadroAtualExport(),
-          new SaudeMentalExport(),
-          new ServicoInternacaoExport(),
-          new InsumosOferecidoExport(),
         ];
 
         return $sheets;
@@ -79,19 +76,17 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'Acomp. psicol. em grupo',
           'At. semanal psicol.',
           'Hor. at. psicol.',
-          //'Diagnóstico', // A FAZER
+
           'Testes Realizados? PCR',
           'Testes Realizados? Sorologias (IgM/IgG)',
           'Testes Realizados? Teste Rápido',
           'Testes Realizados? Não Informado',
-
           'Resultados Encontrados - PCR positivo',
           'Resultados Encontrados - PCR negativo',
           'Resultados Encontrados - IgM positivo',
           'Resultados Encontrados - IgM negativo',
           'Resultados Encontrados - IgG positivo',
           'Resultados Encontrados - IgG negativo',
-
           'Outras inf. sobre o teste',
 
           'Condições Gerais de Saúde: Hipertensão arterial sistêmica (HAS)',
@@ -157,23 +152,74 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'Frequência respiratória máxima',
           'Data da Frequência respiratória máxima',
 
+          //'DESFECHO', // A FAZER
+
           //'SAÚDE MENTAL'
           'Quadro atual intensifica medos, angústias, ansiedade, tristezas ou preocupação?',
           'Escreva sobre o estado emocional e detalhe os medos',
 
-          // AQUI VÃO AS INFORMAÇÕES DA ABA 'SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO' - A FAZER
-          // AQUI VÃO AS INFORMAÇÕES DA ABA 'INSUMOS OFERECIDOS PELO PROJETO' - A FAZER
+          //'SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO'
+          'A pessoa precisou ir a algum serviço de saúde? UBS (Unidade Básica de Saúde - posto de saúde)',
+          'A pessoa precisou ir a algum serviço de saúde? UPA (Unidade de Pronto Atendimento)',
+          'A pessoa precisou ir a algum serviço de saúde? AMA',
+          'A pessoa precisou ir a algum serviço de saúde? Hospital Público',
+          'A pessoa precisou ir a algum serviço de saúde? Hospital Privado',
+          'A pessoa precisou ir a algum serviço de saúde? OUTRO',
+          'Quantas idas a serviços de saúde?',
+          'Data da última ida a serviço de saúde',
+          'Recebeu medicações para tratar COVID-19? Azitromicina',
+          'Recebeu medicações para tratar COVID-19? Outro antibiótico',
+          'Recebeu medicações para tratar COVID-19? Ivermectina',
+          'Recebeu medicações para tratar COVID-19? Cloroquina/Hidroxicloroquina',
+          'Recebeu medicações para tratar COVID-19? Oseltamivir (tamiflu)',
+          'Recebeu medicações para tratar COVID-19? Algum antialérgico',
+          'Recebeu medicações para tratar COVID-19? Algum corticóide',
+          'Recebeu medicações para tratar COVID-19? Algum antiinflamatoŕio',
+          'Recebeu medicações para tratar COVID-19? Vitamina D',
+          'Recebeu medicações para tratar COVID-19? Zinco',
+          'Recebeu medicações para tratar COVID-19? Outro medicamento',
+          'Escreva o nome do medicamento prescrito',
+          'A pessoa teve algum problema com serviços de referência? UBS (Unidade Básica de Saúde - posto de saúde)',
+          'A pessoa teve algum problema com serviços de referência? UPA (Unidade de Pronto Atendimento)',
+          'A pessoa teve algum problema com serviços de referência? AMA',
+          'A pessoa teve algum problema com serviços de referência? Hospital Público',
+          'A pessoa teve algum problema com serviços de referência? Hospital Privado',
+          'A pessoa teve algum problema com serviços de referência? OUTRO',
+          'Descreva o problema',
+          'Precisou de internação pelo quadro (suspeito ou confirmado)?',
+          'Precisou de ambulância financiada pelo projeto?',
+          'LOCAL DE INTERNAÇÃO Hospital público de referência',
+          'LOCAL DE INTERNAÇÃO Hospital de campanha',
+          'LOCAL DE INTERNAÇÃO Hospital particular de referência',
+          'LOCAL DE INTERNAÇÃO Hospital municipal do Ipiranga (encaminhado pelo projeto)',
+          'LOCAL DE INTERNAÇÃO Hospital privado financiado pelo projeto',
+          'Nome do Hospital de internação',
+          'Data de entrada da internação',
+          'Data da alta hospitalar',
+          'Tempo de internação (data da alta - data da entrada da internação)',
 
-          // IDENTIFICAR ONDE ENTRARÃO ESTAS INFOS - INICIO
-          /*'Remédios consumidos',
-          'Isolamento residencial',
-          'Alimentacao disponível',
-          'Auxílio terceiros',
-          'Tarefas autocuidado',
-          'Data teste confirmatório',
-          'Descrição doenças',
-          'Acompanhamento UBS',*/
-          // IDENTIFICAR ONDE ENTRARÃO ESTAS INFOS - FIM
+          //'INSUMOS OFERECIDOS PELO PROJETO'
+          'Há condição de ficar isolada, sozinha, em um cômodo da casa?',
+          'Tem comida disponível, sem precisar sair?',
+          'Tem alguém para auxiliá-lo(a)?',
+          'Consegue realizar tarefas de autocuidado? (como tomar banho, cozinhar, lavar a própria roupa)',
+          'Precisa de algum tipo de ajuda? Comprar remédios de uso contínuo',
+          'Precisa de algum tipo de ajuda? Comprar remédios para o tratamento do quadro atual',
+          'Precisa de algum tipo de ajuda? Comprar alimento ou outro produtos de necessidade básica',
+          'Precisa de algum tipo de ajuda? Outros',
+          'Tratamento foi prescrito por algum médico do projeto?',
+          'Tratamento financiado - Alopático  (medicamentos convencionais)',
+          'Tratamento financiado - PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)',
+          'Foi entregue: Cartilha de cuidados',
+          'Foi entregue: Termômetro',
+          'Foi entregue: Dipirona',
+          'Foi entregue: Paracetamol',
+          'Foi entregue: Oxímetro',
+          'Foi entregue: Máscaras de tecido',
+          'Foi entregue: Máscaras de limpeza',
+          'Foi entregue: Cesta básica',
+          'Se o caso já tiver sido encerrado: oxímetro foi devolvido?',
+
         ];
     }
 
@@ -420,7 +466,7 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
         if( $paciente->data_inicio_monitoramento && $paciente->data_finalizacao_caso ){
           $monitoring_days = $this->monitoringDays($paciente->data_inicio_monitoramento, $paciente->data_finalizacao_caso);
         } else {
-          $monitoring_days = '';
+          $monitoring_days = 'Dados insuficientes';
         }
 
         if( $paciente->acompanhamento_psicologico ){
@@ -523,6 +569,126 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
         }
 
         $saude_mental = SaudeMental::where('paciente_id', $paciente->id)->first();
+
+        $internacao = ServicoInternacao::where('paciente_id', $paciente->id)->first();
+        $precisou_servico = @unserialize($internacao->precisou_servico);
+        if( $precisou_servico === false ){
+          $ubs_posto_de_saude = '';
+          $upa = '';
+          $ama = '';
+          $hospital_publico = '';
+          $hospital_privado = '';
+        } else {
+          in_array('UBS (Unidade Básica de Saúde - posto de saúde)', $precisou_servico) ? $ubs_posto_de_saude = 'Sim' : $ubs_posto_de_saude = 'Não';
+          in_array('UPA (Unidade de Pronto Atendimento)', $precisou_servico) ? $upa = 'Sim' : $upa = 'Não';
+          in_array('ama', $precisou_servico) ? $ama = 'Sim' : $ama = 'Não';
+          in_array('Hospital público', $precisou_servico) ? $hospital_publico = 'Sim' : $hospital_publico = 'Não';
+          in_array('hospital privado', $precisou_servico) ? $hospital_privado = 'Sim' : $hospital_privado = 'Não';
+        }
+        $recebeu_medicacao = @unserialize($internacao->precisou_servico);
+        if( $recebeu_medicacao === false ){
+          $azitromicina = '';
+          $outro_antibiotico = '';
+          $ivermectina = '';
+          $cloroquina_hidroxicloroquina = '';
+          $oseltamivir = '';
+          $algum_antialergico = '';
+          $algum_corticoide = '';
+          $algum_antiinflamatorio = '';
+          $vitamina_d = '';
+          $zinco = '';
+          $outro_medicamento = '';
+        } else {
+          in_array('Azitromicina', $recebeu_medicacao) ? $azitromicina = 'Sim' : $azitromicina = 'Não' ;
+          in_array('outro antibiótico', $recebeu_medicacao) ? $outro_antibiotico = 'Sim' : $outro_antibiotico = 'Não' ;
+          in_array('ivermectina', $recebeu_medicacao) ? $ivermectina = 'Sim' : $ivermectina = 'Não' ;
+          in_array('cloroquina/hidroxicloroquina', $recebeu_medicacao) ? $cloroquina_hidroxicloroquina = 'Sim' : $cloroquina_hidroxicloroquina = 'Não' ;
+          in_array('oseltamivir (tamiflu)', $recebeu_medicacao) ? $oseltamivir = 'Sim' : $oseltamivir = 'Não' ;
+          in_array('algum antialérgico', $recebeu_medicacao) ? $algum_antialergico = 'Sim' : $algum_antialergico = 'Não' ;
+          in_array('algum corticóide', $recebeu_medicacao) ? $algum_corticoide = 'Sim' : $algum_corticoide = 'Não' ;
+          in_array('algum antiinflamatório', $recebeu_medicacao) ? $algum_antiinflamatorio = 'Sim' : $algum_antiinflamatorio = 'Não' ;
+          in_array('vitamina D', $recebeu_medicacao) ? $vitamina_d = 'Sim' : $vitamina_d = 'Não' ;
+          in_array('zinco', $recebeu_medicacao) ? $zinco = 'Sim' : $zinco = 'Não' ;
+          in_array('outro medicamento', $recebeu_medicacao) ? $outro_medicamento = 'Sim' : $outro_medicamento = 'Não' ;
+        }
+        $problema_internacao = @unserialize($internacao->teve_algum_problema);
+        if( $problema_internacao === false ){
+          $problema_ubs = '';
+          $problema_upa = '';
+          $problema_ama = '';
+          $problema_hospital_publico = '';
+          $problema_hospital_privado = '';
+          $problema_outro = '';
+        } else {
+          in_array('UBS (Unidade Básica de Saúde - posto de saúde)', $problema_internacao) ? $problema_ubs = 'Sim' : $problema_ubs = 'Não';
+          in_array('UPA (Unidade de Pronto Atendimento)', $problema_internacao) ? $problema_upa = 'Sim' : $problema_upa = 'Não';
+          in_array('ama', $problema_internacao) ? $problema_ama = 'Sim' : $problema_ama = 'Não';
+          in_array('Hospital público', $problema_internacao) ? $problema_hospital_publico = 'Sim' : $problema_hospital_publico = 'Não';
+          in_array('Hospital privado', $problema_internacao) ? $problema_hospital_privado = 'Sim' : $problema_hospital_privado = 'Não';
+          in_array('Outro (qual?)', $problema_internacao) ? $problema_outro = 'Sim' : $problema_outro = 'Não';
+        }
+        $local_internacao = @unserialize($internacao->local_internacao);
+        if( $local_internacao === false ){
+          $hospital_publico_referencia = '';
+          $hospital_campanha = '';
+          $hospital_particular_referencia = '';
+          $hospital_ipiranga = '';
+          $hospital_financiado_projeto = '';
+        } else {
+          in_array('Hospital público de referência', $local_internacao) ? $hospital_publico_referencia = 'Sim' : $hospital_publico_referencia = 'Não';
+          in_array('Hospital de campanha', $local_internacao) ? $hospital_campanha = 'Sim' : $hospital_campanha = 'Não';
+          in_array('Hospital particular de referência', $local_internacao) ? $hospital_particular_referencia = 'Sim' : $hospital_particular_referencia = 'Não';
+          in_array('Hospital municipal do Ipiranga (encaminhado pelo projeto)', $local_internacao) ? $hospital_ipiranga = 'Sim' : $hospital_ipiranga = 'Não';
+          in_array('Hospital privado financiado pelo projeto', $local_internacao) ? $hospital_financiado_projeto = 'Sim' : $hospital_financiado_projeto = 'Não';
+        }
+        if( $internacao && $internacao->data_entrada_internacao && $internacao->data_alta_hospitalar ){
+          $tempo_internacao = $this->monitoringDays($internacao->data_entrada_internacao, $internacao->data_alta_hospitalar);
+        } else {
+          $tempo_internacao = 'Dados insuficientes';
+        }
+
+        $insumos_oferecidos = InsumosOferecido::where('paciente_id', $paciente->id)->first();
+        $precisa_ajuda = @unserialize($insumos_oferecidos->precisa_tipo_ajuda);
+        if( $precisa_ajuda === false ){
+          $precisa_ajuda === 'Comprar remédios de uso contínuo' ? $remedios_uso_continuo = 'Sim' : $remedios_uso_continuo = 'Não';
+          $precisa_ajuda === 'Comprar remédios para o tratamento do quadro atual' ? $remedios_tratamento_quadro_atual = 'Sim' : $remedios_tratamento_quadro_atual = 'Não';
+          $precisa_ajuda === 'Comprar alimento ou outro produtos de necessidade básica' ? $produtos_necessidade_basica = 'Sim' : $produtos_necessidade_basica = 'Não';
+          $precisa_ajuda === 'Outros' ? $ajuda_outros = 'Sim' : $ajuda_outros = 'Não';
+        } else {
+          in_array('Comprar remédios de uso contínuo', $precisa_ajuda) ? $remedios_uso_continuo = 'Sim' : $remedios_uso_continuo = 'Não';
+          in_array('Comprar remédios para o tratamento do quadro atual', $precisa_ajuda) ? $remedios_tratamento_quadro_atual = 'Sim' : $remedios_tratamento_quadro_atual = 'Não';
+          in_array('Comprar alimento ou outro produtos de necessidade básica', $precisa_ajuda) ? $produtos_necessidade_basica = 'Sim' : $produtos_necessidade_basica = 'Não';
+          in_array('Outros', $precisa_ajuda) ? $ajuda_outros = 'Sim' : $ajuda_outros = 'Não';
+        }
+        $tratamento_financiado = @unserialize($insumos_oferecidos->tratamento_financiado);
+        if( $tratamento_financiado === false ){
+          $tratamento_financiado === 'Alopático (medicamentos convencionais)' ? $tratamento_financiado_alopatico = 'Sim' : $tratamento_financiado_alopatico = 'Não';
+          $tratamento_financiado === 'PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)' ? $tratamento_financiado_pics = 'Sim' : $tratamento_financiado_pics = 'Não';
+        } else {
+          $tratamento_financiado && in_array('Alopático (medicamentos convencionais)', $tratamento_financiado) ? $tratamento_financiado_alopatico = 'Sim' : $tratamento_financiado_alopatico = 'Não';
+          $tratamento_financiado && in_array('PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)', $tratamento_financiado) ? $tratamento_financiado_pics = 'Sim' : $tratamento_financiado_pics = 'Não';
+        }
+        $material_entregue = @unserialize($insumos_oferecidos->material_entregue);
+        if( $material_entregue === false ){
+          $material_entregue === 'Cartilha de cuidados' ? $cartilha_cuidados = 'Sim' : $cartilha_cuidados = 'Não';
+          $material_entregue === 'Termometro' ? $termometro = 'Sim' : $termometro = 'Não';
+          $material_entregue === 'Dipirona' ? $dipirona = 'Sim' : $dipirona = 'Não';
+          $material_entregue === 'Paracetamol' ? $paracetamol = 'Sim' : $paracetamol = 'Não';
+          $material_entregue === 'Oximetro' ? $oximetro = 'Sim' : $oximetro = 'Não';
+          $material_entregue === 'Mascaras de tecido' ? $mascaras_tecido = 'Sim' : $mascaras_tecido = 'Não';
+          $material_entregue === 'Material de limpeza' ? $mascaras_limpeza = 'Sim' : $mascaras_limpeza = 'Não';
+          $material_entregue === 'Cesta basica' ? $cesta_basica = 'Sim' : $cesta_basica = 'Não';
+        } else {
+          in_array('Cartilha de cuidados', $material_entregue) ? $cartilha_cuidados = 'Sim' : $cartilha_cuidados = 'Não';
+          in_array('Termometro', $material_entregue) ? $termometro = 'Sim' : $termometro = 'Não';
+          in_array('Dipirona', $material_entregue) ? $dipirona = 'Sim' : $dipirona = 'Não';
+          in_array('Paracetamol', $material_entregue) ? $paracetamol = 'Sim' : $paracetamol = 'Não';
+          in_array('Oximetro', $material_entregue) ? $oximetro = 'Sim' : $oximetro = 'Não';
+          in_array('Mascaras de tecido', $material_entregue) ? $mascaras_tecido = 'Sim' : $mascaras_tecido = 'Não';
+          in_array('Material de limpeza', $material_entregue) ? $mascaras_limpeza = 'Sim' : $mascaras_limpeza = 'Não';
+          in_array('Cesta basica', $material_entregue) ? $cesta_basica = 'Sim' : $cesta_basica = 'Não';
+        }
+
 
         array_push($pacientes_array, [
           'Nome' => $paciente->user->name,
@@ -647,16 +813,66 @@ class PacientesExport implements FromArray, WithHeadings, WithMultipleSheets, Wi
           'intensifica_medos' => $saude_mental ? $saude_mental->quadro_atual : 'Não Informado',
           'detalhe_medos' => $saude_mental ? $saude_mental->detalhes_medos : 'Não Informado',
 
-          // INFOS A SEREM VERIFICADAS ONDE ESTARÃO INSERIDAS - INICIO
-          /*'Remédios consumidos' => $paciente->remedios_consumidos ? $paciente->remedios_consumidos : '',
-          'Isolamento residencial' => $paciente->isolamento_residencial ? $paciente->isolamento_residencial : '',
-          'Alimentacao disponível' => $paciente->alimentacao_disponivel ? $paciente->alimentacao_disponivel : '',
-          'Auxílio terceiros' => $paciente->auxilio_terceiros ? $paciente->auxilio_terceiros : '',
-          'Tarefas autocuidado' => $paciente->tarefas_autocuidado ? $paciente->tarefas_autocuidado : '',
-          'Data teste confirmatório' => $paciente->data_teste_confirmatorio ? $paciente->data_teste_confirmatorio : '',
-          'Descrição doenças' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
-          'Acompanhamento UBS' => $paciente->acompanhamento_ubs ? $paciente->acompanhamento_ubs : '',*/
-          // INFOS A SEREM VERIFICADAS ONDE ESTARÃO INSERIDAS - FIM
+          'ubs_posto_de_saude' => $ubs_posto_de_saude,
+          'upa' => $upa,
+          'ama' => $ama,
+          'hospital_publico' => $hospital_publico,
+          'hospital_privado' => $hospital_privado,
+          'precisou_servico_outro' => $internacao ? $internacao->precisou_servico_outro : '',
+          'Quantas idas a serviços de saúde?' => $internacao ? $internacao->quant_ida_servico : '',
+          'Data da última ida a serviço de saúde' => $internacao ? $internacao->data_ultima_ida_servico_de_saude : '',
+          'azitromicina' => $azitromicina,
+          'outro_antibiotico' => $outro_antibiotico,
+          'ivermectina' => $ivermectina,
+          'cloroquina_hidroxicloroquina' => $cloroquina_hidroxicloroquina,
+          'oseltamivir' => $oseltamivir,
+          'algum_antialergico' => $algum_antialergico,
+          'algum_corticoide' => $algum_corticoide,
+          'algum_antiinflamatorio' => $algum_antiinflamatorio,
+          'vitamina_d' => $vitamina_d,
+          'zinco' => $zinco,
+          'outro_medicamento' => $outro_medicamento,
+          'nome_medicamento_prescrito' => $internacao ? $internacao->nome_medicamento : '',
+          'problema_ubs' => $problema_ubs,
+          'problema_upa' => $problema_upa,
+          'problema_ama' => $problema_ama,
+          'problema_hospital_publico' => $problema_hospital_publico,
+          'problema_hospital_privado' => $problema_hospital_privado,
+          'problema_outro' => $problema_outro,
+          'descreva_problema' => $internacao ? $internacao->descreva_problema : '',
+          'precisou_internacao_quadro' => $internacao ? $internacao->precisou_internacao : '',
+          'precisou_ambulancia' => $internacao ? $internacao->precisou_ambulancia : '',
+          'hospital_publico_referencia' => $hospital_publico_referencia,
+          'hospital_campanha' => $hospital_campanha,
+          'hospital_particular_referencia' => $hospital_particular_referencia,
+          'hospital_ipiranga' => $hospital_ipiranga,
+          'hospital_financiado_projeto' => $hospital_financiado_projeto,
+          'nome_hospital_internacao' => $internacao ? $internacao->nome_hospital : '',
+          'data_entrada_internacao' => $internacao ? $internacao->data_entrada_internacao : '',
+          'data_alta_hospitalar' => $internacao ? $internacao->data_alta_hospitalar : '',
+          'tempo_internacao' => $tempo_internacao,
+
+          'isolamento_residencial' => $paciente->isolamento_residencial ? $paciente->isolamento_residencial : '',
+          'alimentacao_disponivel' => $paciente->alimentacao_disponivel ? $paciente->alimentacao_disponivel : '',
+          'auxilio_terceiros' => $paciente->auxilio_terceiros ? $paciente->auxilio_terceiros : '',
+          'tarefas_autocuidado' => $paciente->tarefas_autocuidado ? $paciente->tarefas_autocuidado : '',
+          'remedios_uso_continuo' => $remedios_uso_continuo,
+          'remedios_tratamento_quadro_atual' => $remedios_tratamento_quadro_atual,
+          'produtos_necessidade_basica' => $produtos_necessidade_basica,
+          'ajuda_outros' => $ajuda_outros,
+          'Tratamento foi prescrito por algum médico do projeto?' => $insumos_oferecidos ? $insumos_oferecidos->tratamento_prescrito : '',
+          'tratamento_financiado_alopatico' => $tratamento_financiado_alopatico,
+          'tratamento_financiado_pics' => $tratamento_financiado_pics,
+          'cartilha_cuidados' => $cartilha_cuidados,
+          'termometro' => $termometro,
+          'dipirona' => $dipirona,
+          'paracetamol' => $paracetamol,
+          'oximetro' => $oximetro,
+          'mascaras_tecido' => $mascaras_tecido,
+          'mascaras_limpeza' => $mascaras_limpeza,
+          'cesta_basica' => $cesta_basica,
+          'oximetro_devolvido' => $insumos_oferecidos ? $insumos_oferecidos->oximetro_devolvido : '',
+
         ]);
       }
 

@@ -8,6 +8,7 @@ use App\QuadroAtual;
 use App\SaudeMental;
 use App\ServicoInternacao;
 use App\InsumosOferecido;
+use App\EvolucaoSintoma;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -230,6 +231,33 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           'Foi entregue: Máscaras de limpeza',
           'Foi entregue: Cesta básica',
           'Se o caso já tiver sido encerrado: oxímetro foi devolvido?',
+
+          //MONITORAMENTOS
+          'Monitoramento ID',
+          'Data do monitoramento',
+          'QUANTOS DIAS DE SINTOMAS?',
+          'Horário do monitoramento',
+          'Sintomas atuais: Tosse',
+          'Sintomas atuais: Falta de ar',
+          'Sintomas atuais: Febre',
+          'Sintomas atuais: Dor de cabeça',
+          'Sintomas atuais: Perda de olfato',
+          'Sintomas atuais: Perda de paladar',
+          'Sintomas atuais: outros',
+          'Sintomas atuais: Outros DESCREVA',
+          'Temperatura atual (em graus)',
+          'Saturação atual (%)',
+          'Frequência respiratória atual',
+          'Frequência cardíaca atual',
+          'Pressão Arterial Atual',
+          'Algum sinal de gravidade nesse monitoramento?',
+          'Equipe médica do projeto prescreveu algum medicamento?',
+          'Medicamento prescrito pela equipe médica do projeto',
+          'Fazendo uso de alguma PIC (prática integrativa complementar - ex: medicina chinesa)?',
+          'Fez escaldapés (atenção para restrições - ex: gestantes e diabeticos)',
+          'Sentiu melhora dos sintomas com escaldapés (atenção para restrições - ex: gestantes e diabeticos)',
+          'Fez inalação ou vaporização?',
+          'Sentiu melhora dos sintomas com inalação ou vaporização',
 
         ];
     }
@@ -686,10 +714,10 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           $precisa_ajuda === 'Comprar alimento ou outro produtos de necessidade básica' ? $produtos_necessidade_basica = 'Sim' : $produtos_necessidade_basica = 'Não';
           $precisa_ajuda === 'Outros' ? $ajuda_outros = 'Sim' : $ajuda_outros = 'Não';
         } else {
-          in_array('Comprar remédios de uso contínuo', $precisa_ajuda) ? $remedios_uso_continuo = 'Sim' : $remedios_uso_continuo = 'Não';
-          in_array('Comprar remédios para o tratamento do quadro atual', $precisa_ajuda) ? $remedios_tratamento_quadro_atual = 'Sim' : $remedios_tratamento_quadro_atual = 'Não';
-          in_array('Comprar alimento ou outro produtos de necessidade básica', $precisa_ajuda) ? $produtos_necessidade_basica = 'Sim' : $produtos_necessidade_basica = 'Não';
-          in_array('Outros', $precisa_ajuda) ? $ajuda_outros = 'Sim' : $ajuda_outros = 'Não';
+          $precisa_ajuda && in_array('Comprar remédios de uso contínuo', $precisa_ajuda) ? $remedios_uso_continuo = 'Sim' : $remedios_uso_continuo = 'Não';
+          $precisa_ajuda && in_array('Comprar remédios para o tratamento do quadro atual', $precisa_ajuda) ? $remedios_tratamento_quadro_atual = 'Sim' : $remedios_tratamento_quadro_atual = 'Não';
+          $precisa_ajuda && in_array('Comprar alimento ou outro produtos de necessidade básica', $precisa_ajuda) ? $produtos_necessidade_basica = 'Sim' : $produtos_necessidade_basica = 'Não';
+          $precisa_ajuda && in_array('Outros', $precisa_ajuda) ? $ajuda_outros = 'Sim' : $ajuda_outros = 'Não';
         }
         $tratamento_financiado = @unserialize($insumos_oferecidos->tratamento_financiado);
         if( $tratamento_financiado === false ){
@@ -719,6 +747,45 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           in_array('Material de limpeza', $material_entregue) ? $mascaras_limpeza = 'Sim' : $mascaras_limpeza = 'Não';
           in_array('Cesta basica', $material_entregue) ? $cesta_basica = 'Sim' : $cesta_basica = 'Não';
         }
+
+        /*$monitoramentos = EvolucaoSintoma::where('paciente_id', $paciente->id)->get();
+        foreach($monitoramentos as $monitoramento){
+          $monitoramento_id = $monitoramento->id;
+          $monitoramento_data = $monitoramento->created_at;
+          $monitoramento_dias = '';
+          $monitoramento_horario = $monitoramento->horario_monotiramento;
+          $monitoramento_sintomas = @unserialize($monitoramento->sintomas_atuais);
+          $monitoramento_temperatura = $monitoramento->temperatura_atual;
+          $monitoramento_saturacao = $monitoramento->saturacao_atual;
+          $monitoramento_frequencia_respiratoria = $monitoramento->frequencia_respiratoria_atual;
+          $monitoramento_frequencia_cardiaca = $monitoramento->frequencia_cardiaca_atual;
+          $monitoramento_pressao_arterial = $monitoramento->pressao_arterial_atual;
+          $monitoramento_sinal_gravidade = $monitoramento->algum_sinal;
+          $monitoramento_equipe_prescreveu_medicamento = $monitoramento->equipe_medica;
+          $monitoramento_medicamento_prescrito = $monitoramento->medicamento;
+          $monitoramento_fez_pic = $monitoramento->fazendo_uso_pic;
+          $monitoramento_fez_escaldapes = $monitoramento->fez_escalapes;
+          $monitoramento_melhoras_escaldapes = $monitoramento->melhora_sintoma_escaldapes;
+          $monitoramento_inalacao = $monitoramento->fes_inalacao;
+          $monitoramento_melhoras_inalacao = $monitoramento->melhoria_sintomas_inalacao;
+          if( $monitoramento_sintomas === false ){
+            $monitoramento_sintomas_tosse = '';
+            $monitoramento_sintomas_falta_de_ar = '';
+            $monitoramento_sintomas_febre = '';
+            $monitoramento_sintomas_dor_de_cabeca = '';
+            $monitoramento_sintomas_perda_de_olfato = '';
+            $monitoramento_sintomas_perda_de_paladar = '';
+            $monitoramento_sintomas_outros = '';
+          } else {
+            in_array('tosse', $monitoramento_sintomas) ? $monitoramento_sintomas_tosse = 'Sim' : $monitoramento_sintomas_tosse = 'Não';
+            in_array('falta de ar', $monitoramento_sintomas) ? $monitoramento_sintomas_falta_de_ar = 'Sim' : $monitoramento_sintomas_falta_de_ar = 'Não';
+            in_array('febre', $monitoramento_sintomas) ? $monitoramento_sintomas_febre = 'Sim' : $monitoramento_sintomas_febre = 'Não';
+            in_array('dor de cabeça', $monitoramento_sintomas) ? $monitoramento_sintomas_dor_de_cabeca = 'Sim' : $monitoramento_sintomas_dor_de_cabeca = 'Não';
+            in_array('perda de olfato', $monitoramento_sintomas) ? $monitoramento_sintomas_perda_de_olfato = 'Sim' : $monitoramento_sintomas_perda_de_olfato = 'Não';
+            in_array('perda do paladar', $monitoramento_sintomas) ? $monitoramento_sintomas_perda_de_paladar = 'Sim' : $monitoramento_sintomas_perda_de_paladar = 'Não';
+            in_array('outros', $monitoramento_sintomas) ? $monitoramento_sintomas_outros = 'Sim' : $monitoramento_sintomas_outros = 'Não';
+          }
+        }*/
 
 
         array_push($pacientes_array, [
@@ -914,6 +981,32 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           'mascaras_limpeza' => $mascaras_limpeza,
           'cesta_basica' => $cesta_basica,
           'oximetro_devolvido' => $insumos_oferecidos ? $insumos_oferecidos->oximetro_devolvido : '',
+
+          /*'monitoramento_id' => $monitoramento_id,
+          'monitoramento_data' => $monitoramento_data,
+          'monitoramento_dias' => $monitoramento_dias,
+          'monitoramento_horario' => $monitoramento_horario,
+          'Sintomas atuais: Tosse' => $monitoramento_sintomas_tosse,
+          'Sintomas atuais: Falta de ar' => $monitoramento_sintomas_falta_de_ar,
+          'Sintomas atuais: Febre' => $monitoramento_sintomas_febre,
+          'Sintomas atuais: Dor de cabeça' => $monitoramento_sintomas_dor_de_cabeca,
+          'Sintomas atuais: Perda de olfato' => $monitoramento_sintomas_perda_de_olfato,
+          'Sintomas atuais: Perda de paladar' => $monitoramento_sintomas_perda_de_paladar,
+          'Sintomas atuais: outros' => $monitoramento_sintomas_outros,
+          'Sintomas atuais: Outros DESCREVA' => $monitoramento ? $monitoramento->sintomas_outro : '',
+          'Temperatura atual (em graus)' => $monitoramento_temperatura,
+          'Saturação atual (%)' => $monitoramento_saturacao,
+          'Frequência respiratória atual' => $monitoramento_frequencia_respiratoria,
+          'Frequência cardíaca atual' => $monitoramento_frequencia_cardiaca,
+          'Pressão Arterial Atual' => $monitoramento_pressao_arterial,
+          'Algum sinal de gravidade nesse monitoramento?' => $monitoramento_sinal_gravidade,
+          'Equipe médica do projeto prescreveu algum medicamento?' => $monitoramento_equipe_prescreveu_medicamento,
+          'Medicamento prescrito pela equipe médica do projeto' => $monitoramento_medicamento_prescrito,
+          'Fazendo uso de alguma PIC (prática integrativa complementar - ex: medicina chinesa)?' => $monitoramento_fez_pic,
+          'Fez escaldapés (atenção para restrições - ex: gestantes e diabeticos)' => $monitoramento_fez_escaldapes,
+          'Sentiu melhora dos sintomas com escaldapés (atenção para restrições - ex: gestantes e diabeticos)' => $monitoramento_melhoras_escaldapes,
+          'Fez inalação ou vaporização?' => $monitoramento_inalacao,
+          'Sentiu melhora dos sintomas com inalação ou vaporização' => $monitoramento_melhoras_inalacao,*/
 
         ]);
       }

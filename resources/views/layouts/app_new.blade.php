@@ -23,6 +23,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}"/>
     <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}" defer></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.css">

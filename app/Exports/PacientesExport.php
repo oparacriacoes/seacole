@@ -8,18 +8,19 @@ use App\QuadroAtual;
 use App\SaudeMental;
 use App\ServicoInternacao;
 use App\InsumosOferecido;
-use App\EvolucaoSintoma;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class PacientesExport implements FromArray, WithHeadings, WithTitle
+class PacientesExport implements FromArray, WithHeadings, WithTitle, WithMultipleSheets
 {
     public function sheets(): array
     {
         $sheets = [
           new PacientesExport(),
+          new EvolucaoSintomaExport(),
         ];
 
         return $sheets;

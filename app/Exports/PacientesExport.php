@@ -53,6 +53,7 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           'Identidade gênero',
           'Orientação sexual',
           'Cor/Raça',
+          'Cor/Raça',
           'Nº pessoas residência',
           'Auxílio emergencial',
           'Renda residência',
@@ -78,6 +79,8 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           'At. semanal psicol.',
           'Hor. at. psicol.',
 
+          'DIAGNÓSTICO DE COVID-19',
+          'Data do teste confirmatório',
           'Testes Realizados? PCR',
           'Testes Realizados? Sorologias (IgM/IgG)',
           'Testes Realizados? Teste Rápido',
@@ -108,10 +111,13 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           'Condições Gerais de Saúde: Outras questões de saúde mental',
           'Condições Gerais de Saúde: Descreva as doenças assinaladas',
 
-          'Tuberculose',
-          'Tabagista',
-          'Alcool crônico',
-          'Outras drogas',
+          'Já teve tuberculose?',
+          'É tabagista?',
+          'Faz uso crônico de alcool?',
+          'Faz uso crônico de outras drogas?',
+
+          'Toma remédio(s) de uso contínuo? Qual(is)?',
+
           'Gestante',
           'Pós parto',
           'Amamenta',
@@ -501,6 +507,8 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           $raca_cor = $paciente->cor_raca;
         };
 
+        $raca_cor_1 = $paciente->cor_raca;
+
         //CALCULA O TOTAL DE DIAS DE MONITORAMENTO
         if( $paciente->data_inicio_monitoramento && $paciente->data_finalizacao_caso ){
           $monitoring_days = $this->monitoringDays($paciente->data_inicio_monitoramento, $paciente->data_finalizacao_caso);
@@ -748,6 +756,11 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           in_array('Cesta basica', $material_entregue) ? $cesta_basica = 'Sim' : $cesta_basica = 'Não';
         }
 
+        $monitoramentos = $paciente->dados;
+        foreach( $monitoramentos as $monitoramento ){
+          $monitoramento_id = $monitoramento->id;
+        }
+        //dd($monitoramentos);
         /*$monitoramentos = EvolucaoSintoma::where('paciente_id', $paciente->id)->get();
         foreach($monitoramentos as $monitoramento){
           $monitoramento_id = $monitoramento->id;
@@ -787,7 +800,6 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           }
         }*/
 
-
         array_push($pacientes_array, [
           'Nome' => $paciente->user->name,
           'Nome social' => $paciente->name_social ? $paciente->name_social : '',
@@ -808,7 +820,8 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           'Ponto referência' => $paciente->ponto_referencia ? $paciente->ponto_referencia : '',
           'Identidade gênero' => $paciente->identidade_genero ? $paciente->identidade_genero : '',
           'Orientação sexual' => $paciente->orientacao_sexual ? $paciente->orientacao_sexual : '',
-          'Cor/Raça' => $raca_cor ? $raca_cor : '',
+          'raca_cor' => $raca_cor ? $raca_cor : '',
+          'raca_cor_1' => $raca_cor_1 ? $raca_cor_1 : '',
           'Nº pessoas residência' => $paciente->numero_pessoas_residencia ? $paciente->numero_pessoas_residencia : '',
           'Auxílio emergencial' => $paciente->auxilio_emergencial ? $paciente->auxilio_emergencial : '',
           'Renda residência' => $paciente->renda_residencia ? $paciente->renda_residencia : '',
@@ -833,11 +846,12 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           'Acomp. psicol. em grupo' => $acompanhamento_grupo,
           'At. semanal psicol.' => $paciente->atendimento_semanal_psicologia ? $paciente->atendimento_semanal_psicologia : '',
           'Hor. at. psicol.' => $paciente->horario_at_psicologia ? $paciente->horario_at_psicologia : '',
+          'diagnostico_covid_19' => $paciente->sintomas_iniciais ? $paciente->sintomas_iniciais : '',
+          'data_teste_confirmatorio' => $paciente->data_teste_confirmatorio ? $paciente->data_teste_confirmatorio : '',
           'PCR' => $pcr,
           'sorologias (IgM/IgG)' => $sorologias,
           'Teste Rápido' => $teste_rapido,
           'Não Informado' => $nao_informado,
-
           'PCR positivo' => $pcr_positivo,
           'PCR negativo' => $pcr_negativo,
           'IgM positivo' => $igm_positivo,
@@ -864,10 +878,13 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           'outras_questoes_saude_mental' => $outras_questoes_saude_mental,
           'descreva_doencas_assinaladas' => $paciente->descreve_doencas ? $paciente->descreve_doencas : '',
 
-          'Tuberculose' => $paciente->tuberculose ? $paciente->tuberculose : '',
-          'Tabagista' => $paciente->tabagista ? $paciente->tabagista : '',
-          'Alcool crônico' => $paciente->cronico_alcool ? $paciente->cronico_alcool : '',
-          'Outras drogas' => $paciente->outras_drogas ? $paciente->outras_drogas : '',
+          'tuberculose' => $paciente->tuberculose ? $paciente->tuberculose : '',
+          'tabagista' => $paciente->tabagista ? $paciente->tabagista : '',
+          'cronico_alcool' => $paciente->cronico_alcool ? $paciente->cronico_alcool : '',
+          'outras_drogas' => $paciente->outras_drogas ? $paciente->outras_drogas : '',
+
+          'toma_remedios_uso_continuo' => $paciente->remedios_consumidos ? $paciente->remedios_consumidos : '',
+
           'Gestante' => $paciente->gestante ? $paciente->gestante : '',
           'Pós parto' => $paciente->pos_parto ? $paciente->pos_parto : '',
           'Amamenta' => $paciente->amamenta ? $paciente->amamenta : '',
@@ -982,8 +999,8 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle
           'cesta_basica' => $cesta_basica,
           'oximetro_devolvido' => $insumos_oferecidos ? $insumos_oferecidos->oximetro_devolvido : '',
 
-          /*'monitoramento_id' => $monitoramento_id,
-          'monitoramento_data' => $monitoramento_data,
+          'monitoramento_id' => $monitoramento_id,
+          /*'monitoramento_data' => $monitoramento_data,
           'monitoramento_dias' => $monitoramento_dias,
           'monitoramento_horario' => $monitoramento_horario,
           'Sintomas atuais: Tosse' => $monitoramento_sintomas_tosse,

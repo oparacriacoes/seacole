@@ -47,57 +47,61 @@
       ?>
       @foreach($prontuarios as $prontuario)
       <?php
-      if( $prontuario->paciente->data_inicio_sintoma && $prontuario->data_monitoramento ){
-        $dias_monitoramento = monitoringDays($prontuario->paciente->data_inicio_sintoma, $prontuario->data_monitoramento);
-      } else {
-        $dias_monitoramento = 'Dados insuficientes';
+
+      if( $prontuario->paciente ){
+        if( $prontuario->paciente->data_inicio_sintoma && $prontuario->data_monitoramento ){
+          $dias_monitoramento = monitoringDays($prontuario->paciente->data_inicio_sintoma, $prontuario->data_monitoramento);
+        } else {
+          $dias_monitoramento = 'Dados insuficientes';
+        }
+
+        $sintoma = @unserialize($prontuario->sintomas_atuais);
+        if($sintoma === false){
+          $tosse = '';
+          $falta_de_ar = '';
+          $febre = '';
+          $dor_de_cabeca = '';
+          $perda_de_olfato = '';
+          $perda_de_paladar = '';
+          $outros = '';
+        } else {
+          in_array('tosse', $sintoma) ? $tosse = 'Sim' : $tosse = 'Não';
+          in_array('falta de ar', $sintoma) ? $falta_de_ar = 'Sim' : $falta_de_ar = 'Não';
+          in_array('febre', $sintoma) ? $febre = 'Sim' : $febre = 'Não';
+          in_array('dor de cabeça', $sintoma) ? $dor_de_cabeca = 'Sim' : $dor_de_cabeca = 'Não';
+          in_array('perda de olfato', $sintoma) ? $perda_de_olfato = 'Sim' : $perda_de_olfato = 'Não';
+          in_array('perda do paladar', $sintoma) ? $perda_de_paladar = 'Sim' : $perda_de_paladar = 'Não';
+          in_array('outros', $sintoma) ? $outros = 'Sim' : $outros = 'Não';
+        }
       }
 
-      $sintoma = @unserialize($prontuario->sintomas_atuais);
-      if($sintoma === false){
-        $tosse = '';
-        $falta_de_ar = '';
-        $febre = '';
-        $dor_de_cabeca = '';
-        $perda_de_olfato = '';
-        $perda_de_paladar = '';
-        $outros = '';
-      } else {
-        in_array('tosse', $sintoma) ? $tosse = 'Sim' : $tosse = 'Não';
-        in_array('falta de ar', $sintoma) ? $falta_de_ar = 'Sim' : $falta_de_ar = 'Não';
-        in_array('febre', $sintoma) ? $febre = 'Sim' : $febre = 'Não';
-        in_array('dor de cabeça', $sintoma) ? $dor_de_cabeca = 'Sim' : $dor_de_cabeca = 'Não';
-        in_array('perda de olfato', $sintoma) ? $perda_de_olfato = 'Sim' : $perda_de_olfato = 'Não';
-        in_array('perda do paladar', $sintoma) ? $perda_de_paladar = 'Sim' : $perda_de_paladar = 'Não';
-        in_array('outros', $sintoma) ? $outros = 'Sim' : $outros = 'Não';
-      }
       ?>
         <tr>
-          <td>{{ $prontuario->paciente->user->name }}</td>
-          <td>{{ $prontuario->data_monitoramento }}</td>
-          <td>{{ $dias_monitoramento }}</td>
-          <td>{{ $prontuario->horario_monotiramento }}</td>
-          <td>{{ $tosse }}</td>
-          <td>{{ $falta_de_ar }}</td>
-          <td>{{ $febre }}</td>
-          <td>{{ $dor_de_cabeca }}</td>
-          <td>{{ $perda_de_olfato }}</td>
-          <td>{{ $perda_de_paladar }}</td>
-          <td>{{ $outros }}</td>
-          <td>{{ $prontuario->sintomas_outro }}</td>
-          <td>{{ $prontuario->temperatura_atual }}</td>
-          <td>{{ $prontuario->saturacao_atual }}</td>
-          <td>{{ $prontuario->frequencia_respiratoria_atual }}</td>
-          <td>{{ $prontuario->frequencia_cardiaca_atual }}</td>
-          <td>{{ $prontuario->pressao_arterial_atual }}</td>
-          <td>{{ $prontuario->algum_sinal }}</td>
-          <td>{{ $prontuario->equipe_medica }}</td>
-          <td>{{ $prontuario->medicamento }}</td>
-          <td>{{ $prontuario->fazendo_uso_pic }}</td>
-          <td>{{ $prontuario->fez_escalapes }}</td>
-          <td>{{ $prontuario->melhora_sintoma_escaldapes }}</td>
-          <td>{{ $prontuario->fes_inalacao }}</td>
-          <td>{{ $prontuario->melhoria_sintomas_inalacao }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->paciente->user->name : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->data_monitoramento : '' }}</td>
+          <td>{{ $prontuario->paciente ? $dias_monitoramento : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->horario_monotiramento : '' }}</td>
+          <td>{{ $prontuario->paciente ? $tosse : '' }}</td>
+          <td>{{ $prontuario->paciente ? $falta_de_ar : '' }}</td>
+          <td>{{ $prontuario->paciente ? $febre : '' }}</td>
+          <td>{{ $prontuario->paciente ? $dor_de_cabeca : '' }}</td>
+          <td>{{ $prontuario->paciente ? $perda_de_olfato : '' }}</td>
+          <td>{{ $prontuario->paciente ? $perda_de_paladar : '' }}</td>
+          <td>{{ $prontuario->paciente ? $outros : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->sintomas_outro : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->temperatura_atual : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->saturacao_atual : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->frequencia_respiratoria_atual : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->frequencia_cardiaca_atual : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->pressao_arterial_atual : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->algum_sinal : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->equipe_medica : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->medicamento : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->fazendo_uso_pic : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->fez_escalapes : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->melhora_sintoma_escaldapes : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->fes_inalacao : '' }}</td>
+          <td>{{ $prontuario->paciente ? $prontuario->melhoria_sintomas_inalacao : '' }}</td>
         </tr>
       @endforeach
     </tbody>

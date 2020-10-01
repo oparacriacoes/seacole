@@ -49,15 +49,9 @@ $prontuarios = \App\EvolucaoSintoma::all();
       }
       ?>
       @foreach($prontuarios as $prontuario)
-      @php
-      $paciente = \App\Paciente::find($prontuario->paciente_id)->user->name;
-      $data_inicio_sintoma = \App\Paciente::find($prontuario->paciente_id)->data_inicio_sintoma;
-      //dd($data_inicio_sintoma);
-      //dd($prontuario->data_monitoramento);
-
-      if( $data_inicio_sintoma && $prontuario->data_monitoramento ){
-        echo $data_inicio_sintoma;
-        $dias_monitoramento = monitoringDays($data_inicio_sintoma, $prontuario->data_monitoramento);
+      <?php
+      if( $prontuario->paciente->data_inicio_sintoma && $prontuario->data_monitoramento ){
+        $dias_monitoramento = monitoringDays($prontuario->paciente->data_inicio_sintoma, $prontuario->data_monitoramento);
       } else {
         $dias_monitoramento = 'Dados insuficientes';
       }
@@ -80,9 +74,9 @@ $prontuarios = \App\EvolucaoSintoma::all();
         in_array('perda do paladar', $sintoma) ? $perda_de_paladar = 'Sim' : $perda_de_paladar = 'Não';
         in_array('outros', $sintoma) ? $outros = 'Sim' : $outros = 'Não';
       }
-      @endphp
+      ?>
         <tr>
-          <td>{{ $paciente }}</td>
+          <td>{{ $prontuario->paciente->user->name }}</td>
           <td>{{ $prontuario->data_monitoramento }}</td>
           <td>{{ $dias_monitoramento }}</td>
           <td>{{ $prontuario->horario_monotiramento }}</td>

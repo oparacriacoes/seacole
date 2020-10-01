@@ -20,7 +20,7 @@ class EvolucaoSintomaExport implements FromView, WithTitle
     public function view(): View
     {
         return view('pages.paciente.prontuario', [
-            'prontuarios' => \App\EvolucaoSintoma::all()
+            'prontuarios' => EvolucaoSintoma::all()
         ]);
     }
 }

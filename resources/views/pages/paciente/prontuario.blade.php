@@ -1,6 +1,3 @@
-@php
-$prontuarios = \App\EvolucaoSintoma::all();
-@endphp
 <table>
     <thead>
     <tr>

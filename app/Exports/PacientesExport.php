@@ -653,7 +653,7 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle, WithMultipl
           in_array('Hospital público', $precisou_servico) ? $hospital_publico = 'Sim' : $hospital_publico = 'Não';
           in_array('hospital privado', $precisou_servico) ? $hospital_privado = 'Sim' : $hospital_privado = 'Não';
         }
-        $recebeu_medicacao = @unserialize($internacao->precisou_servico);
+        $recebeu_medicacao = @unserialize($internacao->recebeu_med_covid);
         if( $recebeu_medicacao === false ){
           $azitromicina = '';
           $outro_antibiotico = '';

@@ -215,7 +215,7 @@ $("#createPaciente").click(function(e) {
   let selects = $('select');
   let textareas = $('textarea');
   let datas = '...';
-  let datas = {...inputs.serializeJSON(), ...selects.serializeJSON(), ...textareas.serializeJSON()};
+  datas = {...inputs.serializeJSON(), ...selects.serializeJSON(), ...textareas.serializeJSON()};
 
   $("#createPaciente").addClass('disabled');
 
@@ -280,7 +280,7 @@ $("#createPacienteQA").click(function(e) {
   let selects = $('select');
   let textareas = $('textarea');
   let datas = '...';
-  let datas = {...inputs.serializeJSON(), ...selects.serializeJSON(), ...textareas.serializeJSON()};
+  datas = {...inputs.serializeJSON(), ...selects.serializeJSON(), ...textareas.serializeJSON()};
 
   $("#createPacienteQA").addClass('disabled');
 

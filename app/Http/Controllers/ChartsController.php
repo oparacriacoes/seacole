@@ -43,7 +43,7 @@ class ChartsController extends Controller
             ->addNumberColumn('Percent')
             ->addRow(['Monitorados', $total_monitorados])
             ->addRow(['Cadastrados', $total_cadastrados]);
-    Lava::DonutChart('IMDB', $cases, [
+    Lava::DonutChart('MonitoradosCadastrados', $cases, [
         'forceIFrame' => true,
         'pieHole' => 0.5,
         'pieSliceTextStyle' => ['fontSize' => 10],
@@ -60,7 +60,7 @@ class ChartsController extends Controller
             ->addNumberColumn('Casos')
             ->addRow(['Monitorados', $total_monitorados])
             ->addRow(['Cadastrados', $total_cadastrados]);
-    Lava::DonutChart('IMDB', $cases, [
+    Lava::DonutChart('MonitoradosCadastrados2', $cases, [
         'forceIFrame' => true,
         'pieHole' => 0.5,
         'pieSliceTextStyle' => ['fontSize' => 10],
@@ -77,12 +77,29 @@ class ChartsController extends Controller
             ->addNumberColumn('Casos')
             ->addRow(['Monitorados', $total_monitorados])
             ->addRow(['Cadastrados', $total_cadastrados]);
-    Lava::ColumnChart('IMDB', $cases, [
+    Lava::ColumnChart('MonitoradosCadastrados3', $cases, [
         'forceIFrame' => true,
         //'pieHole' => 0.5,
         //'pieSliceTextStyle' => ['fontSize' => 10],
     ]);
     //MONITORAMENTO X CADASTRADO (3) FIM
+
+    //MUNICÍPIOS - INÍCIO
+    $totals = DB::select("SELECT COUNT(*) as total, endereco_cidade as cidade FROM `pacientes` GROUP BY endereco_cidade ORDER BY endereco_cidade ASC");
+    $cases = Lava::DataTable();
+    $cases->addStringColumn('Casos');
+    $cases->addNumberColumn('Casos');
+
+    foreach($totals as $total){
+      $cases->addRow([$total->cidade, $total->total]);
+    }
+
+    Lava::DonutChart('Municipios', $cases, [
+        'forceIFrame' => true,
+    ]);
+    //MUNICÍPIOS - FIM
+
+    //SELECT COUNT(*) as total, endereco_cidade as cidade FROM `pacientes` GROUP BY endereco_cidade ORDER BY endereco_cidade ASC
 
     return view('dashboard');
   }

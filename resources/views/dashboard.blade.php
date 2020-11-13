@@ -10,14 +10,13 @@
                         </i>
                     </div>
                     <div>Dashboard
-                        <div class="page-title-subheading">This is an example dashboard created using build-in elements and components.
-                        </div>
+                        <!--<div class="page-title-subheading">This is an example dashboard created using build-in elements and components.</div>-->
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-          <!-- //CASOS MONITORADOS - INÍCIO -->
+          <!-- CASOS MONITORADOS - INÍCIO -->
             <div class="col-md-12 col-lg-6">
                 <div class="mb-3 card">
                     <div class="card-header-tab card-header-tab-animation card-header">
@@ -35,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <!-- //CASOS MONITORADOS - FIM -->
+            <!-- CASOS MONITORADOS - FIM -->
 
             <!-- MONITORAMENTO X CADASTRADO - INÍCIO -->
               <div class="col-md-12 col-lg-6">
@@ -51,11 +50,11 @@
                       </div>
                       <div class="card-body">
                         <div id="monitoramento_cadastrado" style="height: 300px;"></div>
-                        @donutchart('IMDB', 'monitoramento_cadastrado')
+                        @donutchart('MonitoradosCadastrados', 'monitoramento_cadastrado')
                       </div>
                   </div>
               </div>
-              <!-- GMONITORAMENTO X CADASTRADO - FIM -->
+              <!-- MONITORAMENTO X CADASTRADO - FIM -->
 
               <!-- MONITORAMENTO X CADASTRADO (2) - INÍCIO -->
                 <div class="col-md-12 col-lg-6">
@@ -71,7 +70,7 @@
                         </div>
                         <div class="card-body">
                           <div id="monitoramento_cadastrado_2" style="height: 300px;"></div>
-                          @donutchart('IMDB', 'monitoramento_cadastrado_2')
+                          @donutchart('MonitoradosCadastrados2', 'monitoramento_cadastrado_2')
                         </div>
                     </div>
                 </div>
@@ -91,11 +90,31 @@
                           </div>
                           <div class="card-body">
                             <div id="monitoramento_cadastrado_3" style="height: 300px;"></div>
-                            @columnchart('IMDB', 'monitoramento_cadastrado_3')
+                            @columnchart('MonitoradosCadastrados3', 'monitoramento_cadastrado_3')
                           </div>
                       </div>
                   </div>
                   <!-- MONITORAMENTO X CADASTRADO (3) - FIM -->
+
+                  <!-- MUNICÍPIOS - INÍCIO -->
+                    <div class="col-md-12 col-lg-6">
+                        <div class="mb-3 card">
+                            <div class="card-header-tab card-header-tab-animation card-header">
+                                <div class="card-header-title">
+                                      MUNICÍPIOS - SEM MONITORAMENTO
+                                </div>
+                                <!--<ul class="nav">
+                                    <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">Last</a></li>
+                                    <li class="nav-item"><a href="javascript:void(0);" class="nav-link second-tab-toggle">Current</a></li>
+                                </ul>-->
+                            </div>
+                            <div class="card-body">
+                              <div id="municipios" style="height: 300px;"></div>
+                              @donutchart('Municipios', 'municipios')
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MUNICÍPIOS - FIM -->
         </div>
     </div>
 @endsection

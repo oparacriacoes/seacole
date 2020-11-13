@@ -30,7 +30,7 @@
                     </div>
                     <div class="card-body">
                       <div id="casos_monitorados" style="height: 300px;"></div>
-                      @linechart('Casos Monitorados', 'casos_monitorados')
+                      <!--linechart('Casos Monitorados', 'casos_monitorados')-->
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                       </div>
                       <div class="card-body">
                         <div id="monitoramento_cadastrado" style="height: 300px;"></div>
-                        @donutchart('MonitoradosCadastrados', 'monitoramento_cadastrado')
+                        <!--donutchart('MonitoradosCadastrados', 'monitoramento_cadastrado')-->
                       </div>
                   </div>
               </div>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="card-body">
                           <div id="monitoramento_cadastrado_2" style="height: 300px;"></div>
-                          @donutchart('MonitoradosCadastrados2', 'monitoramento_cadastrado_2')
+                          <!--donutchart('MonitoradosCadastrados2', 'monitoramento_cadastrado_2')-->
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                           </div>
                           <div class="card-body">
                             <div id="monitoramento_cadastrado_3" style="height: 300px;"></div>
-                            @columnchart('MonitoradosCadastrados3', 'monitoramento_cadastrado_3')
+                            <!--columnchart('MonitoradosCadastrados3', 'monitoramento_cadastrado_3')-->
                           </div>
                       </div>
                   </div>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="card-body">
                               <div id="municipios" style="height: 300px;"></div>
-                              @donutchart('Municipios', 'municipios')
+                              <!--donutchart('Municipios', 'municipios')-->
                             </div>
                         </div>
                     </div>

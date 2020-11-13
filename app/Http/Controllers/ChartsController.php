@@ -101,6 +101,6 @@ class ChartsController extends Controller
 
     //SELECT COUNT(*) as total, endereco_cidade as cidade FROM `pacientes` GROUP BY endereco_cidade ORDER BY endereco_cidade ASC
 
-    return view('dashboard');
+    return view('graphs');
   }
 }

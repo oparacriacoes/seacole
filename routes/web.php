@@ -30,7 +30,7 @@ Route::middleware(['auth'])->group(function () {
     return view('dashboard');
   })->name('admin');
 
-  //Route::get('/admin', 'ChartsController@index')->name('admin');
+  Route::get('/admin/graficos', 'ChartsController@index')->name('admin/graficos');
 
   Route::get('/admin/agente', 'AgenteController@index')->name('agente');
   Route::get('/admin/agente/add', 'AgenteController@add')->name('agente/add');

@@ -26,11 +26,11 @@ Route::middleware(['auth'])->group(function () {
   //   return view('sample');
   // })->name('admin');
 
-  /*Route::get('/admin', function() {
+  Route::get('/admin', function() {
     return view('dashboard');
-  })->name('admin');*/
+  })->name('admin');
 
-  Route::get('/admin', 'ChartsController@index')->name('admin');
+  //Route::get('/admin', 'ChartsController@index')->name('admin');
 
   Route::get('/admin/agente', 'AgenteController@index')->name('agente');
   Route::get('/admin/agente/add', 'AgenteController@add')->name('agente/add');

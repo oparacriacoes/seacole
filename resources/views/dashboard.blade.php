@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="row">
-          <!-- GRÁFICO 1 - INÍCIO -->
+          <!-- //CASOS MONITORADOS - INÍCIO -->
             <div class="col-md-12 col-lg-6">
                 <div class="mb-3 card">
                     <div class="card-header-tab card-header-tab-animation card-header">
@@ -35,9 +35,9 @@
                     </div>
                 </div>
             </div>
-            <!-- GRÁFICO 1 - FIM -->
+            <!-- //CASOS MONITORADOS - FIM -->
 
-            <!-- GRÁFICO 2 - INÍCIO -->
+            <!-- MONITORAMENTO X CADASTRADO - INÍCIO -->
               <div class="col-md-12 col-lg-6">
                   <div class="mb-3 card">
                       <div class="card-header-tab card-header-tab-animation card-header">
@@ -55,9 +55,9 @@
                       </div>
                   </div>
               </div>
-              <!-- GRÁFICO 2 - FIM -->
+              <!-- GMONITORAMENTO X CADASTRADO - FIM -->
 
-              <!-- GRÁFICO 3 - INÍCIO -->
+              <!-- MONITORAMENTO X CADASTRADO (2) - INÍCIO -->
                 <div class="col-md-12 col-lg-6">
                     <div class="mb-3 card">
                         <div class="card-header-tab card-header-tab-animation card-header">
@@ -75,7 +75,27 @@
                         </div>
                     </div>
                 </div>
-                <!-- GRÁFICO 3 - FIM -->
+                <!-- MONITORAMENTO X CADASTRADO (2) - FIM -->
+
+                <!-- MONITORAMENTO X CADASTRADO (3) - INÍCIO -->
+                  <div class="col-md-12 col-lg-6">
+                      <div class="mb-3 card">
+                          <div class="card-header-tab card-header-tab-animation card-header">
+                              <div class="card-header-title">
+                                    MONITORAMENTO X CADASTRADO (3)
+                              </div>
+                              <!--<ul class="nav">
+                                  <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">Last</a></li>
+                                  <li class="nav-item"><a href="javascript:void(0);" class="nav-link second-tab-toggle">Current</a></li>
+                              </ul>-->
+                          </div>
+                          <div class="card-body">
+                            <div id="monitoramento_cadastrado_3" style="height: 300px;"></div>
+                            @columnchart('IMDB', 'monitoramento_cadastrado_3')
+                          </div>
+                      </div>
+                  </div>
+                  <!-- MONITORAMENTO X CADASTRADO (3) - FIM -->
         </div>
     </div>
 @endsection

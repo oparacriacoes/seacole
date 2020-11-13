@@ -48,7 +48,41 @@ class ChartsController extends Controller
         'pieHole' => 0.5,
         'pieSliceTextStyle' => ['fontSize' => 10],
     ]);
-    //MONITORAMENTO X CADASTRADO FIM
+    //MONITORAMENTO X CADASTRADO (2) FIM
+
+    //MONITORAMENTO X CADASTRADO
+    $monitorados = Monitoramento::select('paciente_id')->groupBy('paciente_id')->get();
+    $cadastrados = Paciente::all();
+    $total_monitorados = count($monitorados);
+    $total_cadastrados = count($cadastrados);
+    $cases = Lava::DataTable();
+    $cases->addStringColumn('Casos')
+            ->addNumberColumn('Casos')
+            ->addRow(['Monitorados', $total_monitorados])
+            ->addRow(['Cadastrados', $total_cadastrados]);
+    Lava::DonutChart('IMDB', $cases, [
+        'forceIFrame' => true,
+        'pieHole' => 0.5,
+        'pieSliceTextStyle' => ['fontSize' => 10],
+    ]);
+    //MONITORAMENTO X CADASTRADO (2) FIM
+
+    //MONITORAMENTO X CADASTRADO (3)
+    $monitorados = Monitoramento::select('paciente_id')->groupBy('paciente_id')->get();
+    $cadastrados = Paciente::all();
+    $total_monitorados = count($monitorados);
+    $total_cadastrados = count($cadastrados);
+    $cases = Lava::DataTable();
+    $cases->addStringColumn('Casos')
+            ->addNumberColumn('Casos')
+            ->addRow(['Monitorados', $total_monitorados])
+            ->addRow(['Cadastrados', $total_cadastrados]);
+    Lava::ColumnChart('IMDB', $cases, [
+        'forceIFrame' => true,
+        //'pieHole' => 0.5,
+        //'pieSliceTextStyle' => ['fontSize' => 10],
+    ]);
+    //MONITORAMENTO X CADASTRADO (3) FIM
 
     return view('dashboard');
   }

@@ -17,7 +17,7 @@ class ChartsController extends Controller
     //CASOS MONITORADOS
     Carbon::setlocale(config('app.locale'));
     $totals = DB::select("SELECT DATE_FORMAT(STR_TO_DATE(data_inicio_monitoramento, '%d/%m/%Y'), '%Y-%m') as date, COUNT(*) as total_casos, COUNT(data_inicio_ac_psicologico) as total_psico FROM pacientes GROUP BY date ORDER BY date");
-    $cases  = Lava::DataTable();
+    $cases = Lava::DataTable();
     $cases->addStringColumn('Casos');
     $cases->addNumberColumn('Casos');
     $cases->addRoleColumn('string', 'annotation');

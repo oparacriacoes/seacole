@@ -36,12 +36,12 @@
             </div>
             <!-- CASOS MONITORADOS - FIM -->
 
-            <!-- MONITORAMENTO X CADASTRADO - INÍCIO -->
+            <!-- MONITORADOS X EXCLUSIVO PSICOLOGIA - INÍCIO -->
               <div class="col-md-12 col-lg-6">
                   <div class="mb-3 card">
                       <div class="card-header-tab card-header-tab-animation card-header">
                           <div class="card-header-title">
-                                MONITORAMENTO X CADASTRADO
+                                MONITORADOS X EXCLUSIVO PSICOLOGIA
                           </div>
                           <!--<ul class="nav">
                               <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">Last</a></li>
@@ -49,12 +49,12 @@
                           </ul>-->
                       </div>
                       <div class="card-body">
-                        <div id="monitoramento_cadastrado" style="height: 300px;"></div>
-                        @donutchart('MonitoradosCadastrados', 'monitoramento_cadastrado')
+                        <div id="monitorado_exclusivo_psicologia" style="height: 300px;"></div>
+                        @donutchart('MonitoradosExclusivoPsicologia', 'monitorado_exclusivo_psicologia')
                       </div>
                   </div>
               </div>
-              <!-- MONITORAMENTO X CADASTRADO - FIM -->
+              <!-- MONITORADOS X EXCLUSIVO PSICOLOGIA - FIM -->
 
               <!-- MONITORAMENTO X CADASTRADO (2) - INÍCIO -->
                 <div class="col-md-12 col-lg-6">

@@ -16,40 +16,21 @@ class ChartsController extends Controller
   {
     //CASOS MONITORADOS
     Carbon::setlocale(config('app.locale'));
-    //$total_geral = array();
     $psicologia_ativo = DB::select("SELECT DATE_FORMAT(STR_TO_DATE(data_inicio_monitoramento, '%d/%m/%Y'), '%Y-%m') as date, COUNT(*) as total_casos FROM pacientes WHERE situacao = 5 AND data_inicio_ac_psicologico IS NOT NULL GROUP BY date ORDER BY date");
     $psicologia_finalizado = DB::select("SELECT DATE_FORMAT(STR_TO_DATE(data_inicio_monitoramento, '%d/%m/%Y'), '%Y-%m') as date, COUNT(*) as total_casos FROM pacientes WHERE situacao = 14 AND data_inicio_ac_psicologico IS NOT NULL GROUP BY date ORDER BY date");
-    //Paciente::where('situacao',14)->whereNotNull('data_inicio_ac_psicologico')->count();
     $outras = DB::select("SELECT DATE_FORMAT(STR_TO_DATE(data_inicio_monitoramento, '%d/%m/%Y'), '%Y-%m') as date, COUNT(*) as total_casos FROM pacientes WHERE data_inicio_ac_psicologico IS NULL GROUP BY date ORDER BY date");
-
-    /*\Log::info([
-      '$psicologia_ativo:' => $psicologia_ativo,
-      '$psicologia_finalizado:' => $psicologia_finalizado,
-      '$outras:' => $outras,
-    ]);*/
-
     $total_geral = array_merge($psicologia_ativo,$psicologia_finalizado,$outras);
-    /*\Log::info([
-      'merge result:' => $total_geral,
-    ]);*/
-    //array_push($total_geral, $psicologia_ativo, $psicologia_finalizado, $outras);
-
     //$totals = DB::select("SELECT DATE_FORMAT(STR_TO_DATE(data_inicio_monitoramento, '%d/%m/%Y'), '%Y-%m') as date, COUNT(*) as total_casos, COUNT(data_inicio_ac_psicologico) as total_psico FROM pacientes GROUP BY date ORDER BY date");
     $cases = Lava::DataTable();
     $cases->addStringColumn('Casos');
     $cases->addNumberColumn('Casos');
     $cases->addRoleColumn('string', 'annotation');
-    //foreach($totals as $total){
     $totals = array();
+    //foreach($totals as $total){
     foreach($total_geral as $key => $value){
       //$cases->addRow([ucfirst(Carbon::parse($total->date)->translatedFormat('F Y')), $total->total_casos + $total->total_psico, $total->total_casos + $total->total_psico]);
       //$cases->addRow([ucfirst(Carbon::parse($value->date)->translatedFormat('F Y')), $value->total_casos]);
       array_push($totals, [$value->date => $value->total_casos]);
-      /*\Log::info([
-        'data:' => $value->date,
-        'casos:' => $value->total_casos,
-        'value:' => $value,
-      ]);*/
     };
 
     $final = array();
@@ -58,17 +39,9 @@ class ChartsController extends Controller
         $final[$key] = isset($final[$key]) ?  $item + $final[$key] : $item;
     });
 
-    /*\Log::info([
-      'final' => ksort($final),
-    ]);*/
     ksort($final);
 
     foreach($final as $key => $value){
-      /*\Log::info([
-        'final key:' => $key,
-        'final value:' => $value,
-      ]);*/
-      //\Log::info(ucfirst(Carbon::parse($key)->translatedFormat('F Y')));
       $cases->addRow([ucfirst(Carbon::parse($key)->translatedFormat('F Y')), $value]);
     }
 
@@ -81,22 +54,25 @@ class ChartsController extends Controller
     ]);
     //CASOS MONITORADOS FIM
 
-    //MONITORAMENTO X CADASTRADO
-    $monitorados = Monitoramento::select('paciente_id')->groupBy('paciente_id')->get();
-    $cadastrados = Paciente::all();
-    $total_monitorados = count($monitorados);
-    $total_cadastrados = count($cadastrados);
+    //MONITORADOS X EXCLUSIVO PSICOLOGIA
+    $psicologia = DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 5 OR situacao = 14");
+    $total_psicologia = count($psicologia);
+    $monitorados = DB::select("SELECT situacao FROM `pacientes` WHERE situacao IS NOT NULL");
+    $total_monitorados = count($monitorados) - $total_psicologia;
+    $nao_monitorados = DB::select("SELECT situacao FROM `pacientes` WHERE situacao IS NULL");
+    $total_nao_monitorados = count($nao_monitorados);
+
     $cases = Lava::DataTable();
     $cases->addStringColumn('Reasons')
             ->addNumberColumn('Percent')
-            ->addRow(['Monitorados', $total_monitorados])
-            ->addRow(['Cadastrados', $total_cadastrados]);
-    Lava::DonutChart('MonitoradosCadastrados', $cases, [
-        'forceIFrame' => true,
+            ->addRow(['Monitorados(exclusivo psicologia)', $total_psicologia])
+            ->addRow(['Monitorados(sem psicologia)', $total_monitorados])
+            ->addRow(['Sem necessidade de monitoramento', $total_nao_monitorados]);
+    Lava::DonutChart('MonitoradosExclusivoPsicologia', $cases, [
         'pieHole' => 0.5,
         'pieSliceTextStyle' => ['fontSize' => 10],
     ]);
-    //MONITORAMENTO X CADASTRADO (2) FIM
+    //MONITORADOS X EXCLUSIVO PSICOLOGIA FIM
 
     //MONITORAMENTO X CADASTRADO
     $monitorados = Monitoramento::select('paciente_id')->groupBy('paciente_id')->get();

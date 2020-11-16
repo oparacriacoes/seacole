@@ -59,8 +59,9 @@ class ChartsController extends Controller
     });
 
     /*\Log::info([
-      'final' => $final,
+      'final' => ksort($final),
     ]);*/
+    ksort($final);
 
     foreach($final as $key => $value){
       /*\Log::info([

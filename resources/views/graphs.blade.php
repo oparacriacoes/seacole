@@ -69,12 +69,12 @@
                       <div class="mb-3 card">
                           <div class="card-header-tab card-header-tab-animation card-header">
                               <div class="card-header-title">
-                                    MONITORAMENTO X CADASTRADO (3)
+                                    SITUAÇÃO TOTAL DE CASOS MONITORADOS
                               </div>
                           </div>
                           <div class="card-body">
-                            <div id="monitoramento_cadastrado_3" style="height: 300px;"></div>
-                            @columnchart('MonitoradosCadastrados3', 'monitoramento_cadastrado_3')
+                            <div id="situacao_total_casos_monitorados_1" style="height: 300px;"></div>
+                            @columnchart('SituacaoTotalCasosMonitorados1', 'situacao_total_casos_monitorados_1')
                           </div>
                       </div>
                   </div>

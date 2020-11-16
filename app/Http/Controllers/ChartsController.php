@@ -55,41 +55,62 @@ class ChartsController extends Controller
     //CASOS MONITORADOS FIM
 
     //MONITORADOS X EXCLUSIVO PSICOLOGIA
-    $psicologia = DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 5 OR situacao = 14");
-    $total_psicologia = count($psicologia);
-    $monitorados = DB::select("SELECT situacao FROM `pacientes` WHERE situacao IS NOT NULL");
-    $total_monitorados = count($monitorados) - $total_psicologia;
-    $nao_monitorados = DB::select("SELECT situacao FROM `pacientes` WHERE situacao IS NULL");
-    $total_nao_monitorados = count($nao_monitorados);
+    $psicologia = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 5 OR situacao = 14"));
+    $monitorados = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao IS NOT NULL"));
+    $nao_monitorados = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao IS NULL"));
 
     $cases = Lava::DataTable();
     $cases->addStringColumn('Reasons')
             ->addNumberColumn('Percent')
-            ->addRow(['Monitorados(exclusivo psicologia)', $total_psicologia])
-            ->addRow(['Monitorados(sem psicologia)', $total_monitorados])
-            ->addRow(['Sem necessidade de monitoramento', $total_nao_monitorados]);
+            ->addRow(['Monitorados(exclusivo psicologia)', $psicologia])
+            ->addRow(['Monitorados(sem psicologia)', $monitorados])
+            ->addRow(['Sem necessidade de monitoramento', $nao_monitorados]);
     Lava::DonutChart('MonitoradosExclusivoPsicologia', $cases, [
         'pieHole' => 0.5,
         'pieSliceTextStyle' => ['fontSize' => 10],
     ]);
     //MONITORADOS X EXCLUSIVO PSICOLOGIA FIM
 
-    //MONITORAMENTO X CADASTRADO
-    $monitorados = Monitoramento::select('paciente_id')->groupBy('paciente_id')->get();
-    $cadastrados = Paciente::all();
-    $total_monitorados = count($monitorados);
-    $total_cadastrados = count($cadastrados);
+    //SITUAÇÃO TOTAL DE CASOS MONITORADOS
+    $ativo_grave = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 1"));
+    $ativo_leve = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 2"));
+    $contato_caso_confirmado = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 3"));
+    $contato_caso_confirmado = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 3"));
+    $outras_situacoes = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 4"));
+    $exclusivo_psicologia_ativo = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 5"));
+    $monitoramento_encerrado_grave = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 6"));
+    $monitoramento_encerrado_leve = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 7"));
+    $monitoramento_encerrado_contato = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 8"));
+    $monitoramento_encerrado_outros = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 9"));
+    $caso_finalizado_grave = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 10"));
+    $caso_finalizado_leve = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 11"));
+    $contato_caso_confirmado = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 12"));
+    $sem_relacao_covid = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 13"));
+    $exclusivo_psicologia_finalizado = count(DB::select("SELECT situacao FROM `pacientes` WHERE situacao = 14"));
+
     $cases = Lava::DataTable();
     $cases->addStringColumn('Casos')
             ->addNumberColumn('Casos')
-            ->addRow(['Monitorados', $total_monitorados])
-            ->addRow(['Cadastrados', $total_cadastrados]);
-    Lava::DonutChart('MonitoradosCadastrados2', $cases, [
-        'forceIFrame' => true,
-        'pieHole' => 0.5,
+            ->addRow(['Caso ativo grave', $ativo_grave])
+            ->addRow(['Caso ativo leve', $ativo_leve])
+            ->addRow(['Contato caso confirmado - ativo', $contato_caso_confirmado])
+            ->addRow(['Outras situações (sem relação COVID-19) - ativos', $outras_situacoes])
+            ->addRow(['Exclusivo psicologia - ativo', $exclusivo_psicologia_ativo])
+            ->addRow(['Monitoramento encerrado grave', $monitoramento_encerrado_grave])
+            ->addRow(['Monitoramento encerrado leve', $monitoramento_encerrado_leve])
+            ->addRow(['Monitoramento encerrado contato', $monitoramento_encerrado_contato])
+            ->addRow(['Monitoramento encerrado outros', $monitoramento_encerrado_outros])
+            ->addRow(['Caso finalizado grave', $caso_finalizado_grave])
+            ->addRow(['Caso finalizado leve', $caso_finalizado_leve])
+            ->addRow(['Contato caso confirmado', $contato_caso_confirmado])
+            ->addRow(['Outras situações (sem relação COVID-19) - finalizados', $sem_relacao_covid])
+            ->addRow(['Exclusivo psicologia - finalizado', $exclusivo_psicologia_finalizado]);
+    Lava::DonutChart('SituacaoTotalCasosMonitorados', $cases, [
+        //'forceIFrame' => true,
+        //'pieHole' => 0.5,
         'pieSliceTextStyle' => ['fontSize' => 10],
     ]);
-    //MONITORAMENTO X CADASTRADO (2) FIM
+    //SITUAÇÃO TOTAL DE CASOS MONITORADOS FIM
 
     //MONITORAMENTO X CADASTRADO (3)
     $monitorados = Monitoramento::select('paciente_id')->groupBy('paciente_id')->get();

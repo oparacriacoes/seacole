@@ -23,10 +23,6 @@
                         <div class="card-header-title">
                             NOVOS CASOS MONITORADOS
                         </div>
-                        <!--<ul class="nav">
-                            <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">Last</a></li>
-                            <li class="nav-item"><a href="javascript:void(0);" class="nav-link second-tab-toggle">Current</a></li>
-                        </ul>-->
                     </div>
                     <div class="card-body">
                       <div id="casos_monitorados" style="height: 300px;"></div>
@@ -43,10 +39,6 @@
                           <div class="card-header-title">
                                 MONITORADOS X EXCLUSIVO PSICOLOGIA
                           </div>
-                          <!--<ul class="nav">
-                              <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">Last</a></li>
-                              <li class="nav-item"><a href="javascript:void(0);" class="nav-link second-tab-toggle">Current</a></li>
-                          </ul>-->
                       </div>
                       <div class="card-body">
                         <div id="monitorado_exclusivo_psicologia" style="height: 300px;"></div>
@@ -61,16 +53,12 @@
                     <div class="mb-3 card">
                         <div class="card-header-tab card-header-tab-animation card-header">
                             <div class="card-header-title">
-                                  MONITORAMENTO X CADASTRADO (2)
+                                  SITUAÇÃO TOTAL DE CASOS MONITORADOS
                             </div>
-                            <!--<ul class="nav">
-                                <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">Last</a></li>
-                                <li class="nav-item"><a href="javascript:void(0);" class="nav-link second-tab-toggle">Current</a></li>
-                            </ul>-->
                         </div>
                         <div class="card-body">
-                          <div id="monitoramento_cadastrado_2" style="height: 300px;"></div>
-                          @donutchart('MonitoradosCadastrados2', 'monitoramento_cadastrado_2')
+                          <div id="situacao_total_casos_monitorados" style="height: 300px;"></div>
+                          @donutchart('SituacaoTotalCasosMonitorados', 'situacao_total_casos_monitorados')
                         </div>
                     </div>
                 </div>
@@ -83,10 +71,6 @@
                               <div class="card-header-title">
                                     MONITORAMENTO X CADASTRADO (3)
                               </div>
-                              <!--<ul class="nav">
-                                  <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">Last</a></li>
-                                  <li class="nav-item"><a href="javascript:void(0);" class="nav-link second-tab-toggle">Current</a></li>
-                              </ul>-->
                           </div>
                           <div class="card-body">
                             <div id="monitoramento_cadastrado_3" style="height: 300px;"></div>

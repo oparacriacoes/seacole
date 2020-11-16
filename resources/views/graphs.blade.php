@@ -48,7 +48,7 @@
               </div>
               <!-- MONITORADOS X EXCLUSIVO PSICOLOGIA - FIM -->
 
-              <!-- MONITORAMENTO X CADASTRADO (2) - INÍCIO -->
+              <!-- SITUAÇÃO TOTAL DE CASOS MONITORADOS - INÍCIO -->
                 <div class="col-md-12 col-lg-6">
                     <div class="mb-3 card">
                         <div class="card-header-tab card-header-tab-animation card-header">
@@ -62,9 +62,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- MONITORAMENTO X CADASTRADO (2) - FIM -->
+                <!-- SITUAÇÃO TOTAL DE CASOS MONITORADOS - FIM -->
 
-                <!-- MONITORAMENTO X CADASTRADO (3) - INÍCIO -->
+                <!-- SITUAÇÃO TOTAL DE CASOS MONITORADOS 1 - INÍCIO -->
                   <div class="col-md-12 col-lg-6">
                       <div class="mb-3 card">
                           <div class="card-header-tab card-header-tab-animation card-header">
@@ -78,19 +78,15 @@
                           </div>
                       </div>
                   </div>
-                  <!-- MONITORAMENTO X CADASTRADO (3) - FIM -->
+                  <!-- SITUAÇÃO TOTAL DE CASOS MONITORADOS 1 - FIM -->
 
-                  <!-- MUNICÍPIOS - INÍCIO -->
+                  <!-- CASOS MONITORADOS POR CIDADE - INÍCIO -->
                     <div class="col-md-12 col-lg-6">
                         <div class="mb-3 card">
                             <div class="card-header-tab card-header-tab-animation card-header">
                                 <div class="card-header-title">
-                                      MUNICÍPIOS - SEM MONITORAMENTO
+                                      CASOS MONITORADOS POR CIDADE
                                 </div>
-                                <!--<ul class="nav">
-                                    <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">Last</a></li>
-                                    <li class="nav-item"><a href="javascript:void(0);" class="nav-link second-tab-toggle">Current</a></li>
-                                </ul>-->
                             </div>
                             <div class="card-body">
                               <div id="municipios" style="height: 300px;"></div>
@@ -98,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- MUNICÍPIOS - FIM -->
+                    <!-- CASOS MONITORADOS POR CIDADE - FIM -->
         </div>
     </div>
 @endsection

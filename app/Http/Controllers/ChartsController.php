@@ -153,7 +153,7 @@ class ChartsController extends Controller
     ]);
     //SITUAÇÃO TOTAL DE CASOS MONITORADOS 1 FIM
 
-    //MUNICÍPIOS - INÍCIO
+    //CASOS MONITORADOS POR CIDADE - INÍCIO
     $totals = DB::select("SELECT COUNT(*) as total, endereco_cidade as cidade FROM `pacientes` GROUP BY endereco_cidade ORDER BY endereco_cidade ASC");
     $cases = Lava::DataTable();
     $cases->addStringColumn('Casos');
@@ -166,7 +166,7 @@ class ChartsController extends Controller
     Lava::DonutChart('Municipios', $cases, [
         'forceIFrame' => true,
     ]);
-    //MUNICÍPIOS - FIM
+    //CASOS MONITORADOS POR CIDADE - FIM
 
     //SELECT COUNT(*) as total, endereco_cidade as cidade FROM `pacientes` GROUP BY endereco_cidade ORDER BY endereco_cidade ASC
 

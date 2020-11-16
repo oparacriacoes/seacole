@@ -107,9 +107,9 @@
                               <div class="card-body">
                                 <div id="raca_cor_geral" style="height: 300px;"></div>
                                 <?php
-                                $negras = $preta + $parda/100;
+                                $raca_percent = $negra/$raca_total;
                                 ?>
-                                <div class="text-center"><small>Pessoas negras (pretas + pardas) totalizaram {{ $negras }}% do total.</small></div>
+                                <div class="text-center"><small>Pessoas negras (pretas + pardas) totalizaram {{ number_format($raca_percent,2) }}% do total.</small></div>
                                 @piechart('RacaCorGeral', 'raca_cor_geral')
                               </div>
                           </div>

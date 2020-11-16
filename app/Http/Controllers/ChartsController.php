@@ -194,8 +194,8 @@ class ChartsController extends Controller
 
 
     return view('graphs')->with([
-      'preta' => $preta,
-      'parda' => $parda,
+      'negra' => $preta + $parda,
+      'raca_total' => $preta + $parda + $branca + $amarela + $indigena + $nao_informado,
     ]);
   }
 }

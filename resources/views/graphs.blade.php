@@ -95,6 +95,26 @@
                         </div>
                     </div>
                     <!-- CASOS MONITORADOS POR CIDADE - FIM -->
+
+                    <!-- RAÇA COR GERAL - INÍCIO -->
+                      <div class="col-md-12 col-lg-6">
+                          <div class="mb-3 card">
+                              <div class="card-header-tab card-header-tab-animation card-header">
+                                  <div class="card-header-title">
+                                        RAÇA-COR GERAL DAS PESSOAS ATENDIDAS
+                                  </div>
+                              </div>
+                              <div class="card-body">
+                                <div id="raca_cor_geral" style="height: 300px;"></div>
+                                <?php
+                                $negras = $preta + $parda/100;
+                                ?>
+                                <div class="text-center"><small>Pessoas negras (pretas + pardas) totalizaram {{ $negras }}% do total.</small></div>
+                                @piechart('RacaCorGeral', 'raca_cor_geral')
+                              </div>
+                          </div>
+                      </div>
+                      <!-- RAÇA COR GERAL - FIM -->
         </div>
     </div>
 @endsection

@@ -168,8 +168,34 @@ class ChartsController extends Controller
     ]);
     //CASOS MONITORADOS POR CIDADE - FIM
 
-    //SELECT COUNT(*) as total, endereco_cidade as cidade FROM `pacientes` GROUP BY endereco_cidade ORDER BY endereco_cidade ASC
+    //RAÇA COR GERAL - INÍCIO
+    $preta = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Preta'"));
+    $parda = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Parda'"));
+    $branca = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Branca'"));
+    $amarela = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Amarela'"));
+    $indigena = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Indígena'"));
+    $nao_informado = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca IS NULL"));
+    $cases = Lava::DataTable();
+    $cases->addStringColumn('Casos');
+    $cases->addNumberColumn('Casos')
+          ->addRow(['Preta', $preta])
+          ->addRow(['Parda', $parda])
+          ->addRow(['Branca', $branca])
+          ->addRow(['Amarela', $amarela])
+          ->addRow(['Indígena', $indigena])
+          ->addRow(['Não informado', $nao_informado]);
 
-    return view('graphs');
+    Lava::PieChart('RacaCorGeral', $cases, [
+        'forceIFrame' => true,
+        'is3D' => true,
+        'colors' => ['#000', '#996633', '#e6e6e6', '#ffff00', '#ff3300', '#66ccff'],
+    ]);
+    //RAÇA COR GERAL - FIM
+
+
+    return view('graphs')->with([
+      'preta' => $preta,
+      'parda' => $parda,
+    ]);
   }
 }

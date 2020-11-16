@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Paciente extends Model
 {
+  protected $dates = [
+    'data_inicio_ac_psicologico',
+  ];
   protected $fillable = [
     'user_id',
     'agente_id',

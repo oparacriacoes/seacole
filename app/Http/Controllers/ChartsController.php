@@ -246,6 +246,7 @@ class ChartsController extends Controller
         'forceIFrame' => true,
         'isStacked' => true,
         'colors' => ['#000', '#996633', '#e6e6e6', '#ffff00', '#ff3300', '#66ccff'],
+        'legend' => ['position' => 'top'],
         //'pieHole' => 0.5,
         //'pieSliceTextStyle' => ['fontSize' => 10],
     ]);

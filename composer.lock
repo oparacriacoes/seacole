@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b0af70ca9499e2de304cdb088f00942d",
+    "content-hash": "da7c8d84d909506c99bf89cea7923eee",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -993,80 +993,6 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
-        },
-        {
-            "name": "khill/lavacharts",
-            "version": "3.1.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kevinkhill/lavacharts.git",
-                "reference": "88577cde68dba72641a78a4a8464108c553f676b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kevinkhill/lavacharts/zipball/88577cde68dba72641a78a4a8464108c553f676b",
-                "reference": "88577cde68dba72641a78a4a8464108c553f676b",
-                "shasum": ""
-            },
-            "require": {
-                "nesbot/carbon": ">=1.14 <3.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "~0.3",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~4.8",
-                "satooshi/php-coveralls": "~1.0",
-                "squizlabs/php_codesniffer": "~2.5"
-            },
-            "suggest": {
-                "khill/datatableplus": "Adds extra features to DataTables such as csv and laravel collection parsing."
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Khill\\Lavacharts\\Laravel\\LavachartsServiceProvider"
-                    ],
-                    "aliases": {
-                        "Lava": "Khill\\Lavacharts\\Laravel\\LavachartsFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Khill\\Lavacharts\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kevin Hill",
-                    "email": "kevinkhill@gmail.com",
-                    "role": "Creator"
-                }
-            ],
-            "description": "PHP wrapper library for the Google Chart API",
-            "homepage": "http://lavacharts.com",
-            "keywords": [
-                "charts",
-                "google",
-                "graphs",
-                "laravel",
-                "symfony"
-            ],
-            "support": {
-                "docs": "http://lavacharts.com",
-                "email": "kevinkhill@gmail.com",
-                "forum": "https://gitter.im/kevinkhill/lavacharts",
-                "issues": "https://github.com/kevinkhill/lavacharts/issues",
-                "source": "https://github.com/kevinkhill/lavacharts",
-                "wiki": "https://github.com/kevinkhill/lavacharts/wiki"
-            },
-            "time": "2020-08-06T11:28:07+00:00"
         },
         {
             "name": "laravel/framework",
@@ -6783,5 +6709,5 @@
         "php": "^7.2.5"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "1.1.0"
 }

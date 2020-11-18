@@ -348,13 +348,13 @@ class ChartsController extends Controller
     $this->identidades->addStringColumn('Idade')
           //->addNumberColumn('Idade')
           ->addNumberColumn('Mulher')
-          ->addRoleColumn('string', 'annotation')
+          //->addRoleColumn('string', 'annotation')
           ->addNumberColumn('Homem')
-          ->addRoleColumn('string', 'annotation')
+          //->addRoleColumn('string', 'annotation')
           ->addNumberColumn('Não-binário')
-          ->addRoleColumn('string', 'annotation')
+          //->addRoleColumn('string', 'annotation')
           ->addNumberColumn('Outros')
-          ->addRoleColumn('string', 'annotation')
+          //->addRoleColumn('string', 'annotation')
           /*->addRoleColumn('string', 'annotation')*/;
           //->addRoleColumn('string', 'annotation');
           /*$cases->addRow(['0-4 years', -6, 6])
@@ -374,15 +374,15 @@ class ChartsController extends Controller
 
               //$cases->addRow([$value->genero . '(' . $value->age . ')', strpos($value->genero, 'mulher') !== false ? '-'.$value->total_casos : NULL, strpos($value->genero, 'homem') !== false ? $value->total_casos : NULL]);
               $this->identidades->addRow([
-                $value->genero ? $value->age : NULL,
+                $value->genero ? $value->age . '(' . $value->genero . ')' : NULL,
                 strpos($value->genero, 'mulher') !== false ? '-'.$value->total_casos : NULL,
-                $value->genero,
+                //$value->genero,
                 strpos($value->genero, 'homem') !== false ? $value->total_casos : NULL,
-                $value->genero,
+                //$value->genero,
                 strpos($value->genero, 'não-binário') !== false ? $value->total_casos : NULL,
-                $value->genero,
+                //$value->genero,
                 strpos($value->genero, 'outros') !== false ? $value->total_casos : NULL,
-                $value->genero,
+                //$value->genero,
               ]);
             }
 

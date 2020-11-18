@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         \Maatwebsite\Excel\ExcelServiceProvider::class,
+        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -229,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
     ],
 
 ];

@@ -101,6 +101,12 @@
                                 Contatos
                             </a>
                         </li>
+                        <li class="dropdown nav-item">
+                            <a href="{{ route('admin/charts') }}" class="nav-link">
+                                <i class="nav-link-icon fas fa-chart-pie"></i>
+                                Gráficos
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="app-header-right">

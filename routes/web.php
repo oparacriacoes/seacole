@@ -58,4 +58,6 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/admin/paciente/insumos/{id}', 'InsumosOferecidoController@store')->name('paciente.insumos');
 
   Route::get('/admin/paciente/exportar', 'PacienteController@ExportarExcelPacientes')->name('paciente/exportar');
+
+  Route::get('/admin/charts', 'ChartsController@index')->name('admin/charts');
 });

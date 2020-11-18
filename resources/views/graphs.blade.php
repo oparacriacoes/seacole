@@ -126,9 +126,6 @@
                     </div>
                     <div class="card-body">
                       <div id="genero_raca_cor" style="height: 300px;"></div>
-                      <?php
-                      $raca_percent = $negra/$raca_total*100;
-                      ?>
                       <div class="text-center"><small>São {{ $cis_negras }} mulheres cis negras e {{ $cis_negros }} homens cis negros (pretos + pardos)</small></div>
                       <div class="text-center"><small>São {{ $trans_negras }} mulheres trans negras e {{ $trans_negros }} homens trans negros (pretos + pardos)</small></div>
                       <div class="text-center"><small>São {{ $nao_binarios }} não-binários (pretos + pardos)</small></div>
@@ -138,6 +135,22 @@
                 </div>
             </div>
             <!-- GENERO POR RAÇA-COR - FIM -->
+
+            <!-- FAIXA ETÁRIA POR GÊNERO - INÍCIO -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              FAIXA ETÁRIA POR GÊNERO
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div id="faixa_etaria_genero" style="height: 300px;"></div>
+                      @columnchart('FaixaEtariaGenero', 'faixa_etaria_genero')
+                    </div>
+                </div>
+            </div>
+            <!-- FAIXA ETÁRIA POR GÊNERO - FIM -->
 
         </div>
     </div>

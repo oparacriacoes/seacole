@@ -252,6 +252,115 @@ class ChartsController extends Controller
     ]);
     //GENERO POR RAÇA-COR FIM
 
+    //GENERO POR RAÇA-COR
+    $preta_homem_cis = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Preta' AND identidade_genero = 'homem cis'"));
+    $parda_homem_cis = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Parda' AND identidade_genero = 'homem cis'"));
+    $branca_homem_cis = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Branca' AND identidade_genero = 'homem cis'"));
+    $amarela_homem_cis = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Amarela' AND identidade_genero = 'homem cis'"));
+    $indigena_homem_cis = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Indígena' AND identidade_genero = 'homem cis'"));
+
+    $preta_mulher_cis = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Preta' AND identidade_genero = 'mulher cis'"));
+    $parda_mulher_cis = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Parda' AND identidade_genero = 'mulher cis'"));
+    $branca_mulher_cis = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Branca' AND identidade_genero = 'mulher cis'"));
+    $amarela_mulher_cis = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Amarela' AND identidade_genero = 'mulher cis'"));
+    $indigena_mulher_cis = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Indígena' AND identidade_genero = 'mulher cis'"));
+
+    $preta_homem_trans = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Preta' AND identidade_genero = 'homem trans'"));
+    $parda_homem_trans = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Parda' AND identidade_genero = 'homem trans'"));
+    $branca_homem_trans = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Branca' AND identidade_genero = 'homem trans'"));
+    $amarela_homem_trans = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Amarela' AND identidade_genero = 'homem trans'"));
+    $indigena_homem_trans = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Indígena' AND identidade_genero = 'homem trans'"));
+
+    $preta_mulher_trans = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Preta' AND identidade_genero = 'mulher trans'"));
+    $parda_mulher_trans = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Parda' AND identidade_genero = 'mulher trans'"));
+    $branca_mulher_trans = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Branca' AND identidade_genero = 'mulher trans'"));
+    $amarela_mulher_trans = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Amarela' AND identidade_genero = 'mulher trans'"));
+    $indigena_mulher_trans = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Indígena' AND identidade_genero = 'mulher trans'"));
+
+    $preta_nao_binario = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Preta' AND identidade_genero = 'não binário'"));
+    $parda_nao_binario = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Parda' AND identidade_genero = 'não binário'"));
+    $branca_nao_binario = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Branca' AND identidade_genero = 'não binário'"));
+    $amarela_nao_binario = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Amarela' AND identidade_genero = 'não binário'"));
+    $indigena_nao_binario = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Indígena' AND identidade_genero = 'não binário'"));
+
+    $preta_nao_informado = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Preta' AND identidade_genero IS NULL"));
+    $parda_nao_informado = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Parda' AND identidade_genero IS NULL"));
+    $branca_nao_informado = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Branca' AND identidade_genero IS NULL"));
+    $amarela_nao_informado = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Amarela' AND identidade_genero IS NULL"));
+    $indigena_nao_informado = count(DB::select("SELECT cor_raca FROM `pacientes` WHERE cor_raca = 'Indígena' AND identidade_genero IS NULL"));
+
+    $cases = Lava::DataTable();
+    $cases->addStringColumn('Casos')
+            ->addNumberColumn('Preta')
+            ->addNumberColumn('Parda')
+            ->addNumberColumn('Branca')
+            ->addNumberColumn('Amarela')
+            ->addNumberColumn('Indígena')
+            ->addRow(['homem cis', $preta_homem_cis, $parda_homem_cis, $branca_homem_cis, $amarela_homem_cis, $indigena_homem_cis])
+            ->addRow(['homem trans', $preta_homem_trans, $parda_homem_trans, $branca_homem_trans, $amarela_homem_trans, $indigena_homem_trans])
+            ->addRow(['mulher cis', $preta_mulher_cis, $parda_mulher_cis, $branca_mulher_cis, $amarela_mulher_cis, $indigena_mulher_cis])
+            ->addRow(['mulher trans', $preta_mulher_trans, $parda_mulher_trans, $branca_mulher_trans, $amarela_mulher_trans, $indigena_mulher_trans])
+            ->addRow(['não binário', $preta_nao_binario, $parda_nao_binario, $branca_nao_binario, $amarela_nao_binario, $indigena_nao_binario])
+            ->addRow(['não informado', $preta_nao_informado, $parda_nao_informado, $branca_nao_informado, $amarela_nao_informado, $indigena_nao_informado]);
+    Lava::ColumnChart('GeneroRacaCor', $cases, [
+        'forceIFrame' => true,
+        'isStacked' => true,
+        'colors' => ['#000', '#996633', '#e6e6e6', '#ffff00', '#ff3300', '#66ccff'],
+        'legend' => ['position' => 'top'],
+        //'pieHole' => 0.5,
+        //'pieSliceTextStyle' => ['fontSize' => 10],
+    ]);
+    //GENERO POR RAÇA-COR FIM
+
+    //FAIXA ETÁRIA POR GÊNERO
+    $result = DB::select(
+      "SELECT * FROM (SELECT identidade_genero as genero,
+     CASE WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 4 THEN '0-4'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 9 THEN '5-9'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 14 THEN '10-14'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 19 THEN '15-19'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 24 THEN '20-24'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 29 THEN '25-29'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 34 THEN '30-34'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 39 THEN '35-39'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 44 THEN '40-44'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 49 THEN '45-49'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 54 THEN '50-54'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 59 THEN '55-59'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 64 THEN '60-64'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 69 THEN '65-69'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 74 THEN '70-74'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 79 THEN '75-79'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 84 THEN '80-84'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 89 THEN '85-89'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 94 THEN '90-94'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 99 THEN '95-99'
+     WHEN (DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m') - (DATE_FORMAT(NOW(), '%Y-%m-%d') < DATE_FORMAT(STR_TO_DATE(data_nascimento, '%d/%m/%Y'), '%Y-%m'))) <= 104 THEN '100-104' END AS age,
+      COUNT(*) as total_casos
+      FROM pacientes
+      GROUP BY age, identidade_genero ) as casos");
+
+
+    $cases = Lava::DataTable();
+    $cases->addStringColumn('Casos')
+          ->addNumberColumn('Casos');
+            foreach($result as $key => $value){
+              /*\Log::info([
+                'value:' => $value,
+              ]);*/
+              $cases->addRow([$value->genero . ' (' . $value->age . ')', $value->total_casos]);
+            }
+
+    Lava::ColumnChart('FaixaEtariaGenero', $cases, [
+        'forceIFrame' => true,
+        'isStacked' => true,
+        //'colors' => ['#000', '#996633', '#e6e6e6', '#ffff00', '#ff3300', '#66ccff'],
+        'legend' => ['position' => 'top'],
+        //'pieHole' => 0.5,
+        //'pieSliceTextStyle' => ['fontSize' => 10],
+    ]);
+    //FAIXA ETÁRIA POR GÊNERO - FIM
+
     return view('graphs')->with([
       'negra' => $preta + $parda,
       'raca_total' => $preta + $parda + $branca + $amarela + $indigena + $nao_informado,

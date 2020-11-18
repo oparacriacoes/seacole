@@ -146,7 +146,7 @@
                     </div>
                     <div class="card-body">
                       <div id="faixa_etaria_genero" style="height: 300px;"></div>
-                      @columnchart('FaixaEtariaGenero', 'faixa_etaria_genero')
+                      @barchart('FaixaEtariaGenero', 'faixa_etaria_genero')
                     </div>
                 </div>
             </div>

@@ -340,22 +340,57 @@ class ChartsController extends Controller
       FROM pacientes
       GROUP BY age, identidade_genero ) as casos");
 
+      //['Age', 'Male', {role: 'annotation'}, 'Female', {role: 'annotation'}],
+      //['0-4 years', 11, 11, -6, 6],['5-11 years', 12, 12, -13, 13],['12-17 years', 15, 15, -4, 4],['18-59 years', 11, 11, -20, 20],['60+ years', 6, 6, -3, 3]            ];
 
-    $cases = Lava::DataTable();
-    $cases->addStringColumn('Casos')
-          ->addNumberColumn('Casos');
+
+    $this->identidades = Lava::DataTable();
+    $this->identidades->addStringColumn('Idade')
+          //->addNumberColumn('Idade')
+          ->addNumberColumn('Mulher')
+          ->addRoleColumn('string', 'annotation')
+          ->addNumberColumn('Homem')
+          ->addRoleColumn('string', 'annotation')
+          ->addNumberColumn('Não-binário')
+          ->addRoleColumn('string', 'annotation')
+          ->addNumberColumn('Outros')
+          ->addRoleColumn('string', 'annotation')
+          /*->addRoleColumn('string', 'annotation')*/;
+          //->addRoleColumn('string', 'annotation');
+          /*$cases->addRow(['0-4 years', -6, 6])
+                ->addRow(['5-11 years', -13, 13])
+                ->addRow(['12-17 years', -4, 4]);*/
+
+          /*,
+          ['18-59 years', 11, 11, -20, 20],
+          ['60+ years', 6, 6, -3, 3]*/
             foreach($result as $key => $value){
-              /*\Log::info([
-                'value:' => $value,
-              ]);*/
-              $cases->addRow([$value->genero . ' (' . $value->age . ')', $value->total_casos]);
+              /*if( strpos($value->genero, 'mulher') !== false ){
+                $this->identidades->addRow([$value->genero . '(' . $value->age . ')', '-'.$value->total_casos]);
+              }
+              if( strpos($value->genero, 'homem') !== false ){
+                $this->identidades->addRow([$value->genero . '(' . $value->age . ')', $value->total_casos]);
+              }*/
+
+              //$cases->addRow([$value->genero . '(' . $value->age . ')', strpos($value->genero, 'mulher') !== false ? '-'.$value->total_casos : NULL, strpos($value->genero, 'homem') !== false ? $value->total_casos : NULL]);
+              $this->identidades->addRow([
+                $value->genero ? $value->age : NULL,
+                strpos($value->genero, 'mulher') !== false ? '-'.$value->total_casos : NULL,
+                $value->genero,
+                strpos($value->genero, 'homem') !== false ? $value->total_casos : NULL,
+                $value->genero,
+                strpos($value->genero, 'não-binário') !== false ? $value->total_casos : NULL,
+                $value->genero,
+                strpos($value->genero, 'outros') !== false ? $value->total_casos : NULL,
+                $value->genero,
+              ]);
             }
 
-    Lava::ColumnChart('FaixaEtariaGenero', $cases, [
+    Lava::BarChart('FaixaEtariaGenero', $this->identidades, [
         'forceIFrame' => true,
         'isStacked' => true,
-        //'colors' => ['#000', '#996633', '#e6e6e6', '#ffff00', '#ff3300', '#66ccff'],
-        'legend' => ['position' => 'top'],
+        'colors' => ['#ff66ff', '#3399ff', '#cc66ff', '#00cc66'],
+        'legend' => ['position' => 'top', 'alignment' => 'center'],
         //'pieHole' => 0.5,
         //'pieSliceTextStyle' => ['fontSize' => 10],
     ]);

@@ -283,7 +283,7 @@
                                     </div>
                                     <div class="col-md-3">
                                       <label for="horario_at_psicologia">Horário at. psicologia</label>
-                                      <input name="horario_at_psicologia" id="horario_at_psicologia" placeholder="Horário atendimento" type="text" class="required form-control hour">
+                                      <input name="horario_at_psicologia" id="horario_at_psicologia" placeholder="Horário atendimento" type="text" class="form-control hour">
                                     </div>
                                 </div>
                             {{-- </form> --}}

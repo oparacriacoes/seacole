@@ -33,6 +33,7 @@
         const APP_URL = "{{ env("APP_URL") }}";
     </script>
     <script type="text/javascript" src="{{ asset('js/functions.js') }}" defer></script>
+    @yield('css')
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">

@@ -60,4 +60,14 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/admin/paciente/exportar', 'PacienteController@ExportarExcelPacientes')->name('paciente/exportar');
 
   Route::get('/admin/charts', 'ChartsController@index')->name('admin/charts');
+  Route::get('chart/novos_casos_monitorados', 'ChartsController@novos_casos_monitorados')->name('chart.novos-casos');
+  Route::get('chart/monitorados_exclusivo_psicologia', 'ChartsController@monitorados_exclusivo_psicologia')->name('chart.monitorados-exclusivo-psicologia');
+  Route::get('chart/situacao_total_casos_monitorados', 'ChartsController@situacao_total_casos_monitorados')->name('chart.situacao-total-casos-monitorados');
+  Route::get('chart/situacao_total_casos_monitorados_1', 'ChartsController@situacao_total_casos_monitorados_1')->name('chart.situacao-total-casos-monitorados-1');
+  Route::get('chart/casos_monitorados_por_cidade', 'ChartsController@casos_monitorados_por_cidade')->name('chart.casos-monitorados-por-cidade');
+  Route::get('chart/raca_cor_geral', 'ChartsController@raca_cor_geral')->name('chart.raca-cor-geral');
+  Route::get('chart/genero_por_raca_cor', 'ChartsController@genero_por_raca_cor')->name('chart.genero-por-raca-cor');
+  Route::get('chart/faixa_etaria_genero', 'ChartsController@faixa_etaria_genero')->name('chart.faixa-etaria-genero');
+  Route::get('chart/faixa_etaria_genero_2', 'ChartsController@faixa_etaria_genero_2')->name('chart.faixa-etaria-genero-2');
+  Route::get('chart/faixa_etaria_raca_cor', 'ChartsController@faixa_etaria_raca_cor')->name('chart.faixa-etaria-raca-cor');
 });

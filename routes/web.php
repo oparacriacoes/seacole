@@ -70,4 +70,16 @@ Route::middleware(['auth'])->group(function () {
   Route::get('chart/faixa_etaria_genero', 'ChartsController@faixa_etaria_genero')->name('chart.faixa-etaria-genero');
   Route::get('chart/faixa_etaria_genero_2', 'ChartsController@faixa_etaria_genero_2')->name('chart.faixa-etaria-genero-2');
   Route::get('chart/faixa_etaria_raca_cor', 'ChartsController@faixa_etaria_raca_cor')->name('chart.faixa-etaria-raca-cor');
+  Route::get('chart/numero_pessoas_residencia_raca_cor', 'ChartsController@numero_pessoas_residencia_raca_cor')->name('chart.numero-pessoas-residencia-raca-cor');
+  Route::get('chart/classe_social_renda_bruta_familiar', 'ChartsController@classe_social_renda_bruta_familiar')->name('chart.classe-social-renda-bruta-familiar');
+  Route::get('chart/classe_social_renda_per_capta_raca_cor', 'ChartsController@classe_social_renda_per_capta_raca_cor')->name('chart.classe-social-renda-per-capta-raca-cor');
+  Route::get('chart/raca_cor_por_auxilio_emergencial', 'ChartsController@raca_cor_por_auxilio_emergencial')->name('chart.raca-cor-por-auxilio-emergencial');
+  Route::get('chart/insumos_oferecidos_pelo_projeto', 'ChartsController@insumos_oferecidos_pelo_projeto')->name('chart.insumos-oferecidos-pelo-projeto');
+  Route::get('chart/tratamento_prescrito_por_medico_projeto', 'ChartsController@tratamento_prescrito_por_medico_projeto')->name('chart.tratamento-prescrito-por-medico-projeto');
+  Route::get('chart/tratamento_financiado', 'ChartsController@tratamento_financiado')->name('chart.tratamento-financiado');
+  Route::get('chart/dias_sintoma_por_raca_cor', 'ChartsController@dias_sintoma_por_raca_cor')->name('chart.dias-sintoma-por-raca-cor');
+  Route::get('chart/dias_sintoma_mais_menos_dez_dias', 'ChartsController@dias_sintoma_mais_menos_dez_dias')->name('chart.dias-sintoma-mais-menos-dez-dias');
+  Route::get('chart/total_dias_monitoramento_relacao_covid', 'ChartsController@total_dias_monitoramento_relacao_covid')->name('chart.total-dias-monitoramento-relacao-covid');
+  Route::get('chart/casos_monitorados_por_agente', 'ChartsController@casos_monitorados_por_agente')->name('chart.casos-monitorados-por-agente');
+  Route::get('chart/casos_avaliados_equipe_medica', 'ChartsController@casos_avaliados_equipe_medica')->name('chart.casos-avaliados-equipe-medica');
 });

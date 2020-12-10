@@ -172,6 +172,186 @@
             </div>
             <!-- FAIXA ETÁRIA POR RAÇA/COR - FIM -->
 
+            <!-- NÚMERO DE PESSOAS/RESIDÊNCIA POR RAÇA/COR - INÍCIO (GRÁFICO 11) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              NÚMERO DE PESSOAS/RESIDÊNCIA POR RAÇA/COR
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="numero_pessoas_residencia_raca_cor"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- NÚMERO DE PESSOAS/RESIDÊNCIA POR RAÇA/COR - FIM -->
+
+            <!-- CLASSE SOCIAL RENDA BRUTA FAMILIAR - INÍCIO (GRÁFICO 12) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              CLASSE SOCIAL POR RENDA BRUTA FAMILIAR
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="classe_social_renda_bruta_familiar"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- CLASSE SOCIAL RENDA BRUTA FAMILIAR - FIM -->
+
+            <!-- CLASSE SOCIAL RENDA PER-CAPTA POR RAÇA/COR - INÍCIO (GRÁFICO 13_1) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              CLASSE SOCIAL RENDA PER-CAPTA POR RAÇA/COR
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="classe_social_renda_per_capta_raca_cor"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- CLASSE SOCIAL RENDA PER-CAPTA POR RAÇA/COR - FIM -->
+
+            <!-- RAÇA/COR POR AUXÍLIO EMERGENCIAL - INÍCIO (GRÁFICO 13_2) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              RAÇA/COR POR AUXÍLIO EMERGENCIAL
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="raca_cor_por_auxilio_emergencial"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- RAÇA/COR POR AUXÍLIO EMERGENCIAL - FIM -->
+
+            <!-- INSUMOS OFERECIDOS PELO PROJETO - INÍCIO (GRÁFICO 14) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              INSUMOS OFERECIDOS PELO PROJETO
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="insumos_oferecidos_pelo_projeto"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- INSUMOS OFERECIDOS PELO PROJETO - FIM -->
+
+            <!-- TRATAMENTO PRESCRITO POR MÉDICO DO PROJETO - INÍCIO (GRÁFICO 17) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              TRATAMENTO PRESCRITO POR MÉDICO DO PROJETO
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="tratamento_prescrito_por_medico_projeto"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- TRATAMENTO PRESCRITO POR MÉDICO DO PROJETO - FIM -->
+
+            <!-- TRATAMENTO FINANCIADO - INÍCIO (GRÁFICO 18) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              TRATAMENTO FINANCIADO
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="tratamento_financiado"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- TRATAMENTO FINANCIADO - FIM -->
+
+            <!-- DIAS DE SINTOMAS POR RAÇA/COR - INÍCIO (GRÁFICO 19) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              DIAS DE SINTOMAS POR RAÇA/COR
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="dias_sintoma_por_raca_cor"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- DIAS DE SINTOMAS POR RAÇA/COR - FIM -->
+
+            <!-- DIAS DE SINTOMAS - MAIS OU MENOS DE 10 DIAS - INÍCIO (GRÁFICO 20) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              DIAS DE SINTOMAS - MAIS OU MENOS DE 10 DIAS
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="dias_sintoma_mais_menos_dez_dias"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- DIAS DE SINTOMAS - MAIS OU MENOS DE 10 DIAS - FIM -->
+
+            <!-- TOTAL DE DIAS DE MONITORAMENTO (RELAÇÃO COVID-19) - INÍCIO (GRÁFICO 21) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              TOTAL DE DIAS DE MONITORAMENTO (RELAÇÃO COVID-19)
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="total_dias_monitoramento_relacao_covid"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- TOTAL DE DIAS DE MONITORAMENTO (RELAÇÃO COVID-19) - FIM -->
+
+            <!-- CASOS MONITORADOS POR AGENTES - INÍCIO (GRÁFICO 22) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              CASOS MONITORADOS POR AGENTES
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="casos_monitorados_por_agente"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- CASOS MONITORADOS POR AGENTES - INÍCIO - FIM -->
+
+            <!-- CASOS AVALIADOS POR EQUIPE MÉDICA - INÍCIO (GRÁFICO 22) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              CASOS AVALIADOS POR EQUIPE MÉDICA
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="casos_avaliados_equipe_medica"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- CASOS AVALIADOS POR EQUIPE MÉDICA - FIM -->
+
         </div>
     </div>
 @endsection
@@ -640,6 +820,637 @@ axios.get('/chart/novos_casos_monitorados')
       chart.legend = new am4charts.Legend();
       });
     //FAIXA ETÁRIA POR RAÇA/COR - FIM
+
+    //NÚMERO DE PESSOAS/RESIDÊNCIA POR RAÇA/COR - INÍCIO
+    axios.get('/chart/numero_pessoas_residencia_raca_cor')
+      .then(response => {
+        //console.log(response.data[1][0].legenda);
+        function am4themes_myTheme(target) {
+        if (target instanceof am4core.ColorSet) {
+          target.list = [
+            am4core.color("#000000"),
+            am4core.color("#8b4513"),
+            am4core.color("#d3d3d3"),
+            am4core.color("#ffff00"),
+            am4core.color("#ff0000"),
+            am4core.color("#0000ff")
+          ];
+        }
+      }
+      am4core.useTheme(am4themes_myTheme);
+      // Create chart instance
+      var chart = am4core.create("numero_pessoas_residencia_raca_cor", am4charts.XYChart3D);
+
+
+      // Add data
+      chart.data = response.data[0];
+
+      // Create axes
+      var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis.dataFields.category = "numero_pessoas_residencia";
+      categoryAxis.renderer.grid.template.location = 0;
+      categoryAxis.renderer.minGridDistance = 30;
+      categoryAxis.title.text = response.data[1][0].legenda;
+
+
+
+
+      var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.renderer.inside = true;
+      valueAxis.renderer.labels.template.disabled = true;
+      valueAxis.min = 0;
+
+      // Create series
+      function createSeries(field, name) {
+
+        // Set up series
+        var series = chart.series.push(new am4charts.ColumnSeries3D());
+        series.name = name;
+        series.dataFields.valueY = field;
+        series.dataFields.categoryX = "numero_pessoas_residencia";
+        series.sequencedInterpolation = true;
+
+        // Make it stacked
+        series.stacked = true;
+
+        // Configure columns
+        series.columns.template.width = am4core.percent(60);
+        series.columns.template.tooltipText = "[bold]{name}[/]\n[font-size:14px]{categoryX}: {valueY}";
+
+        // Add label
+        var labelBullet = series.bullets.push(new am4charts.LabelBullet());
+        labelBullet.label.text = "{valueY}";
+        labelBullet.locationY = 0.5;
+        labelBullet.label.hideOversized = true;
+
+        return series;
+      }
+
+
+      createSeries("preta", "Preta");
+      createSeries("parda", "Parda");
+      createSeries("branca", "Branca");
+      createSeries("amarela", "Amarela");
+      createSeries("indigena", "Indígena");
+      createSeries("sem_informacao", "Sem informação");
+
+      // Legend
+      chart.legend = new am4charts.Legend();
+      });
+    //NÚMERO DE PESSOAS/RESIDÊNCIA POR RAÇA/COR - FIM
+
+    //CLASSE SOCIAL RENDA BRUTA FAMILIAR - INÍCIO
+    axios.get('/chart/classe_social_renda_bruta_familiar')
+      .then(response => {
+        //console.log(response.data);
+        function am4themes_myTheme(target) {
+        if (target instanceof am4core.ColorSet) {
+          target.list = [
+            am4core.color("#000000"),
+            am4core.color("#8b4513"),
+            am4core.color("#d3d3d3"),
+            am4core.color("#ffff00"),
+            am4core.color("#ff0000"),
+            am4core.color("#0000ff")
+          ];
+        }
+      }
+      am4core.useTheme(am4themes_myTheme);
+      // Create chart instance
+      var chart = am4core.create("classe_social_renda_bruta_familiar", am4charts.XYChart3D);
+
+      // Add data
+      chart.data = response.data[0];
+
+      // Create axes
+      var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis.dataFields.category = "renda_residencia";
+      categoryAxis.renderer.grid.template.location = 0;
+      categoryAxis.renderer.minGridDistance = 30;
+      categoryAxis.title.text = response.data[1][0].legenda;
+
+      var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.renderer.inside = true;
+      valueAxis.renderer.labels.template.disabled = true;
+      valueAxis.min = 0;
+
+      // Create series
+      function createSeries(field, name) {
+
+        // Set up series
+        var series = chart.series.push(new am4charts.ColumnSeries3D());
+        series.name = name;
+        series.dataFields.valueY = field;
+        series.dataFields.categoryX = "renda_residencia";
+        series.sequencedInterpolation = true;
+
+        // Make it stacked
+        series.stacked = true;
+
+        // Configure columns
+        series.columns.template.width = am4core.percent(60);
+        series.columns.template.tooltipText = "[bold]{name}[/]\n[font-size:14px]{categoryX}: {valueY}";
+
+        // Add label
+        var labelBullet = series.bullets.push(new am4charts.LabelBullet());
+        labelBullet.label.text = "{valueY}";
+        labelBullet.locationY = 0.5;
+        labelBullet.label.hideOversized = true;
+
+        return series;
+      }
+
+      createSeries("preta", "Preta");
+      createSeries("parda", "Parda");
+      createSeries("branca", "Branca");
+      createSeries("amarela", "Amarela");
+      createSeries("indigena", "Indígena");
+      createSeries("sem_informacao", "Sem informação");
+
+      // Legend
+      chart.legend = new am4charts.Legend();
+      });
+    //CLASSE SOCIAL RENDA BRUTA FAMILIAR - FIM
+
+    //CLASSE SOCIAL RENDA PER-CAPTA POR RAÇA/COR - INÍCIO
+    axios.get('/chart/classe_social_renda_per_capta_raca_cor')
+      .then(response => {
+        //console.log(response.data);
+        function am4themes_myTheme(target) {
+        if (target instanceof am4core.ColorSet) {
+          target.list = [
+            am4core.color("#000000"),
+            am4core.color("#8b4513"),
+            am4core.color("#d3d3d3"),
+            am4core.color("#ffff00"),
+            am4core.color("#ff0000"),
+            am4core.color("#0000ff")
+          ];
+        }
+      }
+      am4core.useTheme(am4themes_myTheme);
+      // Create chart instance
+      var chart = am4core.create("classe_social_renda_per_capta_raca_cor", am4charts.XYChart3D);
+
+      // Add data
+      chart.data = response.data[0];
+
+      // Create axes
+      var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis.dataFields.category = "renda_residencia";
+      categoryAxis.renderer.grid.template.location = 0;
+      categoryAxis.renderer.minGridDistance = 30;
+      categoryAxis.title.text = response.data[1][0].legenda;
+
+      var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.renderer.inside = true;
+      valueAxis.renderer.labels.template.disabled = true;
+      valueAxis.min = 0;
+
+      // Create series
+      function createSeries(field, name) {
+
+        // Set up series
+        var series = chart.series.push(new am4charts.ColumnSeries3D());
+        series.name = name;
+        series.dataFields.valueY = field;
+        series.dataFields.categoryX = "renda_residencia";
+        series.sequencedInterpolation = true;
+
+        // Make it stacked
+        series.stacked = true;
+
+        // Configure columns
+        series.columns.template.width = am4core.percent(60);
+        series.columns.template.tooltipText = "[bold]{name}[/]\n[font-size:14px]{categoryX}: {valueY}";
+
+        // Add label
+        var labelBullet = series.bullets.push(new am4charts.LabelBullet());
+        labelBullet.label.text = "{valueY}";
+        labelBullet.locationY = 0.5;
+        labelBullet.label.hideOversized = true;
+
+        return series;
+      }
+
+      createSeries("preta", "Preta");
+      createSeries("parda", "Parda");
+      createSeries("branca", "Branca");
+      createSeries("amarela", "Amarela");
+      createSeries("indigena", "Indígena");
+      createSeries("sem_informacao", "Sem informação");
+
+      // Legend
+      chart.legend = new am4charts.Legend();
+      });
+    //CLASSE SOCIAL RENDA PER-CAPTA POR RAÇA/COR - FIM
+
+    //RAÇA/COR POR AUXÍLIO EMERGENCIAL - INÍCIO
+    axios.get('/chart/raca_cor_por_auxilio_emergencial')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("raca_cor_por_auxilio_emergencial", am4charts.XYChart);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "cor_raca";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 20;
+        categoryAxis.renderer.cellStartLocation = 0.1;
+        categoryAxis.renderer.cellEndLocation = 0.9;
+
+        var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.min = 0;
+
+        // Create series
+        function createSeries(field, name, stacked) {
+          var series = chart.series.push(new am4charts.ColumnSeries());
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "cor_raca";
+          series.name = name;
+          series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
+          series.stacked = stacked;
+          series.columns.template.width = am4core.percent(95);
+        }
+
+        createSeries("sim", "sim", true);
+        createSeries("nao", "Não", true);
+        createSeries("sim_preta", "Preta sim", true);
+        createSeries("nao_preta", "Preta não", true);
+        createSeries("sim_parda", "Parda sim", true);
+        createSeries("nao_parda", "Parda não", true);
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+      });
+    //RAÇA/COR POR AUXÍLIO EMERGENCIAL - FIM
+
+    //INSUMOS OFERECIDOS PELO PROJETO - INÍCIO
+    axios.get('/chart/insumos_oferecidos_pelo_projeto')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("insumos_oferecidos_pelo_projeto", am4charts.XYChart);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "cor_raca";
+        categoryAxis.title.text = "Local country offices";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 20;
+        categoryAxis.renderer.cellStartLocation = 0.1;
+        categoryAxis.renderer.cellEndLocation = 0.9;
+
+        var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.min = 0;
+        valueAxis.title.text = "Expenditure (M)";
+
+        // Create series
+        function createSeries(field, name, stacked) {
+          var series = chart.series.push(new am4charts.ColumnSeries());
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "cor_raca";
+          series.name = name;
+          series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
+          series.stacked = stacked;
+          series.columns.template.width = am4core.percent(95);
+        }
+
+        createSeries("sim_isolamento_residencial_N ", "Sim" , false);
+        createSeries("nao_isolamento_residencial_N", "Não", true);
+        createSeries("sem_info_isolamento_residencial_N", "Sem inf.", true);
+        createSeries("sim_isolamento_residencial", "Sim2", false);
+        createSeries("nao_isolamento_residencial", "Não2", true);
+        createSeries("sem_info_isolamento_residencial", "Sem inf.2", true);
+        createSeries("sim_alimentacao_disponivel_N", "Sim", false);
+        createSeries("nao_alimentacao_disponivel_N", "Não", true);
+        createSeries("sem_info_alimentacao_disponivel_N", "Sem inf.", true);
+        createSeries("sim_alimentacao_disponivel", "Sim", false);
+        createSeries("nao_alimentacao_disponivel", "Não", true);
+        createSeries("sem_info_alimentacao_disponivel", "Sem inf.", true);
+        createSeries("sim_auxilio_terceiros_N", "Sim", false);
+        createSeries("nao_auxilio_terceiros_N", "Não", true);
+        createSeries("sem_info_auxilio_terceiros_N", "Sem inf.", true);
+        createSeries("sim_auxilio_terceiros", "Sim", false);
+        createSeries("nao_auxilio_terceir", "Não", true);
+        createSeries("sem_info_auxilio_terceiros", "Sem inf.", true);
+        createSeries("sim_tarefas_autocuidado_N", "Sim", false);
+        createSeries("nao_tarefas_autocuidado_N", "Não", true);
+        createSeries("sem_info_tarefas_autocuidado_N", "Sem inf.", true);
+        createSeries("sim_tarefas_autocuidado", "Sim", false);
+        createSeries("nao_tarefas_autocuidado", "Não", true);
+        createSeries("sem_info_tarefas_autocuidado", "Sem inf.", true);
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+      });
+    //INSUMOS OFERECIDOS PELO PROJETO - FIM
+
+    //TRATAMENTO PRESCRITO POR MÉDICO DO PROJETO - INÍCIO
+    axios.get('/chart/tratamento_prescrito_por_medico_projeto')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("tratamento_prescrito_por_medico_projeto", am4charts.XYChart);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "cor_raca";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 20;
+        categoryAxis.renderer.cellStartLocation = 0.1;
+        categoryAxis.renderer.cellEndLocation = 0.9;
+
+        var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.min = 0;
+
+        // Create series
+        function createSeries(field, name, stacked) {
+          var series = chart.series.push(new am4charts.ColumnSeries());
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "cor_raca";
+          series.name = name;
+          series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
+          series.stacked = stacked;
+          series.columns.template.width = am4core.percent(95);
+        }
+
+        createSeries("sim", "sim", true);
+        createSeries("nao", "Não", true);
+        createSeries("sim_preta", "Preta sim", true);
+        createSeries("nao_preta", "Preta não", true);
+        createSeries("sim_parda", "Parda sim", true);
+        createSeries("nao_parda", "Parda não", true);
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+      });
+    //TRATAMENTO PRESCRITO POR MÉDICO DO PROJETO - FIM
+
+    //TRATAMENTO FINANCIADO - INÍCIO
+    axios.get('/chart/tratamento_financiado')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("tratamento_financiado", am4charts.XYChart);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "cor_raca";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 20;
+        categoryAxis.renderer.cellStartLocation = 0.1;
+        categoryAxis.renderer.cellEndLocation = 0.9;
+
+        var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.min = 0;
+
+        // Create series
+        function createSeries(field, name, stacked) {
+          var series = chart.series.push(new am4charts.ColumnSeries());
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "cor_raca";
+          series.name = name;
+          series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
+          series.stacked = stacked;
+          series.columns.template.width = am4core.percent(95);
+        }
+
+        createSeries("sim", "sim", true);
+        createSeries("nao", "Não", true);
+        createSeries("sim_preta", "Preta sim", true);
+        createSeries("nao_preta", "Preta não", true);
+        createSeries("sim_parda", "Parda sim", true);
+        createSeries("nao_parda", "Parda não", true);
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+      });
+    //TRATAMENTO FINANCIADO - FIM
+
+    //DIAS DE SINTOMAS POR RAÇA/COR - INÍCIO
+    axios.get('/chart/dias_sintoma_por_raca_cor')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("dias_sintoma_por_raca_cor", am4charts.XYChart3D);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "dias";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 30;
+        categoryAxis.title.text = "*Negras e negros (pretos + pardos)";
+
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.inside = true;
+        valueAxis.renderer.labels.template.disabled = true;
+        valueAxis.min = 0;
+
+        // Create series
+        function createSeries(field, name) {
+
+          // Set up series
+          var series = chart.series.push(new am4charts.ColumnSeries3D());
+          series.name = name;
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "dias";
+          series.sequencedInterpolation = true;
+
+          // Make it stacked
+          series.stacked = true;
+
+          // Configure columns
+          series.columns.template.width = am4core.percent(60);
+          series.columns.template.tooltipText = "[bold]{name}[/]\n[font-size:14px]{categoryX}: {valueY}";
+
+          // Add label
+          var labelBullet = series.bullets.push(new am4charts.LabelBullet());
+          labelBullet.label.text = "{valueY}";
+          labelBullet.locationY = 0.5;
+          labelBullet.label.hideOversized = true;
+
+          return series;
+        }
+
+        createSeries("preta", "Preta");
+        createSeries("parda", "Parda");
+        createSeries("branca", "Branca");
+        createSeries("amarela", "Amarela");
+        createSeries("indigena", "Indígena");
+        createSeries("sem_informacao", "Sem informação");
+
+        // Legend
+        chart.legend = new am4charts.Legend();
+      });
+    //DIAS DE SINTOMAS POR RAÇA/COR - FIM
+
+    //DIAS DE SINTOMAS - MAIS OU MENOS DE 10 DIAS - INÍCIO
+    axios.get('/chart/dias_sintoma_mais_menos_dez_dias')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("dias_sintoma_mais_menos_dez_dias", am4charts.XYChart);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "cor_raca";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 20;
+        categoryAxis.renderer.cellStartLocation = 0.1;
+        categoryAxis.renderer.cellEndLocation = 0.9;
+
+        var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.min = 0;
+
+        // Create series
+        function createSeries(field, name, stacked) {
+          var series = chart.series.push(new am4charts.ColumnSeries());
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "cor_raca";
+          series.name = name;
+          series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
+          series.stacked = stacked;
+          series.columns.template.width = am4core.percent(95);
+        }
+
+        createSeries("mais_10", "Mais de 10 dias", true);
+        createSeries("menos_10", "Menos de 10 dias", true);
+        createSeries("mais_10_preta", "Preta Mais de 10 dias", true);
+        createSeries("menos_10_preta", "Preta Menos de 10 dias", true);
+        createSeries("mais_10_parda", "Parda Mais de 10 dias", true);
+        createSeries("menos_10_parda", "Parda Menos de 10 dias", true);
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+      });
+    //DIAS DE SINTOMAS - MAIS OU MENOS DE 10 DIAS - FIM
+
+    //TOTAL DE DIAS DE MONITORAMENTO (RELAÇÃO COVID-19) - INÍCIO
+    axios.get('/chart/total_dias_monitoramento_relacao_covid')
+      .then(response => {
+        //console.log(response.data);
+        function am4themes_myTheme(target) {
+        if (target instanceof am4core.ColorSet) {
+          target.list = [
+            am4core.color("#000000"),
+            am4core.color("#8b4513"),
+            am4core.color("#d3d3d3"),
+            am4core.color("#ffff00"),
+            am4core.color("#ff0000"),
+            am4core.color("#0000ff")
+          ];
+        }
+      }
+      am4core.useTheme(am4themes_myTheme);
+      // Create chart instance
+      var chart = am4core.create("total_dias_monitoramento_relacao_covid", am4charts.XYChart3D);
+
+      // Add data
+      chart.data = response.data[0];
+
+      // Create axes
+      var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+      categoryAxis.dataFields.category = "dias";
+      categoryAxis.renderer.grid.template.location = 0;
+      categoryAxis.renderer.minGridDistance = 30;
+      categoryAxis.title.text = "*Negras e negros (pretos + pardos)";
+
+      var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.renderer.inside = true;
+      valueAxis.renderer.labels.template.disabled = true;
+      valueAxis.min = 0;
+
+      // Create series
+      function createSeries(field, name) {
+
+        // Set up series
+        var series = chart.series.push(new am4charts.ColumnSeries3D());
+        series.name = name;
+        series.dataFields.valueY = field;
+        series.dataFields.categoryX = "dias";
+        series.sequencedInterpolation = true;
+
+        // Make it stacked
+        series.stacked = true;
+
+        // Configure columns
+        series.columns.template.width = am4core.percent(60);
+        series.columns.template.tooltipText = "[bold]{name}[/]\n[font-size:14px]{categoryX}: {valueY}";
+
+        // Add label
+        var labelBullet = series.bullets.push(new am4charts.LabelBullet());
+        labelBullet.label.text = "{valueY}";
+        labelBullet.locationY = 0.5;
+        labelBullet.label.hideOversized = true;
+
+        return series;
+      }
+
+      createSeries("preta", "Preta");
+      createSeries("parda", "Parda");
+      createSeries("branca", "Branca");
+      createSeries("amarela", "Amarela");
+      createSeries("indigena", "Indígena");
+      createSeries("sem_informacao", "Sem informação");
+
+      // Legend
+      chart.legend = new am4charts.Legend();
+      });
+    //TOTAL DE DIAS DE MONITORAMENTO (RELAÇÃO COVID-19) - FIM
+
+    //CASOS MONITORADOS POR AGENTES - INÍCIO
+    axios.get('/chart/casos_monitorados_por_agente')
+      .then(response => {
+        //console.log(response.data);
+        var chart = am4core.create("casos_monitorados_por_agente", am4charts.PieChart3D);
+        chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+        chart.legend = new am4charts.Legend();
+
+        chart.data = response.data[0];
+
+        var series = chart.series.push(new am4charts.PieSeries3D());
+        series.dataFields.value = "quantidade_pacientes";
+        series.dataFields.category = "nome_agente";
+      });
+    //CASOS MONITORADOS POR AGENTES - FIM
+
+    //CASOS AVALIADOS POR EQUIPE MÉDICA - INÍCIO
+    axios.get('/chart/casos_avaliados_equipe_medica')
+      .then(response => {
+        console.log(response.data);
+        var chart = am4core.create("casos_avaliados_equipe_medica", am4charts.PieChart3D);
+        chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+        chart.legend = new am4charts.Legend();
+
+        chart.data = response.data[0];
+
+        var series = chart.series.push(new am4charts.PieSeries3D());
+        series.dataFields.value = "quantidade_pacientes";
+        series.dataFields.category = "medicos";
+      });
+    //CASOS AVALIADOS POR EQUIPE MÉDICA - FIM'
 
 
 

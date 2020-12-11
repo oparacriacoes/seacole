@@ -337,7 +337,7 @@
             </div>
             <!-- CASOS MONITORADOS POR AGENTES - INÍCIO - FIM -->
 
-            <!-- CASOS AVALIADOS POR EQUIPE MÉDICA - INÍCIO (GRÁFICO 22) -->
+            <!-- CASOS AVALIADOS POR EQUIPE MÉDICA - INÍCIO (GRÁFICO 23) -->
             <div class="col-md-12 col-lg-6">
                 <div class="mb-3 card">
                     <div class="card-header-tab card-header-tab-animation card-header">
@@ -351,6 +351,21 @@
                 </div>
             </div>
             <!-- CASOS AVALIADOS POR EQUIPE MÉDICA - FIM -->
+
+            <!-- ACOMPANHAMENTO PSICOLÓGICO - INÍCIO (GRÁFICO 24) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              ACOMPANHAMENTO PSICOLÓGICO
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="acompanhamento_psicologico"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- ACOMPANHAMENTO PSICOLÓGICO - FIM -->
 
         </div>
     </div>
@@ -478,16 +493,16 @@ axios.get('/chart/novos_casos_monitorados')
     //SITUAÇÃO TOTAL DE CASOS MONITORADOS - INÍCIO
     axios.get('/chart/situacao_total_casos_monitorados')
       .then(response => {
-        //console.log(response.data);
+        console.log(response.data[0]);
         var chart = am4core.create("situacao_total_casos_monitorados", am4charts.PieChart3D);
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
         chart.legend = new am4charts.Legend();
 
-        chart.data = response.data;
+        chart.data = response.data[0];
 
         var series = chart.series.push(new am4charts.PieSeries3D());
-        series.dataFields.value = "quantidade";
+        series.dataFields.value = "quantidade_casos";
         series.dataFields.category = "situacao";
       });
     //SITUAÇÃO TOTAL DE CASOS MONITORADOS - FIM
@@ -741,10 +756,59 @@ axios.get('/chart/novos_casos_monitorados')
     //FAIXA ETÁRIA POR GÊNERO - FIM
 
     //FAIXA ETÁRIA POR GÊNERO 2 - INÍCIO
-    /*axios.get('/chart/faixa_etaria_genero_2')
+    axios.get('/chart/faixa_etaria_genero_2')
       .then(response => {
-        console.log(response.data);
-      });*/
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("faixa_etaria_genero_2", am4charts.XYChart3D);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "idade";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 30;
+
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.inside = true;
+        valueAxis.renderer.labels.template.disabled = true;
+        valueAxis.min = 0;
+
+        // Create series
+        function createSeries(field, name) {
+
+          // Set up series
+          var series = chart.series.push(new am4charts.ColumnSeries3D());
+          series.name = name;
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "idade";
+          series.sequencedInterpolation = true;
+
+          // Make it stacked
+          series.stacked = true;
+
+          // Configure columns
+          series.columns.template.width = am4core.percent(60);
+          series.columns.template.tooltipText = "[bold]{name}[/]\n[font-size:14px]{categoryX}: {valueY}";
+
+          // Add label
+          var labelBullet = series.bullets.push(new am4charts.LabelBullet());
+          labelBullet.label.text = "{valueY}";
+          labelBullet.locationY = 0.5;
+          labelBullet.label.hideOversized = true;
+
+          return series;
+        }
+
+        createSeries("homens", "Homens");
+        createSeries("mulheres", "Mulheres");
+        createSeries("sem_informacao", "Sem informação");
+
+        // Legend
+        chart.legend = new am4charts.Legend();
+      });
     //FAIXA ETÁRIA POR GÊNERO 2 - FIM
 
     //FAIXA ETÁRIA POR RAÇA/COR - INÍCIO
@@ -851,9 +915,6 @@ axios.get('/chart/novos_casos_monitorados')
       categoryAxis.renderer.grid.template.location = 0;
       categoryAxis.renderer.minGridDistance = 30;
       categoryAxis.title.text = response.data[1][0].legenda;
-
-
-
 
       var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
       valueAxis.renderer.inside = true;
@@ -1438,7 +1499,7 @@ axios.get('/chart/novos_casos_monitorados')
     //CASOS AVALIADOS POR EQUIPE MÉDICA - INÍCIO
     axios.get('/chart/casos_avaliados_equipe_medica')
       .then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         var chart = am4core.create("casos_avaliados_equipe_medica", am4charts.PieChart3D);
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
@@ -1451,6 +1512,23 @@ axios.get('/chart/novos_casos_monitorados')
         series.dataFields.category = "medicos";
       });
     //CASOS AVALIADOS POR EQUIPE MÉDICA - FIM'
+
+    //ACOMPANHAMENTO PSICOLÓGICO - INÍCIO
+    axios.get('/chart/acompanhamento_psicologico')
+      .then(response => {
+        //console.log(response.data);
+        var chart = am4core.create("acompanhamento_psicologico", am4charts.PieChart3D);
+        chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+        chart.legend = new am4charts.Legend();
+
+        chart.data = response.data[0];
+
+        var series = chart.series.push(new am4charts.PieSeries3D());
+        series.dataFields.value = "quantidade_pacientes";
+        series.dataFields.category = "psicologo";
+      });
+    //ACOMPANHAMENTO PSICOLÓGICO - FIM
 
 
 

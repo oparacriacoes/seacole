@@ -82,4 +82,5 @@ Route::middleware(['auth'])->group(function () {
   Route::get('chart/total_dias_monitoramento_relacao_covid', 'ChartsController@total_dias_monitoramento_relacao_covid')->name('chart.total-dias-monitoramento-relacao-covid');
   Route::get('chart/casos_monitorados_por_agente', 'ChartsController@casos_monitorados_por_agente')->name('chart.casos-monitorados-por-agente');
   Route::get('chart/casos_avaliados_equipe_medica', 'ChartsController@casos_avaliados_equipe_medica')->name('chart.casos-avaliados-equipe-medica');
+  Route::get('chart/acompanhamento_psicologico', 'ChartsController@acompanhamento_psicologico')->name('chart.acompanhamento-psicologico');
 });

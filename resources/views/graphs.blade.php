@@ -367,6 +367,51 @@
             </div>
             <!-- ACOMPANHAMENTO PSICOLÓGICO - FIM -->
 
+            <!-- AVALIAÇÃO MÉDICA POR RAÇA/COR - INÍCIO (GRÁFICO 26) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              AVALIAÇÃO MÉDICA POR RAÇA/COR
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="avaliacao_medica_por_raca_cor"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- AVALIAÇÃO MÉDICA POR RAÇA/COR - FIM -->
+
+            <!-- AVALIAÇÃO PSICÓLOGOS POR RAÇA/COR - INÍCIO (GRÁFICO 26) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              AVALIAÇÃO PSICÓLOGOS POR RAÇA/COR
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="avaliacao_psicologos_por_raca_cor"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- AVALIAÇÃO PSICÓLOGOS POR RAÇA/COR - FIM -->
+
+            <!-- GESTAÇÃO É OU FOI DE ALTO RISCO? - INÍCIO (GRÁFICO 35) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              GESTAÇÃO É OU FOI DE ALTO RISCO?
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="gestacao_alto_risco"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- GESTAÇÃO É OU FOI DE ALTO RISCO? - FIM -->
+
         </div>
     </div>
 @endsection
@@ -493,7 +538,7 @@ axios.get('/chart/novos_casos_monitorados')
     //SITUAÇÃO TOTAL DE CASOS MONITORADOS - INÍCIO
     axios.get('/chart/situacao_total_casos_monitorados')
       .then(response => {
-        console.log(response.data[0]);
+        //console.log(response.data[0]);
         var chart = am4core.create("situacao_total_casos_monitorados", am4charts.PieChart3D);
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
@@ -1529,6 +1574,138 @@ axios.get('/chart/novos_casos_monitorados')
         series.dataFields.category = "psicologo";
       });
     //ACOMPANHAMENTO PSICOLÓGICO - FIM
+
+    //AVALIAÇÃO MÉDICA POR RAÇA/COR - INÍCIO
+    axios.get('/chart/avaliacao_medica_por_raca_cor')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("avaliacao_medica_por_raca_cor", am4charts.XYChart);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "cor_raca";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 20;
+        categoryAxis.renderer.cellStartLocation = 0.1;
+        categoryAxis.renderer.cellEndLocation = 0.9;
+
+        var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.min = 0;
+
+        // Create series
+        function createSeries(field, name, stacked) {
+          var series = chart.series.push(new am4charts.ColumnSeries());
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "cor_raca";
+          series.name = name;
+          series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
+          series.stacked = stacked;
+          series.columns.template.width = am4core.percent(95);
+        }
+
+        createSeries("com_acompanhamento", "Com Acompanhamento", true);
+        createSeries("sem_acompanhamento", "Sem Acompanhamento", true);
+        createSeries("com_acompanhamento_preta", "Com Acompanhamento Preta", true);
+        createSeries("sem_acompanhamento_preta", "Sem Acompanhamento Preta", true);
+        createSeries("com_acompanhamento_parda", "Com Acompanhamento Parda", true);
+        createSeries("sem_acompanhamento_parda", "Sem Acompanhamento Parda", true);
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+      });
+    //AVALIAÇÃO MÉDICA POR RAÇA/COR - FIM
+
+    //AVALIAÇÃO PSICÓLOGOS POR RAÇA/COR - INÍCIO
+    axios.get('/chart/avaliacao_psicologos_por_raca_cor')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("avaliacao_psicologos_por_raca_cor", am4charts.XYChart);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "cor_raca";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 20;
+        categoryAxis.renderer.cellStartLocation = 0.1;
+        categoryAxis.renderer.cellEndLocation = 0.9;
+
+        var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.min = 0;
+
+        // Create series
+        function createSeries(field, name, stacked) {
+          var series = chart.series.push(new am4charts.ColumnSeries());
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "cor_raca";
+          series.name = name;
+          series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
+          series.stacked = stacked;
+          series.columns.template.width = am4core.percent(95);
+        }
+
+        createSeries("com_acompanhamento", "Com Acompanhamento", true);
+        createSeries("sem_acompanhamento", "Sem Acompanhamento", true);
+        createSeries("com_acompanhamento_preta", "Com Acompanhamento Preta", true);
+        createSeries("sem_acompanhamento_preta", "Sem Acompanhamento Preta", true);
+        createSeries("com_acompanhamento_parda", "Com Acompanhamento Parda", true);
+        createSeries("sem_acompanhamento_parda", "Sem Acompanhamento Parda", true);
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+      });
+    //AVALIAÇÃO PSICÓLOGOS POR RAÇA/COR - FIM
+
+    //GESTAÇÃO É OU FOI DE ALTO RISCO? - INÍCIO
+    axios.get('/chart/gestacao_alto_risco')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("gestacao_alto_risco", am4charts.XYChart);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "cor_raca";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 20;
+        categoryAxis.renderer.cellStartLocation = 0.1;
+        categoryAxis.renderer.cellEndLocation = 0.9;
+
+        var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.min = 0;
+
+        // Create series
+        function createSeries(field, name, stacked) {
+          var series = chart.series.push(new am4charts.ColumnSeries());
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "cor_raca";
+          series.name = name;
+          series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
+          series.stacked = stacked;
+          series.columns.template.width = am4core.percent(95);
+        }
+
+        createSeries("sim", "sim", true);
+        createSeries("nao", "Não", true);
+        createSeries("sim_preta", "Preta sim", true);
+        createSeries("nao_preta", "Preta não", true);
+        createSeries("sim_parda", "Parda sim", true);
+        createSeries("nao_parda", "Parda não", true);
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+      });
+    //GESTAÇÃO É OU FOI DE ALTO RISCO? - FIM
 
 
 

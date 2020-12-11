@@ -1151,4 +1151,137 @@ class ChartsController extends Controller
     return array($acompanhamento_psicologico);
   }
 
+  public function avaliacao_medica_por_raca_cor()
+  {
+    $avaliacao_medica_por_raca_cor = DB::select("
+    SELECT
+      cor_raca
+        , COALESCE(SUM(com_acompanhamento),0) AS com_acompanhamento
+        , COALESCE(SUM(sem_acompanhamento),0) AS sem_acompanhamento
+        , COALESCE(SUM(com_acompanhamento_preta),0) AS com_acompanhamento_preta
+        , COALESCE(SUM(sem_acompanhamento_preta),0) AS sem_acompanhamento_preta
+        , COALESCE(SUM(com_acompanhamento_parda),0) AS com_acompanhamento_parda
+        , COALESCE(SUM(sem_acompanhamento_parda),0) AS sem_acompanhamento_parda
+    FROM   (
+      SELECT
+        CASE
+          WHEN cor_raca IS NULL THEN 'Sem info.'
+                WHEN cor_raca IN ('Preta','Parda') THEN 'Negra'
+        ELSE cor_raca END AS cor_raca
+      , CASE
+          WHEN medico_id IS NOT NULL AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+        END AS com_acompanhamento
+      , CASE
+          WHEN medico_id IS NULL AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+            END AS sem_acompanhamento
+      , CASE
+          WHEN medico_id IS NOT NULL AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS com_acompanhamento_preta
+      , CASE
+          WHEN medico_id IS NULL AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS sem_acompanhamento_preta
+      , CASE
+          WHEN medico_id IS NOT NULL AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS com_acompanhamento_parda
+      , CASE
+          WHEN medico_id IS NULL AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS sem_acompanhamento_parda
+      FROM pacientes pac
+        GROUP BY medico_id, cor_raca)TBB
+    GROUP BY cor_raca
+    ORDER BY cor_raca
+    ");
+    return array($avaliacao_medica_por_raca_cor);
+  }
+
+  public function avaliacao_psicologos_por_raca_cor()
+  {
+    $avaliacao_psicologos_por_raca_cor = DB::select("
+    SELECT
+      cor_raca
+        , COALESCE(SUM(com_acompanhamento),0) AS com_acompanhamento
+        , COALESCE(SUM(sem_acompanhamento),0) AS sem_acompanhamento
+        , COALESCE(SUM(com_acompanhamento_preta),0) AS com_acompanhamento_preta
+        , COALESCE(SUM(sem_acompanhamento_preta),0) AS sem_acompanhamento_preta
+        , COALESCE(SUM(com_acompanhamento_parda),0) AS com_acompanhamento_parda
+        , COALESCE(SUM(sem_acompanhamento_parda),0) AS sem_acompanhamento_parda
+    FROM   (
+      SELECT
+        CASE
+          WHEN cor_raca IS NULL THEN 'Sem info.'
+                WHEN cor_raca IN ('Preta','Parda') THEN 'Negra'
+        ELSE cor_raca END AS cor_raca
+      , CASE
+          WHEN psicologo_id IS NOT NULL AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+        END AS com_acompanhamento
+      , CASE
+          WHEN psicologo_id IS NULL AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+            END AS sem_acompanhamento
+      , CASE
+          WHEN psicologo_id IS NOT NULL AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS com_acompanhamento_preta
+      , CASE
+          WHEN psicologo_id IS NULL AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS sem_acompanhamento_preta
+      , CASE
+          WHEN psicologo_id IS NOT NULL AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS com_acompanhamento_parda
+      , CASE
+          WHEN psicologo_id IS NULL AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS sem_acompanhamento_parda
+      FROM pacientes pac
+        GROUP BY psicologo_id, cor_raca)TBB
+    GROUP BY cor_raca
+    ORDER BY cor_raca
+    ");
+    return array($avaliacao_psicologos_por_raca_cor);
+  }
+
+  public function gestacao_alto_risco()
+  {
+    $gestacao_alto_risco = DB::select("
+    SELECT
+      cor_raca
+        , COALESCE(SUM(sem_informacao),0) AS sem_informacao
+        , COALESCE(SUM(sim),0) AS sim
+        , COALESCE(SUM(nao),0) AS nao
+        , COALESCE(SUM(sim_preta),0) AS sim_preta
+        , COALESCE(SUM(nao_preta),0) AS nao_preta
+        , COALESCE(SUM(sim_parda),0) AS sim_parda
+        , COALESCE(SUM(nao_parda),0) AS nao_parda
+    FROM   (
+      SELECT
+        CASE
+          WHEN cor_raca IS NULL THEN 'Sem info.'
+                WHEN cor_raca IN ('Preta','Parda') THEN 'Negra'
+        ELSE cor_raca END AS cor_raca
+      , CASE
+          WHEN gestacao_alto_risco IS NULL THEN COUNT(pac.id)
+        END AS sem_informacao
+      , CASE
+          WHEN gestacao_alto_risco = 'sim' AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+        END AS sim
+      , CASE
+          WHEN gestacao_alto_risco = 'não' AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+            END AS nao
+      , CASE
+          WHEN gestacao_alto_risco = 'sim' AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS sim_preta
+      , CASE
+          WHEN gestacao_alto_risco = 'não' AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS nao_preta
+      , CASE
+          WHEN gestacao_alto_risco = 'sim' AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS sim_parda
+      , CASE
+          WHEN gestacao_alto_risco = 'não' AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS nao_parda
+      FROM pacientes pac
+        GROUP BY gestacao_alto_risco, cor_raca)TBB
+    GROUP BY cor_raca
+    ORDER BY cor_raca
+    ");
+    return array($gestacao_alto_risco);
+  }
+
 }

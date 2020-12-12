@@ -86,4 +86,10 @@ Route::middleware(['auth'])->group(function () {
   Route::get('chart/avaliacao_medica_por_raca_cor', 'ChartsController@avaliacao_medica_por_raca_cor')->name('chart.avaliacao-medica-por-raca-cor');
   Route::get('chart/avaliacao_psicologos_por_raca_cor', 'ChartsController@avaliacao_psicologos_por_raca_cor')->name('chart.avaliacao-psicologos-por-raca-cor');
   Route::get('chart/gestacao_alto_risco', 'ChartsController@gestacao_alto_risco')->name('chart.gestacao-alto-risco');
+  Route::get('chart/acompanhamento_sistema_saude', 'ChartsController@acompanhamento_sistema_saude')->name('chart.acompanhamento-sistema-saude');
+  Route::get('chart/saude_mental', 'ChartsController@saude_mental')->name('chart.saude-mental');
+  Route::get('chart/servicos_referencia_internacao', 'ChartsController@servicos_referencia_internacao')->name('chart.servicos-referencia-internacao');
+  Route::get('chart/idas_sistema_saude_x_prescricao_medicamentos_brancas', 'ChartsController@idas_sistema_saude_x_prescricao_medicamentos_brancas')->name('chart.idas-sistema-saude-x-prescricao-medicamentos-brancas');
+  Route::get('chart/idas_sistema_saude_x_prescricao_medicamentos_pretas', 'ChartsController@idas_sistema_saude_x_prescricao_medicamentos_pretas')->name('chart.idas-sistema-saude-x-prescricao-medicamentos-pretas');
+  Route::get('chart/idas_sistema_saude_x_prescricao_medicamentos_pardas', 'ChartsController@idas_sistema_saude_x_prescricao_medicamentos_pardas')->name('chart.idas-sistema-saude-x-prescricao-medicamentos-pardas');
 });

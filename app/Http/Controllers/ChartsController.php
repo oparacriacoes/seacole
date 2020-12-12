@@ -1284,4 +1284,199 @@ class ChartsController extends Controller
     return array($gestacao_alto_risco);
   }
 
+  public function acompanhamento_sistema_saude()
+  {
+    $acompanhamento_sistema_saude = DB::select("
+    SELECT
+      cor_raca
+        , COALESCE(SUM(sem_informacao),0) AS sem_informacao
+        , COALESCE(SUM(sim),0) AS sim
+        , COALESCE(SUM(nao),0) AS nao
+        , COALESCE(SUM(sim_preta),0) AS sim_preta
+        , COALESCE(SUM(nao_preta),0) AS nao_preta
+        , COALESCE(SUM(sim_parda),0) AS sim_parda
+        , COALESCE(SUM(nao_parda),0) AS nao_parda
+    FROM   (
+      SELECT
+        CASE
+          WHEN cor_raca IS NULL THEN 'Sem info.'
+                WHEN cor_raca IN ('Preta','Parda') THEN 'Negra'
+        ELSE cor_raca END AS cor_raca
+      , CASE
+          WHEN acompanhamento_ubs IS NULL THEN COUNT(pac.id)
+        END AS sem_informacao
+      , CASE
+          WHEN acompanhamento_ubs = 'sim' AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+        END AS sim
+      , CASE
+          WHEN acompanhamento_ubs = 'não' AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+            END AS nao
+      , CASE
+          WHEN acompanhamento_ubs = 'sim' AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS sim_preta
+      , CASE
+          WHEN acompanhamento_ubs = 'não' AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS nao_preta
+      , CASE
+          WHEN acompanhamento_ubs = 'sim' AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS sim_parda
+      , CASE
+          WHEN acompanhamento_ubs = 'não' AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS nao_parda
+      FROM pacientes pac
+        GROUP BY acompanhamento_ubs, cor_raca)TBB
+    GROUP BY cor_raca
+    ORDER BY cor_raca
+    ");
+    return array($acompanhamento_sistema_saude);
+  }
+
+  public function saude_mental()
+  {
+    $saude_mental = DB::select("
+    SELECT
+      cor_raca
+        , COALESCE(SUM(sem_informacao),0) AS sem_informacao
+        , COALESCE(SUM(sim),0) AS sim
+        , COALESCE(SUM(nao),0) AS nao
+        , COALESCE(SUM(sim_preta),0) AS sim_preta
+        , COALESCE(SUM(nao_preta),0) AS nao_preta
+        , COALESCE(SUM(sim_parda),0) AS sim_parda
+        , COALESCE(SUM(nao_parda),0) AS nao_parda
+    FROM   (
+      SELECT
+        CASE
+          WHEN cor_raca IS NULL THEN 'Sem info.'
+                WHEN cor_raca IN ('Preta','Parda') THEN 'Negra'
+        ELSE cor_raca END AS cor_raca
+      , CASE
+          WHEN quadro_atual IS NULL THEN COUNT(pac.id)
+        END AS sem_informacao
+      , CASE
+          WHEN quadro_atual = 'sim' AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+        END AS sim
+      , CASE
+          WHEN quadro_atual = 'não' AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+            END AS nao
+      , CASE
+          WHEN quadro_atual = 'sim' AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS sim_preta
+      , CASE
+          WHEN quadro_atual = 'não' AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS nao_preta
+      , CASE
+          WHEN quadro_atual = 'sim' AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS sim_parda
+      , CASE
+          WHEN quadro_atual = 'não' AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS nao_parda
+      FROM pacientes pac
+      LEFT JOIN saude_mentals sm ON sm.paciente_id = pac.id
+        GROUP BY quadro_atual, cor_raca)TBB
+    GROUP BY cor_raca
+    ORDER BY cor_raca
+    ");
+    return array($saude_mental);
+  }
+
+  public function servicos_referencia_internacao()
+  {
+    $servicos_referencia_internacao = DB::select("
+    SELECT
+      dias
+      , COUNT(*) AS pacientes
+    FROM
+      (SELECT
+        COUNT(mon.data_monitoramento) dias
+      FROM
+        pacientes pac
+        LEFT JOIN monitoramentos mon ON mon.paciente_id = pac.id
+      GROUP BY pac.id
+      ORDER BY 1)TB
+    GROUP BY dias ;
+    ");
+    return array($servicos_referencia_internacao);
+  }
+
+  public function idas_sistema_saude_x_prescricao_medicamentos_brancas()
+  {
+    $idas_sistema_saude_x_prescricao_medicamentos = DB::select("
+    SELECT
+    	medicamentos_cidade
+        , COUNT(*) AS quantidade
+    FROM
+    	(SELECT
+    		CASE
+    			WHEN medicamento IS NULL
+    				THEN 'Não recebeu nenhum medicamento'
+    			WHEN medicamento IN ('Medico do SUS receitou, Azitromicina', 'médico hospital, Azitromicina', 'médico sus, Azitromicina', 'Último dia de Azitromicina')
+    				THEN 'Recebeu somente azitromicina'
+    			WHEN medicamento LIKE '%azitromicina%'
+    				THEN 'Azitromicina e outros medicamentos'
+    			ELSE 'Somente outros medicamentos' END AS medicamentos_cidade
+    		, pac.id
+    	FROM
+    		pacientes pac
+    		LEFT JOIN monitoramentos mon ON mon.paciente_id = pac.id
+    	WHERE cor_raca = 'Branca'
+    	ORDER BY 1)TB
+    GROUP BY medicamentos_cidade;
+    ");
+    return array($idas_sistema_saude_x_prescricao_medicamentos);
+  }
+
+  public function idas_sistema_saude_x_prescricao_medicamentos_pretas()
+  {
+    $idas_sistema_saude_x_prescricao_medicamentos_pretas = DB::select("
+    SELECT
+    	medicamentos_cidade
+        , COUNT(*) AS quantidade
+    FROM
+    	(SELECT
+    		CASE
+    			WHEN medicamento IS NULL
+    				THEN 'Não recebeu nenhum medicamento'
+    			WHEN medicamento IN ('Medico do SUS receitou, Azitromicina', 'médico hospital, Azitromicina', 'médico sus, Azitromicina', 'Último dia de Azitromicina')
+    				THEN 'Recebeu somente azitromicina'
+    			WHEN medicamento LIKE '%azitromicina%'
+    				THEN 'Azitromicina e outros medicamentos'
+    			ELSE 'Somente outros medicamentos' END AS medicamentos_cidade
+    		, pac.id
+    	FROM
+    		pacientes pac
+    		LEFT JOIN monitoramentos mon ON mon.paciente_id = pac.id
+    	WHERE cor_raca = 'Preta'
+    	ORDER BY 1)TB
+    GROUP BY medicamentos_cidade;
+    ");
+    return array($idas_sistema_saude_x_prescricao_medicamentos_pretas);
+  }
+
+  public function idas_sistema_saude_x_prescricao_medicamentos_pardas()
+  {
+    $idas_sistema_saude_x_prescricao_medicamentos_pardas = DB::select("
+    SELECT
+    	medicamentos_cidade
+        , COUNT(*) AS quantidade
+    FROM
+    	(SELECT
+    		CASE
+    			WHEN medicamento IS NULL
+    				THEN 'Não recebeu nenhum medicamento'
+    			WHEN medicamento IN ('Medico do SUS receitou, Azitromicina', 'médico hospital, Azitromicina', 'médico sus, Azitromicina', 'Último dia de Azitromicina')
+    				THEN 'Recebeu somente azitromicina'
+    			WHEN medicamento LIKE '%azitromicina%'
+    				THEN 'Azitromicina e outros medicamentos'
+    			ELSE 'Somente outros medicamentos' END AS medicamentos_cidade
+    		, pac.id
+    	FROM
+    		pacientes pac
+    		LEFT JOIN monitoramentos mon ON mon.paciente_id = pac.id
+    	WHERE cor_raca = 'Parda'
+    	ORDER BY 1)TB
+    GROUP BY medicamentos_cidade;
+    ");
+    return array($idas_sistema_saude_x_prescricao_medicamentos_pardas);
+  }
+
 }

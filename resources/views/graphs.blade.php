@@ -412,6 +412,96 @@
             </div>
             <!-- GESTAÇÃO É OU FOI DE ALTO RISCO? - FIM -->
 
+            <!-- ACOMPANHAMENTO DO SISTEMA DE SAÚDE - INÍCIO (GRÁFICO 37) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              ACOMPANHAMENTO DO SISTEMA DE SAÚDE
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="acompanhamento_sistema_saude"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- ACOMPANHAMENTO DO SISTEMA DE SAÚDE - FIM -->
+
+            <!-- SAÚDE MENTAL - INÍCIO (GRÁFICO 39) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              SAÚDE MENTAL
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="saude_mental"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- SAÚDE MENTAL - FIM -->
+
+            <!-- SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO - INÍCIO (GRÁFICO 39) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="servicos_referencia_internacao"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO - FIM -->
+
+            <!-- IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS BANCAS - INÍCIO (GRÁFICO 53) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS BANCAS)
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="idas_sistema_saude_x_prescricao_medicamentos_brancas"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS BANCAS - FIM -->
+
+            <!-- IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS PRETAS - INÍCIO (GRÁFICO 54) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS PRETAS)
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="idas_sistema_saude_x_prescricao_medicamentos_pretas"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS PRETAS - FIM -->
+
+            <!-- IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS PARDAS - INÍCIO (GRÁFICO 55) -->
+            <div class="col-md-12 col-lg-6">
+                <div class="mb-3 card">
+                    <div class="card-header-tab card-header-tab-animation card-header">
+                        <div class="card-header-title">
+                              IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS PARDAS)
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart" id="idas_sistema_saude_x_prescricao_medicamentos_pardas"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS PARDAS - FIM -->
+
         </div>
     </div>
 @endsection
@@ -1706,6 +1796,183 @@ axios.get('/chart/novos_casos_monitorados')
         chart.legend = new am4charts.Legend();
       });
     //GESTAÇÃO É OU FOI DE ALTO RISCO? - FIM
+
+    //ACOMPANHAMENTO DO SISTEMA DE SAÚDE - INÍCIO
+    axios.get('/chart/acompanhamento_sistema_saude')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("acompanhamento_sistema_saude", am4charts.XYChart);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "cor_raca";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 20;
+        categoryAxis.renderer.cellStartLocation = 0.1;
+        categoryAxis.renderer.cellEndLocation = 0.9;
+
+        var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.min = 0;
+
+        // Create series
+        function createSeries(field, name, stacked) {
+          var series = chart.series.push(new am4charts.ColumnSeries());
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "cor_raca";
+          series.name = name;
+          series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
+          series.stacked = stacked;
+          series.columns.template.width = am4core.percent(95);
+        }
+
+        createSeries("sim", "sim", true);
+        createSeries("nao", "Não", true);
+        createSeries("sim_preta", "Preta sim", true);
+        createSeries("nao_preta", "Preta não", true);
+        createSeries("sim_parda", "Parda sim", true);
+        createSeries("nao_parda", "Parda não", true);
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+      });
+    //ACOMPANHAMENTO DO SISTEMA DE SAÚDE - FIM
+
+    //SAÚDE MENTAL - INÍCIO
+    axios.get('/chart/saude_mental')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("saude_mental", am4charts.XYChart);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "cor_raca";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 20;
+        categoryAxis.renderer.cellStartLocation = 0.1;
+        categoryAxis.renderer.cellEndLocation = 0.9;
+
+        var  valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.min = 0;
+
+        // Create series
+        function createSeries(field, name, stacked) {
+          var series = chart.series.push(new am4charts.ColumnSeries());
+          series.dataFields.valueY = field;
+          series.dataFields.categoryX = "cor_raca";
+          series.name = name;
+          series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
+          series.stacked = stacked;
+          series.columns.template.width = am4core.percent(95);
+        }
+
+        createSeries("sim", "sim", true);
+        createSeries("nao", "Não", true);
+        createSeries("sim_preta", "Preta sim", true);
+        createSeries("nao_preta", "Preta não", true);
+        createSeries("sim_parda", "Parda sim", true);
+        createSeries("nao_parda", "Parda não", true);
+
+        // Add legend
+        chart.legend = new am4charts.Legend();
+      });
+    //SAÚDE MENTAL - FIM
+
+    //SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO - INÍCIO
+    axios.get('/chart/servicos_referencia_internacao')
+      .then(response => {
+        //console.log(response.data);
+        // Create chart instance
+        var chart = am4core.create("servicos_referencia_internacao", am4charts.XYChart3D);
+
+        // Add data
+        chart.data = response.data[0];
+
+        // Create axes
+        var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "dias";
+        categoryAxis.numberFormatter.numberFormat = "#";
+        categoryAxis.renderer.inversed = false;
+
+        var  valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+
+        // Create series
+        var series = chart.series.push(new am4charts.ColumnSeries3D());
+        series.dataFields.valueX = "pacientes";
+        series.dataFields.categoryY = "dias";
+        series.name = "pacientes";
+        series.columns.template.propertyFields.fill = "color";
+        series.columns.template.tooltipText = "Número de idas ao serviço de saúde: {valueX}";
+        series.columns.template.column3D.stroke = am4core.color("#fff");
+        series.columns.template.column3D.strokeOpacity = 0.2;
+      });
+    //SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO - FIM
+
+    //IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS BANCAS - INÍCIO
+    axios.get('/chart/idas_sistema_saude_x_prescricao_medicamentos_brancas')
+      .then(response => {
+        //console.log(response.data);
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        var chart = am4core.create("idas_sistema_saude_x_prescricao_medicamentos_brancas", am4charts.PieChart3D);
+        chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+        chart.legend = new am4charts.Legend();
+
+        chart.data = response.data[0];
+
+        var series = chart.series.push(new am4charts.PieSeries3D());
+        series.dataFields.value = "quantidade";
+        series.dataFields.category = "medicamentos_cidade";
+      });
+    //IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS BANCAS - FIM
+
+    //IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS PRETAS - INÍCIO
+    axios.get('/chart/idas_sistema_saude_x_prescricao_medicamentos_pretas')
+      .then(response => {
+        //console.log(response.data);
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        var chart = am4core.create("idas_sistema_saude_x_prescricao_medicamentos_pretas", am4charts.PieChart3D);
+        chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+        chart.legend = new am4charts.Legend();
+
+        chart.data = response.data[0];
+
+        var series = chart.series.push(new am4charts.PieSeries3D());
+        series.dataFields.value = "quantidade";
+        series.dataFields.category = "medicamentos_cidade";
+      });
+    //IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS PRETAS - FIM
+
+    //IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS PARDAS - INÍCIO
+    axios.get('/chart/idas_sistema_saude_x_prescricao_medicamentos_pardas')
+      .then(response => {
+        //console.log(response.data);
+        var chart = am4core.create("idas_sistema_saude_x_prescricao_medicamentos_pardas", am4charts.PieChart3D);
+        chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+        chart.legend = new am4charts.Legend();
+
+        chart.data = response.data[0];
+
+        var series = chart.series.push(new am4charts.PieSeries3D());
+        series.dataFields.value = "quantidade";
+        series.dataFields.category = "medicamentos_cidade";
+      });
+    //IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS PARDAS - FIM
 
 
 

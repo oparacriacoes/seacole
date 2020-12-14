@@ -12,9 +12,10 @@ use App\Paciente;
 
 class ChartsController extends Controller
 {
-  public function index()
+  public function index($chart_id)
   {
-    return view('graphs');
+    $chart_view = 'graph-' . $chart_id;
+    return view('pages.graficos.'.$chart_view);
   }
 
   public function novos_casos_monitorados()

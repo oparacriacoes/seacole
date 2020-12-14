@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('/admin/paciente/exportar', 'PacienteController@ExportarExcelPacientes')->name('paciente/exportar');
 
-  Route::get('/admin/charts', 'ChartsController@index')->name('admin/charts');
+  Route::get('/admin/charts/{chart_id}', 'ChartsController@index')->name('admin.charts');
   Route::get('chart/novos_casos_monitorados', 'ChartsController@novos_casos_monitorados')->name('chart.novos-casos');
   Route::get('chart/monitorados_exclusivo_psicologia', 'ChartsController@monitorados_exclusivo_psicologia')->name('chart.monitorados-exclusivo-psicologia');
   Route::get('chart/situacao_total_casos_monitorados', 'ChartsController@situacao_total_casos_monitorados')->name('chart.situacao-total-casos-monitorados');

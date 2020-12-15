@@ -74,7 +74,9 @@ Route::middleware(['auth'])->group(function () {
   Route::get('chart/classe_social_renda_bruta_familiar', 'ChartsController@classe_social_renda_bruta_familiar')->name('chart.classe-social-renda-bruta-familiar');
   Route::get('chart/classe_social_renda_per_capta_raca_cor', 'ChartsController@classe_social_renda_per_capta_raca_cor')->name('chart.classe-social-renda-per-capta-raca-cor');
   Route::get('chart/raca_cor_por_auxilio_emergencial', 'ChartsController@raca_cor_por_auxilio_emergencial')->name('chart.raca-cor-por-auxilio-emergencial');
-  Route::get('chart/insumos_oferecidos_pelo_projeto', 'ChartsController@insumos_oferecidos_pelo_projeto')->name('chart.insumos-oferecidos-pelo-projeto');
+  Route::get('chart/insumos_oferecidos_pelo_projeto_raca_cor_1', 'ChartsController@insumos_oferecidos_pelo_projeto_raca_cor_1')->name('chart.insumos-oferecidos-pelo-projeto-raca-cor-1');
+  Route::get('chart/insumos_oferecidos_pelo_projeto_raca_cor_2', 'ChartsController@insumos_oferecidos_pelo_projeto_raca_cor_2')->name('chart.insumos-oferecidos-pelo-projeto-raca-cor-2');
+  Route::get('chart/insumos_oferecidos_pelo_projeto_raca_cor_3', 'ChartsController@insumos_oferecidos_pelo_projeto_raca_cor_3')->name('chart.insumos-oferecidos-pelo-projeto-raca-cor-3');
   Route::get('chart/tratamento_prescrito_por_medico_projeto', 'ChartsController@tratamento_prescrito_por_medico_projeto')->name('chart.tratamento-prescrito-por-medico-projeto');
   Route::get('chart/tratamento_financiado', 'ChartsController@tratamento_financiado')->name('chart.tratamento-financiado');
   Route::get('chart/dias_sintoma_por_raca_cor', 'ChartsController@dias_sintoma_por_raca_cor')->name('chart.dias-sintoma-por-raca-cor');

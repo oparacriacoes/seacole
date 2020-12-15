@@ -16,11 +16,13 @@
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 12) }}">#12 - CLASSE SOCIAL POR RENDA BRUTA FAMILIAR</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 131) }}">#13(a) - CLASSE SOCIAL RENDA PER-CAPTA POR RAÇA/COR</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 132) }}">#13(b) - RAÇA/COR POR AUXÍLIO EMERGENCIAL</a>
-        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 14) }}">#14 - INSUMOS OFERECIDOS PELO PROJETO</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 14) }}">#14 - INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (1)</a>
       </div>
     </div>
     <div class="col">
       <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 15) }}">#15 - INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2)</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 16) }}">#16 - INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (3)</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 17) }}">#17 - TRATAMENTO PRESCRITO POR MÉDICO DO PROJETO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 18) }}">#18 - TRATAMENTO FINANCIADO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 19) }}">#19 - DIAS DE SINTOMAS POR RAÇA/COR</a>
@@ -34,12 +36,12 @@
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 37) }}">#37 - ACOMPANHAMENTO DO SISTEMA DE SAÚDE</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 39) }}">#39 - SAÚDE MENTAL</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 49) }}">#49 - SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO</a>
-        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 53) }}">#53 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS BANCAS)</a>
-        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 54) }}">#54 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS PRETAS)</a>
       </div>
     </div>
     <div class="col">
       <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 53) }}">#53 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS BANCAS)</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 54) }}">#54 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS PRETAS)</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 55) }}">#55 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS PARDAS)</a>
         <a class="list-group-item list-group-item-action" href="#">Gráfico #10</a>
         <a class="list-group-item list-group-item-action" href="#">Gráfico #11</a>

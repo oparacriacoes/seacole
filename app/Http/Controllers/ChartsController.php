@@ -801,9 +801,9 @@ class ChartsController extends Controller
     return array($raca_cor_por_auxilio_emergencial);
   }
 
-  public function insumos_oferecidos_pelo_projeto()
+  public function insumos_oferecidos_pelo_projeto_raca_cor_1()
   {
-    $insumos_oferecidos_pelo_projeto = DB::select("
+    /*$insumos_oferecidos_pelo_projeto = DB::select("
     SELECT
         cor_raca
         , COALESCE((CASE WHEN cor_raca IN ('Preta','Parda') THEN SUM(sim_isolamento_residencial) END), 0) AS sim_isolamento_residencial_N
@@ -850,8 +850,741 @@ class ChartsController extends Controller
         FROM pacientes
         GROUP BY cor_raca, isolamento_residencial, alimentacao_disponivel, auxilio_terceiros, tarefas_autocuidado)TB
     GROUP BY cor_raca;
+    ");*/
+    $insumos_oferecidos_pelo_projeto_raca_cor_1 = DB::select("
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Há condição de ficar isolada, sozinha, em um cômodo da casa?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND isolamento_residencial = 'sim' THEN COUNT(id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND isolamento_residencial = 'sim' THEN COUNT(id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND isolamento_residencial = 'sim' THEN COUNT(id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND isolamento_residencial = 'sim' THEN COUNT(id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND isolamento_residencial = 'sim' THEN COUNT(id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND isolamento_residencial = 'sim' THEN COUNT(id) END AS nao_info_sim
+        FROM pacientes
+        GROUP BY cor_raca, isolamento_residencial)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Há condição de ficar isolada, sozinha, em um cômodo da casa?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND isolamento_residencial = 'não' THEN COUNT(id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND isolamento_residencial = 'não' THEN COUNT(id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND isolamento_residencial = 'não' THEN COUNT(id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND isolamento_residencial = 'não' THEN COUNT(id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND isolamento_residencial = 'não' THEN COUNT(id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND isolamento_residencial = 'não' THEN COUNT(id) END AS nao_info_nao
+        FROM pacientes
+        GROUP BY cor_raca, isolamento_residencial)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Tem comida disponível, sem precisar sair?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND alimentacao_disponivel = 'sim' THEN COUNT(id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND alimentacao_disponivel = 'sim' THEN COUNT(id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND alimentacao_disponivel = 'sim' THEN COUNT(id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND alimentacao_disponivel = 'sim' THEN COUNT(id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND alimentacao_disponivel = 'sim' THEN COUNT(id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND alimentacao_disponivel = 'sim' THEN COUNT(id) END AS nao_info_sim
+        FROM pacientes
+        GROUP BY cor_raca, alimentacao_disponivel)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Tem comida disponível, sem precisar sair?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND alimentacao_disponivel = 'não' THEN COUNT(id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND alimentacao_disponivel = 'não' THEN COUNT(id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND alimentacao_disponivel = 'não' THEN COUNT(id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND alimentacao_disponivel = 'não' THEN COUNT(id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND alimentacao_disponivel = 'não' THEN COUNT(id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND alimentacao_disponivel = 'não' THEN COUNT(id) END AS nao_info_nao
+        FROM pacientes
+        GROUP BY cor_raca, alimentacao_disponivel)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Tem alguém para auxiliá-lo(a)?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND auxilio_terceiros = 'sim' THEN COUNT(id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND auxilio_terceiros = 'sim' THEN COUNT(id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND auxilio_terceiros = 'sim' THEN COUNT(id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND auxilio_terceiros = 'sim' THEN COUNT(id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND auxilio_terceiros = 'sim' THEN COUNT(id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND auxilio_terceiros = 'sim' THEN COUNT(id) END AS nao_info_sim
+        FROM pacientes
+        GROUP BY cor_raca, auxilio_terceiros)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Tem alguém para auxiliá-lo(a)?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND auxilio_terceiros = 'não' THEN COUNT(id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND auxilio_terceiros = 'não' THEN COUNT(id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND auxilio_terceiros = 'não' THEN COUNT(id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND auxilio_terceiros = 'não' THEN COUNT(id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND auxilio_terceiros = 'não' THEN COUNT(id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND auxilio_terceiros = 'não' THEN COUNT(id) END AS nao_info_nao
+        FROM pacientes
+        GROUP BY cor_raca, auxilio_terceiros)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Consegue realizar tarefas de autocuidado? (como tomar banho, cozinhar, lavar a própria roupa)' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND tarefas_autocuidado = 'sim' THEN COUNT(id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND tarefas_autocuidado = 'sim' THEN COUNT(id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND tarefas_autocuidado = 'sim' THEN COUNT(id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND tarefas_autocuidado = 'sim' THEN COUNT(id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND tarefas_autocuidado = 'sim' THEN COUNT(id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND tarefas_autocuidado = 'sim' THEN COUNT(id) END AS nao_info_sim
+        FROM pacientes
+        GROUP BY cor_raca, tarefas_autocuidado)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Consegue realizar tarefas de autocuidado? (como tomar banho, cozinhar, lavar a própria roupa)' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND tarefas_autocuidado = 'não' THEN COUNT(id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND tarefas_autocuidado = 'não' THEN COUNT(id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND tarefas_autocuidado = 'não' THEN COUNT(id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND tarefas_autocuidado = 'não' THEN COUNT(id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND tarefas_autocuidado = 'não' THEN COUNT(id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND tarefas_autocuidado = 'não' THEN COUNT(id) END AS nao_info_nao
+        FROM pacientes
+        GROUP BY cor_raca, tarefas_autocuidado)TB
+      GROUP BY pergunta;
     ");
-    return array($insumos_oferecidos_pelo_projeto);
+    return json_encode($insumos_oferecidos_pelo_projeto_raca_cor_1);
+  }
+
+  public function insumos_oferecidos_pelo_projeto_raca_cor_2()
+  {
+    $insumos_oferecidos_pelo_projeto_raca_cor_2 = DB::select("
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Precisa de ajuda para comprar remédios de uso contínuo?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisa_tipo_ajuda LIKE '%Comprar remédios de uso contínuo%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND precisa_tipo_ajuda LIKE '%Comprar remédios de uso contínuo%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND precisa_tipo_ajuda LIKE '%Comprar remédios de uso contínuo%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND precisa_tipo_ajuda LIKE '%Comprar remédios de uso contínuo%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND precisa_tipo_ajuda LIKE '%Comprar remédios de uso contínuo%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND precisa_tipo_ajuda LIKE '%Comprar remédios de uso contínuo%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, precisa_tipo_ajuda)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Precisa de ajuda para comprar remédios de uso contínuo?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios de uso contínuo%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios de uso contínuo%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios de uso contínuo%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios de uso contínuo%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios de uso contínuo%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios de uso contínuo%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, precisa_tipo_ajuda)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+    /*PERGUNTA 2*/
+
+
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Precisa de ajuda para comprar remédios para o tratamento do quadro atual?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisa_tipo_ajuda LIKE '%Comprar remédios para o tratamento do quadro atual%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND precisa_tipo_ajuda LIKE '%Comprar remédios para o tratamento do quadro atual%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND precisa_tipo_ajuda LIKE '%Comprar remédios para o tratamento do quadro atual%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND precisa_tipo_ajuda LIKE '%Comprar remédios para o tratamento do quadro atual%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND precisa_tipo_ajuda LIKE '%Comprar remédios para o tratamento do quadro atual%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND precisa_tipo_ajuda LIKE '%Comprar remédios para o tratamento do quadro atual%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, precisa_tipo_ajuda)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Precisa de ajuda para comprar remédios para o tratamento do quadro atual?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios para o tratamento do quadro atual%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios para o tratamento do quadro atual%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios para o tratamento do quadro atual%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios para o tratamento do quadro atual%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios para o tratamento do quadro atual%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar remédios para o tratamento do quadro atual%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, precisa_tipo_ajuda)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+
+
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Precisa de ajuda para comprar alimento ou outro produtos de necessidade básica?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisa_tipo_ajuda LIKE '%Comprar alimento ou outro produtos de necessidade básica%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND precisa_tipo_ajuda LIKE '%Comprar alimento ou outro produtos de necessidade básica%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND precisa_tipo_ajuda LIKE '%Comprar alimento ou outro produtos de necessidade básica%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND precisa_tipo_ajuda LIKE '%Comprar alimento ou outro produtos de necessidade básica%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND precisa_tipo_ajuda LIKE '%Comprar alimento ou outro produtos de necessidade básica%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND precisa_tipo_ajuda LIKE '%Comprar alimento ou outro produtos de necessidade básica%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, precisa_tipo_ajuda)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Precisa de ajuda para comprar alimento ou outro produtos de necessidade básica?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar alimento ou outro produtos de necessidade básica%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar alimento ou outro produtos de necessidade básica%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar alimento ou outro produtos de necessidade básica%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar alimento ou outro produtos de necessidade básica%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar alimento ou outro produtos de necessidade básica%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Comprar alimento ou outro produtos de necessidade básica%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, precisa_tipo_ajuda)TB
+      GROUP BY pergunta
+
+
+    UNION ALL
+
+
+
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Precisa de ajuda para outros?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisa_tipo_ajuda LIKE '%Outros%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND precisa_tipo_ajuda LIKE '%Outros%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND precisa_tipo_ajuda LIKE '%Outros%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND precisa_tipo_ajuda LIKE '%Outros%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND precisa_tipo_ajuda LIKE '%Outros%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND precisa_tipo_ajuda LIKE '%Outros%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, precisa_tipo_ajuda)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Precisa de ajuda para outros?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Outros%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Outros%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Outros%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Outros%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Outros%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND precisa_tipo_ajuda IS NOT NULL AND (precisa_tipo_ajuda = 'N;' OR precisa_tipo_ajuda NOT LIKE '%Outros%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, precisa_tipo_ajuda)TB
+      GROUP BY pergunta
+    ");
+    return json_encode($insumos_oferecidos_pelo_projeto_raca_cor_2);
+  }
+
+  public function insumos_oferecidos_pelo_projeto_raca_cor_3()
+  {
+    $insumos_oferecidos_pelo_projeto_raca_cor_3 = DB::select("
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Termometro?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue LIKE '%Termometro%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue LIKE '%Termometro%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue LIKE '%Termometro%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue LIKE '%Termometro%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue LIKE '%Termometro%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND material_entregue LIKE '%Termometro%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Termometro' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Termometro%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Termometro%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Termometro%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Termometro%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Termometro%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Termometro%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*Dipirona*/
+
+
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Dipirona?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue LIKE '%Dipirona%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue LIKE '%Dipirona%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue LIKE '%Dipirona%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue LIKE '%Dipirona%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue LIKE '%Dipirona%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND material_entregue LIKE '%Dipirona%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Dipirona?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Dipirona%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Dipirona%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Dipirona%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Dipirona%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Dipirona%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Dipirona%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*Paracetamol*/
+
+
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Paracetamol?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue LIKE '%Paracetamol%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue LIKE '%Paracetamol%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue LIKE '%Paracetamol%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue LIKE '%Paracetamol%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue LIKE '%Paracetamol%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND material_entregue LIKE '%Paracetamol%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Paracetamol?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Paracetamol%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Paracetamol%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Paracetamol%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Paracetamol%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Paracetamol%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Paracetamol%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*Oximetro*/
+
+
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Oximetro?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue LIKE '%Oximetro%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue LIKE '%Oximetro%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue LIKE '%Oximetro%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue LIKE '%Oximetro%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue LIKE '%Oximetro%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND material_entregue LIKE '%Oximetro%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Oximetro?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Oximetro%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Oximetro%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Oximetro%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Oximetro%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Oximetro%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Oximetro%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*Mascaras de tecido*/
+
+
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Mascaras de tecido?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue LIKE '%Mascaras de tecido%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue LIKE '%Mascaras de tecido%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue LIKE '%Mascaras de tecido%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue LIKE '%Mascaras de tecido%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue LIKE '%Mascaras de tecido%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND material_entregue LIKE '%Mascaras de tecido%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Mascaras de tecido?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Mascaras de tecido%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Mascaras de tecido%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Mascaras de tecido%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Mascaras de tecido%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Mascaras de tecido%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Mascaras de tecido%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*Material de limpeza*/
+
+
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Material de limpeza?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue LIKE '%Material de limpeza%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue LIKE '%Material de limpeza%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue LIKE '%Material de limpeza%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue LIKE '%Material de limpeza%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue LIKE '%Material de limpeza%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND material_entregue LIKE '%Material de limpeza%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Material de limpeza?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Material de limpeza%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Material de limpeza%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Material de limpeza%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Material de limpeza%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Material de limpeza%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Material de limpeza%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*Cesta basica*/
+
+
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Cesta basica?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue LIKE '%Cesta basica%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue LIKE '%Cesta basica%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue LIKE '%Cesta basica%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue LIKE '%Cesta basica%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue LIKE '%Cesta basica%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND material_entregue LIKE '%Cesta basica%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Foi entregue: Cesta basica?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Cesta basica%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Cesta basica%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Cesta basica%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Cesta basica%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Cesta basica%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND material_entregue IS NOT NULL AND (material_entregue NOT LIKE '%Cesta basica%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, material_entregue)TB
+      GROUP BY pergunta;
+    ");
+    return json_encode($insumos_oferecidos_pelo_projeto_raca_cor_3);
   }
 
   public function tratamento_prescrito_por_medico_projeto()

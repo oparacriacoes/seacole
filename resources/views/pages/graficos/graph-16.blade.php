@@ -13,26 +13,26 @@
                   <i class="pe-7s-car icon-gradient bg-mean-fruit">
                   </i>
               </div>
-              <div>INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (1)</div>
+              <div>INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (3)</div>
           </div>
       </div>
   </div>
   <x-chart-list/>
   <div class="row">
-    <!-- INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (1) - INÍCIO (GRÁFICO 14) -->
+    <!-- INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (3) - INÍCIO (GRÁFICO 14) -->
     <div class="col">
         <div class="mb-3 card">
             <div class="card-header-tab card-header-tab-animation card-header">
                 <div class="card-header-title">
-                      INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (1)
+                      INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (3)
                 </div>
             </div>
             <div class="card-body">
-              <div class="chart" id="insumos_oferecidos_pelo_projeto_raca_cor_1"></div>
+              <div class="chart" id="insumos_oferecidos_pelo_projeto_raca_cor_3"></div>
             </div>
         </div>
     </div>
-    <!-- INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (1) - FIM -->
+    <!-- INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (3) - FIM -->
   </div>
 </div>
 @endsection
@@ -49,9 +49,8 @@ am4core.ready(function() {
 am4core.useTheme(am4themes_animated);
 // Themes end
 
-let data = {};
-//INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (1) - INÍCIO
-axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_1')
+//INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (3) - INÍCIO
+axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_3')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};
@@ -67,7 +66,7 @@ axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_1')
     };
     //console.log('dataTest',dataSet);
 
-    var chart = am4core.create("insumos_oferecidos_pelo_projeto_raca_cor_1", am4charts.XYChart);
+    var chart = am4core.create("insumos_oferecidos_pelo_projeto_raca_cor_3", am4charts.XYChart);
 
     // some extra padding for range labels
     chart.paddingBottom = 50;
@@ -133,6 +132,37 @@ axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_1')
     var lineSeriesData = [];
 
     var data = dataSet;
+    /*var data =
+    {
+      "Sim \n\n Foi entregue: Termometro?":
+        {"Branco": 40,"Indígena": 0,"Amarelo": 0,"Negro": 37,"Não info.": 4},
+      "Não \n\n Foi entregue: Termometro?":
+        {"Branco": 42,"Indígena": 0,"Amarelo": 0,"Negro": 80,"Não info.": 0},
+      "Sim \n\n Foi entregue: Dipirona?":
+        {"Branco": 24,"Indígena": 0,"Amarelo": 0,"Negro": 26,"Não info.": 3},
+      "Não \n\n Foi entregue: Dipirona?":
+        {"Branco": 58,"Indígena": 0,"Amarelo": 0,"Negro": 91,"Não info.": 1},
+      "Sim \n\n Foi entregue: Paracetamol?":
+        {"Branco": 12,"Indígena": 0,"Amarelo": 0,"Negro": 9,"Não info.": 0},
+      "Não \n\n Foi entregue: Paracetamol?":
+        {"Branco": 70,"Indígena": 0,"Amarelo": 0,"Negro": 108,"Não info.": 4},
+      "Sim \n\n Foi entregue: Oximetro?":
+        {"Branco": 22,"Indígena": 0,"Amarelo": 0,"Negro": 17,"Não info.": 4},
+      "Não \n\n Foi entregue: Oximetro?":
+        {"Branco": 60,"Indígena": 0,"Amarelo": 0,"Negro": 100,"Não info.": 0},
+      "Sim \n\n Foi entregue: Mascaras de tecido?":
+        {"Branco": 42,"Indígena": 0,"Amarelo": 0,"Negro": 62,"Não info.": 4},
+      "Não \n\n Foi entregue: Mascaras de tecido?":
+        {"Branco": 40,"Indígena": 0,"Amarelo": 0,"Negro": 55,"Não info.": 0},
+      "Sim \n\n Foi entregue: Material de limpeza?":
+        {"Branco": 30,"Indígena": 0,"Amarelo": 0,"Negro": 41,"Não info.": 4},
+      "Não \n\n Foi entregue: Material de limpeza?":
+        {"Branco": 52,"Indígena": 0,"Amarelo": 0,"Negro": 76,"Não info.": 0},
+      "Sim \n\n Foi entregue: Cesta basica?":
+        {"Branco": 36,"Indígena": 0,"Amarelo": 0,"Negro": 46,"Não info.": 4},
+      "Não \n\n Foi entregue: Cesta basica?":
+        {"Branco": 46,"Indígena": 0,"Amarelo": 0,"Negro": 71,"Não info.": 0},
+    }*/
 
     // process data ant prepare it for the chart
     for (var providerName in data) {
@@ -195,7 +225,7 @@ axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_1')
     range.tick.location = 1;
     range.grid.location = 1;
   });
-//INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (1) - FIM
+//INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (3) - FIM
 });
 </script>
 @endsection

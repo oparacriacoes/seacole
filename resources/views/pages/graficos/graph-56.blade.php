@@ -13,26 +13,26 @@
                   <i class="pe-7s-car icon-gradient bg-mean-fruit">
                   </i>
               </div>
-              <div>INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2)</div>
+              <div>PROBLEMAS COM SERVIÇOS DE REFERÊNCIA?</div>
           </div>
       </div>
   </div>
   <x-chart-list/>
   <div class="row">
-    <!-- INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2) - INÍCIO (GRÁFICO 14) -->
+    <!-- PROBLEMAS COM SERVIÇOS DE REFERÊNCIA? - INÍCIO (GRÁFICO 56) -->
     <div class="col">
         <div class="mb-3 card">
             <div class="card-header-tab card-header-tab-animation card-header">
                 <div class="card-header-title">
-                      INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2)
+                      PROBLEMAS COM SERVIÇOS DE REFERÊNCIA?
                 </div>
             </div>
             <div class="card-body">
-              <div class="chart" id="insumos_oferecidos_pelo_projeto_raca_cor_2"></div>
+              <div class="chart" id="problemas_servicos_referencia"></div>
             </div>
         </div>
     </div>
-    <!-- INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2) - FIM -->
+    <!-- PROBLEMAS COM SERVIÇOS DE REFERÊNCIA? - FIM -->
   </div>
 </div>
 @endsection
@@ -49,8 +49,8 @@ am4core.ready(function() {
 am4core.useTheme(am4themes_animated);
 // Themes end
 
-//INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2) - INÍCIO
-axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_2')
+//PROBLEMAS COM SERVIÇOS DE REFERÊNCIA? - INÍCIO
+axios.get('/chart/problemas_servicos_referencia')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};
@@ -66,7 +66,7 @@ axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_2')
     };
     //console.log('dataSet',dataSet);
 
-    var chart = am4core.create("insumos_oferecidos_pelo_projeto_raca_cor_2", am4charts.XYChart);
+    var chart = am4core.create("problemas_servicos_referencia", am4charts.XYChart);
 
     // some extra padding for range labels
     chart.paddingBottom = 50;
@@ -134,22 +134,16 @@ axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_2')
     var data = dataSet;
     /*var data =
     {
-      "Sim \n\n Precisa de ajuda para comprar remédios de uso contínuo?":
-        {"Branco": 7,"Indígena": 0,"Amarelo": 0,"Negro": 12,"Não info.": 0},
-      "Não \n\n Precisa de ajuda para comprar remédios de uso contínuo?":
-        {"Branco": 23,"Indígena": 0,"Amarelo": 0,"Negro": 31,"Não info.": 3},
-      "Sim \n\n Precisa de ajuda para comprar remédios para o tratamento do quadro atual?":
-        {"Branco": 8,"Indígena": 0,"Amarelo": 0,"Negro": 14,"Não info.": 2},
-      "Não \n\n Precisa de ajuda para comprar remédios para o tratamento do quadro atual?":
-        {"Branco": 22,"Indígena": 0,"Amarelo": 0,"Negro": 29,"Não info.": 1},
-      "Sim \n\n Precisa de ajuda para comprar alimento ou outro produtos de necessidade básica?":
-        {"Branco": 17,"Indígena": 0,"Amarelo": 0,"Negro": 20,"Não info.": 1},
-      "Não \n\n Precisa de ajuda para comprar alimento ou outro produtos de necessidade básica?":
-        {"Branco": 13,"Indígena": 0,"Amarelo": 0,"Negro": 23,"Não info.": 2},
-      "Sim \n\n Precisa de ajuda para outros?":
+      "UBS (Unidade Básica de Saúde - posto de saúde)":
+        {"Branco": 2,"Indígena": 0,"Amarelo": 0,"Negro": 2,"Não info.": 0},
+      "UPA (Unidade de Pronto Atendimento)":
+        {"Branco": 1,"Indígena": 0,"Amarelo": 0,"Negro": 0,"Não info.": 0},
+      "AMA":
         {"Branco": 0,"Indígena": 0,"Amarelo": 0,"Negro": 0,"Não info.": 0},
-      "Não \n\n Precisa de ajuda para outros?":
-        {"Branco": 30,"Indígena": 0,"Amarelo": 0,"Negro": 41,"Não info.": 3},
+      "Hospital público?":
+        {"Branco": 2,"Indígena": 0,"Amarelo": 0,"Negro": 5,"Não info.": 0},
+      "Hospital privado":
+        {"Branco": 1,"Indígena": 0,"Amarelo": 0,"Negro": 0,"Não info.": 0},
     }*/
 
     // process data ant prepare it for the chart
@@ -164,7 +158,6 @@ axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_2')
        count++;
        // we generate unique category for each column (providerName + "_" + itemName) and store realName
        tempArray.push({ category: providerName + "_" + itemName, realName: itemName, value: providerData[itemName], provider: providerName})
-
      }
      // sort temp array
      tempArray.sort(function(a, b) {
@@ -212,8 +205,8 @@ axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_2')
     range.label.disabled = true;
     range.tick.location = 1;
     range.grid.location = 1;
+//PROBLEMAS COM SERVIÇOS DE REFERÊNCIA? - FIM
   });
-//INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2) - FIM
 });
 </script>
 @endsection

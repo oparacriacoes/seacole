@@ -13,26 +13,26 @@
                   <i class="pe-7s-car icon-gradient bg-mean-fruit">
                   </i>
               </div>
-              <div>INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2)</div>
+              <div>USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR</div>
           </div>
       </div>
   </div>
   <x-chart-list/>
   <div class="row">
-    <!-- INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2) - INÍCIO (GRÁFICO 14) -->
+    <!-- USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR - INÍCIO (GRÁFICO 14) -->
     <div class="col">
         <div class="mb-3 card">
             <div class="card-header-tab card-header-tab-animation card-header">
                 <div class="card-header-title">
-                      INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2)
+                      USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR
                 </div>
             </div>
             <div class="card-body">
-              <div class="chart" id="insumos_oferecidos_pelo_projeto_raca_cor_2"></div>
+              <div class="chart" id="uso_cronico_alcool_drogas_raca_cor"></div>
             </div>
         </div>
     </div>
-    <!-- INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2) - FIM -->
+    <!-- USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR - FIM -->
   </div>
 </div>
 @endsection
@@ -49,14 +49,14 @@ am4core.ready(function() {
 am4core.useTheme(am4themes_animated);
 // Themes end
 
-//INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2) - INÍCIO
-axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_2')
+//USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR - INÍCIO
+axios.get('/chart/uso_cronico_alcool_drogas_raca_cor')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};
     for(var i=0;i<response.data.length;i++){
       //console.log(response.data[i]);
-      dataSet[response.data[i].pergunta] = {
+      dataSet[response.data[i].condicao] = {
         'Branco':response.data[i].branca,
         'Indígena':response.data[i].indigena,
         'Amarelo':response.data[i].amarela,
@@ -66,7 +66,7 @@ axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_2')
     };
     //console.log('dataSet',dataSet);
 
-    var chart = am4core.create("insumos_oferecidos_pelo_projeto_raca_cor_2", am4charts.XYChart);
+    var chart = am4core.create("uso_cronico_alcool_drogas_raca_cor", am4charts.XYChart);
 
     // some extra padding for range labels
     chart.paddingBottom = 50;
@@ -134,28 +134,15 @@ axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_2')
     var data = dataSet;
     /*var data =
     {
-      "Sim \n\n Precisa de ajuda para comprar remédios de uso contínuo?":
-        {"Branco": 7,"Indígena": 0,"Amarelo": 0,"Negro": 12,"Não info.": 0},
-      "Não \n\n Precisa de ajuda para comprar remédios de uso contínuo?":
-        {"Branco": 23,"Indígena": 0,"Amarelo": 0,"Negro": 31,"Não info.": 3},
-      "Sim \n\n Precisa de ajuda para comprar remédios para o tratamento do quadro atual?":
-        {"Branco": 8,"Indígena": 0,"Amarelo": 0,"Negro": 14,"Não info.": 2},
-      "Não \n\n Precisa de ajuda para comprar remédios para o tratamento do quadro atual?":
-        {"Branco": 22,"Indígena": 0,"Amarelo": 0,"Negro": 29,"Não info.": 1},
-      "Sim \n\n Precisa de ajuda para comprar alimento ou outro produtos de necessidade básica?":
-        {"Branco": 17,"Indígena": 0,"Amarelo": 0,"Negro": 20,"Não info.": 1},
-      "Não \n\n Precisa de ajuda para comprar alimento ou outro produtos de necessidade básica?":
-        {"Branco": 13,"Indígena": 0,"Amarelo": 0,"Negro": 23,"Não info.": 2},
-      "Sim \n\n Precisa de ajuda para outros?":
-        {"Branco": 0,"Indígena": 0,"Amarelo": 0,"Negro": 0,"Não info.": 0},
-      "Não \n\n Precisa de ajuda para outros?":
-        {"Branco": 30,"Indígena": 0,"Amarelo": 0,"Negro": 41,"Não info.": 3},
+      "Uso crônico de alcool":
+        {"Branco": 5,"Indígena": 0,"Amarelo": 0,"Negro": 16,"Não info.": 0},
+      "Uso crônico outras drogas":
+        {"Branco": 2,"Indígena": 0,"Amarelo": 0,"Negro": 6,"Não info.": 0}
     }*/
 
     // process data ant prepare it for the chart
     for (var providerName in data) {
      var providerData = data[providerName];
-
      // add data of one provider to temp array
      var tempArray = [];
      var count = 0;
@@ -164,8 +151,8 @@ axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_2')
        count++;
        // we generate unique category for each column (providerName + "_" + itemName) and store realName
        tempArray.push({ category: providerName + "_" + itemName, realName: itemName, value: providerData[itemName], provider: providerName})
-
      }
+
      // sort temp array
      tempArray.sort(function(a, b) {
        if (a.value > b.value) {
@@ -213,7 +200,7 @@ axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_2')
     range.tick.location = 1;
     range.grid.location = 1;
   });
-//INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2) - FIM
+//USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR - FIM
 });
 </script>
 @endsection

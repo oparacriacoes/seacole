@@ -94,4 +94,16 @@ Route::middleware(['auth'])->group(function () {
   Route::get('chart/idas_sistema_saude_x_prescricao_medicamentos_brancas', 'ChartsController@idas_sistema_saude_x_prescricao_medicamentos_brancas')->name('chart.idas-sistema-saude-x-prescricao-medicamentos-brancas');
   Route::get('chart/idas_sistema_saude_x_prescricao_medicamentos_pretas', 'ChartsController@idas_sistema_saude_x_prescricao_medicamentos_pretas')->name('chart.idas-sistema-saude-x-prescricao-medicamentos-pretas');
   Route::get('chart/idas_sistema_saude_x_prescricao_medicamentos_pardas', 'ChartsController@idas_sistema_saude_x_prescricao_medicamentos_pardas')->name('chart.idas-sistema-saude-x-prescricao-medicamentos-pardas');
+  Route::get('chart/uso_cronico_alcool_drogas_raca_cor', 'ChartsController@uso_cronico_alcool_drogas_raca_cor')->name('chart.uso-cronico-alcool-drogas-raca-cor');
+  Route::get('chart/gestante_posparto_amamenta', 'ChartsController@gestante_posparto_amamenta')->name('chart.gestante-posparto-amamenta');
+  Route::get('chart/como_acessa_sistema_saude', 'ChartsController@como_acessa_sistema_saude')->name('chart.como-acessa-sistema-saude');
+  Route::get('chart/diagnostico_covid_19', 'ChartsController@diagnostico_covid_19')->name('chart.diagnostico-covid-19');
+  Route::get('chart/testes_realizados', 'ChartsController@testes_realizados')->name('chart.testes-realizados');
+  Route::get('chart/desfecho', 'ChartsController@desfecho')->name('chart.desfecho');
+  Route::get('chart/sequelas', 'ChartsController@sequelas')->name('chart.sequelas');
+  Route::get('chart/precisou_ir_servico_saude', 'ChartsController@precisou_ir_servico_saude')->name('chart.precisou-ir-servico-saude');
+  Route::get('chart/recebeu_medicacoes_covid_19', 'ChartsController@recebeu_medicacoes_covid_19')->name('chart.recebeu-medicacoes-covid-19');
+  Route::get('chart/recebeu_medicacoes_covid_19_2', 'ChartsController@recebeu_medicacoes_covid_19_2')->name('chart.recebeu-medicacoes-covid-19-2');
+  Route::get('chart/problemas_servicos_referencia', 'ChartsController@problemas_servicos_referencia')->name('chart.problemas-servicos-referencia');
+  Route::get('chart/internacao_pelo_quadro', 'ChartsController@internacao_pelo_quadro')->name('chart.internacao-pelo-quadro');
 });

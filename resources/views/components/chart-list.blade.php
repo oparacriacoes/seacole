@@ -32,24 +32,36 @@
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 23) }}">#23 - CASOS AVALIADOS POR EQUIPE MÉDICA</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 24) }}">#24 - ACOMPANHAMENTO PSICOLÓGICO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 27) }}">#27 - AVALIAÇÃO PSICÓLOGOS POR RAÇA/COR</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 33) }}">#33 - USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 34) }}">#34 - GESTANTE + PÓS-PARTO + AMAMENTA</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 35) }}">#35 - GESTAÇÃO É OU FOI DE ALTO RISCO?</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 37) }}">#37 - ACOMPANHAMENTO DO SISTEMA DE SAÚDE</a>
-        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 39) }}">#39 - SAÚDE MENTAL</a>
-        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 49) }}">#49 - SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO</a>
       </div>
     </div>
     <div class="col">
       <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 38) }}">#38 - COMO ACESSA O SISTEMA DE SAÚDE?</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 39) }}">#39 - SAÚDE MENTAL</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 40) }}">#40 - DIAGNÓSTICO DE COVID-19</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 41) }}">#41 - TESTES REALIZADOS?</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 47) }}">#47 - DESFECHO</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 48) }}">#48 - SEQUELAS</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 49) }}">#49 - SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 50) }}">#50 - PRECISOU IR A ALGUM SERVIÇO DE SAÚDE?</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 51) }}">#51 - RECEBEU MEDICAÇÕES PARA COVID-19?</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 52) }}">#52 - RECEBEU MEDICAÇÕES PARA COVID-19 (2)?</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 56) }}">#56 - PROBLEMAS COM SERVIÇOS DE REFERÊNCIA?</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 57) }}">#57 - INTERNAÇÃO PELO QUADRO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 53) }}">#53 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS BANCAS)</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 54) }}">#54 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS PRETAS)</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 55) }}">#55 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS PARDAS)</a>
-        <a class="list-group-item list-group-item-action" href="#">Gráfico #10</a>
-        <a class="list-group-item list-group-item-action" href="#">Gráfico #11</a>
-        <a class="list-group-item list-group-item-action" href="#">Gráfico #12</a>
       </div>
     </div>
     <div class="col">
       <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="#">Gráfico #10</a>
+        <a class="list-group-item list-group-item-action" href="#">Gráfico #11</a>
+        <a class="list-group-item list-group-item-action" href="#">Gráfico #12</a>
         <a class="list-group-item list-group-item-action" href="#">Gráfico #13</a>
         <a class="list-group-item list-group-item-action" href="#">Gráfico #14</a>
         <a class="list-group-item list-group-item-action" href="#">Gráfico #15</a>

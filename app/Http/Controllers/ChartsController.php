@@ -2213,4 +2213,1097 @@ class ChartsController extends Controller
     return array($idas_sistema_saude_x_prescricao_medicamentos_pardas);
   }
 
+  public function uso_cronico_alcool_drogas_raca_cor()
+  {
+    $uso_cronico_alcool_drogas_raca_cor = DB::select("
+    SELECT
+        condicao
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Uso crônico de alcool ' AS condicao
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        WHERE cronico_alcool = 'sim'
+        GROUP BY cor_raca, cronico_alcool)TB
+      GROUP BY condicao
+
+      UNION ALL
+
+      SELECT
+        condicao
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Uso crônico de outras drogas' AS condicao
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        WHERE outras_drogas = 'sim'
+        GROUP BY cor_raca, outras_drogas)TB
+      GROUP BY condicao
+    ");
+    return json_encode($uso_cronico_alcool_drogas_raca_cor);
+  }
+
+  public function gestante_posparto_amamenta()
+  {
+    $gestante_posparto_amamenta = DB::select("
+    SELECT
+        condicao
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Gestante' AS condicao
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        WHERE gestante = 'sim'
+        GROUP BY cor_raca, gestante)TB
+      GROUP BY condicao
+
+      UNION ALL
+
+      SELECT
+        condicao
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Está no pós-parto (40 dias após o parto)' AS condicao
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        WHERE pos_parto = 'sim'
+        GROUP BY cor_raca, pos_parto)TB
+      GROUP BY condicao
+
+      UNION ALL
+
+      SELECT
+        condicao
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Amamenta' AS condicao
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        WHERE amamenta = 'sim'
+        GROUP BY cor_raca, amamenta)TB
+      GROUP BY condicao
+    ");
+    return json_encode($gestante_posparto_amamenta);
+  }
+
+  public function como_acessa_sistema_saude()
+  {
+    $como_acessa_sistema_saude = DB::select("
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'É usuária/o do SUS (público)' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND sistema_saude LIKE '%31%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND sistema_saude LIKE '%31%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND sistema_saude LIKE '%31%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND sistema_saude LIKE '%31%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND sistema_saude LIKE '%31%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND sistema_saude LIKE '%31%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, sistema_saude)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Tem convênio/plano de saúde' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND sistema_saude LIKE '%29%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND sistema_saude LIKE '%29%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND sistema_saude LIKE '%29%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND sistema_saude LIKE '%29%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND sistema_saude LIKE '%29%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND sistema_saude LIKE '%29%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, sistema_saude)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Usuária/o de serviços pagos \'populares\' (Ex: Dr Consulta)' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND sistema_saude LIKE '%59%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND sistema_saude LIKE '%59%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND sistema_saude LIKE '%59%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND sistema_saude LIKE '%59%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND sistema_saude LIKE '%59%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND sistema_saude LIKE '%59%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, sistema_saude)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Usuária/o de serviços particulares não cobertos por convênios' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND sistema_saude LIKE '%65%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND sistema_saude LIKE '%65%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND sistema_saude LIKE '%65%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND sistema_saude LIKE '%65%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND sistema_saude LIKE '%65%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND sistema_saude LIKE '%65%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, sistema_saude)TB
+      GROUP BY pergunta
+    ");
+    return json_encode($como_acessa_sistema_saude);
+  }
+
+  public function diagnostico_covid_19()
+  {
+    $diagnostico_covid_19 = DB::select("
+    SELECT
+        COALESCE(sintomas_iniciais, 'Não info.') AS sintomas_iniciais
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          sintomas_iniciais
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        GROUP BY cor_raca, sintomas_iniciais)TB
+      GROUP BY sintomas_iniciais
+    ");
+    return json_encode($diagnostico_covid_19);
+  }
+
+  public function testes_realizados()
+  {
+    $testes_realizados = DB::select("
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'PCR' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND teste_utilizado LIKE '%PCR%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND teste_utilizado LIKE '%PCR%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND teste_utilizado LIKE '%PCR%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND teste_utilizado LIKE '%PCR%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND teste_utilizado LIKE '%PCR%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND teste_utilizado LIKE '%PCR%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, teste_utilizado)TB
+      GROUP BY pergunta
+
+
+
+
+    UNION ALL
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Sorologias (IgM/IgG)' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND teste_utilizado LIKE '%sorologias (IgM/IgG)%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND teste_utilizado LIKE '%sorologias (IgM/IgG)%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND teste_utilizado LIKE '%sorologias (IgM/IgG)%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND teste_utilizado LIKE '%sorologias (IgM/IgG)%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND teste_utilizado LIKE '%sorologias (IgM/IgG)%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND teste_utilizado LIKE '%sorologias (IgM/IgG)%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, teste_utilizado)TB
+      GROUP BY pergunta
+
+    UNION ALL
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Teste rápido' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND teste_utilizado LIKE '%teste rápido%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND teste_utilizado LIKE '%teste rápido%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND teste_utilizado LIKE '%teste rápido%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND teste_utilizado LIKE '%teste rápido%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND teste_utilizado LIKE '%teste rápido%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND teste_utilizado LIKE '%teste rápido%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, teste_utilizado)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Não informado' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND teste_utilizado LIKE '%não informado%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND teste_utilizado LIKE '%não informado%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND teste_utilizado LIKE '%não informado%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND teste_utilizado LIKE '%não informado%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND teste_utilizado LIKE '%não informado%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND teste_utilizado LIKE '%não informado%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, teste_utilizado)TB
+      GROUP BY pergunta
+    ");
+    return json_encode($testes_realizados);
+  }
+
+  public function desfecho()
+  {
+    $desfecho = DB::select("
+    SELECT
+        COALESCE(desfecho, 'Não info.') AS desfecho
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          desfecho
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, desfecho)TB
+      GROUP BY desfecho
+    ");
+    return json_encode($desfecho);
+  }
+
+  public function sequelas()
+  {
+    $sequelas = DB::select("
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Perda persistente de paladar' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND sequelas LIKE '%perda persistente de paladar%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND sequelas LIKE '%perda persistente de paladar%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND sequelas LIKE '%perda persistente de paladar%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND sequelas LIKE '%perda persistente de paladar%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND sequelas LIKE '%perda persistente de paladar%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND sequelas LIKE '%perda persistente de paladar%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, sequelas)TB
+      GROUP BY pergunta
+
+
+
+
+    UNION ALL
+
+
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Tosse persistente' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND sequelas LIKE '%tosse persistente%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND sequelas LIKE '%tosse persistente%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND sequelas LIKE '%tosse persistente%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND sequelas LIKE '%tosse persistente%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND sequelas LIKE '%tosse persistente%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND sequelas LIKE '%tosse persistente%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, sequelas)TB
+      GROUP BY pergunta
+
+
+    UNION ALL
+
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Falta de ar persistente' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND sequelas LIKE '%falta de ar persistente%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND sequelas LIKE '%falta de ar persistente%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND sequelas LIKE '%falta de ar persistente%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND sequelas LIKE '%falta de ar persistente%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND sequelas LIKE '%falta de ar persistente%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND sequelas LIKE '%falta de ar persistente%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, sequelas)TB
+      GROUP BY pergunta
+
+
+    UNION ALL
+
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Dor de cabeça persistente' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND sequelas LIKE '%dor de cabeça persistente%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND sequelas LIKE '%dor de cabeça persistente%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND sequelas LIKE '%dor de cabeça persistente%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND sequelas LIKE '%dor de cabeça persistente%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND sequelas LIKE '%dor de cabeça persistente%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND sequelas LIKE '%dor de cabeça persistente%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, sequelas)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Eventos tromboliticos' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND sequelas LIKE '%eventos tromboliticos%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND sequelas LIKE '%eventos tromboliticos%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND sequelas LIKE '%eventos tromboliticos%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND sequelas LIKE '%eventos tromboliticos%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND sequelas LIKE '%eventos tromboliticos%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND sequelas LIKE '%eventos tromboliticos%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, sequelas)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+
+      SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Danos renais' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND sequelas LIKE '%danos renais%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND sequelas LIKE '%danos renais%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND sequelas LIKE '%danos renais%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND sequelas LIKE '%danos renais%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND sequelas LIKE '%danos renais%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND sequelas LIKE '%danos renais%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+        GROUP BY cor_raca, sequelas)TB
+      GROUP BY pergunta
+    ");
+    return json_encode($sequelas);
+  }
+
+  public function precisou_ir_servico_saude()
+  {
+    $precisou_ir_servico_saude = DB::select("
+    /*UBS*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'UBS (Unidade Básica de Saúde - posto de saúde)' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisou_servico LIKE '%UBS%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND precisou_servico LIKE '%UBS%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND precisou_servico LIKE '%UBS%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND precisou_servico LIKE '%UBS%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND precisou_servico LIKE '%UBS%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND precisou_servico LIKE '%UBS%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, precisou_servico)TB
+      GROUP BY pergunta
+
+
+
+      UNION ALL
+
+
+      /*UPA*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'UPA (Unidade de Pronto Atendimento)' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisou_servico LIKE '%UPA%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND precisou_servico LIKE '%UPA%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND precisou_servico LIKE '%UPA%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND precisou_servico LIKE '%UPA%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND precisou_servico LIKE '%UPA%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND precisou_servico LIKE '%UPA%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, precisou_servico)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      /*ama*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'AMA' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisou_servico LIKE '%ama%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND precisou_servico LIKE '%ama%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND precisou_servico LIKE '%ama%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND precisou_servico LIKE '%ama%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND precisou_servico LIKE '%ama%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND precisou_servico LIKE '%ama%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, precisou_servico)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*Hospital público*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Hospital público' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisou_servico LIKE '%Hospital público%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND precisou_servico LIKE '%Hospital público%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND precisou_servico LIKE '%Hospital público%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND precisou_servico LIKE '%Hospital público%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND precisou_servico LIKE '%Hospital público%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND precisou_servico LIKE '%Hospital público%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, precisou_servico)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*hospital privado*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Hospital privado' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND precisou_servico LIKE '%hospital privado%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND precisou_servico LIKE '%hospital privado%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND precisou_servico LIKE '%hospital privado%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND precisou_servico LIKE '%hospital privado%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND precisou_servico LIKE '%hospital privado%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND precisou_servico LIKE '%hospital privado%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, precisou_servico)TB
+      GROUP BY pergunta
+    ");
+    return json_encode($precisou_ir_servico_saude);
+  }
+
+  public function recebeu_medicacoes_covid_19()
+  {
+    $recebeu_medicacoes_covid_19 = DB::select("
+    /*Azitromicina*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Recebeu Azitromicina' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND recebeu_med_covid LIKE '%Azitromicina%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND recebeu_med_covid LIKE '%Azitromicina%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND recebeu_med_covid LIKE '%Azitromicina%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND recebeu_med_covid LIKE '%Azitromicina%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND recebeu_med_covid LIKE '%Azitromicina%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND recebeu_med_covid LIKE '%Azitromicina%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, recebeu_med_covid)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*outro antibiótico*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Recebeu outro antibiótico' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND recebeu_med_covid LIKE '%outro antibiótico%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND recebeu_med_covid LIKE '%outro antibiótico%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND recebeu_med_covid LIKE '%outro antibiótico%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND recebeu_med_covid LIKE '%outro antibiótico%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND recebeu_med_covid LIKE '%outro antibiótico%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND recebeu_med_covid LIKE '%outro antibiótico%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, recebeu_med_covid)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*ivermectina*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Recebeu ivermectina' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND recebeu_med_covid LIKE '%ivermectina%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND recebeu_med_covid LIKE '%ivermectina%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND recebeu_med_covid LIKE '%ivermectina%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND recebeu_med_covid LIKE '%ivermectina%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND recebeu_med_covid LIKE '%ivermectina%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND recebeu_med_covid LIKE '%ivermectina%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, recebeu_med_covid)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+
+
+      /*cloroquina/hidroxicloroquina*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Recebeu cloroquina/hidroxicloroquina' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND recebeu_med_covid LIKE '%cloroquina/hidroxicloroquina%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND recebeu_med_covid LIKE '%cloroquina/hidroxicloroquina%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND recebeu_med_covid LIKE '%cloroquina/hidroxicloroquina%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND recebeu_med_covid LIKE '%cloroquina/hidroxicloroquina%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND recebeu_med_covid LIKE '%cloroquina/hidroxicloroquina%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND recebeu_med_covid LIKE '%cloroquina/hidroxicloroquina%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, recebeu_med_covid)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+
+      /*oseltamivir (tamiflu)*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Recebeu oseltamivir (tamiflu)' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND recebeu_med_covid LIKE '%oseltamivir (tamiflu)%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND recebeu_med_covid LIKE '%oseltamivir (tamiflu)%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND recebeu_med_covid LIKE '%oseltamivir (tamiflu)%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND recebeu_med_covid LIKE '%oseltamivir (tamiflu)%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND recebeu_med_covid LIKE '%oseltamivir (tamiflu)%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND recebeu_med_covid LIKE '%oseltamivir (tamiflu)%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, recebeu_med_covid)TB
+      GROUP BY pergunta
+    ");
+    return json_encode($recebeu_medicacoes_covid_19);
+  }
+
+  public function recebeu_medicacoes_covid_19_2()
+  {
+    $recebeu_medicacoes_covid_19_2 = DB::select("
+    /*algum antialérgico*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Recebeu algum antialérgico' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND recebeu_med_covid LIKE '%algum antialérgico%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND recebeu_med_covid LIKE '%algum antialérgico%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND recebeu_med_covid LIKE '%algum antialérgico%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND recebeu_med_covid LIKE '%algum antialérgico%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND recebeu_med_covid LIKE '%algum antialérgico%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND recebeu_med_covid LIKE '%algum antialérgico%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, recebeu_med_covid)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*algum corticóide*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Recebeu algum corticóide' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND recebeu_med_covid LIKE '%algum corticóide%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND recebeu_med_covid LIKE '%algum corticóide%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND recebeu_med_covid LIKE '%algum corticóide%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND recebeu_med_covid LIKE '%algum corticóide%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND recebeu_med_covid LIKE '%algum corticóide%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND recebeu_med_covid LIKE '%algum corticóide%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, recebeu_med_covid)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+
+      /*algum antiinflamatório*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Recebeu algum antiinflamatório' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND recebeu_med_covid LIKE '%algum antiinflamatório%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND recebeu_med_covid LIKE '%algum antiinflamatório%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND recebeu_med_covid LIKE '%algum antiinflamatório%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND recebeu_med_covid LIKE '%algum antiinflamatório%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND recebeu_med_covid LIKE '%algum antiinflamatório%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND recebeu_med_covid LIKE '%algum antiinflamatório%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, recebeu_med_covid)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+
+      /*itamina*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Recebeu Vitamina D' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND recebeu_med_covid LIKE '%itamina%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND recebeu_med_covid LIKE '%itamina%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND recebeu_med_covid LIKE '%itamina%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND recebeu_med_covid LIKE '%itamina%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND recebeu_med_covid LIKE '%itamina%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND recebeu_med_covid LIKE '%itamina%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, recebeu_med_covid)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+
+
+      /*inco*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Recebeu Zinco' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND recebeu_med_covid LIKE '%inco%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND recebeu_med_covid LIKE '%inco%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND recebeu_med_covid LIKE '%inco%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND recebeu_med_covid LIKE '%inco%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND recebeu_med_covid LIKE '%inco%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND recebeu_med_covid LIKE '%inco%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, recebeu_med_covid)TB
+      GROUP BY pergunta
+    ");
+    return json_encode($recebeu_medicacoes_covid_19_2);
+  }
+
+  public function problemas_servicos_referencia()
+  {
+    $problemas_servicos_referencia = DB::select("
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'UBS (Unidade Básica de Saúde - posto de saúde)' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND teve_algum_problema LIKE '%UBS%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND teve_algum_problema LIKE '%UBS%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND teve_algum_problema LIKE '%UBS%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND teve_algum_problema LIKE '%UBS%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND teve_algum_problema LIKE '%UBS%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND teve_algum_problema LIKE '%UBS%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, teve_algum_problema)TB
+      GROUP BY pergunta
+
+
+
+      UNION ALL
+
+
+      /*UPA*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'UPA (Unidade de Pronto Atendimento)' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND teve_algum_problema LIKE '%UPA%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND teve_algum_problema LIKE '%UPA%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND teve_algum_problema LIKE '%UPA%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND teve_algum_problema LIKE '%UPA%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND teve_algum_problema LIKE '%UPA%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND teve_algum_problema LIKE '%UPA%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, teve_algum_problema)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      /*ama*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'AMA' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND teve_algum_problema LIKE '%ama%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND teve_algum_problema LIKE '%ama%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND teve_algum_problema LIKE '%ama%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND teve_algum_problema LIKE '%ama%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND teve_algum_problema LIKE '%ama%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND teve_algum_problema LIKE '%ama%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, teve_algum_problema)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*Hospital público*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Hospital público' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND teve_algum_problema LIKE '%Hospital público%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND teve_algum_problema LIKE '%Hospital público%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND teve_algum_problema LIKE '%Hospital público%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND teve_algum_problema LIKE '%Hospital público%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND teve_algum_problema LIKE '%Hospital público%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND teve_algum_problema LIKE '%Hospital público%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, teve_algum_problema)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      /*hospital privado*/
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Hospital privado' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND teve_algum_problema LIKE '%hospital privado%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND teve_algum_problema LIKE '%hospital privado%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND teve_algum_problema LIKE '%hospital privado%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND teve_algum_problema LIKE '%hospital privado%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND teve_algum_problema LIKE '%hospital privado%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND teve_algum_problema LIKE '%hospital privado%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, teve_algum_problema)TB
+      GROUP BY pergunta
+    ");
+    return json_encode($problemas_servicos_referencia);
+  }
+
+  public function internacao_pelo_quadro()
+  {
+    $internacao_pelo_quadro = DB::select("
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Ambulância financiada pelo projeto?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos si ON si.paciente_id = pac.id
+        WHERE precisou_ambulancia = 'sim'
+        GROUP BY cor_raca, precisou_ambulancia)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+      SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Internação pelo quadro (suspeito ou confirmado)?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos si ON si.paciente_id = pac.id
+        WHERE precisou_internacao = 'sim'
+        AND (sintomas_iniciais = 'Suspeito' OR sintomas_iniciais = 'Confirmado')
+        GROUP BY cor_raca, precisou_internacao)TB
+      GROUP BY pergunta
+    ");
+    return json_encode($internacao_pelo_quadro);
+  }
+
 }

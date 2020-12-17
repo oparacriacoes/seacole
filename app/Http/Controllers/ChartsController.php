@@ -20,6 +20,25 @@ class ChartsController extends Controller
 
   public function novos_casos_monitorados()
   {
+    /*$novos_casos_monitorados_select = DB::select("
+    SELECT
+        CAST(CONCAT(SUBSTRING(data_inicio,7,4),'-',SUBSTRING(data_inicio,4,2),'-',SUBSTRING(data_inicio,1,2)) AS DATE) AS date
+      , COUNT(id) AS value
+    FROM
+      (SELECT
+        id
+        , CASE
+          WHEN LENGTH(data_inicio) = 8 THEN CONCAT(SUBSTRING(data_inicio,1,6),20,SUBSTRING(data_inicio,7,2))
+          ELSE data_inicio
+        END AS data_inicio
+      FROM
+        (SELECT
+          id
+          , CASE WHEN data_inicio_ac_psicologico IS NULL THEN data_inicio_monitoramento ELSE data_inicio_ac_psicologico END AS data_inicio
+        FROM pacientes)TB)TBB
+    GROUP BY 1
+    ORDER BY 1;
+    ");*/
     $novos_casos_monitorados_select = DB::select("
     SELECT
         CAST(CONCAT(SUBSTRING(data_inicio,7,4),'-',SUBSTRING(data_inicio,4,2),'-',SUBSTRING(data_inicio,1,2)) AS DATE) AS date
@@ -36,6 +55,7 @@ class ChartsController extends Controller
           id
           , CASE WHEN data_inicio_ac_psicologico IS NULL THEN data_inicio_monitoramento ELSE data_inicio_ac_psicologico END AS data_inicio
         FROM pacientes)TB)TBB
+        WHERE YEAR(CAST(CONCAT(SUBSTRING(data_inicio,7,4),'-',SUBSTRING(data_inicio,4,2),'-',SUBSTRING(data_inicio,1,2)) AS DATE)) <= (SELECT YEAR(SYSDATE()))
     GROUP BY 1
     ORDER BY 1;
     ");

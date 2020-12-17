@@ -52,6 +52,7 @@ am4core.useTheme(am4themes_animated);
 //NOVOS CASOS MONITORADOS - INÍCIO
 axios.get('/chart/novos_casos_monitorados')
     .then(response => {
+      console.log(response.data);
         // Create chart instance
         var chart = am4core.create("novos_casos_monitorados", am4charts.XYChart);
         chart.language.locale = am4lang_pt_BR;

@@ -3368,4 +3368,36 @@ class ChartsController extends Controller
     return json_encode($internacao_pelo_quadro);
   }
 
+  public function tempo_de_internacao()
+  {
+    $tempo_de_internacao = DB::select("
+    SELECT
+      tempo_internacao
+        , COALESCE(SUM(sem_informacao),0) AS sem_informacao
+        , COALESCE(SUM(preta),0) AS preta
+        , COALESCE(SUM(parda),0) AS parda
+        , COALESCE(SUM(branca),0) AS branca
+        , COALESCE(SUM(amarela),0) AS amarela
+        , COALESCE(SUM(indigena),0) AS indigena
+        , tempo_internacao_order
+    FROM
+      (SELECT
+        REPLACE(si.tempo_internacao, ' dias', '') AS tempo_internacao
+        , CAST(REPLACE(si.tempo_internacao, ' dias', '') AS SIGNED)  AS tempo_internacao_order
+        , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS sem_informacao
+        , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta
+        , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda
+        , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca
+        , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela
+        , CASE WHEN cor_raca = 'Indígena'THEN COUNT(pac.id) END AS indigena
+      FROM pacientes pac
+        INNER JOIN servico_internacaos si ON si.paciente_id = pac.id
+        WHERE tempo_internacao IS NOT NULL
+      GROUP BY tempo_internacao, cor_raca)TB
+    GROUP BY tempo_internacao, tempo_internacao_order
+    ORDER BY tempo_internacao_order;
+    ");
+    return $tempo_de_internacao;
+  }
+
 }

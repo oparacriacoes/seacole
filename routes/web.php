@@ -107,4 +107,5 @@ Route::middleware(['auth'])->group(function () {
   Route::get('chart/recebeu_medicacoes_covid_19_2', 'ChartsController@recebeu_medicacoes_covid_19_2')->name('chart.recebeu-medicacoes-covid-19-2');
   Route::get('chart/problemas_servicos_referencia', 'ChartsController@problemas_servicos_referencia')->name('chart.problemas-servicos-referencia');
   Route::get('chart/internacao_pelo_quadro', 'ChartsController@internacao_pelo_quadro')->name('chart.internacao-pelo-quadro');
+  Route::get('chart/tempo_de_internacao', 'ChartsController@tempo_de_internacao')->name('chart.tempo-de-internacao');
 });

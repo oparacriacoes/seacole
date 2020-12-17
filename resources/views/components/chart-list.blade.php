@@ -51,11 +51,12 @@
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 50) }}">#50 - PRECISOU IR A ALGUM SERVIÇO DE SAÚDE?</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 51) }}">#51 - RECEBEU MEDICAÇÕES PARA COVID-19?</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 52) }}">#52 - RECEBEU MEDICAÇÕES PARA COVID-19 (2)?</a>
-        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 56) }}">#56 - PROBLEMAS COM SERVIÇOS DE REFERÊNCIA?</a>
-        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 57) }}">#57 - INTERNAÇÃO PELO QUADRO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 53) }}">#53 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS BANCAS)</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 54) }}">#54 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS PRETAS)</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 55) }}">#55 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS PARDAS)</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 56) }}">#56 - PROBLEMAS COM SERVIÇOS DE REFERÊNCIA?</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 57) }}">#57 - INTERNAÇÃO PELO QUADRO</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 59) }}">#59 - TEMPO DE INTERNAÇÃO</a>
       </div>
     </div>
     <div class="col">

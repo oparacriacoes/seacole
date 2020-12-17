@@ -52,7 +52,7 @@ am4core.useTheme(am4themes_animated);
 //SITUAÇÃO TOTAL DE CASOS MONITORADOS - INÍCIO
 axios.get('/chart/situacao_total_casos_monitorados_1')
   .then(response => {
-    //console.log(response.data);
+    console.log(response.data);
     // Create chart instance
     var chart = am4core.create("situacao_total_casos_monitorados_1", am4charts.XYChart);
     chart.scrollbarX = new am4core.Scrollbar();

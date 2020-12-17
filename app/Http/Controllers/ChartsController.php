@@ -127,7 +127,7 @@ class ChartsController extends Controller
 
   public function situacao_total_casos_monitorados_1()
   {
-    $situacao_total_casos_monitorados_1_select = DB::select("
+    /*$situacao_total_casos_monitorados_1_select = DB::select("
     SELECT
       Case
         WHEN situacao = 1 THEN 'Caso ativo GRAVE'
@@ -151,6 +151,31 @@ class ChartsController extends Controller
       pacientes
     GROUP BY situacao
     ORDER BY 2 DESC;
+    ");*/
+    $situacao_total_casos_monitorados_1_select = DB::select("
+    SELECT
+      Case
+        WHEN situacao = 1 THEN 'Caso ativo GRAVE'
+        WHEN situacao = 2 THEN 'Caso ativo LEVE'
+        WHEN situacao = 3 THEN 'Contato caso confirmado - ativo'
+        WHEN situacao = 4 THEN 'Outras situações (sem relação com COVID-19) - ativos'
+        WHEN situacao = 5 THEN 'Exclusivo psicologia - ativo'
+        WHEN situacao = 6 THEN 'Monitoramento encerrado GRAVE - segue apenas com psicólogos'
+        WHEN situacao = 7 THEN 'Monitoramento encerrado LEVE - segue apenas com psicólogos'
+        WHEN situacao = 8 THEN 'Monitoramento encerrado contato - segue apenas com psicólogos'
+        WHEN situacao = 9 THEN 'Monitoramento encerrado outros - segue apenas com psicólogos'
+        WHEN situacao = 10 THEN 'Caso finalizado GRAVE'
+        WHEN situacao = 11 THEN 'Caso finalizado LEVE'
+        WHEN situacao = 12 THEN 'Contato com caso confirmado - finalizado'
+        WHEN situacao = 13 THEN 'Outras situações (sem relação com COVID-19) - finalizado'
+        WHEN situacao = 14 THEN 'Exclusivo psicologia - finalizado'
+            ELSE 'Sem informação'
+      END AS situacao
+        , COUNT(id) quantidade
+    FROM
+      pacientes
+    GROUP BY situacao
+    ORDER BY COALESCE(CAST(situacao AS SIGNED),99);
     ");
     $situacao_total_casos_monitorados_1 = json_encode($situacao_total_casos_monitorados_1_select);
     return $situacao_total_casos_monitorados_1;

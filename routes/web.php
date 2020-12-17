@@ -85,6 +85,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('chart/casos_monitorados_por_agente', 'ChartsController@casos_monitorados_por_agente')->name('chart.casos-monitorados-por-agente');
   Route::get('chart/casos_avaliados_equipe_medica', 'ChartsController@casos_avaliados_equipe_medica')->name('chart.casos-avaliados-equipe-medica');
   Route::get('chart/acompanhamento_psicologico', 'ChartsController@acompanhamento_psicologico')->name('chart.acompanhamento-psicologico');
+  Route::get('chart/acompanhamento_psicologico_individual_emgrupo', 'ChartsController@acompanhamento_psicologico_individual_emgrupo')->name('chart.acompanhamento-psicologico-individual-emgrupo');
   Route::get('chart/avaliacao_medica_por_raca_cor', 'ChartsController@avaliacao_medica_por_raca_cor')->name('chart.avaliacao-medica-por-raca-cor');
   Route::get('chart/avaliacao_psicologos_por_raca_cor', 'ChartsController@avaliacao_psicologos_por_raca_cor')->name('chart.avaliacao-psicologos-por-raca-cor');
   Route::get('chart/gestacao_alto_risco', 'ChartsController@gestacao_alto_risco')->name('chart.gestacao-alto-risco');

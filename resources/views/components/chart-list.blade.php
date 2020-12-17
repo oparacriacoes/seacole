@@ -31,6 +31,7 @@
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 22) }}">#22 - CASOS MONITORADOS POR AGENTES</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 23) }}">#23 - CASOS AVALIADOS POR EQUIPE MÉDICA</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 24) }}">#24 - ACOMPANHAMENTO PSICOLÓGICO</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 25) }}">#25 - ACOMPANHAMENTO PSICOLÓGICO: INDIVIDUAL X EM GRUPO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 27) }}">#27 - AVALIAÇÃO PSICÓLOGOS POR RAÇA/COR</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 33) }}">#33 - USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 34) }}">#34 - GESTANTE + PÓS-PARTO + AMAMENTA</a>

@@ -1930,6 +1930,23 @@ class ChartsController extends Controller
     return array($acompanhamento_psicologico);
   }
 
+  public function acompanhamento_psicologico_individual_emgrupo()
+  {
+    $acompanhamento_psicologico_individual_emgrupo = DB::select("
+    SELECT
+      CASE
+        WHEN acompanhamento_psicologico LIKE 'a:1%' AND acompanhamento_psicologico LIKE '%s:10%' THEN 'Acompanhamento individual'
+        WHEN acompanhamento_psicologico LIKE 'a:1%' AND acompanhamento_psicologico LIKE '%s:8%' THEN 'Acompanhamento em grupo'
+        WHEN acompanhamento_psicologico LIKE 'a:2%' THEN 'Acompanhamento individual e em grupo'
+            ELSE 'Não informado'
+      END AS acompanhamento
+        , COUNT(id) AS pacientes
+    FROM pacientes
+    GROUP BY acompanhamento_psicologico
+    ");
+    return $acompanhamento_psicologico_individual_emgrupo;
+  }
+
   public function avaliacao_medica_por_raca_cor()
   {
     $avaliacao_medica_por_raca_cor = DB::select("

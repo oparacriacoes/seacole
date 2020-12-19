@@ -52,13 +52,19 @@ am4core.useTheme(am4themes_animated);
 //CASOS AVALIADOS POR EQUIPE MÉDICA - INÍCIO
 axios.get('/chart/casos_avaliados_equipe_medica')
   .then(response => {
-    //console.log(response.data);
+    console.log(response.data);
+
     var chart = am4core.create("casos_avaliados_equipe_medica", am4charts.PieChart3D);
     chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
     chart.legend = new am4charts.Legend();
 
-    chart.data = response.data[0];
+    chart.data = response.data;
+    /*chart.data = [
+    {medicos: "Bruna Santo Silveira",quantidade_pacientes: 77},
+    {medicos: "Cleber Firmino",quantidade_pacientes: 1},
+    {medicos: "Gladys Prado",quantidade_pacientes: 8}
+    ];*/
 
     var series = chart.series.push(new am4charts.PieSeries3D());
     series.dataFields.value = "quantidade_pacientes";

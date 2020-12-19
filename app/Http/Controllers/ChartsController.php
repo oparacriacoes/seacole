@@ -2051,7 +2051,7 @@ class ChartsController extends Controller
 
   public function casos_avaliados_equipe_medica()
   {
-    $casos_avaliados_equipe_medica = DB::select("
+    /*$casos_avaliados_equipe_medica = DB::select("
     SELECT
     	us.name AS medicos
         , COUNT(pac.id) AS quantidade_pacientes
@@ -2060,8 +2060,18 @@ class ChartsController extends Controller
         LEFT JOIN medicos md ON pac.medico_id = md.id
         LEFT JOIN users us ON md.user_id = us.id
     GROUP BY us.name;
+    ");*/
+    $casos_avaliados_equipe_medica = DB::select("
+    SELECT
+    	COALESCE(us.name, 'Sem acompanhamento médico direto') AS medicos
+        , COUNT(pac.id) AS quantidade_pacientes
+    FROM
+    	pacientes pac
+        LEFT JOIN medicos md ON pac.medico_id = md.id
+        LEFT JOIN users us ON md.user_id = us.id
+    GROUP BY us.name;
     ");
-    return array($casos_avaliados_equipe_medica);
+    return $casos_avaliados_equipe_medica;
   }
 
   public function acompanhamento_psicologico()

@@ -1682,7 +1682,7 @@ class ChartsController extends Controller
 
   public function tratamento_financiado()
   {
-    $tratamento_financiado = DB::select("
+    /*$tratamento_financiado = DB::select("
     SELECT
       cor_raca
         , COALESCE(SUM(sem_informacao),0) AS sem_informacao
@@ -1724,6 +1724,101 @@ class ChartsController extends Controller
         GROUP BY tratamento_financiado, cor_raca)TBB
     GROUP BY cor_raca
     ORDER BY cor_raca
+    ");*/
+    $tratamento_financiado = DB::select("
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Precisa de ajuda para PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, tratamento_financiado)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Precisa de ajuda para PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, tratamento_financiado)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+
+      SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Alopático (medicamentos convencionais)?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, tratamento_financiado)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Alopático (medicamentos convencionais)?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND tratamento_financiado IS NOT NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, tratamento_financiado)TB
+      GROUP BY pergunta
     ");
     return $tratamento_financiado;
   }

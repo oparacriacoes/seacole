@@ -53,16 +53,23 @@ am4core.useTheme(am4themes_animated);
 axios.get('/chart/idas_sistema_saude_x_prescricao_medicamentos_pardas')
   .then(response => {
     //console.log(response.data);
+
     var chart = am4core.create("idas_sistema_saude_x_prescricao_medicamentos_pardas", am4charts.PieChart3D);
     chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
     chart.legend = new am4charts.Legend();
 
-    chart.data = response.data[0];
+    chart.data = response.data;
+    /*chart.data = [
+    {medicamentos: "Somente outros medicamentos",quantidade: 7},
+    {medicamentos: "Não recebeu nenhum medicamento",quantidade: 78},
+    {medicamentos: "Não recebeu nenhum medicamento",quantidade: 7},
+    {medicamentos: "Somente outros medicamentos",quantidade: 4}
+  ];*/
 
     var series = chart.series.push(new am4charts.PieSeries3D());
     series.dataFields.value = "quantidade";
-    series.dataFields.category = "medicamentos_cidade";
+    series.dataFields.category = "medicamentos";
   });
 //IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS PARDAS - FIM
 });

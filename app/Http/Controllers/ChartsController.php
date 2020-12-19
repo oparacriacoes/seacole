@@ -2475,7 +2475,7 @@ class ChartsController extends Controller
 
   public function idas_sistema_saude_x_prescricao_medicamentos_pardas()
   {
-    $idas_sistema_saude_x_prescricao_medicamentos_pardas = DB::select("
+    /*$idas_sistema_saude_x_prescricao_medicamentos_pardas = DB::select("
     SELECT
     	medicamentos_cidade
         , COUNT(*) AS quantidade
@@ -2496,8 +2496,31 @@ class ChartsController extends Controller
     	WHERE cor_raca = 'Parda'
     	ORDER BY 1)TB
     GROUP BY medicamentos_cidade;
+    ");*/
+    $idas_sistema_saude_x_prescricao_medicamentos_pardas = DB::select("
+    SELECT
+    	medicamentos
+        , COUNT(*) AS quantidade
+    FROM
+    	(SELECT
+    		CASE
+    			WHEN medicamento IS NULL
+    				THEN 'Não recebeu nenhum medicamento'
+    			WHEN medicamento IN ('Medico do SUS receitou, Azitromicina', 'médico hospital, Azitromicina', 'médico sus, Azitromicina', 'Último dia de Azitromicina')
+    				THEN 'Recebeu somente azitromicina'
+    			WHEN medicamento LIKE '%azitromicina%'
+    				THEN 'Azitromicina e outros medicamentos'
+    			ELSE 'Somente outros medicamentos' END AS medicamentos
+    		, pac.id
+    	FROM
+    		pacientes pac
+    		LEFT JOIN monitoramentos mon ON mon.paciente_id = pac.id
+            LEFT JOIN servico_internacaos si ON si.paciente_id = pac.id
+    	WHERE cor_raca = 'Parda' AND CAST(quant_ida_servico AS UNSIGNED) > 1
+    	ORDER BY 1)TB
+    GROUP BY medicamentos;
     ");
-    return array($idas_sistema_saude_x_prescricao_medicamentos_pardas);
+    return $idas_sistema_saude_x_prescricao_medicamentos_pardas;
   }
 
   public function uso_cronico_alcool_drogas_raca_cor()

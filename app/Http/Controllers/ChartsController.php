@@ -1873,7 +1873,7 @@ class ChartsController extends Controller
 
   public function dias_sintoma_mais_menos_dez_dias()
   {
-    $dias_sintoma_mais_menos_dez_dias = DB::select("
+    /*$dias_sintoma_mais_menos_dez_dias = DB::select("
     SELECT
       cor_raca
         , COALESCE(SUM(mais_10),0) AS mais_10
@@ -1928,8 +1928,51 @@ class ChartsController extends Controller
         WHERE situacao IN (1,2,3,6,7,8,9,10,11,12))TB)TBB
         GROUP BY cor_raca, data_inicio_monitoramento, data_inicio_sintoma)TBBB
     GROUP BY cor_raca;
+    ");*/
+    $dias_sintoma_mais_menos_dez_dias = DB::select("
+    SELECT
+      cor_raca
+      , COALESCE(SUM(mais_10),0) +COALESCE(SUM(menos_10),0) AS total_raca
+        , 'Mais de dez dias' AS mais_10_label
+        , COALESCE(SUM(mais_10),0) AS mais_10
+        , 'Menos de dez dias' AS menos_10_label
+        , COALESCE(SUM(menos_10),0) AS menos_10
+    FROM
+      (SELECT
+        CASE
+          WHEN cor_raca IS NULL THEN 'Sem info.'
+            WHEN cor_raca IN ('Preta','Parda') THEN 'Negra'
+        ELSE cor_raca END AS cor_raca
+        , CASE
+          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) > 10 THEN COUNT(id)
+        END AS mais_10
+        , CASE
+          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) <= 10 THEN COUNT(id)
+          END AS menos_10
+      FROM
+        (SELECT
+          id
+          , cor_raca
+          , CAST(CONCAT(SUBSTRING(data_inicio_monitoramento,7,4),'-',SUBSTRING(data_inicio_monitoramento,4,2),'-',SUBSTRING(data_inicio_monitoramento,1,2)) AS DATE) AS data_inicio_monitoramento
+          , CAST(CONCAT(SUBSTRING(data_inicio_sintoma,7,4),'-',SUBSTRING(data_inicio_sintoma,4,2),'-',SUBSTRING(data_inicio_sintoma,1,2)) AS DATE) AS data_inicio_sintoma
+        FROM
+        (SELECT
+          id
+          , cor_raca
+          , CASE
+            WHEN LENGTH(data_inicio_monitoramento) = 8 THEN CONCAT(SUBSTRING(data_inicio_monitoramento,1,6),20,SUBSTRING(data_inicio_monitoramento,7,2))
+            ELSE data_inicio_monitoramento
+          END AS data_inicio_monitoramento
+          , CASE
+            WHEN LENGTH(data_inicio_sintoma) = 8 THEN CONCAT(SUBSTRING(data_inicio_sintoma,1,6),20,SUBSTRING(data_inicio_sintoma,7,2))
+            ELSE data_inicio_sintoma
+          END AS data_inicio_sintoma
+        FROM pacientes
+        WHERE situacao IN (1,2,3,6,7,8,9,10,11,12))TB)TBB
+        GROUP BY cor_raca, data_inicio_monitoramento, data_inicio_sintoma)TBBB
+    GROUP BY cor_raca;
     ");
-    return array($dias_sintoma_mais_menos_dez_dias);
+    return $dias_sintoma_mais_menos_dez_dias;
   }
 
   public function total_dias_monitoramento_relacao_covid()

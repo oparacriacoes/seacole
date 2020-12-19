@@ -52,7 +52,7 @@ am4core.useTheme(am4themes_animated);
 //TRATAMENTO FINANCIADO - INÍCIO
 axios.get('/chart/tratamento_financiado')
   .then(response => {
-    console.log(response.data);
+    //console.log(response.data);
     let dataSet = {};
     for(var i=0;i<response.data.length;i++){
       //console.log(response.data[i]);
@@ -64,7 +64,7 @@ axios.get('/chart/tratamento_financiado')
         'Não info.':response.data[i].nao_info,
       }
     };
-    console.log('dataSet',dataSet);
+    //console.log('dataSet',dataSet);
 
     var chart = am4core.create("tratamento_financiado", am4charts.XYChart);
 

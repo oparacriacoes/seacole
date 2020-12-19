@@ -110,4 +110,5 @@ Route::middleware(['auth'])->group(function () {
   Route::get('chart/tempo_de_internacao', 'ChartsController@tempo_de_internacao')->name('chart.tempo-de-internacao');
   Route::get('chart/condicoes_saude', 'ChartsController@condicoes_saude')->name('chart.condicoes-saude');
   Route::get('chart/condicoes_saude_2', 'ChartsController@condicoes_saude_2')->name('chart.condicoes-saude-2');
+  Route::get('chart/condicoes_saude_3', 'ChartsController@condicoes_saude_3')->name('chart.condicoes-saude-3');
 });

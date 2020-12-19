@@ -34,6 +34,7 @@
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 25) }}">#25 - ACOMPANHAMENTO PSICOLÓGICO: INDIVIDUAL X EM GRUPO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 27) }}">#27 - AVALIAÇÃO PSICÓLOGOS POR RAÇA/COR</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 28) }}">#28 - CONDIÇÕES DE SAÚDE</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 29) }}">#29 - CONDIÇÕES DE SAÚDE (2)</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 33) }}">#33 - USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 34) }}">#34 - GESTANTE + PÓS-PARTO + AMAMENTA</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 35) }}">#35 - GESTAÇÃO É OU FOI DE ALTO RISCO?</a>

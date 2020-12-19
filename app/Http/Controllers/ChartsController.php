@@ -2076,7 +2076,7 @@ class ChartsController extends Controller
 
   public function acompanhamento_psicologico()
   {
-    $acompanhamento_psicologico = DB::select("
+    /*$acompanhamento_psicologico = DB::select("
     SELECT
     	us.name AS psicologo
         , COUNT(pac.id) AS quantidade_pacientes
@@ -2085,8 +2085,18 @@ class ChartsController extends Controller
         LEFT JOIN psicologos ps ON pac.psicologo_id = ps.id
         LEFT JOIN users us ON ps.user_id = us.id
     GROUP BY us.name;
+    ");*/
+    $acompanhamento_psicologico = DB::select("
+    SELECT
+    	COALESCE(us.name, 'Sem acompanhamento psicológico') AS psicologo
+        , COUNT(pac.id) AS quantidade_pacientes
+    FROM
+    	pacientes pac
+        LEFT JOIN psicologos ps ON pac.psicologo_id = ps.id
+        LEFT JOIN users us ON ps.user_id = us.id
+    GROUP BY us.name;
     ");
-    return array($acompanhamento_psicologico);
+    return $acompanhamento_psicologico;
   }
 
   public function acompanhamento_psicologico_individual_emgrupo()

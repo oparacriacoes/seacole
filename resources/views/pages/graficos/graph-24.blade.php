@@ -53,12 +53,19 @@ am4core.useTheme(am4themes_animated);
 axios.get('/chart/acompanhamento_psicologico')
   .then(response => {
     //console.log(response.data);
+
     var chart = am4core.create("acompanhamento_psicologico", am4charts.PieChart3D);
     chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
     chart.legend = new am4charts.Legend();
 
-    chart.data = response.data[0];
+    chart.data = response.data;
+    /*chart.data = [
+    {psicologo: "Cátia Cipriano",quantidade_pacientes: 57},
+    {psicologo: "Mayra Ribeiro",quantidade_pacientes: 48},
+    {psicologo: "Eliseu Oliveira dos Santos",quantidade_pacientes: 42},
+    {psicologo: "Juliana",quantidade_pacientes: 49}
+    ];*/
 
     var series = chart.series.push(new am4charts.PieSeries3D());
     series.dataFields.value = "quantidade_pacientes";

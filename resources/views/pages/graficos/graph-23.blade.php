@@ -52,7 +52,7 @@ am4core.useTheme(am4themes_animated);
 //CASOS AVALIADOS POR EQUIPE MÉDICA - INÍCIO
 axios.get('/chart/casos_avaliados_equipe_medica')
   .then(response => {
-    console.log(response.data);
+    //console.log(response.data);
 
     var chart = am4core.create("casos_avaliados_equipe_medica", am4charts.PieChart3D);
     chart.hiddenState.properties.opacity = 0; // this creates initial fade-in

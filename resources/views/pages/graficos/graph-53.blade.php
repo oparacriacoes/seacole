@@ -52,7 +52,7 @@ am4core.useTheme(am4themes_animated);
 //IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS BANCAS - INÍCIO
 axios.get('/chart/idas_sistema_saude_x_prescricao_medicamentos_brancas')
   .then(response => {
-    //console.log(response.data);
+    console.log(response.data);
     // Themes begin
     am4core.useTheme(am4themes_animated);
     // Themes end
@@ -62,7 +62,12 @@ axios.get('/chart/idas_sistema_saude_x_prescricao_medicamentos_brancas')
 
     chart.legend = new am4charts.Legend();
 
-    chart.data = response.data[0];
+    chart.data = response.data;
+    /*chart.data = [
+    {medicamentos_cidade: "Somente outros medicamentos",quantidade: 23},
+    {medicamentos_cidade: "Não recebeu nenhum medicamento",quantidade: 120},
+    {medicamentos_cidade: "Azitromicina e outros medicamentos",quantidade: 4}
+    ];*/
 
     var series = chart.series.push(new am4charts.PieSeries3D());
     series.dataFields.value = "quantidade";

@@ -62,11 +62,16 @@ axios.get('/chart/idas_sistema_saude_x_prescricao_medicamentos_pretas')
 
     chart.legend = new am4charts.Legend();
 
-    chart.data = response.data[0];
+    chart.data = response.data;
+    /*chart.data = [
+    {medicamentos: "Somente outros medicamentos",quantidade: 23},
+    {medicamentos: "Não recebeu nenhum medicamento",quantidade: 108},
+    {medicamentos: "Azitromicina e outros medicamentos",quantidade: 3}
+    ];*/
 
     var series = chart.series.push(new am4charts.PieSeries3D());
     series.dataFields.value = "quantidade";
-    series.dataFields.category = "medicamentos_cidade";
+    series.dataFields.category = "medicamentos";
   });
 //IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS PRETAS - FIM
 });

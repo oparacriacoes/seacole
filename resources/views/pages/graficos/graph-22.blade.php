@@ -52,13 +52,22 @@ am4core.useTheme(am4themes_animated);
 //CASOS MONITORADOS POR AGENTES - INÍCIO
 axios.get('/chart/casos_monitorados_por_agente')
   .then(response => {
-    //console.log(response.data);
+    console.log(response.data);
+
     var chart = am4core.create("casos_monitorados_por_agente", am4charts.PieChart3D);
     chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
     chart.legend = new am4charts.Legend();
 
-    chart.data = response.data[0];
+    chart.data = response.data;
+    /*chart.data = [
+    {nome_agente: "Letícia dos Santos", quantidade_pacientes: 57},
+    {nome_agente: "Sandra Regina Ap. dos Santos", quantidade_pacientes: 89},
+    {nome_agente: "Lika", quantidade_pacientes: 18},
+    {nome_agente: "Murilo", quantidade_pacientes: 21},
+    {nome_agente: "Alessandra", quantidade_pacientes: 59},
+    {nome_agente: "Elis", quantidade_pacientes: 27}
+    ];*/
 
     var series = chart.series.push(new am4charts.PieSeries3D());
     series.dataFields.value = "quantidade_pacientes";

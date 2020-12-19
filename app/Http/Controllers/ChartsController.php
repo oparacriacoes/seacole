@@ -2025,7 +2025,7 @@ class ChartsController extends Controller
 
   public function casos_monitorados_por_agente()
   {
-    $casos_monitorados_por_agente = DB::select("
+    /*$casos_monitorados_por_agente = DB::select("
     SELECT
     	us.name AS nome_agente
         , COUNT(pac.id) AS quantidade_pacientes
@@ -2034,8 +2034,19 @@ class ChartsController extends Controller
         LEFT JOIN agentes ag ON pac.agente_id = ag.id
         LEFT JOIN users us ON ag.user_id = us.id
     GROUP BY us.name;
+    ");*/
+    $casos_monitorados_por_agente = DB::select("
+    SELECT
+    	us.name AS nome_agente
+        , COUNT(pac.id) AS quantidade_pacientes
+    FROM
+    	pacientes pac
+        LEFT JOIN agentes ag ON pac.agente_id = ag.id
+        LEFT JOIN users us ON ag.user_id = us.id
+    WHERE us.name IS NOT NULL
+    GROUP BY us.name;
     ");
-    return array($casos_monitorados_por_agente);
+    return $casos_monitorados_por_agente;
   }
 
   public function casos_avaliados_equipe_medica()

@@ -2346,7 +2346,7 @@ class ChartsController extends Controller
 
   public function servicos_referencia_internacao()
   {
-    $servicos_referencia_internacao = DB::select("
+    /*$servicos_referencia_internacao = DB::select("
     SELECT
       dias
       , COUNT(*) AS pacientes
@@ -2359,8 +2359,18 @@ class ChartsController extends Controller
       GROUP BY pac.id
       ORDER BY 1)TB
     GROUP BY dias ;
+    ");*/
+    $servicos_referencia_internacao = DB::select("
+    SELECT
+      COALESCE(CAST(quant_ida_servico AS UNSIGNED),0) idas_servico_saude
+      , COUNT(pac.id) pacientes
+    FROM
+      pacientes pac
+      LEFT JOIN servico_internacaos si ON si.paciente_id = pac.id
+    GROUP BY idas_servico_saude
+    ORDER BY 1;
     ");
-    return array($servicos_referencia_internacao);
+    return $servicos_referencia_internacao;
   }
 
   public function idas_sistema_saude_x_prescricao_medicamentos_brancas()

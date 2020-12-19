@@ -52,16 +52,39 @@ am4core.useTheme(am4themes_animated);
 //SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO - INÍCIO
 axios.get('/chart/servicos_referencia_internacao')
   .then(response => {
-    //console.log(response.data);
+    console.log(response.data);
+
     // Create chart instance
     var chart = am4core.create("servicos_referencia_internacao", am4charts.XYChart3D);
 
     // Add data
-    chart.data = response.data[0];
+    chart.data = response.data;
+    /*chart.data = [{
+      "idas_servico_saude": 0,
+      "pacientes": 254
+    }, {
+      "idas_servico_saude": 1,
+      "pacientes": 96
+    }, {
+      "idas_servico_saude": 2,
+      "pacientes": 32
+    }, {
+      "idas_servico_saude": 3,
+      "pacientes": 12
+    }, {
+      "idas_servico_saude": 4,
+      "pacientes": 3
+    }, {
+      "idas_servico_saude": 5,
+      "pacientes": 2
+    }, {
+      "idas_servico_saude": 8,
+      "pacientes": 1
+    }];*/
 
     // Create axes
     var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
-    categoryAxis.dataFields.category = "dias";
+    categoryAxis.dataFields.category = "idas_servico_saude";
     categoryAxis.numberFormatter.numberFormat = "#";
     categoryAxis.renderer.inversed = false;
 
@@ -70,7 +93,7 @@ axios.get('/chart/servicos_referencia_internacao')
     // Create series
     var series = chart.series.push(new am4charts.ColumnSeries3D());
     series.dataFields.valueX = "pacientes";
-    series.dataFields.categoryY = "dias";
+    series.dataFields.categoryY = "idas_servico_saude";
     series.name = "pacientes";
     series.columns.template.propertyFields.fill = "color";
     series.columns.template.tooltipText = "Número de idas ao serviço de saúde: {valueX}";

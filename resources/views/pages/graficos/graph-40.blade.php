@@ -56,7 +56,7 @@ axios.get('/chart/como_acessa_sistema_saude')
     let dataSet = {};
     for(var i=0;i<response.data.length;i++){
       //console.log(response.data[i]);
-      dataSet[response.data[i].pergunta] = {
+      dataSet[response.data[i].sintomas_iniciais] = {
         'Branco':response.data[i].branca,
         'Indígena':response.data[i].indigena,
         'Amarelo':response.data[i].amarela,

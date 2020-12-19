@@ -2569,7 +2569,7 @@ class ChartsController extends Controller
 
   public function como_acessa_sistema_saude()
   {
-    $como_acessa_sistema_saude = DB::select("
+    /*$como_acessa_sistema_saude = DB::select("
     SELECT
         pergunta
         , COALESCE(SUM(branca_sim),0) AS branca
@@ -2661,6 +2661,27 @@ class ChartsController extends Controller
         LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
         GROUP BY cor_raca, sistema_saude)TB
       GROUP BY pergunta
+    ");*/
+    $como_acessa_sistema_saude = DB::select("
+    SELECT
+        COALESCE(sintomas_iniciais, 'Não info.') AS sintomas_iniciais
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          sintomas_iniciais
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        GROUP BY cor_raca, sintomas_iniciais)TB
+      GROUP BY sintomas_iniciais
     ");
     return json_encode($como_acessa_sistema_saude);
   }

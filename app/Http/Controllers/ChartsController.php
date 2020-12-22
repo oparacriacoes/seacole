@@ -3790,4 +3790,47 @@ class ChartsController extends Controller
     return $condicoes_saude_3;
   }
 
+  public function avaliacao_medica_raca_cor()
+  {
+    $avaliacao_medica_raca_cor = DB::select("
+    SELECT
+      cor_raca
+        , COALESCE(SUM(com_acompanhamento),0) AS com_acompanhamento
+        , COALESCE(SUM(sem_acompanhamento),0) AS sem_acompanhamento
+        , COALESCE(SUM(com_acompanhamento_preta),0) AS com_acompanhamento_preta
+        , COALESCE(SUM(sem_acompanhamento_preta),0) AS sem_acompanhamento_preta
+        , COALESCE(SUM(com_acompanhamento_parda),0) AS com_acompanhamento_parda
+        , COALESCE(SUM(sem_acompanhamento_parda),0) AS sem_acompanhamento_parda
+    FROM   (
+      SELECT
+        CASE
+          WHEN cor_raca IS NULL THEN 'Sem info.'
+                WHEN cor_raca IN ('Preta','Parda') THEN 'Negra'
+        ELSE cor_raca END AS cor_raca
+      , CASE
+          WHEN medico_id IS NOT NULL AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+        END AS com_acompanhamento
+      , CASE
+          WHEN medico_id IS NULL AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
+            END AS sem_acompanhamento
+      , CASE
+          WHEN medico_id IS NOT NULL AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS com_acompanhamento_preta
+      , CASE
+          WHEN medico_id IS NULL AND cor_raca = 'Preta' THEN COUNT(pac.id)
+            END AS sem_acompanhamento_preta
+      , CASE
+          WHEN medico_id IS NOT NULL AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS com_acompanhamento_parda
+      , CASE
+          WHEN medico_id IS NULL AND cor_raca = 'Parda' THEN COUNT(pac.id)
+        END AS sem_acompanhamento_parda
+      FROM pacientes pac
+        GROUP BY medico_id, cor_raca)TBB
+    GROUP BY cor_raca
+    ORDER BY cor_raca
+    ");
+    return $avaliacao_medica_raca_cor;
+  }
+
 }

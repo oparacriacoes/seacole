@@ -32,6 +32,7 @@
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 23) }}">#23 - CASOS AVALIADOS POR EQUIPE MÉDICA</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 24) }}">#24 - ACOMPANHAMENTO PSICOLÓGICO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 25) }}">#25 - ACOMPANHAMENTO PSICOLÓGICO: INDIVIDUAL X EM GRUPO</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 26) }}">#26 - AVALIAÇÃO MÉDICA POR RAÇA/COR</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 27) }}">#27 - AVALIAÇÃO PSICÓLOGOS POR RAÇA/COR</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 28) }}">#28 - CONDIÇÕES DE SAÚDE</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 29) }}">#29 - CONDIÇÕES DE SAÚDE (2)</a>

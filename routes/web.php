@@ -111,4 +111,5 @@ Route::middleware(['auth'])->group(function () {
   Route::get('chart/condicoes_saude', 'ChartsController@condicoes_saude')->name('chart.condicoes-saude');
   Route::get('chart/condicoes_saude_2', 'ChartsController@condicoes_saude_2')->name('chart.condicoes-saude-2');
   Route::get('chart/condicoes_saude_3', 'ChartsController@condicoes_saude_3')->name('chart.condicoes-saude-3');
+  Route::get('chart/avaliacao_medica_raca_cor', 'ChartsController@avaliacao_medica_raca_cor')->name('chart.avaliacao-medica-raca-cor');
 });

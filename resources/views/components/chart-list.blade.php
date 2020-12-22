@@ -41,6 +41,7 @@
     </div>
     <div class="col">
       <div class="list-group">
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 31) }}">#31/32 - CONDIÇÕES DE SAÚDE (SAÚDE MENTAL)</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 33) }}">#33 - USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 34) }}">#34 - GESTANTE + PÓS-PARTO + AMAMENTA</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 35) }}">#35 - GESTAÇÃO É OU FOI DE ALTO RISCO?</a>

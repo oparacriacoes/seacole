@@ -3833,4 +3833,36 @@ class ChartsController extends Controller
     return $avaliacao_medica_raca_cor;
   }
 
+  public function condicoes_saude_saude_mental()
+  {
+    $condicoes_saude_saude_mental = DB::select("
+    SELECT
+        doenca_cronica
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+        CASE
+          WHEN doenca_cronica LIKE '%13%' THEN 'Ansiedade'
+          WHEN doenca_cronica LIKE '%14%' THEN 'Depressão'
+          WHEN doenca_cronica LIKE '%15%' THEN 'Demência'
+          WHEN doenca_cronica LIKE '%16%' THEN 'Outras questões de saúde mental'
+        END AS doenca_cronica
+        , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+        , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+        , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+        , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+        , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+        , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+      FROM pacientes pac
+      GROUP BY cor_raca, doenca_cronica)TB
+    WHERE doenca_cronica IS NOT NULL
+    GROUP BY doenca_cronica;
+    ");
+    return $condicoes_saude_saude_mental;
+  }
+
 }

@@ -3865,4 +3865,32 @@ class ChartsController extends Controller
     return $condicoes_saude_saude_mental;
   }
 
+  public function trimestre_gestacao_inicio_monitoramento()
+  {
+    $trimestre_gestacao_inicio_monitoramento = DB::select("
+    SELECT
+      trimestre_gestacao
+      , COALESCE(SUM(branca_sim),0) AS branca
+      , COALESCE(SUM(indigena_sim),0) AS indigena
+      , COALESCE(SUM(amarela_sim),0) AS amarela
+      , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+      , COALESCE(SUM(nao_info_sim),0) AS nao_info
+    FROM
+      (SELECT
+        COALESCE(trimestre_gestacao, 'Não info.') AS trimestre_gestacao
+        , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+        , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+        , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+        , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+        , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+        , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+      FROM pacientes pac
+      WHERE gestante = 'sim'
+      GROUP BY cor_raca, trimestre_gestacao)TB
+    GROUP BY trimestre_gestacao
+    ORDER BY 1
+    ");
+    return $trimestre_gestacao_inicio_monitoramento;
+  }
+
 }

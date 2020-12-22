@@ -45,6 +45,7 @@
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 33) }}">#33 - USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 34) }}">#34 - GESTANTE + PÓS-PARTO + AMAMENTA</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 35) }}">#35 - GESTAÇÃO É OU FOI DE ALTO RISCO?</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 36) }}">#36 - TRIMESTRE DA GESTAÇÃO NO INÍCIO DO MONITORAMENTO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 37) }}">#37 - ACOMPANHAMENTO DO SISTEMA DE SAÚDE</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 38) }}">#38 - COMO ACESSA O SISTEMA DE SAÚDE?</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 39) }}">#39 - SAÚDE MENTAL</a>

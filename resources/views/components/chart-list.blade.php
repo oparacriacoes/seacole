@@ -67,6 +67,7 @@
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 55) }}">#55 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS (PESSOAS PARDAS)</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 56) }}">#56 - PROBLEMAS COM SERVIÇOS DE REFERÊNCIA?</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 57) }}">#57 - INTERNAÇÃO PELO QUADRO</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 58) }}">#58 - LOCAL DE INTERNAÇÃO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 59) }}">#59 - TEMPO DE INTERNAÇÃO</a>
         <a class="list-group-item list-group-item-action" href="#">Gráfico #10</a>
         <a class="list-group-item list-group-item-action" href="#">Gráfico #11</a>

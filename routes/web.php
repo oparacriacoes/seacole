@@ -115,4 +115,5 @@ Route::middleware(['auth'])->group(function () {
   Route::get('chart/condicoes_saude_saude_mental', 'ChartsController@condicoes_saude_saude_mental')->name('chart.condicoes-saude-saude-mental');
   Route::get('chart/trimestre_gestacao_inicio_monitoramento', 'ChartsController@trimestre_gestacao_inicio_monitoramento')->name('chart.trimestre-gestacao-inicio-monitoramento');
   Route::get('chart/acumulo_sintomas', 'ChartsController@acumulo_sintomas')->name('chart.acumulo-sintomas');
+  Route::get('chart/local_internacao', 'ChartsController@local_internacao')->name('chart.local-internacao');
 });

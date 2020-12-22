@@ -3940,4 +3940,129 @@ class ChartsController extends Controller
     return array($acumulo_sintomas);
   }
 
+  public function local_internacao()
+  {
+    $local_internacao = DB::select("
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Hospital público de referência' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND local_internacao LIKE '%Hospital público de referência%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND local_internacao LIKE '%Hospital público de referência%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND local_internacao LIKE '%Hospital público de referência%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND local_internacao LIKE '%Hospital público de referência%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND local_internacao LIKE '%Hospital público de referência%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND local_internacao LIKE '%Hospital público de referência%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, local_internacao)TB
+      GROUP BY pergunta
+
+
+
+      UNION ALL
+
+
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Hospital de campanha' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND local_internacao LIKE '%Hospital de campanha%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND local_internacao LIKE '%Hospital de campanha%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND local_internacao LIKE '%Hospital de campanha%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND local_internacao LIKE '%Hospital de campanha%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND local_internacao LIKE '%Hospital de campanha%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND local_internacao LIKE '%Hospital de campanha%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, local_internacao)TB
+      GROUP BY pergunta
+
+      UNION ALL
+
+
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Hospital particular de referência' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND local_internacao LIKE '%Hospital particular de referência%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND local_internacao LIKE '%Hospital particular de referência%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND local_internacao LIKE '%Hospital particular de referência%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND local_internacao LIKE '%Hospital particular de referência%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND local_internacao LIKE '%Hospital particular de referência%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND local_internacao LIKE '%Hospital particular de referência%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, local_internacao)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Hospital municipal do Ipiranga (encaminhado pelo projeto)' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND local_internacao LIKE '%Hospital municipal do Ipiranga (encaminhado pelo projeto)%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND local_internacao LIKE '%Hospital municipal do Ipiranga (encaminhado pelo projeto)%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND local_internacao LIKE '%Hospital municipal do Ipiranga (encaminhado pelo projeto)%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND local_internacao LIKE '%Hospital municipal do Ipiranga (encaminhado pelo projeto)%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND local_internacao LIKE '%Hospital municipal do Ipiranga (encaminhado pelo projeto)%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND local_internacao LIKE '%Hospital municipal do Ipiranga (encaminhado pelo projeto)%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, local_internacao)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+    SELECT
+        pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Hospital privado financiado pelo projeto' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND local_internacao LIKE '%Hospital privado financiado pelo projeto%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND local_internacao LIKE '%Hospital privado financiado pelo projeto%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND local_internacao LIKE '%Hospital privado financiado pelo projeto%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND local_internacao LIKE '%Hospital privado financiado pelo projeto%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND local_internacao LIKE '%Hospital privado financiado pelo projeto%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND local_internacao LIKE '%Hospital privado financiado pelo projeto%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN servico_internacaos sint ON pac.id = sint.paciente_id
+        GROUP BY cor_raca, local_internacao)TB
+      GROUP BY pergunta
+    ");
+    return $local_internacao;
+  }
+
 }

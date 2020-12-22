@@ -4065,4 +4065,47 @@ class ChartsController extends Controller
     return $local_internacao;
   }
 
+  public function internacao_diagnostico()
+  {
+    $internacao_diagnostico = DB::select("
+    SELECT
+       COALESCE(sintomas_iniciais, 'Não info.') AS sintomas_iniciais
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          CASE WHEN precisou_internacao = 'sim' THEN CONCAT('Sim \n\n ',sintomas_iniciais) END AS sintomas_iniciais
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL  THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        INNER JOIN evolucao_sintomas es ON es.paciente_id = pac.id
+        INNER JOIN servico_internacaos si ON si.paciente_id = pac.id
+        GROUP BY cor_raca, sintomas_iniciais, precisou_internacao
+
+        UNION ALL
+
+        SELECT
+          CASE WHEN precisou_internacao = 'nao' THEN CONCAT('Não \n\n ',sintomas_iniciais) END AS sintomas_iniciais
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL  THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        INNER JOIN evolucao_sintomas es ON es.paciente_id = pac.id
+        INNER JOIN servico_internacaos si ON si.paciente_id = pac.id
+        GROUP BY cor_raca, sintomas_iniciais, precisou_internacao)TB
+      GROUP BY sintomas_iniciais
+    ");
+    return $internacao_diagnostico;
+  }
+
 }

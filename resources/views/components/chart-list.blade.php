@@ -69,13 +69,7 @@
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 57) }}">#57 - INTERNAÇÃO PELO QUADRO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 58) }}">#58 - LOCAL DE INTERNAÇÃO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 59) }}">#59 - TEMPO DE INTERNAÇÃO</a>
-        <a class="list-group-item list-group-item-action" href="#">Gráfico #10</a>
-        <a class="list-group-item list-group-item-action" href="#">Gráfico #11</a>
-        <a class="list-group-item list-group-item-action" href="#">Gráfico #12</a>
-        <a class="list-group-item list-group-item-action" href="#">Gráfico #13</a>
-        <a class="list-group-item list-group-item-action" href="#">Gráfico #14</a>
-        <a class="list-group-item list-group-item-action" href="#">Gráfico #15</a>
-        <a class="list-group-item list-group-item-action" href="#">Gráfico #16</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 60) }}">#60 - INTERNAÇÃO X DIAGNÓSTICO</a>
       </div>
     </div>
   </div>

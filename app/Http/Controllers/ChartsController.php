@@ -3893,4 +3893,51 @@ class ChartsController extends Controller
     return $trimestre_gestacao_inicio_monitoramento;
   }
 
+  public function acumulo_sintomas()
+  {
+    $acumulo_sintomas = DB::select("
+    SELECT
+      quantidade_sintomas
+      , COALESCE(SUM(confirmado_leve),0) AS confirmado_leve
+      , COALESCE(SUM(confirmado_grave),0) AS confirmado_grave
+      , COALESCE(SUM(descartado_leve),0) AS descartado_leve
+      , COALESCE(SUM(descartado_grave),0) AS descartado_grave
+      , COALESCE(SUM(suspeito_leve),0) AS suspeito_leve
+      , COALESCE(SUM(suspeito_grave),0) AS suspeito_grave
+    FROM(
+      SELECT
+        COALESCE(
+          CASE
+            WHEN sintomas_atuais LIKE 'a:1%' THEN 1
+            WHEN sintomas_atuais LIKE 'a:2%' THEN 2
+            WHEN sintomas_atuais LIKE 'a:3%' THEN 3
+            WHEN sintomas_atuais LIKE 'a:4%' THEN 4
+            WHEN sintomas_atuais LIKE 'a:5%' THEN 5
+            WHEN sintomas_atuais LIKE 'a:6%' THEN 6
+            WHEN sintomas_atuais LIKE 'a:7%' THEN 7
+            WHEN sintomas_atuais LIKE 'a:8%' THEN 8
+            WHEN sintomas_atuais LIKE 'a:9%' THEN 9
+            WHEN sintomas_atuais LIKE 'a:10%' THEN 10
+            WHEN sintomas_atuais LIKE 'a:11%' THEN 11
+            WHEN sintomas_atuais LIKE 'a:12%' THEN 12
+            WHEN sintomas_atuais LIKE 'a:13%' THEN 13
+            WHEN sintomas_atuais LIKE 'a:14%' THEN 14
+            WHEN sintomas_atuais LIKE 'a:15%' THEN 15
+          END, 'Não info.') AS quantidade_sintomas
+          , CASE WHEN sintomas_iniciais = 'confirmado' AND situacao IN (2,7,11) THEN COUNT(pac.id) END confirmado_leve
+          , CASE WHEN sintomas_iniciais = 'confirmado' AND situacao IN (1,6,10) THEN COUNT(pac.id) END confirmado_grave
+          , CASE WHEN sintomas_iniciais = 'descartado' AND situacao IN (2,7,11) THEN COUNT(pac.id) END descartado_leve
+          , CASE WHEN sintomas_iniciais = 'descartado' AND situacao IN (1,6,10) THEN COUNT(pac.id) END descartado_grave
+          , CASE WHEN sintomas_iniciais = 'suspeito' AND situacao IN (2,7,11) THEN COUNT(pac.id) END suspeito_leve
+          , CASE WHEN sintomas_iniciais = 'suspeito' AND situacao IN (1,6,10) THEN COUNT(pac.id) END suspeito_grave
+        , COUNT(pac.id) AS pacientes
+      FROM pacientes pac
+        INNER JOIN evolucao_sintomas es ON es.paciente_id = pac.id
+      GROUP BY 1, situacao, sintomas_iniciais) TB
+    GROUP BY 1
+    ORDER BY 1
+    ");
+    return array($acumulo_sintomas);
+  }
+
 }

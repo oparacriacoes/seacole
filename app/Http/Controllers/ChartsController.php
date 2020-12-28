@@ -4225,4 +4225,44 @@ class ChartsController extends Controller
     return $sintomas_manifestados_situacao_raca_cor_3;
   }
 
+  public function sintomas_manifestados_situacao_raca_cor_4()
+  {
+    $sintomas_manifestados_situacao_raca_cor_4 = DB::select("
+    SELECT
+      situacao AS situacao
+      , COALESCE(SUM(branca),0) AS branca
+      , COALESCE(SUM(indigena),0) AS indigena
+      , COALESCE(SUM(amarela),0) AS amarela
+      , COALESCE(SUM(preta)+SUM(parda),0) AS negro
+      , COALESCE(SUM(nao_info),0) AS nao_info
+    FROM
+      (SELECT
+        CASE
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%sonolência ou cansaço importantes%' THEN 'Leve - Sonolência ou cansaço importantes'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%sonolência ou cansaço importantes%' THEN 'Grave - Sonolência ou cansaço importantes'
+
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%confusão mental%' THEN 'Leve - Confusão mental'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%confusão mental%' THEN 'Grave - Confusão mental'
+
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%desmaio%' THEN 'Leve - Desmaio'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%desmaio%' THEN 'Grave - Desmaio'
+
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%convulsão%' THEN 'Leve - Convulsão'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%convulsão%' THEN 'Grave - Convulsão'
+      END AS situacao
+        , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta
+        , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda
+        , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena
+        , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca
+        , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela
+        , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info
+      FROM pacientes pac
+      LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+      GROUP BY cor_raca, sintomas_manifestados, situacao)TB
+  WHERE situacao IS NOT NULL
+    GROUP BY situacao
+    ");
+    return $sintomas_manifestados_situacao_raca_cor_4;
+  }
+
 }

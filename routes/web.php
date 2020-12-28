@@ -117,4 +117,5 @@ Route::middleware(['auth'])->group(function () {
   Route::get('chart/acumulo_sintomas', 'ChartsController@acumulo_sintomas')->name('chart.acumulo-sintomas');
   Route::get('chart/local_internacao', 'ChartsController@local_internacao')->name('chart.local-internacao');
   Route::get('chart/internacao_diagnostico', 'ChartsController@internacao_diagnostico')->name('chart.internacao-diagnostico');
+  Route::get('chart/sintomas_manifestados_situacao_raca_cor_1', 'ChartsController@sintomas_manifestados_situacao_raca_cor_1')->name('chart.sintomas_manifestados_situacao_raca_cor_1');
 });

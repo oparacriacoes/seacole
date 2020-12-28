@@ -4108,4 +4108,44 @@ class ChartsController extends Controller
     return $internacao_diagnostico;
   }
 
+  public function sintomas_manifestados_situacao_raca_cor_1()
+  {
+    $sintomas_manifestados_situacao_raca_cor_1 = DB::select("
+    SELECT
+      situacao AS situacao
+      , COALESCE(SUM(branca),0) AS branca
+      , COALESCE(SUM(indigena),0) AS indigena
+      , COALESCE(SUM(amarela),0) AS amarela
+      , COALESCE(SUM(preta)+SUM(parda),0) AS negro
+      , COALESCE(SUM(nao_info),0) AS nao_info
+    FROM
+      (SELECT
+        CASE
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%tosse%' THEN 'Leve - Tosse'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%tosse%' THEN 'Grave - Tosse'
+
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%falta de ar%' THEN 'Leve - Falta de ar'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%falta de ar%' THEN 'Grave - Falta de ar'
+
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%febre%' THEN 'Leve - Febre'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%febre%' THEN 'Grave - Febre'
+
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%dor de cabeça%' THEN 'Leve - Dor de cabeça'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%dor de cabeça%' THEN 'Grave - Dor de cabeça'
+      END AS situacao
+        , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta
+        , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda
+        , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena
+        , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca
+        , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela
+        , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info
+      FROM pacientes pac
+      LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+      GROUP BY cor_raca, sintomas_manifestados, situacao)TB
+  WHERE situacao IS NOT NULL
+    GROUP BY situacao
+    ");
+    return $sintomas_manifestados_situacao_raca_cor_1;
+  }
+
 }

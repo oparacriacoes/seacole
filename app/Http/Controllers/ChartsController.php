@@ -4148,4 +4148,44 @@ class ChartsController extends Controller
     return $sintomas_manifestados_situacao_raca_cor_1;
   }
 
+  public function sintomas_manifestados_situacao_raca_cor_2()
+  {
+    $sintomas_manifestados_situacao_raca_cor_2 = DB::select("
+    SELECT
+      situacao AS situacao
+      , COALESCE(SUM(branca),0) AS branca
+      , COALESCE(SUM(indigena),0) AS indigena
+      , COALESCE(SUM(amarela),0) AS amarela
+      , COALESCE(SUM(preta)+SUM(parda),0) AS negro
+      , COALESCE(SUM(nao_info),0) AS nao_info
+    FROM
+      (SELECT
+        CASE
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%perda de olfato%' THEN 'Leve - Perda de olfato'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%perda de olfato%' THEN 'Grave - Perda de olfato'
+
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%perda do paladar%' THEN 'Leve - Perda do paladar'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%perda do paladar%' THEN 'Grave - Perda do paladar'
+
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%enjoo ou vômitos%' THEN 'Leve - Enjoo ou vômitos'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%enjoo ou vômitos%' THEN 'Grave - Enjoo ou vômitos'
+
+        WHEN situacao IN (2,7,11) AND sintomas_manifestados LIKE '%diarréia%' THEN 'Leve - Diarréia'
+        WHEN situacao IN (1,6,10) AND sintomas_manifestados LIKE '%diarréia%' THEN 'Grave - Diarréia'
+      END AS situacao
+        , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta
+        , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda
+        , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena
+        , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca
+        , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela
+        , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info
+      FROM pacientes pac
+      LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
+      GROUP BY cor_raca, sintomas_manifestados, situacao)TB
+  WHERE situacao IS NOT NULL
+    GROUP BY situacao
+    ");
+    return $sintomas_manifestados_situacao_raca_cor_2;
+  }
+
 }

@@ -53,6 +53,7 @@
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 41) }}">#41 - TESTES REALIZADOS?</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 42) }}">#42 - SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (1)</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 43) }}">#43 - SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (2)</a>
+        <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 44) }}">#44 - SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (3)</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 46) }}">#46 - ACÚMULO DE SINTOMAS</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 47) }}">#47 - DESFECHO</a>
         <a class="list-group-item list-group-item-action" href="{{ route('admin.charts', 48) }}">#48 - SEQUELAS</a>

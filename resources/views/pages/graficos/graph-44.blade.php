@@ -13,26 +13,26 @@
                   <i class="pe-7s-car icon-gradient bg-mean-fruit">
                   </i>
               </div>
-              <div>SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (2)</div>
+              <div>SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (3)</div>
           </div>
       </div>
   </div>
   <x-chart-list/>
   <div class="row">
-    <!-- SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (2) - INÍCIO (GRÁFICO 42) -->
+    <!-- SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (3) - INÍCIO (GRÁFICO 42) -->
     <div class="col">
         <div class="mb-3 card">
             <div class="card-header-tab card-header-tab-animation card-header">
                 <div class="card-header-title">
-                      SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (2)
+                      SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (3)
                 </div>
             </div>
             <div class="card-body">
-              <div class="chart" id="sintomas_manifestados_situacao_raca_cor_2"></div>
+              <div class="chart" id="sintomas_manifestados_situacao_raca_cor_3"></div>
             </div>
         </div>
     </div>
-    <!-- SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (2) - FIM -->
+    <!-- SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (3) - FIM -->
   </div>
 </div>
 @endsection
@@ -49,10 +49,10 @@ am4core.ready(function() {
 am4core.useTheme(am4themes_animated);
 // Themes end
 
-//SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (2) - INÍCIO
-axios.get('/chart/sintomas_manifestados_situacao_raca_cor_2')
+//SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (3) - INÍCIO
+axios.get('/chart/sintomas_manifestados_situacao_raca_cor_3')
   .then(response => {
-    //console.log(response.data);
+    console.log(response.data);
     let dataSet = {};
     for(var i=0;i<response.data.length;i++){
       //console.log(response.data[i]);
@@ -66,7 +66,7 @@ axios.get('/chart/sintomas_manifestados_situacao_raca_cor_2')
     };
     //console.log('dataSet',dataSet);
 
-    var chart = am4core.create("sintomas_manifestados_situacao_raca_cor_2", am4charts.XYChart);
+    var chart = am4core.create("sintomas_manifestados_situacao_raca_cor_3", am4charts.XYChart);
 
     // some extra padding for range labels
     chart.paddingBottom = 50;
@@ -134,11 +134,10 @@ axios.get('/chart/sintomas_manifestados_situacao_raca_cor_2')
     var data = dataSet;
     /*var data =
     {
-    "Leve - Perda de olfato": {"Branco": 21, "Índígena": 0, "Amarelo": 0, "Negro": 36, "Não info.": 2},
-    "Leve - Perda do paladar": {"Branco": 5, "Índígena": 0, "Amarelo": 0, "Negro": 8, "Não info.": 0},
-    "Leve - Diarréia": {"Branco": 3, "Índígena": 0, "Amarelo": 0, "Negro": 4, "Não info.": 0},
-    "Grave - Perda do paladar": {"Branco": 2, "Índígena": 0, "Amarelo": 0, "Negro": 0, "Não info.": 0},
-    "Grave - Perda de olfato": {"Branco": 0, "Índígena": 0, "Amarelo": 0, "Negro": 0, "Não info.": 0}
+    "Leve - Queda brusca de Pressão": {"Branco": 3,"Indígena": 0,"Amarelo": 0,"Negro": 4,"Não info.": 0},
+    "Leve - Aumento da pressão": {"Branco": 0,"Indígena": 0,"Amarelo": 0,"Negro": 2,"Não info.": 0},
+    "Grave - Queda brusca de Pressão": {"Branco": 1,"Indígena": 0,"Amarelo": 0,"Negro": 0,"Não info.": 0},
+    "Grave - Aumento da pressão": {"Branco": 1,"Indígena": 0,"Amarelo": 0,"Negro": 0,"Não info.": 0},
     }*/
 
     // process data ant prepare it for the chart
@@ -200,7 +199,7 @@ axios.get('/chart/sintomas_manifestados_situacao_raca_cor_2')
     range.label.disabled = true;
     range.tick.location = 1;
     range.grid.location = 1;
-//SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (2) - FIM
+//SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (3) - FIM
   });
 });
 </script>

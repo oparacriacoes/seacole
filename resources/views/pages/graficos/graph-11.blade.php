@@ -79,6 +79,7 @@ axios.get('/chart/numero_pessoas_residencia_raca_cor')
   categoryAxis.renderer.grid.template.location = 0;
   categoryAxis.renderer.minGridDistance = 30;
   categoryAxis.title.text = response.data[1][0].legenda;
+  categoryAxis.title.properties.scale = 0.8;
 
   var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
   valueAxis.renderer.inside = true;

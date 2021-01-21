@@ -68,6 +68,7 @@ axios.get('/chart/faixa_etaria_raca_cor')
   am4core.useTheme(am4themes_myTheme);
   // Create chart instance
   var chart = am4core.create("faixa_etaria_raca_cor", am4charts.XYChart3D);
+  chart.responsive.enabled = true;
 
 
   // Add data
@@ -79,6 +80,8 @@ axios.get('/chart/faixa_etaria_raca_cor')
   categoryAxis.renderer.grid.template.location = 0;
   categoryAxis.renderer.minGridDistance = 30;
   categoryAxis.title.text = response.data[1][0].legenda;
+  categoryAxis.title.properties.scale = 0.8;
+  //console.log(categoryAxis.title);
 
   var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
   valueAxis.renderer.inside = true;

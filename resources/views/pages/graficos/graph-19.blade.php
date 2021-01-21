@@ -53,6 +53,20 @@ am4core.useTheme(am4themes_animated);
 axios.get('/chart/dias_sintoma_por_raca_cor')
   .then(response => {
     //console.log(response.data);
+    function am4themes_myTheme(target) {
+    if (target instanceof am4core.ColorSet) {
+      target.list = [
+        am4core.color("#000000"),
+        am4core.color("#8b4513"),
+        am4core.color("#d3d3d3"),
+        am4core.color("#ffff00"),
+        am4core.color("#ff0000"),
+        am4core.color("#0000ff")
+      ];
+    }
+  }
+  am4core.useTheme(am4themes_myTheme);
+
     // Create chart instance
     var chart = am4core.create("dias_sintoma_por_raca_cor", am4charts.XYChart3D);
 

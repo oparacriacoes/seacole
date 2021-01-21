@@ -13,18 +13,18 @@
                   <i class="pe-7s-car icon-gradient bg-mean-fruit">
                   </i>
               </div>
-              <div>TRATAMENTO FINANCIADO</div>
+              <div>TRATAMENTO PRESCRITO POR MÉDICOS DO PROJETO</div>
           </div>
       </div>
   </div>
   <x-chart-list/>
   <div class="row">
-    <!-- TRATAMENTO FINANCIADO - INÍCIO (GRÁFICO 18) -->
+    <!-- TRATAMENTO PRESCRITO POR MÉDICOS DO PROJETO - INÍCIO (GRÁFICO 18) -->
     <div class="col">
         <div class="mb-3 card">
             <div class="card-header-tab card-header-tab-animation card-header">
                 <div class="card-header-title">
-                      TRATAMENTO FINANCIADO
+                      TRATAMENTO PRESCRITO POR MÉDICOS DO PROJETO
                 </div>
             </div>
             <div class="card-body">
@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <!-- TRATAMENTO FINANCIADO - FIM -->
+    <!-- TRATAMENTO PRESCRITO POR MÉDICOS DO PROJETO - FIM -->
   </div>
 </div>
 @endsection
@@ -49,7 +49,7 @@ am4core.ready(function() {
 am4core.useTheme(am4themes_animated);
 // Themes end
 
-//TRATAMENTO FINANCIADO - INÍCIO
+//TRATAMENTO PRESCRITO POR MÉDICOS DO PROJETO - INÍCIO
 axios.get('/chart/tratamento_financiado')
   .then(response => {
     //console.log(response.data);
@@ -204,7 +204,7 @@ axios.get('/chart/tratamento_financiado')
     range.tick.location = 1;
     range.grid.location = 1;
   });
-//TRATAMENTO FINANCIADO - FIM
+//TRATAMENTO PRESCRITO POR MÉDICOS DO PROJETO - FIM
 });
 </script>
 @endsection

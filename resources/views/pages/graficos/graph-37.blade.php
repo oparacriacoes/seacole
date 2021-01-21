@@ -54,6 +54,22 @@ axios.get('/chart/acompanhamento_sistema_saude')
   .then(response => {
     //console.log(response.data);
     // Create chart instance
+    function am4themes_myTheme(target) {
+    if (target instanceof am4core.ColorSet) {
+      target.list = [
+        //am4core.color("#0e0e0e"),
+        //am4core.color("#0f0f0f"),
+        am4core.color("#aaff00"),//sim
+        am4core.color("#ff0000"),//nao
+        am4core.color("#000000"),//preta sim d3d3d3
+        am4core.color("#808080"),//preta nao ffff00
+        am4core.color("#8b4513"),//parda sim
+        am4core.color("#e06f1f")//parda nao
+      ];
+    }
+  }
+  am4core.useTheme(am4themes_myTheme);
+
     var chart = am4core.create("acompanhamento_sistema_saude", am4charts.XYChart);
 
     // Add data

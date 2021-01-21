@@ -96,8 +96,8 @@ axios.get('/chart/faixa_etaria_genero_2')
       return series;
     }
 
-    createSeries("homens", "Homens");
-    createSeries("mulheres", "Mulheres");
+    createSeries("homens", "Homens CIS");
+    createSeries("mulheres", "Mulheres CIS");
     createSeries("sem_informacao", "Sem informação");
 
     // Legend

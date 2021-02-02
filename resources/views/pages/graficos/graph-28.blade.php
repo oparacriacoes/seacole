@@ -52,7 +52,7 @@ am4core.useTheme(am4themes_animated);
 //CONDIÇÕES DE SAÚDE - INÍCIO
 axios.get('/chart/condicoes_saude')
   .then(response => {
-    //console.log(response.data);
+    console.log(response.data);
     let dataSet = {};
     for(var i=0;i<response.data.length;i++){
       //console.log(response.data[i]);
@@ -86,9 +86,12 @@ axios.get('/chart/condicoes_saude')
       return categoryAxis.tooltipDataItem.dataContext.realName;
     })
 
+
+
     var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
     valueAxis.min = 0;
+
 
     // single column series for all data
     var columnSeries = chart.series.push(new am4charts.ColumnSeries());
@@ -103,6 +106,9 @@ axios.get('/chart/condicoes_saude')
     valueAxis2.syncWithAxis = valueAxis;
     valueAxis2.tooltip.disabled = true;
 
+
+
+
     let label = categoryAxis.renderer.labels.template;
     label.wrap = true;
     label.maxWidth = 120;
@@ -116,6 +122,7 @@ axios.get('/chart/condicoes_saude')
      target.stroke = colors[name];
      return colors[name];
     })
+
 
     var rangeTemplate = categoryAxis.axisRanges.template;
     rangeTemplate.tick.disabled = false;
@@ -132,19 +139,6 @@ axios.get('/chart/condicoes_saude')
     var lineSeriesData = [];
 
     var data = dataSet;
-    /*var data =
-    {
-      "Hipertensão arterial sistêmica (HAS)":
-        {"Branco": 28,"Indígena": 0,"Amarelo": 0,"Negro": 49,"Não info.": 2},
-      "Diabetes Mellitus (DM)":
-        {"Branco": 1,"Indígena": 0,"Amarelo": 0,"Negro": 4,"Não info.": 0},
-      "Dislipidemia":
-        {"Branco": 0,"Indígena": 0,"Amarelo": 0,"Negro": 0,"Não info.": 0},
-      "Cardiopatias e outras doenças cardiovasculares":
-        {"Branco": 2,"Indígena": 0,"Amarelo": 0,"Negro": 0,"Não info.": 0},
-      "Doença renal":
-        {"Branco": 1,"Indígena": 0,"Amarelo": 0,"Negro": 0,"Não info.": 0}
-    }*/
 
     // process data ant prepare it for the chart
     for (var providerName in data) {
@@ -158,6 +152,7 @@ axios.get('/chart/condicoes_saude')
        count++;
        // we generate unique category for each column (providerName + "_" + itemName) and store realName
        tempArray.push({ category: providerName + "_" + itemName, realName: itemName, value: providerData[itemName], provider: providerName})
+
      }
      // sort temp array
      tempArray.sort(function(a, b) {
@@ -198,6 +193,7 @@ axios.get('/chart/condicoes_saude')
     }
 
     chart.data = chartData;
+
 
     // last tick
     var range = categoryAxis.axisRanges.create();

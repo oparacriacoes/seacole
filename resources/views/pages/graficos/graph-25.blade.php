@@ -53,15 +53,12 @@ am4core.useTheme(am4themes_animated);
 axios.get('/chart/acompanhamento_psicologico_individual_emgrupo')
   .then(response => {
     console.log(response.data);
+
     // Create chart instance
     var chart = am4core.create("acompanhamento_psicologico_individual_emgrupo", am4charts.XYChart3D);
 
     // Add data
-    chart.data = response.data;
-    /*chart.data = [{
-      "acompanhamento": 'Não informado',
-      "pacientes": 213
-    }, {
+    chart.data = [{
       "acompanhamento": 'Acompanhamento individual',
       "pacientes": 148
     }, {
@@ -70,7 +67,7 @@ axios.get('/chart/acompanhamento_psicologico_individual_emgrupo')
     }, {
       "acompanhamento": 'Acompanhamento individual e em grupo',
       "pacientes": 15
-    }];*/
+    }];
 
     // Create axes
     var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
@@ -86,7 +83,7 @@ axios.get('/chart/acompanhamento_psicologico_individual_emgrupo')
     series.dataFields.categoryY = "acompanhamento";
     series.name = "pacientes";
     series.columns.template.propertyFields.fill = "color";
-    series.columns.template.tooltipText = "Número total de pacientes: {valueX}";
+    series.columns.template.tooltipText = "Número de idas ao serviço de saúde: {valueX}";
     series.columns.template.column3D.stroke = am4core.color("#fff");
     series.columns.template.column3D.strokeOpacity = 0.2;
   });

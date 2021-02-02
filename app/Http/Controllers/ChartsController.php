@@ -1684,49 +1684,6 @@ class ChartsController extends Controller
   {
     /*$tratamento_financiado = DB::select("
     SELECT
-      cor_raca
-        , COALESCE(SUM(sem_informacao),0) AS sem_informacao
-        , COALESCE(SUM(sim),0) AS sim
-        , COALESCE(SUM(nao),0) AS nao
-        , COALESCE(SUM(sim_preta),0) AS sim_preta
-        , COALESCE(SUM(nao_preta),0) AS nao_preta
-        , COALESCE(SUM(sim_parda),0) AS sim_parda
-        , COALESCE(SUM(nao_parda),0) AS nao_parda
-    FROM   (
-      SELECT
-        CASE
-          WHEN cor_raca IS NULL THEN 'Sem info.'
-                WHEN cor_raca IN ('Preta','Parda') THEN 'Negra'
-        ELSE cor_raca END AS cor_raca
-      , CASE
-          WHEN tratamento_financiado IS NULL THEN COUNT(pac.id)
-        END AS sem_informacao
-      , CASE
-          WHEN tratamento_financiado = 'sim' AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
-        END AS sim
-      , CASE
-          WHEN tratamento_financiado = 'não' AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(pac.id)
-            END AS nao
-      , CASE
-          WHEN tratamento_financiado = 'sim' AND cor_raca = 'Preta' THEN COUNT(pac.id)
-            END AS sim_preta
-      , CASE
-          WHEN tratamento_financiado = 'não' AND cor_raca = 'Preta' THEN COUNT(pac.id)
-            END AS nao_preta
-      , CASE
-          WHEN tratamento_financiado = 'sim' AND cor_raca = 'Parda' THEN COUNT(pac.id)
-        END AS sim_parda
-      , CASE
-          WHEN tratamento_financiado = 'não' AND cor_raca = 'Parda' THEN COUNT(pac.id)
-        END AS nao_parda
-      FROM pacientes pac
-      LEFT JOIN insumos_oferecidos iof ON iof.paciente_id = pac.id
-        GROUP BY tratamento_financiado, cor_raca)TBB
-    GROUP BY cor_raca
-    ORDER BY cor_raca
-    ");*/
-    $tratamento_financiado = DB::select("
-    SELECT
         CONCAT('Sim \n\n ',pergunta) AS pergunta
         , COALESCE(SUM(branca_sim),0) AS branca
         , COALESCE(SUM(indigena_sim),0) AS indigena
@@ -1819,6 +1776,101 @@ class ChartsController extends Controller
         LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
         GROUP BY cor_raca, tratamento_financiado)TB
       GROUP BY pergunta
+    ");*/
+    $tratamento_financiado = DB::select("
+    SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND tratamento_financiado LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, tratamento_financiado)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, tratamento_financiado)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+
+      SELECT
+        CONCAT('Sim \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          'Alopático (medicamentos convencionais)?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL AND tratamento_financiado LIKE '%Alopático (medicamentos convencionais)%' THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, tratamento_financiado)TB
+      GROUP BY pergunta
+
+
+      UNION ALL
+
+      SELECT
+        CONCAT('Não \n\n ',pergunta) AS pergunta
+        , COALESCE(SUM(branca_nao),0) AS branca
+        , COALESCE(SUM(indigena_nao),0) AS indigena
+        , COALESCE(SUM(amarela_nao),0) AS amarela
+        , COALESCE(SUM(preta_nao)+SUM(parda_nao),0) AS negro
+        , COALESCE(SUM(nao_info_nao),0) AS nao_info
+      FROM
+        (SELECT
+          'Alopático (medicamentos convencionais)?' AS pergunta
+          , CASE WHEN cor_raca = 'Preta' AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS preta_nao
+          , CASE WHEN cor_raca = 'Parda' AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS parda_nao
+          , CASE WHEN cor_raca = 'Indígena' AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS indigena_nao
+          , CASE WHEN cor_raca = 'Branca' AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS branca_nao
+          , CASE WHEN cor_raca = 'Amarela' AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS amarela_nao
+          , CASE WHEN cor_raca IS NULL AND (tratamento_financiado = 'N;' OR tratamento_financiado NOT LIKE '%Alopático (medicamentos convencionais)%') THEN COUNT(pac.id) END AS nao_info_nao
+        FROM pacientes pac
+        LEFT JOIN insumos_oferecidos iof ON pac.id = iof.paciente_id
+        GROUP BY cor_raca, tratamento_financiado)TB
+      GROUP BY pergunta
     ");
     return $tratamento_financiado;
   }
@@ -1876,62 +1928,6 @@ class ChartsController extends Controller
     /*$dias_sintoma_mais_menos_dez_dias = DB::select("
     SELECT
       cor_raca
-        , COALESCE(SUM(mais_10),0) AS mais_10
-        , COALESCE(SUM(menos_10),0) AS menos_10
-        , COALESCE(SUM(mais_10_preta),0) AS mais_10_preta
-        , COALESCE(SUM(menos_10_preta),0) AS menos_10_preta
-        , COALESCE(SUM(mais_10_parda),0) AS mais_10_parda
-        , COALESCE(SUM(menos_10_parda),0) AS menos_10_parda
-    FROM
-      (SELECT
-        CASE
-          WHEN cor_raca IS NULL THEN 'Sem info.'
-            WHEN cor_raca IN ('Preta','Parda') THEN 'Negra'
-        ELSE cor_raca END AS cor_raca
-        , CASE
-          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) > 10 AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(id)
-        END AS mais_10
-        , CASE
-          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) <= 10  AND cor_raca NOT IN ('Preta','Parda') THEN COUNT(id)
-          END AS menos_10
-        , CASE
-          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) > 10 AND cor_raca = 'Preta' THEN COUNT(id)
-          END AS mais_10_preta
-        , CASE
-          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) <= 10 AND cor_raca = 'Preta' THEN COUNT(id)
-          END AS menos_10_preta
-        , CASE
-          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) > 10 AND cor_raca = 'Parda' THEN COUNT(id)
-        END AS mais_10_parda
-        , CASE
-          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) <= 10 AND cor_raca = 'Parda' THEN COUNT(id)
-        END AS menos_10_parda
-      FROM
-        (SELECT
-          id
-          , cor_raca
-          , CAST(CONCAT(SUBSTRING(data_inicio_monitoramento,7,4),'-',SUBSTRING(data_inicio_monitoramento,4,2),'-',SUBSTRING(data_inicio_monitoramento,1,2)) AS DATE) AS data_inicio_monitoramento
-          , CAST(CONCAT(SUBSTRING(data_inicio_sintoma,7,4),'-',SUBSTRING(data_inicio_sintoma,4,2),'-',SUBSTRING(data_inicio_sintoma,1,2)) AS DATE) AS data_inicio_sintoma
-        FROM
-        (SELECT
-          id
-          , cor_raca
-          , CASE
-            WHEN LENGTH(data_inicio_monitoramento) = 8 THEN CONCAT(SUBSTRING(data_inicio_monitoramento,1,6),20,SUBSTRING(data_inicio_monitoramento,7,2))
-            ELSE data_inicio_monitoramento
-          END AS data_inicio_monitoramento
-          , CASE
-            WHEN LENGTH(data_inicio_sintoma) = 8 THEN CONCAT(SUBSTRING(data_inicio_sintoma,1,6),20,SUBSTRING(data_inicio_sintoma,7,2))
-            ELSE data_inicio_sintoma
-          END AS data_inicio_sintoma
-        FROM pacientes
-        WHERE situacao IN (1,2,3,6,7,8,9,10,11,12))TB)TBB
-        GROUP BY cor_raca, data_inicio_monitoramento, data_inicio_sintoma)TBBB
-    GROUP BY cor_raca;
-    ");*/
-    $dias_sintoma_mais_menos_dez_dias = DB::select("
-    SELECT
-      cor_raca
       , COALESCE(SUM(mais_10),0) +COALESCE(SUM(menos_10),0) AS total_raca
         , 'Mais de dez dias' AS mais_10_label
         , COALESCE(SUM(mais_10),0) AS mais_10
@@ -1971,6 +1967,40 @@ class ChartsController extends Controller
         WHERE situacao IN (1,2,3,6,7,8,9,10,11,12))TB)TBB
         GROUP BY cor_raca, data_inicio_monitoramento, data_inicio_sintoma)TBBB
     GROUP BY cor_raca;
+    ");*/
+    $dias_sintoma_mais_menos_dez_dias = DB::select("
+    SELECT
+      quantidade_dias
+        , SUM(pacientes) AS pacientes
+    FROM
+        (SELECT
+        CASE
+          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) > 10 THEN 'Mais de dez dias'
+          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) <= 10 THEN 'Menos de dez dias'
+          END AS quantidade_dias
+          , COUNT(id) AS pacientes
+      FROM
+        (SELECT
+          id
+          , CAST(CONCAT(SUBSTRING(data_inicio_monitoramento,7,4),'-',SUBSTRING(data_inicio_monitoramento,4,2),'-',SUBSTRING(data_inicio_monitoramento,1,2)) AS DATE) AS data_inicio_monitoramento
+          , CAST(CONCAT(SUBSTRING(data_inicio_sintoma,7,4),'-',SUBSTRING(data_inicio_sintoma,4,2),'-',SUBSTRING(data_inicio_sintoma,1,2)) AS DATE) AS data_inicio_sintoma
+        FROM
+        (SELECT
+          id
+          , CASE
+            WHEN LENGTH(data_inicio_monitoramento) = 8 THEN CONCAT(SUBSTRING(data_inicio_monitoramento,1,6),20,SUBSTRING(data_inicio_monitoramento,7,2))
+            ELSE data_inicio_monitoramento
+          END AS data_inicio_monitoramento
+          , CASE
+            WHEN LENGTH(data_inicio_sintoma) = 8 THEN CONCAT(SUBSTRING(data_inicio_sintoma,1,6),20,SUBSTRING(data_inicio_sintoma,7,2))
+            ELSE data_inicio_sintoma
+          END AS data_inicio_sintoma
+        FROM pacientes
+        WHERE situacao IN (1,2,3,6,7,8,9,10,11,12))TB)TBB
+        GROUP BY data_inicio_monitoramento, data_inicio_sintoma)TBBB
+    WHERE quantidade_dias IS NOT NULL
+    GROUP BY quantidade_dias
+    ;
     ");
     return $dias_sintoma_mais_menos_dez_dias;
   }
@@ -2101,13 +2131,24 @@ class ChartsController extends Controller
 
   public function acompanhamento_psicologico_individual_emgrupo()
   {
-    $acompanhamento_psicologico_individual_emgrupo = DB::select("
+    /*$acompanhamento_psicologico_individual_emgrupo = DB::select("
     SELECT
       CASE
         WHEN acompanhamento_psicologico LIKE 'a:1%' AND acompanhamento_psicologico LIKE '%s:10%' THEN 'Acompanhamento individual'
         WHEN acompanhamento_psicologico LIKE 'a:1%' AND acompanhamento_psicologico LIKE '%s:8%' THEN 'Acompanhamento em grupo'
         WHEN acompanhamento_psicologico LIKE 'a:2%' THEN 'Acompanhamento individual e em grupo'
             ELSE 'Não informado'
+      END AS acompanhamento
+        , COUNT(id) AS pacientes
+    FROM pacientes
+    GROUP BY acompanhamento_psicologico
+    ");*/
+    $acompanhamento_psicologico_individual_emgrupo = DB::select("
+    SELECT
+      CASE
+        WHEN acompanhamento_psicologico LIKE 'a:1%' AND acompanhamento_psicologico LIKE '%s:10%' THEN 'Acompanhamento individual'
+        WHEN acompanhamento_psicologico LIKE 'a:1%' AND acompanhamento_psicologico LIKE '%s:8%' THEN 'Acompanhamento em grupo'
+        WHEN acompanhamento_psicologico LIKE 'a:2%' THEN 'Acompanhamento individual e em grupo'
       END AS acompanhamento
         , COUNT(id) AS pacientes
     FROM pacientes
@@ -2650,6 +2691,27 @@ class ChartsController extends Controller
   {
     /*$como_acessa_sistema_saude = DB::select("
     SELECT
+        COALESCE(sintomas_iniciais, 'Não info.') AS sintomas_iniciais
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+          sintomas_iniciais
+          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+        FROM pacientes pac
+        GROUP BY cor_raca, sintomas_iniciais)TB
+      GROUP BY sintomas_iniciais
+    ");*/
+    $como_acessa_sistema_saude = DB::select("
+    SELECT
         pergunta
         , COALESCE(SUM(branca_sim),0) AS branca
         , COALESCE(SUM(indigena_sim),0) AS indigena
@@ -2740,27 +2802,6 @@ class ChartsController extends Controller
         LEFT JOIN quadro_atual qa ON pac.id = qa.paciente_id
         GROUP BY cor_raca, sistema_saude)TB
       GROUP BY pergunta
-    ");*/
-    $como_acessa_sistema_saude = DB::select("
-    SELECT
-        COALESCE(sintomas_iniciais, 'Não info.') AS sintomas_iniciais
-        , COALESCE(SUM(branca_sim),0) AS branca
-        , COALESCE(SUM(indigena_sim),0) AS indigena
-        , COALESCE(SUM(amarela_sim),0) AS amarela
-        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
-        , COALESCE(SUM(nao_info_sim),0) AS nao_info
-      FROM
-        (SELECT
-          sintomas_iniciais
-          , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
-          , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
-          , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
-          , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
-          , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
-          , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
-        FROM pacientes pac
-        GROUP BY cor_raca, sintomas_iniciais)TB
-      GROUP BY sintomas_iniciais
     ");
     return json_encode($como_acessa_sistema_saude);
   }
@@ -3694,6 +3735,34 @@ class ChartsController extends Controller
 
   public function condicoes_saude()
   {
+    /*$condicoes_saude = DB::select("
+    SELECT
+        doenca_cronica
+        , COALESCE(SUM(branca_sim),0) AS branca
+        , COALESCE(SUM(indigena_sim),0) AS indigena
+        , COALESCE(SUM(amarela_sim),0) AS amarela
+        , COALESCE(SUM(preta_sim)+SUM(parda_sim),0) AS negro
+        , COALESCE(SUM(nao_info_sim),0) AS nao_info
+      FROM
+        (SELECT
+        CASE
+          WHEN doenca_cronica LIKE '%1%' THEN 'Hipertensão arterial sistêmica (HAS)'
+          WHEN doenca_cronica LIKE '%2%' THEN 'Diabetes Mellitus (DM)'
+          WHEN doenca_cronica LIKE '%3%' THEN 'Dislipidemia'
+          WHEN doenca_cronica LIKE '%6%' THEN 'Cardiopatias e outras doenças cardiovasculares'
+          WHEN doenca_cronica LIKE '%10%' THEN 'Doença renal'
+        END AS doenca_cronica
+        , CASE WHEN cor_raca = 'Preta' THEN COUNT(pac.id) END AS preta_sim
+        , CASE WHEN cor_raca = 'Parda' THEN COUNT(pac.id) END AS parda_sim
+        , CASE WHEN cor_raca = 'Indígena' THEN COUNT(pac.id) END AS indigena_sim
+        , CASE WHEN cor_raca = 'Branca' THEN COUNT(pac.id) END AS branca_sim
+        , CASE WHEN cor_raca = 'Amarela' THEN COUNT(pac.id) END AS amarela_sim
+        , CASE WHEN cor_raca IS NULL THEN COUNT(pac.id) END AS nao_info_sim
+      FROM pacientes pac
+      GROUP BY cor_raca, doenca_cronica)TB
+    WHERE doenca_cronica IS NOT NULL
+    GROUP BY doenca_cronica;
+    ");*/
     $condicoes_saude = DB::select("
     SELECT
         doenca_cronica

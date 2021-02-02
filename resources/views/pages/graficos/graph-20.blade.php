@@ -53,156 +53,26 @@ am4core.useTheme(am4themes_animated);
 axios.get('/chart/dias_sintoma_mais_menos_dez_dias')
   .then(response => {
     //console.log(response.data);
-    let dataSet = [];
-    let color = '';
-    for(var i=0;i<response.data.length;i++){
-      //console.log(response.data[i]);
-      let raca = response.data[i].cor_raca;
-      switch (raca) {
-        case 'Negra':
-          color = "#000000";
-          break;
-        case 'Branca':
-          color = "#d3d3d3";
-          break;
-        case 'Sem info.':
-          color = "#0000ff";
-          break;
-        case 'Indígena':
-          color = "#ff0000";
-          break;
-        case 'Amarela':
-          color = "#ffff00";
-          break;
 
-        default:
-          console.log('not found');
+    var chart = am4core.create("dias_sintoma_mais_menos_dez_dias", am4charts.PieChart3D);
+    chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+    chart.legend = new am4charts.Legend();
+
+    chart.data = [
+      {
+        quantidade_dias: "Mais de dez dias",
+        pacientes: 41
+      },
+      {
+        quantidade_dias: "Menos de dez dias",
+        pacientes: 189
       }
-      //console.log(color);
+    ];
 
-      dataSet.push(
-        {
-        'type':response.data[i].cor_raca,
-        'percent':response.data[i].total_raca,
-        'color':color,
-        'subs':[{
-          'type':response.data[i].mais_10_label,
-          'percent':response.data[i].mais_10,
-        },{
-          'type':response.data[i].menos_10_label,
-          'percent':response.data[i].menos_10,
-        }],
-        }
-    );
-    };
-    //console.log('dataSet',dataSet);
-
-    // Create chart instance
-    var chart = am4core.create("dias_sintoma_mais_menos_dez_dias", am4charts.PieChart);
-
-    // Set data
-    var selected;
-    var types = dataSet;
-    /*var types = [{
-      type: "Negra", //raca_cor
-      percent: 129,//total_raca
-      color: "#000000",
-      subs: [{
-        type: "Mais de dez dias", //mais_10_label
-        percent: 23 //mais_10
-      }, {
-        type: "Menos de dez dias", //menos_10_label
-        percent: 106 //menos_10
-      }]
-    }, {
-      type: "Branca",
-      percent: 96,
-      color: "#d3d3d3",
-      subs: [{
-        type: "Mais de dez dias",
-        percent: 18
-      }, {
-        type: "Menos de dez dias",
-        percent: 78
-      }]
-    }, {
-      type: "Sem info.",
-      percent: 5,
-      color: "#0000ff",
-      subs: [{
-        type: "Mais de dez dias",
-        percent: 0
-      }, {
-        type: "Menos de dez dias",
-        percent: 5
-      },]
-    }, {
-      type: "Indígena",
-      percent: 0,
-      color: "#ff0000",
-      subs: [{
-        type: "Mais de dez dias",
-        percent: 0
-      }, {
-        type: "Menos de dez dias",
-        percent: 0
-      },]
-    }, {
-      type: "Amarela",
-      percent: 0,
-      color: "#ffff00",
-      subs: [{
-        type: "Mais de dez dias",
-        percent: 0
-      }, {
-        type: "Menos de dez dias",
-        percent: 0
-      }]
-    }];*/
-
-    // Add data
-    chart.data = generateChartData();
-
-    // Add and configure Series
-    var pieSeries = chart.series.push(new am4charts.PieSeries());
-    pieSeries.dataFields.value = "percent";
-    pieSeries.dataFields.category = "type";
-    pieSeries.slices.template.propertyFields.fill = "color";
-    pieSeries.slices.template.propertyFields.isActive = "pulled";
-    pieSeries.slices.template.strokeWidth = 0;
-
-    function generateChartData() {
-      var chartData = [];
-      for (var i = 0; i < types.length; i++) {
-        if (i == selected) {
-          for (var x = 0; x < types[i].subs.length; x++) {
-            chartData.push({
-              type: types[i].subs[x].type,
-              percent: types[i].subs[x].percent,
-              color: types[i].color,
-              pulled: true
-            });
-          }
-        } else {
-          chartData.push({
-            type: types[i].type,
-            percent: types[i].percent,
-            color: types[i].color,
-            id: i
-          });
-        }
-      }
-      return chartData;
-    }
-
-    pieSeries.slices.template.events.on("hit", function(event) {
-      if (event.target.dataItem.dataContext.id != undefined) {
-        selected = event.target.dataItem.dataContext.id;
-      } else {
-        selected = undefined;
-      }
-      chart.data = generateChartData();
-    });
+    var series = chart.series.push(new am4charts.PieSeries3D());
+    series.dataFields.value = "pacientes";
+    series.dataFields.category = "quantidade_dias";
   });
 //DIAS DE SINTOMAS - MAIS OU MENOS DE 10 DIAS - FIM
 });

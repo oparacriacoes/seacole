@@ -86,9 +86,12 @@ axios.get('/chart/como_acessa_sistema_saude')
       return categoryAxis.tooltipDataItem.dataContext.realName;
     })
 
+
+
     var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.tooltip.disabled = true;
     valueAxis.min = 0;
+
 
     // single column series for all data
     var columnSeries = chart.series.push(new am4charts.ColumnSeries());
@@ -103,6 +106,9 @@ axios.get('/chart/como_acessa_sistema_saude')
     valueAxis2.syncWithAxis = valueAxis;
     valueAxis2.tooltip.disabled = true;
 
+
+
+
     let label = categoryAxis.renderer.labels.template;
     label.wrap = true;
     label.maxWidth = 120;
@@ -116,6 +122,7 @@ axios.get('/chart/como_acessa_sistema_saude')
      target.stroke = colors[name];
      return colors[name];
     })
+
 
     var rangeTemplate = categoryAxis.axisRanges.template;
     rangeTemplate.tick.disabled = false;
@@ -132,17 +139,6 @@ axios.get('/chart/como_acessa_sistema_saude')
     var lineSeriesData = [];
 
     var data = dataSet;
-    /*var data =
-    {
-      "É usuária/o do SUS (público)":
-        {"Branco": 124,"Indígena": 0,"Amarelo": 0,"Negro": 195,"Não info.": 4},
-      "Tem convênio/plano de saúde":
-        {"Branco": 11,"Indígena": 0,"Amarelo": 0,"Negro": 14,"Não info.": 0},
-      "Usuária/o de serviços pagos \'populares\' (Ex: Dr Consulta)":
-        {"Branco": 1,"Indígena": 0,"Amarelo": 0,"Negro": 0,"Não info.": 0},
-      "Usuária/o de serviços particulares não cobertos por convênios":
-        {"Branco": 1,"Indígena": 0,"Amarelo": 0,"Negro": 0,"Não info.": 0}
-    }*/
 
     // process data ant prepare it for the chart
     for (var providerName in data) {
@@ -156,6 +152,7 @@ axios.get('/chart/como_acessa_sistema_saude')
        count++;
        // we generate unique category for each column (providerName + "_" + itemName) and store realName
        tempArray.push({ category: providerName + "_" + itemName, realName: itemName, value: providerData[itemName], provider: providerName})
+
      }
      // sort temp array
      tempArray.sort(function(a, b) {
@@ -196,6 +193,7 @@ axios.get('/chart/como_acessa_sistema_saude')
     }
 
     chart.data = chartData;
+
 
     // last tick
     var range = categoryAxis.axisRanges.create();

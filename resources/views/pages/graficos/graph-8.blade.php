@@ -107,7 +107,7 @@ axios.get('/chart/faixa_etaria_genero')
     var homensRange = valueAxis.axisRanges.create();
     homensRange.value = -10;
     homensRange.endValue = 0;
-    homensRange.label.text = "Homens";
+    homensRange.label.text = "Homens CIS";
     homensRange.label.fill = chart.colors.list[0];
     homensRange.label.dy = 20;
     homensRange.label.fontWeight = '600';
@@ -117,7 +117,7 @@ axios.get('/chart/faixa_etaria_genero')
     var mulheresRange = valueAxis.axisRanges.create();
     mulheresRange.value = 0;
     mulheresRange.endValue = 10;
-    mulheresRange.label.text = "Mulheres";
+    mulheresRange.label.text = "Mulheres CIS";
     mulheresRange.label.fill = chart.colors.list[1];
     mulheresRange.label.dy = 20;
     mulheresRange.label.fontWeight = '600';

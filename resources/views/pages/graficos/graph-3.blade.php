@@ -2,6 +2,15 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
+<style>
+.chart {
+  width: 90%;
+  height: 400px;
+  font-size	: 12px;
+
+}
+</style>
+
 @endsection
 
 @section('content')
@@ -56,11 +65,11 @@ axios.get('/chart/situacao_total_casos_monitorados')
     var chart = am4core.create("situacao_total_casos_monitorados", am4charts.PieChart3D);
     chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
-    chart.legend = new am4charts.Legend();
+    //chart.legend = new am4charts.Legend();
 
     chart.data = response.data[0];
-
-    var series = chart.series.push(new am4charts.PieSeries3D());
+    
+    var series = chart.series.push(new am4charts.PieSeries());
     series.dataFields.value = "quantidade_casos";
     series.dataFields.category = "situacao";
   });

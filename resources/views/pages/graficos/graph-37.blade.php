@@ -59,8 +59,10 @@ axios.get('/chart/acompanhamento_sistema_saude')
       target.list = [
         //am4core.color("#0e0e0e"),
         //am4core.color("#0f0f0f"),
-        am4core.color("#aaff00"),//sim
-        am4core.color("#ff0000"),//nao
+//        am4core.color("#aaff00"),//branca sim 395723
+  //      am4core.color("#ff0000"),//branca nao fe0000
+        am4core.color("#395723"),//branca sim 
+        am4core.color("#fe0000"),//branca nao 
         am4core.color("#000000"),//preta sim d3d3d3
         am4core.color("#808080"),//preta nao ffff00
         am4core.color("#8b4513"),//parda sim

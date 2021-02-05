@@ -56,11 +56,11 @@ axios.get('/chart/casos_monitorados_por_cidade')
     var chart = am4core.create("casos_monitorados_por_cidade", am4charts.PieChart3D);
     chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
-    chart.legend = new am4charts.Legend();
+    //chart.legend = new am4charts.Legend();
 
     chart.data = response.data;
 
-    var series = chart.series.push(new am4charts.PieSeries3D());
+    var series = chart.series.push(new am4charts.PieSeries());
     series.dataFields.value = "quantidade";
     series.dataFields.category = "endereco_cidade";
   });

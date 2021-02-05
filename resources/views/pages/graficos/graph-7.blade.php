@@ -47,8 +47,11 @@
 <script>
 am4core.ready(function() {
 // Themes begin
+
 am4core.useTheme(am4themes_animated);
 // Themes end
+
+
 
 //GENERO POR RAÇA-COR - INÍCIO
 axios.get('/chart/genero_por_raca_cor')
@@ -68,7 +71,7 @@ axios.get('/chart/genero_por_raca_cor')
     }
     am4core.useTheme(am4themes_myTheme);
     // Create chart instance
-    var chart = am4core.create("genero_por_raca_cor", am4charts.XYChart3D);
+    var chart = am4core.create("genero_por_raca_cor", am4charts.XYChart);
 
     // Add data
     chart.data = response.data[0];
@@ -88,7 +91,7 @@ axios.get('/chart/genero_por_raca_cor')
     // Create series
     function createSeries(field, name) {
       // Set up series
-      var series = chart.series.push(new am4charts.ColumnSeries3D());
+      var series = chart.series.push(new am4charts.ColumnSeries());
       series.name = name;
       series.dataFields.valueY = field;
       series.dataFields.categoryX = "identidade_genero";
@@ -119,6 +122,16 @@ axios.get('/chart/genero_por_raca_cor')
 
     // Legend
     chart.legend = new am4charts.Legend();
+
+    var title = chart.titles.create();
+    title.text = "GÊNERO POR RAÇA-COR";
+    title.fontSize = 25;
+    title.marginBottom = 30;
+
+// Enable export
+chart.exporting.menu = new am4core.ExportMenu();
+chart.exporting.menu.align = "left";
+chart.exporting.menu.verticalAlign = "top";
   });
 //GENERO POR RAÇA-COR - FIM
 });

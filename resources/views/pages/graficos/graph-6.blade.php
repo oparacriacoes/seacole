@@ -74,7 +74,7 @@ axios.get('/chart/raca_cor_geral')
 
     chart.data = response.data[0];
 
-    var series = chart.series.push(new am4charts.PieSeries3D());
+    var series = chart.series.push(new am4charts.PieSeries());
     series.dataFields.value = "quantidade";
     series.dataFields.category = "cor_raca";
     $('#legenda').text(response.data[1][0].legenda);

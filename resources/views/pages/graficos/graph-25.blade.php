@@ -78,7 +78,7 @@ axios.get('/chart/acompanhamento_psicologico_individual_emgrupo')
     var  valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
 
     // Create series
-    var series = chart.series.push(new am4charts.ColumnSeries3D());
+    var series = chart.series.push(new am4charts.ColumnSeries());
     series.dataFields.valueX = "pacientes";
     series.dataFields.categoryY = "acompanhamento";
     series.name = "pacientes";

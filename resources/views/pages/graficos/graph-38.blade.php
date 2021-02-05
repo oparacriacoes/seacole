@@ -49,10 +49,12 @@ am4core.ready(function() {
 am4core.useTheme(am4themes_animated);
 // Themes end
 
+
 //COMO ACESSA O SISTEMA DE SAÚDE? - INÍCIO
 axios.get('/chart/como_acessa_sistema_saude')
   .then(response => {
     //console.log(response.data);
+
     let dataSet = {};
     for(var i=0;i<response.data.length;i++){
       //console.log(response.data[i]);
@@ -139,6 +141,15 @@ axios.get('/chart/como_acessa_sistema_saude')
     var lineSeriesData = [];
 
     var data = dataSet;
+// Modify chart's colors
+chart.colors.list = [
+  am4core.color("#845EC2"),
+  am4core.color("#D65DB1"),
+  am4core.color("#808080"),//branco
+  am4core.color("#000000"),//preto
+  am4core.color("#FFC75F"),
+  am4core.color("#F9F871"),
+];
 
     // process data ant prepare it for the chart
     for (var providerName in data) {
@@ -193,7 +204,6 @@ axios.get('/chart/como_acessa_sistema_saude')
     }
 
     chart.data = chartData;
-
 
     // last tick
     var range = categoryAxis.axisRanges.create();

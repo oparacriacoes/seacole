@@ -14,8 +14,8 @@ class AddColumnsDataEntradaInternacaoAndDataAltaHospitalarInServicoInternacaosTa
     public function up()
     {
         Schema::table('servico_internacaos', function (Blueprint $table) {
-          $table->string('data_entrada_internacao')->nullable()->after('tempo_internacao');
-          $table->string('data_alta_hospitalar')->nullable()->after('data_entrada_internacao');
+            $table->string('data_entrada_internacao')->nullable()->after('tempo_internacao');
+            $table->string('data_alta_hospitalar')->nullable()->after('data_entrada_internacao');
         });
     }
 
@@ -27,7 +27,7 @@ class AddColumnsDataEntradaInternacaoAndDataAltaHospitalarInServicoInternacaosTa
     public function down()
     {
         Schema::table('servico_internacaos', function (Blueprint $table) {
-          $table->dropColumn(['data_entrada_internacao', 'data_alta_hospitalar']);
+            $table->dropColumn(['data_entrada_internacao', 'data_alta_hospitalar']);
         });
     }
 }

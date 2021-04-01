@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Paciente extends Model
 {
-  protected $fillable = [
+    protected $fillable = [
     'user_id',
     'agente_id',
     'medico_id',
@@ -76,83 +76,83 @@ class Paciente extends Model
     'outras_informacao',
   ];
 
-  public function user()
-  {
-    return $this->belongsTo('App\User');
-  }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
-  public function agente()
-  {
-    return $this->belongsTo('App\Agente');
-  }
+    public function agente()
+    {
+        return $this->belongsTo('App\Agente');
+    }
 
-  public function medico()
-  {
-    return $this->belongsTo('App\Medico');
-  }
+    public function medico()
+    {
+        return $this->belongsTo('App\Medico');
+    }
 
-  public function psicologo()
-  {
-    return $this->belongsTo('App\Psicologo');
-  }
+    public function psicologo()
+    {
+        return $this->belongsTo('App\Psicologo');
+    }
 
-  public function articuladora()
-  {
-    return $this->belongsTo('App\Articuladora');
-  }
+    public function articuladora()
+    {
+        return $this->belongsTo('App\Articuladora');
+    }
 
-  public function sintomas()
-  {
-    return $this->hasMany('App\Sintoma');
-  }
+    public function sintomas()
+    {
+        return $this->hasMany('App\Sintoma');
+    }
 
-  public function tipos_ajuda()
-  {
-    return $this->hasMany('App\AjudaTipo');
-  }
+    public function tipos_ajuda()
+    {
+        return $this->hasMany('App\AjudaTipo');
+    }
 
-  public function estado_emocional()
-  {
-    return $this->hasOne('App\EstadoEmocional');
-  }
+    public function estado_emocional()
+    {
+        return $this->hasOne('App\EstadoEmocional');
+    }
 
-  public function observacao()
-  {
-    return $this->hasOne('App\Observacao');
-  }
+    public function observacao()
+    {
+        return $this->hasOne('App\Observacao');
+    }
 
-  public function doencas_cronicas()
-  {
-    return $this->hasMany('App\DoencaCronica');
-  }
+    public function doencas_cronicas()
+    {
+        return $this->hasMany('App\DoencaCronica');
+    }
 
-  public function items()
-  {
-    return $this->hasOne('App\Item');
-  }
+    public function items()
+    {
+        return $this->hasOne('App\Item');
+    }
 
-  public function dados()
-  {
-    return $this->hasMany('App\EvolucaoSintoma');
-  }
+    public function dados()
+    {
+        return $this->hasMany('App\EvolucaoSintoma');
+    }
 
-  public function insumos_oferecidos()
-  {
-    return $this->hasMany('App\InsumosOferecido');
-  }
+    public function insumos_oferecidos()
+    {
+        return $this->hasMany('App\InsumosOferecido');
+    }
 
-  public function quadro_atual()
-  {
-    return $this->hasMany('App\QuadroAtual');
-  }
+    public function quadro_atual()
+    {
+        return $this->hasMany('App\QuadroAtual');
+    }
 
-  public function saude_mental()
-  {
-    return $this->hasMany('App\SaudeMental');
-  }
+    public function saude_mental()
+    {
+        return $this->hasMany('App\SaudeMental');
+    }
 
-  public function servico_internacao()
-  {
-    return $this->hasMany('App\ServicoInternacao');
-  }
+    public function servico_internacao()
+    {
+        return $this->hasMany('App\ServicoInternacao');
+    }
 }

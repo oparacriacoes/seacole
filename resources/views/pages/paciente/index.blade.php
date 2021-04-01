@@ -85,7 +85,7 @@
                                   echo 'Contato com caso confirmado - finalizado';
                                   break;
 
-                                case '13';
+                                case '13':
                                   echo 'Outras situações (sem relação com COVID-19) - finalizado';
                                   break;
 

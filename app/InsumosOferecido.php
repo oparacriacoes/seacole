@@ -19,8 +19,8 @@ class InsumosOferecido extends Model
         'oximetro_devolvido',
       ];
 
-      public function pacientes()
-      {
+    public function pacientes()
+    {
         return $this->belongsTo('App\Paciente');
-      }
+    }
 }

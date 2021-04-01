@@ -13,8 +13,8 @@ class Articuladora extends Model
         'nome'
       ];
 
-      public function pacientes()
-      {
+    public function pacientes()
+    {
         return $this->hasMany('App\Paciente');
-      }
+    }
 }

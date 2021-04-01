@@ -14,7 +14,7 @@ class AddColumnsInServicoInternacaosTable extends Migration
     public function up()
     {
         Schema::table('servico_internacaos', function (Blueprint $table) {
-          $table->string('precisou_servico_outro')->nullable()->after('precisou_servico');
+            $table->string('precisou_servico_outro')->nullable()->after('precisou_servico');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnsInServicoInternacaosTable extends Migration
     public function down()
     {
         Schema::table('servico_internacaos', function (Blueprint $table) {
-          Schema::dropIfExists('precisou_servico_outro');
+            Schema::dropIfExists('precisou_servico_outro');
         });
     }
 }

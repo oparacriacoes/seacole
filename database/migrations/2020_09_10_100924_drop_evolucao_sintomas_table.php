@@ -13,7 +13,7 @@ class DropEvolucaoSintomasTable extends Migration
      */
     public function up()
     {
-      Schema::dropIfExists('evolucao_sintomas');
+        Schema::dropIfExists('evolucao_sintomas');
     }
 
     /**

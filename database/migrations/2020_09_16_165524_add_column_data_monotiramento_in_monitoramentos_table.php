@@ -14,7 +14,7 @@ class AddColumnDataMonotiramentoInMonitoramentosTable extends Migration
     public function up()
     {
         Schema::table('monitoramentos', function (Blueprint $table) {
-          $table->string('data_monitoramento')->nullable()->after('paciente_id');
+            $table->string('data_monitoramento')->nullable()->after('paciente_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnDataMonotiramentoInMonitoramentosTable extends Migration
     public function down()
     {
         Schema::table('monitoramentos', function (Blueprint $table) {
-          $table->dropColumn('data_monitoramento');
+            $table->dropColumn('data_monitoramento');
         });
     }
 }

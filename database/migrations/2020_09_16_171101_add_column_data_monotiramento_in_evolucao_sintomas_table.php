@@ -14,7 +14,7 @@ class AddColumnDataMonotiramentoInEvolucaoSintomasTable extends Migration
     public function up()
     {
         Schema::table('evolucao_sintomas', function (Blueprint $table) {
-          $table->string('data_monitoramento')->nullable()->after('paciente_id');
+            $table->string('data_monitoramento')->nullable()->after('paciente_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnDataMonotiramentoInEvolucaoSintomasTable extends Migration
     public function down()
     {
         Schema::table('evolucao_sintomas', function (Blueprint $table) {
-          $table->dropColumn('data_monitoramento');
+            $table->dropColumn('data_monitoramento');
         });
     }
 }

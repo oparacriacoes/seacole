@@ -14,7 +14,7 @@ class AddSintomasOutroInMonitoramentosTable extends Migration
     public function up()
     {
         Schema::table('monitoramentos', function (Blueprint $table) {
-          $table->string('sintomas_outro')->nullable()->after('sintomas_atuais');
+            $table->string('sintomas_outro')->nullable()->after('sintomas_atuais');
         });
     }
 
@@ -26,7 +26,7 @@ class AddSintomasOutroInMonitoramentosTable extends Migration
     public function down()
     {
         Schema::table('monitoramentos', function (Blueprint $table) {
-          Schema::dropIfExists('sintomas_outro');
+            Schema::dropIfExists('sintomas_outro');
         });
     }
 }

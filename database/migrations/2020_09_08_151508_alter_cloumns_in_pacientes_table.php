@@ -14,14 +14,14 @@ class AlterCloumnsInPacientesTable extends Migration
     public function up()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->string('data_nascimento')->change();
-          $table->string('data_teste_confirmatorio')->change();
-          $table->string('data_inicio_sintoma')->change();
-          $table->string('data_inicio_monitoramento')->change();
-          $table->string('data_finalizacao_caso')->change();
-          $table->string('data_parto')->change();
-          $table->string('data_ultima_mestrucao')->change();
-          $table->string('data_ultima_consulta')->change();
+            $table->string('data_nascimento')->change();
+            $table->string('data_teste_confirmatorio')->change();
+            $table->string('data_inicio_sintoma')->change();
+            $table->string('data_inicio_monitoramento')->change();
+            $table->string('data_finalizacao_caso')->change();
+            $table->string('data_parto')->change();
+            $table->string('data_ultima_mestrucao')->change();
+            $table->string('data_ultima_consulta')->change();
         });
     }
 

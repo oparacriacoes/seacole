@@ -14,8 +14,8 @@ class AddColumnsDataInicioAcPsicologicoAndDataEncerramentoAcPsicologicoInPacient
     public function up()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->string('data_inicio_ac_psicologico')->nullable()->after('data_finalizacao_caso');
-          $table->string('data_encerramento_ac_psicologico')->nullable()->after('data_inicio_ac_psicologico');
+            $table->string('data_inicio_ac_psicologico')->nullable()->after('data_finalizacao_caso');
+            $table->string('data_encerramento_ac_psicologico')->nullable()->after('data_inicio_ac_psicologico');
         });
     }
 
@@ -27,7 +27,7 @@ class AddColumnsDataInicioAcPsicologicoAndDataEncerramentoAcPsicologicoInPacient
     public function down()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->dropColumn(['data_inicio_ac_psicologico', 'data_encerramento_ac_psicologico']);
+            $table->dropColumn(['data_inicio_ac_psicologico', 'data_encerramento_ac_psicologico']);
         });
     }
 }

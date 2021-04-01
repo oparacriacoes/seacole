@@ -15,7 +15,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-      return null;
+        return null;
     }
 
     /**
@@ -26,21 +26,21 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-      $nomes = [];
-      $nomes_input = $request->data;
-      for($n = 0; $n < count($nomes_input); $n++){
-        array_push($nomes, $nomes_input[$n]);
-      }
-      $item = new Item;
-      $item->paciente_id = $request->input('paciente_id');
-      $item->nome_item = json_encode($nomes);
-      try {
-        $item->save();
-      } catch(\Exception $exception) {
-        return response()->json(['message', 'Não foi possível salvar os itens, tente novamente.']);
-      }
+        $nomes = [];
+        $nomes_input = $request->data;
+        for ($n = 0; $n < count($nomes_input); $n++) {
+            array_push($nomes, $nomes_input[$n]);
+        }
+        $item = new Item;
+        $item->paciente_id = $request->input('paciente_id');
+        $item->nome_item = json_encode($nomes);
+        try {
+            $item->save();
+        } catch (\Exception $exception) {
+            return response()->json(['message', 'Não foi possível salvar os itens, tente novamente.']);
+        }
 
-      return response()->json(['message' => 'Itens salvos com sucesso.']);
+        return response()->json(['message' => 'Itens salvos com sucesso.']);
     }
 
     /**
@@ -51,7 +51,7 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-      return null;
+        return null;
     }
 
     /**
@@ -63,22 +63,22 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $nomes = [];
-      if(isset($request->data)){
-        $nomes_input = $request->data;
-        for($n = 0; $n < count($nomes_input); $n++){
-          array_push($nomes, $nomes_input[$n]);
+        $nomes = [];
+        if (isset($request->data)) {
+            $nomes_input = $request->data;
+            for ($n = 0; $n < count($nomes_input); $n++) {
+                array_push($nomes, $nomes_input[$n]);
+            }
         }
-      }
-      $item = Item::find($request->input('item_id'));
-      $item->nome_item = json_encode($nomes);
-      try {
-        $item->save();
-      } catch(\Exception $exception) {
-        return response()->json(['message', 'Não foi possível atualizar os itens, tente novamente.']);
-      }
+        $item = Item::find($request->input('item_id'));
+        $item->nome_item = json_encode($nomes);
+        try {
+            $item->save();
+        } catch (\Exception $exception) {
+            return response()->json(['message', 'Não foi possível atualizar os itens, tente novamente.']);
+        }
 
-      return response()->json(['message' => 'Itens atualizados com sucesso.']);
+        return response()->json(['message' => 'Itens atualizados com sucesso.']);
     }
 
     /**
@@ -89,6 +89,6 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-      return null;
+        return null;
     }
 }

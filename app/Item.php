@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-  protected $fillable = [
+    protected $fillable = [
     'paciente_id', 'nome_item',
   ];
 
-  public function paciente()
-  {
-    return $this->belongsTo('App\Paciente');
-  }
+    public function paciente()
+    {
+        return $this->belongsTo('App\Paciente');
+    }
 }

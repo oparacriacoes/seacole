@@ -24,7 +24,7 @@ class SintomaEvolucao
      */
     public function __construct(EvolucaoSintoma $sintomas)
     {
-      $this->sintomas = $sintomas;
+        $this->sintomas = $sintomas;
     }
 
     /**

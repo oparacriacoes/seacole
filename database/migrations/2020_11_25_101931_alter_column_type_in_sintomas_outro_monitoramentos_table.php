@@ -14,7 +14,7 @@ class AlterColumnTypeInSintomasOutroMonitoramentosTable extends Migration
     public function up()
     {
         Schema::table('monitoramentos', function (Blueprint $table) {
-          $table->mediumText('sintomas_outro')->change();
+            $table->mediumText('sintomas_outro')->change();
         });
     }
 

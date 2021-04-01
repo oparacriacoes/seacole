@@ -14,7 +14,7 @@ class AlterColumnTesteUtilizadoInPacientesTable extends Migration
     public function up()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->string('teste_utilizado')->change();
+            $table->string('teste_utilizado')->change();
         });
     }
 

@@ -14,10 +14,10 @@ class AddColumnsInQuadroAtualTable extends Migration
     public function up()
     {
         Schema::table('quadro_atual', function (Blueprint $table) {
-          $table->string('desfecho')->nullable()->after('data_freq_max');
-          $table->string('sequelas')->nullable()->after('desfecho');
-          $table->string('outra_sequela_qual')->nullable()->after('sequelas');
-          $table->string('algo_mais_sobre_caso')->nullable()->after('outra_sequela_qual');
+            $table->string('desfecho')->nullable()->after('data_freq_max');
+            $table->string('sequelas')->nullable()->after('desfecho');
+            $table->string('outra_sequela_qual')->nullable()->after('sequelas');
+            $table->string('algo_mais_sobre_caso')->nullable()->after('outra_sequela_qual');
         });
     }
 
@@ -29,7 +29,7 @@ class AddColumnsInQuadroAtualTable extends Migration
     public function down()
     {
         Schema::table('quadro_atual', function (Blueprint $table) {
-          $table->dropColumn(['desfecho', 'sequelas', 'outra_sequela_qual', 'algo_mais_sobre_caso']);
+            $table->dropColumn(['desfecho', 'sequelas', 'outra_sequela_qual', 'algo_mais_sobre_caso']);
         });
     }
 }

@@ -32,47 +32,47 @@
       <?php
       function monitoringDays($date1, $date2)
       {
-        $date1_replace = str_replace('/', '-', $date1);
-        $date2_replace = str_replace('/', '-', $date2);
-        $date1_time = strtotime($date1_replace);
-        $date2_time = strtotime($date2_replace);
-        $from_date = date('Y-m-d', $date1_time);
-        $to_date = date('Y-m-d', $date2_time);
-        $from_parse = Carbon\Carbon::parse($from_date);
-        $to_parse = Carbon\Carbon::parse($to_date);
-        $monitoringDays = $from_parse->diffInDays($to_parse);
+          $date1_replace = str_replace('/', '-', $date1);
+          $date2_replace = str_replace('/', '-', $date2);
+          $date1_time = strtotime($date1_replace);
+          $date2_time = strtotime($date2_replace);
+          $from_date = date('Y-m-d', $date1_time);
+          $to_date = date('Y-m-d', $date2_time);
+          $from_parse = Carbon\Carbon::parse($from_date);
+          $to_parse = Carbon\Carbon::parse($to_date);
+          $monitoringDays = $from_parse->diffInDays($to_parse);
 
-        return $monitoringDays;
+          return $monitoringDays;
       }
       ?>
       @foreach($prontuarios as $prontuario)
       <?php
 
-      if( $prontuario->paciente ){
-        if( $prontuario->paciente->data_inicio_sintoma && $prontuario->data_monitoramento ){
-          $dias_monitoramento = monitoringDays($prontuario->paciente->data_inicio_sintoma, $prontuario->data_monitoramento);
-        } else {
-          $dias_monitoramento = 'Dados insuficientes';
-        }
+      if ($prontuario->paciente) {
+          if ($prontuario->paciente->data_inicio_sintoma && $prontuario->data_monitoramento) {
+              $dias_monitoramento = monitoringDays($prontuario->paciente->data_inicio_sintoma, $prontuario->data_monitoramento);
+          } else {
+              $dias_monitoramento = 'Dados insuficientes';
+          }
 
-        $sintoma = @unserialize($prontuario->sintomas_atuais);
-        if($sintoma === false){
-          $tosse = '';
-          $falta_de_ar = '';
-          $febre = '';
-          $dor_de_cabeca = '';
-          $perda_de_olfato = '';
-          $perda_de_paladar = '';
-          $outros = '';
-        } else {
-          in_array('tosse', $sintoma) ? $tosse = 'Sim' : $tosse = 'Não';
-          in_array('falta de ar', $sintoma) ? $falta_de_ar = 'Sim' : $falta_de_ar = 'Não';
-          in_array('febre', $sintoma) ? $febre = 'Sim' : $febre = 'Não';
-          in_array('dor de cabeça', $sintoma) ? $dor_de_cabeca = 'Sim' : $dor_de_cabeca = 'Não';
-          in_array('perda de olfato', $sintoma) ? $perda_de_olfato = 'Sim' : $perda_de_olfato = 'Não';
-          in_array('perda do paladar', $sintoma) ? $perda_de_paladar = 'Sim' : $perda_de_paladar = 'Não';
-          in_array('outros', $sintoma) ? $outros = 'Sim' : $outros = 'Não';
-        }
+          $sintoma = @unserialize($prontuario->sintomas_atuais);
+          if ($sintoma === false) {
+              $tosse = '';
+              $falta_de_ar = '';
+              $febre = '';
+              $dor_de_cabeca = '';
+              $perda_de_olfato = '';
+              $perda_de_paladar = '';
+              $outros = '';
+          } else {
+              in_array('tosse', $sintoma) ? $tosse = 'Sim' : $tosse = 'Não';
+              in_array('falta de ar', $sintoma) ? $falta_de_ar = 'Sim' : $falta_de_ar = 'Não';
+              in_array('febre', $sintoma) ? $febre = 'Sim' : $febre = 'Não';
+              in_array('dor de cabeça', $sintoma) ? $dor_de_cabeca = 'Sim' : $dor_de_cabeca = 'Não';
+              in_array('perda de olfato', $sintoma) ? $perda_de_olfato = 'Sim' : $perda_de_olfato = 'Não';
+              in_array('perda do paladar', $sintoma) ? $perda_de_paladar = 'Sim' : $perda_de_paladar = 'Não';
+              in_array('outros', $sintoma) ? $outros = 'Sim' : $outros = 'Não';
+          }
       }
 
       ?>

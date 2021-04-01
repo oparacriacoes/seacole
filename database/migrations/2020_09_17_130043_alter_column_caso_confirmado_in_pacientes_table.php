@@ -14,7 +14,7 @@ class AlterColumnCasoConfirmadoInPacientesTable extends Migration
     public function up()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->string('caso_confirmado')->change();
+            $table->string('caso_confirmado')->change();
         });
     }
 

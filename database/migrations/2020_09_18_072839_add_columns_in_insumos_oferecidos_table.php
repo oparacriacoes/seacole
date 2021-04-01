@@ -14,8 +14,8 @@ class AddColumnsInInsumosOferecidosTable extends Migration
     public function up()
     {
         Schema::table('insumos_oferecidos', function (Blueprint $table) {
-          $table->string('material_entregue')->nullable()->after('tratamento_financiado');
-          $table->string('oximetro_devolvido')->nullable()->after('material_entregue');
+            $table->string('material_entregue')->nullable()->after('tratamento_financiado');
+            $table->string('oximetro_devolvido')->nullable()->after('material_entregue');
         });
     }
 
@@ -27,7 +27,7 @@ class AddColumnsInInsumosOferecidosTable extends Migration
     public function down()
     {
         Schema::table('insumos_oferecidos', function (Blueprint $table) {
-          $table->dropColumn(['material_entregue', 'oximetro_devolvido']);
+            $table->dropColumn(['material_entregue', 'oximetro_devolvido']);
         });
     }
 }

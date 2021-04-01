@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class QuadroAtual extends Model
 {
-  protected $table = 'quadro_atual';
+    protected $table = 'quadro_atual';
 
-  protected $fillable = [
+    protected $fillable = [
       'paciente_id',
       'primeira_sintoma',
       'sintomas_manifestados',
@@ -26,6 +26,6 @@ class QuadroAtual extends Model
 
     public function paciente()
     {
-      return $this->belongsTo('App\Paciente');
+        return $this->belongsTo('App\Paciente');
     }
 }

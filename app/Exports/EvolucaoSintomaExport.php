@@ -14,7 +14,7 @@ class EvolucaoSintomaExport implements FromView, WithTitle
     */
     public function title(): string
     {
-      return 'Monitoramentos';
+        return 'Monitoramentos';
     }
 
     public function view(): View

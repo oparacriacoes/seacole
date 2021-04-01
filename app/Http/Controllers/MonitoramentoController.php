@@ -10,13 +10,13 @@ use App\EvolucaoSintoma;
 
 class MonitoramentoController extends Controller
 {
-  public function store(Request $request, $id)
-  {
-    $dados = [
+    public function store(Request $request, $id)
+    {
+        $dados = [
       'paciente_id' => $id,
       'data_monitoramento' => $request->data_monitoramento,
       'horario_monotiramento' => $request->horario_monotiramento,
-      'sintomas_atuais' => $request->sintomas_atuais ? serialize($request->sintomas_atuais) : NULL,
+      'sintomas_atuais' => $request->sintomas_atuais ? serialize($request->sintomas_atuais) : null,
       'sintomas_outro' => $request->sintomas_outro,
       'temperatura_atual' => $request->temperatura_atual,
       'frequencia_cardiaca_atual' => $request->frequencia_cardiaca_atual,
@@ -33,43 +33,42 @@ class MonitoramentoController extends Controller
       'melhoria_sintomas_inalacao' => $request->melhoria_sintomas_inalacao,
     ];
 
-    $monitoramento = Monitoramento::where('paciente_id', $id)->first();
+        $monitoramento = Monitoramento::where('paciente_id', $id)->first();
 
-    if( !$monitoramento ){
-      DB::beginTransaction();
-      try {
-        $monitoramento = Monitoramento::create($dados);
-        DB::commit();
+        if (!$monitoramento) {
+            DB::beginTransaction();
+            try {
+                $monitoramento = Monitoramento::create($dados);
+                DB::commit();
 
-        //REGISTRA NO PRONTUÁRIO
-        if( $dados ) {
-          event(new SintomaEvolucao(new EvolucaoSintoma($dados)));
+                //REGISTRA NO PRONTUÁRIO
+                if ($dados) {
+                    event(new SintomaEvolucao(new EvolucaoSintoma($dados)));
+                }
+
+                return redirect()->back()->with('success', 'Dados atualizados com sucesso.');
+            } catch (\Exception $e) {
+                DB::rollback();
+                \Log::info($e);
+                return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
+            }
+        } else {
+            DB::beginTransaction();
+            try {
+                $monitoramento->update($dados);
+                DB::commit();
+
+                //REGISTRA NO PRONTUÁRIO
+                if ($dados) {
+                    event(new SintomaEvolucao(new EvolucaoSintoma($dados)));
+                }
+
+                return redirect()->back()->with('success', 'Dados atualizados com sucesso.');
+            } catch (\Exception $e) {
+                DB::rollback();
+                \Log::info($e);
+                return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
+            }
         }
-
-        return redirect()->back()->with('success', 'Dados atualizados com sucesso.');
-      } catch (\Exception $e) {
-        DB::rollback();
-        \Log::info($e);
-        return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
-      }
-    } else {
-      DB::beginTransaction();
-      try {
-        $monitoramento->update($dados);
-        DB::commit();
-
-        //REGISTRA NO PRONTUÁRIO
-        if( $dados ) {
-          event(new SintomaEvolucao(new EvolucaoSintoma($dados)));
-        }
-
-        return redirect()->back()->with('success', 'Dados atualizados com sucesso.');
-      } catch (\Exception $e) {
-        DB::rollback();
-        \Log::info($e);
-        return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
-      }
     }
-  }
-
 }

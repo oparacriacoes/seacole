@@ -17,12 +17,12 @@ class QuadroAtualExport implements FromArray, WithHeadings, WithTitle
 
     public function title(): string
     {
-      return 'Quadro Atual';
+        return 'Quadro Atual';
     }
 
     public function headings(): array
     {
-      return [
+        return [
         'Paciente',
         'Primeiro sintoma',
         'Sintomas manifestados',
@@ -37,14 +37,14 @@ class QuadroAtualExport implements FromArray, WithHeadings, WithTitle
 
     public function array(): array
     {
-      $quadros = QuadroAtual::get();
-      $quadros_array = [];
+        $quadros = QuadroAtual::get();
+        $quadros_array = [];
 
-      foreach($quadros as $quadro){
-        array_push($quadros_array, [
+        foreach ($quadros as $quadro) {
+            array_push($quadros_array, [
           'Paciente' => $quadro->paciente->user->name,
           'Primeiro sintoma' => $quadro->primeira_sintoma,
-          'Sintomas manifestados' => $quadro->sintomas_manifestados ? implode(', ', unserialize($quadro->sintomas_manifestados)) : NULL,
+          'Sintomas manifestados' => $quadro->sintomas_manifestados ? implode(', ', unserialize($quadro->sintomas_manifestados)) : null,
           'Temperatura max' => $quadro->temperatura_max,
           'Data temp max' => $quadro->data_temp_max,
           'Saturação' => $quadro->saturacao_baixa,
@@ -52,8 +52,8 @@ class QuadroAtualExport implements FromArray, WithHeadings, WithTitle
           'Frequência card. max' => $quadro->frequencia_max,
           'Data freq max' => $quadro->data_freq_max,
         ]);
-      }
+        }
 
-      return [$quadros_array];
+        return [$quadros_array];
     }
 }

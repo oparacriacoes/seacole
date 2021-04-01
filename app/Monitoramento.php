@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Monitoramento extends Model
 {
-  protected $table = 'monitoramentos';
+    protected $table = 'monitoramentos';
 
-  protected $dates = [
+    protected $dates = [
     'created_at',
   ];
 
-  protected $fillable = [
+    protected $fillable = [
     'paciente_id',
     'data_monitoramento',
     'horario_monotiramento',

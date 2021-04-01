@@ -192,7 +192,9 @@
                                             <select type="select" name="agente" class="custom-select">
                                                 <option value="">Selecione</option>
                                                 @foreach($agentes as $agente)
-                                                <!--<option value="{{ $agente->id }}" <?php if( \Auth::user()->role === 'agente' && \Auth::user()->agente->id === $agente->id ){ echo 'selected=selected'; } ?> >{{ $agente->user->name }}</option>-->
+                                                <!--<option value="{{ $agente->id }}" <?php if (\Auth::user()->role === 'agente' && \Auth::user()->agente->id === $agente->id) {
+    echo 'selected=selected';
+} ?> >{{ $agente->user->name }}</option>-->
                                                 <option value="{{ $agente->id }}">{{ $agente->user->name }}</option>
                                                 @endforeach
                                             </select>

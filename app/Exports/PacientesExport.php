@@ -28,7 +28,7 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle, WithMultipl
 
     public function title(): string
     {
-      return 'Geral';
+        return 'Geral';
     }
 
     public function headings(): array
@@ -272,536 +272,535 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle, WithMultipl
 
     public function ageCalc($date)
     {
-      $date_replace = str_replace('/', '-', $date);
-      $date_time = strtotime($date_replace);
-      $to_date = date('Y-m-d', $date_time);
-      $date_parse = Carbon::parse($to_date);
-      return $date_parse->diffInYears();
+        $date_replace = str_replace('/', '-', $date);
+        $date_time = strtotime($date_replace);
+        $to_date = date('Y-m-d', $date_time);
+        $date_parse = Carbon::parse($to_date);
+        return $date_parse->diffInYears();
     }
 
     public function incomeClass($income)
     {
-      $income_parse = (int)$income;
+        $income_parse = (int)$income;
 
-      if( $income_parse >= 0 && $income_parse <= 1254 ){
-        return 'CLASSE E';
-      }
-      if( $income_parse >= 1255 && $income_parse <= 2004 ){
-        return 'CLASSE D';
-      }
-      if( $income_parse >= 2005 && $income_parse <= 8640 ){
-        return 'CLASSE C';
-      }
-      if( $income_parse >= 8641 && $income_parse <= 11261 ){
-        return 'CLASSE B';
-      }
-      if( $income_parse >= 11262 ){
-        return 'CLASSE A';
-      }
+        if ($income_parse >= 0 && $income_parse <= 1254) {
+            return 'CLASSE E';
+        }
+        if ($income_parse >= 1255 && $income_parse <= 2004) {
+            return 'CLASSE D';
+        }
+        if ($income_parse >= 2005 && $income_parse <= 8640) {
+            return 'CLASSE C';
+        }
+        if ($income_parse >= 8641 && $income_parse <= 11261) {
+            return 'CLASSE B';
+        }
+        if ($income_parse >= 11262) {
+            return 'CLASSE A';
+        }
     }
 
     public function perCapitaIncome($income, $people)
     {
-      $income_parse = (int)$income;
-      $people_parse = (int)$people;
-      $result = $income_parse/$people_parse;
-      $perCapta_format = number_format($result, 2, ',', '.');
+        $income_parse = (int)$income;
+        $people_parse = (int)$people;
+        $result = $income_parse/$people_parse;
+        $perCapta_format = number_format($result, 2, ',', '.');
 
-      return $perCapta_format;
+        return $perCapta_format;
     }
 
     public function ageRange($age)
     {
-      if( $age >= 0 && $age <= 4 ){
-        return '0-4';
-      }
-      if( $age >= 5 && $age <= 9 ){
-        return '5-9';
-      }
-      if( $age >= 10 && $age <= 14 ){
-        return '10-14';
-      }
-      if( $age >= 15 && $age <= 19 ){
-        return '15-19';
-      }
-      if( $age >= 20 && $age <= 24 ){
-        return '20-24';
-      }
-      if( $age >= 25 && $age <= 29 ){
-        return '25-29';
-      }
-      if( $age >= 30 && $age <= 34 ){
-        return '30-34';
-      }
-      if( $age >= 35 && $age <= 39 ){
-        return '35-39';
-      }
-      if( $age >= 40 && $age <= 44 ){
-        return '40-44';
-      }
-      if( $age >= 45 && $age <= 49 ){
-        return '45-49';
-      }
-      if( $age >= 50 && $age <= 54 ){
-        return '50-54';
-      }
-      if( $age >= 55 && $age <= 59 ){
-        return '55-59';
-      }
-      if( $age >= 60 && $age <= 64 ){
-        return '60-64';
-      }
-      if( $age >= 65 && $age <= 69 ){
-        return '65-69';
-      }
-      if( $age >= 70 && $age <= 74 ){
-        return '70-74';
-      }
-      if( $age >= 75 && $age <= 79 ){
-        return '75-79';
-      }
-      if( $age >= 80 && $age <= 84 ){
-        return '80-84';
-      }
-      if( $age >= 85 && $age <= 89 ){
-        return '85-89';
-      }
-      if( $age >= 90 && $age <= 94 ){
-        return '90-94';
-      }
-      if( $age >= 95 && $age <= 99 ){
-        return '95-99';
-      }
-      if( $age >= 100 && $age <= 104 ){
-        return '100-104';
-      }
+        if ($age >= 0 && $age <= 4) {
+            return '0-4';
+        }
+        if ($age >= 5 && $age <= 9) {
+            return '5-9';
+        }
+        if ($age >= 10 && $age <= 14) {
+            return '10-14';
+        }
+        if ($age >= 15 && $age <= 19) {
+            return '15-19';
+        }
+        if ($age >= 20 && $age <= 24) {
+            return '20-24';
+        }
+        if ($age >= 25 && $age <= 29) {
+            return '25-29';
+        }
+        if ($age >= 30 && $age <= 34) {
+            return '30-34';
+        }
+        if ($age >= 35 && $age <= 39) {
+            return '35-39';
+        }
+        if ($age >= 40 && $age <= 44) {
+            return '40-44';
+        }
+        if ($age >= 45 && $age <= 49) {
+            return '45-49';
+        }
+        if ($age >= 50 && $age <= 54) {
+            return '50-54';
+        }
+        if ($age >= 55 && $age <= 59) {
+            return '55-59';
+        }
+        if ($age >= 60 && $age <= 64) {
+            return '60-64';
+        }
+        if ($age >= 65 && $age <= 69) {
+            return '65-69';
+        }
+        if ($age >= 70 && $age <= 74) {
+            return '70-74';
+        }
+        if ($age >= 75 && $age <= 79) {
+            return '75-79';
+        }
+        if ($age >= 80 && $age <= 84) {
+            return '80-84';
+        }
+        if ($age >= 85 && $age <= 89) {
+            return '85-89';
+        }
+        if ($age >= 90 && $age <= 94) {
+            return '90-94';
+        }
+        if ($age >= 95 && $age <= 99) {
+            return '95-99';
+        }
+        if ($age >= 100 && $age <= 104) {
+            return '100-104';
+        }
     }
 
     public function monitoringDays($date1, $date2)
     {
-      $date1_replace = str_replace('/', '-', $date1);
-      $date2_replace = str_replace('/', '-', $date2);
-      $date1_time = strtotime($date1_replace);
-      $date2_time = strtotime($date2_replace);
-      $from_date = date('Y-m-d', $date1_time);
-      $to_date = date('Y-m-d', $date2_time);
-      $from_parse = Carbon::parse($from_date);
-      $to_parse = Carbon::parse($to_date);
-      $monitoringDays = $from_parse->diffInDays($to_parse);
+        $date1_replace = str_replace('/', '-', $date1);
+        $date2_replace = str_replace('/', '-', $date2);
+        $date1_time = strtotime($date1_replace);
+        $date2_time = strtotime($date2_replace);
+        $from_date = date('Y-m-d', $date1_time);
+        $to_date = date('Y-m-d', $date2_time);
+        $from_parse = Carbon::parse($from_date);
+        $to_parse = Carbon::parse($to_date);
+        $monitoringDays = $from_parse->diffInDays($to_parse);
 
-      return $monitoringDays;
+        return $monitoringDays;
     }
 
     public function array(): array
     {
-      $pacientes = Paciente::get();
-      $pacientes_array = [];
+        $pacientes = Paciente::get();
+        $pacientes_array = [];
 
-      foreach($pacientes as $paciente){
+        foreach ($pacientes as $paciente) {
+            $doenca = $paciente->doenca_cronica ? unserialize($paciente->doenca_cronica) : [];
+            in_array('1', $doenca) ? $has = 'Sim' : $has = 'Não';
+            in_array('2', $doenca) ? $dm = 'Sim' : $dm = 'Não';
+            in_array('3', $doenca) ? $dislipidemia = 'Sim' : $dislipidemia = 'Não';
+            in_array('4', $doenca) ? $asma_bronquite = 'Sim' : $asma_bronquite = 'Não';
+            in_array('5', $doenca) ? $tuberculose_ativa = 'Sim' : $tuberculose_ativa = 'Não';
+            in_array('6', $doenca) ? $cardiopatias = 'Sim' : $cardiopatias = 'Não';
+            in_array('7', $doenca) ? $outras_doencas_respiratorias = 'Sim' : $outras_doencas_respiratorias = 'Não';
+            in_array('8', $doenca) ? $artrite_artrose_reumatismo = 'Sim' : $artrite_artrose_reumatismo = 'Não';
+            in_array('9', $doenca) ? $doenca_autoimune = 'Sim' : $doenca_autoimune = 'Não';
+            in_array('10', $doenca) ? $doenca_renal = 'Sim' : $doenca_renal = 'Não';
+            in_array('11', $doenca) ? $doenca_neurologica = 'Sim' : $doenca_neurologica = 'Não';
+            in_array('12', $doenca) ? $cancer = 'Sim' : $cancer = 'Não';
+            in_array('13', $doenca) ? $ansiedade = "Sim" : $ansiedade = 'Não';
+            in_array('14', $doenca) ? $depressao = 'Sim' : $depressao = 'Não';
+            in_array('15', $doenca) ? $demencia = 'Sim' : $demencia = 'Não';
+            in_array('16', $doenca) ? $outras_questoes_saude_mental = 'Sim' : $outras_questoes_saude_mental = 'Não';
 
-        $doenca = $paciente->doenca_cronica ? unserialize($paciente->doenca_cronica) : [];
-        in_array('1', $doenca) ? $has = 'Sim' : $has = 'Não';
-        in_array('2', $doenca) ? $dm = 'Sim' : $dm = 'Não';
-        in_array('3', $doenca) ? $dislipidemia = 'Sim' : $dislipidemia = 'Não';
-        in_array('4', $doenca) ? $asma_bronquite = 'Sim' : $asma_bronquite = 'Não';
-        in_array('5', $doenca) ? $tuberculose_ativa = 'Sim' : $tuberculose_ativa = 'Não';
-        in_array('6', $doenca) ? $cardiopatias = 'Sim' : $cardiopatias = 'Não';
-        in_array('7', $doenca) ? $outras_doencas_respiratorias = 'Sim' : $outras_doencas_respiratorias = 'Não';
-        in_array('8', $doenca) ? $artrite_artrose_reumatismo = 'Sim' : $artrite_artrose_reumatismo = 'Não';
-        in_array('9', $doenca) ? $doenca_autoimune = 'Sim' : $doenca_autoimune = 'Não';
-        in_array('10', $doenca) ? $doenca_renal = 'Sim' : $doenca_renal = 'Não';
-        in_array('11', $doenca) ? $doenca_neurologica = 'Sim' : $doenca_neurologica = 'Não';
-        in_array('12', $doenca) ? $cancer = 'Sim' : $cancer = 'Não';
-        in_array('13', $doenca) ? $ansiedade = "Sim" : $ansiedade = 'Não';
-        in_array('14', $doenca) ? $depressao = 'Sim' : $depressao = 'Não';
-        in_array('15', $doenca) ? $demencia = 'Sim' : $demencia = 'Não';
-        in_array('16', $doenca) ? $outras_questoes_saude_mental = 'Sim' : $outras_questoes_saude_mental = 'Não';
+            $situacao_array = [];
+            if ($paciente->situacao === '1') {
+                array_push($situacao_array, 'Caso ativo GRAVE');
+            }
+            if ($paciente->situacao === '2') {
+                array_push($situacao_array, 'Caso ativo LEVE');
+            }
+            if ($paciente->situacao === '3') {
+                array_push($situacao_array, 'Contato caso confirmado - ativo');
+            }
+            if ($paciente->situacao === '4') {
+                array_push($situacao_array, 'Outras situações (sem relação com COVID-19) - ativos');
+            }
+            if ($paciente->situacao === '5') {
+                array_push($situacao_array, 'Exclusivo psicologia - ativo');
+            }
+            if ($paciente->situacao === '6') {
+                array_push($situacao_array, 'Monitoramento encerrado GRAVE - segue apenas com psicólogos');
+            }
+            if ($paciente->situacao === '7') {
+                array_push($situacao_array, 'Monitoramento encerrado LEVE - segue apenas com psicólogos');
+            }
+            if ($paciente->situacao === '8') {
+                array_push($situacao_array, 'Monitoramento encerrado contato - segue apenas com psicólogos');
+            }
+            if ($paciente->situacao === '9') {
+                array_push($situacao_array, 'Monitoramento encerrado outros - segue apenas com psicólogos');
+            }
+            if ($paciente->situacao === '10') {
+                array_push($situacao_array, 'Caso finalizado GRAVE');
+            }
+            if ($paciente->situacao === '11') {
+                array_push($situacao_array, 'Caso finalizado LEVE');
+            }
+            if ($paciente->situacao === '12') {
+                array_push($situacao_array, 'Contato com caso confirmado - finalizado');
+            }
+            if ($paciente->situacao === '13') {
+                array_push($situacao_array, 'Outras situações (sem relação com COVID-19) - finalizado');
+            }
+            if ($paciente->situacao === '14') {
+                array_push($situacao_array, 'Exclusivo psicologia - finalizado');
+            }
 
-        $situacao_array = [];
-        if($paciente->situacao === '1'){
-          array_push($situacao_array, 'Caso ativo GRAVE');
-        }
-        if($paciente->situacao === '2'){
-          array_push($situacao_array, 'Caso ativo LEVE');
-        }
-        if($paciente->situacao === '3'){
-          array_push($situacao_array, 'Contato caso confirmado - ativo');
-        }
-        if($paciente->situacao === '4'){
-          array_push($situacao_array, 'Outras situações (sem relação com COVID-19) - ativos');
-        }
-        if($paciente->situacao === '5'){
-          array_push($situacao_array, 'Exclusivo psicologia - ativo');
-        }
-        if($paciente->situacao === '6'){
-          array_push($situacao_array, 'Monitoramento encerrado GRAVE - segue apenas com psicólogos');
-        }
-        if($paciente->situacao === '7'){
-          array_push($situacao_array, 'Monitoramento encerrado LEVE - segue apenas com psicólogos');
-        }
-        if($paciente->situacao === '8'){
-          array_push($situacao_array, 'Monitoramento encerrado contato - segue apenas com psicólogos');
-        }
-        if($paciente->situacao === '9'){
-          array_push($situacao_array, 'Monitoramento encerrado outros - segue apenas com psicólogos');
-        }
-        if($paciente->situacao === '10'){
-          array_push($situacao_array, 'Caso finalizado GRAVE');
-        }
-        if($paciente->situacao === '11'){
-          array_push($situacao_array, 'Caso finalizado LEVE');
-        }
-        if($paciente->situacao === '12'){
-          array_push($situacao_array, 'Contato com caso confirmado - finalizado');
-        }
-        if($paciente->situacao === '13'){
-          array_push($situacao_array, 'Outras situações (sem relação com COVID-19) - finalizado');
-        }
-        if($paciente->situacao === '14'){
-          array_push($situacao_array, 'Exclusivo psicologia - finalizado');
-        }
+            //CALCULA A IDADE DO PACIENTE
+            if ($paciente->data_nascimento) {
+                $age = $this->ageCalc($paciente->data_nascimento);
+            } else {
+                $age = '';
+            }
 
-        //CALCULA A IDADE DO PACIENTE
-        if( $paciente->data_nascimento ){
-          $age = $this->ageCalc($paciente->data_nascimento);
-        } else {
-          $age = '';
-        }
+            //CLASSIFICA POR RENDA
+            if ($paciente->renda_residencia) {
+                $renda = $paciente->renda_residencia;
+                $renda_replace = str_replace('.', '', $renda);
+                $classe = $this->incomeClass($renda_replace);
+            } else {
+                $classe = '';
+            }
 
-        //CLASSIFICA POR RENDA
-        if( $paciente->renda_residencia ){
-          $renda = $paciente->renda_residencia;
-          $renda_replace = str_replace('.','',$renda);
-          $classe = $this->incomeClass($renda_replace);
-        } else {
-          $classe = '';
-        }
+            //CALCULA A RENDA PER CAPTA
+            if ($paciente->renda_residencia && $paciente->numero_pessoas_residencia) {
+                $renda = $paciente->renda_residencia;
+                $renda_replace = str_replace('.', '', $renda);
+                $perCapta = $this->perCapitaIncome($renda_replace, $paciente->numero_pessoas_residencia);
+            } else {
+                $perCapta = 'Dados insuficientes';
+            }
 
-        //CALCULA A RENDA PER CAPTA
-        if( $paciente->renda_residencia && $paciente->numero_pessoas_residencia ){
-          $renda = $paciente->renda_residencia;
-          $renda_replace = str_replace('.','',$renda);
-          $perCapta = $this->perCapitaIncome($renda_replace, $paciente->numero_pessoas_residencia);
-        } else {
-          $perCapta = 'Dados insuficientes';
-        }
+            //CLASSIFICA POR RENDA PER-CAPTA
+            if ($paciente->renda_residencia && $paciente->numero_pessoas_residencia) {
+                $percapta_replace = str_replace('.', '', $perCapta);
+                $classe_percapta = $this->incomeClass($percapta_replace);
+            } else {
+                $classe_percapta = 'Dados insuficientes';
+            }
 
-        //CLASSIFICA POR RENDA PER-CAPTA
-        if( $paciente->renda_residencia && $paciente->numero_pessoas_residencia ){
-          $percapta_replace = str_replace('.','',$perCapta);
-          $classe_percapta = $this->incomeClass($percapta_replace);
-        } else {
-          $classe_percapta = 'Dados insuficientes';
-        }
+            //CALCULA A FAIXA ETÁRIA
+            if ($age) {
+                $age_range = $this->ageRange($age);
+            } else {
+                $age_range = '';
+            };
 
-        //CALCULA A FAIXA ETÁRIA
-        if( $age ){
-          $age_range = $this->ageRange($age);
-        } else {
-          $age_range = '';
-        };
+            //DETERMINA A RAÇA (PARDA & PRETA = NEGRA)
+            if ($paciente->cor_raca === 'Preta' || $paciente->cor_raca === 'Parda') {
+                $raca_cor = 'Negra';
+            } else {
+                $raca_cor = $paciente->cor_raca;
+            };
 
-        //DETERMINA A RAÇA (PARDA & PRETA = NEGRA)
-        if( $paciente->cor_raca === 'Preta' || $paciente->cor_raca === 'Parda' ){
-          $raca_cor = 'Negra';
-        } else {
-          $raca_cor = $paciente->cor_raca;
-        };
+            $raca_cor_1 = $paciente->cor_raca;
 
-        $raca_cor_1 = $paciente->cor_raca;
+            //CALCULA O TOTAL DE DIAS DE MONITORAMENTO
+            if ($paciente->data_inicio_monitoramento && $paciente->data_finalizacao_caso) {
+                $monitoring_days = $this->monitoringDays($paciente->data_inicio_monitoramento, $paciente->data_finalizacao_caso);
+            } else {
+                $monitoring_days = 'Dados insuficientes';
+            }
 
-        //CALCULA O TOTAL DE DIAS DE MONITORAMENTO
-        if( $paciente->data_inicio_monitoramento && $paciente->data_finalizacao_caso ){
-          $monitoring_days = $this->monitoringDays($paciente->data_inicio_monitoramento, $paciente->data_finalizacao_caso);
-        } else {
-          $monitoring_days = 'Dados insuficientes';
-        }
+            if ($paciente->acompanhamento_psicologico) {
+                $acompanhamento = @unserialize($paciente->acompanhamento_psicologico);
+                in_array('individual', $acompanhamento) ? $acompanhamento_individual = 'Sim' : $acompanhamento_individual = 'Não';
+                in_array('em grupo', $acompanhamento) ? $acompanhamento_grupo = 'Sim' : $acompanhamento_grupo = 'Não';
+            } else {
+                $acompanhamento_individual = '';
+                $acompanhamento_grupo = '';
+            };
 
-        if( $paciente->acompanhamento_psicologico ){
-          $acompanhamento = @unserialize($paciente->acompanhamento_psicologico);
-          in_array('individual', $acompanhamento) ? $acompanhamento_individual = 'Sim' : $acompanhamento_individual = 'Não';
-          in_array('em grupo', $acompanhamento) ? $acompanhamento_grupo = 'Sim' : $acompanhamento_grupo = 'Não';
-        } else {
-          $acompanhamento_individual = '';
-          $acompanhamento_grupo = '';
-        };
+            if ($paciente->teste_utilizado) {
+                $teste = @unserialize($paciente->teste_utilizado);
+                if ($teste === false) {
+                    $paciente->teste_utilizado === 'PCR' ? $pcr = 'Sim' : $pcr = 'Não';
+                    $paciente->teste_utilizado === 'sorologias (IgM/IgG)' ? $sorologias = 'Sim' : $sorologias = 'Não';
+                    $paciente->teste_utilizado ===  'teste rápido' ? $teste_rapido = 'Sim' : $teste_rapido = 'Não';
+                    $paciente->teste_utilizado === 'não informado' ? $nao_informado = 'Sim' : $nao_informado = 'Não';
+                } else {
+                    in_array('PCR', $teste) ? $pcr = 'Sim' : $pcr = 'Não';
+                    in_array('sorologias (IgM/IgG)', $teste) ? $sorologias = 'Sim' : $sorologias = 'Não';
+                    in_array('teste rápido', $teste) ? $teste_rapido = 'Sim' : $teste_rapido = 'Não';
+                    in_array('não informado', $teste) ? $nao_informado = 'Sim' : $nao_informado = 'Não';
+                }
+            } else {
+                $pcr = '';
+                $sorologias = '';
+                $teste_rapido = '';
+                $nao_informado = '';
+            };
 
-        if( $paciente->teste_utilizado ){
-          $teste = @unserialize($paciente->teste_utilizado);
-          if($teste === false){
-            $paciente->teste_utilizado === 'PCR' ? $pcr = 'Sim' : $pcr = 'Não';
-            $paciente->teste_utilizado === 'sorologias (IgM/IgG)' ? $sorologias = 'Sim' : $sorologias = 'Não';
-            $paciente->teste_utilizado ===  'teste rápido' ? $teste_rapido = 'Sim' : $teste_rapido = 'Não';
-            $paciente->teste_utilizado === 'não informado' ? $nao_informado = 'Sim' : $nao_informado = 'Não';
-          } else {
-            in_array('PCR', $teste) ? $pcr = 'Sim' : $pcr = 'Não';
-            in_array('sorologias (IgM/IgG)', $teste) ? $sorologias = 'Sim' : $sorologias = 'Não';
-            in_array('teste rápido', $teste) ? $teste_rapido = 'Sim' : $teste_rapido = 'Não';
-            in_array('não informado', $teste) ? $nao_informado = 'Sim' : $nao_informado = 'Não';
-          }
-        } else {
-          $pcr = '';
-          $sorologias = '';
-          $teste_rapido = '';
-          $nao_informado = '';
-        };
+            if ($paciente->resultado_teste) {
+                $resultado = @unserialize($paciente->resultado_teste);
+                if ($resultado === false) {
+                    $paciente->resultado_teste === 'PCR positivo' ? $pcr_positivo = 'Sim' : $pcr_positivo = 'Não';
+                    $paciente->resultado_teste === 'PCR negativo' ? $pcr_negativo = 'Sim' : $pcr_negativo = 'Não';
+                    $paciente->resultado_teste === 'IgM positivo' ? $igm_positivo = 'Sim' : $igm_positivo = 'Não';
+                    $paciente->resultado_teste === 'IgM negativo' ? $igm_negativo = 'Sim' : $igm_negativo = 'Não';
+                    $paciente->resultado_teste === 'IgG positivo' ? $igg_positivo = 'Sim' : $igg_positivo = 'Não';
+                    $paciente->resultado_teste === 'IgG negativo' ? $igg_negativo = 'Sim' : $igg_negativo = 'Não';
+                } else {
+                    in_array('PCR positivo', $resultado) ? $pcr_positivo = 'Sim' : $pcr_positivo = 'Não';
+                    in_array('PCR negativo', $resultado) ? $pcr_negativo = 'Sim' : $pcr_negativo = 'Não';
+                    in_array('IgM positivo', $resultado) ? $igm_positivo = 'Sim' : $igm_positivo = 'Não';
+                    in_array('IgM negativo', $resultado) ? $igm_negativo = 'Sim' : $igm_negativo = 'Não';
+                    in_array('IgG positivo', $resultado) ? $igg_positivo = 'Sim' : $igg_positivo = 'Não';
+                    in_array('IgG negativo', $resultado) ? $igg_negativo = 'Sim' : $igg_negativo = 'Não';
+                }
+            } else {
+                $pcr_positivo = '';
+                $pcr_negativo = '';
+                $igm_positivo = '';
+                $igm_negativo = '';
+                $igg_positivo = '';
+                $igg_negativo = '';
+            };
 
-        if( $paciente->resultado_teste ){
-          $resultado = @unserialize($paciente->resultado_teste);
-          if( $resultado === false ){
-            $paciente->resultado_teste === 'PCR positivo' ? $pcr_positivo = 'Sim' : $pcr_positivo = 'Não';
-            $paciente->resultado_teste === 'PCR negativo' ? $pcr_negativo = 'Sim' : $pcr_negativo = 'Não';
-            $paciente->resultado_teste === 'IgM positivo' ? $igm_positivo = 'Sim' : $igm_positivo = 'Não';
-            $paciente->resultado_teste === 'IgM negativo' ? $igm_negativo = 'Sim' : $igm_negativo = 'Não';
-            $paciente->resultado_teste === 'IgG positivo' ? $igg_positivo = 'Sim' : $igg_positivo = 'Não';
-            $paciente->resultado_teste === 'IgG negativo' ? $igg_negativo = 'Sim' : $igg_negativo = 'Não';
-          } else {
-            in_array('PCR positivo', $resultado) ? $pcr_positivo = 'Sim' : $pcr_positivo = 'Não';
-            in_array('PCR negativo', $resultado) ? $pcr_negativo = 'Sim' : $pcr_negativo = 'Não';
-            in_array('IgM positivo', $resultado) ? $igm_positivo = 'Sim' : $igm_positivo = 'Não';
-            in_array('IgM negativo', $resultado) ? $igm_negativo = 'Sim' : $igm_negativo = 'Não';
-            in_array('IgG positivo', $resultado) ? $igg_positivo = 'Sim' : $igg_positivo = 'Não';
-            in_array('IgG negativo', $resultado) ? $igg_negativo = 'Sim' : $igg_negativo = 'Não';
-          }
-        } else {
-          $pcr_positivo = '';
-          $pcr_negativo = '';
-          $igm_positivo = '';
-          $igm_negativo = '';
-          $igg_positivo = '';
-          $igg_negativo = '';
-        };
+            $sistema_saude = $paciente->sistema_saude ? unserialize($paciente->sistema_saude) : [];
+            in_array('É usuária/o do SUS (público)', $sistema_saude) ? $sus_publico = 'Sim' : $sus_publico = 'Não';
+            in_array('Tem convênio/plano de saúde', $sistema_saude) ? $convenio_plano_saude = 'Sim' : $convenio_plano_saude = 'Não';
+            in_array("Usuária/o de serviços pagos 'populares' (Ex: Dr Consulta)", $sistema_saude) ? $pagos_populares = 'Sim' : $pagos_populares = 'Não';
+            in_array('Usuária/o de serviços particulares não cobertos por convênios', $sistema_saude) ? $nao_cobertos_convenios = 'Sim' : $nao_cobertos_convenios = 'Não';
 
-        $sistema_saude = $paciente->sistema_saude ? unserialize($paciente->sistema_saude) : [];
-        in_array('É usuária/o do SUS (público)', $sistema_saude) ? $sus_publico = 'Sim' : $sus_publico = 'Não';
-        in_array('Tem convênio/plano de saúde', $sistema_saude) ? $convenio_plano_saude = 'Sim' : $convenio_plano_saude = 'Não';
-        in_array("Usuária/o de serviços pagos 'populares' (Ex: Dr Consulta)", $sistema_saude) ? $pagos_populares = 'Sim' : $pagos_populares = 'Não';
-        in_array('Usuária/o de serviços particulares não cobertos por convênios', $sistema_saude) ? $nao_cobertos_convenios = 'Sim' : $nao_cobertos_convenios = 'Não';
+            $quadro = QuadroAtual::where('paciente_id', $paciente->id)->first();
+            $sintomas_manifestados = @unserialize($quadro->sintomas_manifestados);
+            if ($sintomas_manifestados === false) {
+                $tosse = 'Não Informado';
+                $falta_de_ar = 'Não Informado';
+                $febre = 'Não Informado';
+                $dor_de_cabeca = 'Não Informado';
+                $perda_de_olfato = 'Não Informado';
+                $perda_de_paladar = 'Não Informado';
+                $enjoo_vomitos = 'Não Informado';
+                $diarreia = 'Não Informado';
+                $aumento_pressao = 'Não Informado';
+                $queda_pressao = 'Não Informado';
+                $dor_toracica = 'Não Informado';
+                $sonolencia_cansaco = 'Não Informado';
+                $confusao_mental = 'Não Informado';
+                $desmaio = 'Não Informado';
+                $convulsao = 'Não Informado';
+                $outros_sintomas = 'Não Informado';
+            } else {
+                in_array('tosse', $sintomas_manifestados) ? $tosse = 'Sim' : $tosse = 'Não';
+                in_array('falta de ar', $sintomas_manifestados) ? $falta_de_ar = 'Sim' : $falta_de_ar = 'Não';
+                in_array('febre', $sintomas_manifestados) ? $febre = 'Sim' : $febre = 'Não';
+                in_array('dor de cabeça', $sintomas_manifestados) ? $dor_de_cabeca = 'Sim' : $dor_de_cabeca = 'Não';
+                in_array('perda de olfato', $sintomas_manifestados) ? $perda_de_olfato = 'Sim' : $perda_de_olfato = 'Não';
+                in_array('perda do paladar', $sintomas_manifestados) ? $perda_de_paladar = 'Sim' : $perda_de_paladar = 'Não';
+                in_array('enjoo', $sintomas_manifestados) ? $enjoo_vomitos = 'Sim' : $enjoo_vomitos = 'Não';
+                in_array('diarreia', $sintomas_manifestados) ? $diarreia = 'Sim' : $diarreia = 'Não';
+                in_array('aumento da pressão', $sintomas_manifestados) ? $aumento_pressao = 'Sim' : $aumento_pressao = 'Não';
+                in_array('queda brusca de Pressão', $sintomas_manifestados) ? $queda_pressao = 'Sim' : $queda_pressao = 'Não';
+                in_array('pressão baixa', $sintomas_manifestados) ? $dor_toracica = 'Sim' : $dor_toracica = 'Não';
+                in_array('sonolência ou cansaço importantes', $sintomas_manifestados) ? $sonolencia_cansaco = 'Sim' : $sonolencia_cansaco = 'Não';
+                in_array('confusão mental', $sintomas_manifestados) ? $confusao_mental = 'Sim' : $confusao_mental = 'Não';
+                in_array('desmaio', $sintomas_manifestados) ? $desmaio = 'Sim' : $desmaio = 'Não';
+                in_array('convulsao', $sintomas_manifestados) ? $convulsao = 'Sim' : $convulsao = 'Não';
+                in_array('outros', $sintomas_manifestados) ? $outros_sintomas = 'Sim' : $outros_sintomas = 'Não';
+            }
+            $sequelas = @unserialize($quadro->sequelas);
+            if ($sequelas === false) {
+                $perda_persistente_olfato = '';
+                $perda_persistente_paladar = '';
+                $tosse_persistente = '';
+                $falta_ar_persistente = '';
+                $dor_cabeca_persistente = '';
+                $eventos_tromboliticos = '';
+                $danos_renais = '';
+                $sequelas_outros = '';
+            } else {
+                in_array('perda persistente de olfato', $sequelas) ? $perda_persistente_olfato = 'Sim' : $perda_persistente_olfato = 'Não';
+                in_array('perda persistente de paladar', $sequelas) ? $perda_persistente_paladar = 'Sim' : $perda_persistente_paladar = 'Não';
+                in_array('tosse persistente', $sequelas) ? $tosse_persistente = 'Sim' : $tosse_persistente = 'Não';
+                in_array('falta de ar persistente', $sequelas) ? $falta_ar_persistente = 'Sim' : $falta_ar_persistente = 'Não';
+                in_array('dor de cabeça persistente', $sequelas) ? $dor_cabeca_persistente = 'Sim' : $dor_cabeca_persistente = 'Não';
+                in_array('eventos tromboliticos', $sequelas) ? $eventos_tromboliticos = 'Sim' : $eventos_tromboliticos = 'Não';
+                in_array('danos renais', $sequelas) ? $danos_renais = 'Sim' : $danos_renais = 'Não';
+                in_array('outros: quais?', $sequelas) ? $sequelas_outros = 'Sim' : $sequelas_outros = 'Não';
+            }
 
-        $quadro = QuadroAtual::where('paciente_id', $paciente->id)->first();
-        $sintomas_manifestados = @unserialize($quadro->sintomas_manifestados);
-        if( $sintomas_manifestados === false ){
-          $tosse = 'Não Informado';
-          $falta_de_ar = 'Não Informado';
-          $febre = 'Não Informado';
-          $dor_de_cabeca = 'Não Informado';
-          $perda_de_olfato = 'Não Informado';
-          $perda_de_paladar = 'Não Informado';
-          $enjoo_vomitos = 'Não Informado';
-          $diarreia = 'Não Informado';
-          $aumento_pressao = 'Não Informado';
-          $queda_pressao = 'Não Informado';
-          $dor_toracica = 'Não Informado';
-          $sonolencia_cansaco = 'Não Informado';
-          $confusao_mental = 'Não Informado';
-          $desmaio = 'Não Informado';
-          $convulsao = 'Não Informado';
-          $outros_sintomas = 'Não Informado';
-        } else {
-          in_array('tosse', $sintomas_manifestados) ? $tosse = 'Sim' : $tosse = 'Não';
-          in_array('falta de ar', $sintomas_manifestados) ? $falta_de_ar = 'Sim' : $falta_de_ar = 'Não';
-          in_array('febre', $sintomas_manifestados) ? $febre = 'Sim' : $febre = 'Não';
-          in_array('dor de cabeça', $sintomas_manifestados) ? $dor_de_cabeca = 'Sim' : $dor_de_cabeca = 'Não';
-          in_array('perda de olfato', $sintomas_manifestados) ? $perda_de_olfato = 'Sim' : $perda_de_olfato = 'Não';
-          in_array('perda do paladar', $sintomas_manifestados) ? $perda_de_paladar = 'Sim' : $perda_de_paladar = 'Não';
-          in_array('enjoo', $sintomas_manifestados) ? $enjoo_vomitos = 'Sim' : $enjoo_vomitos = 'Não';
-          in_array('diarreia', $sintomas_manifestados) ? $diarreia = 'Sim' : $diarreia = 'Não';
-          in_array('aumento da pressão', $sintomas_manifestados) ? $aumento_pressao = 'Sim' : $aumento_pressao = 'Não';
-          in_array('queda brusca de Pressão', $sintomas_manifestados) ? $queda_pressao = 'Sim' : $queda_pressao = 'Não';
-          in_array('pressão baixa', $sintomas_manifestados) ? $dor_toracica = 'Sim' : $dor_toracica = 'Não';
-          in_array('sonolência ou cansaço importantes', $sintomas_manifestados) ? $sonolencia_cansaco = 'Sim' : $sonolencia_cansaco = 'Não';
-          in_array('confusão mental', $sintomas_manifestados) ? $confusao_mental = 'Sim' : $confusao_mental = 'Não';
-          in_array('desmaio', $sintomas_manifestados) ? $desmaio = 'Sim' : $desmaio = 'Não';
-          in_array('convulsao', $sintomas_manifestados) ? $convulsao = 'Sim' : $convulsao = 'Não';
-          in_array('outros', $sintomas_manifestados) ? $outros_sintomas = 'Sim' : $outros_sintomas = 'Não';
-        }
-        $sequelas = @unserialize($quadro->sequelas);
-        if( $sequelas === false ){
-          $perda_persistente_olfato = '';
-          $perda_persistente_paladar = '';
-          $tosse_persistente = '';
-          $falta_ar_persistente = '';
-          $dor_cabeca_persistente = '';
-          $eventos_tromboliticos = '';
-          $danos_renais = '';
-          $sequelas_outros = '';
-        } else {
-          in_array('perda persistente de olfato', $sequelas) ? $perda_persistente_olfato = 'Sim' : $perda_persistente_olfato = 'Não';
-          in_array('perda persistente de paladar', $sequelas) ? $perda_persistente_paladar = 'Sim' : $perda_persistente_paladar = 'Não';
-          in_array('tosse persistente', $sequelas) ? $tosse_persistente = 'Sim' : $tosse_persistente = 'Não';
-          in_array('falta de ar persistente', $sequelas) ? $falta_ar_persistente = 'Sim' : $falta_ar_persistente = 'Não';
-          in_array('dor de cabeça persistente', $sequelas) ? $dor_cabeca_persistente = 'Sim' : $dor_cabeca_persistente = 'Não';
-          in_array('eventos tromboliticos', $sequelas) ? $eventos_tromboliticos = 'Sim' : $eventos_tromboliticos = 'Não';
-          in_array('danos renais', $sequelas) ? $danos_renais = 'Sim' : $danos_renais = 'Não';
-          in_array('outros: quais?', $sequelas) ? $sequelas_outros = 'Sim' : $sequelas_outros = 'Não';
-        }
+            $saude_mental = SaudeMental::where('paciente_id', $paciente->id)->first();
 
-        $saude_mental = SaudeMental::where('paciente_id', $paciente->id)->first();
+            $internacao = ServicoInternacao::where('paciente_id', $paciente->id)->first();
+            $precisou_servico = @unserialize($internacao->precisou_servico);
+            if ($precisou_servico === false) {
+                $ubs_posto_de_saude = '';
+                $upa = '';
+                $ama = '';
+                $hospital_publico = '';
+                $hospital_privado = '';
+            } else {
+                in_array('UBS (Unidade Básica de Saúde - posto de saúde)', $precisou_servico) ? $ubs_posto_de_saude = 'Sim' : $ubs_posto_de_saude = 'Não';
+                in_array('UPA (Unidade de Pronto Atendimento)', $precisou_servico) ? $upa = 'Sim' : $upa = 'Não';
+                in_array('ama', $precisou_servico) ? $ama = 'Sim' : $ama = 'Não';
+                in_array('Hospital público', $precisou_servico) ? $hospital_publico = 'Sim' : $hospital_publico = 'Não';
+                in_array('hospital privado', $precisou_servico) ? $hospital_privado = 'Sim' : $hospital_privado = 'Não';
+            }
+            $recebeu_medicacao = @unserialize($internacao->recebeu_med_covid);
+            if ($recebeu_medicacao === false) {
+                $azitromicina = '';
+                $outro_antibiotico = '';
+                $ivermectina = '';
+                $cloroquina_hidroxicloroquina = '';
+                $oseltamivir = '';
+                $algum_antialergico = '';
+                $algum_corticoide = '';
+                $algum_antiinflamatorio = '';
+                $vitamina_d = '';
+                $zinco = '';
+                $outro_medicamento = '';
+            } else {
+                in_array('Azitromicina', $recebeu_medicacao) ? $azitromicina = 'Sim' : $azitromicina = 'Não' ;
+                in_array('outro antibiótico', $recebeu_medicacao) ? $outro_antibiotico = 'Sim' : $outro_antibiotico = 'Não' ;
+                in_array('ivermectina', $recebeu_medicacao) ? $ivermectina = 'Sim' : $ivermectina = 'Não' ;
+                in_array('cloroquina/hidroxicloroquina', $recebeu_medicacao) ? $cloroquina_hidroxicloroquina = 'Sim' : $cloroquina_hidroxicloroquina = 'Não' ;
+                in_array('oseltamivir (tamiflu)', $recebeu_medicacao) ? $oseltamivir = 'Sim' : $oseltamivir = 'Não' ;
+                in_array('algum antialérgico', $recebeu_medicacao) ? $algum_antialergico = 'Sim' : $algum_antialergico = 'Não' ;
+                in_array('algum corticóide', $recebeu_medicacao) ? $algum_corticoide = 'Sim' : $algum_corticoide = 'Não' ;
+                in_array('algum antiinflamatório', $recebeu_medicacao) ? $algum_antiinflamatorio = 'Sim' : $algum_antiinflamatorio = 'Não' ;
+                in_array('vitamina D', $recebeu_medicacao) ? $vitamina_d = 'Sim' : $vitamina_d = 'Não' ;
+                in_array('zinco', $recebeu_medicacao) ? $zinco = 'Sim' : $zinco = 'Não' ;
+                in_array('outro medicamento', $recebeu_medicacao) ? $outro_medicamento = 'Sim' : $outro_medicamento = 'Não' ;
+            }
+            $problema_internacao = @unserialize($internacao->teve_algum_problema);
+            if ($problema_internacao === false) {
+                $problema_ubs = '';
+                $problema_upa = '';
+                $problema_ama = '';
+                $problema_hospital_publico = '';
+                $problema_hospital_privado = '';
+                $problema_outro = '';
+            } else {
+                in_array('UBS (Unidade Básica de Saúde - posto de saúde)', $problema_internacao) ? $problema_ubs = 'Sim' : $problema_ubs = 'Não';
+                in_array('UPA (Unidade de Pronto Atendimento)', $problema_internacao) ? $problema_upa = 'Sim' : $problema_upa = 'Não';
+                in_array('ama', $problema_internacao) ? $problema_ama = 'Sim' : $problema_ama = 'Não';
+                in_array('Hospital público', $problema_internacao) ? $problema_hospital_publico = 'Sim' : $problema_hospital_publico = 'Não';
+                in_array('Hospital privado', $problema_internacao) ? $problema_hospital_privado = 'Sim' : $problema_hospital_privado = 'Não';
+                in_array('Outro (qual?)', $problema_internacao) ? $problema_outro = 'Sim' : $problema_outro = 'Não';
+            }
+            $local_internacao = @unserialize($internacao->local_internacao);
+            if ($local_internacao === false) {
+                $hospital_publico_referencia = '';
+                $hospital_campanha = '';
+                $hospital_particular_referencia = '';
+                $hospital_ipiranga = '';
+                $hospital_financiado_projeto = '';
+            } else {
+                in_array('Hospital público de referência', $local_internacao) ? $hospital_publico_referencia = 'Sim' : $hospital_publico_referencia = 'Não';
+                in_array('Hospital de campanha', $local_internacao) ? $hospital_campanha = 'Sim' : $hospital_campanha = 'Não';
+                in_array('Hospital particular de referência', $local_internacao) ? $hospital_particular_referencia = 'Sim' : $hospital_particular_referencia = 'Não';
+                in_array('Hospital municipal do Ipiranga (encaminhado pelo projeto)', $local_internacao) ? $hospital_ipiranga = 'Sim' : $hospital_ipiranga = 'Não';
+                in_array('Hospital privado financiado pelo projeto', $local_internacao) ? $hospital_financiado_projeto = 'Sim' : $hospital_financiado_projeto = 'Não';
+            }
+            if ($internacao && $internacao->data_entrada_internacao && $internacao->data_alta_hospitalar) {
+                $tempo_internacao = $this->monitoringDays($internacao->data_entrada_internacao, $internacao->data_alta_hospitalar);
+            } else {
+                $tempo_internacao = 'Dados insuficientes';
+            }
 
-        $internacao = ServicoInternacao::where('paciente_id', $paciente->id)->first();
-        $precisou_servico = @unserialize($internacao->precisou_servico);
-        if( $precisou_servico === false ){
-          $ubs_posto_de_saude = '';
-          $upa = '';
-          $ama = '';
-          $hospital_publico = '';
-          $hospital_privado = '';
-        } else {
-          in_array('UBS (Unidade Básica de Saúde - posto de saúde)', $precisou_servico) ? $ubs_posto_de_saude = 'Sim' : $ubs_posto_de_saude = 'Não';
-          in_array('UPA (Unidade de Pronto Atendimento)', $precisou_servico) ? $upa = 'Sim' : $upa = 'Não';
-          in_array('ama', $precisou_servico) ? $ama = 'Sim' : $ama = 'Não';
-          in_array('Hospital público', $precisou_servico) ? $hospital_publico = 'Sim' : $hospital_publico = 'Não';
-          in_array('hospital privado', $precisou_servico) ? $hospital_privado = 'Sim' : $hospital_privado = 'Não';
-        }
-        $recebeu_medicacao = @unserialize($internacao->recebeu_med_covid);
-        if( $recebeu_medicacao === false ){
-          $azitromicina = '';
-          $outro_antibiotico = '';
-          $ivermectina = '';
-          $cloroquina_hidroxicloroquina = '';
-          $oseltamivir = '';
-          $algum_antialergico = '';
-          $algum_corticoide = '';
-          $algum_antiinflamatorio = '';
-          $vitamina_d = '';
-          $zinco = '';
-          $outro_medicamento = '';
-        } else {
-          in_array('Azitromicina', $recebeu_medicacao) ? $azitromicina = 'Sim' : $azitromicina = 'Não' ;
-          in_array('outro antibiótico', $recebeu_medicacao) ? $outro_antibiotico = 'Sim' : $outro_antibiotico = 'Não' ;
-          in_array('ivermectina', $recebeu_medicacao) ? $ivermectina = 'Sim' : $ivermectina = 'Não' ;
-          in_array('cloroquina/hidroxicloroquina', $recebeu_medicacao) ? $cloroquina_hidroxicloroquina = 'Sim' : $cloroquina_hidroxicloroquina = 'Não' ;
-          in_array('oseltamivir (tamiflu)', $recebeu_medicacao) ? $oseltamivir = 'Sim' : $oseltamivir = 'Não' ;
-          in_array('algum antialérgico', $recebeu_medicacao) ? $algum_antialergico = 'Sim' : $algum_antialergico = 'Não' ;
-          in_array('algum corticóide', $recebeu_medicacao) ? $algum_corticoide = 'Sim' : $algum_corticoide = 'Não' ;
-          in_array('algum antiinflamatório', $recebeu_medicacao) ? $algum_antiinflamatorio = 'Sim' : $algum_antiinflamatorio = 'Não' ;
-          in_array('vitamina D', $recebeu_medicacao) ? $vitamina_d = 'Sim' : $vitamina_d = 'Não' ;
-          in_array('zinco', $recebeu_medicacao) ? $zinco = 'Sim' : $zinco = 'Não' ;
-          in_array('outro medicamento', $recebeu_medicacao) ? $outro_medicamento = 'Sim' : $outro_medicamento = 'Não' ;
-        }
-        $problema_internacao = @unserialize($internacao->teve_algum_problema);
-        if( $problema_internacao === false ){
-          $problema_ubs = '';
-          $problema_upa = '';
-          $problema_ama = '';
-          $problema_hospital_publico = '';
-          $problema_hospital_privado = '';
-          $problema_outro = '';
-        } else {
-          in_array('UBS (Unidade Básica de Saúde - posto de saúde)', $problema_internacao) ? $problema_ubs = 'Sim' : $problema_ubs = 'Não';
-          in_array('UPA (Unidade de Pronto Atendimento)', $problema_internacao) ? $problema_upa = 'Sim' : $problema_upa = 'Não';
-          in_array('ama', $problema_internacao) ? $problema_ama = 'Sim' : $problema_ama = 'Não';
-          in_array('Hospital público', $problema_internacao) ? $problema_hospital_publico = 'Sim' : $problema_hospital_publico = 'Não';
-          in_array('Hospital privado', $problema_internacao) ? $problema_hospital_privado = 'Sim' : $problema_hospital_privado = 'Não';
-          in_array('Outro (qual?)', $problema_internacao) ? $problema_outro = 'Sim' : $problema_outro = 'Não';
-        }
-        $local_internacao = @unserialize($internacao->local_internacao);
-        if( $local_internacao === false ){
-          $hospital_publico_referencia = '';
-          $hospital_campanha = '';
-          $hospital_particular_referencia = '';
-          $hospital_ipiranga = '';
-          $hospital_financiado_projeto = '';
-        } else {
-          in_array('Hospital público de referência', $local_internacao) ? $hospital_publico_referencia = 'Sim' : $hospital_publico_referencia = 'Não';
-          in_array('Hospital de campanha', $local_internacao) ? $hospital_campanha = 'Sim' : $hospital_campanha = 'Não';
-          in_array('Hospital particular de referência', $local_internacao) ? $hospital_particular_referencia = 'Sim' : $hospital_particular_referencia = 'Não';
-          in_array('Hospital municipal do Ipiranga (encaminhado pelo projeto)', $local_internacao) ? $hospital_ipiranga = 'Sim' : $hospital_ipiranga = 'Não';
-          in_array('Hospital privado financiado pelo projeto', $local_internacao) ? $hospital_financiado_projeto = 'Sim' : $hospital_financiado_projeto = 'Não';
-        }
-        if( $internacao && $internacao->data_entrada_internacao && $internacao->data_alta_hospitalar ){
-          $tempo_internacao = $this->monitoringDays($internacao->data_entrada_internacao, $internacao->data_alta_hospitalar);
-        } else {
-          $tempo_internacao = 'Dados insuficientes';
-        }
+            $insumos_oferecidos = InsumosOferecido::where('paciente_id', $paciente->id)->first();
+            $precisa_ajuda = @unserialize($insumos_oferecidos->precisa_tipo_ajuda);
+            if ($precisa_ajuda === false) {
+                $precisa_ajuda === 'Comprar remédios de uso contínuo' ? $remedios_uso_continuo = 'Sim' : $remedios_uso_continuo = 'Não';
+                $precisa_ajuda === 'Comprar remédios para o tratamento do quadro atual' ? $remedios_tratamento_quadro_atual = 'Sim' : $remedios_tratamento_quadro_atual = 'Não';
+                $precisa_ajuda === 'Comprar alimento ou outro produtos de necessidade básica' ? $produtos_necessidade_basica = 'Sim' : $produtos_necessidade_basica = 'Não';
+                $precisa_ajuda === 'Outros' ? $ajuda_outros = 'Sim' : $ajuda_outros = 'Não';
+            } else {
+                $precisa_ajuda && in_array('Comprar remédios de uso contínuo', $precisa_ajuda) ? $remedios_uso_continuo = 'Sim' : $remedios_uso_continuo = 'Não';
+                $precisa_ajuda && in_array('Comprar remédios para o tratamento do quadro atual', $precisa_ajuda) ? $remedios_tratamento_quadro_atual = 'Sim' : $remedios_tratamento_quadro_atual = 'Não';
+                $precisa_ajuda && in_array('Comprar alimento ou outro produtos de necessidade básica', $precisa_ajuda) ? $produtos_necessidade_basica = 'Sim' : $produtos_necessidade_basica = 'Não';
+                $precisa_ajuda && in_array('Outros', $precisa_ajuda) ? $ajuda_outros = 'Sim' : $ajuda_outros = 'Não';
+            }
+            $tratamento_financiado = @unserialize($insumos_oferecidos->tratamento_financiado);
+            if ($tratamento_financiado === false) {
+                $tratamento_financiado === 'Alopático (medicamentos convencionais)' ? $tratamento_financiado_alopatico = 'Sim' : $tratamento_financiado_alopatico = 'Não';
+                $tratamento_financiado === 'PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)' ? $tratamento_financiado_pics = 'Sim' : $tratamento_financiado_pics = 'Não';
+            } else {
+                $tratamento_financiado && in_array('Alopático (medicamentos convencionais)', $tratamento_financiado) ? $tratamento_financiado_alopatico = 'Sim' : $tratamento_financiado_alopatico = 'Não';
+                $tratamento_financiado && in_array('PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)', $tratamento_financiado) ? $tratamento_financiado_pics = 'Sim' : $tratamento_financiado_pics = 'Não';
+            }
+            $material_entregue = @unserialize($insumos_oferecidos->material_entregue);
+            if ($material_entregue === false) {
+                $material_entregue === 'Cartilha de cuidados' ? $cartilha_cuidados = 'Sim' : $cartilha_cuidados = 'Não';
+                $material_entregue === 'Termometro' ? $termometro = 'Sim' : $termometro = 'Não';
+                $material_entregue === 'Dipirona' ? $dipirona = 'Sim' : $dipirona = 'Não';
+                $material_entregue === 'Paracetamol' ? $paracetamol = 'Sim' : $paracetamol = 'Não';
+                $material_entregue === 'Oximetro' ? $oximetro = 'Sim' : $oximetro = 'Não';
+                $material_entregue === 'Mascaras de tecido' ? $mascaras_tecido = 'Sim' : $mascaras_tecido = 'Não';
+                $material_entregue === 'Material de limpeza' ? $mascaras_limpeza = 'Sim' : $mascaras_limpeza = 'Não';
+                $material_entregue === 'Cesta basica' ? $cesta_basica = 'Sim' : $cesta_basica = 'Não';
+            } else {
+                in_array('Cartilha de cuidados', $material_entregue) ? $cartilha_cuidados = 'Sim' : $cartilha_cuidados = 'Não';
+                in_array('Termometro', $material_entregue) ? $termometro = 'Sim' : $termometro = 'Não';
+                in_array('Dipirona', $material_entregue) ? $dipirona = 'Sim' : $dipirona = 'Não';
+                in_array('Paracetamol', $material_entregue) ? $paracetamol = 'Sim' : $paracetamol = 'Não';
+                in_array('Oximetro', $material_entregue) ? $oximetro = 'Sim' : $oximetro = 'Não';
+                in_array('Mascaras de tecido', $material_entregue) ? $mascaras_tecido = 'Sim' : $mascaras_tecido = 'Não';
+                in_array('Material de limpeza', $material_entregue) ? $mascaras_limpeza = 'Sim' : $mascaras_limpeza = 'Não';
+                in_array('Cesta basica', $material_entregue) ? $cesta_basica = 'Sim' : $cesta_basica = 'Não';
+            }
 
-        $insumos_oferecidos = InsumosOferecido::where('paciente_id', $paciente->id)->first();
-        $precisa_ajuda = @unserialize($insumos_oferecidos->precisa_tipo_ajuda);
-        if( $precisa_ajuda === false ){
-          $precisa_ajuda === 'Comprar remédios de uso contínuo' ? $remedios_uso_continuo = 'Sim' : $remedios_uso_continuo = 'Não';
-          $precisa_ajuda === 'Comprar remédios para o tratamento do quadro atual' ? $remedios_tratamento_quadro_atual = 'Sim' : $remedios_tratamento_quadro_atual = 'Não';
-          $precisa_ajuda === 'Comprar alimento ou outro produtos de necessidade básica' ? $produtos_necessidade_basica = 'Sim' : $produtos_necessidade_basica = 'Não';
-          $precisa_ajuda === 'Outros' ? $ajuda_outros = 'Sim' : $ajuda_outros = 'Não';
-        } else {
-          $precisa_ajuda && in_array('Comprar remédios de uso contínuo', $precisa_ajuda) ? $remedios_uso_continuo = 'Sim' : $remedios_uso_continuo = 'Não';
-          $precisa_ajuda && in_array('Comprar remédios para o tratamento do quadro atual', $precisa_ajuda) ? $remedios_tratamento_quadro_atual = 'Sim' : $remedios_tratamento_quadro_atual = 'Não';
-          $precisa_ajuda && in_array('Comprar alimento ou outro produtos de necessidade básica', $precisa_ajuda) ? $produtos_necessidade_basica = 'Sim' : $produtos_necessidade_basica = 'Não';
-          $precisa_ajuda && in_array('Outros', $precisa_ajuda) ? $ajuda_outros = 'Sim' : $ajuda_outros = 'Não';
-        }
-        $tratamento_financiado = @unserialize($insumos_oferecidos->tratamento_financiado);
-        if( $tratamento_financiado === false ){
-          $tratamento_financiado === 'Alopático (medicamentos convencionais)' ? $tratamento_financiado_alopatico = 'Sim' : $tratamento_financiado_alopatico = 'Não';
-          $tratamento_financiado === 'PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)' ? $tratamento_financiado_pics = 'Sim' : $tratamento_financiado_pics = 'Não';
-        } else {
-          $tratamento_financiado && in_array('Alopático (medicamentos convencionais)', $tratamento_financiado) ? $tratamento_financiado_alopatico = 'Sim' : $tratamento_financiado_alopatico = 'Não';
-          $tratamento_financiado && in_array('PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)', $tratamento_financiado) ? $tratamento_financiado_pics = 'Sim' : $tratamento_financiado_pics = 'Não';
-        }
-        $material_entregue = @unserialize($insumos_oferecidos->material_entregue);
-        if( $material_entregue === false ){
-          $material_entregue === 'Cartilha de cuidados' ? $cartilha_cuidados = 'Sim' : $cartilha_cuidados = 'Não';
-          $material_entregue === 'Termometro' ? $termometro = 'Sim' : $termometro = 'Não';
-          $material_entregue === 'Dipirona' ? $dipirona = 'Sim' : $dipirona = 'Não';
-          $material_entregue === 'Paracetamol' ? $paracetamol = 'Sim' : $paracetamol = 'Não';
-          $material_entregue === 'Oximetro' ? $oximetro = 'Sim' : $oximetro = 'Não';
-          $material_entregue === 'Mascaras de tecido' ? $mascaras_tecido = 'Sim' : $mascaras_tecido = 'Não';
-          $material_entregue === 'Material de limpeza' ? $mascaras_limpeza = 'Sim' : $mascaras_limpeza = 'Não';
-          $material_entregue === 'Cesta basica' ? $cesta_basica = 'Sim' : $cesta_basica = 'Não';
-        } else {
-          in_array('Cartilha de cuidados', $material_entregue) ? $cartilha_cuidados = 'Sim' : $cartilha_cuidados = 'Não';
-          in_array('Termometro', $material_entregue) ? $termometro = 'Sim' : $termometro = 'Não';
-          in_array('Dipirona', $material_entregue) ? $dipirona = 'Sim' : $dipirona = 'Não';
-          in_array('Paracetamol', $material_entregue) ? $paracetamol = 'Sim' : $paracetamol = 'Não';
-          in_array('Oximetro', $material_entregue) ? $oximetro = 'Sim' : $oximetro = 'Não';
-          in_array('Mascaras de tecido', $material_entregue) ? $mascaras_tecido = 'Sim' : $mascaras_tecido = 'Não';
-          in_array('Material de limpeza', $material_entregue) ? $mascaras_limpeza = 'Sim' : $mascaras_limpeza = 'Não';
-          in_array('Cesta basica', $material_entregue) ? $cesta_basica = 'Sim' : $cesta_basica = 'Não';
-        }
+            $monitoramentos = $paciente->dados;
+            foreach ($monitoramentos as $monitoramento) {
+                $monitoramento_id = $monitoramento->id;
+            }
+            //dd($monitoramentos);
+            /*$monitoramentos = EvolucaoSintoma::where('paciente_id', $paciente->id)->get();
+            foreach($monitoramentos as $monitoramento){
+              $monitoramento_id = $monitoramento->id;
+              $monitoramento_data = $monitoramento->created_at;
+              $monitoramento_dias = '';
+              $monitoramento_horario = $monitoramento->horario_monotiramento;
+              $monitoramento_sintomas = @unserialize($monitoramento->sintomas_atuais);
+              $monitoramento_temperatura = $monitoramento->temperatura_atual;
+              $monitoramento_saturacao = $monitoramento->saturacao_atual;
+              $monitoramento_frequencia_respiratoria = $monitoramento->frequencia_respiratoria_atual;
+              $monitoramento_frequencia_cardiaca = $monitoramento->frequencia_cardiaca_atual;
+              $monitoramento_pressao_arterial = $monitoramento->pressao_arterial_atual;
+              $monitoramento_sinal_gravidade = $monitoramento->algum_sinal;
+              $monitoramento_equipe_prescreveu_medicamento = $monitoramento->equipe_medica;
+              $monitoramento_medicamento_prescrito = $monitoramento->medicamento;
+              $monitoramento_fez_pic = $monitoramento->fazendo_uso_pic;
+              $monitoramento_fez_escaldapes = $monitoramento->fez_escalapes;
+              $monitoramento_melhoras_escaldapes = $monitoramento->melhora_sintoma_escaldapes;
+              $monitoramento_inalacao = $monitoramento->fes_inalacao;
+              $monitoramento_melhoras_inalacao = $monitoramento->melhoria_sintomas_inalacao;
+              if( $monitoramento_sintomas === false ){
+                $monitoramento_sintomas_tosse = '';
+                $monitoramento_sintomas_falta_de_ar = '';
+                $monitoramento_sintomas_febre = '';
+                $monitoramento_sintomas_dor_de_cabeca = '';
+                $monitoramento_sintomas_perda_de_olfato = '';
+                $monitoramento_sintomas_perda_de_paladar = '';
+                $monitoramento_sintomas_outros = '';
+              } else {
+                in_array('tosse', $monitoramento_sintomas) ? $monitoramento_sintomas_tosse = 'Sim' : $monitoramento_sintomas_tosse = 'Não';
+                in_array('falta de ar', $monitoramento_sintomas) ? $monitoramento_sintomas_falta_de_ar = 'Sim' : $monitoramento_sintomas_falta_de_ar = 'Não';
+                in_array('febre', $monitoramento_sintomas) ? $monitoramento_sintomas_febre = 'Sim' : $monitoramento_sintomas_febre = 'Não';
+                in_array('dor de cabeça', $monitoramento_sintomas) ? $monitoramento_sintomas_dor_de_cabeca = 'Sim' : $monitoramento_sintomas_dor_de_cabeca = 'Não';
+                in_array('perda de olfato', $monitoramento_sintomas) ? $monitoramento_sintomas_perda_de_olfato = 'Sim' : $monitoramento_sintomas_perda_de_olfato = 'Não';
+                in_array('perda do paladar', $monitoramento_sintomas) ? $monitoramento_sintomas_perda_de_paladar = 'Sim' : $monitoramento_sintomas_perda_de_paladar = 'Não';
+                in_array('outros', $monitoramento_sintomas) ? $monitoramento_sintomas_outros = 'Sim' : $monitoramento_sintomas_outros = 'Não';
+              }
+            }*/
 
-        $monitoramentos = $paciente->dados;
-        foreach( $monitoramentos as $monitoramento ){
-          $monitoramento_id = $monitoramento->id;
-        }
-        //dd($monitoramentos);
-        /*$monitoramentos = EvolucaoSintoma::where('paciente_id', $paciente->id)->get();
-        foreach($monitoramentos as $monitoramento){
-          $monitoramento_id = $monitoramento->id;
-          $monitoramento_data = $monitoramento->created_at;
-          $monitoramento_dias = '';
-          $monitoramento_horario = $monitoramento->horario_monotiramento;
-          $monitoramento_sintomas = @unserialize($monitoramento->sintomas_atuais);
-          $monitoramento_temperatura = $monitoramento->temperatura_atual;
-          $monitoramento_saturacao = $monitoramento->saturacao_atual;
-          $monitoramento_frequencia_respiratoria = $monitoramento->frequencia_respiratoria_atual;
-          $monitoramento_frequencia_cardiaca = $monitoramento->frequencia_cardiaca_atual;
-          $monitoramento_pressao_arterial = $monitoramento->pressao_arterial_atual;
-          $monitoramento_sinal_gravidade = $monitoramento->algum_sinal;
-          $monitoramento_equipe_prescreveu_medicamento = $monitoramento->equipe_medica;
-          $monitoramento_medicamento_prescrito = $monitoramento->medicamento;
-          $monitoramento_fez_pic = $monitoramento->fazendo_uso_pic;
-          $monitoramento_fez_escaldapes = $monitoramento->fez_escalapes;
-          $monitoramento_melhoras_escaldapes = $monitoramento->melhora_sintoma_escaldapes;
-          $monitoramento_inalacao = $monitoramento->fes_inalacao;
-          $monitoramento_melhoras_inalacao = $monitoramento->melhoria_sintomas_inalacao;
-          if( $monitoramento_sintomas === false ){
-            $monitoramento_sintomas_tosse = '';
-            $monitoramento_sintomas_falta_de_ar = '';
-            $monitoramento_sintomas_febre = '';
-            $monitoramento_sintomas_dor_de_cabeca = '';
-            $monitoramento_sintomas_perda_de_olfato = '';
-            $monitoramento_sintomas_perda_de_paladar = '';
-            $monitoramento_sintomas_outros = '';
-          } else {
-            in_array('tosse', $monitoramento_sintomas) ? $monitoramento_sintomas_tosse = 'Sim' : $monitoramento_sintomas_tosse = 'Não';
-            in_array('falta de ar', $monitoramento_sintomas) ? $monitoramento_sintomas_falta_de_ar = 'Sim' : $monitoramento_sintomas_falta_de_ar = 'Não';
-            in_array('febre', $monitoramento_sintomas) ? $monitoramento_sintomas_febre = 'Sim' : $monitoramento_sintomas_febre = 'Não';
-            in_array('dor de cabeça', $monitoramento_sintomas) ? $monitoramento_sintomas_dor_de_cabeca = 'Sim' : $monitoramento_sintomas_dor_de_cabeca = 'Não';
-            in_array('perda de olfato', $monitoramento_sintomas) ? $monitoramento_sintomas_perda_de_olfato = 'Sim' : $monitoramento_sintomas_perda_de_olfato = 'Não';
-            in_array('perda do paladar', $monitoramento_sintomas) ? $monitoramento_sintomas_perda_de_paladar = 'Sim' : $monitoramento_sintomas_perda_de_paladar = 'Não';
-            in_array('outros', $monitoramento_sintomas) ? $monitoramento_sintomas_outros = 'Sim' : $monitoramento_sintomas_outros = 'Não';
-          }
-        }*/
-
-        array_push($pacientes_array, [
+            array_push($pacientes_array, [
           'Nome' => $paciente->user->name,
           'Nome social' => $paciente->name_social ? $paciente->name_social : '',
           'Tel. fixo' => $paciente->fone_fixo ? $paciente->fone_fixo : '',
@@ -1027,9 +1026,8 @@ class PacientesExport implements FromArray, WithHeadings, WithTitle, WithMultipl
           'Sentiu melhora dos sintomas com inalação ou vaporização' => $monitoramento_melhoras_inalacao,*/
 
         ]);
-      }
+        }
 
-      return [$pacientes_array];
+        return [$pacientes_array];
     }
-
 }

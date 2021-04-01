@@ -14,8 +14,8 @@ class AddColumnPsicologoIdInPacientesTable extends Migration
     public function up()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->bigInteger('psicologo_id')->unsigned()->after('medico_id')->nullable();
-          $table->foreign('psicologo_id')->references('id')->on('psicologos');
+            $table->bigInteger('psicologo_id')->unsigned()->after('medico_id')->nullable();
+            $table->foreign('psicologo_id')->references('id')->on('psicologos');
         });
     }
 
@@ -27,8 +27,8 @@ class AddColumnPsicologoIdInPacientesTable extends Migration
     public function down()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->dropForeign('pacientes_psicologo_id_foreign');
-          $table->dropColumn('psicologo_id');
+            $table->dropForeign('pacientes_psicologo_id_foreign');
+            $table->dropColumn('psicologo_id');
         });
     }
 }

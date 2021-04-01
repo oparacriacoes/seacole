@@ -11,14 +11,14 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 
 class ServicoInternacaoExport implements FromArray, WithHeadings, WithTitle
 {
-  public function title(): string
-  {
-    return 'Serviços Ref. e Int.';
-  }
+    public function title(): string
+    {
+        return 'Serviços Ref. e Int.';
+    }
 
-  public function headings(): array
-  {
-    return [
+    public function headings(): array
+    {
+        return [
       'Paciente',
       'Precisou serviço?',
       'Outros serviços',
@@ -36,17 +36,17 @@ class ServicoInternacaoExport implements FromArray, WithHeadings, WithTitle
       'Data entrada internação',
       'Data alta hospitalar',
     ];
-  }
+    }
 
-  public function array(): array
-  {
-    $servicos = ServicoInternacao::get();
-    $servicos_array = [];
+    public function array(): array
+    {
+        $servicos = ServicoInternacao::get();
+        $servicos_array = [];
 
-    foreach($servicos as $servico){
-      $paciente = Paciente::where('id', $servico->paciente_id)->first();
+        foreach ($servicos as $servico) {
+            $paciente = Paciente::where('id', $servico->paciente_id)->first();
 
-      array_push($servicos_array, [
+            array_push($servicos_array, [
         'Paciente' => $paciente->user->name,
         'Precisou serviço?' => $servico->precisou_servico ? implode(', ', unserialize($servico->precisou_servico)) : '',
         'Outros serviços' => $servico->precisou_servico_outro,
@@ -64,9 +64,8 @@ class ServicoInternacaoExport implements FromArray, WithHeadings, WithTitle
         'Data entrada internação' => $servico->data_entrada_internacao,
         'Data alta hospitalar' => $servico->data_alta_hospitalar,
       ]);
+        }
+
+        return [$servicos_array];
     }
-
-    return [$servicos_array];
-  }
-
 }

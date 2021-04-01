@@ -14,7 +14,7 @@ class AddColumnDataUltimaIdaServicoDeSaudeInServicoInternacaosTable extends Migr
     public function up()
     {
         Schema::table('servico_internacaos', function (Blueprint $table) {
-          $table->string('data_ultima_ida_servico_de_saude')->nullable()->after('quant_ida_servico');
+            $table->string('data_ultima_ida_servico_de_saude')->nullable()->after('quant_ida_servico');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnDataUltimaIdaServicoDeSaudeInServicoInternacaosTable extends Migr
     public function down()
     {
         Schema::table('servico_internacaos', function (Blueprint $table) {
-          $table->dropColumn('data_ultima_ida_servico_de_saude');
+            $table->dropColumn('data_ultima_ida_servico_de_saude');
         });
     }
 }

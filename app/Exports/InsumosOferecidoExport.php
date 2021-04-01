@@ -11,14 +11,14 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 
 class InsumosOferecidoExport implements FromArray, WithHeadings, WithTitle
 {
-  public function title(): string
-  {
-    return 'Insumos Oferecidos';
-  }
+    public function title(): string
+    {
+        return 'Insumos Oferecidos';
+    }
 
-  public function headings(): array
-  {
-    return [
+    public function headings(): array
+    {
+        return [
       'Paciente',
       'Condição ficar isolada?',
       'Comida disponível?',
@@ -30,21 +30,21 @@ class InsumosOferecidoExport implements FromArray, WithHeadings, WithTitle
       'Material entregue',
       'Oxímetro devolvido?',
     ];
-  }
+    }
 
-  public function array(): array
-  {
-    $insumos = InsumosOferecido::get();
-    $insumos_array = [];
+    public function array(): array
+    {
+        $insumos = InsumosOferecido::get();
+        $insumos_array = [];
 
-    foreach($insumos as $insumo){
-      $paciente = Paciente::where('id', $insumo->paciente_id)->first();
-      $precisa_ajuda = @implode(', ', unserialize($insumo->precisa_tipo_ajuda));
-      if( $precisa_ajuda === null ){
-        $precisa_ajuda = $insumo->precisa_tipo_ajuda;
-      }
+        foreach ($insumos as $insumo) {
+            $paciente = Paciente::where('id', $insumo->paciente_id)->first();
+            $precisa_ajuda = @implode(', ', unserialize($insumo->precisa_tipo_ajuda));
+            if ($precisa_ajuda === null) {
+                $precisa_ajuda = $insumo->precisa_tipo_ajuda;
+            }
 
-      array_push($insumos_array, [
+            array_push($insumos_array, [
         'Paciente' => $paciente->user->name,
         'Condição ficar isolada?' => $insumo->condicao_ficar_isolada,
         'Comida disponível?' => $insumo->tem_comida,
@@ -56,9 +56,8 @@ class InsumosOferecidoExport implements FromArray, WithHeadings, WithTitle
         'Material entregue' => $insumo->material_entregue ? @implode(', ', unserialize($insumo->material_entregue)) : '',
         'Oxímetro devolvido?' => $insumo->oximetro_devolvido,
       ]);
+        }
+
+        return [$insumos_array];
     }
-
-    return [$insumos_array];
-  }
-
 }

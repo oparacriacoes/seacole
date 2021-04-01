@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EvolucaoSintoma extends Model
 {
-  protected $fillable = [
+    protected $fillable = [
     'paciente_id',
     'data_monitoramento',
     'horario_monotiramento',
@@ -27,8 +27,8 @@ class EvolucaoSintoma extends Model
     'melhoria_sintomas_inalacao',
   ];
 
-  public function paciente()
-  {
-    return $this->belongsTo('App\Paciente');
-  }
+    public function paciente()
+    {
+        return $this->belongsTo('App\Paciente');
+    }
 }

@@ -14,7 +14,7 @@ class AddColumnPontoReferenciaInPacientesTable extends Migration
     public function up()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->string('ponto_referencia')->nullable()->after('endereco_uf');
+            $table->string('ponto_referencia')->nullable()->after('endereco_uf');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnPontoReferenciaInPacientesTable extends Migration
     public function down()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->dropColumn('ponto_referencia');
+            $table->dropColumn('ponto_referencia');
         });
     }
 }

@@ -26,8 +26,8 @@ class ServicoInternacao extends Model
         'data_alta_hospitalar',
       ];
 
-      public function pacientes()
-      {
+    public function pacientes()
+    {
         return $this->belongsTo('App\Paciente');
-      }
+    }
 }

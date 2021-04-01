@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeder;
+
+use App\Articuladora;
 use Illuminate\Database\Seeder;
 
 class ArticuladoraSeeder extends Seeder
@@ -11,12 +14,12 @@ class ArticuladoraSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('articuladoras')->insert([
-          'name' => 'Débora',
-      ]);
+        Articuladora::factory()->create([
+            'name' => 'Débora'
+        ]);
 
-      DB::table('articuladoras')->insert([
-          'name' => 'Luciana',
-      ]);
+        Articuladora::factory()->create([
+            'name' => 'Luciana'
+        ]);
     }
 }

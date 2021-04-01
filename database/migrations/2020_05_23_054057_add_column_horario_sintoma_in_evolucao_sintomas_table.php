@@ -14,7 +14,7 @@ class AddColumnHorarioSintomaInEvolucaoSintomasTable extends Migration
     public function up()
     {
         Schema::table('evolucao_sintomas', function (Blueprint $table) {
-          $table->string('horario_sintoma')->nullable()->after('data_inicio_sintoma');
+        //   $table->string('horario_sintoma')->nullable()->after('data_inicio_sintoma');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnHorarioSintomaInEvolucaoSintomasTable extends Migration
     public function down()
     {
         Schema::table('evolucao_sintomas', function (Blueprint $table) {
-          $table->dropColumn('horario_sintoma');
+        //   $table->dropColumn('horario_sintoma');
         });
     }
 }

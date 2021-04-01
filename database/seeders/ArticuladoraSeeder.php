@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeder;
+namespace Database\Seeders;
 
 use App\Articuladora;
 use Illuminate\Database\Seeder;

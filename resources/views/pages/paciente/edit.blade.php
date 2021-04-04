@@ -1360,7 +1360,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="data_temp_max">Data temperatura máxima</label>
-                                        <input name="data_temp_max" type="text" class=" form-control date" id="data_temp_max" value="@if($quadro) {{ $quadro->data_temp_max }} @endif">
+                                        <input name="data_temp_max" type="date" class=" form-control date" id="data_temp_max" value="@if($quadro) {{ $quadro->data_temp_max }} @endif">
                                     </div>
                                 </div>
 
@@ -1371,7 +1371,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="data_sat_max">Data da saturação mais baixa</label>
-                                        <input name="data_sat_max" type="text" class=" form-control date" id="data_sat_max" value="@if($quadro) {{ $quadro->data_sat_max }} @endif">
+                                        <input name="data_sat_max" type="date" class=" form-control date" id="data_sat_max" value="@if($quadro) {{ $quadro->data_sat_max }} @endif">
                                     </div>
                                 </div>
 
@@ -1382,7 +1382,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="data_freq_max">Data da Frequência respiratória máxima</label>
-                                        <input name="data_freq_max" type="text" class=" form-control date" id="data_freq_max" value="@if($quadro) {{ $quadro->data_freq_max }} @endif">
+                                        <input name="data_freq_max" type="date" class=" form-control date" id="data_freq_max" value="@if($quadro) {{ $quadro->data_freq_max }} @endif">
                                     </div>
                                 </div>
                               </div>
@@ -1495,7 +1495,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="data_monitoramento">Data do monitoramento</label>
-                                        <input name="data_monitoramento" type="text" class="date form-control" id="data_monitoramento" value="@if($monitoramento) {{ $monitoramento->data_monitoramento }} @endif">
+                                        <input name="data_monitoramento" type="date" class="date form-control" id="data_monitoramento" value="@if($monitoramento) {{ $monitoramento->data_monitoramento }} @endif">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -1787,7 +1787,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="data_ultima_ida_servico_de_saude">Data da última ida a serviço de saúde</label>
-                                            <input name="data_ultima_ida_servico_de_saude" type="text" placeholder="dd/mm/aaaa" class="form-control date" id="data_ultima_ida_servico_de_saude" value="@if($internacao) {{ $internacao->data_ultima_ida_servico_de_saude }} @endif">
+                                            <input name="data_ultima_ida_servico_de_saude" type="date"  class="form-control date" id="data_ultima_ida_servico_de_saude" value="@if($internacao) {{ $internacao->data_ultima_ida_servico_de_saude }} @endif">
                                         </div>
                                     </div>
                                 </div>
@@ -2012,13 +2012,13 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="data_entrada_internacao">Data de entrada da internação</label>
-                                            <input name="data_entrada_internacao" id="data_entrada_internacao" placeholder="dd/mm/aaaa" type="text" class="date form-control" value="@if($internacao) {{ $internacao->data_entrada_internacao }} @endif">
+                                            <input name="data_entrada_internacao" id="data_entrada_internacao"  type="date" class="date form-control" value="@if($internacao) {{ $internacao->data_entrada_internacao }} @endif">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="data_alta_hospitalar">Data da alta hospitalar</label>
-                                            <input name="data_alta_hospitalar" id="data_alta_hospitalar" placeholder="dd/mm/aaaa" type="text" class="date form-control" value="@if($internacao) {{ $internacao->data_alta_hospitalar }} @endif">
+                                            <input name="data_alta_hospitalar" id="data_alta_hospitalar"  type="date" class="date form-control" value="@if($internacao) {{ $internacao->data_alta_hospitalar }} @endif">
                                         </div>
                                     </div>
                                 </div>

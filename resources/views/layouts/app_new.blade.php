@@ -296,7 +296,6 @@
     <script type="text/javascript" src="https://seacole.uneafrobrasil.org/js/jquery.mask.js"></script>
     <script>
         //JQUERY MASKS
-      $('.date').mask('00/00/0000');
       //$('.time').mask('00:00:00');
       $('.time').mask('00:00');
       //$('.date_time').mask('00/00/0000 00:00:00');

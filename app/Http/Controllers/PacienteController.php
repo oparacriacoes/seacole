@@ -478,8 +478,9 @@ class PacienteController extends Controller
             $internacao_local = [];
         }
 
-        $insumos = InsumosOferecido::where('paciente_id', $paciente->id)->first();
 
+
+        $insumos = $paciente->insumos_oferecidos()->first() ?? new InsumosOferecido();
         if ($insumos) {
             $insumos_ajuda = @unserialize($insumos->precisa_tipo_ajuda);
             $insumos_tratamento = @unserialize($insumos->tratamento_financiado);

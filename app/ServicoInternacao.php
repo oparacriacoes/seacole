@@ -24,7 +24,7 @@ class ServicoInternacao extends Model
         'tempo_internacao',
         'data_entrada_internacao',
         'data_alta_hospitalar',
-      ];
+    ];
 
     public function pacientes()
     {

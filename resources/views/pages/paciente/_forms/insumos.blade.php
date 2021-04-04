@@ -55,26 +55,26 @@
                 <label for="precisa_tipo_ajuda"><strong>Precisa de algum tipo de ajuda?</strong></label><br />
                 <div class="form-check form-check-inline">
                     <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_remedios_continuo" type="checkbox" value="Comprar remédios de uso contínuo" <?php if ($insumos_ajuda &&  in_array('Comprar remédios de uso contínuo', $insumos_ajuda)) {
-                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                        } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="comprar_remedios_continuo">Comprar remédios de uso contínuo</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_remedios" type="checkbox" value="Comprar remédios para o tratamento do quadro atual" <?php if ($insumos_ajuda &&  in_array('Comprar remédios para o tratamento do quadro atual', $insumos_ajuda)) {
-                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="comprar_remedios">Comprar remédios para o tratamento do quadro atual</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_alimento" type="checkbox" value="Comprar alimento ou outro produtos de necessidade básica" <?php if ($insumos_ajuda &&  in_array('Comprar alimento ou outro produtos de necessidade básica', $insumos_ajuda)) {
-                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                        } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="comprar_alimento">Comprar alimento ou outro produtos de necessidade básica</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input name="precisa_tipo_ajuda[]" class="form-check-input" type="checkbox" value="Outros" <?php if ($insumos_ajuda &&  in_array('Outros', $insumos_ajuda)) {
-                                                                                                                    echo 'checked=checked';
-                                                                                                                } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="Outros">Outros</label>
                 </div>
             </div>
@@ -97,14 +97,14 @@
                 <label for="tratamento_financiado"><strong>Tratamento financiado</strong></label><br />
                 <div class="form-check form-check-inline">
                     <input name="tratamento_financiado[]" class="form-check-input" id="alopatico" type="checkbox" value="Alopático (medicamentos convencionais)" <?php if ($insumos_tratamento &&  in_array('Alopático (medicamentos convencionais)', $insumos_tratamento)) {
-                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="alopatico">Alopático (medicamentos convencionais)</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input name="tratamento_financiado[]" class="form-check-input" id="pics" type="checkbox" value="PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)" <?php if ($insumos_tratamento &&  in_array('PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)', $insumos_tratamento)) {
-                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                        } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="febre">PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)</label>
                 </div>
             </div>
@@ -120,64 +120,64 @@
         <div class="col-md-6">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="Cartilha de cuidados" id="cartilha" name="material_entregue[]" <?php if ($insumos_materiais && in_array('Cartilha de cuidados', $insumos_materiais)) {
-                                                                                                                                            echo 'checked=checked';
-                                                                                                                                        } ?>>
+    echo 'checked=checked';
+} ?>>
                 <label class="form-check-label" for="cartilha">
                     Cartilha de cuidados
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="Termometro" id="termometro" name="material_entregue[]" <?php if ($insumos_materiais && in_array('Termometro', $insumos_materiais)) {
-                                                                                                                                    echo 'checked=checked';
-                                                                                                                                } ?>>
+    echo 'checked=checked';
+} ?>>
                 <label class="form-check-label" for="termometro">
                     Termômetro
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="Dipirona" id="dipirona" name="material_entregue[]" <?php if ($insumos_materiais && in_array('Dipirona', $insumos_materiais)) {
-                                                                                                                                echo 'checked=checked';
-                                                                                                                            } ?>>
+    echo 'checked=checked';
+} ?>>
                 <label class="form-check-label" for="dipirona">
                     Dipirona
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="Paracetamol" id="paracetamol" name="material_entregue[]" <?php if ($insumos_materiais && in_array('Paracetamol', $insumos_materiais)) {
-                                                                                                                                    echo 'checked=checked';
-                                                                                                                                } ?>>
+    echo 'checked=checked';
+} ?>>
                 <label class="form-check-label" for="paracetamol">
                     Paracetamol
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="Oximetro" id="oximetro" name="material_entregue[]" <?php if ($insumos_materiais && in_array('Oximetro', $insumos_materiais)) {
-                                                                                                                                echo 'checked=checked';
-                                                                                                                            } ?>>
+    echo 'checked=checked';
+} ?>>
                 <label class="form-check-label" for="oximetro">
                     Oxímetro
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="Mascaras de tecido" id="mascaras" name="material_entregue[]" <?php if ($insumos_materiais && in_array('Mascaras de tecido', $insumos_materiais)) {
-                                                                                                                                        echo 'checked=checked';
-                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                 <label class="form-check-label" for="mascaras">
                     Máscaras de tecido
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="Material de limpeza" id="material_limpeza" name="material_entregue[]" <?php if ($insumos_materiais && in_array('Material de limpeza', $insumos_materiais)) {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } ?>>
+    echo 'checked=checked';
+} ?>>
                 <label class="form-check-label" for="material_limpeza">
                     Material de limpeza
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="Cesta basica" id="cesta_basica" name="material_entregue[]" <?php if ($insumos_materiais && in_array('Cesta basica', $insumos_materiais)) {
-                                                                                                                                        echo 'checked=checked';
-                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                 <label class="form-check-label" for="cesta_basica">
                     Cesta Básica
                 </label>

@@ -79,13 +79,13 @@ class NormalizeData extends Controller
         $fields = array_merge($defaultFields, $dateFields);
 
         $collection = $model::where(function ($query) use ($dateFields) {
-            foreach($dateFields as $field) {
+            foreach ($dateFields as $field) {
                 $query->orWhereNotNull($field);
             }
-        })->get($fields);
+        })->select($fields)->get();
 
         $collection->each(function ($row) use ($dateFields) {
-            foreach($dateFields as $field) {
+            foreach ($dateFields as $field) {
                 if ($row[$field]) {
                     $old_date = $row[$field];
                     $new_date = $this->applyFormat($old_date);
@@ -106,7 +106,26 @@ class NormalizeData extends Controller
 
     public function update(Request $request)
     {
-        return Articuladora::all();
+        $modelKey = $request->get('model', 'pacientes');
+        $model = $this->getModel($modelKey);
+        $fields = $this->getDateFields($modelKey);
+
+        $collection = $model::where(function ($query) use ($fields) {
+            foreach ($fields as $field) {
+                $query->orWhereNotNull($field);
+            }
+        })->select(array_merge(['id'], $fields))->get();
+
+        $collection->each(function ($row) use ($fields) {
+            foreach ($fields as $field) {
+                if ($row[$field]) {
+                    $row[$field] = $this->applyFormat($row[$field]);
+                }
+            }
+            $row->save();
+        });
+
+        return redirect(route('normalize.index', ['model' => $modelKey]));
     }
 
     private function applyFormat($date)
@@ -117,7 +136,13 @@ class NormalizeData extends Controller
             return Carbon::createFromFormat('d/m/y', $date)->toDateString();
         }
 
-        $this->valid_normalize = false;
+        try {
+            $date = new Carbon($date);
+            return $date->toDateString();
+        } catch (\Throwable $th) {
+            $this->valid_normalize = false;
+        }
+
         return "ERROR";
     }
 }

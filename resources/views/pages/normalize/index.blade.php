@@ -17,6 +17,17 @@
             <a href="{{route('normalize.index', ['model' => 'quadros'])}}">Quadros Atual</a>
         </div>
     </div>
+    @if($valid_normalize)
+    <div class="card-header">
+        <div class="col">
+            <form action="{{route('normalize.update')}}" method="POST">
+                @csrf
+                <input hidden name="model" value="{{$modelKey}}" />
+                <button class="btn btn-primary" type="submit">Normalizar Dados</button>
+            </form>
+        </div>
+    </div>
+    @endif
     <div class="card-body">
         <table class="table table-striped table-bordered">
             <thead class="thead-light">
@@ -31,7 +42,7 @@
                 <tr>
                     @foreach($fields as $field)
                         @if (is_array($row[$field]))
-                            <td class="text-center @if($row[$field]['valid']) alert-green @elseif (!$row[$field]['valid'] && $row[$field]['new'] == 'ERROR') alert-danger @else alert-warning @endif">
+                            <td class="text-center @if($row[$field]['valid']) alert-success @elseif (!$row[$field]['valid'] && $row[$field]['new'] == 'ERROR') alert-danger @else alert-warning @endif">
                                 {{ $row[$field]['old'] }}
                                 <br/>
                                 {{ $row[$field]['new'] }}

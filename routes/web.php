@@ -127,5 +127,6 @@ Route::middleware(['auth'])->group(function () {
 
     if (Config::get('app.ft_normalize_data')) {
         Route::get('normalize', [NormalizeData::class, 'index'])->name('normalize.index');
+        Route::post('normalize', [NormalizeData::class, 'update'])->name('normalize.update');
     }
 });

@@ -35,6 +35,10 @@ class ChangeColumnsStringToText extends Migration
             $table->text('outras_informacao')->nullable()->change();
             $table->text('descreve_doencas')->nullable()->change();
         });
+
+        Schema::table('evolucao_sintomas', function (Blueprint $table) {
+            $table->text('medicamento')->nullable()->change();
+        });
     }
 
     /**
@@ -45,7 +49,7 @@ class ChangeColumnsStringToText extends Migration
     public function down()
     {
         Schema::table('servico_internacaos', function (Blueprint $table) {
-            $table->string('descreva_problema')->nullable()->change();
+            $table->text('descreva_problema')->nullable()->change();
             $table->string('nome_medicamento')->nullable()->change();
         });
 
@@ -65,6 +69,10 @@ class ChangeColumnsStringToText extends Migration
         Schema::table('pacientes', function (Blueprint $table) {
             $table->string('outras_informacao')->nullable()->change();
             $table->string('descreve_doencas')->nullable()->change();
+        });
+
+        Schema::table('evolucao_sintomas', function (Blueprint $table) {
+            $table->string('medicamento')->nullable()->change();
         });
     }
 }

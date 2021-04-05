@@ -1566,7 +1566,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="frequencia_cardiaca_atual">Frequência cardíaca atual</label>
-                                        <input name="frequencia_cardiaca_atual" type="text" placeholder="-- bpm" class="form-control" id="frequencia_cardiaca_atual" value="@if($monitoramento) {{ $monitoramento->frequencia_cardiaca_atual }} @endif">
+                                        <input name="frequencia_cardiaca_atual" type="number" max="999" placeholder="-- bpm" class="form-control" id="frequencia_cardiaca_atual" value="@if($monitoramento){{$monitoramento->frequencia_cardiaca_atual}}@endif">
                                     </div>
                                     <div class="form-group">
                                         <label for="algum_sinal">Algum sinal de gravidade nesse monitoramento?</label>
@@ -1600,7 +1600,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="frequencia_respiratoria_atual">Frequência respiratória atual</label>
-                                        <input name="frequencia_respiratoria_atual" type="text" placeholder="-- rpm" class="form-control" id="frequencia_respiratoria_atual" value="@if($monitoramento) {{ $monitoramento->frequencia_respiratoria_atual }} @endif">
+                                        <input name="frequencia_respiratoria_atual" type="number" max="99" placeholder="-- rpm" class="form-control" id="frequencia_respiratoria_atual" value="@if($monitoramento){{$monitoramento->frequencia_respiratoria_atual}}@endif">
                                     </div>
                                     <div class="form-group">
                                         <label for="medicamento">Medicamento prescrito pela equipe médica do projeto</label>
@@ -2101,7 +2101,9 @@
 <script>
 $('.temperature').mask('00,0');
 $('.saturation').mask('00');
-$('.hour').mask('00:00');
+$('.hour').mask('00:00', { placeholder: '00:00' });
+$('#pressao_arterial_atual').mask('#00x00', {reverse: true})
+
 $('.info').css('cursor', 'pointer');
 $('.info').click(function(){
   $(this).fadeOut();

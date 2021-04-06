@@ -129,31 +129,31 @@
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="data_inicio_sintoma">Data início sintomas de COVID-19</label>
-                                    <input name="data_inicio_sintoma" type="date" class="date  form-control" id="data_inicio_sintoma" value="{{ old('data_inicio_sintoma') }}">
+                                    <input name="data_inicio_sintoma" type="text" class="date  form-control" id="data_inicio_sintoma" value="{{ old('data_inicio_sintoma') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="data_inicio_monitoramento">Data início monitoramento Agentes</label>
-                                    <input name="data_inicio_monitoramento" type="date" class=" form-control date" id="data_inicio_monitoramento" value="{{ old('data_inicio_monitoramento') }}">
+                                    <input name="data_inicio_monitoramento" type="text" class=" form-control date" id="data_inicio_monitoramento" value="{{ old('data_inicio_monitoramento') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="data_finalizacao_caso">Data finalização do monitoramento Agentes (alta)</label>
-                                    <input name="data_finalizacao_caso" type="date" class=" form-control date" id="data_finalizacao_caso" value="{{ old('data_finalizacao_caso') }}">
+                                    <input name="data_finalizacao_caso" type="text" class=" form-control date" id="data_finalizacao_caso" value="{{ old('data_finalizacao_caso') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="data_inicio_ac_psicologico">Data início ac Psicológico</label>
-                                    <input name="data_inicio_ac_psicologico" type="date" class=" form-control date" id="data_inicio_ac_psicologico">
+                                    <input name="data_inicio_ac_psicologico" type="text" class=" form-control date" id="data_inicio_ac_psicologico">
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
                                 <div class="form-group">
                                     <label for="data_encerramento_ac_psicologico">Data encerramento ac Psicológico</label>
-                                    <input name="data_encerramento_ac_psicologico" type="date" class="form-control date" id="data_encerramento_ac_psicologico">
+                                    <input name="data_encerramento_ac_psicologico" type="text" class="form-control date" id="data_encerramento_ac_psicologico">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -191,8 +191,8 @@
                                         <option value="">Selecione</option>
                                         @foreach($agentes as $agente)
                                         <!--<option value="{{ $agente->id }}" <?php if (\Auth::user()->role === 'agente' && \Auth::user()->agente->id === $agente->id) {
-                                                                                    echo 'selected=selected';
-                                                                                } ?> >{{ $agente->user->name }}</option>-->
+    echo 'selected=selected';
+} ?> >{{ $agente->user->name }}</option>-->
                                         <option value="{{ $agente->id }}">{{ $agente->user->name }}</option>
                                         @endforeach
                                     </select>
@@ -336,7 +336,7 @@
                                     <label for="examplePassword11" class="">
                                         Data de Nascimento
                                     </label>
-                                    <input name="data_nascimento" type="date" placeholder="Data de Nascimento" class=" form-control date" id="data_nascimento" aria-describeddata_nascimentoby="data_nascimentoHelp" value="{{ old('data_nascimento') }}">
+                                    <input name="data_nascimento" type="text" placeholder="Data de Nascimento" class=" form-control date" id="data_nascimento" aria-describeddata_nascimentoby="data_nascimentoHelp" value="{{ old('data_nascimento') }}">
                                 </div>
                             </div>
                         </div>
@@ -565,7 +565,7 @@
                                     <label for="examplePassword11" class="">
                                         Data do teste confirmatório
                                     </label>
-                                    <input name="data_teste_confirmatorio" placeholder="Data do teste confirmatório" type="date" class=" form-control date" id="data_teste_confirmatorio" value="{{ old('data_teste_confirmatorio') }}">
+                                    <input name="data_teste_confirmatorio" placeholder="Data do teste confirmatório" type="text" class=" form-control date" id="data_teste_confirmatorio" value="{{ old('data_teste_confirmatorio') }}">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -890,7 +890,7 @@
                                         <label for="exampleEmail11" class="">
                                             Data do parto
                                         </label>
-                                        <input name="data_parto" id="data_parto" type="date" class="form-control date" value="{{ old('data_parto') }}">
+                                        <input name="data_parto" id="data_parto" type="text" class="form-control date" value="{{ old('data_parto') }}">
                                     </div>
                                 </div>
 
@@ -899,7 +899,7 @@
                                         <label for="exampleEmail11" class="">
                                             Data da última menstruação (DUM)
                                         </label>
-                                        <input name="data_ultima_mestrucao" id="data_ultima_mestrucao" type="date" class="form-control date" value="{{ old('data_ultima_mestrucao') }}">
+                                        <input name="data_ultima_mestrucao" id="data_ultima_mestrucao" type="text" class="form-control date" value="{{ old('data_ultima_mestrucao') }}">
                                     </div>
                                 </div>
 
@@ -944,7 +944,7 @@
                                         <label for="exampleEmail11" class="">
                                             Qual a data da última consulta médica?
                                         </label>
-                                        <input name="data_ultima_consulta" type="date" class="form-control date" value="{{ old('data_ultima_consulta') }}">
+                                        <input name="data_ultima_consulta" type="text" class="form-control date" value="{{ old('data_ultima_consulta') }}">
                                     </div>
                                 </div>
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\NormalizeData;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -121,4 +123,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('chart/sintomas_manifestados_situacao_raca_cor_2', 'ChartsController@sintomas_manifestados_situacao_raca_cor_2')->name('chart.sintomas_manifestados_situacao_raca_cor_2');
     Route::get('chart/sintomas_manifestados_situacao_raca_cor_3', 'ChartsController@sintomas_manifestados_situacao_raca_cor_3')->name('chart.sintomas_manifestados_situacao_raca_cor_3');
     Route::get('chart/sintomas_manifestados_situacao_raca_cor_4', 'ChartsController@sintomas_manifestados_situacao_raca_cor_4')->name('chart.sintomas_manifestados_situacao_raca_cor_4');
+
+
+    if (Config::get('app.ft_normalize_data')) {
+        Route::get('normalize', [NormalizeData::class, 'index'])->name('normalize.index');
+        Route::post('normalize', [NormalizeData::class, 'update'])->name('normalize.update');
+    }
 });

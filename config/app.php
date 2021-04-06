@@ -233,4 +233,5 @@ return [
         'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
     ],
 
+    'ft_normalize_data' => env('FT_NORMALIZE_DATA')
 ];

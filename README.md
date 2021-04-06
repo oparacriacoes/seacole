@@ -1,82 +1,89 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<p align="center"><a href="https://laravel.com" target="_blank">SEACOLE</a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Sobre SEACOLE
 
-## About Laravel
+Descrição do Projeto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Nesse projeto são utilizadas tecnologias como:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Laravel](https://laravel.com/)
+- [Laravel Sail](https://laravel.com/docs/master/sail): como infraestrutura de desenvolvimento para a aplicação.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Inicilizando o ambiente de desenvolvimento
+Como se trata de um projeto que pode ser mantido por diversas pessoas, mas será um projeto de longo prazo, são necessárias algumas tecnologias para o desenvolvimento além de um padrão para o projeto, permitindo manter a estrutura igual para qualquer desenvolvedor. Para facilitar esse processo os principais comandos estão abstraidos no arquivo Makefile.
 
-## Learning Laravel
+### Tecnologias
+- PHP 7.4
+- Docker
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Todo resto como banco e cache fica a par do Sail
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### Sistema Operacional
+O que você usa no dia-a-dia. A única dica é que no caso do windows utilze o WSL2, pois o Docker funciona melhor sem muitas surpresas, do que o Docker for Windows
 
-## Laravel Sponsors
+#### Docker
+Para instalação no seu sistema operacional, siga o tutorial em https://docs.docker.com/engine/install/. Para ambientes Windows é recomendado o uso do WSL2 que permite ter um ambiente completo e melhor compatibilidade com o docker.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### PHP
+A inicialização do projeto já possui uma versão definitiva do PHP a ser usado dentro da configurações dos containers que será a 7.4
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+#### Editor de texto
+O editor de texto pode ser a escolha do desenvolvedor. Uma dica seria o uso do Visual Studio Code com o plugin [PHP Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client), pois o mesmo já possui uma excelente compatibilidade com o Framework Laravel
 
-## Contributing
+### Iniciando o core do projeto
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1) clone o projeto do repositório https://github.com/oparacriacoes/seacole
+```bash
+git clone https://github.com/oparacriacoes/seacole.git cd seacole
+```
+2) copie o arquivo .env.example com o nome .env
+```bash
+cp .env.example .env
+```
+2) gere a chave do projeto atraves do comando
+```bash
+php artisan key:generate
+```
+ou
+```bash
+sail artisan key:generate
+```
+2) instalar o composer para instalação das dependencias
+```bash
+make install-composer
+```
+3) instalando as dependências do projeto
+```bash
+make install-dependencies
+```
+4) para iniciar os containers com a aplicação
+```bash
+make run-dev
+```
+Para parar a aplicação
+```bash
+make stop-dev
+```
+5) instalar e iniciar os assets de front-end
+```bash
+make run-assets
+```
+6) iniciar as migrations para criar o banco de dados e adiciona as informações iniciais
+```bash
+make migrate-seed
+```
+Caso queira apenas criar as tabelas sem nenhum processo para popular o banco de dados
+```bash
+make migrate
+```
 
-## Code of Conduct
+### Verificando o projeto
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Após realizar os passos acima você pode verificar se o projeto está corretamente funcionando acessando os links abaixo
 
-## Security Vulnerabilities
+* [Link do Seacole](http://localhost:80)
+* [MailHog](http://localhost:8025)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+O MailHog funciona como uma caixa de email local, que recebe todos os email enviados durante o processo de desenvolvimento
 
-## INSERT
-INSERT INTO `articuladoras` (`id`, `name`, `created_at`, `updated_at`) VALUES ('1', 'Débora', CURRENT_TIMESTAMP, NULL), ('2', 'Luciana', CURRENT_TIMESTAMP, NULL);
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Outros comandos

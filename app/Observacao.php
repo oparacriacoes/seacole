@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Observacao extends Model
 {
-  protected $fillable = [
+    protected $fillable = [
     'paciente_id', 'comentarios',
   ];
 
-  public function paciente()
-  {
-    return $this->belongsTo('App\Paciente');
-  }
+    public function paciente()
+    {
+        return $this->belongsTo('App\Paciente');
+    }
 }

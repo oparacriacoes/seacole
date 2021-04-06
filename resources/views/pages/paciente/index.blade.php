@@ -10,7 +10,7 @@
                     </i>
                 </div>
                 <div>Pacientes
-                    <div class="page-title-subheading">Todas os conteúdos são somente teste.
+                    <div class="page-title-subheading">Projeto Agentes Populares de Saúde.
                     </div>
                 </div>
             </div>
@@ -34,7 +34,71 @@
                         <tbody>
                           @foreach($pacientes as $paciente)
                           <tr>
-                            <td>{{ $paciente->situacao }}</td>
+                            <td>
+                              <?php
+                              switch ($paciente->situacao) {
+                                case '1':
+                                  echo 'Caso ativo GRAVE';
+                                  break;
+
+                                case '2':
+                                  echo 'Caso ativo LEVE';
+                                  break;
+
+                                case '3':
+                                  echo 'Contato caso confirmado - ativo';
+                                  break;
+
+                                case '4':
+                                  echo 'Outras situações (sem relação com COVID-19) - ativos';
+                                  break;
+
+                                case '5':
+                                  echo 'Exclusivo psicologia - ativo';
+                                  break;
+
+                                case '6':
+                                  echo 'Monitoramento encerrado GRAVE - segue apenas com psicólogos';
+                                  break;
+
+                                case '7':
+                                  echo 'Monitoramento encerrado LEVE - segue apenas com psicólogos';
+                                  break;
+
+                                case '8':
+                                  echo 'Monitoramento encerrado contato - segue apenas com psicólogos';
+                                  break;
+
+                                case '9':
+                                  echo 'Monitoramento encerrado outros - segue apenas com psicólogos';
+                                  break;
+
+                                case '10':
+                                  echo 'Caso finalizado GRAVE';
+                                  break;
+
+                                case '11':
+                                  echo 'Caso finalizado LEVE';
+                                  break;
+
+                                case '12':
+                                  echo 'Contato com caso confirmado - finalizado';
+                                  break;
+
+                                case '13':
+                                  echo 'Outras situações (sem relação com COVID-19) - finalizado';
+                                  break;
+
+                                case '14':
+                                  echo 'Exclusivo psicologia - finalizado';
+                                  break;
+
+                                default:
+                                  echo 'Não Informado';
+                                  break;
+                              }
+                              ?>
+                            </td>
                             <td><a href="{{ route('paciente/edit', $paciente->id) }}">{{ $paciente->user->name }}</a></td>
                             @if($paciente->agente)
                             <td><a href="{{ route('agente/edit', $paciente->agente->id) }}">{{ $paciente->agente->user->name }}</a></td>
@@ -51,7 +115,13 @@
                             @else
                             <td></td>
                             @endif
-                            <td><button class="btn btn-sm btn-danger" type="button" name="button" onclick="deletePaciente({{ $paciente->id }})">Excluir</button></td>
+                            <td>
+                              <form action="{{ route('paciente.destroy', $paciente->id) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-sm btn-danger" type="submit" name="button">Excluir</button>
+                              </form>
+                            </td>
                           </tr>
                           @endforeach
                         </tbody>
@@ -61,4 +131,16 @@
           </div>
       </div>
     </div>
+@endsection
+
+@section('script')
+<script>
+$(document).ready( function () {
+    $('#pacientes').DataTable({
+      "language": {
+          "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+      },
+    });
+} );
+</script>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Hash;
+use DB;
 use App\User;
 use App\Psicologo;
 
@@ -17,7 +18,7 @@ class PsicologoController extends Controller
      */
     public function index()
     {
-      return null;
+        return null;
     }
 
     /**
@@ -28,30 +29,37 @@ class PsicologoController extends Controller
      */
     public function store(Request $request)
     {
-      $user = new User;
-      $user->name = $request->input('data')['name'];
-      $user->email = $request->input('data')['email'];
-      $user->password = Hash::make($request->input('data')['email']);
-      $user->role = 'psicologo';
-      try {
-        $user->save();
-      } catch(\Exception $exception) {
-        return response()->json(['message', $exception->getMessage()]);
-      }
-
-      if($user){
-        $psicologo = new Psicologo;
-        $psicologo->user_id = $user->id;
-        $psicologo->fone_celular_1 = $request->input('data')['fone_celular_1'];
-        $psicologo->fone_celular_2 = $request->input('data')['fone_celular_2'];
+        DB::beginTransaction();
         try {
-          $psicologo->save();
-        } catch(\Exception $exception) {
-          return response()->json(['message' => $exception->getMessage()]);
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->email);
+            $user->role = 'psicologo';
+            $user->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            \Log::info($e);
+            return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
         }
-      }
 
-      return response()->json(['message' => 'Cadastro feito com sucesso.']);
+        if ($user) {
+            DB::beginTransaction();
+            try {
+                $psicologo = new Psicologo;
+                $psicologo->user_id = $user->id;
+                $psicologo->fone_celular_1 = $request->fone_celular_1;
+                $psicologo->fone_celular_2 = $request->fone_celular_2;
+                $psicologo->save();
+                DB::commit();
+                return redirect()->route('psicologo')->with('success', 'Dados salvos com sucesso.');
+            } catch (\Exception $e) {
+                DB::rollback();
+                \Log::info($e);
+                return redirect()->back()->with('error', 'Não foi possível realizar esta operação');
+            }
+        }
     }
 
     /**
@@ -62,7 +70,7 @@ class PsicologoController extends Controller
      */
     public function show($id)
     {
-      return null;
+        return null;
     }
 
     /**
@@ -74,33 +82,40 @@ class PsicologoController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $psicologo = Psicologo::find($id);
-      $user = $psicologo->user;
-      $user->name = $request->input('data')['name'];
-      $user->email = $request->input('data')['email'];
-      if( $request->input('data')['password_confirm'] !== null ){
-        $user->password = Hash::make($request->input('data')['password_confirm']);
-      }
-      $user->role = 'psicologo';
-      try {
-        $user->save();
-      } catch(\Exception $exception) {
-        return response()->json(['message', $exception->getMessage()]);
-      }
-
-      if($user){
-        $psicologo->user_id = $user->id;
-        $psicologo->fone_celular_1 = $request->input('data')['fone_celular_1'];
-        $psicologo->fone_celular_2 = $request->input('data')['fone_celular_2'];
+        //dd($request->all());
+        DB::beginTransaction();
         try {
-          $psicologo->save();
-        } catch(\Exception $exception) {
-          return response()->json(['message' => $exception->getMessage()]);
+            $psicologo = Psicologo::find($id);
+            $user = $psicologo->user;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            if ($request->password_confirm !== null) {
+                $user->password = Hash::make($request->password_confirm);
+            }
+            $user->role = 'psicologo';
+            $user->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
+        }
+
+        if ($user) {
+            DB::beginTransaction();
+            try {
+                $psicologo->user_id = $user->id;
+                $psicologo->fone_celular_1 = $request->fone_celular_1;
+                $psicologo->fone_celular_2 = $request->fone_celular_2;
+                $psicologo->save();
+                DB::commit();
+                return redirect()->route('psicologo')->with('success', 'Dados atualizados com sucesso.');
+            } catch (\Exception $e) {
+                DB::rollback();
+                \Log::info($e);
+                return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
+            }
         }
     }
-
-    return response()->json(['message' => 'Cadastro atualizado com sucesso.']);
-  }
 
     /**
      * Remove the specified resource from storage.
@@ -110,12 +125,19 @@ class PsicologoController extends Controller
      */
     public function destroy($id)
     {
-      $psicologo = Psicologo::find($id);
-      $user = User::find($psicologo->user_id);
+        $psicologo = Psicologo::find($id);
+        $user = User::find($psicologo->user_id);
 
-      $delete_psicologo = Psicologo::destroy($id);
-      $delete_user = User::destroy($user->id);
-
-      return response()->json(['message' => 'Psicólogo excluído com sucesso.']);
+        DB::beginTransaction();
+        try {
+            $delete_psicologo = Psicologo::destroy($id);
+            $delete_user = User::destroy($user->id);
+            DB::commit();
+            return redirect('admin/psicologo')->with('success', 'Psicólogo excluído com sucesso.');
+        } catch (\Exception $e) {
+            DB::rollback();
+            \Log::info($e);
+            return redirect('admin/psicologo')->with('error', 'Não foi possível realizar esta operação.');
+        }
     }
 }

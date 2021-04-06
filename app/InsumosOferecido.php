@@ -15,10 +15,12 @@ class InsumosOferecido extends Model
         'precisa_tipo_ajuda',
         'tratamento_prescrito',
         'tratamento_financiado',
+        'material_entregue',
+        'oximetro_devolvido',
       ];
-    
-      public function pacientes()
-      {
+
+    public function pacientes()
+    {
         return $this->belongsTo('App\Paciente');
-      }
+    }
 }

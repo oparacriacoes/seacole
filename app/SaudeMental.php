@@ -12,8 +12,8 @@ class SaudeMental extends Model
         'detalhes_medos',
       ];
     
-      public function pacientes()
-      {
+    public function pacientes()
+    {
         return $this->belongsTo('App\Paciente');
-      }
+    }
 }

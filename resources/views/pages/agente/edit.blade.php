@@ -9,7 +9,7 @@
                 </i>
             </div>
             <div>Agentes
-                <div class="page-title-subheading">Todas os conteúdos são somente teste.</div>
+                <div class="page-title-subheading">Projeto Agentes Populares de Saúde.</div>
             </div>
         </div>
       </div>
@@ -106,4 +106,32 @@
   </div>
 
 </div>
+@stop
+
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+function editForm() {
+  $('.btn-save').attr('disabled', false);
+  $('.form-control').attr('readonly', false);
+  $('textarea[name="sintomas_iniciais"]').attr('readonly', true);
+  $('.form-control').attr('disabled', false);
+  $('.form-check-input').attr('disabled', false);
+  $('#btn-edit').removeClass("btn-danger");
+  $('#btn-edit').addClass("btn-secondary");
+  $('#btn-edit').text('Cancelar');
+  $("#btn-edit").attr("onclick","cancelEdit()");
+}
+
+function cancelEdit() {
+  $('.form-control').attr('readonly', true);
+  $('.form-control').attr('disabled', true);
+  $('.btn-save').attr('disabled', true);
+  $('.form-check-input').attr('disabled', true);
+  $('#btn-edit').removeClass("btn-secondary");
+  $('#btn-edit').addClass("btn-danger");
+  $('#btn-edit').text('Editar');
+  $("#btn-edit").attr("onclick","editForm()");
+}
+</script>
 @stop

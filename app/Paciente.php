@@ -6,144 +6,158 @@ use Illuminate\Database\Eloquent\Model;
 
 class Paciente extends Model
 {
-  protected $fillable = [
-    'user_id',
-    'agente_id',
-    'medico_id',
-    'psicologo_id',
-    'situacao',
-    'data_nascimento',
-    'cor_raca',
-    'endereco_cep',
-    'endereco_rua',
-    'endereco_numero',
-    'endereco_bairro',
-    'endereco_cidade',
-    'endereco_uf',
-    'ponto_referencia',
-    'endereco_complemento',
-    'fone_fixo',
-    'fone_celular',
-    'numero_pessoas_residencia',
-    'responsavel_residencia',
-    'renda_residencia',
-    'doenca_cronica',
-    'outras_doencas',
-    'remedios_consumidos',
-    'acompanhamento_medico',
-    'isolamento_residencial',
-    'alimentacao_disponivel',
-    'auxilio_terceiros',
-    'tarefas_autocuidado',
-    'sintomas_iniciais',
-    'data_teste_confirmatorio',
-    'teste_utilizado',
-    'data_inicio_sintoma',
-    'data_inicio_monitoramento',
-    'data_finalizacao_caso',
-    'name_social',
-    'identidade_genero',
-    'orientacao_sexual',
-    'auxilio_emergencial',
-    'descreve_doencas',
-    'tuberculose',
-    'tabagista',
-    'cronico_alcool',
-    'outras_drogas',
-    'gestante',
-    'amamenta',
-    'gestacao_alto_risco',
-    'pos_parto',
-    'data_parto',
-    'data_ultima_mestrucao',
-    'trimestre_gestacao',
-    'motivo_risco_gravidez',
-    'data_ultima_consulta',
-    'sistema_saude',
-    'acompanhamento_ubs',
-    'resultado_teste',
-    'articuladora_responsavel',
-    'valor_familia',
-    'outras_informacao',
-  ];
+    protected $fillable = [
+        'user_id',
+        'agente_id',
+        'medico_id',
+        'psicologo_id',
+        'saude_mental',
+        'acompanhamento_psicologico',
+        'atendimento_semanal_psicologia',
+        'horario_at_psicologia',
+        'como_chegou_ao_projeto',
+        'como_chegou_ao_projeto_outro',
+        'nucleo_uneafro_qual',
+        'situacao',
+        'data_nascimento',
+        'cor_raca',
+        'endereco_cep',
+        'endereco_rua',
+        'endereco_numero',
+        'endereco_bairro',
+        'endereco_cidade',
+        'endereco_uf',
+        'ponto_referencia',
+        'endereco_complemento',
+        'fone_fixo',
+        'fone_celular',
+        'numero_pessoas_residencia',
+        'responsavel_residencia',
+        'renda_residencia',
+        'doenca_cronica',
+        'outras_doencas',
+        'remedios_consumidos',
+        'acompanhamento_medico',
+        'isolamento_residencial',
+        'alimentacao_disponivel',
+        'auxilio_terceiros',
+        'tarefas_autocuidado',
+        'sintomas_iniciais',
+        'data_teste_confirmatorio',
+        'teste_utilizado',
+        'data_inicio_sintoma',
+        'data_inicio_monitoramento',
+        'data_finalizacao_caso',
+        'data_inicio_ac_psicologico',
+        'data_encerramento_ac_psicologico',
+        'name_social',
+        'identidade_genero',
+        'orientacao_sexual',
+        'auxilio_emergencial',
+        'descreve_doencas',
+        'tuberculose',
+        'tabagista',
+        'cronico_alcool',
+        'outras_drogas',
+        'gestante',
+        'amamenta',
+        'gestacao_alto_risco',
+        'pos_parto',
+        'data_parto',
+        'data_ultima_mestrucao',
+        'trimestre_gestacao',
+        'motivo_risco_gravidez',
+        'data_ultima_consulta',
+        'sistema_saude',
+        'acompanhamento_ubs',
+        'resultado_teste',
+        'articuladora_responsavel',
+        'valor_familia',
+        'outras_informacao',
+    ];
 
-  public function user()
-  {
-    return $this->belongsTo('App\User');
-  }
 
-  public function agente()
-  {
-    return $this->belongsTo('App\Agente');
-  }
+    /**
+     * Relations
+     */
 
-  public function medico()
-  {
-    return $this->belongsTo('App\Medico');
-  }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
-  public function psicologo()
-  {
-    return $this->belongsTo('App\Psicologo');
-  }
+    public function agente()
+    {
+        return $this->belongsTo('App\Agente');
+    }
 
-  public function articuladora()
-  {
-    return $this->belongsTo('App\Articuladora');
-  }
+    public function medico()
+    {
+        return $this->belongsTo('App\Medico');
+    }
 
-  public function sintomas()
-  {
-    return $this->hasMany('App\Sintoma');
-  }
+    public function psicologo()
+    {
+        return $this->belongsTo('App\Psicologo');
+    }
 
-  public function tipos_ajuda()
-  {
-    return $this->hasMany('App\AjudaTipo');
-  }
+    public function articuladora()
+    {
+        return $this->belongsTo('App\Articuladora');
+    }
 
-  public function estado_emocional()
-  {
-    return $this->hasOne('App\EstadoEmocional');
-  }
+    public function sintomas()
+    {
+        return $this->hasMany('App\Sintoma');
+    }
 
-  public function observacao()
-  {
-    return $this->hasOne('App\Observacao');
-  }
+    public function tipos_ajuda()
+    {
+        return $this->hasMany('App\AjudaTipo');
+    }
 
-  public function doencas_cronicas()
-  {
-    return $this->hasMany('App\DoencaCronica');
-  }
+    public function estado_emocional()
+    {
+        return $this->hasOne('App\EstadoEmocional');
+    }
 
-  public function items()
-  {
-    return $this->hasOne('App\Item');
-  }
+    public function observacao()
+    {
+        return $this->hasOne('App\Observacao');
+    }
 
-  public function dados()
-  {
-    return $this->hasMany('App\EvolucaoSintoma');
-  }
+    public function doencas_cronicas()
+    {
+        return $this->hasMany('App\DoencaCronica');
+    }
 
-  public function insumos_oferecidos()
-  {
-    return $this->hasMany('App\InsumosOferecido');
-  }
+    public function items()
+    {
+        return $this->hasOne('App\Item');
+    }
 
-  public function quadro_atual()
-  {
-    return $this->hasMany('App\QuadroAtual');
-  }
+    public function dados()
+    {
+        return $this->hasMany('App\EvolucaoSintoma');
+    }
 
-  public function saude_mental()
-  {
-    return $this->hasMany('App\SaudeMental');
-  }
+    public function insumos_oferecidos()
+    {
+        return $this->hasMany('App\InsumosOferecido');
+    }
 
-  public function servico_internacao()
-  {
-    return $this->hasMany('App\ServicoInternacao');
-  }
+    public function quadro_atual()
+    {
+        return $this->hasMany('App\QuadroAtual');
+    }
+
+    public function saude_mental()
+    {
+        return $this->hasMany('App\SaudeMental');
+    }
+
+    public function servico_internacao()
+    {
+        return $this->hasMany('App\ServicoInternacao');
+    }
 }

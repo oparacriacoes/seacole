@@ -14,7 +14,7 @@ class AddColumnPressaoArterialInEvolucaoSintomasTable extends Migration
     public function up()
     {
         Schema::table('evolucao_sintomas', function (Blueprint $table) {
-            $table->string('pressao_arterial')->nullable()->after('cansaco_frequencia_respiratoria');
+            // $table->string('pressao_arterial')->nullable()->after('cansaco_frequencia_respiratoria');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnPressaoArterialInEvolucaoSintomasTable extends Migration
     public function down()
     {
         Schema::table('evolucao_sintomas', function (Blueprint $table) {
-            $table->dropColumn('pressao_arterial');
+            // $table->dropColumn('pressao_arterial');
         });
     }
 }

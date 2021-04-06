@@ -14,7 +14,7 @@ class AddColumnRacaCorInPacientesTable extends Migration
     public function up()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->string('cor_raca')->nullable()->after('data_nascimento');
+            $table->string('cor_raca')->nullable()->after('data_nascimento');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnRacaCorInPacientesTable extends Migration
     public function down()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->dropColumn('cor_raca');
+            $table->dropColumn('cor_raca');
         });
     }
 }

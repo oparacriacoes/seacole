@@ -27,7 +27,7 @@ class RegisterSintomaEvolucao
      */
     public function handle(SintomaEvolucao $event)
     {
-      $sintoma = $event->sintomas;
-      $sintoma->save();
+        $sintoma = $event->sintomas;
+        $sintoma->save();
     }
 }

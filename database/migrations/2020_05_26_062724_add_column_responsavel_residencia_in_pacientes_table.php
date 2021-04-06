@@ -14,7 +14,7 @@ class AddColumnResponsavelResidenciaInPacientesTable extends Migration
     public function up()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->string('responsavel_residencia')->nullable()->after('numero_pessoas_residencia');
+            $table->string('responsavel_residencia')->nullable()->after('numero_pessoas_residencia');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnResponsavelResidenciaInPacientesTable extends Migration
     public function down()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->dropColumn('responsavel_residencia');
+            $table->dropColumn('responsavel_residencia');
         });
     }
 }

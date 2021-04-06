@@ -9,12 +9,32 @@
                 </i>
             </div>
             <div>Psicólogos
-                <div class="page-title-subheading">Todas os conteúdos são somente teste.
+                <div class="page-title-subheading">Projeto Agentes Populares de Saúde.
                 </div>
             </div>
         </div>
       </div>
   </div>
+
+  @if(session('success'))
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-success info" role="alert">
+        {{ session('success') }}
+      </div>
+    </div>
+  </div>
+  @endif
+  @if(session('error'))
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger info" role="alert">
+        {{ session('error') }}
+      </div>
+    </div>
+  </div>
+  @endif
+
   <div class="row">
     <div class="col">
       <div class="main-card mb-3 card">
@@ -34,7 +54,13 @@
                 <td><a href="{{ route('psicologo/edit', $psicologo->id) }}">{{ $psicologo->user->name }}</a></td>
                 <td>{{ $psicologo->user->email }}</td>
                 <td>@php $data = \Carbon\Carbon::parse($psicologo->created_at); @endphp {{ $data->format('d/m/Y') }}</td>
-                <td><button class="btn btn-sm btn-danger" type="button" name="button" onclick="deletePsicologo({{ $psicologo->id }})">Excluir</button></td>
+                <td>
+                  <form action="{{ route('psicologo.destroy', $psicologo->id) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-sm btn-danger" type="submit" name="button">Excluir</button>
+                  </form>
+                </td>
               </tr>
               @endforeach
             </tbody>
@@ -46,3 +72,13 @@
 </div>
 
 @stop
+
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$('.info').css('cursor', 'pointer');
+$('.info').click(function(){
+  $(this).fadeOut();
+})
+</script>
+@endsection

@@ -36,6 +36,6 @@ class CreateQuadroAtualTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guadro_atual');
+        Schema::dropIfExists('quadro_atual');
     }
 }

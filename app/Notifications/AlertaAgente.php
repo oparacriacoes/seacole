@@ -18,9 +18,9 @@ class AlertaAgente extends Notification
      */
     public function __construct($info)
     {
-      $this->paciente_id = $info['paciente_id'];
-      $this->agente_id = $info['agente_id'];
-      $this->action = $info['action'];
+        $this->paciente_id = $info['paciente_id'];
+        $this->agente_id = $info['agente_id'];
+        $this->action = $info['action'];
     }
 
     /**

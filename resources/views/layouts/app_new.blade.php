@@ -23,6 +23,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}"/>
     <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}" defer></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.css">
@@ -32,6 +33,7 @@
         const APP_URL = "{{ env("APP_URL") }}";
     </script>
     <script type="text/javascript" src="{{ asset('js/functions.js') }}" defer></script>
+    @yield('css')
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -80,12 +82,14 @@
                         <button class="close"></button>
                     </div>
                     <ul class="header-menu nav">
+                      @if(\Auth::user()->role === 'administrador')
                         <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
+                            <a href="{{ route('paciente/exportar') }}" class="nav-link">
                                 <i class="nav-link-icon fa fa-database"> </i>
-                                Calendário
+                                Exportar Pacientes
                             </a>
                         </li>
+                      @endif
                         <li class="btn-group nav-item">
                             <a href="javascript:void(0);" class="nav-link">
                                 <i class="nav-link-icon fa fa-edit"></i>
@@ -107,7 +111,7 @@
                                 <div class="widget-content-left">
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                            <img width="42" class="rounded-circle" src="assets/images/avatars/maryseacole.png" alt="">
+                                            <img width="42" class="rounded-circle" src="{{asset('assets/images/avatars/maryseacole.png')}}" alt="">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
@@ -287,11 +291,11 @@
             </div>
         </div>
     </div>
+    @yield('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://seacole.uneafrobrasil.org/js/jquery.mask.js"></script>
     <script>
         //JQUERY MASKS
-      $('.date').mask('00/00/0000');
       //$('.time').mask('00:00:00');
       $('.time').mask('00:00');
       //$('.date_time').mask('00/00/0000 00:00:00');

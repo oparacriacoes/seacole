@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Hash;
 use App\User;
 use App\Agente;
+use DB;
 
 class AgenteController extends Controller
 {
@@ -17,7 +18,7 @@ class AgenteController extends Controller
      */
     public function index()
     {
-      return null;
+        return null;
     }
 
     /**
@@ -28,30 +29,40 @@ class AgenteController extends Controller
      */
     public function store(Request $request)
     {
-      $user = new User;
-      $user->name = $request->input('data')['name'];
-      $user->email = $request->input('data')['email'];
-      $user->password = Hash::make($request->input('data')['email']);
-      $user->role = 'agente';
-      try {
-        $user->save();
-      } catch(\Exception $exception) {
-        return response()->json(['message' => $exception->getMessage()]);
-      }
-
-      if($user){
-        $agente = new Agente;
-        $agente->user_id = $user->id;
-        $agente->fone_celular_1 = $request->input('data')['fone_celular_1'];
-        $agente->fone_celular_2 = $request->input('data')['fone_celular_2'];
+        //dd($request->all());
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->email);
+        $user->role = 'agente';
+        DB::beginTransaction();
         try {
-          $agente->save();
-        } catch(\Exception $exception) {
-          return response()->json(['message' => $exception->getMessage()]);
+            DB::commit();
+            $user->save();
+        } catch (\Exception $exception) {
+            //return response()->json(['message' => $exception->getMessage()]);
+            DB::rollback();
+            \Log::info($exception);
+            return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
         }
-      }
 
-      return response()->json(['message' => 'Cadastro feito com sucesso.']);
+        if ($user) {
+            $agente = new Agente;
+            $agente->user_id = $user->id;
+            $agente->fone_celular_1 = $request->fone_celular_1;
+            $agente->fone_celular_2 = $request->fone_celular_2;
+            DB::beginTransaction();
+            try {
+                DB::commit();
+                $agente->save();
+                return redirect()->route('agente')->with('success', 'Cadastro efetuado com sucesso.');
+            } catch (\Exception $exception) {
+                DB::rollback();
+                \Log::info($exception);
+                //return response()->json(['message' => $exception->getMessage()]);
+                return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
+            }
+        }
     }
 
     /**
@@ -62,7 +73,7 @@ class AgenteController extends Controller
      */
     public function show($id)
     {
-      return null;
+        return null;
     }
 
     /**
@@ -74,32 +85,40 @@ class AgenteController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $agente = Agente::find($id);
-      $user = User::find($agente->user->id);
-      $user->name = $request->input('data')['name'];
-      $user->email = $request->input('data')['email'];
-      if( $request->input('data')['password_confirm'] !== null ){
-        $user->password = Hash::make($request->input('data')['password_confirm']);
-      }
-      $user->role = 'agente';
-      try {
-        $user->save();
-      } catch(\Exception $exception) {
-        return response()->json(['message' => $exception->getMessage()]);
-      }
-
-      if($user){
-        $agente->user_id = $user->id;
-        $agente->fone_celular_1 = $request->input('data')['fone_celular_1'];
-        $agente->fone_celular_2 = $request->input('data')['fone_celular_2'];
+        //dd($request->all());
+        DB::beginTransaction();
         try {
-          $agente->save();
-        } catch(\Exception $exception) {
-          return response()->json(['message' => $exception->getMessage()]);
+            $agente = Agente::find($id);
+            $user = User::find($agente->user->id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            if ($request->password_confirm !== null) {
+                $user->password = Hash::make($request->password_confirm);
+            }
+            $user->role = 'agente';
+            $user->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            \Log::info($e);
+            return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
         }
-      }
 
-      return response()->json(['message' => 'Cadastro atualizado com sucesso.']);
+        if ($user) {
+            DB::beginTransaction();
+            try {
+                $agente->user_id = $user->id;
+                $agente->fone_celular_1 = $request->input('data')['fone_celular_1'];
+                $agente->fone_celular_2 = $request->input('data')['fone_celular_2'];
+                $agente->save();
+                DB::commit();
+                return redirect()->route('')->with('success', 'Dados alterados com sucesso.');
+            } catch (\Exception $e) {
+                DB::rollback();
+                \Log::info($e);
+                return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
+            }
+        }
     }
 
     /**
@@ -110,12 +129,12 @@ class AgenteController extends Controller
      */
     public function destroy($id)
     {
-      $agente = Agente::find($id);
-      $user = User::find($agente->user_id);
+        $agente = Agente::find($id);
+        $user = User::find($agente->user_id);
 
-      $delete_agente = Agente::destroy($id);
-      $delete_user = User::destroy($user->id);
+        $delete_agente = Agente::destroy($id);
+        $delete_user = User::destroy($user->id);
 
-      return response()->json(['message' => 'Agente excluído com sucesso.']);
+        return redirect()->back()->with('success', 'Agente removido com sucesso.');
     }
 }

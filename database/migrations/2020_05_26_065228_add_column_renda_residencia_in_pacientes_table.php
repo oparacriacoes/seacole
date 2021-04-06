@@ -14,7 +14,7 @@ class AddColumnRendaResidenciaInPacientesTable extends Migration
     public function up()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->string('renda_residencia')->nullable()->after('responsavel_residencia');
+            $table->string('renda_residencia')->nullable()->after('responsavel_residencia');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnRendaResidenciaInPacientesTable extends Migration
     public function down()
     {
         Schema::table('pacientes', function (Blueprint $table) {
-          $table->dropColumn('renda_residencia');
+            $table->dropColumn('renda_residencia');
         });
     }
 }

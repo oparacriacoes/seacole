@@ -285,12 +285,13 @@ class PacienteController extends Controller
 
     public function add()
     {
+        $paciente = new Paciente();
         $agentes = Agente::get();
         $medicos = Medico::get();
         $psicologos = Psicologo::all();
         $articuladoras = Articuladora::all();
 
-        return view('pages.paciente.create')->with(compact('agentes', 'medicos', 'psicologos', 'articuladoras'));
+        return view('pages.paciente.create')->with(compact('paciente', 'agentes', 'medicos', 'psicologos', 'articuladoras'));
     }
 
     public function storeGeral(Request $request)

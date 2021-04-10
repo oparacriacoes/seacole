@@ -127,34 +127,29 @@
                         {{-- <form class=""> --}}
                         <div class="form-row">
                             <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <label for="data_inicio_sintoma">Data início sintomas de COVID-19</label>
-                                    <input name="data_inicio_sintoma" type="text" class="date  form-control" id="data_inicio_sintoma" value="{{ old('data_inicio_sintoma') }}">
-                                </div>
+                                <x-forms.input-date property="data_inicio_sintoma" :value="$paciente->data_inicio_sintoma">
+                                    Data início sintomas de COVID-19
+                                </x-forms.input-date>
                             </div>
                             <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <label for="data_inicio_monitoramento">Data início monitoramento Agentes</label>
-                                    <input name="data_inicio_monitoramento" type="text" class=" form-control date" id="data_inicio_monitoramento" value="{{ old('data_inicio_monitoramento') }}">
-                                </div>
+                                <x-forms.input-date property="data_inicio_monitoramento" :value="$paciente->data_inicio_monitoramento">
+                                    Data início monitoramento Agentes
+                                </x-forms.input-date>
                             </div>
                             <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <label for="data_finalizacao_caso">Data finalização do monitoramento Agentes (alta)</label>
-                                    <input name="data_finalizacao_caso" type="text" class=" form-control date" id="data_finalizacao_caso" value="{{ old('data_finalizacao_caso') }}">
-                                </div>
+                                <x-forms.input-date property="data_finalizacao_caso" :value="$paciente->data_finalizacao_caso">
+                                    Data finalização do monitoramento Agentes (alta)
+                                </x-forms.input-date>
                             </div>
                             <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <label for="data_inicio_ac_psicologico">Data início ac Psicológico</label>
-                                    <input name="data_inicio_ac_psicologico" type="text" class=" form-control date" id="data_inicio_ac_psicologico">
-                                </div>
+                                <x-forms.input-date property="data_inicio_ac_psicologico" :value="$paciente->data_inicio_ac_psicologico">
+                                    Data início ac Psicológico
+                                </x-forms.input-date>
                             </div>
                             <div class="col-12 col-md-4">
-                                <div class="form-group">
-                                    <label for="data_encerramento_ac_psicologico">Data encerramento ac Psicológico</label>
-                                    <input name="data_encerramento_ac_psicologico" type="text" class="form-control date" id="data_encerramento_ac_psicologico">
-                                </div>
+                                <x-forms.input-date property="data_encerramento_ac_psicologico" :value="$paciente->data_encerramento_ac_psicologico">
+                                Data encerramento ac Psicológico
+                                </x-forms.input-date>
                             </div>
                             <div class="col-md-4">
                                 <div class="position-relative form-group">
@@ -332,12 +327,9 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="position-relative form-group">
-                                    <label for="examplePassword11" class="">
-                                        Data de Nascimento
-                                    </label>
-                                    <input name="data_nascimento" type="text" placeholder="Data de Nascimento" class=" form-control date" id="data_nascimento" aria-describeddata_nascimentoby="data_nascimentoHelp" value="{{ old('data_nascimento') }}">
-                                </div>
+                                <x-forms.input-date property="data_nascimento" :value="$paciente->data_nascimento">
+                                    Data de Nascimento
+                                </x-forms.input-date>
                             </div>
                         </div>
 
@@ -345,14 +337,14 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name">Responsável</label>
-                                    <input name="responsavel_residencia" type="text" class=" form-control ddate" id="responsavel_residencia" aria-describedby="responsavel_residenciaHelp" value="{{ old('responsavel_residencia') }}">
+                                    <input name="responsavel_residencia" type="text" class=" form-control" id="responsavel_residencia" aria-describedby="responsavel_residenciaHelp" value="{{ old('responsavel_residencia') }}">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name">Email</label>
-                                    <input name="email" type="email" class=" form-control ddate" id="email" aria-describedby="emailHelp" value="{{ old('email') }}">
+                                    <input name="email" type="email" class=" form-control" id="email" aria-describedby="emailHelp" value="{{ old('email') }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -368,7 +360,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Logradouro</label>
-                                    <input name="endereco_rua" type="text" class=" form-control ddate" id="endereco_rua" value="{{ old('endereco_rua') }}">
+                                    <input name="endereco_rua" type="text" class=" form-control" id="endereco_rua" value="{{ old('endereco_rua') }}">
                                 </div>
                             </div>
 
@@ -381,7 +373,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name">Complemento</label>
-                                    <input name="endereco_complemento" type="text" class=" form-control ddate" id="endereco_complemento" value="{{ old('endereco_complemento') }}">
+                                    <input name="endereco_complemento" type="text" class=" form-control" id="endereco_complemento" value="{{ old('endereco_complemento') }}">
                                 </div>
                             </div>
                         </div>
@@ -561,12 +553,9 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="position-relative form-group">
-                                    <label for="examplePassword11" class="">
-                                        Data do teste confirmatório
-                                    </label>
-                                    <input name="data_teste_confirmatorio" placeholder="Data do teste confirmatório" type="text" class=" form-control date" id="data_teste_confirmatorio" value="{{ old('data_teste_confirmatorio') }}">
-                                </div>
+                                <x-forms.input-date property="data_teste_confirmatorio" :value="$paciente->data_teste_confirmatorio">
+                                    Data do teste confirmatório
+                                </x-forms.input-date>
                             </div>
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
@@ -886,21 +875,15 @@
 
                             <div class="form-row">
                                 <div class="col-md-4">
-                                    <div class="position-relative form-group">
-                                        <label for="exampleEmail11" class="">
-                                            Data do parto
-                                        </label>
-                                        <input name="data_parto" id="data_parto" type="text" class="form-control date" value="{{ old('data_parto') }}">
-                                    </div>
+                                    <x-forms.input-date property="data_parto" :value="$paciente->data_parto">
+                                        Data do teste confirmatório
+                                    </x-forms.input-date>
                                 </div>
 
                                 <div class="col-md-3">
-                                    <div class="position-relative form-group">
-                                        <label for="exampleEmail11" class="">
-                                            Data da última menstruação (DUM)
-                                        </label>
-                                        <input name="data_ultima_mestrucao" id="data_ultima_mestrucao" type="text" class="form-control date" value="{{ old('data_ultima_mestrucao') }}">
-                                    </div>
+                                    <x-forms.input-date property="data_ultima_mestrucao" :value="$paciente->data_ultima_mestrucao">
+                                        Data da última menstruação (DUM)
+                                    </x-forms.input-date>
                                 </div>
 
                                 <div class="col-md-4">
@@ -940,12 +923,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="position-relative form-group">
-                                        <label for="exampleEmail11" class="">
-                                            Qual a data da última consulta médica?
-                                        </label>
-                                        <input name="data_ultima_consulta" type="text" class="form-control date" value="{{ old('data_ultima_consulta') }}">
-                                    </div>
+                                    <x-forms.input-date property="data_ultima_consulta" :value="$paciente->data_ultima_consulta">
+                                        Qual a data da última consulta médica?
+                                    </x-forms.input-date>
                                 </div>
 
                                 <div class="col-md-3">
@@ -1009,643 +989,6 @@
             </form>
         </div>
 
-        <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
-            <form id="createPacienteQAForm" method="POST" action="">
-                @csrf
-                <div class="main-card mb-3 card">
-                    <div class="card-body">
-                        <h5 class="card-title">Quadro atual</h5>
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="primeira_sintoma">Primeiros sintomas</label>
-                                    <textarea name="primeira_sintoma" placeholder="descreva a evolução dos sintomas do início do quadro até o primeiro registro" id="primeira_sintoma" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="sintomas_manifestados">Sintomas manifestados</label><br />
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="tosse" type="checkbox" value="tosse">
-                                        <label class="form-check-label" for="tosse">Tosse</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="falta_de_ar" type="checkbox" value="falta de ar">
-                                        <label class="form-check-label" for="febre">Falta de ar</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="febre" type="checkbox" value="febre">
-                                        <label class="form-check-label" for="febre">Febre</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="dor de cabeça">
-                                        <label class="form-check-label" for="inlineCheckbox3">Dor de Cabeça</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="perda de olfato">
-                                        <label class="form-check-label" for="inlineCheckbox3">Perda do olfato</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="perda do paladar">
-                                        <label class="form-check-label" for="inlineCheckbox3">Perda do paladar</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" type="checkbox" value="enjoo">
-                                        <label class="form-check-label" for="inlineCheckbox3">Enjoo ou vômitos</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="diarreia" type="checkbox" value="diarreia">
-                                        <label class="form-check-label" for="diarreia">Diarréia</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="aumento_da_pressao" type="checkbox" value="aumento da pressão">
-                                        <label class="form-check-label" for="aumento_da_pressao">Aumento da pressão</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="queda_brusca_de_pressao" type="checkbox" value="queda brusca de Pressão">
-                                        <label class="form-check-label" for="sonolencia">Queda brusca de Pressão</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="pressao_baixa" type="checkbox" value="pressão baixa">
-                                        <label class="form-check-label" for="pressao_baixa">Dor torácica (dor no peito) </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="sonolência_cansaco_importantes" type="checkbox" value="sonolência ou cansaço importantes">
-                                        <label class="form-check-label" for="sonolência_cansaco_importantes">Sonolência ou cansaço importantes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="confusao_mental" type="checkbox" value="confusão mental">
-                                        <label class="form-check-label" for="confusao_mental">Confusão mental</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="desmaio" type="checkbox" value="desmaio">
-                                        <label class="form-check-label" for="desmaio">Desmaio</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="convulsao" type="checkbox" value="convulsao">
-                                        <label class="form-check-label" for="convulsao">Convulsão</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_manifestados[]" class="form-check-input" id="outros" type="checkbox" value="outros">
-                                        <label class="form-check-label" for="outros">Outros</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="temperatura_max">Temperatura máxima (em graus)</label>
-                                    <input name="temperatura_max" type="text" placeholder="00,0" class="form-control temperature" id="temperatura_max">
-                                </div>
-                                <div class="form-group">
-                                    <label for="data_temp_max">Data temperatura máxima</label>
-                                    <input name="data_temp_max" type="text" class=" form-control date" id="data_temp_max">
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="saturacao_baixa">Saturação mais baixa registrada (%)</label>
-                                    <input name="saturacao_baixa" type="text" placeholder="00 %" class=" form-control saturation" id="saturacao_baixa">
-                                </div>
-                                <div class="form-group">
-                                    <label for="data_sat_max">Data da saturação mais baixa</label>
-                                    <input name="data_sat_max" type="text" class=" form-control date" id="data_sat_max">
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="frequencia_max">Frequência respiratória máxima</label>
-                                    <input name="frequencia_max" type="text" placeholder="respirações por minuto - rpm" class=" form-control" id="frequencia_max">
-                                </div>
-                                <div class="form-group">
-                                    <label for="data_freq_max">Data da Frequência respiratória máxima</label>
-                                    <input name="data_freq_max" type="text" class=" form-control date" id="data_freq_max">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pos2ition-relative row form-chec2k">
-                            <div class="col-sm-12 2offset-sm-2">
-                                <button type="submit" id="createPacienteQA" class="btn btn-secondary">Salvar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="tab-pane tabs-animation fade" id="tab-content-2" role="tabpanel">
-            <!-- ABRE FORM MONITORAMENTO -->
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Monitoramento</h5>
-                    <form id="monitoramento_form" action="" method="post">
-                        @csrf
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="horario_monotiramento">Horário do monitoramento</label>
-                                    <input name="horario_monotiramento" type="text" class=" form-control hour" id="horario_monotiramento">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="sintomas_atuais">Sintomas atuais</label><br />
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="tosse">
-                                        <label class="form-check-label" for="tosse">Tosse</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="falta de ar">
-                                        <label class="form-check-label" for="falta_de_ar">Falta de ar</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="febre">
-                                        <label class="form-check-label" for="febre">Febre</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="dor de cabeça">
-                                        <label class="form-check-label" for="inlineCheckbox3">Dor de Cabeça</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="perda de olfato">
-                                        <label class="form-check-label" for="inlineCheckbox3">Perda do olfato</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="perda do paladar">
-                                        <label class="form-check-label" for="inlineCheckbox3">Perda do paladar</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="outros">
-                                        <label class="form-check-label" for="outros_monit">Outros</label>
-                                    </div>
-
-                                    <div class="form-check form-check-inline">
-                                        <input name="sintomas_outro" class="form-control" type="text" placeholder="Outro (digite)">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="temperatura_atual">Temperatura atual (em graus)</label>
-                                    <input name="temperatura_atual" type="text" placeholder="00,0" class=" form-control temperature" id="temperatura_atual">
-                                </div>
-                                <div class="form-group">
-                                    <label for="frequencia_cardiaca_atual">Frequência cardíaca atual</label>
-                                    <input name="frequencia_cardiaca_atual" type="text" placeholder="-- bpm" class="form-control" id="frequencia_cardiaca_atual">
-                                </div>
-                                <div class="form-group">
-                                    <label for="algum_sinal">Algum sinal de gravidade nesse monitoramento?</label>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="algum_sinal" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="algum_sinal" type="radio" class="form-check-input" value="não"> Não</label></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="saturacao_atual">Saturação atual (%)</label>
-                                    <input name="saturacao_atual" type="text" placeholder="00 %" class=" form-control saturation" id="saturacao_atual">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pressao_arterial_atual">Pressão Arterial Atual</label>
-                                    <input name="pressao_arterial_atual" type="text" placeholder="Ex: 12x8" class=" form-control" id="pressao_arterial_atual">
-                                </div>
-                                <div class="form-group">
-                                    <label for="equipe_medica">Equipe médica do projeto prescreveu algum medicamento?</label>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="equipe_medica" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="equipe_medica" type="radio" class="form-check-input" value="não"> Não</label></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="frequencia_respiratoria_atual">Frequência respiratória atual</label>
-                                    <input name="frequencia_respiratoria_atual" type="text" placeholder="-- rpm" class="form-control" id="frequencia_respiratoria_atual">
-                                </div>
-                                <div class="form-group">
-                                    <label for="medicamento">Medicamento prescrito pela equipe médica do projeto</label>
-                                    <textarea name="medicamento" id="medicamento" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="fazendo_uso_pic">Fazendo uso de alguma PIC (prática integrativa complementar - ex: medicina chinesa)?</label>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="fazendo_uso_pic" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="fazendo_uso_pic" type="radio" class="form-check-input" value="não"> Não</label></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="fez_escalapes">Fez escaldapés (atenção para restrições - ex: gestantes e diabeticos)</label>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="fez_escalapes" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="fez_escalapes" type="radio" class="form-check-input" value="não"> Não</label></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="melhora_sintoma_escaldapes">Sentiu melhora dos sintomas com escaldapés (atenção para restrições - ex: gestantes e diabeticos)</label>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhora_sintoma_escaldapes" type="radio" class="form-check-input" value="grande alívio"> grande alívio</label></div>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhora_sintoma_escaldapes" type="radio" class="form-check-input" value="pouca melhora"> pouca melhora</label></div>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhora_sintoma_escaldapes" type="radio" class="form-check-input" value="não"> Não</label></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="fes_inalacao">Fez inalação ou vaporização? </label>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="fes_inalacao" type="radio" class="form-check-input" value="inalação"> Inalação</label></div>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="fes_inalacao" type="radio" class="form-check-input" value="vaporização"> Vaporização</label></div>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="fes_inalacao" type="radio" class="form-check-input" value="não"> Não</label></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="melhoria_sintomas_inalacao">Sentiu melhora dos sintomas com inalação ou vaporização: </label>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhoria_sintomas_inalacao" type="radio" class="form-check-input" value="grande alívio"> grande alívio</label></div>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhoria_sintomas_inalacao" type="radio" class="form-check-input" value="pouca melhora"> pouca melhora</label></div>
-                                <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhoria_sintomas_inalacao" type="radio" class="form-check-input" value="não"> Não</label></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-12">
-                            *Consideramos um caso grave quando a pessoa reportar DESCONFORTO RESPIRATÓRIO IMPORTANTE, DOR TORÁCICA (DOR NO PEITO), CANSAÇO OU SONOLÊNCIA IMPORTANTES, QUEDA BRUSCA DE PRESSÃO, QUEDA DA SATURAÇÃO ABAIXO DE 93%, FREQUÊNCIA RESPIRATÓRIA ACIMA DE 24rpm (respirações por minuto), CONFUSÃO MENTAL, DESMAIO, CONVULSÕES. No caso de novo sinal de gravidade: assinalar no início do prontuário "Caso Ativo Grave".
-                        </div>
-                    </div>
-
-                    <div class="position-relatives row fdorm-check">
-                        <div class="col-sm-12 offset-sm-2s"><br />
-                            <button class="btn btn-secondary">Enviar</button>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-            </div>
-            <!-- FECHA FORM MONITORAMENTO -->
-        </div>
-
-        <div class="tab-pane tabs-animation fade" id="tab-content-3" role="tabpanel">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Saúde mental</h5>
-                    <form action="" method="post">
-                        @csrf
-                        <div class="form-row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="quadro_atual">Quadro atual intensifica medos, angústias, ansiedade, tristezas ou preocupação?</label>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="quadro_atual" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="quadro_atual" type="radio" class="form-check-input" value="não"> Não</label></div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="detalhes_medos">Escreva sobre o estado emocional e detalhe os medos</label>
-                                    <textarea name="detalhes_medos" id="detalhes_medos" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="position-relatives row fdorm-check">
-                            <div class="col-sm-12 offset-sm-2s"><br />
-                                <button class="btn btn-secondary">Enviar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-pane tabs-animation fade" id="tab-content-4" role="tabpanel">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Serviços de Referência e Internação</h5>
-                    <form id="internacao_form" action="" method="post">
-                        @csrf
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="precisou_servico">A pessoa precisou ir a algum serviço de saúde?</label><br />
-                                    <div class="form-check form-check-inline">
-                                        <input name="precisou_servico[]" class="form-check-input" id="ubs" type="checkbox" value="UBS (Unidade Básica de Saúde - posto de saúde)">
-                                        <label class="form-check-label" for="tosse">UBS (Unidade Básica de Saúde - posto de saúde)</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="precisou_servico[]" class="form-check-input" id="upa" type="checkbox" value="UPA (Unidade de Pronto Atendimento)">
-                                        <label class="form-check-label" for="upa">UPA (Unidade de Pronto Atendimento)</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="precisou_servico[]" class="form-check-input" id="ama" type="checkbox" value="ama">
-                                        <label class="form-check-label" for="ama">AMA</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="precisou_servico[]" class="form-check-input" id="hospital_publico" type="checkbox" value="Hospital público">
-                                        <label class="form-check-label" for="inlineCheckbox3">Hospital público</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="precisou_servico[]" class="form-check-input" id="hospital_privado" type="checkbox" value="hospital privado">
-                                        <label class="form-check-label" for="inlineCheckbox3">Hospital privado</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="precisou_servico_outro" class="form-control" type="text" placeholder="outro (qual?)">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="quant_ida_servico">Quantas idas a serviços de saúde?</label>
-                                    <input name="quant_ida_servico" type="text" placeholder="somente números" class=" form-control date" id="quant_ida_servico">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="divider">
-                        </div>
-
-
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="recebeu_med_covid"><strong>Recebeu medicações para tratar COVID-19?</strong></label><br />
-                                    <div class="form-check form-check-inline">
-                                        <input name="recebeu_med_covid[]" class="form-check-input" id="azitromicina" type="checkbox" value="Azitromicina">
-                                        <label class="form-check-label" for="azitromicina">Azitromicina</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="recebeu_med_covid[]" class="form-check-input" id="outro_antibiotico" type="checkbox" value="outro antibiótico">
-                                        <label class="form-check-label" for="outro_antibiotico">Outro antibiótico</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="recebeu_med_covid[]" class="form-check-input" id="ivermectina" type="checkbox" value="ivermectina">
-                                        <label class="form-check-label" for="ivermectina">Ivermectina</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="recebeu_med_covid[]" class="form-check-input" type="checkbox" value="cloroquina/hidroxicloroquina">
-                                        <label class="form-check-label" for="inlineCheckbox3">Cloroquina/Hidroxicloroquina</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="recebeu_med_covid[]" class="form-check-input" type="checkbox" value="oseltamivir (tamiflu)">
-                                        <label class="form-check-label" for="inlineCheckbox3">Oseltamivir (Tamiflu)</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="recebeu_med_covid[]" class="form-check-input" type="checkbox" value="algum antialérgico">
-                                        <label class="form-check-label" for="inlineCheckbox3">Algum antialérgico</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="recebeu_med_covid[]" class="form-check-input" type="checkbox" value="algum corticóide">
-                                        <label class="form-check-label" for="inlineCheckbox3">Algum corticóide</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="recebeu_med_covid[]" class="form-check-input" type="checkbox" value="algum antiinflamatório">
-                                        <label class="form-check-label" for="inlineCheckbox3">Algum antiinflamatório</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="recebeu_med_covid[]" class="form-check-input" type="checkbox" value="vitamina D">
-                                        <label class="form-check-label" for="inlineCheckbox3">Vitamina D</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="recebeu_med_covid[]" class="form-check-input" type="checkbox" value="zinco">
-                                        <label class="form-check-label" for="inlineCheckbox3">Zinco</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="recebeu_med_covid[]" class="form-check-input" type="checkbox" value="outro medicamento">
-                                        <label class="form-check-label" for="inlineCheckbox3">Outro medicamento</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="nome_medicamento">Escreva o nome do medicamento prescrito</label>
-                                    <textarea name="nome_medicamento" id="nome_medicamento" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="divider">
-                        </div>
-
-
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="teve_algum_problema"><strong>A pessoa teve algum problema com serviços de referência?</strong></label><br />
-                                    <div class="form-check form-check-inline">
-                                        <input name="teve_algum_problema[]" class="form-check-input" id="ubs2" type="checkbox" value="UBS (Unidade Básica de Saúde - posto de saúde)">
-                                        <label class="form-check-label" for="ubs">UBS (Unidade Básica de Saúde - posto de saúde)</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="teve_algum_problema[]" class="form-check-input" id="upa2" type="checkbox" value="UPA (Unidade de Pronto Atendimento)">
-                                        <label class="form-check-label" for="upa">UPA (Unidade de Pronto Atendimento)</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="teve_algum_problema[]" class="form-check-input" id="ama2" type="checkbox" value="ama">
-                                        <label class="form-check-label" for="ama">AMA</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="teve_algum_problema[]" class="form-check-input" type="checkbox" value="Hospital público">
-                                        <label class="form-check-label" for="publico">Hospital público</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="teve_algum_problema[]" class="form-check-input" type="checkbox" value="Hospital privado">
-                                        <label class="form-check-label" for="privado">Hospital privado</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="teve_algum_problema[]" class="form-check-input" type="checkbox" value="Outro (qual?)">
-                                        <label class="form-check-label" for="teve_algum_problema[]">Outro (qual?)</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="descreva_problema">Descreva o problema</label>
-                                    <textarea name="descreva_problema" id="descreva_problema" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="divider">
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="precisou_internacao">Precisou de internação pelo quadro (suspeito ou confirmado)?</label>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="precisou_internacao" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="precisou_internacao" type="radio" class="form-check-input" value="não"> Não</label></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="precisou_ambulancia">Precisou de ambulância financiada pelo projeto?</label>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="precisou_ambulancia" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="precisou_ambulancia" type="radio" class="form-check-input" value="não"> Não</label></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="divider">
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="local_internacao"><strong>Local de internação</strong></label><br />
-                                    <div class="form-check form-check-inline">
-                                        <input name="local_internacao[]" class="form-check-input" id="hospital_publico_referencia" type="checkbox" value="Hospital público de referência">
-                                        <label class="form-check-label" for="hospital_publico_referencia">Hospital público de referência</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="local_internacao[]" class="form-check-input" id="hospital_campanha" type="checkbox" value="Hospital de campanha">
-                                        <label class="form-check-label" for="hospital_campanha">Hospital de campanha</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="local_internacao[]" class="form-check-input" id="hospital_particular_referencia" type="checkbox" value="Hospital particular de referência">
-                                        <label class="form-check-label" for="febre">Hospital particular de referência</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="local_internacao[]" class="form-check-input" type="checkbox" value="Hospital municipal do Ipiranga (encaminhado pelo projeto)">
-                                        <label class="form-check-label" for="inlineCheckbox3">Hospital municipal do Ipiranga (encaminhado pelo projeto)</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="local_internacao[]" class="form-check-input" type="checkbox" value="Hospital privado financiado pelo projeto">
-                                        <label class="form-check-label" for="inlineCheckbox3">Hospital privado financiado pelo projeto</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="nome_hospital">Nome do Hospital de internação</label>
-                                    <input name="nome_hospital" id="nome_hospital" type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="tempo_internacao">tempo de internação</label>
-                                    <input name="tempo_internacao" id="tempo_internacao" placeholder="em dias - número" type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="position-relatives row form-check">
-                            <div class="col-sm-12 offset-sm-2s"><br />
-                                <button class="btn btn-secondary">Enviar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-pane tabs-animation fade" id="tab-content-5" role="tabpanel">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Insumos Oferecidos pelo Projeto</h5>
-                    <form id="insumo_form" action="" method="post">
-                        @csrf
-                        <div class="form-row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="condicao_ficar_isolada">Há condição de ficar isolada, sozinha, em um cômodo da casa?</label>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="condicao_ficar_isolada" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="condicao_ficar_isolada" type="radio" class="form-check-input" value="não"> Não</label></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="tem_comida">Tem comida disponível, sem precisar sair?</label>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="tem_comida" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="tem_comida" type="radio" class="form-check-input" value="não"> Não</label></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="tem_alguem">Tem alguém para auxiliá-lo(a)?</label>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="tem_alguem" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="tem_alguem" type="radio" class="form-check-input" value="não"> Não</label></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="tarefas_autocuidado">Consegue realizar tarefas de autocuidado? (como tomar banho, cozinhar, lavar a própria roupa)</label>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="tarefas_autocuidado" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="tarefas_autocuidado" type="radio" class="form-check-input" value="não"> Não</label></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="divider">
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="precisa_tipo_ajuda"><strong>Precisa de algum tipo de ajuda?</strong></label><br />
-                                    <div class="form-check form-check-inline">
-                                        <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_remedios_continuo" type="checkbox" value="Comprar remédios de uso contínuo">
-                                        <label class="form-check-label" for="comprar_remedios_continuo">Comprar remédios de uso contínuo</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_remedios" type="checkbox" value="Comprar remédios para o tratamento do quadro atual">
-                                        <label class="form-check-label" for="comprar_remedios">Comprar remédios para o tratamento do quadro atual</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="precisa_tipo_ajuda[]" class="form-check-input" id="comprar_alimento" type="checkbox" value="Comprar alimento ou outro produtos de necessidade básica">
-                                        <label class="form-check-label" for="comprar_alimento">Comprar alimento ou outro produtos de necessidade básica</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="precisa_tipo_ajuda[]" class="form-check-input" type="checkbox" value="Outros">
-                                        <label class="form-check-label" for="Outros">Outros</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="tratamento_prescrito"><strong>Tratamento foi prescrito por algum médico do projeto?</strong></label>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="tratamento_prescrito" type="radio" class="form-check-input" value="sim"> Sim</label></div>
-                                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="tratamento_prescrito" type="radio" class="form-check-input" value="não"> Não</label></div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="tratamento_financiado"><strong>Tratamento financiado</strong></label><br />
-                                    <div class="form-check form-check-inline">
-                                        <input name="tratamento_financiado[]" class="form-check-input" id="alopatico" type="checkbox" value="Alopático (medicamentos convencionais)">
-                                        <label class="form-check-label" for="alopatico">Alopático (medicamentos convencionais)</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input name="tratamento_financiado[]" class="form-check-input" id="pics" type="checkbox" value="PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)">
-                                        <label class="form-check-label" for="febre">PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="position-relatives row fdorm-check">
-                            <div class="col-sm-12 offset-sm-2s"><br />
-                                <button class="btn btn-secondary">Enviar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 @endsection

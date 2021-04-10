@@ -1,5 +1,6 @@
-<form id="createPacienteForm" method="POST" action="{{ route('paciente.update', $paciente->id) }}">
+<form id="createPacienteForm" method="POST" action="{{ route('pacientes.update', $paciente) }}">
     @csrf
+    @method('PUT')
     <div class="main-card mb-3 card">
         <div class="card-body">
             <h5 class="card-title">SITUAÇÃO DO CASO</h5>

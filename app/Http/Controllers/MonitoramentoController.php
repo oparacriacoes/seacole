@@ -10,7 +10,7 @@ use App\EvolucaoSintoma;
 
 class MonitoramentoController extends Controller
 {
-    public function store(Request $request, $id)
+    public function __invoke(Request $request, $id)
     {
         $dados = [
       'paciente_id' => $id,

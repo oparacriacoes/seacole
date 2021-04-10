@@ -56,14 +56,14 @@ class PacienteController extends Controller
         return view('pages.paciente.create')->with(compact('paciente', 'agentes', 'medicos', 'psicologos', 'articuladoras'));
     }
 
-    public function store(PacienteStoreRequest $request)
+    public function store2(PacienteStoreRequest $request)
     {
         $dataForm = $request->validated();
 
         return $dataForm;
     }
 
-    public function storeGeral(Request $request)
+    public function store(Request $request)
     {
         DB::beginTransaction();
         try {
@@ -148,7 +148,7 @@ class PacienteController extends Controller
         try {
             $paciente = Paciente::create($dados);
             DB::commit();
-            return redirect()->route('paciente/edit', $paciente->id)->with('success', 'Dados salvos com sucesso.');
+            return redirect()->route('pacientes.edit', $paciente)->with('success', 'Dados salvos com sucesso.');
         } catch (\Exception $e) {
             DB::rollback();
             \Log::info($e);
@@ -170,7 +170,6 @@ class PacienteController extends Controller
 
     public function edit(Paciente $paciente)
     {
-        $paciente = Paciente::find($id);
         $sintomas = $paciente->sintomas;
         $ajudas = $paciente->tipos_ajuda;
         $emocional = $paciente->estado_emocional;
@@ -184,7 +183,7 @@ class PacienteController extends Controller
         }
 
         $items = $paciente->items;
-        $quadro = QuadroAtual::where('paciente_id', $id)->first();
+        $quadro = QuadroAtual::where('paciente_id', $paciente->id)->first();
         if ($quadro) {
             $sintomas_quadro = unserialize($quadro->sintomas_manifestados);
             $sequelas = unserialize($quadro->sequelas);
@@ -235,7 +234,7 @@ class PacienteController extends Controller
             $insumos_materiais = [];
         }
 
-        $prontuarios = EvolucaoSintoma::where('paciente_id', $id)->orderBy('data_monitoramento')->get();
+        $prontuarios = EvolucaoSintoma::where('paciente_id', $paciente->id)->orderBy('data_monitoramento')->get();
 
         $acompanhamento_psicologico = unserialize($paciente->acompanhamento_psicologico);
 
@@ -249,8 +248,6 @@ class PacienteController extends Controller
 
     public function update(Request $request, Paciente $paciente)
     {
-        $paciente = Paciente::find($id);
-
         $dados = [
             'user_id' => $paciente->user_id,
             'agente_id' => $request->agente,

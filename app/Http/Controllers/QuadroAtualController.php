@@ -8,12 +8,8 @@ use DB;
 
 class QuadroAtualController extends Controller
 {
-    public function index()
-    {
-        return 'QuadroAtualController @ index';
-    }
 
-    public function store(Request $request)
+    public function __invoke(Request $request)
     {
         $quadro = QuadroAtual::where('paciente_id', $request->paciente_id)->first();
 

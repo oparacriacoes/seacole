@@ -8,7 +8,7 @@ use DB;
 
 class SaudeMentalController extends Controller
 {
-    public function store(Request $request, $id)
+    public function __invoke(Request $request, $id)
     {
         $saude = SaudeMental::where('paciente_id', $id)->first();
 

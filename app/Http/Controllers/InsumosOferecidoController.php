@@ -11,7 +11,7 @@ class InsumosOferecidoController extends Controller
 {
     use SerializerFields;
 
-    public function store(InsumosOferecidoUpdateRequest $request, $id)
+    public function __invoke(InsumosOferecidoUpdateRequest $request, $id)
     {
         $pacient = Paciente::find($id);
         $request_data = $this->serializerFields(['precisa_tipo_ajuda', 'tratamento_financiado', 'material_entregue'], $request->validated());

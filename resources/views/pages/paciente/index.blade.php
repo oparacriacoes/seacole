@@ -99,7 +99,7 @@
                               }
                               ?>
                             </td>
-                            <td><a href="{{ route('paciente/edit', $paciente->id) }}">{{ $paciente->user->name }}</a></td>
+                            <td><a href="{{ route('pacientes.edit', $paciente) }}">{{ $paciente->user->name }}</a></td>
                             @if($paciente->agente)
                             <td><a href="{{ route('agente/edit', $paciente->agente->id) }}">{{ $paciente->agente->user->name }}</a></td>
                             @else
@@ -116,7 +116,7 @@
                             <td></td>
                             @endif
                             <td>
-                              <form action="{{ route('paciente.destroy', $paciente->id) }}" method="post">
+                              <form action="{{ route('pacientes.destroy', $paciente) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-sm btn-danger" type="submit" name="button">Excluir</button>

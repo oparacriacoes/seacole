@@ -18,8 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('paciente', 'API\PacienteController');
-Route::resource('medico', 'API\MedicoController');
-Route::resource('psicologo', 'API\PsicologoController');
-Route::resource('agente', 'API\AgenteController');
-Route::resource('item', 'API\ItemController');
+// Route::resource('paciente', 'API\PacienteController');
+// Route::resource('medico', 'API\MedicoController');
+// Route::resource('psicologo', 'API\PsicologoController');
+// Route::resource('agente', 'API\AgenteController');
+// Route::resource('item', 'API\ItemController');

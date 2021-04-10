@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NormalizeData;
+use App\Http\Controllers\PacienteController;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
@@ -23,12 +24,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware(['auth'])->group(function () {
-    // Route::get('/admin', function() {
-    //   return view('sample');
-    // })->name('admin');
+Route::prefix('admin')->middleware(['auth'])->group(function () {
 
-    Route::get('/admin', function () {
+    Route::get('/', function () {
         return view('dashboard');
     })->name('admin');
 
@@ -47,17 +45,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/psicologo/edit/{id}', 'PsicologoController@edit')->name('psicologo/edit');
     Route::delete('/admin/psicologo/remove/{id}', 'PsicologoController@destroy')->name('psicologo.destroy');
 
-    Route::get('/admin/paciente', 'PacienteController@index')->name('paciente');
-    Route::post('/admin/paciente', 'PacienteController@storeGeral')->name('admin.paciente.store');
-    Route::get('/admin/paciente/add', 'PacienteController@add')->name('paciente/add');
-    Route::get('/admin/paciente/edit/{id}', 'PacienteController@edit')->name('paciente/edit');
-    Route::post('/admin/paciente/update/{id}', 'PacienteController@update')->name('paciente.update');
-    Route::get('/admin/paciente/notify/dismiss/{notification_id}/{paciente_id}', 'NotifyController@dismiss')->name('paciente/notify/dismiss');
-    Route::post('/admin/paciente/quadro-atual', 'QuadroAtualController@store')->name('paciente.quadro-atual');
-    Route::post('/admin/paciente/monitoramento/{id}', 'MonitoramentoController@store')->name('paciente.monitoramento');
-    Route::post('/admin/paciente/saude-mental/{id}', 'SaudeMentalController@store')->name('paciente.saude-mental');
-    Route::post('/admin/paciente/internacao/{id}', 'ServicoInternacaoController@store')->name('paciente.internacao');
-    Route::post('/admin/paciente/insumos/{id}', 'InsumosOferecidoController@store')->name('paciente.insumos');
+    Route::resource('pacientes', PacienteController::class);
+
+
+    // Route::get('/admin/paciente', 'PacienteController@index')->name('paciente.index');
+    // Route::post('/admin/paciente', 'PacienteController@store')->name('paciente.store');
+    // Route::get('/admin/paciente/create', 'PacienteController@create')->name('paciente.create');
+    // Route::get('/admin/paciente/edit/{id}', 'PacienteController@edit')->name('paciente/edit');
+    // // Route::post('/admin/paciente/update/{id}', 'PacienteController@update')->name('paciente.update');
+    // Route::get('/admin/paciente/notify/dismiss/{notification_id}/{paciente_id}', 'NotifyController@dismiss')->name('paciente/notify/dismiss');
+    // Route::post('/admin/paciente/quadro-atual', 'QuadroAtualController@store')->name('paciente.quadro-atual');
+    // Route::post('/admin/paciente/monitoramento/{id}', 'MonitoramentoController@store')->name('paciente.monitoramento');
+    // Route::post('/admin/paciente/saude-mental/{id}', 'SaudeMentalController@store')->name('paciente.saude-mental');
+    // Route::post('/admin/paciente/internacao/{id}', 'ServicoInternacaoController@store')->name('paciente.internacao');
+    // Route::post('/admin/paciente/insumos/{id}', 'InsumosOferecidoController@store')->name('paciente.insumos');
 
     Route::get('/admin/paciente/exportar', 'PacienteController@ExportarExcelPacientes')->name('paciente/exportar');
 

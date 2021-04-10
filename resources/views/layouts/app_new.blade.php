@@ -193,13 +193,13 @@
                             <li class="app-sidebar__heading">
                                 <i class="fas metismenu-state-icon fa-procedures nav-icon"></i> Pacientes</li>
                             <li>
-                                <a href="{{ route('paciente') }}">
+                                <a href="{{ route('pacientes.index') }}">
                                     <i class="fa fa-list-ul nav-icon caret-left"></i>
                                     Listar
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('paciente/add') }}">
+                                <a href="{{ route('pacientes.create') }}">
                                     <i class="fa fa-plus-circle nav-icon caret-left"></i>
                                     Cadastrar
                                 </a>

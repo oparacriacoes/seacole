@@ -388,33 +388,6 @@ class PacienteController extends Controller
         }
     }
 
-    /*public function storeQA(Request $request)
-    {
-      $paciente = Paciente::find($request->paciente_id);
-      $dados = [
-        'paciente_id' => $request->paciente_id,
-        'primeira_sintoma' => $request->primeira_sintoma,
-        'sintomas_manifestados' => serialize($request->sintomas_manifestados),
-        'temperatura_max' => $request->temperatura_max,
-        'saturacao_baixa' => $request->saturacao_baixa,
-        'frequencia_max' => $request->frequencia_max,
-        'data_temp_max' => $request->data_temp_max,
-        'data_sat_max' => $request->data_sat_max,
-        'data_freq_max' => $request->data_freq_max,
-      ];
-
-      DB::beginTransaction();
-      try {
-        $quadro = QuadroAtual::create($dados);
-        DB::commit();
-        return redirect()->back()->with(compact('quadro',$quadro))->with('success', 'Dados salvos com sucesso.');
-      } catch (\Exception $e) {
-        DB::rollback();
-        \Log::info($e);
-        return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
-      }
-    }*/
-
     /**
        * Display the specified resource.
        *
@@ -447,6 +420,7 @@ class PacienteController extends Controller
             $sintomas_quadro = unserialize($quadro->sintomas_manifestados);
             $sequelas = unserialize($quadro->sequelas);
         } else {
+            $quadro = new QuadroAtual();
             $sintomas_quadro = [];
             $sequelas = [];
         }
@@ -472,6 +446,7 @@ class PacienteController extends Controller
             $internacao_problema = unserialize($internacao->teve_algum_problema);
             $internacao_local = unserialize($internacao->local_internacao);
         } else {
+            $internacao = new ServicoInternacao();
             $internacao_servico = [];
             $internacao_remedio = [];
             $internacao_problema = [];

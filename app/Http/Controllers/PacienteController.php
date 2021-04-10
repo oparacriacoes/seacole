@@ -461,6 +461,7 @@ class PacienteController extends Controller
             $monitoramento_sintomas = unserialize($monitoramento->sintomas_atuais);
         } else {
             $monitoramento_sintomas = [];
+            $monitoramento = new Monitoramento();
         }
 
         $saude_mental = SaudeMental::where('paciente_id', $paciente->id)->first();

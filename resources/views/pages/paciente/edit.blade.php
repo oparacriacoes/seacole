@@ -131,39 +131,33 @@
                     <div class="main-card mb-3 card">
                         <div class="card-body">
                             <h5 class="card-title">SITUAÇÃO DO CASO</h5>
-                            {{-- <form class=""> --}}
                                 <div class="form-row">
-                                    <div class="col-12 col-md-3">
-                                        <div class="form-group">
-                                            <label for="name">Data início sintomas de COVID-19</label>
-                                            <input name="data_inicio_sintoma" type="text" class="date form-control" id="data_inicio_sintoma" aria-describedby="data_nascimentoHelp" value="{{ $paciente->data_inicio_sintoma }}">
-                                        </div>
+                                    <div class="col-12 col-md-4">
+                                        <x-forms.input-date property="data_inicio_sintoma" :value="$paciente->data_inicio_sintoma">
+                                            Data início sintomas de COVID-19
+                                        </x-forms.input-date>
                                     </div>
-                                    <div class="col-12 col-md-3">
-                                        <div class="form-group">
-                                            <label for="name">Data início monitoramento Agentes</label>
-                                            <input name="data_inicio_monitoramento" type="text" class="form-control date" id="data_inicio_monitoramento" aria-describedby="data_nascimentoHelp" value="{{ $paciente->data_inicio_monitoramento }}">
-                                        </div>
+                                    <div class="col-12 col-md-4">
+                                        <x-forms.input-date property="data_inicio_monitoramento" :value="$paciente->data_inicio_monitoramento">
+                                            Data início monitoramento Agentes
+                                        </x-forms.input-date>
                                     </div>
-                                    <div class="col-12 col-md-3">
-                                        <div class="form-group">
-                                            <label for="name">Data finalização do monitoramento Agentes (alta)</label>
-                                            <input name="data_finalizacao_caso" type="text" class="form-control date" id="data_finalizacao_caso" aria-describedby="data_nascimentoHelp" value="{{ $paciente->data_finalizacao_caso }}">
-                                        </div>
+                                    <div class="col-12 col-md-4">
+                                        <x-forms.input-date property="data_finalizacao_caso" :value="$paciente->data_finalizacao_caso">
+                                            Data finalização do monitoramento Agentes (alta)
+                                        </x-forms.input-date>
                                     </div>
-                                    <div class="col-12 col-md-3">
-                                        <div class="form-group">
-                                            <label for="data_inicio_ac_psicologico">Data início ac Psicológico</label>
-                                            <input name="data_inicio_ac_psicologico" type="text" class="form-control date" id="data_inicio_ac_psicologico" value="{{ $paciente->data_inicio_ac_psicologico }}" >
-                                        </div>
+                                    <div class="col-12 col-md-4">
+                                        <x-forms.input-date property="data_inicio_ac_psicologico" :value="$paciente->data_inicio_ac_psicologico">
+                                            Data início ac Psicológico
+                                        </x-forms.input-date>
                                     </div>
-                                    <div class="col-12 col-md-3">
-                                        <div class="form-group">
-                                            <label for="data_encerramento_ac_psicologico">Data encerramento ac Psicológico</label>
-                                            <input name="data_encerramento_ac_psicologico" type="text" class="form-control date" id="data_encerramento_ac_psicologico" value="{{ $paciente->data_encerramento_ac_psicologico }}">
-                                        </div>
+                                    <div class="col-12 col-md-4">
+                                        <x-forms.input-date property="data_encerramento_ac_psicologico" :value="$paciente->data_encerramento_ac_psicologico">
+                                            Data encerramento ac Psicológico
+                                        </x-forms.input-date>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="position-relative form-group">
                                             <label for="exampleCustomSelect" class="">
                                                 SITUAÇÃO
@@ -379,12 +373,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="position-relative form-group">
-                                            <label for="examplePassword11" class="">
-                                                Data de Nascimento
-                                            </label>
-                                            <input name="data_nascimento" type="text" placeholder="Data de Nascimento" class=" form-control date" id="data_nascimento" aria-describeddata_nascimentoby="data_nascimentoHelp" value="{{ $paciente->data_nascimento }}">
-                                        </div>
+                                        <x-forms.input-date property="data_nascimento" :value="$paciente->data_nascimento">
+                                            Data de Nascimento
+                                        </x-forms.input-date>
                                     </div>
                                 </div>
 
@@ -649,12 +640,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="position-relative form-group">
-                                        <label for="examplePassword11" class="">
-                                            Data do teste confirmatório
-                                        </label>
-                                        <input name="data_teste_confirmatorio" placeholder="Data do teste confirmatório" type="text" class=" form-control date" id="data_teste_confirmatorio" value="{{ $paciente->data_teste_confirmatorio }}">
-                                    </div>
+                                    <x-forms.input-date property="data_teste_confirmatorio" :value="$paciente->data_teste_confirmatorio">
+                                        Data do teste confirmatório
+                                    </x-forms.input-date>
                                 </div>
                                 <div class="col-md-3">
                                   <div class="position-relative form-group">
@@ -1081,21 +1069,15 @@
 
                                 <div class="form-row">
                                     <div class="col-md-4">
-                                        <div class="position-relative form-group">
-                                            <label for="exampleEmail11" class="">
-                                                Data do parto
-                                            </label>
-                                            <input name="data_parto" id="data_parto" placeholder="00/00/0000" type="text" class="form-control date" value="{{ $paciente->data_parto }}">
-                                        </div>
+                                        <x-forms.input-date property="data_parto" :value="$paciente->data_parto">
+                                            Data do teste confirmatório
+                                        </x-forms.input-date>
                                     </div>
 
                                     <div class="col-md-3">
-                                        <div class="position-relative form-group">
-                                            <label for="exampleEmail11" class="">
-                                                Data da última menstruação (DUM)
-                                            </label>
-                                            <input name="data_ultima_mestrucao" id="data_ultima_mestrucao" placeholder="00/00/0000" type="text" class="form-control date" value="{{ $paciente->data_ultima_mestrucao }}">
-                                        </div>
+                                        <x-forms.input-date property="data_ultima_mestrucao" :value="$paciente->data_ultima_mestrucao">
+                                            Data da última menstruação (DUM)
+                                        </x-forms.input-date>
                                     </div>
 
                                     <div class="col-md-4">
@@ -1145,12 +1127,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="position-relative form-group">
-                                            <label for="exampleEmail11" class="">
-                                                Qual a data da última consulta médica?
-                                            </label>
-                                            <input name="data_ultima_consulta" placeholder="00/00/0000" type="text" class="form-control date" value="{{ $paciente->data_ultima_consulta }}">
-                                        </div>
+                                        <x-forms.input-date property="data_ultima_consulta" :value="$paciente->data_ultima_consulta">
+                                            Qual a data da última consulta médica?
+                                        </x-forms.input-date>
                                     </div>
 
                                     <div class="col-md-3">

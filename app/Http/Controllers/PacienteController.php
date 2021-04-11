@@ -17,6 +17,7 @@ use App\Psicologo;
 use App\EvolucaoSintoma;
 use App\User;
 use App\Articuladora;
+use App\Enums\SituacoesCaso;
 use App\Http\Requests\PacienteStoreRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -65,8 +66,9 @@ class PacienteController extends Controller
         $medicos = Medico::get();
         $psicologos = Psicologo::all();
         $articuladoras = Articuladora::all();
+        $situacoes = SituacoesCaso::readables();
 
-        return view('pages.paciente.create')->with(compact('paciente', 'agentes', 'medicos', 'psicologos', 'articuladoras'));
+        return view('pages.paciente.create')->with(compact('paciente', 'agentes', 'medicos', 'psicologos', 'articuladoras', 'situacoes'));
     }
 
     public function store(PacienteStoreRequest $request)
@@ -95,18 +97,26 @@ class PacienteController extends Controller
 
         $dados = [
             'user_id' => $user->id,
+
             'agente_id' => $request->agente,
             'medico_id' => $request->medico,
+            'psicologo_id' => $request->psicologo_id,
             'articuladora_responsavel' => $request->articuladora_responsavel,
-            'saude_mental' => $request->saude_mental,
-            'acompanhamento_psicologico' => $request->acompanhamento_psicologico ? serialize($request->acompanhamento_psicologico) : null,
             'atendimento_semanal_psicologia' => $request->atendimento_semanal_psicologia,
+            'acompanhamento_psicologico' => $request->acompanhamento_psicologico ? serialize($request->acompanhamento_psicologico) : null,
+            'data_inicio_sintoma' => $request->data_inicio_sintoma,
+            'data_inicio_monitoramento' => $request->data_inicio_monitoramento,
+            'data_finalizacao_caso' => $request->data_finalizacao_caso,
+            'data_inicio_ac_psicologico' => $request->data_inicio_ac_psicologico,
+            'data_encerramento_ac_psicologico' => $request->data_encerramento_ac_psicologico,
+            'situacao' => $request->situacao,
             'horario_at_psicologia' => $request->horario_at_psicologia,
+
+
+            'saude_mental' => $request->saude_mental,
             'como_chegou_ao_projeto' => $request->como_chegou_ao_projeto,
             'como_chegou_ao_projeto_outro' => $request->como_chegou_ao_projeto_outro,
             'nucleo_uneafro_qual' => $request->nucleo_uneafro_qual,
-            'psicologo_id' => $request->psicologo_id,
-            'situacao' => $request->situacao,
             'data_nascimento' => $request->data_nascimento,
             'cor_raca' => $request->cor_raca,
             'endereco_cep' => $request->endereco_cep,
@@ -129,11 +139,6 @@ class PacienteController extends Controller
             'resultado_teste' => $request->resultado_teste ? serialize($request->resultado_teste) : null,
             'data_teste_confirmatorio' => $request->data_teste_confirmatorio,
             'sintomas_iniciais' => $request->sintomas_iniciais,
-            'data_inicio_sintoma' => $request->data_inicio_sintoma,
-            'data_inicio_monitoramento' => $request->data_inicio_monitoramento,
-            'data_finalizacao_caso' => $request->data_finalizacao_caso,
-            'data_inicio_ac_psicologico' => $request->data_inicio_ac_psicologico,
-            'data_encerramento_ac_psicologico' => $request->data_encerramento_ac_psicologico,
             'name_social' => $request->name_social,
             'identidade_genero' => $request->identidade_genero,
             'orientacao_sexual' => $request->orientacao_sexual,

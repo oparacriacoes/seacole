@@ -33,21 +33,10 @@
                         SITUAÇÃO
                     </label>
                     <select type="select" id="situacao" aria-describedby="situacaoHelp" name="situacao" class="custom-select">
-                        <option value="">Selecione</option>
-                        <option value="1" @if(old('situacao')==='1' ){{ 'selected' }} @endif>Caso ativo GRAVE</option>
-                        <option value="2" @if(old('situacao')==='2' ){{ 'selected' }} @endif>Caso ativo LEVE</option>
-                        <option value="3" @if(old('situacao')==='3' ){{ 'selected' }} @endif>Contato caso confirmado - ativo</option>
-                        <option value="4" @if(old('situacao')==='4' ){{ 'selected' }} @endif>Outras situações (sem relação com COVID-19) - ativos</option>
-                        <option value="5" @if(old('situacao')==='5' ){{ 'selected' }} @endif>Exclusivo psicologia - ativo</option>
-                        <option value="6" @if(old('situacao')==='6' ){{ 'selected' }} @endif>Monitoramento encerrado GRAVE - segue apenas com psicólogos</option>
-                        <option value="7" @if(old('situacao')==='7' ){{ 'selected' }} @endif>Monitoramento encerrado LEVE - segue apenas com psicólogos</option>
-                        <option value="8" @if(old('situacao')==='8' ){{ 'selected' }} @endif>Monitoramento encerrado contato - segue apenas com psicólogos</option>
-                        <option value="9" @if(old('situacao')==='9' ){{ 'selected' }} @endif>Monitoramento encerrado outros - segue apenas com psicólogos</option>
-                        <option value="10" @if(old('situacao')==='10' ){{ 'selected' }} @endif>Caso finalizado GRAVE</option>
-                        <option value="11" @if(old('situacao')==='11' ){{ 'selected' }} @endif>Caso finalizado LEVE</option>
-                        <option value="12" @if(old('situacao')==='12' ){{ 'selected' }} @endif>Contato com caso confirmado - finalizado</option>
-                        <option value="13" @if(old('situacao')==='13' ){{ 'selected' }} @endif>Outras situações (sem relação com COVID-19) - finalizado</option>
-                        <option value="14" @if(old('situacao')==='14' ){{ 'selected' }} @endif>Exclusivo psicologia - finalizado</option>
+                        <option value="" selected>Selecione</option>
+                        @foreach($situacoes as $key => $value)
+                            <option value="{{$key}}" @if(old('situacao') == $key ) selected @endif>{{$value}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -97,7 +86,7 @@
                     <label for="exampleCustomSelect" class="">
                         Articuladora Responsável
                     </label>
-                    <select type="select" name="articuladora_responsavel_id" class="custom-select">
+                    <select type="select" name="articuladora_responsavel" class="custom-select">
                         <option value="">Selecione</option>
                         @foreach($articuladoras as $articuladora)
                         <option value="{{ $articuladora->id }}">{{ $articuladora->name }}</option>
@@ -130,11 +119,31 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="atendimento_semanal_psicologia">Atendimento semanal psicologia</label>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="seg"> Segunda</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="ter"> Terça</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="qua"> Quarta</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="qui"> Quinta</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="sex"> Sexta</label></div>
+                    <div class="position-relative1 form-check">
+                        <label class="form-check-label">
+                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="seg"> Segunda
+                            </label>
+                        </div>
+                    <div class="position-relative1 form-check">
+                        <label class="form-check-label">
+                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="ter"> Terça
+                        </label>
+                    </div>
+                    <div class="position-relative1 form-check">
+                        <label class="form-check-label">
+                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="qua"> Quarta
+                        </label>
+                    </div>
+                    <div class="position-relative1 form-check">
+                        <label class="form-check-label">
+                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="qui"> Quinta
+                        </label>
+                    </div>
+                    <div class="position-relative1 form-check">
+                        <label class="form-check-label">
+                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="sex"> Sexta
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="col-md-3">

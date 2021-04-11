@@ -75,21 +75,21 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
-            @include('pages.paciente._forms.paciente', [
-            'paciente' => $paciente,
-            'sistema_saude' => $sistema_saude,
-            'cronicas' => $cronicas,
-            'resultado_teste' => $resultado_teste,
-            'teste_utilizado' => $teste_utilizado
+            @include('pages.paciente._forms_edit.paciente', [
+                'paciente' => $paciente,
+                'sistema_saude' => $sistema_saude,
+                'cronicas' => $cronicas,
+                'resultado_teste' => $resultado_teste,
+                'teste_utilizado' => $teste_utilizado
             ])
         </div>
 
         <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
-            @include('pages.paciente._forms.quadro_atual', [
-            'paciente' => $paciente,
-            'sintomas_quadro' => $sintomas_quadro,
-            'quadro' => $quadro,
-            'sequelas' => $sequelas,
+            @include('pages.paciente._forms_edit.quadro_atual', [
+                'paciente' => $paciente,
+                'sintomas_quadro' => $sintomas_quadro,
+                'quadro' => $quadro,
+                'sequelas' => $sequelas,
             ])
         </div>
 
@@ -97,9 +97,9 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Monitoramento</h5>
-                    @include('pages.paciente._forms.monitoramento', [
-                    'paciente' => $paciente,
-                    'monitoramento' => $monitoramento,
+                    @include('pages.paciente._forms_edit.monitoramento', [
+                        'paciente' => $paciente,
+                        'monitoramento' => $monitoramento,
                     ])
                 </div>
             </div>
@@ -109,9 +109,9 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Saúde mental</h5>
-                    @include('pages.paciente._forms.saude_mental', [
-                    'paciente' => $paciente,
-                    'saude_mental' => $saude_mental,
+                    @include('pages.paciente._forms_edit.saude_mental', [
+                        'paciente' => $paciente,
+                        'saude_mental' => $saude_mental,
                     ])
                 </div>
             </div>
@@ -121,13 +121,13 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Serviços de Referência e Internação</h5>
-                    @include('pages.paciente._forms.servicos_referencia', [
-                    'paciente' => $paciente,
-                    'internacao_servico' => $internacao_servico,
-                    'internacao_remedio' => $internacao_remedio,
-                    'internacao_problema' => $internacao_problema,
-                    'internacao' => $internacao,
-                    'internacao_local' => $internacao_local,
+                    @include('pages.paciente._forms_edit.servicos_referencia', [
+                        'paciente' => $paciente,
+                        'internacao_servico' => $internacao_servico,
+                        'internacao_remedio' => $internacao_remedio,
+                        'internacao_problema' => $internacao_problema,
+                        'internacao' => $internacao,
+                        'internacao_local' => $internacao_local,
                     ])
                 </div>
             </div>
@@ -137,7 +137,7 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Insumos Oferecidos pelo Projeto</h5>
-                    @include('pages.paciente._forms.insumos', ['paciente' => $paciente, 'insumos' => $insumos])
+                    @include('pages.paciente._forms_edit.insumos', ['paciente' => $paciente, 'insumos' => $insumos])
                 </div>
             </div>
         </div>

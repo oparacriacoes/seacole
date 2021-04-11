@@ -23,7 +23,7 @@ class MedicoFactory extends Factory
     public function definition()
     {
         return [
-            'user' => User::factory(),
+            'user_id' => User::factory(),
             'fone_celular_1' => $this->faker->phoneNumber,
             'fone_celular_2' => $this->faker->phoneNumber,
         ];

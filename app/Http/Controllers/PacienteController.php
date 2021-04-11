@@ -10,7 +10,6 @@ use App\Exports\PacientesExport;
 use App\Sintoma;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Auth;
 use App\Paciente;
 use App\Agente;
 use App\Medico;
@@ -26,23 +25,37 @@ use App\Monitoramento;
 use App\SaudeMental;
 use App\ServicoInternacao;
 use App\InsumosOferecido;
-use Hash;
+use Illuminate\Support\Facades\Auth;
 
 class PacienteController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->role === 'agente') {
-            $pacientes = Auth::user()->agente->pacientes->sortBy('situacao');
-        } elseif (Auth::user()->role === 'medico') {
-            $pacientes = Paciente::orderBy('situacao')->get();
-        } elseif (Auth::user()->role === 'psicologo') {
-            $pacientes = Auth::user()->psicologo->pacientes->sortBy('situacao');
+        $user = Auth::user();
+        $role = $user->role;
+
+        if ($role == 'agente') {
+            $pacienteQuery = $user->agente->pacientes->toQuery();
+        } elseif ($role === 'psicologo') {
+            $pacienteQuery = $user->psicologo->pacientes->toQuery();
         } else {
-            $pacientes = Paciente::orderBy('situacao')->get();
+            $pacienteQuery = Paciente::query();
         }
 
-        return view('pages.paciente.index')->with(compact('pacientes'));
+        $callbackUser = function($query) {
+            $query->select(['id', 'user_id'])->with('user:id,name');
+        };
+
+        $pacientes = $pacienteQuery
+            ->select(['id', 'situacao', 'name', 'agente_id', 'medico_id', 'psicologo_id'])
+            ->with([
+                'agente' => $callbackUser,
+                'medico' => $callbackUser,
+                'psicologo' => $callbackUser,
+            ])
+            ->get();
+
+        return view('pages.paciente.index', compact('pacientes'));
     }
 
     public function create()
@@ -56,14 +69,14 @@ class PacienteController extends Controller
         return view('pages.paciente.create')->with(compact('paciente', 'agentes', 'medicos', 'psicologos', 'articuladoras'));
     }
 
-    public function store2(PacienteStoreRequest $request)
+    public function store(PacienteStoreRequest $request)
     {
         $dataForm = $request->validated();
 
         return $dataForm;
     }
 
-    public function store(Request $request)
+    public function store2(Request $request)
     {
         DB::beginTransaction();
         try {

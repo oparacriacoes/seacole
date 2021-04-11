@@ -99,22 +99,32 @@
                               }
                               ?>
                             </td>
-                            <td><a href="{{ route('pacientes.edit', $paciente) }}">{{ $paciente->user->name }}</a></td>
-                            @if($paciente->agente)
-                            <td><a href="{{ route('agente/edit', $paciente->agente->id) }}">{{ $paciente->agente->user->name }}</a></td>
-                            @else
-                            <td></td>
-                            @endif
-                            @if($paciente->medico)
-                            <td><a href="{{ route('medico/edit', $paciente->medico->id) }}">{{ $paciente->medico->user->name }}</a></td>
-                            @else
-                            <td></td>
-                            @endif
-                            @if($paciente->psicologo)
-                            <td><a href="{{ route('psicologo/edit', $paciente->psicologo->id) }}">{{ $paciente->psicologo->user->name }}</a></td>
-                            @else
-                            <td></td>
-                            @endif
+                            <td>
+                                <a href="{{ route('pacientes.edit', $paciente) }}">
+                                    {{ $paciente->name }}
+                                </a>
+                            </td>
+                            <td>
+                                @if($paciente->agente)
+                                <a href="{{ route('agente/edit', $paciente->agente->id) }}">
+                                    {{ $paciente->agente->user->name }}
+                                </a>
+                                @endif
+                            </td>
+                            <td>
+                                @if($paciente->medico)
+                                <a href="{{ route('medico/edit', $paciente->medico->id) }}">
+                                    {{ $paciente->medico->user->name }}
+                                </a>
+                                @endif
+                            </td>
+                            <td>
+                                @if($paciente->psicologo)
+                                <a href="{{ route('psicologo/edit', $paciente->psicologo->id) }}">
+                                    {{ $paciente->psicologo->user->name }}
+                                </a>
+                                @endif
+                            </td>
                             <td>
                               <form action="{{ route('pacientes.destroy', $paciente) }}" method="post">
                                 @csrf

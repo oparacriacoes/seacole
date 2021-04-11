@@ -2,7 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Agente;
+use App\Medico;
 use App\Paciente;
+use App\Psicologo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PacienteFactory extends Factory
@@ -22,9 +25,12 @@ class PacienteFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->email,
+            'name' => $this->faker->name(),
+            'email' => $this->faker->email(),
             'data_nascimento' => $this->faker->date('Y-m-d', 'now'),
+            'agente_id' => Agente::factory(),
+            'medico_id' => Medico::factory(),
+            'psicologo_id' => Psicologo::factory(),
         ];
     }
 }

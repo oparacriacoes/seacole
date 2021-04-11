@@ -122,7 +122,7 @@
                     <div class="position-relative1 form-check">
                         <label class="form-check-label">
                             <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="seg"> Segunda
-                            </label>
+                        </label>
                         </div>
                     <div class="position-relative1 form-check">
                         <label class="form-check-label">

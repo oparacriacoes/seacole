@@ -27,8 +27,7 @@ class AddColumnsInPacientes extends Migration
     {
         $pacientes = Paciente::with('user')->get();
 
-        foreach($pacientes as $paciente)
-        {
+        foreach ($pacientes as $paciente) {
             $paciente->update([
                 'name' => $paciente->user->name,
                 'email' => $paciente->user->email,

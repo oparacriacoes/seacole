@@ -17,44 +17,44 @@
                 <label for="sintomas_atuais">Sintomas atuais</label><br />
                 <div class="form-check form-check-inline">
                     <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="tosse" <?php if ($monitoramento_sintomas && in_array('tosse', $monitoramento_sintomas)) {
-                                                                                                                echo 'checked=checked';
-                                                                                                            } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="tosse">Tosse</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="falta de ar" <?php if ($monitoramento_sintomas && in_array('falta de ar', $monitoramento_sintomas)) {
-                                                                                                                        echo 'checked=checked';
-                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="falta_de_ar">Falta de ar</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="febre" <?php if ($monitoramento_sintomas && in_array('febre', $monitoramento_sintomas)) {
-                                                                                                                echo 'checked=checked';
-                                                                                                            } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="febre">Febre</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="dor de cabeça" <?php if ($monitoramento_sintomas && in_array('dor de cabeça', $monitoramento_sintomas)) {
-                                                                                                                        echo 'checked=checked';
-                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="inlineCheckbox3">Dor de Cabeça</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="perda de olfato" <?php if ($monitoramento_sintomas && in_array('perda de olfato', $monitoramento_sintomas)) {
-                                                                                                                            echo 'checked=checked';
-                                                                                                                        } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="inlineCheckbox3">Perda do olfato</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="perda do paladar" <?php if ($monitoramento_sintomas && in_array('perda do paladar', $monitoramento_sintomas)) {
-                                                                                                                            echo 'checked=checked';
-                                                                                                                        } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="inlineCheckbox3">Perda do paladar</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="outros" <?php if ($monitoramento_sintomas && in_array('outros', $monitoramento_sintomas)) {
-                                                                                                                echo 'checked=checked';
-                                                                                                            } ?>>
+    echo 'checked=checked';
+} ?>>
                     <label class="form-check-label" for="outros_monit">Outros</label>
                 </div>
 
@@ -79,11 +79,11 @@
             <div class="form-group">
                 <label for="algum_sinal">Algum sinal de gravidade nesse monitoramento?</label>
                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="algum_sinal" type="radio" class="form-check-input" value="sim" <?php if ($monitoramento && $monitoramento->algum_sinal === 'sim') {
-                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                        } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="algum_sinal" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->algum_sinal === 'não') {
-                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                        } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
             </div>
         </div>
         <div class="col-md-4">
@@ -98,11 +98,11 @@
             <div class="form-group">
                 <label for="equipe_medica">Equipe médica do projeto prescreveu algum medicamento?</label>
                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="equipe_medica" type="radio" class="form-check-input" value="sim" <?php if ($monitoramento && $monitoramento->equipe_medica === 'sim') {
-                                                                                                                                                                                echo 'checked=checked';
-                                                                                                                                                                            } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="equipe_medica" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->equipe_medica === 'não') {
-                                                                                                                                                                                echo 'checked=checked';
-                                                                                                                                                                            } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
             </div>
         </div>
         <div class="col-md-4">
@@ -126,22 +126,22 @@
                     <div class="form-group">
                         <label for="fazendo_uso_pic">Fazendo uso de alguma PIC (prática integrativa complementar - ex: medicina chinesa)?</label>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="fazendo_uso_pic" type="radio" class="form-check-input" value="sim" <?php if ($monitoramento && $monitoramento->fazendo_uso_pic === 'sim') {
-                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                    } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="fazendo_uso_pic" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->fazendo_uso_pic === 'não') {
-                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                    } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="fez_escalapes">Fez escaldapés (atenção para restrições - ex: gestantes e diabeticos)</label>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="fez_escalapes" type="radio" class="form-check-input" value="sim" <?php if ($monitoramento && $monitoramento->fez_escalapes === 'sim') {
-                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                    } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="fez_escalapes" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->fez_escalapes === 'não') {
-                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                    } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                     </div>
                 </div>
             </div>
@@ -151,42 +151,42 @@
                     <div class="form-group">
                         <label for="melhora_sintoma_escaldapes">Sentiu melhora dos sintomas com escaldapés (atenção para restrições - ex: gestantes e diabeticos)</label>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhora_sintoma_escaldapes" type="radio" class="form-check-input" value="grande alívio" <?php if ($monitoramento && $monitoramento->melhora_sintoma_escaldapes === 'grande alívio') {
-                                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                                        } ?>> grande alívio</label></div>
+    echo 'checked=checked';
+} ?>> grande alívio</label></div>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhora_sintoma_escaldapes" type="radio" class="form-check-input" value="pouca melhora" <?php if ($monitoramento && $monitoramento->melhora_sintoma_escaldapes === 'pouca melhora') {
-                                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                                        } ?>> pouca melhora</label></div>
+    echo 'checked=checked';
+} ?>> pouca melhora</label></div>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhora_sintoma_escaldapes" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->melhora_sintoma_escaldapes === 'não') {
-                                                                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                                                                } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="fes_inalacao">Fez inalação ou vaporização? </label>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="fes_inalacao" type="radio" class="form-check-input" value="inalação" <?php if ($monitoramento && $monitoramento->fes_inalacao === 'inalação') {
-                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                        } ?>> Inalação</label></div>
+    echo 'checked=checked';
+} ?>> Inalação</label></div>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="fes_inalacao" type="radio" class="form-check-input" value="vaporização" <?php if ($monitoramento && $monitoramento->fes_inalacao === 'vaporização') {
-                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                        } ?>> Vaporização</label></div>
+    echo 'checked=checked';
+} ?>> Vaporização</label></div>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="fes_inalacao" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->fes_inalacao === 'não') {
-                                                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                                                } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="melhoria_sintomas_inalacao">Sentiu melhora dos sintomas com inalação ou vaporização: </label>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhoria_sintomas_inalacao" type="radio" class="form-check-input" value="grande alívio" <?php if ($monitoramento && $monitoramento->melhoria_sintomas_inalacao === 'grande alívio') {
-                                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                                        } ?>> grande alívio</label></div>
+    echo 'checked=checked';
+} ?>> grande alívio</label></div>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhoria_sintomas_inalacao" type="radio" class="form-check-input" value="pouca melhora" <?php if ($monitoramento && $monitoramento->melhoria_sintomas_inalacao === 'pouca melhora') {
-                                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                                        } ?>> pouca melhora</label></div>
+    echo 'checked=checked';
+} ?>> pouca melhora</label></div>
                         <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhoria_sintomas_inalacao" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->melhoria_sintomas_inalacao === 'não') {
-                                                                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                                                                } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                     </div>
                 </div>
             </div>

@@ -42,7 +42,7 @@ class PacienteController extends Controller
             $pacienteQuery = Paciente::query();
         }
 
-        $callbackUser = function($query) {
+        $callbackUser = function ($query) {
             $query->select(['id', 'user_id'])->with('user:id,name');
         };
 

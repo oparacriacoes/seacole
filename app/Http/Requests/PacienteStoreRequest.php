@@ -24,6 +24,7 @@ class PacienteStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'name' => ['required', 'string', 'max:190'],
             'data_nascimento' => ['date', 'before_or_equal:now'],
         ];
     }

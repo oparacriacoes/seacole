@@ -38,47 +38,47 @@
                         <select type="select" id="situacao" aria-describedby="situacaoHelp" name="situacao" class="custom-select">
                             <option value="">Selecione</option>
                             <option value="1" <?php if ($paciente->situacao === '1') {
-                                                    echo 'selected=selected';
-                                                } ?>>Caso ativo GRAVE</option>
+    echo 'selected=selected';
+} ?>>Caso ativo GRAVE</option>
                             <option value="2" <?php if ($paciente->situacao === '2') {
-                                                    echo 'selected=selected';
-                                                } ?>>Caso ativo LEVE</option>
+    echo 'selected=selected';
+} ?>>Caso ativo LEVE</option>
                             <option value="3" <?php if ($paciente->situacao === '3') {
-                                                    echo 'selected=selected';
-                                                } ?>>Contato caso confirmado - ativo</option>
+    echo 'selected=selected';
+} ?>>Contato caso confirmado - ativo</option>
                             <option value="4" <?php if ($paciente->situacao === '4') {
-                                                    echo 'selected=selected';
-                                                } ?>>Outras situações (sem relação com COVID-19) - ativos</option>
+    echo 'selected=selected';
+} ?>>Outras situações (sem relação com COVID-19) - ativos</option>
                             <option value="5" <?php if ($paciente->situacao === '5') {
-                                                    echo 'selected=selected';
-                                                } ?>>Exclusivo psicologia - ativo</option>
+    echo 'selected=selected';
+} ?>>Exclusivo psicologia - ativo</option>
                             <option value="6" <?php if ($paciente->situacao === '6') {
-                                                    echo 'selected=selected';
-                                                } ?>>Monitoramento encerrado GRAVE - segue apenas com psicólogos</option>
+    echo 'selected=selected';
+} ?>>Monitoramento encerrado GRAVE - segue apenas com psicólogos</option>
                             <option value="7" <?php if ($paciente->situacao === '7') {
-                                                    echo 'selected=selected';
-                                                } ?>>Monitoramento encerrado LEVE - segue apenas com psicólogos</option>
+    echo 'selected=selected';
+} ?>>Monitoramento encerrado LEVE - segue apenas com psicólogos</option>
                             <option value="8" <?php if ($paciente->situacao === '8') {
-                                                    echo 'selected=selected';
-                                                } ?>>Monitoramento encerrado contato - segue apenas com psicólogos</option>
+    echo 'selected=selected';
+} ?>>Monitoramento encerrado contato - segue apenas com psicólogos</option>
                             <option value="9" <?php if ($paciente->situacao === '9') {
-                                                    echo 'selected=selected';
-                                                } ?>>Monitoramento encerrado outros - segue apenas com psicólogos</option>
+    echo 'selected=selected';
+} ?>>Monitoramento encerrado outros - segue apenas com psicólogos</option>
                             <option value="10" <?php if ($paciente->situacao === '10') {
-                                                    echo 'selected=selected';
-                                                } ?>>Caso finalizado GRAVE</option>
+    echo 'selected=selected';
+} ?>>Caso finalizado GRAVE</option>
                             <option value="11" <?php if ($paciente->situacao === '11') {
-                                                    echo 'selected=selected';
-                                                } ?>>Caso finalizado LEVE</option>
+    echo 'selected=selected';
+} ?>>Caso finalizado LEVE</option>
                             <option value="12" <?php if ($paciente->situacao === '12') {
-                                                    echo 'selected=selected';
-                                                } ?>>Contato com caso confirmado - finalizado</option>
+    echo 'selected=selected';
+} ?>>Contato com caso confirmado - finalizado</option>
                             <option value="13" <?php if ($paciente->situacao === '13') {
-                                                    echo 'selected=selected';
-                                                } ?>>Outras situações (sem relação com COVID-19) - finalizado</option>
+    echo 'selected=selected';
+} ?>>Outras situações (sem relação com COVID-19) - finalizado</option>
                             <option value="14" <?php if ($paciente->situacao === '14') {
-                                                    echo 'selected=selected';
-                                                } ?>>Exclusivo psicologia - finalizado</option>
+    echo 'selected=selected';
+} ?>>Exclusivo psicologia - finalizado</option>
                         </select>
                     </div>
                 </div>
@@ -93,11 +93,11 @@
                             <option value="">Selecione</option>
                             @foreach($agentes as $agente)
                             <!--<option value="{{ $agente->id }}" <?php if (\Auth::user()->role === 'agente' && \Auth::user()->agente->id === $agente->id) {
-                                                                        echo 'selected=selected';
-                                                                    } ?> >{{ $agente->user->name }}</option>-->
+    echo 'selected=selected';
+} ?> >{{ $agente->user->name }}</option>-->
                             <option value="{{ $agente->id }}" <?php if ($paciente->agente_id === $agente->id) {
-                                                                    echo 'selected=selected';
-                                                                } ?>>{{ $agente->user->name }}</option>
+    echo 'selected=selected';
+} ?>>{{ $agente->user->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -111,8 +111,8 @@
                             <option value="">Selecione</option>
                             @foreach($medicos as $medico)
                             <option value="{{ $medico->id }}" <?php if ($paciente->medico_id === $medico->id) {
-                                                                    echo 'selected=selected';
-                                                                } ?>>{{ $medico->user->name }}</option>
+    echo 'selected=selected';
+} ?>>{{ $medico->user->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -126,8 +126,8 @@
                             <option value="">Selecione</option>
                             @foreach($psicologos as $psicologo)
                             <option value="{{ $psicologo->id }}" <?php if ($paciente->psicologo_id === $psicologo->id) {
-                                                                        echo 'selected=selected';
-                                                                    } ?>>{{ $psicologo->user->name }}</option>
+    echo 'selected=selected';
+} ?>>{{ $psicologo->user->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -141,8 +141,8 @@
                             <option value="">Selecione</option>
                             @foreach($articuladoras as $articuladora)
                             <option value="{{ $articuladora->id }}" <?php if ($paciente->articuladora_responsavel === $articuladora->id) {
-                                                                        echo 'selected=selected';
-                                                                    } ?>>{{ $articuladora->name }}</option>
+    echo 'selected=selected';
+} ?>>{{ $articuladora->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -155,8 +155,8 @@
                         <br>
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="acompanhamento_psicologico[]" id="individual" class="custom-control-input" value="individual" <?php if ($acompanhamento_psicologico && in_array('individual', $acompanhamento_psicologico)) {
-                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                        } ?>>
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="individual">
                                 Individual
                             </label>
@@ -165,8 +165,8 @@
                     <div class="position-relative form-group">
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="acompanhamento_psicologico[]" id="em_grupo" class="custom-control-input" value="em grupo" <?php if ($acompanhamento_psicologico && in_array('em grupo', $acompanhamento_psicologico)) {
-                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="em_grupo">
                                 Em grupo
                             </label>
@@ -322,23 +322,23 @@
                         <select type="select" id="identidade_genero" name="identidade_genero" class="custom-select">
                             <option value="">Selecione</option>
                             <option <?php if ($paciente->identidade_genero === 'mulher cis') {
-                                        echo 'selected=selected';
-                                    } ?>>mulher cis</option>
+    echo 'selected=selected';
+} ?>>mulher cis</option>
                             <option <?php if ($paciente->identidade_genero === 'mulher trans') {
-                                        echo 'selected=selected';
-                                    } ?>>mulher trans</option>
+    echo 'selected=selected';
+} ?>>mulher trans</option>
                             <option <?php if ($paciente->identidade_genero === 'homem cis') {
-                                        echo 'selected=selected';
-                                    } ?>>homem cis</option>
+    echo 'selected=selected';
+} ?>>homem cis</option>
                             <option <?php if ($paciente->identidade_genero === 'homem trans') {
-                                        echo 'selected=selected';
-                                    } ?>>homem trans</option>
+    echo 'selected=selected';
+} ?>>homem trans</option>
                             <option <?php if ($paciente->identidade_genero === 'não-binário') {
-                                        echo 'selected=selected';
-                                    } ?>>não-binário</option>
+    echo 'selected=selected';
+} ?>>não-binário</option>
                             <option <?php if ($paciente->identidade_genero === 'outro') {
-                                        echo 'selected=selected';
-                                    } ?>>outro</option>
+    echo 'selected=selected';
+} ?>>outro</option>
                         </select>
                     </div>
                 </div>
@@ -350,17 +350,17 @@
                         <select type="select" id="orientacao_sexual" name="orientacao_sexual" class="custom-select">
                             <option value="">Selecione</option>
                             <option <?php if ($paciente->orientacao_sexual === 'heterossexual') {
-                                        echo 'selected=selected';
-                                    } ?>>heterossexual</option>
+    echo 'selected=selected';
+} ?>>heterossexual</option>
                             <option <?php if ($paciente->orientacao_sexual === 'homossexual') {
-                                        echo 'selected=selected';
-                                    } ?>>homossexual</option>
+    echo 'selected=selected';
+} ?>>homossexual</option>
                             <option <?php if ($paciente->orientacao_sexual === 'bissexual') {
-                                        echo 'selected=selected';
-                                    } ?>>bissexual</option>
+    echo 'selected=selected';
+} ?>>bissexual</option>
                             <option <?php if ($paciente->orientacao_sexual === 'outro') {
-                                        echo 'selected=selected';
-                                    } ?>>outro</option>
+    echo 'selected=selected';
+} ?>>outro</option>
                         </select>
                     </div>
                 </div>
@@ -372,20 +372,20 @@
                         <select type="select" id="cor_raca" name="cor_raca" class="custom-select">
                             <option value="">Selecione</option>
                             <option <?php if ($paciente->cor_raca === 'Preta') {
-                                        echo 'selected=selected';
-                                    } ?>>Preta</option>
+    echo 'selected=selected';
+} ?>>Preta</option>
                             <option <?php if ($paciente->cor_raca === 'Parda') {
-                                        echo 'selected=selected';
-                                    } ?>>Parda</option>
+    echo 'selected=selected';
+} ?>>Parda</option>
                             <option <?php if ($paciente->cor_raca === 'Branca') {
-                                        echo 'selected=selected';
-                                    } ?>>Branca</option>
+    echo 'selected=selected';
+} ?>>Branca</option>
                             <option <?php if ($paciente->cor_raca === 'Amarela') {
-                                        echo 'selected=selected';
-                                    } ?>>Amarela</option>
+    echo 'selected=selected';
+} ?>>Amarela</option>
                             <option <?php if ($paciente->cor_raca === 'Indígena') {
-                                        echo 'selected=selected';
-                                    } ?>>Indígena</option>
+    echo 'selected=selected';
+} ?>>Indígena</option>
                         </select>
                     </div>
                 </div>
@@ -401,11 +401,11 @@
                         <div class="form-group">
                             <label for="name">Recebe auxílio emergencial</label>
                             <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input" value="sim" <?php if ($paciente->auxilio_emergencial === 'sim') {
-                                                                                                                                                                                                echo 'checked=checked';
-                                                                                                                                                                                            } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                             <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input" value="não" <?php if ($paciente->auxilio_emergencial === 'não') {
-                                                                                                                                                                                                echo 'checked=checked';
-                                                                                                                                                                                            } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                         </div>
                     </div>
                     <div class="col">
@@ -486,14 +486,14 @@
                         <select type="select" id="sintomas_iniciais" name="sintomas_iniciais" class="custom-select">
                             <option value="">Selecione</option>
                             <option <?php if ($paciente->sintomas_iniciais === 'suspeito') {
-                                        echo 'selected=selected';
-                                    } ?>>suspeito</option>
+    echo 'selected=selected';
+} ?>>suspeito</option>
                             <option <?php if ($paciente->sintomas_iniciais === 'confirmado') {
-                                        echo 'selected=selected';
-                                    } ?>>confirmado</option>
+    echo 'selected=selected';
+} ?>>confirmado</option>
                             <option <?php if ($paciente->sintomas_iniciais === 'descartado') {
-                                        echo 'selected=selected';
-                                    } ?>>descartado</option>
+    echo 'selected=selected';
+} ?>>descartado</option>
                         </select>
                     </div>
                 </div>
@@ -510,40 +510,40 @@
                         <br>
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="teste_utilizado[]" id="pcr" class="custom-control-input" value="PCR" <?php if ($teste_utilizado && is_array($teste_utilizado) && in_array('PCR', $teste_utilizado)) {
-                                                                                                                                    echo 'checked=checked';
-                                                                                                                                } elseif ($teste_utilizado === 'PCR') {
-                                                                                                                                    echo 'checked=checked';
-                                                                                                                                } ?>>
+    echo 'checked=checked';
+} elseif ($teste_utilizado === 'PCR') {
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="pcr">
                                 PCR
                             </label>
                         </div>
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="teste_utilizado[]" id="sorologias" class="custom-control-input" value="sorologias (IgM/IgG)" <?php if ($teste_utilizado && is_array($teste_utilizado) && in_array('sorologias (IgM/IgG)', $teste_utilizado)) {
-                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                        } elseif ($teste_utilizado === 'sorologias (IgM/IgG)') {
-                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                        } ?>>
+    echo 'checked=checked';
+} elseif ($teste_utilizado === 'sorologias (IgM/IgG)') {
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="sorologias">
                                 sorologias (IgM/IgG)
                             </label>
                         </div>
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="teste_utilizado[]" id="teste_rapido" class="custom-control-input" value="teste rápido" <?php if ($teste_utilizado && is_array($teste_utilizado) && in_array('teste rápido', $teste_utilizado)) {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } elseif ($teste_utilizado === 'teste rápido') {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } ?>>
+    echo 'checked=checked';
+} elseif ($teste_utilizado === 'teste rápido') {
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="teste_rapido">
                                 Teste Rápido
                             </label>
                         </div>
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="teste_utilizado[]" id="nao_informado" class="custom-control-input" value="não informado" <?php if ($teste_utilizado && is_array($teste_utilizado) && in_array('não informado', $teste_utilizado)) {
-                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                    } elseif ($teste_utilizado === 'não informado') {
-                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} elseif ($teste_utilizado === 'não informado') {
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="nao_informado">
                                 Não Informado
                             </label>
@@ -559,60 +559,60 @@
                         <br>
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="resultado_teste[]" id="pcr_positivo" class="custom-control-input" value="PCR positivo" <?php if ($resultado_teste && is_array($resultado_teste) && in_array('PCR positivo', $resultado_teste)) {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } elseif ($resultado_teste === 'PCR positivo') {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } ?>>
+    echo 'checked=checked';
+} elseif ($resultado_teste === 'PCR positivo') {
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="pcr_positivo">
                                 PCR positivo
                             </label>
                         </div>
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="resultado_teste[]" id="pcr_negativo" class="custom-control-input" value="PCR negativo" <?php if ($resultado_teste && is_array($resultado_teste) && in_array('PCR negativo', $resultado_teste)) {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } elseif ($resultado_teste === 'PCR negativo') {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } ?>>
+    echo 'checked=checked';
+} elseif ($resultado_teste === 'PCR negativo') {
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="pcr_negativo">
                                 PCR negativo
                             </label>
                         </div>
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="resultado_teste[]" id="igm_positivo" class="custom-control-input" value="IgM positivo" <?php if ($resultado_teste && is_array($resultado_teste) && in_array('IgM positivo', $resultado_teste)) {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } elseif ($resultado_teste === 'IgM positivo') {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } ?>>
+    echo 'checked=checked';
+} elseif ($resultado_teste === 'IgM positivo') {
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="igm_positivo">
                                 IgM positivo
                             </label>
                         </div>
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="resultado_teste[]" id="igm_negativo" class="custom-control-input" value="IgM negativo" <?php if ($resultado_teste && is_array($resultado_teste) && in_array('IgM negativo', $resultado_teste)) {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } elseif ($resultado_teste === 'IgM negativo') {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } ?>>
+    echo 'checked=checked';
+} elseif ($resultado_teste === 'IgM negativo') {
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="igm_negativo">
                                 IgM negativo
                             </label>
                         </div>
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="resultado_teste[]" id="igg_positivo" class="custom-control-input" value="IgG positivo" <?php if ($resultado_teste && is_array($resultado_teste) && in_array('IgG positivo', $resultado_teste)) {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } elseif ($resultado_teste === 'IgG positivo') {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } ?>>
+    echo 'checked=checked';
+} elseif ($resultado_teste === 'IgG positivo') {
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="igg_positivo">
                                 IgG positivo
                             </label>
                         </div>
                         <div class="custom-checkbox custom-control custom-control-inline">
                             <input type="checkbox" name="resultado_teste[]" id="igg_negativo" class="custom-control-input" value="IgG negativo" <?php if ($resultado_teste && is_array($resultado_teste) && in_array('IgG negativo', $resultado_teste)) {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } elseif ($resultado_teste === 'IgG negativo') {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } ?>>
+    echo 'checked=checked';
+} elseif ($resultado_teste === 'IgG negativo') {
+    echo 'checked=checked';
+} ?>>
                             <label class="custom-control-label" for="igg_negativo">
                                 IgG negativo
                             </label>
@@ -620,23 +620,23 @@
                         <!--<select type="select" id="resultado_teste" name="resultado_teste" class="custom-select">
                                             <option value="">Selecione</option>
                                             <option <?php if ($paciente->resultado_teste === 'PCR positivo') {
-                                                        echo 'selected=selected';
-                                                    } ?> >PCR positivo</option>
+    echo 'selected=selected';
+} ?> >PCR positivo</option>
                                             <option <?php if ($paciente->resultado_teste === 'PCR negativo') {
-                                                        echo 'selected=selected';
-                                                    } ?> >PCR negativo</option>
+    echo 'selected=selected';
+} ?> >PCR negativo</option>
                                             <option <?php if ($paciente->resultado_teste === 'IgM positivo') {
-                                                        echo 'selected=selected';
-                                                    } ?> >IgM positivo</option>
+    echo 'selected=selected';
+} ?> >IgM positivo</option>
                                             <option <?php if ($paciente->resultado_teste === 'IgM negativo') {
-                                                        echo 'selected=selected';
-                                                    } ?> >IgM negativo</option>
+    echo 'selected=selected';
+} ?> >IgM negativo</option>
                                             <option <?php if ($paciente->resultado_teste === 'IgG positivo') {
-                                                        echo 'selected=selected';
-                                                    } ?> >IgG positivo</option>
+    echo 'selected=selected';
+} ?> >IgG positivo</option>
                                             <option <?php if ($paciente->resultado_teste === 'IgG negativo') {
-                                                        echo 'selected=selected';
-                                                    } ?> >IgG negativo</option>
+    echo 'selected=selected';
+} ?> >IgG negativo</option>
                                         </select>-->
                     </div>
                 </div>
@@ -663,128 +663,128 @@
                 <div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="hipertensao_arterial_sistemica" class="custom-control-input" value="1" <?php if ($cronicas && in_array('1', $cronicas)) {
-                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="hipertensao_arterial_sistemica">
                             Hipertensão arterial sistêmica (HAS)
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="diabetes_mellitus" class="custom-control-input" value="2" <?php if ($cronicas && in_array('2', $cronicas)) {
-                                                                                                                                            echo 'checked=checked';
-                                                                                                                                        } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="diabetes_mellitus">
                             Diabetes Mellitus (DM)
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="dislipidemia" class="custom-control-input" value="3" <?php if ($cronicas && in_array('3', $cronicas)) {
-                                                                                                                                    echo 'checked=checked';
-                                                                                                                                } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="dislipidemia">
                             Dislipidemia
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="asma_bronquite" class="custom-control-input" value="4" <?php if ($cronicas && in_array('4', $cronicas)) {
-                                                                                                                                        echo 'checked=checked';
-                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="asma_bronquite">
                             Asma / Bronquite
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="tuberculose_ativa" class="custom-control-input" value="5" <?php if ($cronicas && in_array('5', $cronicas)) {
-                                                                                                                                            echo 'checked=checked';
-                                                                                                                                        } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="tuberculose_ativa">
                             Tuberculose ativa
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="cardiopatias_cardiovasculares" class="custom-control-input" value="6" <?php if ($cronicas && in_array('6', $cronicas)) {
-                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="cardiopatias_cardiovasculares">
                             Cardiopatias e outras doenças cardiovasculares
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="outras_respiratorias" class="custom-control-input" value="7" <?php if ($cronicas && in_array('7', $cronicas)) {
-                                                                                                                                            echo 'checked=checked';
-                                                                                                                                        } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="outras_respiratorias">
                             Outras doenças Respiratórias
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="artrite_artrose_reumatismo" class="custom-control-input" value="8" <?php if ($cronicas && in_array('8', $cronicas)) {
-                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="artrite_artrose_reumatismo">
                             Artrite/Artrose/Reumatismo
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="doenca_autoimune" class="custom-control-input" value="9" <?php if ($cronicas && in_array('9', $cronicas)) {
-                                                                                                                                        echo 'checked=checked';
-                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="doenca_autoimune">
                             Doença autoimune
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="doenca_renal" class="custom-control-input" value="10" <?php if ($cronicas && in_array('10', $cronicas)) {
-                                                                                                                                        echo 'checked=checked';
-                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="doenca_renal">
                             Doença renal
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="doenca_neurologica" class="custom-control-input" value="11" <?php if ($cronicas && in_array('11', $cronicas)) {
-                                                                                                                                            echo 'checked=checked';
-                                                                                                                                        } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="doenca_neurologica">
                             Doença neurológica
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="cancer" class="custom-control-input" value="12" <?php if ($cronicas && in_array('12', $cronicas)) {
-                                                                                                                                echo 'checked=checked';
-                                                                                                                            } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="cancer">
                             Câncer
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="ansiedade" class="custom-control-input" value="13" <?php if ($cronicas && in_array('13', $cronicas)) {
-                                                                                                                                    echo 'checked=checked';
-                                                                                                                                } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="ansiedade">
                             Ansiedade
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="depressao" class="custom-control-input" value="14" <?php if ($cronicas && in_array('14', $cronicas)) {
-                                                                                                                                    echo 'checked=checked';
-                                                                                                                                } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="depressao">
                             Depressão
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="demencia" class="custom-control-input" value="15" <?php if ($cronicas && in_array('15', $cronicas)) {
-                                                                                                                                    echo 'checked=checked';
-                                                                                                                                } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="demencia">
                             Demência
                         </label>
                     </div>
                     <div class="custom-checkbox custom-control custom-control-inline">
                         <input type="checkbox" name="doenca_cronica[]" id="outras_questoes_mental" class="custom-control-input" value="16" <?php if ($cronicas && in_array('16', $cronicas)) {
-                                                                                                                                                echo 'checked=checked';
-                                                                                                                                            } ?>>
+    echo 'checked=checked';
+} ?>>
                         <label class="custom-control-label" for="outras_questoes_mental">
                             Outras questões de saúde mental
                         </label>
@@ -809,11 +809,11 @@
                             <div class="form-group">
                                 <label for="name">Já teve tuberculose?</label>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="tuberculose" type="radio" class="form-check-input" value="sim" <?php if ($paciente->tuberculose === 'sim') {
-                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                        } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="tuberculose" type="radio" class="form-check-input" value="não" <?php if ($paciente->tuberculose === 'não') {
-                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                        } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                             </div>
                         </div>
                     </div>
@@ -822,11 +822,11 @@
                             <div class="form-group">
                                 <label for="name">É tabagista?</label>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input" value="sim" <?php if ($paciente->tabagista === 'sim') {
-                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                        } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input" value="não" <?php if ($paciente->tabagista === 'não') {
-                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                        } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                             </div>
                         </div>
                     </div>
@@ -835,11 +835,11 @@
                             <div class="form-group">
                                 <label for="name">Faz uso crônico de alcool?</label>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input" value="sim" <?php if ($paciente->cronico_alcool === 'sim') {
-                                                                                                                                                                                                echo 'checked=checked';
-                                                                                                                                                                                            } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input" value="não" <?php if ($paciente->cronico_alcool === 'não') {
-                                                                                                                                                                                                echo 'checked=checked';
-                                                                                                                                                                                            } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                             </div>
                         </div>
                     </div>
@@ -848,11 +848,11 @@
                             <div class="form-group">
                                 <label for="name">Faz uso crônico de outras drogas?</label>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input" value="sim" <?php if ($paciente->outras_drogas === 'sim') {
-                                                                                                                                                                                                echo 'checked=checked';
-                                                                                                                                                                                            } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input" value="não" <?php if ($paciente->outras_drogas === 'não') {
-                                                                                                                                                                                                echo 'checked=checked';
-                                                                                                                                                                                            } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                             </div>
                         </div>
                     </div>
@@ -875,11 +875,11 @@
                             <div class="form-group">
                                 <label for="name">Está gestante?</label>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestante" type="radio" class="form-check-input" value="sim" <?php if ($paciente->gestante === 'sim') {
-                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                    } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestante" type="radio" class="form-check-input" value="não" <?php if ($paciente->gestante === 'não') {
-                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                    } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                             </div>
                         </div>
                     </div>
@@ -889,11 +889,11 @@
                             <div class="form-group">
                                 <label for="name">Amamenta?</label>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input" value="sim" <?php if ($paciente->amamenta === 'sim') {
-                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                    } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input" value="não" <?php if ($paciente->amamenta === 'não') {
-                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                    } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                             </div>
                         </div>
                     </div>
@@ -903,11 +903,11 @@
                             <div class="form-group">
                                 <label for="name">Gestação é ou foi de alto risco?</label>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestacao_alto_risco" type="radio" class="form-check-input" value="sim" <?php if ($paciente->gestacao_alto_risco === 'sim') {
-                                                                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                                                                } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestacao_alto_risco" type="radio" class="form-check-input" value="não" <?php if ($paciente->gestacao_alto_risco === 'não') {
-                                                                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                                                                } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                             </div>
                         </div>
                     </div>
@@ -916,11 +916,11 @@
                             <div class="form-group">
                                 <label for="name">Está no pós-parto (40 dias após o parto)?</label>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input" value="sim" <?php if ($paciente->pos_parto === 'sim') {
-                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                        } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input" value="não" <?php if ($paciente->pos_parto === 'não') {
-                                                                                                                                                                                            echo 'checked=checked';
-                                                                                                                                                                                        } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                             </div>
                         </div>
                     </div>
@@ -947,14 +947,14 @@
                             <select type="select" id="trimestre_gestacao" name="trimestre_gestacao" class="custom-select">
                                 <option value="">Selecione</option>
                                 <option <?php if ($paciente->trimestre_gestacao === '1o trimestre') {
-                                            echo 'selected=selected';
-                                        } ?>>1o trimestre</option>
+    echo 'selected=selected';
+} ?>>1o trimestre</option>
                                 <option <?php if ($paciente->trimestre_gestacao === '2o trimestre') {
-                                            echo 'selected=selected';
-                                        } ?>>2o trimestre</option>
+    echo 'selected=selected';
+} ?>>2o trimestre</option>
                                 <option <?php if ($paciente->trimestre_gestacao === '3o trimestre') {
-                                            echo 'selected=selected';
-                                        } ?>>3o trimestre</option>
+    echo 'selected=selected';
+} ?>>3o trimestre</option>
                             </select>
                         </div>
                     </div>
@@ -977,11 +977,11 @@
                             <div class="form-group">
                                 <label for="name">Tem algum acompanhamento médico contínuo?</label>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_medico" type="radio" class="form-check-input" value="sim" <?php if ($paciente->acompanhamento_medico === 'sim') {
-                                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                                    } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_medico" type="radio" class="form-check-input" value="não" <?php if ($paciente->acompanhamento_medico === 'não') {
-                                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                                    } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                             </div>
                         </div>
                     </div>
@@ -998,32 +998,32 @@
                             </label>
                             <div class="custom-checkbox custom-control custom-control-inline">
                                 <input type="checkbox" name="sistema_saude[]" id="sus" class="custom-control-input" value="É usuária/o do SUS (público)" <?php if ($sistema_saude && in_array('É usuária/o do SUS (público)', $sistema_saude)) {
-                                                                                                                                                                echo 'checked=checked';
-                                                                                                                                                            } ?>>
+    echo 'checked=checked';
+} ?>>
                                 <label class="custom-control-label" for="sus">
                                     É usuária/o do SUS (público)
                                 </label>
                             </div>
                             <div class="custom-checkbox custom-control custom-control-inline">
                                 <input type="checkbox" name="sistema_saude[]" id="convenio" class="custom-control-input" value="Tem convênio/plano de saúde" <?php if ($sistema_saude && in_array('Tem convênio/plano de saúde', $sistema_saude)) {
-                                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                                } ?>>
+    echo 'checked=checked';
+} ?>>
                                 <label class="custom-control-label" for="convenio">
                                     Tem convênio/plano de saúde
                                 </label>
                             </div>
                             <div class="custom-checkbox custom-control custom-control-inline">
                                 <input type="checkbox" name="sistema_saude[]" id="pagos_populares" class="custom-control-input" value="Usuária/o de serviços pagos 'populares' (Ex: Dr Consulta)" <?php if ($sistema_saude && in_array("Usuária/o de serviços pagos 'populares' (Ex: Dr Consulta)", $sistema_saude)) {
-                                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                                 <label class="custom-control-label" for="pagos_populares">
                                     Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)
                                 </label>
                             </div>
                             <div class="custom-checkbox custom-control custom-control-inline">
                                 <input type="checkbox" name="sistema_saude[]" id="particulares" class="custom-control-input" value="Usuária/o de serviços particulares não cobertos por convênios" <?php if ($sistema_saude && in_array('Usuária/o de serviços particulares não cobertos por convênios', $sistema_saude)) {
-                                                                                                                                                                                                        echo 'checked=checked';
-                                                                                                                                                                                                    } ?>>
+    echo 'checked=checked';
+} ?>>
                                 <label class="custom-control-label" for="particulares">
                                     Usuária/o de serviços particulares não cobertos por convênios
                                 </label>
@@ -1031,17 +1031,17 @@
                             <!--<select multiple="" type="select" id="sistema_saude" name="sistema_saude[]" class="custom-select">
                                                 <option value="">Selecione</option>
                                                 <option <?php if ($sistema_saude && in_array('É usuária/o do SUS (público)', $sistema_saude)) {
-                                                            echo 'selected=selected';
-                                                        } ?> >É usuária/o do SUS (público)</option>
+    echo 'selected=selected';
+} ?> >É usuária/o do SUS (público)</option>
                                                 <option <?php if ($sistema_saude && in_array('Tem convênio/plano de saúde', $sistema_saude)) {
-                                                            echo 'selected=selected';
-                                                        } ?> >Tem convênio/plano de saúde</option>
+    echo 'selected=selected';
+} ?> >Tem convênio/plano de saúde</option>
                                                 <option <?php if ($sistema_saude && in_array('Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)', $sistema_saude)) {
-                                                            echo 'selected=selected';
-                                                        } ?> >Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)</option>
+    echo 'selected=selected';
+} ?> >Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)</option>
                                                 <option <?php if ($sistema_saude && in_array('Usuária/o de serviços particulares não cobertos por convênios', $sistema_saude)) {
-                                                            echo 'selected=selected';
-                                                        } ?> >Usuária/o de serviços particulares não cobertos por convênios</option>
+    echo 'selected=selected';
+} ?> >Usuária/o de serviços particulares não cobertos por convênios</option>
                                             </select>
                                             <small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>-->
                         </div>
@@ -1051,11 +1051,11 @@
                             <div class="form-group">
                                 <label for="name">Tem acompanhamento médico na Unidade Básica de Saúde (UBS - posto) de referência?</label>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input" value="sim" <?php if ($paciente->acompanhamento_ubs === 'sim') {
-                                                                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                                                                } ?>> Sim</label></div>
+    echo 'checked=checked';
+} ?>> Sim</label></div>
                                 <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input" value="não" <?php if ($paciente->acompanhamento_ubs === 'não') {
-                                                                                                                                                                                                    echo 'checked=checked';
-                                                                                                                                                                                                } ?>> Não</label></div>
+    echo 'checked=checked';
+} ?>> Não</label></div>
                             </div>
                         </div>
                     </div>

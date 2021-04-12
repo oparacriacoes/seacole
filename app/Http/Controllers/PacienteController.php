@@ -14,6 +14,8 @@ use App\Psicologo;
 use App\EvolucaoSintoma;
 use App\User;
 use App\Articuladora;
+use App\Enums\AcompanhamentoPsicologico;
+use App\Enums\Semana;
 use App\Enums\SituacoesCaso;
 use App\Http\Requests\PacienteStoreRequest;
 use Maatwebsite\Excel\Facades\Excel;
@@ -60,13 +62,25 @@ class PacienteController extends Controller
     public function create()
     {
         $paciente = new Paciente();
-        $agentes = Agente::get();
-        $medicos = Medico::get();
-        $psicologos = Psicologo::all();
+        $agentes =  Agente::with('user:id,name')->select(['id', 'user_id'])->get();
+        $medicos = Medico::with('user:id,name')->select(['id', 'user_id'])->get();
+        $psicologos = Psicologo::with('user:id,name')->select(['id', 'user_id'])->get();
         $articuladoras = Articuladora::all();
-        $situacoes = SituacoesCaso::readables();
 
-        return view('pages.paciente.create')->with(compact('paciente', 'agentes', 'medicos', 'psicologos', 'articuladoras', 'situacoes'));
+        $situacoes = SituacoesCaso::readables();
+        $acompanhamento_psicologico = AcompanhamentoPsicologico::readables();
+        $semana = Semana::readables();
+
+        return view('pages.paciente.create')->with(compact(
+            'paciente',
+            'agentes',
+            'medicos',
+            'psicologos',
+            'articuladoras',
+            'situacoes',
+            'acompanhamento_psicologico',
+            'semana'
+        ));
     }
 
     public function store(PacienteStoreRequest $request)
@@ -83,6 +97,30 @@ class PacienteController extends Controller
     }
 
     public function edit(Paciente $paciente)
+    {
+        $situacoes = SituacoesCaso::readables();
+        $acompanhamento_psicologico = AcompanhamentoPsicologico::readables();
+        $semana = Semana::readables();
+
+        $agentes =  Agente::with('user:id,name')->select(['id', 'user_id'])->get();
+        $medicos = Medico::with('user:id,name')->select(['id', 'user_id'])->get();
+        $psicologos = Psicologo::with('user:id,name')->select(['id', 'user_id'])->get();
+        $articuladoras = Articuladora::all();
+
+        return view('pages.paciente.edit', compact(
+            'paciente',
+            'agentes',
+            'medicos',
+            'psicologos',
+            'articuladoras',
+            'situacoes',
+            'acompanhamento_psicologico',
+            'semana',
+        ));
+    }
+
+
+    public function edit_bk(Paciente $paciente)
     {
         $sintomas = $paciente->sintomas;
         $ajudas = $paciente->tipos_ajuda;

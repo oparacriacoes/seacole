@@ -36,10 +36,10 @@
 
     <form id="createPacienteForm" method="POST" action="{{ route('pacientes.store') }}">
         @csrf
-        @include('pages.paciente._forms_create.situacao_caso', ['paciente' => $paciente])
-        @include('pages.paciente._forms_create.paciente', ['paciente' => $paciente])
-        @include('pages.paciente._forms_create.diagnostico_covid', ['paciente' => $paciente])
-        @include('pages.paciente._forms_create.condicao_saude', ['paciente' => $paciente])
+        @include('pages.paciente._forms_paciente.situacao_caso', ['paciente' => $paciente])
+        @include('pages.paciente._forms_paciente.paciente', ['paciente' => $paciente])
+        @include('pages.paciente._forms_paciente.diagnostico_covid', ['paciente' => $paciente])
+        @include('pages.paciente._forms_paciente.condicao_saude', ['paciente' => $paciente])
         <div class="row">
             <div class="col-sm-12 offset-sm-2s"><br />
                 <button type="submit" id="createPaciente" class="btn btn-secondary">Enviar</button>

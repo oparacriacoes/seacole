@@ -77,118 +77,7 @@
         <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
             @include('pages.paciente._forms_edit.paciente', [
                 'paciente' => $paciente,
-                'sistema_saude' => $sistema_saude,
-                'cronicas' => $cronicas,
-                'resultado_teste' => $resultado_teste,
-                'teste_utilizado' => $teste_utilizado
             ])
-        </div>
-
-        <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
-            @include('pages.paciente._forms_edit.quadro_atual', [
-                'paciente' => $paciente,
-                'sintomas_quadro' => $sintomas_quadro,
-                'quadro' => $quadro,
-                'sequelas' => $sequelas,
-            ])
-        </div>
-
-        <div class="tab-pane tabs-animation fade" id="tab-content-2" role="tabpanel">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Monitoramento</h5>
-                    @include('pages.paciente._forms_edit.monitoramento', [
-                        'paciente' => $paciente,
-                        'monitoramento' => $monitoramento,
-                    ])
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-pane tabs-animation fade" id="tab-content-3" role="tabpanel">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Saúde mental</h5>
-                    @include('pages.paciente._forms_edit.saude_mental', [
-                        'paciente' => $paciente,
-                        'saude_mental' => $saude_mental,
-                    ])
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-pane tabs-animation fade" id="tab-content-4" role="tabpanel">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Serviços de Referência e Internação</h5>
-                    @include('pages.paciente._forms_edit.servicos_referencia', [
-                        'paciente' => $paciente,
-                        'internacao_servico' => $internacao_servico,
-                        'internacao_remedio' => $internacao_remedio,
-                        'internacao_problema' => $internacao_problema,
-                        'internacao' => $internacao,
-                        'internacao_local' => $internacao_local,
-                    ])
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-pane tabs-animation fade" id="tab-content-5" role="tabpanel">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h5 class="card-title">Insumos Oferecidos pelo Projeto</h5>
-                    @include('pages.paciente._forms_edit.insumos', ['paciente' => $paciente, 'insumos' => $insumos])
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane tabs-animation fade" id="tab-content-6" role="tabpanel">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-
-                    <div class="row">
-                        @foreach($prontuarios as $prontuario)
-                        <div class="col-4 col-md-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Data: {{ $prontuario->data_monitoramento }} - Hora: {{ $prontuario->horario_monotiramento }}</h5>
-                                    <p class="card-text">
-                                        <strong>Sintomas: </strong>
-                                        <?php
-                                        $sintomas = unserialize($prontuario->sintomas_atuais);
-                                        if ($sintomas) {
-                                            for ($c = 0; $c < count($sintomas); $c++) {
-                                                echo ucfirst($sintomas[$c]) . ', ';
-                                            }
-                                        }
-                                        ?>
-                                    </p>
-                                    <p class="card-text"><strong>Outros Sintomas: </strong>{{ ucfirst($prontuario->sintomas_outro) }}</p>
-                                    <p class="card-text"><strong>Temperatura: </strong>{{ $prontuario->temperatura_atual }}</p>
-                                    <p class="card-text"><strong>Frequência Cardíaca: </strong>{{ $prontuario->frequencia_cardiaca_atual }}</p>
-                                    <p class="card-text"><strong>Frequência Respiratória: </strong>{{ $prontuario->frequencia_respiratoria_atual }}</p>
-                                    <p class="card-text"><strong>Saturação: </strong>{{ $prontuario->saturacao_atual }}</p>
-                                    <p class="card-text"><strong>Pressão Arterial: </strong>{{ $prontuario->pressao_arterial_atual }}</p>
-                                    <p class="card-text"><strong>Medicamento Prescrito? </strong>{{ ucfirst($prontuario->equipe_medica) }}</p>
-                                    @if($prontuario->equipe_medica === 'sim')<p class="card-text"><strong>Qual? </strong>{{ ucfirst($prontuario->medicamento) }}</p>@endif
-                                    <p class="card-text"><strong>Sinal de Gravidade: </strong>{{ ucfirst($prontuario->algum_sinal) }}</p>
-                                    <p class="card-text"><strong>PIC: </strong>{{ ucfirst($prontuario->fazendo_uso_pic) }}</p>
-                                    <p class="card-text"><strong>Escaldapés: </strong>{{ ucfirst($prontuario->fez_escalapes) }}</p>
-                                    <p class="card-text"><strong>Sentiu Melhoras com Escaldapés: </strong>{{ ucfirst($prontuario->melhora_sintoma_escaldapes) }}</p>
-                                    <p class="card-text"><strong>Inalação/Vaporização: </strong>{{ ucfirst($prontuario->fes_inalacao) }}</p>
-                                    <p class="card-text"><strong>Sentiu Melhoras com Inalação/Vaporização: </strong>{{ ucfirst($prontuario->melhoria_sintomas_inalacao) }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                        @if($prontuarios->isEmpty())
-                        <div class="col-12 col-md-12">
-                            Sem dados no prontuário.
-                        </div>
-                        @endif
-                    </div>
-
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -200,9 +89,6 @@
 <script>
     $('.temperature').mask('00,0');
     $('.saturation').mask('00');
-    $('.hour').mask('00:00', {
-        placeholder: '00:00'
-    });
     $('#pressao_arterial_atual').mask('#00x00', {
         reverse: true
     })

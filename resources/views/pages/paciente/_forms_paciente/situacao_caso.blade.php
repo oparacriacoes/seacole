@@ -33,9 +33,9 @@
                         SITUAÇÃO
                     </label>
                     <select type="select" id="situacao" aria-describedby="situacaoHelp" name="situacao" class="custom-select">
-                        <option value="" selected>Selecione</option>
+                        <option value="">Selecione</option>
                         @foreach($situacoes as $key => $value)
-                            <option value="{{$key}}" @if(old('situacao') == $key ) selected @endif>{{$value}}</option>
+                            <option value="{{$key}}" @if(old('situacao', $paciente->situacao) == $key ) selected @endif>{{$value}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -50,7 +50,9 @@
                     <select type="select" name="agente_id" class="custom-select">
                         <option value="">Selecione</option>
                         @foreach($agentes as $agente)
-                        <option value="{{ $agente->id }}">{{ $agente->user->name }}</option>
+                        <option value="{{ $agente->id }}" @if(old('agente_id', $paciente->agente_id) == $agente->id) selected @endif>
+                            {{ $agente->user->name }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
@@ -63,7 +65,9 @@
                     <select type="select" name="medico_id" class="custom-select">
                         <option value="">Selecione</option>
                         @foreach($medicos as $medico)
-                        <option value="{{ $medico->id }}">{{ $medico->user->name }}</option>
+                        <option value="{{ $medico->id }}" @if(old('medico_id', $paciente->medico_id) == $medico->id) selected @endif>
+                            {{ $medico->user->name }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
@@ -76,7 +80,9 @@
                     <select type="select" name="psicologo_id" class="custom-select">
                         <option value="">Selecione</option>
                         @foreach($psicologos as $psicologo)
-                        <option value="{{ $psicologo->id }}">{{ $psicologo->user->name }}</option>
+                        <option value="{{ $psicologo->id }}" @if(old('psicologo_id', $paciente->psicologo_id) == $psicologo->id) selected @endif>
+                            {{ $psicologo->user->name }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
@@ -89,7 +95,9 @@
                     <select type="select" name="articuladora_responsavel" class="custom-select">
                         <option value="">Selecione</option>
                         @foreach($articuladoras as $articuladora)
-                        <option value="{{ $articuladora->id }}">{{ $articuladora->name }}</option>
+                        <option value="{{ $articuladora->id }}" @if(old('articuladora_responsavel', $paciente->articuladora_responsavel) == $articuladora->id) selected @endif>
+                            {{ $articuladora->name }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
@@ -100,55 +108,31 @@
                         Acompanhamento psicológico
                     </label>
                     <br>
+                    @foreach($acompanhamento_psicologico as $key => $value)
                     <div class="custom-checkbox custom-control custom-control-inline">
-                        <input type="checkbox" name="acompanhamento_psicologico[]" id="individual" class="custom-control-input" value="individual">
-                        <label class="custom-control-label" for="individual">
-                            Individual
+                        <input type="checkbox" name="acompanhamento_psicologico[]" id="{{$key}}" class="custom-control-input" value="{{$key}}" @if(in_array($key, old('acompanhamento_psicologico', $paciente->acompanhamento_psicologico ?? []))) checked @endif>
+                        <label class="custom-control-label" for="{{$key}}">
+                            {{$value}}
                         </label>
                     </div>
-                </div>
-                <div class="position-relative form-group">
-                    <div class="custom-checkbox custom-control custom-control-inline">
-                        <input type="checkbox" name="acompanhamento_psicologico[]" id="em_grupo" class="custom-control-input" value="em grupo">
-                        <label class="custom-control-label" for="em_grupo">
-                            Em grupo
-                        </label>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="atendimento_semanal_psicologia">Atendimento semanal psicologia</label>
+                    @foreach($semana as $key => $value)
                     <div class="position-relative1 form-check">
                         <label class="form-check-label">
-                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="seg"> Segunda
-                        </label>
-                        </div>
-                    <div class="position-relative1 form-check">
-                        <label class="form-check-label">
-                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="ter"> Terça
+                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="{{$key}}" @if($key == old('atendimento_semanal_psicologia', $paciente->atendimento_semanal_psicologia)) checked @endif> {{$value}}
                         </label>
                     </div>
-                    <div class="position-relative1 form-check">
-                        <label class="form-check-label">
-                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="qua"> Quarta
-                        </label>
-                    </div>
-                    <div class="position-relative1 form-check">
-                        <label class="form-check-label">
-                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="qui"> Quinta
-                        </label>
-                    </div>
-                    <div class="position-relative1 form-check">
-                        <label class="form-check-label">
-                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="sex"> Sexta
-                        </label>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-3">
                 <label for="horario_at_psicologia">Horário at. psicologia</label>
-                <input name="horario_at_psicologia" id="horario_at_psicologia" placeholder="Horário atendimento" type="time" class="form-control">
+                <input name="horario_at_psicologia" id="horario_at_psicologia" placeholder="Horário atendimento" type="time" class="form-control" value="{{ old('horario_at_psicologia', $paciente->horario_at_psicologia) }}">
             </div>
         </div>
     </div>

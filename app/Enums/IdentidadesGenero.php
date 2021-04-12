@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use Elao\Enum\ReadableEnum;
 
-final class IdentidadeGenero extends ReadableEnum
+final class IdentidadesGenero extends ReadableEnum
 {
     public const MULHER_CIS = 'mulher cis';
     public const MULHER_TRANS = 'mulher trans';

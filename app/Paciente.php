@@ -98,6 +98,14 @@ class Paciente extends Model
         'updated_at'
     ];
 
+    protected $casts = [
+        'acompanhamento_psicologico' => 'array',
+        'teste_utilizado' => 'array',
+        'resultado_teste' => 'array',
+        'doenca_cronica' => 'array',
+        'sistema_saude' => 'array',
+    ];
+
 
     /**
      * Relations

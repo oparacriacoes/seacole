@@ -211,7 +211,7 @@
             <div class="form-row">
                 <div class="col-md-4">
                     <x-forms.input-date property="data_parto" :value="$paciente->data_parto">
-                        Data do teste confirmatório
+                        Data do parto
                     </x-forms.input-date>
                 </div>
 
@@ -292,14 +292,6 @@
                                 Usuária/o de serviços particulares não cobertos por convênios
                             </label>
                         </div>
-                        <!--<select multiple="" type="select" id="sistema_saude" name="sistema_saude[]" class="custom-select">
-                                                <option value="">Selecione</option>
-                                                <option @if(old('sistema_saude') === 'É usuária/o do SUS (público)'){{ 'selected' }} @endif>É usuária/o do SUS (público)</option>
-                                                <option @if(old('sistema_saude') === 'Tem convênio/plano de saúde'){{ 'selected' }} @endif>Tem convênio/plano de saúde</option>
-                                                <option @if(old('sistema_saude') === 'Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)'){{ 'selected' }} @endif>Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)</option>
-                                                <option @if(old('sistema_saude') === 'Usuária/o de serviços particulares não cobertos por convênios'){{ 'selected' }} @endif>Usuária/o de serviços particulares não cobertos por convênios</option>
-                                            </select>
-                                            <small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>-->
                     </div>
                 </div>
                 <div class="col-md-3">

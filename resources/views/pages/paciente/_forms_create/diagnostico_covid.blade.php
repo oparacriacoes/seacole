@@ -52,14 +52,6 @@
                             Não Informado
                         </label>
                     </div>
-                    <!--<select multiple="" type="select" id="teste_utilizado" name="teste_utilizado[]" class="custom-select">
-                                      <option value="">Selecione</option>
-                                      <option @if(old('teste_utilizado') === 'PCR' ){{ 'selected' }} @endif>PCR</option>
-                                      <option @if(old('teste_utilizado') === 'sorologias (IgM/IgG)' ){{ 'selected' }} @endif>sorologias (IgM/IgG)</option>
-                                      <option @if(old('teste_utilizado') === 'teste rápido' ){{ 'selected' }} @endif>teste rápido</option>
-                                      <option @if(old('teste_utilizado') === 'não informado' ){{ 'selected' }} @endif>não informado</option>
-                                  </select>-->
-                    <!--<small class="form-text text-muted">Segure o shift para marcar mais de uma opção.</small>-->
                 </div>
             </div>
 
@@ -105,15 +97,6 @@
                             IgG negativo
                         </label>
                     </div>
-                    <!--<select type="select" id="resultado_teste" name="resultado_teste" class="custom-select">
-                                            <option value="">Selecione</option>
-                                            <option @if(old('resultado_teste') === 'PCR positivo' ){{ 'selected' }} @endif>PCR positivo</option>
-                                            <option @if(old('resultado_teste') === 'PCR negativo' ){{ 'selected' }} @endif>PCR negativo</option>
-                                            <option @if(old('resultado_teste') === 'IgM positivo' ){{ 'selected' }} @endif>IgM positivo</option>
-                                            <option @if(old('resultado_teste') === 'IgM negativo' ){{ 'selected' }} @endif>IgM negativo</option>
-                                            <option @if(old('resultado_teste') === 'IgG positivo' ){{ 'selected' }} @endif>IgG positivo</option>
-                                            <option @if(old('resultado_teste') === 'IgG negativo' ){{ 'selected' }} @endif>IgG negativo</option>
-                                        </select>-->
                 </div>
             </div>
         </div>

@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\AjudaTipo;
-use App\DoencaCronica;
-use App\EstadoEmocional;
-use App\Events\SintomaEvolucao;
 use App\Exports\PacientesExport;
 use App\Sintoma;
 use Carbon\Carbon;
@@ -27,6 +24,7 @@ use App\SaudeMental;
 use App\ServicoInternacao;
 use App\InsumosOferecido;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PacienteController extends Controller
 {
@@ -75,115 +73,13 @@ class PacienteController extends Controller
     {
         $dataForm = $request->validated();
 
-        return $dataForm;
-    }
-
-    public function store2(Request $request)
-    {
-        DB::beginTransaction();
         try {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->name),
-                'role' => 'paciente',
-            ]);
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-            \Log::info($e);
-            return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
-        }
-
-        $dados = [
-            'user_id' => $user->id,
-
-            'agente_id' => $request->agente,
-            'medico_id' => $request->medico,
-            'psicologo_id' => $request->psicologo_id,
-            'articuladora_responsavel' => $request->articuladora_responsavel,
-            'atendimento_semanal_psicologia' => $request->atendimento_semanal_psicologia,
-            'acompanhamento_psicologico' => $request->acompanhamento_psicologico ? serialize($request->acompanhamento_psicologico) : null,
-            'data_inicio_sintoma' => $request->data_inicio_sintoma,
-            'data_inicio_monitoramento' => $request->data_inicio_monitoramento,
-            'data_finalizacao_caso' => $request->data_finalizacao_caso,
-            'data_inicio_ac_psicologico' => $request->data_inicio_ac_psicologico,
-            'data_encerramento_ac_psicologico' => $request->data_encerramento_ac_psicologico,
-            'situacao' => $request->situacao,
-            'horario_at_psicologia' => $request->horario_at_psicologia,
-
-
-            'saude_mental' => $request->saude_mental,
-            'como_chegou_ao_projeto' => $request->como_chegou_ao_projeto,
-            'como_chegou_ao_projeto_outro' => $request->como_chegou_ao_projeto_outro,
-            'nucleo_uneafro_qual' => $request->nucleo_uneafro_qual,
-            'data_nascimento' => $request->data_nascimento,
-            'cor_raca' => $request->cor_raca,
-            'endereco_cep' => $request->endereco_cep,
-            'endereco_rua' => $request->endereco_rua,
-            'endereco_numero' => $request->endereco_numero,
-            'endereco_bairro' => $request->endereco_bairro,
-            'endereco_cidade' => $request->endereco_cidade,
-            'endereco_uf' => $request->endereco_uf,
-            'ponto_referencia' => $request->ponto_referencia,
-            'endereco_complemento' => $request->endereco_complemento,
-            'fone_fixo' => $request->fone_fixo,
-            'fone_celular' => $request->fone_celular,
-            'numero_pessoas_residencia' => $request->numero_pessoas_residencia,
-            'responsavel_residencia' => $request->responsavel_residencia,
-            'renda_residencia' => $request->renda_residencia,
-            'doenca_cronica' => $request->doenca_cronica ? serialize($request->doenca_cronica) : null,
-            'remedios_consumidos' => $request->remedios_consumidos,
-            'acompanhamento_medico' => $request->acompanhamento_medico,
-            'teste_utilizado' => $request->teste_utilizado ? serialize($request->teste_utilizado) : null,
-            'resultado_teste' => $request->resultado_teste ? serialize($request->resultado_teste) : null,
-            'data_teste_confirmatorio' => $request->data_teste_confirmatorio,
-            'sintomas_iniciais' => $request->sintomas_iniciais,
-            'name_social' => $request->name_social,
-            'identidade_genero' => $request->identidade_genero,
-            'orientacao_sexual' => $request->orientacao_sexual,
-            'auxilio_emergencial' => $request->auxilio_emergencial,
-            'descreve_doencas' => $request->descreve_doencas,
-            'tuberculose' => $request->tuberculose,
-            'tabagista' => $request->tabagista,
-            'cronico_alcool' => $request->cronico_alcool,
-            'outras_drogas' => $request->outras_drogas,
-            'gestante' => $request->gestante,
-            'amamenta' => $request->amamenta,
-            'gestacao_alto_risco' => $request->gestacao_alto_risco,
-            'pos_parto' => $request->pos_parto,
-            'data_parto' => $request->data_parto,
-            'data_ultima_mestrucao' => $request->data_ultima_mestrucao,
-            'trimestre_gestacao' => $request->trimestre_gestacao,
-            'motivo_risco_gravidez' => $request->motivo_risco_gravidez,
-            'data_ultima_consulta' => $request->data_ultima_consulta,
-            'sistema_saude' => $request->sistema_saude ? serialize($request->sistema_saude) : null,
-            'acompanhamento_ubs' => $request->acompanhamento_ubs,
-            'outras_informacao' => $request->outras_informacao,
-        ];
-
-        DB::beginTransaction();
-        try {
-            $paciente = Paciente::create($dados);
-            DB::commit();
+            $paciente = Paciente::create($dataForm);
             return redirect()->route('pacientes.edit', $paciente)->with('success', 'Dados salvos com sucesso.');
         } catch (\Exception $e) {
-            DB::rollback();
-            \Log::info($e);
-            return redirect()->back()->withInput()->with('error', 'Não foi possível realizar esta operação.');
-            //return redirect()->back()->with('error', 'Não foi possível realizar esta operação.');
+            Log::error($e->getMessage());
+            return back()->withInput()->with('error', 'Não foi possível realizar esta operação.');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return null;
     }
 
     public function edit(Paciente $paciente)

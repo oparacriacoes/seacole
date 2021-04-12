@@ -57,7 +57,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('paciente/insumos/{id}', InsumosOferecidoController::class)->name('paciente.insumos');
 
     Route::get('pacientes/exportar', [PacienteController::class, 'ExportarExcelPacientes'])->name('pacientes.exportar');
-    Route::resource('pacientes', PacienteController::class);
+    Route::resource('pacientes', PacienteController::class)->except(['show']);
 
 
     // Route::get('/admin/paciente/notify/dismiss/{notification_id}/{paciente_id}', 'NotifyController@dismiss')->name('paciente/notify/dismiss');

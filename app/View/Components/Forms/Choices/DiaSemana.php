@@ -26,8 +26,7 @@ class DiaSemana extends Component
      */
     public function render()
     {
-        $semana = Semana::readables();
-
-        return view('components.forms.choices.dia-semana')->with(['semana' => $semana]);
+        return view('components.forms.choices.dia-semana')
+            ->with(['semana' => Semana::readables()]);
     }
 }

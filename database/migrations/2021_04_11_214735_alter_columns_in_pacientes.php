@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
-
 class AlterColumnsInPacientes extends Migration
 {
     /**
@@ -24,16 +23,14 @@ class AlterColumnsInPacientes extends Migration
             $table->text('resultado_teste')->nullable()->change();
             $table->text('doenca_cronica')->nullable()->change();
             $table->text('sistema_saude')->nullable()->change();
-            $table->decimal('renda_residencia',9,2)->nullable()->change();
+            $table->decimal('renda_residencia', 9, 2)->nullable()->change();
         });
     }
 
     private function updateDatabaseBefore()
     {
-        DB::table('pacientes')->orderBy('id')->chunk(100, function($pacientes)
-        {
-            foreach ($pacientes as $paciente)
-            {
+        DB::table('pacientes')->orderBy('id')->chunk(100, function ($pacientes) {
+            foreach ($pacientes as $paciente) {
                 $acompanhamento_psicologico = $paciente->acompanhamento_psicologico ? @unserialize($paciente->acompanhamento_psicologico) : null;
                 $teste_utilizado = $paciente->teste_utilizado ? @unserialize($paciente->teste_utilizado) : null;
                 $resultado_teste = $paciente->resultado_teste ? @unserialize($paciente->resultado_teste) : null;

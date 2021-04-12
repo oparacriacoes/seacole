@@ -103,32 +103,10 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="position-relative form-group">
-                    <label for="acompanhamento_psicologico" class="">
-                        Acompanhamento psicológico
-                    </label>
-                    <br>
-                    @foreach($acompanhamento_psicologico as $key => $value)
-                    <div class="custom-checkbox custom-control custom-control-inline">
-                        <input type="checkbox" name="acompanhamento_psicologico[]" id="{{$key}}" class="custom-control-input" value="{{$key}}" @if(in_array($key, old('acompanhamento_psicologico', $paciente->acompanhamento_psicologico ?? []))) checked @endif>
-                        <label class="custom-control-label" for="{{$key}}">
-                            {{$value}}
-                        </label>
-                    </div>
-                    @endforeach
-                </div>
+                <x-forms.choices.acompanhamento-psicologico :value="$paciente->acompanhamento_pisocologico ?? []" />
             </div>
             <div class="col-md-3">
-                <div class="form-group">
-                    <label for="atendimento_semanal_psicologia">Atendimento semanal psicologia</label>
-                    @foreach($semana as $key => $value)
-                    <div class="position-relative1 form-check">
-                        <label class="form-check-label">
-                            <input name="atendimento_semanal_psicologia" type="radio" class="form-check-input" value="{{$key}}" @if($key == old('atendimento_semanal_psicologia', $paciente->atendimento_semanal_psicologia)) checked @endif> {{$value}}
-                        </label>
-                    </div>
-                    @endforeach
-                </div>
+                <x-forms.choices.dia-semana :value="$paciente->atendimento_semanal_psicologia" />
             </div>
             <div class="col-md-3">
                 <label for="horario_at_psicologia">Horário at. psicologia</label>

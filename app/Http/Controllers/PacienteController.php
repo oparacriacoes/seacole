@@ -14,8 +14,6 @@ use App\Psicologo;
 use App\EvolucaoSintoma;
 use App\User;
 use App\Articuladora;
-use App\Enums\AcompanhamentoPsicologico;
-use App\Enums\Semana;
 use App\Enums\SituacoesCaso;
 use App\Http\Requests\PacienteStoreRequest;
 use Maatwebsite\Excel\Facades\Excel;
@@ -68,8 +66,6 @@ class PacienteController extends Controller
         $articuladoras = Articuladora::all();
 
         $situacoes = SituacoesCaso::readables();
-        $acompanhamento_psicologico = AcompanhamentoPsicologico::readables();
-        $semana = Semana::readables();
 
         return view('pages.paciente.create')->with(compact(
             'paciente',
@@ -78,8 +74,6 @@ class PacienteController extends Controller
             'psicologos',
             'articuladoras',
             'situacoes',
-            'acompanhamento_psicologico',
-            'semana'
         ));
     }
 
@@ -99,8 +93,6 @@ class PacienteController extends Controller
     public function edit(Paciente $paciente)
     {
         $situacoes = SituacoesCaso::readables();
-        $acompanhamento_psicologico = AcompanhamentoPsicologico::readables();
-        $semana = Semana::readables();
 
         $agentes =  Agente::with('user:id,name')->select(['id', 'user_id'])->get();
         $medicos = Medico::with('user:id,name')->select(['id', 'user_id'])->get();
@@ -114,8 +106,6 @@ class PacienteController extends Controller
             'psicologos',
             'articuladoras',
             'situacoes',
-            'acompanhamento_psicologico',
-            'semana',
         ));
     }
 

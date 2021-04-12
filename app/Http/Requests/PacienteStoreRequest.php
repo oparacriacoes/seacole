@@ -40,6 +40,7 @@ class PacienteStoreRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:190'],
             'email' => ['email', 'max:190', 'nullable'],
+            'name_social' => $rulesToString,
             'fone_fixo' => $rulesToString,
             'fone_celular' => $rulesToString,
             'data_nascimento' => $rulesToDate,

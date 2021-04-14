@@ -7,7 +7,7 @@
                     <label for="exampleEmail11" class="">
                         Nome Completo (obrigatório)
                     </label>
-                    <input name="name" id="name" aria-describedby="nameHelp" placeholder="Nome Completo" type="text" class="required form-control" value="{{ old('name') }}">
+                    <input name="name" id="name" aria-describedby="nameHelp" placeholder="Nome Completo" type="text" class="required form-control" value="{{ old('name', $paciente->name) }}">
                 </div>
             </div>
             <div class="col-md-6">
@@ -15,7 +15,7 @@
                     <label for="exampleEmail11" class="">
                         Nome Social
                     </label>
-                    <input name="name_social" id="name_social" placeholder="Nome Social" type="text" class="form-control" value="{{ old('name_social') }}">
+                    <input name="name_social" id="name_social" placeholder="Nome Social" type="text" class="form-control" value="{{ old('name_social', $paciente->name_social) }}">
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
                     <label for="exampleEmail11" class="">
                         Telefone fixo
                     </label>
-                    <input name="fone_fixo" id="fone_fixo" placeholder="Somente número e com DDDD" type="text" class="form-control phone_with_ddd" value="{{ old('fone_fixo') }}">
+                    <input name="fone_fixo" id="fone_fixo" placeholder="Somente número e com DDDD" type="text" class="form-control phone_with_ddd" value="{{ old('fone_fixo', $paciente->fone_fixo) }}">
                 </div>
             </div>
             <div class="col-md-4">
@@ -34,7 +34,7 @@
                     <label for="exampleEmail11" class="">
                         Telefone celular
                     </label>
-                    <input name="fone_celular" id="fone_celular" placeholder="Somente número e com DDDD" type="text" class="form-control mobile_with_ddd" value="{{ old('fone_celular') }}">
+                    <input name="fone_celular" id="fone_celular" placeholder="Somente número e com DDDD" type="text" class="form-control mobile_with_ddd" value="{{ old('fone_celular', $paciente->fone_celular) }}">
                 </div>
             </div>
             <div class="col-md-4">
@@ -48,20 +48,20 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="name">Responsável</label>
-                    <input name="responsavel_residencia" type="text" class=" form-control" id="responsavel_residencia" aria-describedby="responsavel_residenciaHelp" value="{{ old('responsavel_residencia') }}">
+                    <input name="responsavel_residencia" type="text" class=" form-control" id="responsavel_residencia" aria-describedby="responsavel_residenciaHelp" value="{{ old('responsavel_residencia', $paciente->responsavel_residencia) }}">
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="name">Email</label>
-                    <input name="email" type="email" class=" form-control" id="email" aria-describedby="emailHelp" value="{{ old('email') }}">
+                    <input name="email" type="email" class=" form-control" id="email" aria-describedby="emailHelp" value="{{ old('email', $paciente->email) }}">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="name">CEP</label>
-                    <input name="endereco_cep" placeholder="Somente números" type="text" class=" form-control cep" id="endereco_cep" value="{{ old('endereco_cep') }}">
+                    <input name="endereco_cep" placeholder="Somente números" type="text" class=" form-control cep" id="endereco_cep" value="{{ old('endereco_cep', $paciente->endereco_cep) }}">
                 </div>
             </div>
         </div>
@@ -71,20 +71,20 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="name">Logradouro</label>
-                    <input name="endereco_rua" type="text" class=" form-control" id="endereco_rua" value="{{ old('endereco_rua') }}">
+                    <input name="endereco_rua" type="text" class=" form-control" id="endereco_rua" value="{{ old('endereco_rua', $paciente->endereco_rua) }}">
                 </div>
             </div>
 
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="name">Número</label>
-                    <input name="endereco_numero" type="text" class=" form-control" id="endereco_numero" value="{{ old('endereco_numero') }}">
+                    <input name="endereco_numero" type="text" class=" form-control" id="endereco_numero" value="{{ old('endereco_numero', $paciente->endereco_numero) }}">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="name">Complemento</label>
-                    <input name="endereco_complemento" type="text" class=" form-control" id="endereco_complemento" value="{{ old('endereco_complemento') }}">
+                    <input name="endereco_complemento" type="text" class=" form-control" id="endereco_complemento" value="{{ old('endereco_complemento, $paciente->endereco_complemento') }}">
                 </div>
             </div>
         </div>
@@ -94,26 +94,26 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="name">Bairro</label>
-                    <input name="endereco_bairro" type="text" class=" form-control" id="endereco_bairro" value="{{ old('endereco_bairro') }}">
+                    <input name="endereco_bairro" type="text" class=" form-control" id="endereco_bairro" value="{{ old('endereco_bairro', $paciente->endereco_bairro) }}">
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="name">Cidade</label>
-                    <input name="endereco_cidade" type="text" class=" form-control" id="endereco_cidade" value="{{ old('endereco_cidade') }}">
+                    <input name="endereco_cidade" type="text" class=" form-control" id="endereco_cidade" value="{{ old('endereco_cidade, $paciente->endereco_cidade') }}">
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="name">UF</label>
-                    <input name="endereco_uf" type="text" class=" form-control" id="endereco_uf" value="{{ old('endereco_uf') }}">
+                    <input name="endereco_uf" type="text" class=" form-control" id="endereco_uf" value="{{ old('endereco_uf', $paciente->endereco_uf) }}">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="name">Ponto de referência</label>
-                    <input name="ponto_referencia" type="text" class=" form-control" id="ponto_referencia" value="{{ old('ponto_referencia') }}">
+                    <input name="ponto_referencia" type="text" class=" form-control" id="ponto_referencia" value="{{ old('ponto_referencia', $paciente->ponto_referencia) }}">
                 </div>
             </div>
         </div>
@@ -121,56 +121,20 @@
 
         <div class="form-row">
             <div class="col-md-4">
-                <div class="position-relative form-group">
-                    <label for="exampleCustomSelect" class="">
-                        Identidade de genero
-                    </label>
-                    <select type="select" id="identidade_genero" name="identidade_genero" class="custom-select">
-                        <option value="">Selecione</option>
-                        <option @if(old('identidade_genero')==='mulher cis' ){{ 'selected' }} @endif>mulher cis</option>
-                        <option @if(old('identidade_genero')==='mulher trans' ){{ 'selected' }} @endif>mulher trans</option>
-                        <option @if(old('identidade_genero')==='homem cis' ){{ 'selected' }} @endif>homem cis</option>
-                        <option @if(old('identidade_genero')==='homem trans' ){{ 'selected' }} @endif>homem trans</option>
-                        <option @if(old('identidade_genero')==='não-binário' ){{ 'selected' }} @endif>não-binário</option>
-                        <option @if(old('identidade_genero')==='outro' ){{ 'selected' }} @endif>outro</option>
-                    </select>
-                </div>
+                <x-forms.choices.identidade-genero :value="$paciente->identidade_genero" />
             </div>
             <div class="col-md-4">
-                <div class="position-relative form-group">
-                    <label for="exampleCustomSelect" class="">
-                        Orientação sexual
-                    </label>
-                    <select type="select" id="orientacao_sexual" name="orientacao_sexual" class="custom-select">
-                        <option value="">Selecione</option>
-                        <option @if(old('orientacao_sexual')==='heterossexual' ){{ 'selected' }} @endif>heterossexual</option>
-                        <option @if(old('orientacao_sexual')==='homossexual' ){{ 'selected' }} @endif>homossexual</option>
-                        <option @if(old('orientacao_sexual')==='bissexual' ){{ 'selected' }} @endif>bissexual</option>
-                        <option @if(old('orientacao_sexual')==='outro' ){{ 'selected' }} @endif>outro</option>
-                    </select>
-                </div>
+                <x-forms.choices.orientacao-sexual :value="$paciente->orientacao_sexual" />
             </div>
             <div class="col-md-4">
-                <div class="position-relative form-group">
-                    <label for="exampleCustomSelect" class="">
-                        Raça / Cor
-                    </label>
-                    <select type="select" id="cor_raca" name="cor_raca" class="custom-select">
-                        <option value="">Selecione</option>
-                        <option @if(old('cor_raca')==='Preta' ){{ 'selected' }} @endif>Preta</option>
-                        <option @if(old('cor_raca')==='Parda' ){{ 'selected' }} @endif>Parda</option>
-                        <option @if(old('cor_raca')==='Branca' ){{ 'selected' }} @endif>Branca</option>
-                        <option @if(old('cor_raca')==='Amarela' ){{ 'selected' }} @endif>Amarela</option>
-                        <option @if(old('cor_raca')==='Indígena' ){{ 'selected' }} @endif>Indígena</option>
-                    </select>
-                </div>
+                <x-forms.choices.raca-cor :value="$paciente->cor_raca" />
             </div>
 
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
                         <label for="name">Nº Pessoas na Residência</label>
-                        <input name="numero_pessoas_residencia" type="number" class=" form-control" id="numero_pessoas_residencia" value="{{ old('numero_pessoas_residencia') }}">
+                        <input name="numero_pessoas_residencia" type="number" class=" form-control" id="numero_pessoas_residencia" value="{{ old('numero_pessoas_residencia', $paciente->numero_pessoas_residencia) }}">
                     </div>
                 </div>
                 <div class="col">
@@ -183,7 +147,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="renda_residencia">Valor exato da renda familiar</label>
-                        <input name="renda_residencia" type="text" placeholder="0.000,00" class=" form-control money" id="renda_residencia" value="{{ old('renda_residencia') }}">
+                        <input name="renda_residencia" type="text" placeholder="0.000,00" class=" form-control money" id="renda_residencia" value="{{ old('renda_residencia', $paciente->renda_residencia) }}">
                     </div>
                 </div>
                 <div class="col-12 col-md-3">
@@ -198,7 +162,7 @@
                     <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="e-mail"> e-mail</label></div>
                     <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="indicação de amigo, vizinho ou familiar"> indicação de amigo, vizinho ou familiar</label></div>
                     <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="Outro"> Outro</label></div>
-                    <input name="como_chegou_ao_projeto_outro" type="text" placeholder="Outro qual?" class=" form-control" id="como_chegou_ao_projeto_outro">
+                    <input name="como_chegou_ao_projeto_outro" type="text" placeholder="Outro? qual?" class=" form-control" id="como_chegou_ao_projeto_outro" value="{{old('como_chegou_ao_projeto_outro', $paciente->como_chegou_ao_projeto_outro)}}">
                 </div>
                 <div class="col">
                     <label for="nucleo_uneafro_qual">Núcleo da Uneafro: qual?</label>

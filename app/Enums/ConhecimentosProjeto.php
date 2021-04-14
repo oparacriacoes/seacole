@@ -5,10 +5,8 @@ namespace App\Enums;
 use Elao\Enum\ReadableEnum;
 use Illuminate\Support\Str;
 
-
 final class ConhecimentosProjeto extends ReadableEnum
 {
-
     public const NUCLEO = 'núcleo da Uneafro';
     public const ANUNCIO_CARTAZ = 'faixa ou cartaz na rua';
     public const AUTOMOVEL_SONORO = 'carro ou bicicleta de som';
@@ -19,8 +17,6 @@ final class ConhecimentosProjeto extends ReadableEnum
     public const EMAIL = 'e-mail';
     public const INDICACAO = 'indicação de amigo, vizinho ou familiar';
     public const OUTRO = 'Outro';
-
-
 
 
     public static function values(): array

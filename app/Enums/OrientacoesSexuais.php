@@ -4,8 +4,8 @@ namespace App\Enums;
 
 use Elao\Enum\ReadableEnum;
 
-class OrientacoesSexuais extends ReadableEnum {
-
+class OrientacoesSexuais extends ReadableEnum
+{
     public const HETEROSSEXUAL = 'heterossexual';
     public const HOMOSSEXUAL = 'homossexual';
     public const BISSEXUAL = 'bissexual';
@@ -31,5 +31,4 @@ class OrientacoesSexuais extends ReadableEnum {
             self::OUTRO => 'Outro',
         ];
     }
-
 }

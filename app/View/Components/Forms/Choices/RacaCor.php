@@ -7,7 +7,6 @@ use Illuminate\View\Component;
 
 class RacaCor extends Component
 {
-
     public $value;
     /**
      * Create a new component instance.

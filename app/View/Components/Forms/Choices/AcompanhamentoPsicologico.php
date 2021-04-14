@@ -7,7 +7,6 @@ use Illuminate\View\Component;
 
 class AcompanhamentoPsicologico extends Component
 {
-
     public $value;
 
     /**

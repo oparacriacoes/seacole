@@ -5,7 +5,6 @@ namespace App\Enums;
 use Elao\Enum\ReadableEnum;
 use Illuminate\Support\Str;
 
-
 final class NucleosUneafro extends ReadableEnum
 {
     public const CONCEICAO_EVARISTO = 'CONCEIÇÃO EVARISTO';

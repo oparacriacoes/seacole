@@ -4,7 +4,6 @@
     'value' => null,
 ])
 
-{{$value}}
 <select type="select" id="{{$property}}" name="{{$property}}" class="custom-select">
     <option value="">Selecione</option>
     @foreach($items as $key => $content)

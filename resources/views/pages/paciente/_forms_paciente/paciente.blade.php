@@ -151,56 +151,11 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-3">
-                    <label for="como_chegou_ao_projeto">Como chegou ao projeto?</label>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="núcleo da Uneafro"> núcleo da Uneafro</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="faixa ou cartaz na rua"> faixa ou cartaz na rua</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="carro ou bicicleta de som"> carro ou bicicleta de som</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="whatsapp"> whatsapp</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="instagram"> instagram</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="facebook"> facebook</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="twitter"> twitter</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="e-mail"> e-mail</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="indicação de amigo, vizinho ou familiar"> indicação de amigo, vizinho ou familiar</label></div>
-                    <div class="position-relative1 form-check"><label class="form-check-label"><input name="como_chegou_ao_projeto" type="radio" class="form-check-input" value="Outro"> Outro</label></div>
+                    <x-forms.choices.chegada-projeto :value="$paciente->como_chegou_ao_projeto_outro ?? []" />
                     <input name="como_chegou_ao_projeto_outro" type="text" placeholder="Outro? qual?" class=" form-control" id="como_chegou_ao_projeto_outro" value="{{old('como_chegou_ao_projeto_outro', $paciente->como_chegou_ao_projeto_outro)}}">
                 </div>
                 <div class="col">
-                    <label for="nucleo_uneafro_qual">Núcleo da Uneafro: qual?</label>
-                    <select type="select" id="nucleo_uneafro_qual" name="nucleo_uneafro_qual" class="custom-select">
-                        <option value="">Selecione</option>
-                        <option>CONCEIÇÃO EVARISTO</option>
-                        <option>UNEAFRO YABÁS</option>
-                        <option>MANDELA</option>
-                        <option>GUERREIROS ALVINÓPOLIS</option>
-                        <option>MARIELLE FRANCO</option>
-                        <option>KLEBER CRIOULO</option>
-                        <option>VILA FÁTIMA</option>
-                        <option>UNEAFRO MABEL ASSIS</option>
-                        <option>BOM PASTOR</option>
-                        <option>UNEAFRO ASSIS</option>
-                        <option>MARGARIDA ALVES</option>
-                        <option>DONA NAZINHA</option>
-                        <option>LUIZA MAHIN</option>
-                        <option>CLEMENTINA DE JESUS</option>
-                        <option>NÚCLEO LÁ DA LESTE</option>
-                        <option>SÉRGIO LAPALOMA</option>
-                        <option>SUELI CARNEIRO</option>
-                        <option>TIA JURA</option>
-                        <option>NOVA PALESTINA</option>
-                        <option>RAQUEL TRINDADE</option>
-                        <option>ASSATA SHAKUR</option>
-                        <option>ILDA MARTINS</option>
-                        <option>UNEAFRO MOGI</option>
-                        <option>CAROLINA MARIA DE JESUS</option>
-                        <option>UNEAFRO NA DISCIPLINA</option>
-                        <option>UNEAFRO QUILOMBAQUE</option>
-                        <option>XI DE AGOSTO</option>
-                        <option>EDUCAÇÃO LIBERTA</option>
-                        <option>ROSA PARKS</option>
-                        <option>ANTÔNIO CANDEIA FILHO</option>
-                        <option>UNEAFRO MSTC</option>
-                        <option>UNEAFRO LUZ</option>
-                    </select>
+                    <x-forms.choices.nucleo-uneafro :value="$paciente->nucleo_uneafro_qual" />
                 </div>
             </div>
         </div>

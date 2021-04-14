@@ -151,7 +151,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-3">
-                    <x-forms.choices.chegada-projeto :value="$paciente->como_chegou_ao_projeto_outro ?? []" />
+                    <x-forms.choices.chegada-projeto :value="$paciente->como_chegou_ao_projeto" />
                     <input name="como_chegou_ao_projeto_outro" type="text" placeholder="Outro? qual?" class=" form-control" id="como_chegou_ao_projeto_outro" value="{{old('como_chegou_ao_projeto_outro', $paciente->como_chegou_ao_projeto_outro)}}">
                 </div>
                 <div class="col">

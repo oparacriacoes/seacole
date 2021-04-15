@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SaudeMental extends Model
 {
+    protected $table = 'saude_mentals';
+
     protected $fillable = [
         'paciente_id',
         'quadro_atual',
@@ -24,6 +26,6 @@ class SaudeMental extends Model
      */
     public function pacientes()
     {
-        return $this->belongsTo('App\Paciente');
+        return $this->belongsTo(Paciente::class);
     }
 }

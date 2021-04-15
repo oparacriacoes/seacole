@@ -38,7 +38,7 @@
 
     <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
         <li class="nav-item">
-            <a class="nav-link active" id="tab0" data-toggle="tab" href="#tab-content-0">
+            <a class="nav-link @if(!session('tab')) active @endif" id="tab0" data-toggle="tab" href="#tab-content-0">
                 <span>Geral</span>
             </a>
         </li>
@@ -53,7 +53,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="tab4" data-toggle="tab" href="#tab-content-3">
+            <a class="nav-link @if(session('tab') == 'saude_mental') active @endif" id="tab4" data-toggle="tab" href="#tab-content-3">
                 <span>Saúde mental</span>
             </a>
         </li>
@@ -74,10 +74,31 @@
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+        <div class="tab-pane tabs-animation fade @if(!session('tab')) show active @endif" id="tab-content-0" role="tabpanel">
             @include('pages.paciente._forms_edit.paciente', [
                 'paciente' => $paciente,
             ])
+        </div>
+
+        <div class="tab-pane tabs-animation fade @if(session('tab') == 'saude_mental') show active @endif" id="tab-content-3" role="tabpanel">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title">Saúde mental</h5>
+                    @include('pages.paciente._forms_edit.saude_mental', [
+                        'paciente' => $paciente,
+                        'saude_mental' => $saude_mental,
+                    ])
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane tabs-animation fade" id="tab-content-5" role="tabpanel">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title">Insumos Oferecidos pelo Projeto</h5>
+                    @include('pages.paciente._forms_edit.insumos', ['paciente' => $paciente, 'insumos' => $insumos])
+                </div>
+            </div>
         </div>
     </div>
 </div>

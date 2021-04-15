@@ -95,6 +95,9 @@ class PacienteController extends Controller
         $psicologos = Psicologo::with('user:id,name')->select(['id', 'user_id'])->get();
         $articuladoras = Articuladora::all();
 
+        $insumos = $paciente->insumos_oferecidos()->first() ?? new InsumosOferecido();
+        $saude_mental = $paciente->saude_mental()->first() ?? new SaudeMental();
+
         return view('pages.paciente.edit', compact(
             'paciente',
             'agentes',
@@ -102,6 +105,8 @@ class PacienteController extends Controller
             'psicologos',
             'articuladoras',
             'situacoes',
+            'insumos',
+            'saude_mental'
         ));
     }
 

@@ -183,7 +183,7 @@ class Paciente extends Model
 
     public function saude_mental()
     {
-        return $this->hasMany('App\SaudeMental');
+        return $this->hasOne(SaudeMental::class);
     }
 
     public function servico_internacao()

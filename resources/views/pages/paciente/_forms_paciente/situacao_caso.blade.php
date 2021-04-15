@@ -103,7 +103,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <x-forms.choices.acompanhamento-psicologico :value="$paciente->acompanhamento_pisocologico ?? []" />
+                <x-forms.choices.acompanhamento-psicologico :value="$paciente->acompanhamento_psicologico ?? []" />
             </div>
             <div class="col-md-3">
                 <x-forms.choices.dia-semana :value="$paciente->atendimento_semanal_psicologia" />

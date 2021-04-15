@@ -3,5 +3,5 @@
         Acompanhamento psicológico
     </label>
     <br>
-    <x-forms.check-group :items="$acompanhamentos_psicologico" property="atendimento_semanal_psicologia" :value="$value" />
+    <x-forms.check-group :items="$acompanhamentos_psicologico" property="acompanhamento_psicologico" :value="$value" />
 </div>

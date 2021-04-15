@@ -84,7 +84,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="name">Complemento</label>
-                    <input name="endereco_complemento" type="text" class=" form-control" id="endereco_complemento" value="{{ old('endereco_complemento, $paciente->endereco_complemento') }}">
+                    <input name="endereco_complemento" type="text" class="form-control" id="endereco_complemento" value="{{ old('endereco_complemento', $paciente->endereco_complemento) }}">
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="name">Cidade</label>
-                    <input name="endereco_cidade" type="text" class=" form-control" id="endereco_cidade" value="{{ old('endereco_cidade, $paciente->endereco_cidade') }}">
+                    <input name="endereco_cidade" type="text" class=" form-control" id="endereco_cidade" value="{{ old('endereco_cidade', $paciente->endereco_cidade) }}">
                 </div>
             </div>
             <div class="col-md-2">

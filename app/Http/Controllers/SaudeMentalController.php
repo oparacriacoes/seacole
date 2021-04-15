@@ -26,8 +26,9 @@ class SaudeMentalController extends Controller
                 ->with('tab', 'saude_mental');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return $e->getMessage();
-            return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
+            return back()
+                ->with('error', 'Não foi possível realizar a operação.')
+                ->with('tab', 'saude_mental');
         }
     }
 }

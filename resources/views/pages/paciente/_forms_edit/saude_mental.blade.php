@@ -2,19 +2,9 @@
     @csrf
     <div class="form-row">
         <div class="col-md-12">
-            <div class="form-group">
-                <label for="quadro_atual">Quadro atual intensifica medos, angústias, ansiedade, tristezas ou preocupação?</label>
-                <div class="position-relative1 form-check">
-                    <label class="form-check-label">
-                        <input name="quadro_atual" type="radio" class="form-check-input" value="1" @if($saude_mental->quadro_atual === true) checked @endif>Sim
-                    </label>
-                </div>
-                <div class="position-relative1 form-check">
-                    <label class="form-check-label">
-                        <input name="quadro_atual" type="radio" class="form-check-input" value="0"  @if($saude_mental->quadro_atual === false) checked @endif> Não
-                    </label>
-                </div>
-            </div>
+            <x-forms.choices.yes-or-not :value="$saude_mental->quadro_atual" property="quadro_atual">
+                Quadro atual intensifica medos, angústias, ansiedade, tristezas ou preocupação?
+            </x-forms.choices.yes-or-not>
         </div>
         <div class="col-md-12">
             <div class="form-group">

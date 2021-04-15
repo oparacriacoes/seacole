@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -105,6 +106,11 @@ class Paciente extends Model
         'doenca_cronica' => 'array',
         'sistema_saude' => 'array',
     ];
+
+    public function getAgeAttribute()
+    {
+        return $this->data_nascimento->diffInYears(now());
+    }
 
 
     /**

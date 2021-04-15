@@ -15,7 +15,7 @@ class AlterColumnsInPacientes extends Migration
      */
     public function up()
     {
-        $this->updateDatabaseBefore();
+        $this->updateTableBefore();
 
         Schema::table('pacientes', function (Blueprint $table) {
             $table->text('acompanhamento_psicologico')->nullable()->change();
@@ -27,7 +27,7 @@ class AlterColumnsInPacientes extends Migration
         });
     }
 
-    private function updateDatabaseBefore()
+    private function updateTableBefore()
     {
         DB::table('pacientes')->orderBy('id')->chunk(100, function ($pacientes) {
             foreach ($pacientes as $paciente) {

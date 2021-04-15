@@ -20,10 +20,10 @@ class AddColumnsInPacientes extends Migration
             $table->softDeletes()->after('updated_at');
         });
 
-        $this->updateDatabase();
+        $this->updateTableAfter();
     }
 
-    private function updateDatabase()
+    private function updateTableAfter()
     {
         $pacientes = Paciente::with('user')->get();
 

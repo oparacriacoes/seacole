@@ -10,7 +10,7 @@ class ServicoInternacao extends Model
         'paciente_id',
         'precisou_servico',
         'precisou_servico_outro',
-        'quant_ida_servico',
+        'quant_ida_servico', //unsignedInterger
         'data_ultima_ida_servico_de_saude',
         'recebeu_med_covid',
         'recebeu_med_covid_outro',
@@ -21,16 +21,14 @@ class ServicoInternacao extends Model
         'precisou_ambulancia',
         'local_internacao',
         'nome_hospital',
-        'tempo_internacao',
+        'tempo_internacao', //unsignedInterger
         'data_entrada_internacao',
         'data_alta_hospitalar',
     ];
 
-
     /**
      * Mutators and Casts
      */
-
     protected $dates = [
         'data_ultima_ida_servico_de_saude',
         'data_entrada_internacao',
@@ -39,11 +37,18 @@ class ServicoInternacao extends Model
         'updated_at'
     ];
 
+    protected $casts = [
+        'precisou_servico' => 'array',
+        'recebeu_med_covid' => 'array',
+        'teve_algum_problema' => 'array',
+        'local_internacao' => 'array',
+        'precisou_internacao' => 'boolean',
+        'precisou_ambulancia' => 'boolean',
+    ];
 
     /**
      * Relations
      */
-
     public function pacientes()
     {
         return $this->belongsTo('App\Paciente');

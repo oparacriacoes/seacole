@@ -12,9 +12,9 @@ class QuadroAtual extends Model
       'paciente_id',
       'primeira_sintoma',
       'sintomas_manifestados',
-      'temperatura_max',
-      'saturacao_baixa',
-      'frequencia_max',
+      'temperatura_max', // decimal
+      'saturacao_baixa', // integer
+      'frequencia_max', //  integer
       'data_temp_max',
       'data_sat_max',
       'data_freq_max',
@@ -24,11 +24,9 @@ class QuadroAtual extends Model
       'algo_mais_sobre_caso',
     ];
 
-
     /**
      * Mutators and Casts
      */
-
     protected $dates = [
         'data_temp_max',
         'data_sat_max',
@@ -37,11 +35,15 @@ class QuadroAtual extends Model
         'updated_at'
     ];
 
+    protected $casts = [
+        'sequelas' => 'array',
+        'sintomas_manifestados' => 'array',
+    ];
+
 
     /**
      * Relations
      */
-
     public function paciente()
     {
         return $this->belongsTo('App\Paciente');

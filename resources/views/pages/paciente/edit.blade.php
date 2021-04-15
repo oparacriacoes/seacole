@@ -8,8 +8,10 @@
                     <i class="pe-7s-graph text-success">
                     </i>
                 </div>
-                <div>Pacientes
-                    <div class="page-title-subheading">Projeto Agentes Populares de Saúde.
+                <div>
+                    {{ $paciente->name }} - {{ $paciente->age }} anos
+                    <div class="page-title-subheading">
+                        Diagnóstico de Covid-19 - {{$paciente->sintomas_iniciais}}
                     </div>
                 </div>
             </div>

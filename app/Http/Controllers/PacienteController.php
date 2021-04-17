@@ -97,6 +97,7 @@ class PacienteController extends Controller
 
         $insumos = $paciente->insumos_oferecidos()->first() ?? new InsumosOferecido();
         $saude_mental = $paciente->saude_mental()->first() ?? new SaudeMental();
+        $servico_internacao = $paciente->servico_internacao()->first() ?? new ServicoInternacao();
 
         return view('pages.paciente.edit', compact(
             'paciente',
@@ -106,7 +107,8 @@ class PacienteController extends Controller
             'articuladoras',
             'situacoes',
             'insumos',
-            'saude_mental'
+            'saude_mental',
+            'servico_internacao'
         ));
     }
 

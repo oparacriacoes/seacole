@@ -43,8 +43,8 @@ class ServicoInternacaoUpdateRequest extends FormRequest
             'tempo_internacao' => $rulesToInteger,
             'precisou_servico_outro' => $rulesToString,
             'recebeu_med_covid_outro' => $rulesToString,
-            'nome_medicamento' => $rulesToString,
-            'descreva_problema' => $rulesToString,
+            'nome_medicamento' => BaseRules::TEXT,
+            'descreva_problema' => BaseRules::TEXT,
             'nome_hospital' => $rulesToString,
         ];
     }

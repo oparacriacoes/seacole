@@ -65,7 +65,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="tab6" data-toggle="tab" href="#tab-content-5">
+            <a class="nav-link @if(session('tab') == 'insumos_oferecidos') active @endif" id="tab6" data-toggle="tab" href="#tab-content-5">
                 <span>Insumos Oferecidos pelo Projeto</span>
             </a>
         </li>
@@ -94,7 +94,7 @@
             </div>
         </div>
 
-        <div class="tab-pane tabs-animation fade" id="tab-content-5" role="tabpanel">
+        <div class="tab-pane tabs-animation fade @if(session('tab') == 'insumos_oferecidos') show active @endif" id="tab-content-5" role="tabpanel">
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Insumos Oferecidos pelo Projeto</h5>

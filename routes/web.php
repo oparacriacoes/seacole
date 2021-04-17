@@ -54,7 +54,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('paciente/monitoramento/{id}', MonitoramentoController::class)->name('paciente.monitoramento');
     Route::post('paciente/saude-mental/{id}', SaudeMentalController::class)->name('paciente.saude-mental');
     Route::post('paciente/internacao/{id}', ServicoInternacaoController::class)->name('paciente.internacao');
-    Route::post('paciente/insumos/{id}', InsumosOferecidoController::class)->name('paciente.insumos');
+    Route::post('paciente/insumos/{paciente}', InsumosOferecidoController::class)->name('paciente.insumos');
 
     Route::get('pacientes/exportar', [PacienteController::class, 'ExportarExcelPacientes'])->name('pacientes.exportar');
     Route::resource('pacientes', PacienteController::class)->except(['show']);

@@ -11,18 +11,19 @@ class InsumosOferecidoController extends Controller
 {
     use SerializerFields;
 
-    public function __invoke(InsumosOferecidoUpdateRequest $request, $id)
+    public function __invoke(InsumosOferecidoUpdateRequest $request, Paciente $paciente)
     {
-        $pacient = Paciente::find($id);
-        $request_data = $this->serializerFields(['precisa_tipo_ajuda', 'tratamento_financiado', 'material_entregue'], $request->validated());
+        $formData = $request->validated();
 
         try {
-            $pacient->insumos_oferecidos()->updateOrCreate(['paciente_id' => $pacient->id], $request_data);
+            $paciente->insumos_oferecidos()->updateOrCreate(['paciente_id' => $paciente->id], $formData);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return back()->with('error', 'Não foi  possível realizar a operação.');
         }
 
-        return back()->with('success', 'Dados atualizados com sucesso.');
+        return back()
+            ->with('success', 'Dados atualizados com sucesso.')
+            ->with('tab', 'insumos_oferecidos');
     }
 }

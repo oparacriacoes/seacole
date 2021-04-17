@@ -34,20 +34,21 @@
 } ?>>
                     <label class="form-check-label" for="hospital_privado">Hospital privado</label>
                 </div>
+                <br>
                 <div class="form-check form-check-inline">
-                    <input name="precisou_servico_outro" class="form-control" type="text" placeholder="outro (qual?)" value="@if($internacao) {{ $internacao->precisou_servico_outro }} @endif">
+                    <input name="precisou_servico_outro" class="form-control" type="text" placeholder="Outro" value="{{ old('precisou_servico_outro', $servico_internacao->precisou_servico_outro) }}">
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="quant_ida_servico">Quantas idas a serviços de saúde?</label>
-                <input name="quant_ida_servico" type="text" placeholder="somente números" class=" form-control" id="quant_ida_servico" value="@if($internacao) {{ $internacao->quant_ida_servico }} @endif">
+                <label for="quant_ida_servico">Idas aos serviços de saúde</label>
+                <input name="quant_ida_servico" type="number" min="0" class="form-control" id="quant_ida_servico" value="{{ old('quant_ida_servico', $servico_internacao->quant_ida_servico) }}">
             </div>
         </div>
         <div class="col-md-3">
-            <x-forms.input-date property="data_ultima_ida_servico_de_saude" :value="$internacao->data_ultima_ida_servico_de_saude">
-                Data da última ida a serviço de saúde
+            <x-forms.input-date property="data_ultima_ida_servico_de_saude" :value="$servico_internacao->data_ultima_ida_servico_de_saude">
+                Última ida a serviço de saúde
             </x-forms.input-date>
         </div>
     </div>
@@ -131,7 +132,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="nome_medicamento">Escreva o nome do medicamento prescrito</label>
-                <textarea name="nome_medicamento" id="nome_medicamento" class="form-control">@if($internacao) {{ $internacao->nome_medicamento }} @endif</textarea>
+                <textarea name="nome_medicamento" id="nome_medicamento" class="form-control">{{ old('nome_medicamento', $servico_internacao->nome_medicamento) }}</textarea>
             </div>
         </div>
     </div>
@@ -185,35 +186,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="descreva_problema">Descreva o problema</label>
-                <textarea name="descreva_problema" id="descreva_problema" class="form-control">@if($internacao) {{ $internacao->descreva_problema }} @endif</textarea>
-            </div>
-        </div>
-    </div>
-
-    <div class="divider">
-    </div>
-
-    <div class="form-row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="precisou_internacao">Precisou de internação pelo quadro (suspeito ou confirmado)?</label>
-                <div class="position-relative1 form-check"><label class="form-check-label"><input name="precisou_internacao" type="radio" class="form-check-input" value="sim" <?php if ($internacao && $internacao->precisou_internacao === 'sim') {
-    echo 'checked=checked';
-} ?>> Sim</label></div>
-                <div class="position-relative1 form-check"><label class="form-check-label"><input name="precisou_internacao" type="radio" class="form-check-input" value="não" <?php if ($internacao && $internacao->precisou_internacao === 'não') {
-    echo 'checked=checked';
-} ?>> Não</label></div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="precisou_ambulancia">Precisou de ambulância financiada pelo projeto?</label>
-                <div class="position-relative1 form-check"><label class="form-check-label"><input name="precisou_ambulancia" type="radio" class="form-check-input" value="sim" <?php if ($internacao && $internacao->precisou_ambulancia === 'sim') {
-    echo 'checked=checked';
-} ?>> Sim</label></div>
-                <div class="position-relative1 form-check"><label class="form-check-label"><input name="precisou_ambulancia" type="radio" class="form-check-input" value="não" <?php if ($internacao && $internacao->precisou_ambulancia === 'não') {
-    echo 'checked=checked';
-} ?>> Não</label></div>
+                <textarea name="descreva_problema" id="descreva_problema" class="form-control">{{ old('descreva_problema', $servico_internacao->descreva_problema) }}</textarea>
             </div>
         </div>
     </div>
@@ -223,6 +196,44 @@
 
     <div class="form-row">
         <div class="col-md-6">
+            <x-forms.choices.yes-or-not :value="$servico_internacao->precisou_internacao" propery="precisou_internacao">
+                Precisou de internação pelo quadro (suspeito ou confirmado)?
+            </x-forms.choices.yes-or-not>
+        </div>
+        <div class="col-md-6">
+            <x-forms.choices.yes-or-not :value="$servico_internacao->precisou_ambulancia" propery="precisou_ambulancia">
+                Precisou de ambulância financiada pelo projeto?
+            </x-forms.choices.yes-or-not>
+        </div>
+    </div>
+
+    <div class="divider">
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="nome_hospital">Nome do Hospital de internação</label>
+                <input name="nome_hospital" id="nome_hospital" type="text" class="form-control" value="{{ old('nome_hospital', $servico_internacao->nome_hospital) }}">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="tempo_internacao">Tempo de internação</label>
+                <input name="tempo_internacao" id="tempo_internacao" placeholder="Em dias" type="number" class="form-control" value="old('tempo_internacao', $servico_internacao->tempo_internacao)">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <x-forms.input-date property="data_entrada_internacao" :value="$servico_internacao->data_entrada_internacao">
+                Entrada da internação
+            </x-forms.input-date>
+        </div>
+        <div class="col-md-3">
+            <x-forms.input-date property="data_alta_hospitalar" :value="$servico_internacao->data_alta_hospitalar">
+                Início monitoramento Agentes
+            </x-forms.input-date>
+        </div>
+        <div class="col-md-12 mt-2">
             <div class="form-group">
                 <label for="local_internacao"><strong>Local de internação</strong></label><br />
                 <div class="form-check form-check-inline">
@@ -257,34 +268,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="nome_hospital">Nome do Hospital de internação</label>
-                <input name="nome_hospital" id="nome_hospital" type="text" class="form-control" value="@if($internacao) {{ $internacao->nome_hospital }} @endif">
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="tempo_internacao">Tempo de internação</label>
-                <input name="tempo_internacao" id="tempo_internacao" placeholder="Em dias" type="number" class="form-control" value="old('tempo_internacao', $internacao->tempo_internacao ?? null)">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <x-forms.input-date property="data_entrada_internacao" :value="$internacao->data_entrada_internacao">
-                Data de entrada da internação
-            </x-forms.input-date>
-        </div>
-        <div class="col-md-4">
-            <x-forms.input-date property="data_alta_hospitalar" :value="$internacao->data_alta_hospitalar">
-                Data início monitoramento Agentes
-            </x-forms.input-date>
-        </div>
     </div>
 
 
     <div class="position-relatives row form-check">
-        <div class="col-sm-12 pt-2 text-center">
-            <button class="btn btn-secondary">Enviar</button>
+        <div class="col-sm-12 pt-2">
+            <button class="btn btn-primary">Salvar</button>
         </div>
     </div>
 </form>

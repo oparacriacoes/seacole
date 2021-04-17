@@ -179,7 +179,7 @@ class Paciente extends Model
 
     public function insumos_oferecidos()
     {
-        return $this->hasMany('App\InsumosOferecido');
+        return $this->hasOne(InsumosOferecido::class);
     }
 
     public function quadro_atual()

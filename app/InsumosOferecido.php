@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class InsumosOferecido extends Model
 {
+
+    protected $table = 'insumos_oferecidos';
+
     protected $fillable = [
         'paciente_id',
         'condicao_ficar_isolada',
@@ -39,6 +42,6 @@ class InsumosOferecido extends Model
      */
     public function pacientes()
     {
-        return $this->belongsTo('App\Paciente');
+        return $this->belongsTo(Paciente::class);
     }
 }

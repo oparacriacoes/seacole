@@ -101,11 +101,6 @@
                     @include('pages.paciente._forms_edit.servicos_referencia', [
                         'paciente' => $paciente,
                         'servico_internacao' => $servico_internacao,
-                        'internacao_servico' => [],
-                        'internacao_remedio' => [],
-                        'internacao_problema' => [],
-                        'internacao' => [],
-                        'internacao_local' => [],
                     ])
                 </div>
             </div>

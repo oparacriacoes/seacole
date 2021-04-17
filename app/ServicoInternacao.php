@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class ServicoInternacao extends Model
 {
 
-    protected $table = 'servico_internacoes';
+    protected $table = 'servico_internacaos';
 
     protected $fillable = [
         'paciente_id',
         'precisou_servico',
         'precisou_servico_outro',
-        'quant_ida_servico', //unsignedInterger
+        'quant_ida_servico',
         'data_ultima_ida_servico_de_saude',
         'recebeu_med_covid',
         'recebeu_med_covid_outro',
@@ -24,7 +24,7 @@ class ServicoInternacao extends Model
         'precisou_ambulancia',
         'local_internacao',
         'nome_hospital',
-        'tempo_internacao', //unsignedInterger
+        'tempo_internacao',
         'data_entrada_internacao',
         'data_alta_hospitalar',
     ];

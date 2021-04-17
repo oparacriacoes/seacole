@@ -32,7 +32,7 @@ final class ServicosSaudeEnum extends ReadableEnum
             self::UBS => 'UBS (Unidade Básica de Saúde - posto de saúde)',
             self::UPA => 'UPA (Unidade de Pronto Atendimento)',
             self::AMA => 'AMA',
-            self::HOSPITAL_PUBLICO => 'Quinta',
+            self::HOSPITAL_PUBLICO => 'Hospital Público',
             self::HOSPITAL_PRIVADO => 'Hospital Privado',
             self::OUTRO => 'Outro',
         ];

@@ -60,7 +60,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="tab5" data-toggle="tab" href="#tab-content-4">
+            <a class="nav-link @if(session('tab') == 'servicos_internacao') active @endif" id="tab5" data-toggle="tab" href="#tab-content-4">
                 <span>Serviços de Referência e Internação</span>
             </a>
         </li>
@@ -89,6 +89,23 @@
                     @include('pages.paciente._forms_edit.saude_mental', [
                         'paciente' => $paciente,
                         'saude_mental' => $saude_mental,
+                    ])
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane tabs-animation fade @if(session('tab') == 'servicos_internacao') show active @endif" id="tab-content-4" role="tabpanel">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title">Serviços de Referência e Internação</h5>
+                    @include('pages.paciente._forms_edit.servicos_referencia', [
+                        'paciente' => $paciente,
+                        'servico_internacao' => $servico_internacao,
+                        'internacao_servico' => [],
+                        'internacao_remedio' => [],
+                        'internacao_problema' => [],
+                        'internacao' => [],
+                        'internacao_local' => [],
                     ])
                 </div>
             </div>

@@ -194,6 +194,6 @@ class Paciente extends Model
 
     public function servico_internacao()
     {
-        return $this->hasMany('App\ServicoInternacao');
+        return $this->hasMany(ServicoInternacao::class);
     }
 }

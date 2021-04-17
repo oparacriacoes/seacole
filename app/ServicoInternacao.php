@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServicoInternacao extends Model
 {
+
+    protected $table = 'servico_internacoes';
+
     protected $fillable = [
         'paciente_id',
         'precisou_servico',
@@ -51,6 +54,6 @@ class ServicoInternacao extends Model
      */
     public function pacientes()
     {
-        return $this->belongsTo('App\Paciente');
+        return $this->belongsTo(Paciente::class);
     }
 }

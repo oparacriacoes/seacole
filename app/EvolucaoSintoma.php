@@ -6,29 +6,52 @@ use Illuminate\Database\Eloquent\Model;
 
 class EvolucaoSintoma extends Model
 {
-    protected $fillable = [
-    'paciente_id',
-    'data_monitoramento',
-    'horario_monotiramento',
-    'sintomas_atuais',
-    'sintomas_outro',
-    'temperatura_atual',
-    'frequencia_cardiaca_atual',
-    'algum_sinal',
-    'saturacao_atual',
-    'pressao_arterial_atual',
-    'equipe_medica',
-    'frequencia_respiratoria_atual',
-    'medicamento',
-    'fazendo_uso_pic',
-    'fez_escalapes',
-    'melhora_sintoma_escaldapes',
-    'fes_inalacao',
-    'melhoria_sintomas_inalacao',
-  ];
+    protected $table = 'evolucao_sintomas';
 
-    public function paciente()
+    protected $fillable = [
+        'paciente_id',
+        'data_monitoramento',
+        'horario_monotiramento',
+        'sintomas_atuais',
+        'sintomas_outro',
+        'temperatura_atual',
+        'frequencia_cardiaca_atual',
+        'algum_sinal',
+        'saturacao_atual',
+        'pressao_arterial_atual',
+        'equipe_medica',
+        'frequencia_respiratoria_atual',
+        'medicamento',
+        'fazendo_uso_pic',
+        'fez_escalapes',
+        'melhora_sintoma_escaldapes',
+        'fes_inalacao',
+        'melhoria_sintomas_inalacao',
+    ];
+
+    /**
+     * Mutators and Casts
+     */
+    protected $dates = [
+        'data_monitoramento',
+        'created_at',
+        'updated_at'
+    ];
+
+    protected $casts = [
+        'sintomas_atuais' => 'array',
+        'algum_sinal' => 'boolean',
+        'equipe_medica' => 'boolean',
+        'fazendo_uso_pic' => 'boolean',
+        'fez_escalapes' => 'boolean',
+    ];
+
+
+    /**
+     * Relations
+     */
+    public function pacientes()
     {
-        return $this->belongsTo('App\Paciente');
+        return $this->belongsTo(Paciente::class);
     }
 }

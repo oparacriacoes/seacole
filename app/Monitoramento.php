@@ -11,13 +11,13 @@ class Monitoramento extends Model
     protected $fillable = [
         'paciente_id',
         'data_monitoramento',
-        'horario_monotiramento', //time
+        'horario_monotiramento',
         'sintomas_atuais',
         'sintomas_outro',
-        'temperatura_atual', //decimal
-        'saturacao_atual', //integer
-        'frequencia_respiratoria_atual', // integer
-        'frequencia_cardiaca_atual', //integer
+        'temperatura_atual',
+        'saturacao_atual',
+        'frequencia_respiratoria_atual',
+        'frequencia_cardiaca_atual',
         'pressao_arterial_atual',
         'medicamento',
         'algum_sinal',
@@ -52,6 +52,6 @@ class Monitoramento extends Model
      */
     public function pacientes()
     {
-        return $this->belongsTo('App\Paciente');
+        return $this->belongsTo(Paciente::class);
     }
 }

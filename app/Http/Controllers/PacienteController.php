@@ -98,6 +98,7 @@ class PacienteController extends Controller
         $saude_mental = $paciente->saude_mental()->first() ?? new SaudeMental();
         $servico_internacao = $paciente->servico_internacao()->first() ?? new ServicoInternacao();
         $quadro_atual = $paciente->quadro_atual()->first() ?? new QuadroAtual();
+        $monitoramento = $paciente->monitoramento()->first() ?? new Monitoramento();
 
         return view('pages.paciente.edit', compact(
             'paciente',
@@ -109,7 +110,8 @@ class PacienteController extends Controller
             'insumos',
             'saude_mental',
             'servico_internacao',
-            'quadro_atual'
+            'quadro_atual',
+            'monitoramento'
         ));
     }
 

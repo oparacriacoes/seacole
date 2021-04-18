@@ -11,7 +11,7 @@ class Monitoramento extends Model
     protected $fillable = [
         'paciente_id',
         'data_monitoramento',
-        'horario_monotiramento',
+        'horario_monitoramento',
         'sintomas_atuais',
         'sintomas_outro',
         'temperatura_atual',

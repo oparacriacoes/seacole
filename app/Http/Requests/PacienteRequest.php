@@ -20,7 +20,7 @@ class PacienteRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'renda_residencia' => (string)Str::of($this->renda_residencia)->replace('.', '')->replace(',', '.')
+            'renda_residencia' => $this->renda_residencia ? (string)Str::of($this->renda_residencia)->replace('.', '')->replace(',', '.') : null
         ]);
     }
 

@@ -138,11 +138,9 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="form-group">
-                        <label for="name">Recebe auxílio emergencial</label>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input" value="sim" @if(old('auxilio_emergencial')==='sim' ){{ 'checked' }} @endif> Sim</label></div>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="auxilio_emergencial" type="radio" class="form-check-input" value="não" @if(old('auxilio_emergencial')==='não' ){{ 'checked' }} @endif> Não</label></div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$paciente->auxilio_emergencial" property="auxilio_emergencial">
+                        Recebe auxílio emergencial
+                    </x-forms.choices.yes-or-not>
                 </div>
                 <div class="col">
                     <div class="form-group">

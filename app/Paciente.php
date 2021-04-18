@@ -104,6 +104,18 @@ class Paciente extends Model
         'resultado_teste' => 'array',
         'doenca_cronica' => 'array',
         'sistema_saude' => 'array',
+
+        'auxilio_emergencial' => 'boolean',
+        'tuberculose' => 'boolean',
+        'tabagista' => 'boolean',
+        'cronico_alcool' => 'boolean',
+        'outras_drogas' => 'boolean',
+        'gestante' => 'boolean',
+        'amamenta' => 'boolean',
+        'gestacao_alto_risco' => 'boolean',
+        'pos_parto' => 'boolean',
+        'acompanhamento_ubs' => 'boolean',
+        'acompanhamento_medico' => 'boolean',
     ];
 
     public function getAgeAttribute()

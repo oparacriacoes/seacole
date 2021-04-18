@@ -16,40 +16,24 @@
 
             <div class="form-row">
                 <div class="col-md-3">
-                    <div class="position-relative form-group">
-                        <div class="form-group">
-                            <label for="name">Já teve tuberculose?</label>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tuberculose" type="radio" class="form-check-input" value="sim" @if(old('tuberculose')==='sim' ){{ 'checked' }} @endif> Sim</label></div>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tuberculose" type="radio" class="form-check-input" value="não" @if(old('tuberculose')==='não' ){{ 'checked' }} @endif> Não</label></div>
-                        </div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$paciente->tuberculose" property="tuberculose">
+                        Já teve tuberculose?
+                    </x-forms.choices.yes-or-not>
                 </div>
                 <div class="col-md-3">
-                    <div class="position-relative form-group">
-                        <div class="form-group">
-                            <label for="name">É tabagista?</label>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input" value="sim" @if(old('tabagista')==='sim' ){{ 'checked' }} @endif> Sim</label></div>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="tabagista" type="radio" class="form-check-input" value="não" @if(old('tabagista')==='não' ){{ 'checked' }} @endif> Não</label></div>
-                        </div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$paciente->tabagista" property="tabagista">
+                        É tabagista?
+                    </x-forms.choices.yes-or-not>
                 </div>
                 <div class="col-md-3">
-                    <div class="position-relative form-group">
-                        <div class="form-group">
-                            <label for="name">Faz uso crônico de alcool?</label>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input" value="sim" @if(old('cronico_alcool')==='sim' ){{ 'checked' }} @endif> Sim</label></div>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="cronico_alcool" type="radio" class="form-check-input" value="não" @if(old('cronico_alcool')==='não' ){{ 'checked' }} @endif> Não</label></div>
-                        </div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$paciente->cronico_alcool" property="cronico_alcool">
+                        Faz uso crônico de alcool?
+                    </x-forms.choices.yes-or-not>
                 </div>
                 <div class="col-md-3">
-                    <div class="position-relative form-group">
-                        <div class="form-group">
-                            <label for="name">Faz uso crônico de outras drogas?</label>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input" value="sim" @if(old('outras_drogas')==='sim' ){{ 'checked' }} @endif> Sim</label></div>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="outras_drogas" type="radio" class="form-check-input" value="não" @if(old('outras_drogas')==='não' ){{ 'checked' }} @endif> Não</label></div>
-                        </div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$paciente->outras_drogas" property="outras_drogas">
+                        Faz uso crônico de outras drogas?
+                    </x-forms.choices.yes-or-not>
                 </div>
             </div>
 
@@ -66,42 +50,26 @@
 
             <div class="form-row">
                 <div class="col-md-3">
-                    <div class="position-relative form-group">
-                        <div class="form-group">
-                            <label for="name">Está gestante?</label>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestante" type="radio" class="form-check-input" value="sim" @if(old('gestante')==='sim' ){{ 'checked' }} @endif> Sim</label></div>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestante" type="radio" class="form-check-input" value="não" @if(old('gestante')==='não' ){{ 'checked' }} @endif> Não</label></div>
-                        </div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$paciente->gestante" property="gestante">
+                        Está gestante?
+                    </x-forms.choices.yes-or-not>
                 </div>
 
                 <div class="col-md-2">
-                    <div class="position-relative form-group">
-                        <div class="form-group">
-                            <label for="name">Amamenta?</label>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input" value="sim" @if(old('amamenta')==='sim' ){{ 'checked' }} @endif> Sim</label></div>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="amamenta" type="radio" class="form-check-input" value="não" @if(old('amamenta')==='não' ){{ 'checked' }} @endif> Não</label></div>
-                        </div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$paciente->amamenta" property="amamenta">
+                        Amamenta?
+                    </x-forms.choices.yes-or-not>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="position-relative form-group">
-                        <div class="form-group">
-                            <label for="name">Gestação é ou foi de alto risco?</label>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestacao_alto_risco" type="radio" class="form-check-input" value="sim" @if(old('gestacao_alto_risco')==='sim' ){{ 'checked' }} @endif> Sim</label></div>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="gestacao_alto_risco" type="radio" class="form-check-input" value="não" @if(old('gestacao_alto_risco')==='não' ){{ 'checked' }} @endif> Não</label></div>
-                        </div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$paciente->gestacao_alto_risco" property="gestacao_alto_risco">
+                        Gestação é ou foi de alto risco?
+                    </x-forms.choices.yes-or-not>
                 </div>
                 <div class="col-md-4">
-                    <div class="position-relative form-group">
-                        <div class="form-group">
-                            <label for="name">Está no pós-parto (40 dias após o parto)?</label>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input" value="sim" @if(old('pos_parto')==='sim' ){{ 'checked' }} @endif> Sim</label></div>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="pos_parto" type="radio" class="form-check-input" value="não" @if(old('pos_parto')==='não' ){{ 'checked' }} @endif> Não</label></div>
-                        </div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$paciente->pos_parto" property="pos_parto">
+                        Está no pós-parto (40 dias após o parto)?
+                    </x-forms.choices.yes-or-not>
                 </div>
             </div>
 
@@ -136,13 +104,9 @@
 
             <div class="form-row">
                 <div class="col-md-3">
-                    <div class="position-relative form-group">
-                        <div class="form-group">
-                            <label for="name">Tem algum acompanhamento médico contínuo?</label>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_medico" type="radio" class="form-check-input" value="sim" @if(old('acompanhamento_medico')==='sim' ){{ 'checked' }} @endif> Sim</label></div>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_medico" type="radio" class="form-check-input" value="não" @if(old('acompanhamento_medico')==='não' ){{ 'checked' }} @endif> Não</label></div>
-                        </div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$paciente->acompanhamento_medico" property="acompanhamento_medico">
+                        Tem algum acompanhamento médico contínuo?
+                    </x-forms.choices.yes-or-not>
                 </div>
                 <div class="col-md-3">
                     <x-forms.input-date property="data_ultima_consulta" :value="$paciente->data_ultima_consulta">
@@ -154,20 +118,16 @@
                     <x-forms.choices.acesso-sistema-saude :value="$paciente->sistema_saude ?? []" />
                 </div>
                 <div class="col-md-3">
-                    <div class="position-relative form-group">
-                        <div class="form-group">
-                            <label for="name">Tem acompanhamento médico na Unidade Básica de Saúde (UBS - posto) de referência?</label>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input" value="sim" @if(old('acompanhamento_ubs')==='sim' ){{ 'selected' }} @endif> Sim</label></div>
-                            <div class="position-relative1 form-check"><label class="form-check-label"><input name="acompanhamento_ubs" type="radio" class="form-check-input" value="não" @if(old('acompanhamento_ubs')==='não' ){{ 'selected' }} @endif> Não</label></div>
-                        </div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$paciente->acompanhamento_ubs" property="acompanhamento_ubs">
+                        Tem acompanhamento médico na Unidade Básica de Saúde (UBS - posto) de referência?
+                    </x-forms.choices.yes-or-not>
                 </div>
             </div>
         </div>
 
         <div class="position-relatives row fdorm-check">
             <div class="col-sm-12 offset-sm-2s"><br />
-                <button type="submit" id="createPaciente" class="btn btn-secondary">Enviar</button>
+                <button type="submit" class="btn btn-primary">Salva</button>
             </div>
         </div>
     </div>

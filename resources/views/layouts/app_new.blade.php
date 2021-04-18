@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Seacole</title>
@@ -12,6 +13,11 @@
     <meta name="description" content="Projeto Seacole, mais descrição em breve...">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="{{ asset('assets/main.css') }}" rel="stylesheet">
+    <style>
+        .vertical-nav-menu i.metismenu-icon {
+            font-size: 1.2rem;
+        }
+    </style>
 
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -21,7 +27,7 @@
 
     <script type="text/javascript" src="{{ asset('js/jquery.mask.js') }}" defer></script>
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}" />
     <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}" defer></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
@@ -29,12 +35,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.css">
 
     <script>
-        const API_URL = "{{ env("APP_URL") }}" + "/api";
-        const APP_URL = "{{ env("APP_URL") }}";
+        const API_URL = "{{ env("
+        APP_URL ") }}" + "/api";
+        const APP_URL = "{{ env("
+        APP_URL ") }}";
     </script>
     <script type="text/javascript" src="{{ asset('js/functions.js') }}" defer></script>
     @yield('css')
 </head>
+
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
@@ -73,37 +82,7 @@
                 </span>
             </div>
             <div class="app-header__content">
-                <div class="app-header-left">
-                    <div class="search-wrapper">
-                        <div class="input-holder">
-                            <input type="text" class="search-input" placeholder="Type to search">
-                            <button class="search-icon"><span></span></button>
-                        </div>
-                        <button class="close"></button>
-                    </div>
-                    <ul class="header-menu nav">
-                      @if(\Auth::user()->role === 'administrador')
-                        <li class="nav-item">
-                            <a href="{{ route('paciente/exportar') }}" class="nav-link">
-                                <i class="nav-link-icon fa fa-database"> </i>
-                                Exportar Pacientes
-                            </a>
-                        </li>
-                      @endif
-                        <li class="btn-group nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-edit"></i>
-                                Estoque de kit
-                            </a>
-                        </li>
-                        <li class="dropdown nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-cog"></i>
-                                Contatos
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <div class="app-header-left"></div>
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
                         <div class="widget-content p-0">
@@ -115,13 +94,7 @@
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <button type="button" tabindex="0" class="dropdown-item">User Account</button>
-                                            <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                                            <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                            <button type="button" tabindex="0" class="dropdown-item">Actions</button>
-                                            <div tabindex="-1" class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
                                             </a>
@@ -137,24 +110,15 @@
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                     </div>
                                     <div class="widget-subheading">
-                                        Enfermeira
+                                        {{ ucfirst(Auth::user()->role) }}
                                     </div>
-                                </div>
-                                <div class="widget-content-right header-user-info ml-3">
-                                    <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                                        <i class="fa text-white fa-calendar pr-1 pl-1"></i>
-                                    </button>
                                 </div>
                             </div>
                         </div>
-                    </div>        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <style>
-        .vertical-nav-menu i.metismenu-state-icon, .vertical-nav-menu i.metismenu-icon {
-            position: relative;
-        }
-        </style>
         <div class="app-main">
             <div class="app-sidebar sidebar-shadow">
                 <div class="app-header__logo">
@@ -186,69 +150,58 @@
                             </span>
                         </button>
                     </span>
-                </div>    <div class="scrollbar-sidebar">
+                </div>
+
+                <div class="scrollbar-sidebar ps">
                     <div class="app-sidebar__inner">
-                        <ul class="vertical-nav-menu">
-                            <!-- Pacientes -->
-                            <li class="app-sidebar__heading">
-                                <i class="fas metismenu-state-icon fa-procedures nav-icon"></i> Pacientes</li>
+                        <ul class="vertical-nav-menu metismenu">
+                            <li class="app-sidebar__heading">Pacientes</li>
                             <li>
                                 <a href="{{ route('pacientes.index') }}">
-                                    <i class="fa fa-list-ul nav-icon caret-left"></i>
-                                    Listar
+                                    <i class="metismenu-icon fas fa-procedures nav-icon"></i>
+                                    Todos
                                 </a>
-                            </li>
-                            <li>
                                 <a href="{{ route('pacientes.create') }}">
-                                    <i class="fa fa-plus-circle nav-icon caret-left"></i>
-                                    Cadastrar
+                                    <i class="metismenu-icon fa fa-plus-circle nav-icon"></i>
+                                    Novo Paciente
                                 </a>
-                            </li>
-                            <!-- Agentes -->
-                            <li class="app-sidebar__heading"><i class="fas metismenu-state-icon fa-medkit nav-icon"></i> Agentes</li>
-                            <li>
-                                <a href="{{ route('agente') }}">
-                                    <i class="fa fa-list-ul nav-icon caret-left"></i>
-                                    Listar
+                                @if(\Auth::user()->role === 'administrador')
+                                <a href="{{ route('pacientes.exportar') }}">
+                                    <i class="metismenu-icon fas fa-file-export nav-icon"></i>
+                                    Exportar
                                 </a>
+                                @endif
                             </li>
+
+                            <li class="app-sidebar__heading">Gerenciamento</li>
                             <li>
-                                <a href="{{ route('agente/add') }}">
-                                    <i class="fa fa-plus-circle nav-icon caret-left"></i>
-                                    Cadastrar
-                                </a>
-                            </li>
-                            <!-- Médicas/os -->
-                            <li class="app-sidebar__heading"><i class="fas metismenu-state-icon fa-stethoscope nav-icon"></i> Médicas/os</li>
-                            <li>
-                                <a href="{{ route('medico') }}">
-                                    <i class="fa fa-list-ul nav-icon caret-left"></i>
-                                    Listar
+                                <a href="{{ route('agentes.index') }}">
+                                    <i class="metismenu-icon fas fa-medkit nav-icon""></i>
+                                    Agentes
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('medico/add') }}">
-                                    <i class="fa fa-plus-circle nav-icon caret-left"></i>
-                                    Cadastrar
-                                </a>
-                            </li>
-                            <!-- Psicólogas/os -->
-                            <li class="app-sidebar__heading"><i class="fas metismenu-state-icon fa-hands-helping nav-icon"></i> Psicólogas/os</li>
-                            <li>
-                                <a href="{{ route('psicologo') }}">
-                                    <i class="fa fa-list-ul nav-icon caret-left"></i>
-                                    Listar
+                                <a href="{{ route('medicos.index') }}">
+                                    <i class="metismenu-icon fas fa-stethoscope nav-icon"></i>
+                                    Médicas/os
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('psicologo/add') }}">
-                                    <i class="fa fa-plus-circle nav-icon caret-left"></i>
-                                    Cadastrar
+                                <a href="{{ route('psicologos.index') }}">
+                                    <i class="metismenu-icon fas fa-hands-helping"></i>
+                                    Psicólogas/os
                                 </a>
                             </li>
                         </ul>
                     </div>
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                    </div>
                 </div>
+
             </div>
             <div class="app-main__outer">
                 <main class="py-4">
@@ -296,40 +249,43 @@
     <script type="text/javascript" src="https://seacole.uneafrobrasil.org/js/jquery.mask.js"></script>
     <script>
         //JQUERY MASKS
-      //$('.time').mask('00:00:00');
-      $('.time').mask('00:00');
-      //$('.date_time').mask('00/00/0000 00:00:00');
-      $('.cep').mask('00000-000');
-      //$('.phone').mask('0000-0000');
-      $('.phone_with_ddd').mask('(00) 0000-0000');
-      $('.mobile_with_ddd').mask('(00) 0 0000-0000');
-      //$('.mixed').mask('AAA 000-S0S');
-      //$('.cpf').mask('000.000.000-00', {reverse: true});
-      //$('.cnpj').mask('00.000.000/0000-00', {reverse: true});
-      $('.money').mask('000.000.000.000.000,00', {reverse: true});
-      //$('.money2').mask("#.##0,00", {reverse: true});
-      /*$('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
-        translation: {
-          'Z': {
-            pattern: /[0-9]/, optional: true
-          }
-        }
-      });*/
-      //$('.ip_address').mask('099.099.099.099');
-      //$('.percent').mask('##0,00%', {reverse: true});
-      //$('.clear-if-not-match').mask("00/00/0000", {clearIfNotMatch: true});
-      //$('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
-      /*$('.fallback').mask("00r00r0000", {
+        //$('.time').mask('00:00:00');
+        $('.time').mask('00:00');
+        //$('.date_time').mask('00/00/0000 00:00:00');
+        $('.cep').mask('00000-000');
+        //$('.phone').mask('0000-0000');
+        $('.phone_with_ddd').mask('(00) 0000-0000');
+        $('.mobile_with_ddd').mask('(00) 0 0000-0000');
+        //$('.mixed').mask('AAA 000-S0S');
+        //$('.cpf').mask('000.000.000-00', {reverse: true});
+        //$('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+        $('.money').mask('000.000.000.000.000,00', {
+            reverse: true
+        });
+        //$('.money2').mask("#.##0,00", {reverse: true});
+        /*$('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
           translation: {
-            'r': {
-              pattern: /[\/]/,
-              fallback: '/'
-            },
-            placeholder: "__/__/____"
+            'Z': {
+              pattern: /[0-9]/, optional: true
+            }
           }
         });*/
-      //$('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
+        //$('.ip_address').mask('099.099.099.099');
+        //$('.percent').mask('##0,00%', {reverse: true});
+        //$('.clear-if-not-match').mask("00/00/0000", {clearIfNotMatch: true});
+        //$('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
+        /*$('.fallback').mask("00r00r0000", {
+            translation: {
+              'r': {
+                pattern: /[\/]/,
+                fallback: '/'
+              },
+              placeholder: "__/__/____"
+            }
+          });*/
+        //$('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
     </script>
     <script type="text/javascript" src="{{ asset('assets/scripts/main.js') }}"></script>
 </body>
+
 </html>

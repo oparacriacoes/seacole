@@ -8,11 +8,11 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="horario_monotiramento">Horário do monitoramento</label>
-                <input name="horario_monotiramento" type="text" class=" form-control hour" id="horario_monotiramento" value="@if($monitoramento) {{ $monitoramento->horario_monotiramento }} @endif">
+                <label for="horario_monitoramento">Horário do monitoramento</label>
+                <input name="horario_monitoramento" type="time" class="form-control" id="horario_monitoramento" value="{{ old('horario_monotiramento', $monitoramento->horario_monitoramento) }}">
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
                 <label for="sintomas_atuais">Sintomas atuais</label><br />
                 <div class="form-check form-check-inline">
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <input name="sintomas_outro" class="form-control" type="text" placeholder="Outro (digite)" value="@if($monitoramento) {{ $monitoramento->sintomas_outro }} @endif">
+                    <input name="sintomas_outro" class="form-control" type="text" placeholder="Outro (digite)" value="{{ old('sintomas_outro', $monitoramento->sintomas_outro) }}">
                 </div>
             </div>
         </div>
@@ -70,49 +70,37 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="temperatura_atual">Temperatura atual (em graus)</label>
-                <input name="temperatura_atual" type="text" placeholder="00,0" class=" form-control temperature" id="temperatura_atual" value="@if($monitoramento) {{ $monitoramento->temperatura_atual }} @endif">
+                <input name="temperatura_atual" type="number" placeholder="00,0" step="00.1" max="999.9" min="0" class=" form-control" id="temperatura_atual" value="{{ old('temperatura_atual', $monitoramento->temperatura_atual) }}">
             </div>
             <div class="form-group">
                 <label for="frequencia_cardiaca_atual">Frequência cardíaca atual</label>
-                <input name="frequencia_cardiaca_atual" type="number" max="999" placeholder="-- bpm" class="form-control" id="frequencia_cardiaca_atual" value="@if($monitoramento){{$monitoramento->frequencia_cardiaca_atual}}@endif">
+                <input name="frequencia_cardiaca_atual" type="number" max="999" min="0" placeholder="-- bpm" class="form-control" id="frequencia_cardiaca_atual" value="{{ old('temperatura_atual', $monitoramento->frequencia_cardiaca_atual) }}">
             </div>
-            <div class="form-group">
-                <label for="algum_sinal">Algum sinal de gravidade nesse monitoramento?</label>
-                <div class="position-relative1 form-check"><label class="form-check-label"><input name="algum_sinal" type="radio" class="form-check-input" value="sim" <?php if ($monitoramento && $monitoramento->algum_sinal === 'sim') {
-    echo 'checked=checked';
-} ?>> Sim</label></div>
-                <div class="position-relative1 form-check"><label class="form-check-label"><input name="algum_sinal" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->algum_sinal === 'não') {
-    echo 'checked=checked';
-} ?>> Não</label></div>
-            </div>
+            <x-forms.choices.yes-or-not :value="$monitoramento->algum_sinal" property="algum_sinal">
+                Algum sinal de gravidade nesse monitoramento?
+            </x-forms.choices.yes-or-not>
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 <label for="saturacao_atual">Saturação atual (%)</label>
-                <input name="saturacao_atual" type="text" placeholder="00 %" class=" form-control saturation" id="saturacao_atual" value="@if($monitoramento) {{ $monitoramento->saturacao_atual }} @endif">
+                <input name="saturacao_atual" type="number" min="0" max="100" placeholder="00%" class=" form-control" id="saturacao_atual" value="{{ old('saturacao_atual', $monitoramento->saturacao_atual) }}">
             </div>
             <div class="form-group">
                 <label for="pressao_arterial_atual">Pressão Arterial Atual</label>
-                <input name="pressao_arterial_atual" type="text" placeholder="Ex: 12x8" class=" form-control" id="pressao_arterial_atual" value="@if($monitoramento) {{ $monitoramento->pressao_arterial_atual }} @endif">
+                <input name="pressao_arterial_atual" type="text" placeholder="Ex: 12x8" class=" form-control" id="pressao_arterial_atual" value="{{ old('pressao_arterial_atual', $monitoramento->pressao_arterial_atual) }}">
             </div>
-            <div class="form-group">
-                <label for="equipe_medica">Equipe médica do projeto prescreveu algum medicamento?</label>
-                <div class="position-relative1 form-check"><label class="form-check-label"><input name="equipe_medica" type="radio" class="form-check-input" value="sim" <?php if ($monitoramento && $monitoramento->equipe_medica === 'sim') {
-    echo 'checked=checked';
-} ?>> Sim</label></div>
-                <div class="position-relative1 form-check"><label class="form-check-label"><input name="equipe_medica" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->equipe_medica === 'não') {
-    echo 'checked=checked';
-} ?>> Não</label></div>
-            </div>
+            <x-forms.choices.yes-or-not :value="$monitoramento->equipe_medica" property="equipe_medica">
+                Equipe médica do projeto prescreveu algum medicamento?
+            </x-forms.choices.yes-or-not>
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 <label for="frequencia_respiratoria_atual">Frequência respiratória atual</label>
-                <input name="frequencia_respiratoria_atual" type="number" max="99" placeholder="-- rpm" class="form-control" id="frequencia_respiratoria_atual" value="@if($monitoramento){{$monitoramento->frequencia_respiratoria_atual}}@endif">
+                <input name="frequencia_respiratoria_atual" type="number" max="99" placeholder="-- rpm" class="form-control" id="frequencia_respiratoria_atual" value="{{old('frequencia_respiratoria_atual', $monitoramento->frequencia_respiratoria_atual) }}">
             </div>
             <div class="form-group">
                 <label for="medicamento">Medicamento prescrito pela equipe médica do projeto</label>
-                <textarea name="medicamento" id="medicamento" class="form-control">@if($monitoramento) {{ $monitoramento->medicamento }} @endif</textarea>
+                <textarea name="medicamento" id="medicamento" class="form-control">{{old('medicamento', $monitoramento->medicamento) }}</textarea>
             </div>
         </div>
     </div>
@@ -123,71 +111,26 @@
         <div class="card-body">
             <div class="form-row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="fazendo_uso_pic">Fazendo uso de alguma PIC (prática integrativa complementar - ex: medicina chinesa)?</label>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="fazendo_uso_pic" type="radio" class="form-check-input" value="sim" <?php if ($monitoramento && $monitoramento->fazendo_uso_pic === 'sim') {
-    echo 'checked=checked';
-} ?>> Sim</label></div>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="fazendo_uso_pic" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->fazendo_uso_pic === 'não') {
-    echo 'checked=checked';
-} ?>> Não</label></div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$monitoramento->fazendo_uso_pic" property="fazendo_uso_pic">
+                    Fazendo uso de alguma PIC (prática integrativa complementar - ex: medicina chinesa)?
+                    </x-forms.choices.yes-or-not>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="fez_escalapes">Fez escaldapés (atenção para restrições - ex: gestantes e diabeticos)</label>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="fez_escalapes" type="radio" class="form-check-input" value="sim" <?php if ($monitoramento && $monitoramento->fez_escalapes === 'sim') {
-    echo 'checked=checked';
-} ?>> Sim</label></div>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="fez_escalapes" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->fez_escalapes === 'não') {
-    echo 'checked=checked';
-} ?>> Não</label></div>
-                    </div>
+                    <x-forms.choices.yes-or-not :value="$monitoramento->fez_escalapes" property="fez_escalapes">
+                        Fez escaldapés (atenção para restrições - ex: gestantes e diabeticos)
+                    </x-forms.choices.yes-or-not>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="melhora_sintoma_escaldapes">Sentiu melhora dos sintomas com escaldapés (atenção para restrições - ex: gestantes e diabeticos)</label>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhora_sintoma_escaldapes" type="radio" class="form-check-input" value="grande alívio" <?php if ($monitoramento && $monitoramento->melhora_sintoma_escaldapes === 'grande alívio') {
-    echo 'checked=checked';
-} ?>> grande alívio</label></div>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhora_sintoma_escaldapes" type="radio" class="form-check-input" value="pouca melhora" <?php if ($monitoramento && $monitoramento->melhora_sintoma_escaldapes === 'pouca melhora') {
-    echo 'checked=checked';
-} ?>> pouca melhora</label></div>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhora_sintoma_escaldapes" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->melhora_sintoma_escaldapes === 'não') {
-    echo 'checked=checked';
-} ?>> Não</label></div>
-                    </div>
+                    <x-forms.choices.melhoras-com-escaldapes :value="$monitoramento->melhora_sintoma_escaldapes" />
                 </div>
                 <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="fes_inalacao">Fez inalação ou vaporização? </label>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="fes_inalacao" type="radio" class="form-check-input" value="inalação" <?php if ($monitoramento && $monitoramento->fes_inalacao === 'inalação') {
-    echo 'checked=checked';
-} ?>> Inalação</label></div>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="fes_inalacao" type="radio" class="form-check-input" value="vaporização" <?php if ($monitoramento && $monitoramento->fes_inalacao === 'vaporização') {
-    echo 'checked=checked';
-} ?>> Vaporização</label></div>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="fes_inalacao" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->fes_inalacao === 'não') {
-    echo 'checked=checked';
-} ?>> Não</label></div>
-                    </div>
+                    <x-forms.choices.fez-inalacao :value="$monitoramento->fes_inalacao" />
                 </div>
                 <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="melhoria_sintomas_inalacao">Sentiu melhora dos sintomas com inalação ou vaporização: </label>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhoria_sintomas_inalacao" type="radio" class="form-check-input" value="grande alívio" <?php if ($monitoramento && $monitoramento->melhoria_sintomas_inalacao === 'grande alívio') {
-    echo 'checked=checked';
-} ?>> grande alívio</label></div>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhoria_sintomas_inalacao" type="radio" class="form-check-input" value="pouca melhora" <?php if ($monitoramento && $monitoramento->melhoria_sintomas_inalacao === 'pouca melhora') {
-    echo 'checked=checked';
-} ?>> pouca melhora</label></div>
-                        <div class="position-relative1 form-check"><label class="form-check-label"><input name="melhoria_sintomas_inalacao" type="radio" class="form-check-input" value="não" <?php if ($monitoramento && $monitoramento->melhoria_sintomas_inalacao === 'não') {
-    echo 'checked=checked';
-} ?>> Não</label></div>
-                    </div>
+                    <x-forms.choices.melhoras-com-inalacao :value="$monitoramento->melhoria_sintomas_inalacao" />
                 </div>
             </div>
             <div class="form-row">

@@ -56,7 +56,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="tab3" data-toggle="tab" href="#tab-content-2">
+            <a class="nav-link @if(session('tab') == 'monitoramento') active @endif" id="tab3" data-toggle="tab" href="#tab-content-2">
                 <span>Monitoramento</span>
             </a>
         </li>
@@ -91,11 +91,21 @@
         <div class="tab-pane tabs-animation fade @if(session('tab') == 'quadro_atual') show active @endif" id="tab-content-1" role="tabpanel">
             @include('pages.paciente._forms_edit.quadro_atual', [
                 'paciente' => $paciente,
-                'sintomas_quadro' => [],
-                'quadro' => $quadro_atual,
                 'quadro_atual' => $quadro_atual,
-                'sequelas' => [],
             ])
+        </div>
+
+        <div class="tab-pane tabs-animation fade @if(session('tab') == 'monitoramento') show active @endif" id="tab-content-2" role="tabpanel">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title">Monitoramento</h5>
+                    @include('pages.paciente._forms_edit.monitoramento', [
+                        'paciente' => $paciente,
+                        'monitoramento' => $monitoramento,
+                        'monitoramento_sintomas' => []
+                    ])
+                </div>
+            </div>
         </div>
 
         <div class="tab-pane tabs-animation fade @if(session('tab') == 'saude_mental') show active @endif" id="tab-content-3" role="tabpanel">

@@ -8,6 +8,6 @@
 ])
 
 <div class="form-group">
-    <label for="melhoria_sintomas_inalacao">Fez inalação ou vaporização?</label>
+    <label for="melhoria_sintomas_inalacao">Sentiu melhora após a inalação/vaporização</label>
     <x-forms.radio-group :items="$items" property="melhoria_sintomas_inalacao" :value="$value" />
 </div>

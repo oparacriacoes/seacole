@@ -13,58 +13,14 @@
             </div>
         </div>
         <div class="col-md-12">
+            <x-forms.choices.sintomas-atuais :value="$monitoramento->sintomas_atuais" />
             <div class="form-group">
-                <label for="sintomas_atuais">Sintomas atuais</label><br />
-                <div class="form-check form-check-inline">
-                    <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="tosse" <?php if ($monitoramento_sintomas && in_array('tosse', $monitoramento_sintomas)) {
-    echo 'checked=checked';
-} ?>>
-                    <label class="form-check-label" for="tosse">Tosse</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="falta de ar" <?php if ($monitoramento_sintomas && in_array('falta de ar', $monitoramento_sintomas)) {
-    echo 'checked=checked';
-} ?>>
-                    <label class="form-check-label" for="falta_de_ar">Falta de ar</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="febre" <?php if ($monitoramento_sintomas && in_array('febre', $monitoramento_sintomas)) {
-    echo 'checked=checked';
-} ?>>
-                    <label class="form-check-label" for="febre">Febre</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="dor de cabeça" <?php if ($monitoramento_sintomas && in_array('dor de cabeça', $monitoramento_sintomas)) {
-    echo 'checked=checked';
-} ?>>
-                    <label class="form-check-label" for="inlineCheckbox3">Dor de Cabeça</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="perda de olfato" <?php if ($monitoramento_sintomas && in_array('perda de olfato', $monitoramento_sintomas)) {
-    echo 'checked=checked';
-} ?>>
-                    <label class="form-check-label" for="inlineCheckbox3">Perda do olfato</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="perda do paladar" <?php if ($monitoramento_sintomas && in_array('perda do paladar', $monitoramento_sintomas)) {
-    echo 'checked=checked';
-} ?>>
-                    <label class="form-check-label" for="inlineCheckbox3">Perda do paladar</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input name="sintomas_atuais[]" class="form-check-input" type="checkbox" value="outros" <?php if ($monitoramento_sintomas && in_array('outros', $monitoramento_sintomas)) {
-    echo 'checked=checked';
-} ?>>
-                    <label class="form-check-label" for="outros_monit">Outros</label>
-                </div>
-
-                <div class="form-check form-check-inline">
-                    <input name="sintomas_outro" class="form-control" type="text" placeholder="Outro (digite)" value="{{ old('sintomas_outro', $monitoramento->sintomas_outro) }}">
-                </div>
+                <input name="sintomas_outro" class="form-control" type="text" maxlength="190" placeholder="Outro (digite)" value="{{ old('sintomas_outro', $monitoramento->sintomas_outro) }}">
             </div>
         </div>
     </div>
 
+    <div class="divider"></div>
 
     <div class="form-row">
         <div class="col-md-4">
@@ -123,13 +79,13 @@
             </div>
 
             <div class="form-row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <x-forms.choices.melhoras-com-escaldapes :value="$monitoramento->melhora_sintoma_escaldapes" />
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <x-forms.choices.fez-inalacao :value="$monitoramento->fes_inalacao" />
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <x-forms.choices.melhoras-com-inalacao :value="$monitoramento->melhoria_sintomas_inalacao" />
                 </div>
             </div>

@@ -9,19 +9,19 @@ class QuadroAtual extends Model
     protected $table = 'quadro_atual';
 
     protected $fillable = [
-      'paciente_id',
-      'primeira_sintoma',
-      'sintomas_manifestados',
-      'temperatura_max', // decimal
-      'saturacao_baixa', // integer
-      'frequencia_max', //  integer
-      'data_temp_max',
-      'data_sat_max',
-      'data_freq_max',
-      'desfecho',
-      'sequelas',
-      'outra_sequela_qual',
-      'algo_mais_sobre_caso',
+        'paciente_id',
+        'primeira_sintoma',
+        'sintomas_manifestados',
+        'temperatura_max',
+        'saturacao_baixa',
+        'frequencia_max',
+        'data_temp_max',
+        'data_sat_max',
+        'data_freq_max',
+        'desfecho',
+        'sequelas',
+        'outra_sequela_qual',
+        'algo_mais_sobre_caso',
     ];
 
     /**
@@ -46,6 +46,6 @@ class QuadroAtual extends Model
      */
     public function paciente()
     {
-        return $this->belongsTo('App\Paciente');
+        return $this->belongsTo(Paciente::class);
     }
 }

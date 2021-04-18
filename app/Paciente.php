@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -184,7 +183,7 @@ class Paciente extends Model
 
     public function quadro_atual()
     {
-        return $this->hasMany('App\QuadroAtual');
+        return $this->hasOne(QuadroAtual::class);
     }
 
     public function saude_mental()
@@ -194,6 +193,6 @@ class Paciente extends Model
 
     public function servico_internacao()
     {
-        return $this->hasMany(ServicoInternacao::class);
+        return $this->hasOne(ServicoInternacao::class);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\QuadroAtualController;
 use App\Http\Controllers\SaudeMentalController;
 use App\Http\Controllers\ServicoInternacaoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +26,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => app()->environment('local')
+]);
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', function () {

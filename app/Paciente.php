@@ -193,7 +193,7 @@ class Paciente extends Model
         return $this->hasOne(Monitoramento::class);
     }
 
-    public function evolucoes_sintomas()
+    public function prontuarios()
     {
         return $this->hasMany(EvolucaoSintoma::class);
     }

@@ -20,7 +20,7 @@ class MonitoramentoController extends Controller
                 $dataForm
             );
 
-            $evolucao_sintoma = $paciente->evolucoes_sintomas()->create($dataForm);
+            $evolucao_sintoma = $paciente->prontuarios()->create($dataForm);
             event(new SintomaEvolucao($evolucao_sintoma));
 
         } catch (\Exception $e) {

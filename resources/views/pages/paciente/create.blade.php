@@ -48,8 +48,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{asset('js/jquery.mask.js')}}"></script>
 <script>
-    $('.temperature').mask('00,0');
-    $('.saturation').mask('00');
     $('.info').css('cursor', 'pointer');
     $('.info').click(function() {
         $(this).fadeOut();

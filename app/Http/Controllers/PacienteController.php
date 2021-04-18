@@ -98,7 +98,9 @@ class PacienteController extends Controller
         $saude_mental = $paciente->saude_mental()->first() ?? new SaudeMental();
         $servico_internacao = $paciente->servico_internacao()->first() ?? new ServicoInternacao();
         $quadro_atual = $paciente->quadro_atual()->first() ?? new QuadroAtual();
-        $monitoramento = $paciente->monitoramento()->first() ?? new Monitoramento();
+        $monitoramento = $paciente->monitoramento()->latest()->first() ?? new Monitoramento();
+
+        $prontuarios = $paciente->prontuarios()->orderBy('data_monitoramento')->get();
 
         return view('pages.paciente.edit', compact(
             'paciente',
@@ -111,87 +113,9 @@ class PacienteController extends Controller
             'saude_mental',
             'servico_internacao',
             'quadro_atual',
-            'monitoramento'
+            'monitoramento',
+            'prontuarios'
         ));
-    }
-
-
-    public function edit_bk(Paciente $paciente)
-    {
-        $sintomas = $paciente->sintomas;
-        $ajudas = $paciente->tipos_ajuda;
-        $emocional = $paciente->estado_emocional;
-        $observacao = $paciente->observacao;
-        $cronicas = unserialize($paciente->doenca_cronica);
-        $sistema_saude = unserialize($paciente->sistema_saude);
-
-        $teste_utilizado = @unserialize($paciente->teste_utilizado);
-        if ($teste_utilizado === false) {
-            $teste_utilizado = $paciente->teste_utilizado;
-        }
-
-        $items = $paciente->items;
-        $quadro = QuadroAtual::where('paciente_id', $paciente->id)->first();
-        if ($quadro) {
-            $sintomas_quadro = unserialize($quadro->sintomas_manifestados);
-            $sequelas = unserialize($quadro->sequelas);
-        } else {
-            $quadro = new QuadroAtual();
-            $sintomas_quadro = [];
-            $sequelas = [];
-        }
-        $agentes = Agente::get();
-        $medicos = Medico::get();
-        $psicologos = Psicologo::all();
-        $dados = $paciente->dados;
-        $articuladoras = Articuladora::all();
-        $monitoramento = Monitoramento::where('paciente_id', $paciente->id)->first();
-        if ($monitoramento) {
-            $monitoramento_sintomas = unserialize($monitoramento->sintomas_atuais);
-        } else {
-            $monitoramento_sintomas = [];
-            $monitoramento = new Monitoramento();
-        }
-
-        $saude_mental = SaudeMental::where('paciente_id', $paciente->id)->first();
-
-        $internacao = ServicoInternacao::where('paciente_id', $paciente->id)->first();
-        if ($internacao) {
-            $internacao_servico = unserialize($internacao->precisou_servico);
-            $internacao_remedio = unserialize($internacao->recebeu_med_covid);
-            $internacao_problema = unserialize($internacao->teve_algum_problema);
-            $internacao_local = unserialize($internacao->local_internacao);
-        } else {
-            $internacao = new ServicoInternacao();
-            $internacao_servico = [];
-            $internacao_remedio = [];
-            $internacao_problema = [];
-            $internacao_local = [];
-        }
-
-
-
-        $insumos = $paciente->insumos_oferecidos()->first() ?? new InsumosOferecido();
-        if ($insumos) {
-            $insumos_ajuda = @unserialize($insumos->precisa_tipo_ajuda);
-            $insumos_tratamento = @unserialize($insumos->tratamento_financiado);
-            $insumos_materiais = @unserialize($insumos->material_entregue);
-        } else {
-            $insumos_ajuda = [];
-            $insumos_tratamento = array();
-            $insumos_materiais = [];
-        }
-
-        $prontuarios = EvolucaoSintoma::where('paciente_id', $paciente->id)->orderBy('data_monitoramento')->get();
-
-        $acompanhamento_psicologico = unserialize($paciente->acompanhamento_psicologico);
-
-        $resultado_teste = @unserialize($paciente->resultado_teste);
-        if ($resultado_teste === false) {
-            $resultado_teste = $paciente->resultado_teste;
-        }
-
-        return view('pages.paciente.edit')->with(compact('paciente', 'quadro', 'sintomas_quadro', 'ajudas', 'emocional', 'observacao', 'cronicas', 'items', 'agentes', 'medicos', 'psicologos', 'dados', 'articuladoras', 'sistema_saude', 'teste_utilizado', 'monitoramento', 'monitoramento_sintomas', 'saude_mental', 'internacao', 'internacao_servico', 'internacao_remedio', 'internacao_problema', 'internacao_local', 'insumos', 'insumos_ajuda', 'insumos_tratamento', 'prontuarios', 'acompanhamento_psicologico', 'resultado_teste', 'insumos_materiais', 'sequelas'));
     }
 
     public function update(PacienteRequest $request, Paciente $paciente)

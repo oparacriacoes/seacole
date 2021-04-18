@@ -140,6 +140,15 @@
                 </div>
             </div>
         </div>
+
+        <div class="tab-pane tabs-animation fade" id="tab-content-6" role="tabpanel">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    @include('pages.paciente.components.prontuario', ['paciente' => $paciente, 'prontuarios' => $prontuarios])
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 @endsection
@@ -148,7 +157,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://seacole.uneafrobrasil.org/js/jquery.mask.js"></script>
 <script>
-    $('.saturation').mask('00');
     $('#pressao_arterial_atual').mask('#00x00', {
         reverse: true
     })

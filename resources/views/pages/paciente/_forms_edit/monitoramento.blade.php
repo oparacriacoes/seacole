@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <x-forms.choices.sintomas-atuais :value="$monitoramento->sintomas_atuais" />
+            <x-forms.choices.sintomas-atuais :value="$monitoramento->sintomas_atuais ?? []" />
             <div class="form-group">
                 <input name="sintomas_outro" class="form-control" type="text" maxlength="190" placeholder="Outro (digite)" value="{{ old('sintomas_outro', $monitoramento->sintomas_outro) }}">
             </div>

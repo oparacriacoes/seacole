@@ -1,14 +1,14 @@
 <?php
 
-function human_boolean($value)
+function human_boolean($value): bool
 {
     if (is_null($value)) {
         return '';
-    }
-
-    if ($value === true) {
+    } elseif ($value === true) {
         return 'Sim';
+    } elseif ($value === false) {
+        return 'Não';
     }
 
-    return 'Não';
+    throw new Exception("Por favor insira apenas valores booleanos e null", 1);
 }

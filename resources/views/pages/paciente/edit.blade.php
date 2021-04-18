@@ -45,7 +45,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="tab2" data-toggle="tab" href="#tab-content-1">
+            <a class="nav-link @if(session('tab') == 'quadro_atual') active @endif" id="tab2" data-toggle="tab" href="#tab-content-1">
                 <span>Quadro Atual</span>
             </a>
         </li>
@@ -79,6 +79,16 @@
         <div class="tab-pane tabs-animation fade @if(!session('tab')) show active @endif" id="tab-content-0" role="tabpanel">
             @include('pages.paciente._forms_edit.paciente', [
                 'paciente' => $paciente,
+            ])
+        </div>
+
+        <div class="tab-pane tabs-animation fade @if(session('tab') == 'quadro_atual') show active @endif" id="tab-content-1" role="tabpanel">
+            @include('pages.paciente._forms_edit.quadro_atual', [
+                'paciente' => $paciente,
+                'sintomas_quadro' => [],
+                'quadro' => $quadro_atual,
+                'quadro_atual' => $quadro_atual,
+                'sequelas' => [],
             ])
         </div>
 
@@ -122,7 +132,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://seacole.uneafrobrasil.org/js/jquery.mask.js"></script>
 <script>
-    $('.temperature').mask('00,0');
     $('.saturation').mask('00');
     $('#pressao_arterial_atual').mask('#00x00', {
         reverse: true

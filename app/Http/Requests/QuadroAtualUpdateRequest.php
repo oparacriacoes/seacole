@@ -24,18 +24,18 @@ class QuadroAtualUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'primeira_sintoma' => '',
+            'primeira_sintoma' => BaseRules::TEXT,
             'sintomas_manifestados' => BaseRules::ARRAY,
-            'temperatura_max' => '',
-            'saturacao_baixa' => '',
-            'frequencia_max' => '',
-            'data_temp_max' => '',
-            'data_sat_max' => '',
-            'data_freq_max' => '',
-            'desfecho' => '',
+            'temperatura_max' => BaseRules::STRING,
+            'saturacao_baixa' => BaseRules::INTEGER,
+            'frequencia_max' => BaseRules::INTEGER,
+            'data_temp_max' => BaseRules::DATE,
+            'data_sat_max' => BaseRules::DATE,
+            'data_freq_max' => BaseRules::DATE,
+            'desfecho' => BaseRules::STRING,
             'sequelas' =>BaseRules::ARRAY,
-            'outra_sequela_qual' => '',
-            'algo_mais_sobre_caso' => '',
+            'outra_sequela_qual' => BaseRules::STRING,
+            'algo_mais_sobre_caso' => BaseRules::TEXT,
         ];
     }
 }

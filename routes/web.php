@@ -51,7 +51,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 
     Route::post('paciente/quadro-atual/{paciente}', QuadroAtualController::class)->name('paciente.quadro-atual');
-    Route::post('paciente/monitoramento/{id}', MonitoramentoController::class)->name('paciente.monitoramento');
+    Route::post('paciente/monitoramento/{paciente}', MonitoramentoController::class)->name('paciente.monitoramento');
     Route::post('paciente/saude-mental/{id}', SaudeMentalController::class)->name('paciente.saude-mental');
     Route::post('paciente/internacao/{paciente}', ServicoInternacaoController::class)->name('paciente.internacao');
     Route::post('paciente/insumos/{paciente}', InsumosOferecidoController::class)->name('paciente.insumos');

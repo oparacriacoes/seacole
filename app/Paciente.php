@@ -176,6 +176,16 @@ class Paciente extends Model
         return $this->hasMany('App\EvolucaoSintoma');
     }
 
+    public function monitoramento()
+    {
+        return $this->hasOne(Monitoramento::class);
+    }
+
+    public function evolucoes_sintomas()
+    {
+        return $this->hasMany(EvolucaoSintoma::class);
+    }
+
     public function insumos_oferecidos()
     {
         return $this->hasOne(InsumosOferecido::class);

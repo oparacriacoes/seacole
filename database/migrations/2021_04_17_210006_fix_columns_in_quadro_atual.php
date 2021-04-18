@@ -15,9 +15,9 @@ class FixColumnsInQuadroAtual extends Migration
      */
     public function up()
     {
-        Schema::table('quadro_atual', function (Blueprint $table) {
-            $this->updateTableBefore();
+        $this->updateTableBefore();
 
+        Schema::table('quadro_atual', function (Blueprint $table) {
             $table->decimal('temperatura_max', 8, 2)->nullable()->change();
             $table->unsignedInteger('saturacao_baixa')->nullable()->change();
             $table->unsignedInteger('frequencia_max')->nullable()->change();
@@ -28,6 +28,8 @@ class FixColumnsInQuadroAtual extends Migration
 
     private function updateTableBefore()
     {
+        DB::beginTransaction();
+
         DB::table('quadro_atual')->chunkById(100, function ($quadros_atual) {
             foreach ($quadros_atual as $quadro_atual) {
                 $temperatura_max = $quadro_atual->temperatura_max ? (string)Str::of($quadro_atual->temperatura_max)->replace(',', '.') : null;
@@ -43,6 +45,8 @@ class FixColumnsInQuadroAtual extends Migration
                     ]);
             }
         });
+
+        DB::commit();
     }
 
     /**

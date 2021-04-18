@@ -14,9 +14,9 @@ class FixColumnsInInsumosOferecidos extends Migration
      */
     public function up()
     {
-        Schema::table('insumos_oferecidos', function (Blueprint $table) {
-            $this->updateTableBefore();
+        $this->updateTableBefore();
 
+        Schema::table('insumos_oferecidos', function (Blueprint $table) {
             $table->boolean('condicao_ficar_isolada')->nullable()->change();
             $table->boolean('tem_comida')->nullable()->change();
             $table->boolean('tem_alguem')->nullable()->change();
@@ -31,6 +31,8 @@ class FixColumnsInInsumosOferecidos extends Migration
 
     private function updateTableBefore()
     {
+        DB::beginTransaction();
+
         DB::table('insumos_oferecidos')->chunkById(100, function ($insumos) {
             foreach ($insumos as $insumo) {
                 $condicao_ficar_isolada = $this->booleanValue($insumo->condicao_ficar_isolada);
@@ -58,6 +60,8 @@ class FixColumnsInInsumosOferecidos extends Migration
                     ]);
             }
         });
+
+        DB::commit();
     }
 
     private function booleanValue ($value) {

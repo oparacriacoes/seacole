@@ -23,8 +23,12 @@ class FixColumnsInSaudeMentals extends Migration
 
     private function updateTableBefore()
     {
+        DB::beginTransaction();
+
         DB::table('saude_mentals')->where('quadro_atual', 'sim')->update(['quadro_atual' => 1]);
         DB::table('saude_mentals')->where('quadro_atual', 'não')->update(['quadro_atual' => 0]);
+
+        DB::commit();
     }
 
     /**
@@ -35,7 +39,7 @@ class FixColumnsInSaudeMentals extends Migration
     public function down()
     {
         Schema::table('saude_mentals', function (Blueprint $table) {
-            //
+            $table->string('quadro_atual')->nullable()->change();
         });
     }
 }

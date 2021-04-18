@@ -19,6 +19,7 @@ class FixColumnsInEvolucaoSintomas extends Migration
     {
         Schema::table('evolucao_sintomas', function (Blueprint $table) {
             $table->string('data_monitoramento_old')->nullable()->after('data_monitoramento');
+            $table->renameColumn('horario_monotiramento', 'horario_monitoramento');
         });
 
         $this->updateTableBefore();

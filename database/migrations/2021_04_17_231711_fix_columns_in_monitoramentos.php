@@ -16,9 +16,9 @@ class FixColumnsInMonitoramentos extends Migration
      */
     public function up()
     {
-        Schema::table('monitoramentos', function (Blueprint $table) {
-            $this->updateTableBefore();
+        $this->updateTableBefore();
 
+        Schema::table('monitoramentos', function (Blueprint $table) {
             $table->text('sintomas_atuais')->nullable()->change();
             $table->boolean('algum_sinal')->nullable()->change();
             $table->boolean('equipe_medica')->nullable()->change();
@@ -28,11 +28,14 @@ class FixColumnsInMonitoramentos extends Migration
             $table->unsignedInteger('saturacao_atual')->nullable()->change();
             $table->unsignedInteger('frequencia_respiratoria_atual')->nullable()->change();
             $table->unsignedInteger('frequencia_cardiaca_atual')->nullable()->change();
+            $table->renameColumn('horario_monotiramento', 'horario_monitoramento');
         });
     }
 
     private function updateTableBefore()
     {
+        DB::beginTransaction();
+
         DB::table('monitoramentos')->chunkById(100, function ($monitoramentos) {
             foreach ($monitoramentos as $monitoramento) {
                 $sintomas_atuais = $monitoramento->sintomas_atuais ? @unserialize($monitoramento->sintomas_atuais) : null;
@@ -54,6 +57,8 @@ class FixColumnsInMonitoramentos extends Migration
                     ]);
             }
         });
+
+        DB::commit();
     }
 
     private function booleanValue ($value) {

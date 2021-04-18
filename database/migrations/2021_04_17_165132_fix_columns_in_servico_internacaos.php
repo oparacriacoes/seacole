@@ -14,9 +14,9 @@ class FixColumnsInServicoInternacaos extends Migration
      */
     public function up()
     {
-        Schema::table('servico_internacaos', function (Blueprint $table) {
-            $this->updateTableBefore();
+        $this->updateTableBefore();
 
+        Schema::table('servico_internacaos', function (Blueprint $table) {
             $table->unsignedInteger('quant_ida_servico')->nullable()->change();
             $table->unsignedInteger('tempo_internacao')->nullable()->change();
             $table->boolean('precisou_ambulancia')->nullable()->change();
@@ -30,6 +30,8 @@ class FixColumnsInServicoInternacaos extends Migration
 
     private function updateTableBefore()
     {
+        DB::beginTransaction();
+
         DB::table('servico_internacaos')->chunkById(100, function ($servico_internacoes) {
             foreach ($servico_internacoes as $servico_internacao) {
                 $precisou_internacao = $this->booleanValue($servico_internacao->precisou_internacao);
@@ -57,6 +59,8 @@ class FixColumnsInServicoInternacaos extends Migration
                     ]);
             }
         });
+
+        DB::commit();
     }
 
     private function booleanValue ($value) {

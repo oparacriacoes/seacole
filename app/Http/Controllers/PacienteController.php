@@ -6,7 +6,6 @@ use App\AjudaTipo;
 use App\Exports\PacientesExport;
 use App\Sintoma;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Paciente;
 use App\Agente;
 use App\Medico;
@@ -98,6 +97,7 @@ class PacienteController extends Controller
         $insumos = $paciente->insumos_oferecidos()->first() ?? new InsumosOferecido();
         $saude_mental = $paciente->saude_mental()->first() ?? new SaudeMental();
         $servico_internacao = $paciente->servico_internacao()->first() ?? new ServicoInternacao();
+        $quadro_atual = $paciente->quadro_atual()->first() ?? new QuadroAtual();
 
         return view('pages.paciente.edit', compact(
             'paciente',
@@ -108,7 +108,8 @@ class PacienteController extends Controller
             'situacoes',
             'insumos',
             'saude_mental',
-            'servico_internacao'
+            'servico_internacao',
+            'quadro_atual'
         ));
     }
 

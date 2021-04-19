@@ -43,22 +43,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('medicos', MedicoController::class)->except(['show']);
     Route::resource('psicologos', PsicologoController::class)->except(['show']);
 
-    // Route::get('/admin/agente', 'AgenteController@index')->name('agente');
-    // Route::get('/admin/agente/add', 'AgenteController@add')->name('agente/add');
-    // Route::get('/admin/agente/edit/{id}', 'AgenteController@edit')->name('agente/edit');
-    // Route::delete('/admin/agente/remove/{id}', 'AgenteController@destroy')->name('agente.destroy');
-
-    // Route::get('/admin/medico', 'MedicoController@index')->name('medico');
-    // Route::get('/admin/medico/add', 'MedicoController@add')->name('medico/add');
-    // Route::get('/admin/medico/edit/{id}', 'MedicoController@edit')->name('medico/edit');
-    // Route::delete('/admin/medico/remove/{id}', 'MedicoController@destroy')->name('medico.destroy');
-
-    // Route::get('/admin/psicologo', 'PsicologoController@index')->name('psicologo');
-    // Route::get('/admin/psicologo/add', 'PsicologoController@add')->name('psicologo/add');
-    // Route::get('/admin/psicologo/edit/{id}', 'PsicologoController@edit')->name('psicologo/edit');
-    // Route::delete('/admin/psicologo/remove/{id}', 'PsicologoController@destroy')->name('psicologo.destroy');
-
-
     Route::post('paciente/quadro-atual/{paciente}', QuadroAtualController::class)->name('paciente.quadro-atual');
     Route::post('paciente/monitoramento/{paciente}', MonitoramentoController::class)->name('paciente.monitoramento');
     Route::post('paciente/saude-mental/{id}', SaudeMentalController::class)->name('paciente.saude-mental');

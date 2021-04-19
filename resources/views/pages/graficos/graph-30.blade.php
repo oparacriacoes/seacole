@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //CONDIÇÕES DE SAÚDE (3) - INÍCIO
-axios.get('/chart/condicoes_saude_3')
+axios.get('/admin/chart/condicoes_saude_3')
   .then(response => {
     console.log(response.data);
     let dataSet = {};

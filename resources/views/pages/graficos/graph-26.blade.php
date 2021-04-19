@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //AVALIAÇÃO MÉDICA POR RAÇA/COR - INÍCIO
-axios.get('/chart/avaliacao_medica_raca_cor')
+axios.get('/admin/chart/avaliacao_medica_raca_cor')
   .then(response => {
     //console.log(response.data);
 

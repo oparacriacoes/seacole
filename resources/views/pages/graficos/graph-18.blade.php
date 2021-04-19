@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //TRATAMENTO PRESCRITO POR MÉDICOS DO PROJETO - INÍCIO
-axios.get('/chart/tratamento_financiado')
+axios.get('/admin/chart/tratamento_financiado')
   .then(response => {
     console.log(response.data);
     let dataSet = {};

@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //RECEBEU MEDICAÇÕES PARA COVID-19? - INÍCIO
-axios.get('/chart/recebeu_medicacoes_covid_19')
+axios.get('/admin/chart/recebeu_medicacoes_covid_19')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //LOCAL DE INTERNAÇÃO - INÍCIO
-axios.get('/chart/local_internacao')
+axios.get('/admin/chart/local_internacao')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //SEQUELAS - INÍCIO
-axios.get('/chart/sequelas')
+axios.get('/admin/chart/sequelas')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

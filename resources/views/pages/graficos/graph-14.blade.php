@@ -51,7 +51,7 @@ am4core.useTheme(am4themes_animated);
 
 let data = {};
 //INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (1) - INÍCIO
-axios.get('/chart/insumos_oferecidos_pelo_projeto_raca_cor_1')
+axios.get('/admin/chart/insumos_oferecidos_pelo_projeto_raca_cor_1')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

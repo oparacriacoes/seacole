@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //DIAGNÓSTICO DE COVID-19 - INÍCIO
-axios.get('/chart/como_acessa_sistema_saude')
+axios.get('/admin/chart/como_acessa_sistema_saude')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

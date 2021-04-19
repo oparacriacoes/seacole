@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR - INÍCIO
-axios.get('/chart/uso_cronico_alcool_drogas_raca_cor')
+axios.get('/admin/chart/uso_cronico_alcool_drogas_raca_cor')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

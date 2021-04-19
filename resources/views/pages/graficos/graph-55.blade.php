@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS PESSOAS PARDAS - INÍCIO
-axios.get('/chart/idas_sistema_saude_x_prescricao_medicamentos_pardas')
+axios.get('/admin/chart/idas_sistema_saude_x_prescricao_medicamentos_pardas')
   .then(response => {
     //console.log(response.data);
 

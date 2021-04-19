@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //FAIXA ETÁRIA POR GÊNERO - INÍCIO
-axios.get('/chart/faixa_etaria_genero')
+axios.get('/admin/chart/faixa_etaria_genero')
   .then(response => {
     //console.log(response.data);
     // Create chart instance

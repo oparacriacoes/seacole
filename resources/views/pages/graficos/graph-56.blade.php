@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //PROBLEMAS COM SERVIÇOS DE REFERÊNCIA? - INÍCIO
-axios.get('/chart/problemas_servicos_referencia')
+axios.get('/admin/chart/problemas_servicos_referencia')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

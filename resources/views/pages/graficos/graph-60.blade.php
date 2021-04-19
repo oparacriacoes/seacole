@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //INTERNAÇÃO X DIAGNÓSTICO - INÍCIO
-axios.get('/chart/internacao_diagnostico')
+axios.get('/admin/chart/internacao_diagnostico')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

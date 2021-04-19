@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //ACOMPANHAMENTO PSICOLÓGICO - INÍCIO
-axios.get('/chart/acompanhamento_psicologico')
+axios.get('/admin/chart/acompanhamento_psicologico')
   .then(response => {
     //console.log(response.data);
 

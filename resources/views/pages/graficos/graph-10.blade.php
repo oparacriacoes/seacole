@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //FAIXA ETÁRIA POR RAÇA/COR - INÍCIO
-axios.get('/chart/faixa_etaria_raca_cor')
+axios.get('/admin/chart/faixa_etaria_raca_cor')
   .then(response => {
     //console.log(response.data[1][0].legenda);
     function am4themes_myTheme(target) {

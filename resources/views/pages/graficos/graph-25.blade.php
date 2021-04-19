@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //ACOMPANHAMENTO PSICOLÓGICO: INDIVIDUAL X EM GRUPO - INÍCIO
-axios.get('/chart/acompanhamento_psicologico_individual_emgrupo')
+axios.get('/admin/chart/acompanhamento_psicologico_individual_emgrupo')
   .then(response => {
     console.log(response.data);
 

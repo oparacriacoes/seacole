@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //CASOS AVALIADOS POR EQUIPE MÉDICA - INÍCIO
-axios.get('/chart/casos_avaliados_equipe_medica')
+axios.get('/admin/chart/casos_avaliados_equipe_medica')
   .then(response => {
     //console.log(response.data);
 

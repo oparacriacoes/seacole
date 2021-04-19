@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //QUADRO ATUAL INTENSIFICA MEDOS, ANGÚSTIAS, ANSIEDADE, TRISTEZAS OU PREOCUPAÇÃO?” SIM OU NÃO - 2 POR RAÇA-COR - INÍCIO
-axios.get('/chart/saude_mental')
+axios.get('/admin/chart/saude_mental')
   .then(response => {
     //console.log(response.data);
     // Create chart instance

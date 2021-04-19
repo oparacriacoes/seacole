@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //SITUAÇÃO TOTAL DE CASOS MONITORADOS - INÍCIO
-axios.get('/chart/situacao_total_casos_monitorados_1')
+axios.get('/admin/chart/situacao_total_casos_monitorados_1')
   .then(response => {
     console.log(response.data);
     // Create chart instance

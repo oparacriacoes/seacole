@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //SINTOMAS MANIFESTADOS POR SITUAÇÃO POR RAÇA/COR (1) - INÍCIO
-axios.get('/chart/sintomas_manifestados_situacao_raca_cor_1')
+axios.get('/admin/chart/sintomas_manifestados_situacao_raca_cor_1')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

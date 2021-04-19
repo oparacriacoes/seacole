@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //TESTES REALIZADOS? - INÍCIO
-axios.get('/chart/testes_realizados')
+axios.get('/admin/chart/testes_realizados')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

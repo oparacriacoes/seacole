@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //RAÇA/COR POR AUXÍLIO EMERGENCIAL - INÍCIO
-axios.get('/chart/raca_cor_por_auxilio_emergencial')
+axios.get('/admin/chart/raca_cor_por_auxilio_emergencial')
   .then(response => {
     //console.log(response.data);
     // Create chart instance

@@ -39,21 +39,21 @@ class User extends Authenticatable
 
     public function paciente()
     {
-        return $this->hasOne('App\Paciente');
+        return $this->hasOne(Paciente::class);
     }
 
     public function agente()
     {
-        return $this->hasOne('App\Agente');
+        return $this->hasOne(Agente::class);
     }
 
     public function medico()
     {
-        return $this->hasOne('App\Medico');
+        return $this->hasOne(Medico::class);
     }
 
     public function psicologo()
     {
-        return $this->hasOne('App\Psicologo');
+        return $this->hasOne(Psicologo::class);
     }
 }

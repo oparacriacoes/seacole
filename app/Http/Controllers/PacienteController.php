@@ -10,7 +10,6 @@ use App\Paciente;
 use App\Agente;
 use App\Medico;
 use App\Psicologo;
-use App\EvolucaoSintoma;
 use App\User;
 use App\Articuladora;
 use App\Enums\SituacoesCaso;
@@ -58,12 +57,15 @@ class PacienteController extends Controller
     public function create()
     {
         $paciente = new Paciente();
+
+        $situacoes = SituacoesCaso::readables();
         $agentes =  Agente::with('user:id,name')->select(['id', 'user_id'])->get();
         $medicos = Medico::with('user:id,name')->select(['id', 'user_id'])->get();
         $psicologos = Psicologo::with('user:id,name')->select(['id', 'user_id'])->get();
         $articuladoras = Articuladora::all();
 
         return view('pages.paciente.create')->with(compact(
+            'situacoes',
             'paciente',
             'agentes',
             'medicos',

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Enums\SituacoesCaso;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -121,6 +122,11 @@ class Paciente extends Model
     public function getAgeAttribute()
     {
         return $this->data_nascimento->diffInYears(now());
+    }
+
+    public function getSituacaoCasoAttribute()
+    {
+        return $this->situacao ? SituacoesCaso::get((int)$this->situacao) : 'Não Informado';
     }
 
 

@@ -204,7 +204,7 @@
 
             </div>
             <div class="app-main__outer">
-                <main class="py-4">
+                <main class="">
                     @yield('content')
                 </main>
                 <div class="app-wrapper-footer">

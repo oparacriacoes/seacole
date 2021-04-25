@@ -71,7 +71,7 @@
                                 <div class="widget-content-left">
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                            <img width="42" class="rounded-circle" src="{{asset('assets/images/avatars/maryseacole.png')}}" alt="">
+                                            <img width="42" class="rounded-circle" src="{{asset('images/maryseacole.png')}}" alt="">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
@@ -229,6 +229,8 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/architectui.js') }}"></script>
+
     <script>
         const API_URL = "{{ env(" APP_URL ") }}" + "/api";
         const APP_URL = "{{ env(" APP_URL ") }}";

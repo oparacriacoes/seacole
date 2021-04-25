@@ -42,7 +42,7 @@
     <div class="row">
         <div class="col">
             <div class="main-card mb-3 card">
-                <div class="card-body p-0">
+                <div class="card-body">
                     <table id="medicos" class="table table-striped mb-0">
                         <thead>
                             <tr>

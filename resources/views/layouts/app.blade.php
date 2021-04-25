@@ -146,7 +146,7 @@
                                     <i class="metismenu-icon fa fa-plus-circle nav-icon"></i>
                                     Novo Paciente
                                 </a>
-                                @if(\Auth::user()->role === 'administrador')
+                                @if(Auth::user()->is_admin)
                                 <a href="{{ route('pacientes.exportar') }}">
                                     <i class="metismenu-icon fas fa-file-export nav-icon"></i>
                                     Exportar
@@ -154,6 +154,7 @@
                                 @endif
                             </li>
 
+                            @if(Auth::user()->is_admin)
                             <li class="app-sidebar__heading">Gerenciamento</li>
                             <li>
                                 <a href="{{ route('agentes.index') }}">
@@ -173,6 +174,7 @@
                                     Psicólogas/os
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                     <div class="ps__rail-x" style="left: 0px; bottom: 0px;">

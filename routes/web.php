@@ -41,9 +41,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         return view('dashboard');
     })->name('admin');
 
-    Route::resource('agentes', AgenteController::class)->except(['show']);
-    Route::resource('medicos', MedicoController::class)->except(['show']);
-    Route::resource('psicologos', PsicologoController::class)->except(['show']);
+    Route::resource('agentes', AgenteController::class)->except(['show'])->middleware(['admin']);
+    Route::resource('medicos', MedicoController::class)->except(['show'])->middleware(['admin']);
+    Route::resource('psicologos', PsicologoController::class)->except(['show'])->middleware(['admin']);
 
     Route::post('paciente/quadro-atual/{paciente}', QuadroAtualController::class)->name('paciente.quadro-atual');
     Route::post('paciente/monitoramento/{paciente}', MonitoramentoController::class)->name('paciente.monitoramento');
@@ -51,7 +51,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('paciente/internacao/{paciente}', ServicoInternacaoController::class)->name('paciente.internacao');
     Route::post('paciente/insumos/{paciente}', InsumosOferecidoController::class)->name('paciente.insumos');
 
-    Route::get('pacientes/exportar', [PacienteController::class, 'ExportarExcelPacientes'])->name('pacientes.exportar');
+    Route::get('pacientes/exportar', [PacienteController::class, 'ExportarExcelPacientes'])->name('pacientes.exportar')->middleware(['admin']);
     Route::resource('pacientes', PacienteController::class)->except(['show']);
 
 

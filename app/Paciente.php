@@ -121,7 +121,7 @@ class Paciente extends Model
 
     public function getAgeAttribute()
     {
-        return $this->data_nascimento->diffInYears(now());
+        return $this->data_nascimento ? $this->data_nascimento->diffInYears(now()) : '-';
     }
 
     public function getSituacaoCasoAttribute()

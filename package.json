@@ -13,6 +13,7 @@
         "axios": "^0.21",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
+        "datatables.net-bs4": "^1.10.24",
         "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.19",
@@ -20,6 +21,10 @@
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0",
+        "sweetalert2": "^10.16.6",
         "vue-template-compiler": "^2.6.11"
+    },
+    "dependencies": {
+        "jquery-mask-plugin": "^1.14.16"
     }
 }

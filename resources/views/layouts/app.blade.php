@@ -4,43 +4,24 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Seacole</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Projeto Seacole, mais descrição em breve...">
     <meta name="msapplication-tap-highlight" content="no">
-    <link href="{{ asset('assets/main.css') }}" rel="stylesheet">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Seacole') }}</title>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <style>
         .vertical-nav-menu i.metismenu-icon {
             font-size: 1.2rem;
         }
     </style>
-
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.9.0/jquery.serializejson.min.js" defer></script>
-
-    <script type="text/javascript" src="{{ asset('js/jquery.mask.js') }}" defer></script>
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}" />
-    <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}" defer></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.12/dist/sweetalert2.css">
-
-    <script>
-        const API_URL = "{{ env("
-        APP_URL ") }}" + "/api";
-        const APP_URL = "{{ env("
-        APP_URL ") }}";
-    </script>
-    <script type="text/javascript" src="{{ asset('js/functions.js') }}" defer></script>
     @yield('css')
 </head>
 
@@ -49,9 +30,9 @@
         <div class="app-header header-shadow">
             <div class="app-header__logo">
                 <div class="logo-srcw">
-                    <a href="{{ route('admin') }}">
+                    <!-- <a href="{{ route('admin') }}">
                         <h2>Seacole</h2>
-                    </a>
+                    </a> -->
                 </div>
                 <div class="header__pane ml-auto">
                     <div>
@@ -244,48 +225,14 @@
             </div>
         </div>
     </div>
-    @yield('script')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://seacole.uneafrobrasil.org/js/jquery.mask.js"></script>
+
+    <script src="{{ asset('js/app.js') }}"></script>
     <script>
-        //JQUERY MASKS
-        //$('.time').mask('00:00:00');
-        $('.time').mask('00:00');
-        //$('.date_time').mask('00/00/0000 00:00:00');
-        $('.cep').mask('00000-000');
-        //$('.phone').mask('0000-0000');
-        $('.phone_with_ddd').mask('(00) 0000-0000');
-        $('.mobile_with_ddd').mask('(00) 0 0000-0000');
-        //$('.mixed').mask('AAA 000-S0S');
-        //$('.cpf').mask('000.000.000-00', {reverse: true});
-        //$('.cnpj').mask('00.000.000/0000-00', {reverse: true});
-        $('.money').mask('000.000.000.000.000,00', {
-            reverse: true
-        });
-        //$('.money2').mask("#.##0,00", {reverse: true});
-        /*$('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
-          translation: {
-            'Z': {
-              pattern: /[0-9]/, optional: true
-            }
-          }
-        });*/
-        //$('.ip_address').mask('099.099.099.099');
-        //$('.percent').mask('##0,00%', {reverse: true});
-        //$('.clear-if-not-match').mask("00/00/0000", {clearIfNotMatch: true});
-        //$('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
-        /*$('.fallback').mask("00r00r0000", {
-            translation: {
-              'r': {
-                pattern: /[\/]/,
-                fallback: '/'
-              },
-              placeholder: "__/__/____"
-            }
-          });*/
-        //$('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
+        const API_URL = "{{ env(" APP_URL ") }}" + "/api";
+        const APP_URL = "{{ env(" APP_URL ") }}";
     </script>
-    <script type="text/javascript" src="{{ asset('assets/scripts/main.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/functions.js') }}"></script>
+    @yield('script')
 </body>
 
 </html>

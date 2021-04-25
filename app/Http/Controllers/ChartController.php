@@ -22,6 +22,8 @@ class ChartController extends Controller
             ->whereNotNull('data_inicio_monitoramento')
             ->get();
 
+        // quem é mais velho data_inicio_monitoramento ou data_inicio_ac_psicologico
+
         return response()->json($data);
     }
 }

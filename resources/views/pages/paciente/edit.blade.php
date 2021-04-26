@@ -99,7 +99,7 @@
         <div class="tab-pane tabs-animation fade @if(session('tab') == 'quadro_atual') show active @endif" id="tab-content-1" role="tabpanel">
             @include('pages.paciente._forms_edit.quadro_atual', [
                 'paciente' => $paciente,
-                'quadro_atual' => $quadro_atual,
+                'quadro_atual' => $paciente->quadro_atual,
             ])
         </div>
 
@@ -109,7 +109,7 @@
                     <h5 class="card-title">Monitoramento</h5>
                     @include('pages.paciente._forms_edit.monitoramento', [
                         'paciente' => $paciente,
-                        'monitoramento' => $monitoramento,
+                        'monitoramento' => $paciente->monitoramento,
                         'monitoramento_sintomas' => []
                     ])
                 </div>
@@ -122,7 +122,7 @@
                     <h5 class="card-title">Saúde mental</h5>
                     @include('pages.paciente._forms_edit.saude_mental', [
                         'paciente' => $paciente,
-                        'saude_mental' => $saude_mental,
+                        'saude_mental' => $paciente->saude_mental,
                     ])
                 </div>
             </div>
@@ -134,7 +134,7 @@
                     <h5 class="card-title">Serviços de Referência e Internação</h5>
                     @include('pages.paciente._forms_edit.servicos_referencia', [
                         'paciente' => $paciente,
-                        'servico_internacao' => $servico_internacao,
+                        'servico_internacao' => $paciente->servico_internacao,
                     ])
                 </div>
             </div>
@@ -144,7 +144,7 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Insumos Oferecidos pelo Projeto</h5>
-                    @include('pages.paciente._forms_edit.insumos', ['paciente' => $paciente, 'insumos' => $insumos])
+                    @include('pages.paciente._forms_edit.insumos', ['paciente' => $paciente, 'insumos' => $paciente->insumos_oferecidos])
                 </div>
             </div>
         </div>
@@ -152,7 +152,7 @@
         <div class="tab-pane tabs-animation fade" id="tab-content-6" role="tabpanel">
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    @include('pages.paciente.components.prontuario', ['paciente' => $paciente, 'prontuarios' => $prontuarios])
+                    @include('pages.paciente.components.prontuario', ['paciente' => $paciente, 'prontuarios' => $paciente->prontuarios])
                 </div>
             </div>
         </div>

@@ -16,6 +16,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}"></script>
+
 
     <style>
         .vertical-nav-menu i.metismenu-icon {
@@ -72,7 +74,6 @@
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                                             <img width="42" class="rounded-circle" src="{{asset('images/maryseacole.png')}}" alt="">
-                                            <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -93,6 +94,12 @@
                                     <div class="widget-subheading">
                                         {{ ucfirst(Auth::user()->role) }}
                                     </div>
+                                </div>
+                                <div class="widget-content-right header-user-info ml-3">
+                                    <a type="button" title="Sair" class="btn-shadow p-1 btn btn-danger btn-sm" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                        <i class="text-white fas fa-sign-out-alt pr-1 pl-1"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -228,8 +235,7 @@
         </div>
     </div>
 
-    <!-- <script src="{{ asset('js/architectui.js') }}"></script> -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/architectui.js') }}"></script>
 
     <script>
         const API_URL = "{{ env(" APP_URL ") }}" + "/api";

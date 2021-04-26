@@ -40,7 +40,7 @@ class PacientesExport implements FromArray, WithTitle, WithHeadings, WithMultipl
     {
         $pacientes_rows = [];
 
-        Paciente::whereId(871)->chunk(100, function ($pacientes) use (&$pacientes_rows) {
+        Paciente::chunk(100, function ($pacientes) use (&$pacientes_rows) {
             foreach ($pacientes as $paciente) {
 
                 $doenca = $paciente->doenca_cronica ?? [];

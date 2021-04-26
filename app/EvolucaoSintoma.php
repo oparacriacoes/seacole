@@ -50,7 +50,7 @@ class EvolucaoSintoma extends Model
     /**
      * Relations
      */
-    public function pacientes()
+    public function paciente()
     {
         return $this->belongsTo(Paciente::class);
     }

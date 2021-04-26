@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\AjudaTipo;
 use App\Exports\PacientesExport;
 use App\Sintoma;
-use Carbon\Carbon;
 use App\Paciente;
 use App\Agente;
 use App\Medico;
@@ -16,11 +15,6 @@ use App\Enums\RolesEnum;
 use App\Enums\SituacoesCaso;
 use App\Http\Requests\PacienteRequest;
 use Maatwebsite\Excel\Facades\Excel;
-use App\QuadroAtual;
-use App\Monitoramento;
-use App\SaudeMental;
-use App\ServicoInternacao;
-use App\InsumosOferecido;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -159,7 +153,7 @@ class PacienteController extends Controller
 
     public function ExportarExcelPacientes()
     {
-        $date = Carbon::now();
+        $date = now();
 
         return Excel::download(new PacientesExport(), 'pacientes_' . $date->format('d-m-Y-h:m') . '.xlsx');
     }

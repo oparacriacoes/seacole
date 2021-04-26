@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class UserSaude
+class IsProfessional
 {
     /**
      * Handle an incoming request.
@@ -16,6 +17,11 @@ class UserSaude
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (Auth::user()->is_professional) {
+            return $next($request);
+        }
+
+        Auth::logout();
+        return redirect('/');
     }
 }

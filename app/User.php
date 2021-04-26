@@ -43,7 +43,7 @@ class User extends Authenticatable
 
     public function getIsProfessionalAttribute()
     {
-        return in_array($this->role, [RolesEnum::values()]);
+        return in_array($this->role, RolesEnum::values());
     }
 
     /**

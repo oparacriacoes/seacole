@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Enums\RolesEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -40,6 +41,10 @@ class User extends Authenticatable
         return $this->role === 'administrador';
     }
 
+    public function getIsProfessionalAttribute()
+    {
+        return in_array($this->role, [RolesEnum::values()]);
+    }
 
     /**
      * Relations
@@ -62,5 +67,18 @@ class User extends Authenticatable
     public function psicologo()
     {
         return $this->hasOne(Psicologo::class);
+    }
+
+    public function professional()
+    {
+        if ($this->role === RolesEnum::AGENTE) {
+            return $this->agente();
+        } else if ($this->role === RolesEnum::MEDICO) {
+            return $this->medico();
+        } else if ($this->role === RolesEnum::PSICOLOGO) {
+            return $this->psicologo();
+        }
+
+        return null;
     }
 }

@@ -89,6 +89,8 @@ class PacienteController extends Controller
 
     public function edit(Paciente $paciente)
     {
+        $this->authorize('view', $paciente);
+
         $situacoes = SituacoesCaso::readables();
 
         $agentes =  Agente::with('user:id,name')->select(['id', 'user_id'])->get();
@@ -122,6 +124,8 @@ class PacienteController extends Controller
 
     public function update(PacienteRequest $request, Paciente $paciente)
     {
+        $this->authorize('update', $paciente);
+
         $dataForm = $request->validated();
 
         try {

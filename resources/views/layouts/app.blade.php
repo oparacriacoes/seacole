@@ -30,9 +30,9 @@
         <div class="app-header header-shadow">
             <div class="app-header__logo">
                 <div class="logo-srcw">
-                    <!-- <a href="{{ route('admin') }}">
+                    <a href="{{ route('admin') }}">
                         <h2>Seacole</h2>
-                    </a> -->
+                    </a>
                 </div>
                 <div class="header__pane ml-auto">
                     <div>

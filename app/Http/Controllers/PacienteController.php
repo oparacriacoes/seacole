@@ -24,7 +24,7 @@ class PacienteController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->role === RolesEnum::AGENTE || $user->role === RolesEnum::PSICOLOGO || $user->role === RolesEnum::MEDICO) {
+        if ($user->role === RolesEnum::AGENTE || $user->role === RolesEnum::PSICOLOGO) {
             $pacienteQuery = $user->professional->pacientes->toQuery();
         } else {
             $pacienteQuery = Paciente::query();

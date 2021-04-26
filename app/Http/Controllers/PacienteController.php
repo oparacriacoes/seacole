@@ -12,6 +12,7 @@ use App\Medico;
 use App\Psicologo;
 use App\User;
 use App\Articuladora;
+use App\Enums\RolesEnum;
 use App\Enums\SituacoesCaso;
 use App\Http\Requests\PacienteRequest;
 use Maatwebsite\Excel\Facades\Excel;
@@ -28,12 +29,9 @@ class PacienteController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $role = $user->role;
 
-        if ($role == 'agente') {
-            $pacienteQuery = $user->agente->pacientes->toQuery();
-        } elseif ($role === 'psicologo') {
-            $pacienteQuery = $user->psicologo->pacientes->toQuery();
+        if ($user->role === RolesEnum::AGENTE || $user->role === RolesEnum::PSICOLOGO || $user->role === RolesEnum::MEDICO) {
+            $pacienteQuery = $user->professional->pacientes->toQuery();
         } else {
             $pacienteQuery = Paciente::query();
         }

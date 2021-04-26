@@ -20,9 +20,17 @@
 
     <!-- ALERTS DE RETORNO DO BACKEND -->
     @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <div>{{$error}}</div>
-        @endforeach
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-danger" role="alert">
+                    <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
     @endif
 
     @if(session('success'))

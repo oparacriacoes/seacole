@@ -33,11 +33,17 @@
     <div class="scrollbar-sidebar ps">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu metismenu pt-2">
-                <li class="app-sidebar__heading">Dashboards</li>
+                <li class="app-sidebar__heading">Dados & Análises</li>
                 <li>
                     <a href="{{ route('dashboard.index') }}">
                         <i class="metismenu-icon fas fa-tachometer-alt"></i>
                         Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('charts.index') }}">
+                        <i class="metismenu-icon fas fa-chart-bar"></i>
+                        Gráficos
                     </a>
                 </li>
 

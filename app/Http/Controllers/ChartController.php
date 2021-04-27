@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Paciente;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 class ChartController extends Controller
 {
-    public function index($chart_id)
+    public function index()
     {
-        $chart_view = 'graph-' . $chart_id;
-        return view('pages.graficos.' . $chart_view);
+        return view('pages.charts');
     }
 
     public function novos_casos_monitorados()

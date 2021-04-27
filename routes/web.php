@@ -3,6 +3,7 @@
 use App\Http\Controllers\AgenteController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ChartsController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InsumosOferecidoController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\MonitoramentoController;
@@ -38,8 +39,10 @@ Auth::routes([
 
 Route::prefix('admin')->middleware(['auth', 'professional'])->group(function () {
     Route::get('/', function () {
-        return view('dashboard');
+        return view('pages.dashboard');
     })->name('admin');
+
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::resource('agentes', AgenteController::class)->except(['show'])->middleware(['admin']);
     Route::resource('medicos', MedicoController::class)->except(['show'])->middleware(['admin']);

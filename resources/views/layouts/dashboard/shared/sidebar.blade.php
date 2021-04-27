@@ -32,7 +32,15 @@
 
     <div class="scrollbar-sidebar ps">
         <div class="app-sidebar__inner">
-            <ul class="vertical-nav-menu metismenu">
+            <ul class="vertical-nav-menu metismenu pt-2">
+                <li class="app-sidebar__heading">Dashboards</li>
+                <li>
+                    <a href="{{ route('dashboard.index') }}">
+                        <i class="metismenu-icon fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+
                 <li class="app-sidebar__heading">Pacientes</li>
                 <li>
                     <a href="{{ route('pacientes.index') }}">
@@ -52,17 +60,17 @@
                 </li>
 
                 @if(Auth::user()->is_admin)
-                <li class="app-sidebar__heading">Gerenciamento</li>
+                <li class="app-sidebar__heading">Profissionais</li>
                 <li>
                     <a href="{{ route('agentes.index') }}">
                         <i class="metismenu-icon fas fa-medkit nav-icon""></i>
-                                    Agentes
-                                </a>
-                            </li>
-                            <li>
-                                <a href=" {{ route('medicos.index') }}">
-                            <i class="metismenu-icon fas fa-stethoscope nav-icon"></i>
-                            Médicas/os
+                        Agentes
+                    </a>
+                </li>
+                <li>
+                    <a href=" {{ route('medicos.index') }}">
+                        <i class="metismenu-icon fas fa-stethoscope nav-icon"></i>
+                        Médicas/os
                     </a>
                 </li>
                 <li>

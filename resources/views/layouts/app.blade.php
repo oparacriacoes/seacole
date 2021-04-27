@@ -22,14 +22,14 @@
 
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-        @include('dashboard.shared.header')
+        @include('layouts.dashboard.shared.header')
         <div class="app-main">
-            @include('dashboard.shared.sidebar')
+            @include('layouts.dashboard.shared.sidebar')
             <div class="app-main__outer">
                 <main class="">
                     @yield('content')
                 </main>
-            @include('dashboard.shared.footer')
+            @include('layouts.dashboard.shared.footer')
             </div>
         </div>
     </div>

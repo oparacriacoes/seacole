@@ -39,7 +39,7 @@ Auth::routes([
 
 Route::prefix('admin')->middleware(['auth', 'professional'])->group(function () {
     Route::get('/', function () {
-        return view('pages.dashboard');
+        return view('graphs');
     })->name('admin');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

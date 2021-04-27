@@ -6,7 +6,7 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-graph text-primary">
+                    <i class="pe-7s-display1 text-primary">
                     </i>
                 </div>
                 <div>Dashboard Analítico

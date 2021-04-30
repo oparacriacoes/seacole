@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ChartsEnum;
 use App\Paciente;
 class ChartController extends Controller
 {
     public function index()
     {
-        return view('pages.charts');
+        $charts = ChartsEnum::readables();
+
+        return view('pages.charts', [
+            'charts' => $charts
+        ]);
     }
 
     public function novos_casos_monitorados()

@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServicoInternacao extends Model
 {
+
+    protected $table = 'servico_internacaos';
+
     protected $fillable = [
         'paciente_id',
         'precisou_servico',
@@ -26,11 +29,9 @@ class ServicoInternacao extends Model
         'data_alta_hospitalar',
     ];
 
-
     /**
      * Mutators and Casts
      */
-
     protected $dates = [
         'data_ultima_ida_servico_de_saude',
         'data_entrada_internacao',
@@ -39,13 +40,20 @@ class ServicoInternacao extends Model
         'updated_at'
     ];
 
+    protected $casts = [
+        'precisou_servico' => 'array',
+        'recebeu_med_covid' => 'array',
+        'teve_algum_problema' => 'array',
+        'local_internacao' => 'array',
+        'precisou_internacao' => 'boolean',
+        'precisou_ambulancia' => 'boolean',
+    ];
 
     /**
      * Relations
      */
-
     public function pacientes()
     {
-        return $this->belongsTo('App\Paciente');
+        return $this->belongsTo(Paciente::class);
     }
 }

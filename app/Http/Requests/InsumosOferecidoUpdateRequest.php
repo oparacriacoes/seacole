@@ -23,16 +23,18 @@ class InsumosOferecidoUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $booleanRules = ['nullable', 'boolean'];
+
         return [
-            'condicao_ficar_isolada' => 'string',
-            'tem_comida' => 'string',
-            'tem_alguem' => 'string',
-            'tarefas_autocuidado' => 'string',
+            'condicao_ficar_isolada' => $booleanRules,
+            'tem_comida' => $booleanRules,
+            'tem_alguem' => $booleanRules,
+            'tarefas_autocuidado' => $booleanRules,
+            'tratamento_prescrito' => $booleanRules,
+            'oximetro_devolvido' => $booleanRules,
             'precisa_tipo_ajuda' => 'array',
-            'tratamento_prescrito' => 'string',
             'tratamento_financiado' => 'array',
             'material_entregue' => 'array',
-            'oximetro_devolvido' => 'string',
         ];
     }
 }

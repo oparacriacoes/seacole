@@ -2,12 +2,17 @@
 
 namespace App;
 
+use App\Enums\SituacoesCaso;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Paciente extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'user_id',
+        'name',
+        'email',
         'agente_id',
         'medico_id',
         'psicologo_id',
@@ -94,6 +99,36 @@ class Paciente extends Model
         'updated_at'
     ];
 
+    protected $casts = [
+        'acompanhamento_psicologico' => 'array',
+        'teste_utilizado' => 'array',
+        'resultado_teste' => 'array',
+        'doenca_cronica' => 'array',
+        'sistema_saude' => 'array',
+
+        'auxilio_emergencial' => 'boolean',
+        'tuberculose' => 'boolean',
+        'tabagista' => 'boolean',
+        'cronico_alcool' => 'boolean',
+        'outras_drogas' => 'boolean',
+        'gestante' => 'boolean',
+        'amamenta' => 'boolean',
+        'gestacao_alto_risco' => 'boolean',
+        'pos_parto' => 'boolean',
+        'acompanhamento_ubs' => 'boolean',
+        'acompanhamento_medico' => 'boolean',
+    ];
+
+    public function getAgeAttribute()
+    {
+        return $this->data_nascimento->diffInYears(now());
+    }
+
+    public function getSituacaoCasoAttribute()
+    {
+        return $this->situacao ? SituacoesCaso::get((int)$this->situacao) : 'Não Informado';
+    }
+
 
     /**
      * Relations
@@ -159,23 +194,33 @@ class Paciente extends Model
         return $this->hasMany('App\EvolucaoSintoma');
     }
 
+    public function monitoramento()
+    {
+        return $this->hasOne(Monitoramento::class);
+    }
+
+    public function prontuarios()
+    {
+        return $this->hasMany(EvolucaoSintoma::class);
+    }
+
     public function insumos_oferecidos()
     {
-        return $this->hasMany('App\InsumosOferecido');
+        return $this->hasOne(InsumosOferecido::class);
     }
 
     public function quadro_atual()
     {
-        return $this->hasMany('App\QuadroAtual');
+        return $this->hasOne(QuadroAtual::class);
     }
 
     public function saude_mental()
     {
-        return $this->hasMany('App\SaudeMental');
+        return $this->hasOne(SaudeMental::class);
     }
 
     public function servico_internacao()
     {
-        return $this->hasMany('App\ServicoInternacao');
+        return $this->hasOne(ServicoInternacao::class);
     }
 }

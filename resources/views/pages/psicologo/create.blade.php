@@ -18,7 +18,7 @@
   <div class="main-card mb-3 card">
     <div class="card-body">
 
-      <form method="POST" action="{{ route('psicologo.store') }}">
+      <form method="POST" action="{{ route('psicologos.store') }}">
         @csrf
         <div class="row">
           <div class="col-12 col-md-6">

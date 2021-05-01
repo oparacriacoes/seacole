@@ -2,44 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaudeMentalRequest;
+use App\Paciente;
 use Illuminate\Http\Request;
 use App\SaudeMental;
 use DB;
+use Illuminate\Support\Facades\Log;
 
 class SaudeMentalController extends Controller
 {
-    public function store(Request $request, $id)
+    public function __invoke(SaudeMentalRequest $request, $id)
     {
-        $saude = SaudeMental::where('paciente_id', $id)->first();
+        $paciente = Paciente::findOrFail($id);
+        $dataForm = $request->validated();
 
-        $dados = [
-      'paciente_id' => $id,
-      'quadro_atual' => $request->quadro_atual,
-      'detalhes_medos' => $request->detalhes_medos,
-    ];
-
-        if (!$saude) {
-            DB::beginTransaction();
-            try {
-                $saude = SaudeMental::create($dados);
-                DB::commit();
-                return redirect()->back()->with('success', 'Dados atualizados com sucesso.');
-            } catch (\Exception $e) {
-                DB::rollback();
-                \Log::info($e);
-                return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
-            }
-        } else {
-            DB::beginTransaction();
-            try {
-                $saude->update($dados);
-                DB::commit();
-                return redirect()->back()->with('success', 'Dados atualizados com sucesso.');
-            } catch (\Exception $e) {
-                DB::rollback();
-                \Log::info($e);
-                return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
-            }
+        try {
+            $paciente->saude_mental()->updateOrCreate(
+                ['paciente_id' => $paciente->id],
+                $dataForm
+            );
+            return back()
+                ->with('success', 'Dados atualizados com sucesso.')
+                ->with('tab', 'saude_mental');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return back()
+                ->with('error', 'Não foi possível realizar a operação.')
+                ->with('tab', 'saude_mental');
         }
     }
 }

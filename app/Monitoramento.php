@@ -11,7 +11,7 @@ class Monitoramento extends Model
     protected $fillable = [
         'paciente_id',
         'data_monitoramento',
-        'horario_monotiramento',
+        'horario_monitoramento',
         'sintomas_atuais',
         'sintomas_outro',
         'temperatura_atual',
@@ -29,14 +29,29 @@ class Monitoramento extends Model
         'melhoria_sintomas_inalacao',
     ];
 
-
     /**
      * Mutators and Casts
      */
-
     protected $dates = [
         'data_monitoramento',
         'created_at',
         'updated_at'
     ];
+
+    protected $casts = [
+        'sintomas_atuais' => 'array',
+        'algum_sinal' => 'boolean',
+        'equipe_medica' => 'boolean',
+        'fazendo_uso_pic' => 'boolean',
+        'fez_escalapes' => 'boolean',
+    ];
+
+
+    /**
+     * Relations
+     */
+    public function pacientes()
+    {
+        return $this->belongsTo(Paciente::class);
+    }
 }

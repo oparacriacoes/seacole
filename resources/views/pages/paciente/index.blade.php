@@ -35,88 +35,36 @@
                           @foreach($pacientes as $paciente)
                           <tr>
                             <td>
-                              <?php
-                              switch ($paciente->situacao) {
-                                case '1':
-                                  echo 'Caso ativo GRAVE';
-                                  break;
-
-                                case '2':
-                                  echo 'Caso ativo LEVE';
-                                  break;
-
-                                case '3':
-                                  echo 'Contato caso confirmado - ativo';
-                                  break;
-
-                                case '4':
-                                  echo 'Outras situações (sem relação com COVID-19) - ativos';
-                                  break;
-
-                                case '5':
-                                  echo 'Exclusivo psicologia - ativo';
-                                  break;
-
-                                case '6':
-                                  echo 'Monitoramento encerrado GRAVE - segue apenas com psicólogos';
-                                  break;
-
-                                case '7':
-                                  echo 'Monitoramento encerrado LEVE - segue apenas com psicólogos';
-                                  break;
-
-                                case '8':
-                                  echo 'Monitoramento encerrado contato - segue apenas com psicólogos';
-                                  break;
-
-                                case '9':
-                                  echo 'Monitoramento encerrado outros - segue apenas com psicólogos';
-                                  break;
-
-                                case '10':
-                                  echo 'Caso finalizado GRAVE';
-                                  break;
-
-                                case '11':
-                                  echo 'Caso finalizado LEVE';
-                                  break;
-
-                                case '12':
-                                  echo 'Contato com caso confirmado - finalizado';
-                                  break;
-
-                                case '13':
-                                  echo 'Outras situações (sem relação com COVID-19) - finalizado';
-                                  break;
-
-                                case '14':
-                                  echo 'Exclusivo psicologia - finalizado';
-                                  break;
-
-                                default:
-                                  echo 'Não Informado';
-                                  break;
-                              }
-                              ?>
+                                {{ $paciente->situacao_caso }}
                             </td>
-                            <td><a href="{{ route('paciente/edit', $paciente->id) }}">{{ $paciente->user->name }}</a></td>
-                            @if($paciente->agente)
-                            <td><a href="{{ route('agente/edit', $paciente->agente->id) }}">{{ $paciente->agente->user->name }}</a></td>
-                            @else
-                            <td></td>
-                            @endif
-                            @if($paciente->medico)
-                            <td><a href="{{ route('medico/edit', $paciente->medico->id) }}">{{ $paciente->medico->user->name }}</a></td>
-                            @else
-                            <td></td>
-                            @endif
-                            @if($paciente->psicologo)
-                            <td><a href="{{ route('psicologo/edit', $paciente->psicologo->id) }}">{{ $paciente->psicologo->user->name }}</a></td>
-                            @else
-                            <td></td>
-                            @endif
                             <td>
-                              <form action="{{ route('paciente.destroy', $paciente->id) }}" method="post">
+                                <a href="{{ route('pacientes.edit', $paciente) }}">
+                                    {{ $paciente->name }}
+                                </a>
+                            </td>
+                            <td>
+                                @if($paciente->agente)
+                                <a href="{{ route('agentes.edit', $paciente->agente->id) }}">
+                                    {{ $paciente->agente->user->name }}
+                                </a>
+                                @endif
+                            </td>
+                            <td>
+                                @if($paciente->medico)
+                                <a href="{{ route('medicos.edit', $paciente->medico->id) }}">
+                                    {{ $paciente->medico->user->name }}
+                                </a>
+                                @endif
+                            </td>
+                            <td>
+                                @if($paciente->psicologo)
+                                <a href="{{ route('psicologos.edit', $paciente->psicologo->id) }}">
+                                    {{ $paciente->psicologo->user->name }}
+                                </a>
+                                @endif
+                            </td>
+                            <td>
+                              <form action="{{ route('pacientes.destroy', $paciente) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-sm btn-danger" type="submit" name="button">Excluir</button>

@@ -28,19 +28,19 @@
   <div class="main-card mb-3 card">
     <div class="card-body">
 
-      <form method="POST" action="{{ route('agente.store') }}">
+      <form method="POST" action="{{ route('agentes.store') }}">
         @csrf
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="form-group">
               <label for="name">Nome completo</label>
-              <input name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp">
+              <input name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" value="{{old('name')}}">
             </div>
           </div>
           <div class="col-12 col-md-6">
             <div class="form-group">
               <label for="email">Email</label>
-              <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+              <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{old('email')}}">
             </div>
           </div>
           <input type="hidden" name="role" value="agente">
@@ -49,13 +49,13 @@
           <div class="col-12 col-md-6">
             <div class="form-group">
               <label for="fone_celular_1">Telefone celular 1</label>
-              <input name="fone_celular_1" type="text" class="form-control mobile_with_ddd" id="fone_celular_1" aria-describedby="fone_celular_1Help">
+              <input name="fone_celular_1" type="text" class="form-control mobile_with_ddd" id="fone_celular_1" value="{{old('fone_celular_1')}}" aria-describedby="fone_celular_1Help">
             </div>
           </div>
           <div class="col-12 col-md-6">
             <div class="form-group">
               <label for="fone_celular_2">Telefone celular 2</label>
-              <input name="fone_celular_2" type="text" class="form-control mobile_with_ddd" id="fone_celular_2" aria-describedby="fone_celular_2Help">
+              <input name="fone_celular_2" type="text" class="form-control mobile_with_ddd" id="fone_celular_2" value="{{old('fone_celular_2')}}" aria-describedby="fone_celular_2Help">
             </div>
           </div>
         </div>

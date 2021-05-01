@@ -3,26 +3,10 @@
 namespace App\View\Components\Charts;
 
 use App\Paciente;
-use Illuminate\View\Component;
 
-class NovosCasosMonitorados extends Component
+class NovosCasosMonitorados extends ChartComponent
 {
-
-    public ?string $date_from;
-    public ?string $date_to;
-
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct(?string $datefrom, ?string $dateto)
-    {
-        $this->date_from = $datefrom;
-        $this->date_to = $dateto;
-    }
-
-    public function chartData()
+    public function chartData(): array
     {
         $collection = Paciente::selectRaw("DATE_FORMAT(coalesce(least(data_inicio_monitoramento, data_inicio_ac_psicologico), data_inicio_monitoramento, data_inicio_ac_psicologico), '%Y-%m') date, count(id) total")
             ->groupBy('date')

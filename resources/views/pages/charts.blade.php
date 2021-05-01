@@ -57,8 +57,15 @@
 
     <div class="row">
         <div class="col">
-            <div class="card mb-3 shadow-sm p-3">
-                <canvas id="chartjs" width="400" height="200"></canvas>
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <canvas id="chartjs" class="bg-white" width="400" height="200"></canvas>
+                </div>
+                <div class="card-footer">
+                    <a download="{{$chart.'.png'}}" class="btn btn-primary" href="" id="btn_download_chart">
+                        <i class="fa fa-download"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -70,6 +77,18 @@
 
     <script type="text/javascript">
         Chart.plugins.register(ChartDataLabels);
+        Chart.plugins.register({
+            beforeDraw: function(c) {
+                var ctx = c.chart.ctx;
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, c.chart.width, c.chart.height);
+            }
+        })
+
+        $('#btn_download_chart').click((e) => {
+            var url_base64jp = document.getElementById("chartjs").toDataURL("image/png", 1.0);
+            e.currentTarget.href = url_base64jp
+        })
     </script>
 
     <x-dynamic-component :component="$chartComponent" :datefrom="$datefrom" :dateto="$dateto" />

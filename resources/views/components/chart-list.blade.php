@@ -2,7 +2,6 @@
   <div class="row mb-4">
     <div class="col">
       <div class="list-group">
-        <a class="list-group-item list-group-item-action" href="{{ route('charts.secondary', 1) }}">#1 - NOVOS CASOS MONITORADOS</a>
         <a class="list-group-item list-group-item-action" href="{{ route('charts.secondary', 2) }}">#2 - MONITORADOS X EXCLUSIVO PSICOLOGIA</a>
         <a class="list-group-item list-group-item-action" href="{{ route('charts.secondary', 3) }}">#3 - SITUAÇÃO TOTAL DE CASOS MONITORADOS</a>
         <a class="list-group-item list-group-item-action" href="{{ route('charts.secondary', 4) }}">#4 - SITUAÇÃO TOTAL DE CASOS MONITORADOS</a>

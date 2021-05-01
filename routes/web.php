@@ -61,8 +61,7 @@ Route::prefix('admin')->middleware(['auth', 'professional'])->group(function () 
 
     // Route::get('/admin/paciente/notify/dismiss/{notification_id}/{paciente_id}', 'NotifyController@dismiss')->name('paciente/notify/dismiss');
 
-    Route::get('charts/{chart_id}', [ChartController::class, 'index'])->name('charts.secondary');
-    Route::get('chart/novos_casos_monitorados', [ChartController::class ,'novos_casos_monitorados'])->name('chart.novos-casos');
+    Route::get('charts/{chart_id}', [ChartsController::class, 'index'])->name('charts.secondary');
 
     Route::get('chart/monitorados_exclusivo_psicologia', [ChartsController::class, 'monitorados_exclusivo_psicologia'])->name('chart.monitorados-exclusivo-psicologia');
     Route::get('chart/situacao_total_casos_monitorados', [ChartsController::class, 'situacao_total_casos_monitorados'])->name('chart.situacao-total-casos-monitorados');

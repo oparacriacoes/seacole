@@ -17,10 +17,10 @@ class ChartController extends Controller
 
     public function novos_casos_monitorados()
     {
-        $data = Paciente::selectRaw("DATE_FORMAT(data_inicio_monitoramento, '%Y-%m') date, count(id) value")
+        $data = Paciente::selectRaw("DATE_FORMAT(coalesce(least(data_inicio_monitoramento, data_inicio_ac_psicologico), data_inicio_monitoramento, data_inicio_ac_psicologico) old_date, '%Y-%m') date, count(id) value")
             ->groupBy('date')
             ->orderBy('date', 'desc')
-            ->whereNotNull('data_inicio_monitoramento')
+            ->whereRaw("coalesce(least(data_inicio_monitoramento, data_inicio_ac_psicologico), data_inicio_monitoramento, data_inicio_ac_psicologico) is not null")
             ->get();
 
         // quem é mais velho data_inicio_monitoramento ou data_inicio_ac_psicologico

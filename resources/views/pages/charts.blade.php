@@ -56,8 +56,13 @@
     </div>
 
     <div class="row">
-
+        <div class="col">
+            <div class="card mb-3 shadow-sm">
+                <div class="chart" id="chart"></div>
+            </div>
+        </div>
     </div>
+
 
 </div>
 @endsection

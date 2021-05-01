@@ -25,7 +25,7 @@
                             <div class="col-md-7">
                                 <div class="position-relative form-group">
                                     <label for="chart" class="">Gráfico</label>
-                                    <x-forms.select property="chart" :value="$chart" :items="$charts"/>
+                                    <x-forms.select property="chart" :value="$chart" :items="$charts" />
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -64,15 +64,15 @@
     </div>
 
     @section('script')
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-colorschemes"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-colorschemes"></script>
 
-        <script type="text/javascript">
-            Chart.plugins.register(ChartDataLabels);
-        </script>
+    <script type="text/javascript">
+        Chart.plugins.register(ChartDataLabels);
+    </script>
 
-        <x-charts.novos-casos-monitorados :datefrom="$datefrom" :dateto="$dateto"/>
+    <x-dynamic-component :component="$chartComponent" :datefrom="$datefrom" :dateto="$dateto" />
     @endsection
 
 </div>

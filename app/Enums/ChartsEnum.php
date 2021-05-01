@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 final class ChartsEnum extends ReadableEnum
 {
-    public const CASOS_MONITORADOS = '1';
+    public const CASOS_MONITORADOS = 'novos-casos-monitorados';
 
 
     public static function values(): array

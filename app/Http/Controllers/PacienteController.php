@@ -7,7 +7,6 @@ use App\DoencaCronica;
 use App\EstadoEmocional;
 use App\Events\SintomaEvolucao;
 use App\Exports\PacientesExport;
-use App\Observacao;
 use App\Sintoma;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -22,7 +21,6 @@ use App\Articuladora;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use App\QuadroAtual;
-use App\SituacaoCaso;
 use App\Monitoramento;
 use App\SaudeMental;
 use App\ServicoInternacao;
@@ -53,7 +51,7 @@ class PacienteController extends Controller
         $user = new User;
         $user->name = $dataForm['name'];
         $user->email = $dataForm['email'];
-        $user->password =$dataForm['email'];
+        $user->password = $dataForm['email'];
         $user->role = "paciente";
         try {
             $user->save();
@@ -287,12 +285,13 @@ class PacienteController extends Controller
 
     public function add()
     {
+        $paciente = new Paciente();
         $agentes = Agente::get();
         $medicos = Medico::get();
         $psicologos = Psicologo::all();
         $articuladoras = Articuladora::all();
 
-        return view('pages.paciente.create')->with(compact('agentes', 'medicos', 'psicologos', 'articuladoras'));
+        return view('pages.paciente.create')->with(compact('paciente', 'agentes', 'medicos', 'psicologos', 'articuladoras'));
     }
 
     public function storeGeral(Request $request)
@@ -300,11 +299,11 @@ class PacienteController extends Controller
         DB::beginTransaction();
         try {
             $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->name),
-        'role' => 'paciente',
-      ]);
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->name),
+                'role' => 'paciente',
+            ]);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -313,68 +312,68 @@ class PacienteController extends Controller
         }
 
         $dados = [
-      'user_id' => $user->id,
-      'agente_id' => $request->agente,
-      'medico_id' => $request->medico,
-      'articuladora_responsavel' => $request->articuladora_responsavel,
-      'saude_mental' => $request->saude_mental,
-      'acompanhamento_psicologico' => $request->acompanhamento_psicologico ? serialize($request->acompanhamento_psicologico) : null,
-      'atendimento_semanal_psicologia' => $request->atendimento_semanal_psicologia,
-      'horario_at_psicologia' => $request->horario_at_psicologia,
-      'como_chegou_ao_projeto' => $request->como_chegou_ao_projeto,
-      'como_chegou_ao_projeto_outro' => $request->como_chegou_ao_projeto_outro,
-      'nucleo_uneafro_qual' => $request->nucleo_uneafro_qual,
-      'psicologo_id' => $request->psicologo_id,
-      'situacao' => $request->situacao,
-      'data_nascimento' => $request->data_nascimento,
-      'cor_raca' => $request->cor_raca,
-      'endereco_cep' => $request->endereco_cep,
-      'endereco_rua' => $request->endereco_rua,
-      'endereco_numero' => $request->endereco_numero,
-      'endereco_bairro' => $request->endereco_bairro,
-      'endereco_cidade' => $request->endereco_cidade,
-      'endereco_uf' => $request->endereco_uf,
-      'ponto_referencia' => $request->ponto_referencia,
-      'endereco_complemento' => $request->endereco_complemento,
-      'fone_fixo' => $request->fone_fixo,
-      'fone_celular' => $request->fone_celular,
-      'numero_pessoas_residencia' => $request->numero_pessoas_residencia,
-      'responsavel_residencia' => $request->responsavel_residencia,
-      'renda_residencia' => $request->renda_residencia,
-      'doenca_cronica' => $request->doenca_cronica ? serialize($request->doenca_cronica) : null,
-      'remedios_consumidos' => $request->remedios_consumidos,
-      'acompanhamento_medico' => $request->acompanhamento_medico,
-      'teste_utilizado' => $request->teste_utilizado ? serialize($request->teste_utilizado) : null,
-      'resultado_teste' => $request->resultado_teste ? serialize($request->resultado_teste) : null,
-      'data_teste_confirmatorio' => $request->data_teste_confirmatorio,
-      'sintomas_iniciais' => $request->sintomas_iniciais,
-      'data_inicio_sintoma' => $request->data_inicio_sintoma,
-      'data_inicio_monitoramento' => $request->data_inicio_monitoramento,
-      'data_finalizacao_caso' => $request->data_finalizacao_caso,
-      'data_inicio_ac_psicologico' => $request->data_inicio_ac_psicologico,
-      'data_encerramento_ac_psicologico' => $request->data_encerramento_ac_psicologico,
-      'name_social' => $request->name_social,
-      'identidade_genero' => $request->identidade_genero,
-      'orientacao_sexual' => $request->orientacao_sexual,
-      'auxilio_emergencial' => $request->auxilio_emergencial,
-      'descreve_doencas' => $request->descreve_doencas,
-      'tuberculose' => $request->tuberculose,
-      'tabagista' => $request->tabagista,
-      'cronico_alcool' => $request->cronico_alcool,
-      'outras_drogas' => $request->outras_drogas,
-      'gestante' => $request->gestante,
-      'amamenta' => $request->amamenta,
-      'gestacao_alto_risco' => $request->gestacao_alto_risco,
-      'pos_parto' => $request->pos_parto,
-      'data_parto' => $request->data_parto,
-      'data_ultima_mestrucao' => $request->data_ultima_mestrucao,
-      'trimestre_gestacao' => $request->trimestre_gestacao,
-      'motivo_risco_gravidez' => $request->motivo_risco_gravidez,
-      'data_ultima_consulta' => $request->data_ultima_consulta,
-      'sistema_saude' => $request->sistema_saude ? serialize($request->sistema_saude) : null,
-      'acompanhamento_ubs' => $request->acompanhamento_ubs,
-      'outras_informacao' => $request->outras_informacao,
-    ];
+            'user_id' => $user->id,
+            'agente_id' => $request->agente,
+            'medico_id' => $request->medico,
+            'articuladora_responsavel' => $request->articuladora_responsavel,
+            'saude_mental' => $request->saude_mental,
+            'acompanhamento_psicologico' => $request->acompanhamento_psicologico ? serialize($request->acompanhamento_psicologico) : null,
+            'atendimento_semanal_psicologia' => $request->atendimento_semanal_psicologia,
+            'horario_at_psicologia' => $request->horario_at_psicologia,
+            'como_chegou_ao_projeto' => $request->como_chegou_ao_projeto,
+            'como_chegou_ao_projeto_outro' => $request->como_chegou_ao_projeto_outro,
+            'nucleo_uneafro_qual' => $request->nucleo_uneafro_qual,
+            'psicologo_id' => $request->psicologo_id,
+            'situacao' => $request->situacao,
+            'data_nascimento' => $request->data_nascimento,
+            'cor_raca' => $request->cor_raca,
+            'endereco_cep' => $request->endereco_cep,
+            'endereco_rua' => $request->endereco_rua,
+            'endereco_numero' => $request->endereco_numero,
+            'endereco_bairro' => $request->endereco_bairro,
+            'endereco_cidade' => $request->endereco_cidade,
+            'endereco_uf' => $request->endereco_uf,
+            'ponto_referencia' => $request->ponto_referencia,
+            'endereco_complemento' => $request->endereco_complemento,
+            'fone_fixo' => $request->fone_fixo,
+            'fone_celular' => $request->fone_celular,
+            'numero_pessoas_residencia' => $request->numero_pessoas_residencia,
+            'responsavel_residencia' => $request->responsavel_residencia,
+            'renda_residencia' => $request->renda_residencia,
+            'doenca_cronica' => $request->doenca_cronica ? serialize($request->doenca_cronica) : null,
+            'remedios_consumidos' => $request->remedios_consumidos,
+            'acompanhamento_medico' => $request->acompanhamento_medico,
+            'teste_utilizado' => $request->teste_utilizado ? serialize($request->teste_utilizado) : null,
+            'resultado_teste' => $request->resultado_teste ? serialize($request->resultado_teste) : null,
+            'data_teste_confirmatorio' => $request->data_teste_confirmatorio,
+            'sintomas_iniciais' => $request->sintomas_iniciais,
+            'data_inicio_sintoma' => $request->data_inicio_sintoma,
+            'data_inicio_monitoramento' => $request->data_inicio_monitoramento,
+            'data_finalizacao_caso' => $request->data_finalizacao_caso,
+            'data_inicio_ac_psicologico' => $request->data_inicio_ac_psicologico,
+            'data_encerramento_ac_psicologico' => $request->data_encerramento_ac_psicologico,
+            'name_social' => $request->name_social,
+            'identidade_genero' => $request->identidade_genero,
+            'orientacao_sexual' => $request->orientacao_sexual,
+            'auxilio_emergencial' => $request->auxilio_emergencial,
+            'descreve_doencas' => $request->descreve_doencas,
+            'tuberculose' => $request->tuberculose,
+            'tabagista' => $request->tabagista,
+            'cronico_alcool' => $request->cronico_alcool,
+            'outras_drogas' => $request->outras_drogas,
+            'gestante' => $request->gestante,
+            'amamenta' => $request->amamenta,
+            'gestacao_alto_risco' => $request->gestacao_alto_risco,
+            'pos_parto' => $request->pos_parto,
+            'data_parto' => $request->data_parto,
+            'data_ultima_mestrucao' => $request->data_ultima_mestrucao,
+            'trimestre_gestacao' => $request->trimestre_gestacao,
+            'motivo_risco_gravidez' => $request->motivo_risco_gravidez,
+            'data_ultima_consulta' => $request->data_ultima_consulta,
+            'sistema_saude' => $request->sistema_saude ? serialize($request->sistema_saude) : null,
+            'acompanhamento_ubs' => $request->acompanhamento_ubs,
+            'outras_informacao' => $request->outras_informacao,
+        ];
 
         DB::beginTransaction();
         try {
@@ -389,39 +388,12 @@ class PacienteController extends Controller
         }
     }
 
-    /*public function storeQA(Request $request)
-    {
-      $paciente = Paciente::find($request->paciente_id);
-      $dados = [
-        'paciente_id' => $request->paciente_id,
-        'primeira_sintoma' => $request->primeira_sintoma,
-        'sintomas_manifestados' => serialize($request->sintomas_manifestados),
-        'temperatura_max' => $request->temperatura_max,
-        'saturacao_baixa' => $request->saturacao_baixa,
-        'frequencia_max' => $request->frequencia_max,
-        'data_temp_max' => $request->data_temp_max,
-        'data_sat_max' => $request->data_sat_max,
-        'data_freq_max' => $request->data_freq_max,
-      ];
-
-      DB::beginTransaction();
-      try {
-        $quadro = QuadroAtual::create($dados);
-        DB::commit();
-        return redirect()->back()->with(compact('quadro',$quadro))->with('success', 'Dados salvos com sucesso.');
-      } catch (\Exception $e) {
-        DB::rollback();
-        \Log::info($e);
-        return redirect()->back()->with('error', 'Não foi possível realizar a operação.');
-      }
-    }*/
-
     /**
-       * Display the specified resource.
-       *
-       * @param  int  $id
-       * @return \Illuminate\Http\Response
-       */
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         return null;
@@ -448,6 +420,7 @@ class PacienteController extends Controller
             $sintomas_quadro = unserialize($quadro->sintomas_manifestados);
             $sequelas = unserialize($quadro->sequelas);
         } else {
+            $quadro = new QuadroAtual();
             $sintomas_quadro = [];
             $sequelas = [];
         }
@@ -461,6 +434,7 @@ class PacienteController extends Controller
             $monitoramento_sintomas = unserialize($monitoramento->sintomas_atuais);
         } else {
             $monitoramento_sintomas = [];
+            $monitoramento = new Monitoramento();
         }
 
         $saude_mental = SaudeMental::where('paciente_id', $paciente->id)->first();
@@ -472,6 +446,7 @@ class PacienteController extends Controller
             $internacao_problema = unserialize($internacao->teve_algum_problema);
             $internacao_local = unserialize($internacao->local_internacao);
         } else {
+            $internacao = new ServicoInternacao();
             $internacao_servico = [];
             $internacao_remedio = [];
             $internacao_problema = [];
@@ -508,72 +483,72 @@ class PacienteController extends Controller
         $paciente = Paciente::find($id);
 
         $dados = [
-      'user_id' => $paciente->user_id,
-      'agente_id' => $request->agente,
-      'medico_id' => $request->medico,
-      'articuladora_responsavel' => $request->articuladora_responsavel,
-      'saude_mental' => $request->saude_mental,
-      'acompanhamento_psicologico' => $request->acompanhamento_psicologico ? serialize($request->acompanhamento_psicologico) : null,
-      'atendimento_semanal_psicologia' => $request->atendimento_semanal_psicologia,
-      'horario_at_psicologia' => $request->horario_at_psicologia,
-      'como_chegou_ao_projeto' => $request->como_chegou_ao_projeto,
-      'como_chegou_ao_projeto_outro' => $request->como_chegou_ao_projeto_outro,
-      'nucleo_uneafro_qual' => $request->nucleo_uneafro_qual,
-      'psicologo_id' => $request->psicologo_id,
-      'situacao' => $request->situacao,
-      'data_nascimento' => $request->data_nascimento,
-      'cor_raca' => $request->cor_raca,
-      'endereco_cep' => $request->endereco_cep,
-      'endereco_rua' => $request->endereco_rua,
-      'endereco_numero' => $request->endereco_numero,
-      'endereco_bairro' => $request->endereco_bairro,
-      'endereco_cidade' => $request->endereco_cidade,
-      'endereco_uf' => $request->endereco_uf,
-      'ponto_referencia' => $request->ponto_referencia,
-      'endereco_complemento' => $request->endereco_complemento,
-      'fone_fixo' => $request->fone_fixo,
-      'fone_celular' => $request->fone_celular,
-      'numero_pessoas_residencia' => $request->numero_pessoas_residencia,
-      'responsavel_residencia' => $request->responsavel_residencia,
-      'renda_residencia' => $request->renda_residencia,
-      'doenca_cronica' => $request->doenca_cronica ? serialize($request->doenca_cronica) : null,
-      'remedios_consumidos' => $request->remedios_consumidos,
-      'acompanhamento_medico' => $request->acompanhamento_medico,
-      'isolamento_residencial' => $request->isolamento_residencial,
-      'alimentacao_disponivel' => $request->alimentacao_disponivel,
-      'auxilio_terceiros' => $request->auxilio_terceiros,
-      'tarefas_autocuidado' => $request->tarefas_autocuidado,
-      'teste_utilizado' => $request->teste_utilizado ? serialize($request->teste_utilizado) : null,
-      'resultado_teste' => $request->resultado_teste ? serialize($request->resultado_teste) : null,
-      'data_teste_confirmatorio' => $request->data_teste_confirmatorio,
-      'sintomas_iniciais' => $request->sintomas_iniciais,
-      'data_inicio_sintoma' => $request->data_inicio_sintoma,
-      'data_inicio_monitoramento' => $request->data_inicio_monitoramento,
-      'data_finalizacao_caso' => $request->data_finalizacao_caso,
-      'data_inicio_ac_psicologico' => $request->data_inicio_ac_psicologico,
-      'data_encerramento_ac_psicologico' => $request->data_encerramento_ac_psicologico,
-      'name_social' => $request->name_social,
-      'identidade_genero' => $request->identidade_genero,
-      'orientacao_sexual' => $request->orientacao_sexual,
-      'auxilio_emergencial' => $request->auxilio_emergencial,
-      'descreve_doencas' => $request->descreve_doencas,
-      'tuberculose' => $request->tuberculose,
-      'tabagista' => $request->tabagista,
-      'cronico_alcool' => $request->cronico_alcool,
-      'outras_drogas' => $request->outras_drogas,
-      'gestante' => $request->gestante,
-      'amamenta' => $request->amamenta,
-      'gestacao_alto_risco' => $request->gestacao_alto_risco,
-      'pos_parto' => $request->pos_parto,
-      'data_parto' => $request->data_parto,
-      'data_ultima_mestrucao' => $request->data_ultima_mestrucao,
-      'trimestre_gestacao' => $request->trimestre_gestacao,
-      'motivo_risco_gravidez' => $request->motivo_risco_gravidez,
-      'data_ultima_consulta' => $request->data_ultima_consulta,
-      'sistema_saude' => $request->sistema_saude ? serialize($request->sistema_saude) : null,
-      'acompanhamento_ubs' => $request->acompanhamento_ubs,
-      'outras_informacao' => $request->outras_informacao,
-    ];
+            'user_id' => $paciente->user_id,
+            'agente_id' => $request->agente,
+            'medico_id' => $request->medico,
+            'articuladora_responsavel' => $request->articuladora_responsavel,
+            'saude_mental' => $request->saude_mental,
+            'acompanhamento_psicologico' => $request->acompanhamento_psicologico ? serialize($request->acompanhamento_psicologico) : null,
+            'atendimento_semanal_psicologia' => $request->atendimento_semanal_psicologia,
+            'horario_at_psicologia' => $request->horario_at_psicologia,
+            'como_chegou_ao_projeto' => $request->como_chegou_ao_projeto,
+            'como_chegou_ao_projeto_outro' => $request->como_chegou_ao_projeto_outro,
+            'nucleo_uneafro_qual' => $request->nucleo_uneafro_qual,
+            'psicologo_id' => $request->psicologo_id,
+            'situacao' => $request->situacao,
+            'data_nascimento' => $request->data_nascimento,
+            'cor_raca' => $request->cor_raca,
+            'endereco_cep' => $request->endereco_cep,
+            'endereco_rua' => $request->endereco_rua,
+            'endereco_numero' => $request->endereco_numero,
+            'endereco_bairro' => $request->endereco_bairro,
+            'endereco_cidade' => $request->endereco_cidade,
+            'endereco_uf' => $request->endereco_uf,
+            'ponto_referencia' => $request->ponto_referencia,
+            'endereco_complemento' => $request->endereco_complemento,
+            'fone_fixo' => $request->fone_fixo,
+            'fone_celular' => $request->fone_celular,
+            'numero_pessoas_residencia' => $request->numero_pessoas_residencia,
+            'responsavel_residencia' => $request->responsavel_residencia,
+            'renda_residencia' => $request->renda_residencia,
+            'doenca_cronica' => $request->doenca_cronica ? serialize($request->doenca_cronica) : null,
+            'remedios_consumidos' => $request->remedios_consumidos,
+            'acompanhamento_medico' => $request->acompanhamento_medico,
+            'isolamento_residencial' => $request->isolamento_residencial,
+            'alimentacao_disponivel' => $request->alimentacao_disponivel,
+            'auxilio_terceiros' => $request->auxilio_terceiros,
+            'tarefas_autocuidado' => $request->tarefas_autocuidado,
+            'teste_utilizado' => $request->teste_utilizado ? serialize($request->teste_utilizado) : null,
+            'resultado_teste' => $request->resultado_teste ? serialize($request->resultado_teste) : null,
+            'data_teste_confirmatorio' => $request->data_teste_confirmatorio,
+            'sintomas_iniciais' => $request->sintomas_iniciais,
+            'data_inicio_sintoma' => $request->data_inicio_sintoma,
+            'data_inicio_monitoramento' => $request->data_inicio_monitoramento,
+            'data_finalizacao_caso' => $request->data_finalizacao_caso,
+            'data_inicio_ac_psicologico' => $request->data_inicio_ac_psicologico,
+            'data_encerramento_ac_psicologico' => $request->data_encerramento_ac_psicologico,
+            'name_social' => $request->name_social,
+            'identidade_genero' => $request->identidade_genero,
+            'orientacao_sexual' => $request->orientacao_sexual,
+            'auxilio_emergencial' => $request->auxilio_emergencial,
+            'descreve_doencas' => $request->descreve_doencas,
+            'tuberculose' => $request->tuberculose,
+            'tabagista' => $request->tabagista,
+            'cronico_alcool' => $request->cronico_alcool,
+            'outras_drogas' => $request->outras_drogas,
+            'gestante' => $request->gestante,
+            'amamenta' => $request->amamenta,
+            'gestacao_alto_risco' => $request->gestacao_alto_risco,
+            'pos_parto' => $request->pos_parto,
+            'data_parto' => $request->data_parto,
+            'data_ultima_mestrucao' => $request->data_ultima_mestrucao,
+            'trimestre_gestacao' => $request->trimestre_gestacao,
+            'motivo_risco_gravidez' => $request->motivo_risco_gravidez,
+            'data_ultima_consulta' => $request->data_ultima_consulta,
+            'sistema_saude' => $request->sistema_saude ? serialize($request->sistema_saude) : null,
+            'acompanhamento_ubs' => $request->acompanhamento_ubs,
+            'outras_informacao' => $request->outras_informacao,
+        ];
 
         DB::beginTransaction();
         try {

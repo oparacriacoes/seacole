@@ -76,6 +76,24 @@ class Paciente extends Model
         'outras_informacao',
     ];
 
+    /**
+     * Mutators and Casts
+     */
+    protected $dates = [
+        'data_nascimento',
+        'data_teste_confirmatorio',
+        'data_inicio_sintoma',
+        'data_inicio_monitoramento',
+        'data_finalizacao_caso',
+        'data_parto',
+        'data_ultima_mestrucao',
+        'data_ultima_consulta',
+        'data_encerramento_ac_psicologico',
+        'data_inicio_ac_psicologico',
+        'created_at',
+        'updated_at'
+    ];
+
 
     /**
      * Relations

@@ -24,6 +24,24 @@ class QuadroAtual extends Model
       'algo_mais_sobre_caso',
     ];
 
+
+    /**
+     * Mutators and Casts
+     */
+
+    protected $dates = [
+        'data_temp_max',
+        'data_sat_max',
+        'data_freq_max',
+        'created_at',
+        'updated_at'
+    ];
+
+
+    /**
+     * Relations
+     */
+
     public function paciente()
     {
         return $this->belongsTo('App\Paciente');

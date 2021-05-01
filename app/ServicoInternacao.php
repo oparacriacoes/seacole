@@ -26,6 +26,24 @@ class ServicoInternacao extends Model
         'data_alta_hospitalar',
     ];
 
+
+    /**
+     * Mutators and Casts
+     */
+
+    protected $dates = [
+        'data_ultima_ida_servico_de_saude',
+        'data_entrada_internacao',
+        'data_alta_hospitalar',
+        'created_at',
+        'updated_at'
+    ];
+
+
+    /**
+     * Relations
+     */
+
     public function pacientes()
     {
         return $this->belongsTo('App\Paciente');

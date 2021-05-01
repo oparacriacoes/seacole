@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //CASOS MONITORADOS POR CIDADE - INICIO
-axios.get('/chart/casos_monitorados_por_cidade')
+axios.get('/admin/chart/casos_monitorados_por_cidade')
   .then(response => {
     //console.log(response.data);
     var chart = am4core.create("casos_monitorados_por_cidade", am4charts.PieChart3D);

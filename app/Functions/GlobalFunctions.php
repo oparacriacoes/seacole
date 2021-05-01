@@ -1,6 +1,6 @@
 <?php
 
-function human_boolean($value): bool
+function human_boolean($value): ?string
 {
     if (is_null($value)) {
         return '';
@@ -10,5 +10,5 @@ function human_boolean($value): bool
         return 'Não';
     }
 
-    throw new Exception("Por favor insira apenas valores booleanos e null", 1);
+    throw new Exception("Por favor insira apenas valores booleanos ou null", 1);
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //FAIXA ETÁRIA POR GÊNERO 2 - INÍCIO
-axios.get('/chart/faixa_etaria_genero_2')
+axios.get('/admin/chart/faixa_etaria_genero_2')
   .then(response => {
     //console.log(response.data);
     // Create chart instance

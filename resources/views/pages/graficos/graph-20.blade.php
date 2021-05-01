@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //DIAS DE SINTOMAS - MAIS OU MENOS DE 10 DIAS - INÍCIO
-axios.get('/chart/dias_sintoma_mais_menos_dez_dias')
+axios.get('/admin/chart/dias_sintoma_mais_menos_dez_dias')
   .then(response => {
     //console.log(response.data);
 

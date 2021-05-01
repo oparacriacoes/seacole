@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //CLASSE SOCIAL RENDA BRUTA FAMILIAR - INÍCIO
-axios.get('/chart/classe_social_renda_bruta_familiar')
+axios.get('/admin/chart/classe_social_renda_bruta_familiar')
   .then(response => {
     //console.log(response.data);
     function am4themes_myTheme(target) {

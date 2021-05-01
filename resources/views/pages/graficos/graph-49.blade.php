@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO - INÍCIO
-axios.get('/chart/servicos_referencia_internacao')
+axios.get('/admin/chart/servicos_referencia_internacao')
   .then(response => {
     console.log(response.data);
 

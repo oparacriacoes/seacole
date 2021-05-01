@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //DESFECHO - INÍCIO
-axios.get('/chart/desfecho')
+axios.get('/admin/chart/desfecho')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

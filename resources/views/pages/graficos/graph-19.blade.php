@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //DIAS DE SINTOMAS POR RAÇA/COR - INÍCIO
-axios.get('/chart/dias_sintoma_por_raca_cor')
+axios.get('/admin/chart/dias_sintoma_por_raca_cor')
   .then(response => {
     //console.log(response.data);
     function am4themes_myTheme(target) {

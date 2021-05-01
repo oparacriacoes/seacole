@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //INTERNAÇÃO PELO QUADRO - INÍCIO
-axios.get('/chart/internacao_pelo_quadro')
+axios.get('/admin/chart/internacao_pelo_quadro')
   .then(response => {
     //console.log(response.data);
     let dataSet = {};

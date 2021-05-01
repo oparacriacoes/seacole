@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -51,7 +51,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //RAÇA COR GERAL - INÍCIO
-axios.get('/chart/raca_cor_geral')
+axios.get('/admin/chart/raca_cor_geral')
   .then(response => {
     //console.log(response.data[0]);
     am4core.useTheme(am4themes_myTheme);

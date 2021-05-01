@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //GESTAÇÃO É OU FOI DE ALTO RISCO? - INÍCIO
-axios.get('/chart/gestacao_alto_risco')
+axios.get('/admin/chart/gestacao_alto_risco')
   .then(response => {
     //console.log(response.data);
     // Create chart instance

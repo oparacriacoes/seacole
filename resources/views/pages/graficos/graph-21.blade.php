@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //TOTAL DE DIAS DE MONITORAMENTO (RELAÇÃO COVID-19) - INÍCIO
-axios.get('/chart/total_dias_monitoramento_relacao_covid')
+axios.get('/admin/chart/total_dias_monitoramento_relacao_covid')
   .then(response => {
     //console.log(response.data);
     function am4themes_myTheme(target) {

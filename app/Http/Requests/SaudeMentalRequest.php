@@ -24,8 +24,8 @@ class SaudeMentalRequest extends FormRequest
     public function rules()
     {
         return [
-            'quadro_atual' => ['nullable', 'boolean'],
-            'detalhes_medos' => ['string']
+            'quadro_atual' => BaseRules::BOOLEAN,
+            'detalhes_medos' => BaseRules::TEXT
         ];
     }
 }

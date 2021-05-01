@@ -69,7 +69,7 @@ class PacienteControllerTest extends TestCase
 
     public function test_admin_should_be_see_all_pacientes()
     {
-        $user = User::factory(['role' => 'admin'])->create();
+        $user = User::factory(['role' => 'administrador'])->create();
         Paciente::factory()->count(10)->create();
 
         $response = $this->actingAs($user)

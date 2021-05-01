@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 @section('content')
 <div class="app-main__inner">
     <div class="app-page-title">
@@ -45,8 +45,6 @@
 @endsection
 
 @section('script')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{asset('js/jquery.mask.js')}}"></script>
 <script>
     $('.info').css('cursor', 'pointer');
     $('.info').click(function() {

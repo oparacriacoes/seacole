@@ -19,9 +19,9 @@ class EvolucaoSintomaExport implements FromView, WithTitle
 
     public function view(): View
     {
-        return view('pages.paciente.prontuario', [
-            //'prontuarios' => EvolucaoSintoma::all()
-            'prontuarios' => EvolucaoSintoma::orderBy('paciente_id')->get()
-        ]);
+        return view('pages.paciente.prontuario')
+            ->with([
+                'prontuarios' => EvolucaoSintoma::orderBy('paciente_id')->get()
+            ]);
     }
 }

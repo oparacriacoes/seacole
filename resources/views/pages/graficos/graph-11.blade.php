@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //NÚMERO DE PESSOAS/RESIDÊNCIA POR RAÇA/COR - INÍCIO
-axios.get('/chart/numero_pessoas_residencia_raca_cor')
+axios.get('/admin/chart/numero_pessoas_residencia_raca_cor')
   .then(response => {
     //console.log(response.data[1][0].legenda);
     function am4themes_myTheme(target) {

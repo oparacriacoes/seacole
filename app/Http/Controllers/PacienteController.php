@@ -5,21 +5,16 @@ namespace App\Http\Controllers;
 use App\AjudaTipo;
 use App\Exports\PacientesExport;
 use App\Sintoma;
-use Carbon\Carbon;
 use App\Paciente;
 use App\Agente;
 use App\Medico;
 use App\Psicologo;
 use App\User;
 use App\Articuladora;
+use App\Enums\RolesEnum;
 use App\Enums\SituacoesCaso;
 use App\Http\Requests\PacienteRequest;
 use Maatwebsite\Excel\Facades\Excel;
-use App\QuadroAtual;
-use App\Monitoramento;
-use App\SaudeMental;
-use App\ServicoInternacao;
-use App\InsumosOferecido;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -28,12 +23,9 @@ class PacienteController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $role = $user->role;
 
-        if ($role == 'agente') {
-            $pacienteQuery = $user->agente->pacientes->toQuery();
-        } elseif ($role === 'psicologo') {
-            $pacienteQuery = $user->psicologo->pacientes->toQuery();
+        if ($user->role === RolesEnum::AGENTE || $user->role === RolesEnum::PSICOLOGO) {
+            $pacienteQuery = $user->professional->pacientes->toQuery();
         } else {
             $pacienteQuery = Paciente::query();
         }
@@ -89,6 +81,8 @@ class PacienteController extends Controller
 
     public function edit(Paciente $paciente)
     {
+        $this->authorize('view', $paciente);
+
         $situacoes = SituacoesCaso::readables();
 
         $agentes =  Agente::with('user:id,name')->select(['id', 'user_id'])->get();
@@ -96,13 +90,15 @@ class PacienteController extends Controller
         $psicologos = Psicologo::with('user:id,name')->select(['id', 'user_id'])->get();
         $articuladoras = Articuladora::all();
 
-        $insumos = $paciente->insumos_oferecidos()->first() ?? new InsumosOferecido();
-        $saude_mental = $paciente->saude_mental()->first() ?? new SaudeMental();
-        $servico_internacao = $paciente->servico_internacao()->first() ?? new ServicoInternacao();
-        $quadro_atual = $paciente->quadro_atual()->first() ?? new QuadroAtual();
-        $monitoramento = $paciente->monitoramento()->latest()->first() ?? new Monitoramento();
+        $paciente->load([
+            'insumos_oferecidos',
+            'servico_internacao',
+            'quadro_atual',
+            'monitoramento',
+            'prontuarios'
+        ]);
 
-        $prontuarios = $paciente->prontuarios()->orderBy('data_monitoramento')->get();
+        $paciente->saude_mental = $paciente->saude_mental()->firstOrCreate(); // TODO whats happenning
 
         return view('pages.paciente.edit', compact(
             'paciente',
@@ -111,17 +107,13 @@ class PacienteController extends Controller
             'psicologos',
             'articuladoras',
             'situacoes',
-            'insumos',
-            'saude_mental',
-            'servico_internacao',
-            'quadro_atual',
-            'monitoramento',
-            'prontuarios'
         ));
     }
 
     public function update(PacienteRequest $request, Paciente $paciente)
     {
+        $this->authorize('update', $paciente);
+
         $dataForm = $request->validated();
 
         try {
@@ -161,7 +153,7 @@ class PacienteController extends Controller
 
     public function ExportarExcelPacientes()
     {
-        $date = Carbon::now();
+        $date = now();
 
         return Excel::download(new PacientesExport(), 'pacientes_' . $date->format('d-m-Y-h:m') . '.xlsx');
     }

@@ -121,7 +121,7 @@ class Paciente extends Model
 
     public function getAgeAttribute()
     {
-        return $this->data_nascimento->diffInYears(now());
+        return $this->data_nascimento ? $this->data_nascimento->diffInYears(now()) : '-';
     }
 
     public function getSituacaoCasoAttribute()
@@ -196,7 +196,7 @@ class Paciente extends Model
 
     public function monitoramento()
     {
-        return $this->hasOne(Monitoramento::class);
+        return $this->hasOne(Monitoramento::class)->withDefault();
     }
 
     public function prontuarios()
@@ -206,21 +206,21 @@ class Paciente extends Model
 
     public function insumos_oferecidos()
     {
-        return $this->hasOne(InsumosOferecido::class);
+        return $this->hasOne(InsumosOferecido::class)->withDefault();
     }
 
     public function quadro_atual()
     {
-        return $this->hasOne(QuadroAtual::class);
+        return $this->hasOne(QuadroAtual::class)->withDefault();
     }
 
     public function saude_mental()
     {
-        return $this->hasOne(SaudeMental::class);
+        return $this->hasOne(SaudeMental::class)->withDefault();
     }
 
     public function servico_internacao()
     {
-        return $this->hasOne(ServicoInternacao::class);
+        return $this->hasOne(ServicoInternacao::class)->withDefault();
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //TRATAMENTO PRESCRITO POR MÉDICO DO PROJETO - INÍCIO
-axios.get('/chart/tratamento_prescrito_por_medico_projeto')
+axios.get('/admin/chart/tratamento_prescrito_por_medico_projeto')
   .then(response => {
     //console.log(response.data);
     // Create chart instance

@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -54,7 +54,7 @@ am4core.useTheme(am4themes_animated);
 
 
 //GENERO POR RAÇA-COR - INÍCIO
-axios.get('/chart/genero_por_raca_cor')
+axios.get('/admin/chart/genero_por_raca_cor')
   .then(response => {
     //console.log(response.data);
     function am4themes_myTheme(target) {

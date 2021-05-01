@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -59,7 +59,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //SITUAÇÃO TOTAL DE CASOS MONITORADOS - INÍCIO
-axios.get('/chart/situacao_total_casos_monitorados')
+axios.get('/admin/chart/situacao_total_casos_monitorados')
   .then(response => {
     //console.log(response.data[0]);
     var chart = am4core.create("situacao_total_casos_monitorados", am4charts.PieChart3D);
@@ -68,7 +68,7 @@ axios.get('/chart/situacao_total_casos_monitorados')
     //chart.legend = new am4charts.Legend();
 
     chart.data = response.data[0];
-    
+
     var series = chart.series.push(new am4charts.PieSeries());
     series.dataFields.value = "quantidade_casos";
     series.dataFields.category = "situacao";

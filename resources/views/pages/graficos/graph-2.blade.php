@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //MONITORADOS_EXCLUSIVO_PSICOLOGIA - INICIO
-axios.get('/chart/monitorados_exclusivo_psicologia')
+axios.get('/admin/chart/monitorados_exclusivo_psicologia')
   .then(response => {
     //console.log(response.data);
     // Create chart instance

@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 @section('content')
 <div class="app-main__inner">
     <div class="app-page-title">
@@ -42,7 +42,7 @@
     <div class="row">
         <div class="col">
             <div class="main-card mb-3 card">
-                <div class="card-body p-0">
+                <div class="card-body">
                     <table id="medicos" class="table table-striped mb-0">
                         <thead>
                             <tr>
@@ -78,7 +78,6 @@
 @stop
 
 @section('script')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     $('.info').css('cursor', 'pointer');
     $('.info').click(function() {

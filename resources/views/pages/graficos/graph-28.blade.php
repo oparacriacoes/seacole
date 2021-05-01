@@ -1,4 +1,4 @@
-@extends('layouts.app_new')
+@extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/graphs.css') }}">
@@ -50,7 +50,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 //CONDIÇÕES DE SAÚDE - INÍCIO
-axios.get('/chart/condicoes_saude')
+axios.get('/admin/chart/condicoes_saude')
   .then(response => {
     console.log(response.data);
     let dataSet = {};

@@ -2,17 +2,18 @@
 
 namespace App\View\Components\Charts;
 
+use Carbon\Carbon;
 use Illuminate\View\Component;
 
 abstract class ChartComponent extends Component
 {
-    public ?string $date_from;
-    public ?string $date_to;
+    public \DateTimeInterface $date_from;
+    public \DateTimeInterface $date_to;
 
-    public function __construct(?string $datefrom, ?string $dateto)
+    public function __construct(string $datefrom, string $dateto)
     {
-        $this->date_from = $datefrom;
-        $this->date_to = $dateto;
+        $this->date_from = Carbon::parse($datefrom);
+        $this->date_to = Carbon::parse($dateto);
     }
 
     abstract public function chartData(): array;

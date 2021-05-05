@@ -9,6 +9,7 @@ abstract class ChartComponent extends Component
 {
     public \DateTimeInterface $date_from;
     public \DateTimeInterface $date_to;
+    protected string $componentView;
 
     public function __construct(string $datefrom, string $dateto)
     {
@@ -17,4 +18,14 @@ abstract class ChartComponent extends Component
     }
 
     abstract public function chartData(): array;
+
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\Contracts\View\View|\Closure|string
+     */
+    public function render()
+    {
+        return view($this->componentView)->with(['chart_data' => $this->chartData()]);
+    }
 }

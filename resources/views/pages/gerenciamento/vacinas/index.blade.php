@@ -6,10 +6,15 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-graph text-success">
+                    <i class="fas fa-syringe text-success">
                     </i>
                 </div>
                 <div>Vacinas</div>
+            </div>
+            <div class="page-title-actions">
+                <a href="{{route('vacinas.create')}}" role="button" data-toggle="tooltip" title="" data-placement="bottom" class="btn-shadow mr-3 btn btn-primary" data-original-title="Adicionar Nova Vácina">
+                    <i class="fa fa-plus-circle"></i>
+                </a>
             </div>
           </div>
       </div>

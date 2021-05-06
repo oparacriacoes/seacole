@@ -15,7 +15,6 @@ class VacinaController extends Controller
     public function index()
     {
         $vacinas = Vacina::orderBy('name')->get();
-
         return view('pages.gerenciamento.vacinas.index', compact('vacinas'));
     }
 
@@ -26,7 +25,8 @@ class VacinaController extends Controller
      */
     public function create()
     {
-        //
+        $vacina = new Vacina();
+        return view('pages.gerenciamento.vacinas.create', compact('vacina'));
     }
 
     /**

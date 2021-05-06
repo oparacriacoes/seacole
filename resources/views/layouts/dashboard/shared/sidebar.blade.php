@@ -47,6 +47,16 @@
                     </a>
                 </li>
 
+                @if(Auth::user()->is_admin)
+                <li class="app-sidebar__heading">Gerenciamento</li>
+                <li>
+                    <a href="{{ route('vacinas.index') }}">
+                        <i class="metismenu-icon fas fa-syringe nav-icon""></i>
+                        Vacinas
+                    </a>
+                </li>
+                @endif
+
                 <li class="app-sidebar__heading">Pacientes</li>
                 <li>
                     <a href="{{ route('pacientes.index') }}">

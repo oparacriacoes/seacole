@@ -12,9 +12,6 @@
             datasets: [{
                 label: 'Pacientes Monitorados x Paciente Exclusivo Psicologia',
                 data: chart_data.data,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
             }],
         },
         options: {

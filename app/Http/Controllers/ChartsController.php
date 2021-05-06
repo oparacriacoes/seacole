@@ -65,6 +65,7 @@ class ChartsController extends Controller
 
     public function monitorados_exclusivo_psicologia()
     {
+        // CHART::2
         $monitorados_exclusivo_psicologia_select = DB::select("
     SELECT
       monitoramento

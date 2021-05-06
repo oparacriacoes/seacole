@@ -12,6 +12,7 @@ final class ChartsEnum extends ReadableEnum
     public const SITUACAO_TOTAL_CASOS_MONITORADOS_BAR = 'situacao-total-casos-monitorados-bar';
     public const SITUACAO_TOTAL_CASOS_MONITORADOS_PIE = 'situacao-total-casos-monitorados-pie';
     public const CASOS_MONITORADOS_CIDADE = 'casos-monitorado-cidade';
+    public const RACA_COR_PESSOAS_ATENDIDAS = 'raca-cor-pessoas-atendidas';
 
 
 
@@ -24,6 +25,7 @@ final class ChartsEnum extends ReadableEnum
             self::SITUACAO_TOTAL_CASOS_MONITORADOS_BAR,
             self::SITUACAO_TOTAL_CASOS_MONITORADOS_PIE,
             self::CASOS_MONITORADOS_CIDADE,
+            SELF::RACA_COR_PESSOAS_ATENDIDAS,
         ];
     }
 
@@ -34,7 +36,8 @@ final class ChartsEnum extends ReadableEnum
             self::MONITORADOS_EXCLUSIVO_PSICOLOGIA => Str::title('MONITORADOS X EXCLUSIVO PSICOLOGIA'),
             self::SITUACAO_TOTAL_CASOS_MONITORADOS_BAR => Str::title('SITUAÇÃO TOTAL DE CASOS MONITORADOS - Barras'),
             self::SITUACAO_TOTAL_CASOS_MONITORADOS_PIE => Str::title('SITUAÇÃO TOTAL DE CASOS MONITORADOS - Pizza'),
-            self::CASOS_MONITORADOS_CIDADE => Str::title('CASOS MONITORADOS POR CIDADE')
+            self::CASOS_MONITORADOS_CIDADE => Str::title('CASOS MONITORADOS POR CIDADE'),
+            SELF::RACA_COR_PESSOAS_ATENDIDAS => Str::title('RAÇA-COR GERAL DAS PESSOAS ATENDIDAS'),
         ];
     }
 }

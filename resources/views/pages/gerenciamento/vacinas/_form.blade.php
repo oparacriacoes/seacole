@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="form-group">
-                        <label for="intervalo_final_proxima_dose">Intervalo final próxima dose (dias)</label>
+                        <label for="intervalo_final_proxima_dose">Intervalo final da próxima dose (dias)</label>
                         <input name="intervalo_final_proxima_dose" type="number" min="1" step="1" required class="form-control" id="intervalo_final_proxima_dose" value="{{old('intervalo_final_proxima_dose', $vacina->intervalo_final_proxima_dose)}}">
                     </div>
                 </div>
@@ -60,3 +60,17 @@
         </form>
     </div>
 </div>
+
+@section('script')
+<script>
+    $('#total_doses').blur(e => {
+        if (e.currentTarget.value <= 1) {
+            $('#intervalo_inicial_proxima_dose').prop('disabled', true).val(null);
+            $('#intervalo_final_proxima_dose').prop('disabled', true).val(null);
+        } else {
+            $('#intervalo_inicial_proxima_dose').prop('disabled', false);
+            $('#intervalo_final_proxima_dose').prop('disabled', false);
+        }
+    });
+</script>
+@endsection

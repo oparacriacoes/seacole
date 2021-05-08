@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VacinaRequest;
 use App\Models\Vacina;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class VacinaController extends Controller
 {
@@ -32,12 +34,21 @@ class VacinaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  VacinaRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VacinaRequest $request)
     {
-        //
+        $dataForm = $request->validated();
+
+        try {
+            $vacina = Vacina::create($dataForm);
+        } catch (\Exception $ex) {
+            Log::error($ex->getMessage(), [$dataForm]);
+            back()->withInput()->with('error', 'Erro ao cadastrar vacina');
+        }
+
+        return redirect(route('vacinas.show', $vacina));
     }
 
     /**

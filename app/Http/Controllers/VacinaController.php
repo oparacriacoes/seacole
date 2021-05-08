@@ -102,6 +102,7 @@ class VacinaController extends Controller
      */
     public function destroy(Vacina $vacina)
     {
-        //
+        $vacina->delete();
+        return redirect(route('vacinas.index'));
     }
 }

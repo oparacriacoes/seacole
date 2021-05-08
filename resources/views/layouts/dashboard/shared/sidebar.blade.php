@@ -54,7 +54,7 @@
                         <i class="metismenu-icon fas fa-syringe nav-icon""></i>
                         Vacinas
                     </a>
-                    <a href="{{ route('vacinas.index') }}">
+                    <a href="{{ route('pacientes.index') }}">
                         <i class="metismenu-icon fas fa-procedures nav-icon""></i>
                         Pacientes
                     </a>

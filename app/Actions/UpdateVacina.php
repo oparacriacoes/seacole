@@ -4,7 +4,8 @@ namespace App\Actions;
 
 use App\Models\Vacina;
 
-class UpdateVacina{
+class UpdateVacina
+{
 
     public static function update(Vacina $vacina, $dataForm = [])
     {

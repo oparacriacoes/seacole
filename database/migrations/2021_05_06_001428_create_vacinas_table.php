@@ -17,6 +17,7 @@ class CreateVacinasTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('fabricante')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->unsignedInteger('total_doses')->default(1);
             $table->unsignedInteger('intervalo_inicial_proxima_dose')->default(0);
             $table->unsignedInteger('intervalo_final_proxima_dose')->default(0);

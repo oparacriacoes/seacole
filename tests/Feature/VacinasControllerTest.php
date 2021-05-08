@@ -32,13 +32,13 @@ class VacinasControllerTest extends TestCase
         $response = $this->actingAs($user)->post(route('vacinas.store'), [
             'name' => 'Vacina 1',
             'fabricante' => 'Fabricante da Vacina 1',
-            'total_doses' => 0,
+            'doses' => 0,
             'intervalo_inicial_proxima_dose' => now()->addDays(5),
             'intervalo_final_proxima_dose' => now()->addDays(10),
         ]);
 
         $response->assertSessionHasErrors([
-            'total_doses'
+            'doses'
         ]);
     }
 
@@ -49,7 +49,7 @@ class VacinasControllerTest extends TestCase
         $response = $this->actingAs($user)->post(route('vacinas.store'), [
             'name' => 'Vacina 1',
             'fabricante' => 'Fabricante da Vacina 1',
-            'total_doses' => 2,
+            'doses' => 2,
         ]);
 
         $response->assertSessionHasErrors([
@@ -65,7 +65,7 @@ class VacinasControllerTest extends TestCase
         $response = $this->actingAs($user)->post(route('vacinas.store'), [
             'name' => 'Vacina 1',
             'fabricante' => 'Fabricante da Vacina 1',
-            'total_doses' => 2,
+            'doses' => 2,
             'intervalo_inicial_proxima_dose' => 15,
             'intervalo_final_proxima_dose' => 10,
         ]);
@@ -82,13 +82,13 @@ class VacinasControllerTest extends TestCase
         $this->actingAs($user)->post(route('vacinas.store'), [
             'name' => 'Vacina 1',
             'fabricante' => 'Fabricante da Vacina 1',
-            'total_doses' => 1,
+            'doses' => 1,
         ]);
 
         $this->actingAs($user)->post(route('vacinas.store'), [
             'name' => 'Vacina 2',
             'fabricante' => 'Fabricante da Vacina 2',
-            'total_doses' => 2,
+            'doses' => 2,
             'intervalo_inicial_proxima_dose' => 5,
             'intervalo_final_proxima_dose' => 10,
         ]);

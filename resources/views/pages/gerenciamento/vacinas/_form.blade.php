@@ -37,8 +37,8 @@
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="form-group">
-                        <label for="total_doses">Total de Doses</label>
-                        <input name="total_doses" type="number" min="1" max="10" step="1" required class="form-control" id="total_doses" value="{{old('total_doses', $vacina->total_doses)}}">
+                        <label for="doses">Total de Doses</label>
+                        <input name="doses" type="number" min="1" max="10" step="1" required class="form-control" id="doses" value="{{old('doses', $vacina->doses)}}">
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
@@ -63,7 +63,7 @@
 
 @section('script')
 <script>
-    $('#total_doses').blur(e => {
+    $('#doses').blur(e => {
         if (e.currentTarget.value <= 1) {
             $('#intervalo_inicial_proxima_dose').prop('disabled', true).val(null);
             $('#intervalo_final_proxima_dose').prop('disabled', true).val(null);

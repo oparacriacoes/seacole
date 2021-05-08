@@ -26,9 +26,9 @@ class VacinaRequest extends FormRequest
         return [
             'name' => ['string', 'required', 'max:190'],
             'fabricante' => BaseRules::STRING,
-            'total_doses' => ['required', 'numeric', 'min:1', 'max:10'],
-            'intervalo_inicial_proxima_dose' => ['required_unless:total_doses,<,1', 'numeric', 'min:1'],
-            'intervalo_final_proxima_dose' => ['required_unless:total_doses,<,1', 'numeric', 'min:1', 'gt:intervalo_inicial_proxima_dose'],
+            'doses' => ['required', 'numeric', 'min:1', 'max:10'],
+            'intervalo_inicial_proxima_dose' => ['required_unless:doses,<,1', 'numeric', 'min:1'],
+            'intervalo_final_proxima_dose' => ['required_unless:doses,<,1', 'numeric', 'min:1', 'gt:intervalo_inicial_proxima_dose'],
         ];
     }
 }

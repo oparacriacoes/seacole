@@ -26,7 +26,7 @@ class VacinaFactory extends Factory
         return [
             'name' => $this->faker->colorName(),
             'fabricante' => $this->faker->company(),
-            'total_doses' => $doses,
+            'doses' => $doses,
             'intervalo_inicial_proxima_dose' => $doses > 1 ? random_int(10, 15) : 0,
             'intervalo_final_proxima_dose' => $doses > 1 ? random_int(16, 21) : 0,
         ];

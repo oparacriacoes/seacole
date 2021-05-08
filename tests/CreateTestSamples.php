@@ -45,4 +45,9 @@ class CreateTestSamples
 
         return $user;
     }
+
+    public static function createAdministradorUser()
+    {
+        return User::factory(['role' => 'administrador'])->create();
+    }
 }

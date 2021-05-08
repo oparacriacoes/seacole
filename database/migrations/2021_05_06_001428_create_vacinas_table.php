@@ -16,11 +16,12 @@ class CreateVacinasTable extends Migration
         Schema::create('vacinas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('reference_key');
             $table->string('fabricante')->nullable();
             $table->boolean('is_active')->default(true);
             $table->unsignedInteger('doses')->default(1);
-            $table->unsignedInteger('intervalo_inicial_proxima_dose')->default(0);
-            $table->unsignedInteger('intervalo_final_proxima_dose')->default(0);
+            $table->unsignedInteger('intervalo_inicial_proxima_dose')->nullable();
+            $table->unsignedInteger('intervalo_final_proxima_dose')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

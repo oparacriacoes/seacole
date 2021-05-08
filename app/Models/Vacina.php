@@ -12,6 +12,7 @@ class Vacina extends Model
 
     protected $fillable = [
         'name',
+        'reference_key',
         'fabricante',
         'doses',
         'intervalo_inicial_proxima_dose',

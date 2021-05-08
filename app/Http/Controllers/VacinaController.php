@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\UpdateVacina;
 use App\Http\Requests\VacinaRequest;
 use App\Models\Vacina;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 
 class VacinaController extends Controller
@@ -34,18 +35,19 @@ class VacinaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  VacinaRequest $request
+     * @param  \App\Http\Requests\VacinaRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(VacinaRequest $request)
     {
         $dataForm = $request->validated();
+        $dataForm['reference_key'] = (string) Str::of($dataForm['name'])->slug('_');
 
         try {
             $vacina = Vacina::create($dataForm);
         } catch (\Exception $ex) {
             Log::error($ex->getMessage(), [$dataForm]);
-            back()->withInput()->with('error', 'Erro ao cadastrar vacina');
+            return back()->withInput()->with('error', 'Erro ao cadastrar vacina');
         }
 
         return redirect(route('vacinas.show', $vacina));
@@ -59,7 +61,7 @@ class VacinaController extends Controller
      */
     public function show(Vacina $vacina)
     {
-        //
+        return view('pages.gerenciamento.vacinas.show', compact('vacina'));
     }
 
     /**
@@ -70,19 +72,26 @@ class VacinaController extends Controller
      */
     public function edit(Vacina $vacina)
     {
-        //
+        return view('pages.gerenciamento.vacinas.edit', compact('vacina'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\VacinaRequest  $request
      * @param  \App\Models\Vacina  $vacina
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vacina $vacina)
+    public function update(VacinaRequest $request, Vacina $vacina)
     {
-        //
+        try {
+            $vacina_updated = UpdateVacina::update($vacina, $request->validated());
+        } catch (\Exception $ex) {
+            Log::error($ex->getMessage(), $request->validated());
+            return back()->withInput()->with('error', 'Erro ao alterar informações da vacina');
+        }
+
+        return redirect(route('vacinas.show', $vacina_updated));
     }
 
     /**

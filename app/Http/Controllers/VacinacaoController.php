@@ -49,7 +49,7 @@ class VacinacaoController extends Controller
             return true;
         }
 
-        if ($ultima_vacinacao->vacina->doses > 1 && $ultima_vacinacao->dose == $ultima_vacinacao->vacina->doses) {
+        if ($ultima_vacinacao->vacina->doses >= 1 && $ultima_vacinacao->dose == $ultima_vacinacao->vacina->doses) {
             return true;
         }
 

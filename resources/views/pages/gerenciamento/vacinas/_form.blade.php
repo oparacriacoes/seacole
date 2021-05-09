@@ -64,7 +64,9 @@
             <div class="row">
                 <div class="col">
                     <button type="submit" class="btn btn-success">Salvar</button>
+                    @if($vacina->id)
                     <button type="button" id="btn_delete_vacina" class="btn btn-danger">Excluir</button>
+                    @endif
                 </div>
             </div>
         </form>

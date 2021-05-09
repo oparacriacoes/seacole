@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Vacina;
 use App\Models\Vacinacao;
+use App\Paciente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VacinacaoFactory extends Factory
@@ -22,7 +24,11 @@ class VacinacaoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'data_vacinacao' => $this->faker->date('Y-m-d', 'now'),
+            'dose' => 1,
+            'reforco' => $this->faker->boolean(80),
+            'vacina_id' => Vacina::factory(),
+            'paciente_id' => Paciente::factory(),
         ];
     }
 }

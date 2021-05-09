@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Enums\SituacoesCaso;
+use App\Models\Vacinacao;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -222,5 +223,10 @@ class Paciente extends Model
     public function servico_internacao()
     {
         return $this->hasOne(ServicoInternacao::class)->withDefault();
+    }
+
+    public function vacinacao()
+    {
+        return $this->hasMany(Vacinacao::class);
     }
 }

@@ -1,8 +1,19 @@
-// Estas const urls foram movidas para a view admin_template_blade.php, carregando dinamicamente a APP_URL da instalação.
-// const API_URL = 'http://localhost:8000/api';
-// const APP_URL = 'http://localhost:8000';
-
 $(document).ready(function () {
+
+    $(window).on("resize", function () {
+        $(this).width() < 1250 ? $(".app-container").addClass("closed-sidebar-mobile closed-sidebar") : $(".app-container").removeClass("closed-sidebar-mobile closed-sidebar")
+    })
+
+    $(".mobile-toggle-header-nav").click(function () { $(this).toggleClass("active"), $(".app-header__content").toggleClass("header-mobile-open") })
+
+    $(".mobile-toggle-nav").click(function () { $(this).toggleClass("is-active"), $(".app-container").toggleClass("sidebar-mobile-open") }),
+
+    $('.hamburger').click(e => {
+        e.currentTarget.classList.toggle('is-active')
+
+        $('#app-container').toggleClass('closed-sidebar')
+    });
+
     //ViaCEP
     function limpa_formulário_cep() {
         // Limpa valores do formulário de cep.

@@ -99,4 +99,56 @@ class VacinasControllerTest extends TestCase
         $response->assertOk();
         $this->assertEquals(2, count($data['vacinas']));
     }
+
+    public function test_should_be_create_new_row_with_update_diff_doses()
+    {
+        $user = CreateTestSamples::createAdministradorUser();
+
+        $vacina = Vacina::factory()->create([
+            'doses' => 2,
+            'intervalo_inicial_proxima_dose' => 5,
+            'intervalo_final_proxima_dose' => 10,
+        ]);
+
+        $payload_update = [
+            'name' => $vacina->name . ' - Updated',
+            'fabricante' => $vacina->fabricante,
+            'doses' => 1,
+        ];
+
+        $response = $this->actingAs($user)->put(route('vacinas.update', $vacina), $payload_update);
+        $response->assertSessionHasNoErrors();
+
+        $vacina = Vacina::withTrashed()->find($vacina->id);
+        $new_vacina = Vacina::where('reference_key', $vacina->reference_key)->first();
+
+        $this->assertNotNull($vacina->deleted_at);
+        $this->assertEquals($vacina->is_active, 0);
+        $this->assertNotEquals($new_vacina->id, $vacina->id);
+    }
+
+    public function test_should_be_simple_update_to_same_doses()
+    {
+        $user = CreateTestSamples::createAdministradorUser();
+
+        $vacina = Vacina::factory()->create([
+            'doses' => 2,
+            'intervalo_inicial_proxima_dose' => 5,
+            'intervalo_final_proxima_dose' => 10,
+        ]);
+
+        $payload_update = [
+            'name' => $vacina->name . ' - Updated',
+            'doses' => 2,
+            'intervalo_inicial_proxima_dose' => 5,
+            'intervalo_final_proxima_dose' => 9,
+        ];
+
+        $response = $this->actingAs($user)->put(route('vacinas.update', $vacina), $payload_update);
+        $response->assertSessionHasNoErrors();
+
+        $vacina->refresh();
+
+        $this->assertEquals($vacina->name, $payload_update['name']);
+    }
 }

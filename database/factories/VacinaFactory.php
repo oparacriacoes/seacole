@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Vacina;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class VacinaFactory extends Factory
 {
@@ -22,9 +23,11 @@ class VacinaFactory extends Factory
     public function definition()
     {
         $doses = random_int(1,2);
+        $name = $this->faker->colorName();
 
         return [
-            'name' => $this->faker->colorName(),
+            'name' => $name,
+            'reference_key' => Str::of($name)->slug('_'),
             'fabricante' => $this->faker->company(),
             'doses' => $doses,
             'intervalo_inicial_proxima_dose' => $doses > 1 ? random_int(10, 15) : 0,

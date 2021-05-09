@@ -21,6 +21,7 @@ class CreateVacinacaosTable extends Migration
             $table->unsignedInteger('dose')->default(1)->nullable(false);
             $table->boolean('reforco')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

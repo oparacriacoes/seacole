@@ -5,17 +5,19 @@ namespace App\Models;
 use App\Paciente;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Vacinacao extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'vacinacoes';
 
     protected $fillable = [
+        'vacina_id',
         'data_vacinacao',
         'dose',
-        'reforco'
+        'reforco',
     ];
 
     /**

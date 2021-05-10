@@ -24,7 +24,7 @@ class VacinacaoController extends Controller
         try {
             $vacina = Vacina::findOrFail($dataForm['vacina_id']);
 
-            if (!$this->canUseVacina($paciente, $vacina, $dataForm['dose'])) {
+            if (!$this->canUseVacina($paciente, $vacina, $dataForm['dose'] ?? 1)) {
                 throw new Exception("Aplicação fora da ordem esperada. Verifique a vacina ou a sequência da dose");
             }
 

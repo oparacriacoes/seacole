@@ -11,7 +11,7 @@
                         <div class="widget-heading">Pacientes Vacinados</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>0</span></div>
+                        <div class="widget-numbers text-white"><span>{{$pacientes_vacinados}}</span></div>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                         <div class="widget-subheading">Receberam todas doses</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>0</span></div>
+                        <div class="widget-numbers text-white"><span>{{$pacientes_vacinados}}</span></div>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         <div class="widget-subheading">Receberam ao menos uma dose</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>0</span></div>
+                        <div class="widget-numbers text-white"><span>{{$pacientes_parcialmente_vacinados}}</span></div>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Actions\UpdateVacina;
 use App\Http\Requests\VacinaRequest;
 use App\Models\Vacina;
+use App\Models\Vacinacao;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 
@@ -28,7 +30,7 @@ class VacinaController extends Controller
      */
     public function create()
     {
-        $vacina = new Vacina();
+        $vacina = new Vacina(['doses' => 1]);
         return view('pages.gerenciamento.vacinas.create', compact('vacina'));
     }
 
@@ -61,7 +63,23 @@ class VacinaController extends Controller
      */
     public function show(Vacina $vacina)
     {
-        return view('pages.gerenciamento.vacinas.show', compact('vacina'));
+        $pacientes_vacinados = 0;
+        $pacientes_parcialmente_vacinados = 0;
+
+        if ($vacina->doses === 1)
+        {
+            $pacientes_vacinados = Vacinacao::where('vacina_id', $vacina->id)->count();
+        } else {
+            $rows = Vacinacao::where('vacina_id', $vacina->id)
+                ->select('paciente_id', DB::raw('COUNT(id) as doses'))
+                ->groupBy('paciente_id', 'vacina_id')
+                ->get();
+
+            $pacientes_vacinados = $rows->where('doses', '>=', $vacina->doses)->count();
+            $pacientes_parcialmente_vacinados = $rows->where('doses', '<', $vacina->doses)->count();
+        }
+
+        return view('pages.gerenciamento.vacinas.show', compact('vacina', 'pacientes_vacinados', 'pacientes_parcialmente_vacinados'));
     }
 
     /**

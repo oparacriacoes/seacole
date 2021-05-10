@@ -99,7 +99,7 @@ class PacienteController extends Controller
         ]);
 
         $paciente->saude_mental = $paciente->saude_mental()->firstOrCreate(); // TODO whats happenning
-        $paciente->vacinacao = $paciente->vacinacao()->with('vacina')->orderBy('data_vacinacao', 'desc')->get();
+        $paciente->vacinacao = $paciente->vacinacao()->with('vacina')->orderBy('data_vacinacao', 'desc')->orderBy('created_at', 'desc')->get();
 
         return view('pages.paciente.edit', compact(
             'paciente',

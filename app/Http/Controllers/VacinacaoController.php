@@ -24,15 +24,15 @@ class VacinacaoController extends Controller
         try {
             $vacina = Vacina::findOrFail($dataForm['vacina_id']);
 
-            if (!$this->canUseVacina($paciente, $vacina)) {
-                throw new Exception("Vacina diferente da vacina esperada");
+            if (!$this->canUseVacina($paciente, $vacina, $dataForm['dose'])) {
+                throw new Exception("Aplicação fora da ordem esperada. Verifique a vacina ou a sequência da dose");
             }
 
             $paciente->vacinacao()->create($dataForm);
         } catch (Exception $e) {
             Log::error($e->getMessage(), $request->validated());
             return back()
-                ->with('error', 'Não foi possível adiciona nova vacinacao')
+                ->with('error', $e->getMessage())
                 ->with('tab', 'vacinacao');
         }
 
@@ -41,7 +41,7 @@ class VacinacaoController extends Controller
             ->with('tab', 'vacinacao');
     }
 
-    private function canUseVacina(Paciente $paciente, Vacina $vacina): bool
+    private function canUseVacina(Paciente $paciente, Vacina $vacina, int $current_dose): bool
     {
         $ultima_vacinacao = $paciente->vacinacao()->latest()->first();
 
@@ -51,6 +51,10 @@ class VacinacaoController extends Controller
 
         if ($ultima_vacinacao->vacina->doses >= 1 && $ultima_vacinacao->dose == $ultima_vacinacao->vacina->doses) {
             return true;
+        }
+
+        if (($ultima_vacinacao->dose + 1) != $current_dose) {
+            return false;
         }
 
         return $vacina->id === $ultima_vacinacao->vacina->id;

@@ -19,7 +19,7 @@
                     <i class="fa fa-plus-circle"></i>
                 </a>
                 <a href="{{route('pacientes.exportar')}}" role="button" data-toggle="tooltip" title="" data-placement="bottom" class="btn-shadow mr-3 btn btn-info" data-original-title="Exportar Dados">
-                    <i class="fa fa-plus-circle"></i>
+                    <i class="fas fa-file-download"></i>
                 </a>
             </div>
           </div>

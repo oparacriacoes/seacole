@@ -80,6 +80,7 @@
 </div>
 
 @section('script')
+@parent
 <script>
     $('#doses').blur(e => {
         if (e.currentTarget.value <= 1) {

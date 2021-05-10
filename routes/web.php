@@ -9,6 +9,7 @@ use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\MonitoramentoController;
 use App\Http\Controllers\NormalizeData;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PsicologoController;
 use App\Http\Controllers\QuadroAtualController;
 use App\Http\Controllers\SaudeMentalController;
@@ -43,6 +44,10 @@ Route::prefix('admin')->middleware(['auth', 'professional'])->group(function () 
     Route::get('/', function () {
         return view('graphs');
     })->name('admin');
+
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('profile-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('charts', [ChartController::class, 'index'])->name('charts.index');

@@ -22,9 +22,8 @@
         </div>
     </div>
 @endsection
-
+@parent
 @section('script')
-<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/core.js') }}"></script>
 <script src="{{ asset('js/charts.js') }}"></script>
 <script src="{{ asset('js/animated.js') }}"></script>

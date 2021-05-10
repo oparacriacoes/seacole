@@ -35,7 +35,12 @@
                         <div class="row mt-2">
                             <div class="form-group col-md-7">
                                 <label for="email">Email</label>
-                                <input name="email" class="form-control" type="email" value="{{$user->email}}">
+                                <input name="email" class="form-control @error('email') is-invalid @enderror" type="email" value="{{$user->email}}">
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
 

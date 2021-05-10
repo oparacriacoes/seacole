@@ -6,7 +6,7 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fas fa-syringe text-success">
+                    <i class="fas fa-syringe text-primary">
                     </i>
                 </div>
                 <div>Cadastro de nova vacina</div>

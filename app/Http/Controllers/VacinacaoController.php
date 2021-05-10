@@ -43,7 +43,7 @@ class VacinacaoController extends Controller
 
     private function canUseVacina(Paciente $paciente, Vacina $vacina, int $current_dose): bool
     {
-        $ultima_vacinacao = $paciente->vacinacao()->latest()->first();
+        $ultima_vacinacao = $paciente->vacinacao()->orderBy('data_vacinacao', 'desc')->first();
 
         if (!$ultima_vacinacao) {
             return true;

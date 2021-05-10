@@ -24,7 +24,7 @@ class VacinacaoController extends Controller
         try {
             $vacina = Vacina::findOrFail($dataForm['vacina_id']);
 
-            if (!$this->canUseVacina($paciente, $vacina, $dataForm['dose'])) {
+            if (!$this->canUseVacina($paciente, $vacina, $dataForm['dose'] ?? 1)) {
                 throw new Exception("Aplicação fora da ordem esperada. Verifique a vacina ou a sequência da dose");
             }
 
@@ -43,7 +43,7 @@ class VacinacaoController extends Controller
 
     private function canUseVacina(Paciente $paciente, Vacina $vacina, int $current_dose): bool
     {
-        $ultima_vacinacao = $paciente->vacinacao()->latest()->first();
+        $ultima_vacinacao = $paciente->vacinacao()->orderBy('data_vacinacao', 'desc')->first();
 
         if (!$ultima_vacinacao) {
             return true;

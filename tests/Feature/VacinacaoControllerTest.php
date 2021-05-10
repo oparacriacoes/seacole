@@ -109,7 +109,7 @@ class VacinacaoControllerTest extends TestCase
 
         $payload_reforco = [
             'vacina_id' => $vacina->id,
-            'data_vacinacao' => now()->subDays(7),
+            'data_vacinacao' => now()->subDays(1),
             'dose' => 1,
             'reforco' => true
         ];

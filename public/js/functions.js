@@ -8,11 +8,11 @@ $(document).ready(function () {
 
     $(".mobile-toggle-nav").click(function () { $(this).toggleClass("is-active"), $(".app-container").toggleClass("sidebar-mobile-open") }),
 
-    $('.hamburger').click(e => {
-        e.currentTarget.classList.toggle('is-active')
+        $('.hamburger').click(e => {
+            e.currentTarget.classList.toggle('is-active')
 
-        $('#app-container').toggleClass('closed-sidebar')
-    });
+            $('#app-container').toggleClass('closed-sidebar')
+        });
 
     //ViaCEP
     function limpa_formulário_cep() {
@@ -139,6 +139,33 @@ $(document).ready(function () {
         reverse: true
     });
 });
+
+
+const PEOPLE_COLORS = {
+    PRETA: 'rgb(17, 24, 39)',
+    PARDA: 'rgb(120, 53, 15)',
+    INDIGENA: 'rgb(220, 38, 38)',
+    BRANCA: 'rgb(240, 240, 240)',
+    AMARELA: 'rgb(251, 191, 36)',
+    SEM_INFORMACAO: 'rgb(75, 192, 192)',
+}
+
+function peopleColor(color = '') {
+    switch (color) {
+        case 'Preta':
+            return PEOPLE_COLORS.PRETA;
+        case 'Parda':
+            return PEOPLE_COLORS.PARDA;
+        case 'Indígena':
+            return PEOPLE_COLORS.info;
+        case 'Branca':
+            return PEOPLE_COLORS.BRANCA;
+        case 'Amarela':
+            return PEOPLE_COLORS.AMARELA;
+        default:
+            return PEOPLE_COLORS.SEM_INFORMACAO;
+    }
+}
 
 function requiredField() {
     //CAMPOS DE PREENCHIMENTO OBRIGATÓRIO

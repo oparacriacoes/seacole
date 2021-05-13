@@ -13,10 +13,10 @@
                 label: 'Pacientes Monitorados x Paciente Exclusivo Psicologia',
                 data: chart_data.data,
                 backgroundColor: [
-                    'rgb(0, 0, 0)',
-                    'rgb(109, 76, 65)',
-                    'rgb(240, 240, 240)',
-                    'rgb(75, 192, 192)',
+                    PEOPLE_COLORS.PRETA,
+                    PEOPLE_COLORS.PARDA,
+                    PEOPLE_COLORS.BRANCA,
+                    PEOPLE_COLORS.SEM_INFORMACAO,
                 ]
             }],
         },

@@ -13,8 +13,8 @@ final class ChartsEnum extends ReadableEnum
     public const SITUACAO_TOTAL_CASOS_MONITORADOS_PIE = 'situacao-total-casos-monitorados-pie';
     public const CASOS_MONITORADOS_CIDADE = 'casos-monitorado-cidade';
     public const RACA_COR_PESSOAS_ATENDIDAS = 'raca-cor-pessoas-atendidas';
+    public const GRAFICO_07 = 'genero-por-raca-cor';
 
-    public const GRAFICO_07 = '07';
     public const GRAFICO_08 = '08';
     public const GRAFICO_09 = '09';
     public const GRAFICO_10 = '10';
@@ -78,9 +78,9 @@ final class ChartsEnum extends ReadableEnum
             self::SITUACAO_TOTAL_CASOS_MONITORADOS_PIE,
             self::CASOS_MONITORADOS_CIDADE,
             self::RACA_COR_PESSOAS_ATENDIDAS,
-            // self::GRAFICO_07,
-            // self::GRAFICO_08,
-            // self::GRAFICO_09,
+            self::GRAFICO_07,
+            self::GRAFICO_08,
+            self::GRAFICO_09,
             // self::GRAFICO_10,
             // self::GRAFICO_11,
             // self::GRAFICO_12,
@@ -138,15 +138,15 @@ final class ChartsEnum extends ReadableEnum
     public static function readables(): array
     {
         return [
-            self::CASOS_MONITORADOS => Str::title('NOVOS CASOS MONITORADOS'),
-            self::MONITORADOS_EXCLUSIVO_PSICOLOGIA => Str::title('MONITORADOS X EXCLUSIVO PSICOLOGIA'),
-            self::SITUACAO_TOTAL_CASOS_MONITORADOS_BAR => Str::title('SITUAÇÃO TOTAL DE CASOS MONITORADOS - Barras'),
-            self::SITUACAO_TOTAL_CASOS_MONITORADOS_PIE => Str::title('SITUAÇÃO TOTAL DE CASOS MONITORADOS - Pizza'),
-            self::CASOS_MONITORADOS_CIDADE => Str::title('CASOS MONITORADOS POR CIDADE'),
-            SELF::RACA_COR_PESSOAS_ATENDIDAS => Str::title('RAÇA-COR GERAL DAS PESSOAS ATENDIDAS'),
-            // self::GRAFICO_07 => Str::title('07'),
-            // self::GRAFICO_08 => Str::title('08'),
-            // self::GRAFICO_09 => Str::title('09'),
+            self::CASOS_MONITORADOS => Str::title('01 NOVOS CASOS MONITORADOS'),
+            self::MONITORADOS_EXCLUSIVO_PSICOLOGIA => Str::title('02 MONITORADOS X EXCLUSIVO PSICOLOGIA'),
+            self::SITUACAO_TOTAL_CASOS_MONITORADOS_BAR => Str::title('03 SITUAÇÃO TOTAL DE CASOS MONITORADOS - Barras'),
+            self::SITUACAO_TOTAL_CASOS_MONITORADOS_PIE => Str::title('04 SITUAÇÃO TOTAL DE CASOS MONITORADOS - Pizza'),
+            self::CASOS_MONITORADOS_CIDADE => Str::title('05 CASOS MONITORADOS POR CIDADE'),
+            self::RACA_COR_PESSOAS_ATENDIDAS => Str::title('06 RAÇA-COR GERAL DAS PESSOAS ATENDIDAS'),
+            self::GRAFICO_07 => Str::title('07 GÊNERO POR RAÇA-COR'),
+            // self::GRAFICO_08 => Str::title('08 FAIXA ETÁRIA POR GÊNERO'),
+            // self::GRAFICO_09 => Str::title('09 FAIXA ETÁRIA POR GÊNERO'),
             // self::GRAFICO_10 => Str::title('10'),
             // self::GRAFICO_11 => Str::title('11'),
             // self::GRAFICO_12 => Str::title('12'),

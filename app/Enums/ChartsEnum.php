@@ -14,8 +14,8 @@ final class ChartsEnum extends ReadableEnum
     public const CASOS_MONITORADOS_CIDADE = 'casos-monitorado-cidade';
     public const RACA_COR_PESSOAS_ATENDIDAS = 'raca-cor-pessoas-atendidas';
     public const GRAFICO_07 = 'genero-por-raca-cor';
+    public const GRAFICO_08 = 'faixa-etaria-por-genero';
 
-    public const GRAFICO_08 = '08';
     public const GRAFICO_09 = '09';
     public const GRAFICO_10 = '10';
     public const GRAFICO_11 = '11';
@@ -145,7 +145,7 @@ final class ChartsEnum extends ReadableEnum
             self::CASOS_MONITORADOS_CIDADE => Str::title('05 CASOS MONITORADOS POR CIDADE'),
             self::RACA_COR_PESSOAS_ATENDIDAS => Str::title('06 RAÇA-COR GERAL DAS PESSOAS ATENDIDAS'),
             self::GRAFICO_07 => Str::title('07 GÊNERO POR RAÇA-COR'),
-            // self::GRAFICO_08 => Str::title('08 FAIXA ETÁRIA POR GÊNERO'),
+            self::GRAFICO_08 => Str::title('08 FAIXA ETÁRIA POR GÊNERO'),
             // self::GRAFICO_09 => Str::title('09 FAIXA ETÁRIA POR GÊNERO'),
             // self::GRAFICO_10 => Str::title('10'),
             // self::GRAFICO_11 => Str::title('11'),

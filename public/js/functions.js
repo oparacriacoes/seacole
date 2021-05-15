@@ -142,10 +142,10 @@ $(document).ready(function () {
 
 
 const PEOPLE_COLORS = {
-    PRETA: 'rgb(17, 24, 39)',
+    PRETA: 'rgb(24,24,27)',
     PARDA: 'rgb(120, 53, 15)',
     INDIGENA: 'rgb(220, 38, 38)',
-    BRANCA: 'rgb(240, 240, 240)',
+    BRANCA: 'rgb(229,229,229)',
     AMARELA: 'rgb(251, 191, 36)',
     SEM_INFORMACAO: 'rgb(75, 192, 192)',
 }
@@ -157,6 +157,7 @@ function peopleColor(color = '') {
         case 'Parda':
             return PEOPLE_COLORS.PARDA;
         case 'Indígena':
+        case 'Indigena':
             return PEOPLE_COLORS.info;
         case 'Branca':
             return PEOPLE_COLORS.BRANCA;

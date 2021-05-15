@@ -15,11 +15,13 @@ class FaixaEtariaPorGenero extends ChartComponent
             SELECT
                 idade,
                 COALESCE(SUM(homem),0) AS homens,
-                COALESCE(SUM(mulher),0) AS mulheres
+                COALESCE(SUM(mulher),0) AS mulheres,
+                COALESCE(SUM(sem_informacao),0) AS sem_informacao
             FROM
                 (
                 SELECT
                     CASE
+                        WHEN idade is null THEN 'Não informado'
                         WHEN idade <= 4 THEN '0-4'
                         WHEN idade >= 5 AND idade <= 9 THEN '5-9'
                         WHEN idade >= 10 AND idade <= 14 THEN '10-14'
@@ -41,9 +43,9 @@ class FaixaEtariaPorGenero extends ChartComponent
                         WHEN idade >= 90 AND idade <= 94 THEN '90-94'
                         WHEN idade >= 95 AND idade <= 99 THEN '95-99'
                         WHEN idade >= 100 THEN '100+'
-                        ELSE 'Não informado'
                     END AS idade,
                     CASE
+                        WHEN idade is null THEN null
                         WHEN idade <= 4 THEN 0
                         WHEN idade >= 5 AND idade <= 9 THEN 1
                         WHEN idade >= 10 AND idade <= 14 THEN 2
@@ -65,14 +67,16 @@ class FaixaEtariaPorGenero extends ChartComponent
                         WHEN idade >= 90 AND idade <= 94 THEN 18
                         WHEN idade >= 95 AND idade <= 99 THEN 19
                         WHEN idade >= 100 THEN 20
-                        ELSE 21
                     END AS ordem_faixa,
                     CASE
                         WHEN identidade_genero LIKE 'homem%' THEN COUNT(id)
                     END AS homem,
                     CASE
                         WHEN identidade_genero LIKE 'mulher%' THEN COUNT(id)
-                    END AS mulher
+                    END AS mulher,
+                    CASE
+                        WHEN identidade_genero is null THEN COUNT(id)
+                    END AS sem_informacao
                 FROM
                     (SELECT
                         TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade,

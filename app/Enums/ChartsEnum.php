@@ -17,8 +17,8 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_08 = 'faixa-etaria-por-genero';
     public const GRAFICO_09 = 'faixa-etaria-por-genero-b';
     public const GRAFICO_10 = 'faixa-etaria-por-raca-cor';
+    public const GRAFICO_11 = 'pessoas-residencia-raca-cor';
 
-    public const GRAFICO_11 = '11';
     public const GRAFICO_12 = '12';
     public const GRAFICO_13 = '13';
     public const GRAFICO_14 = '14';
@@ -82,7 +82,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_08,
             self::GRAFICO_09,
             self::GRAFICO_10,
-            // self::GRAFICO_11,
+            self::GRAFICO_11,
             // self::GRAFICO_12,
             // self::GRAFICO_13,
             // self::GRAFICO_14,
@@ -148,8 +148,8 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_08 => Str::title('08 FAIXA ETÁRIA POR GÊNERO - Pirâmide'),
             self::GRAFICO_09 => Str::title('09 FAIXA ETÁRIA POR GÊNERO - Barras'),
             self::GRAFICO_10 => Str::title('10 FAIXA ETÁRIA POR RAÇA COR'),
+            self::GRAFICO_11 => Str::title('11 NÚMERO DE PESSOAS/RESIDÊNCIA POR RAÇA/COR'),
 
-            // self::GRAFICO_11 => Str::title('11'),
             // self::GRAFICO_12 => Str::title('12'),
             // self::GRAFICO_13 => Str::title('13'),
             // self::GRAFICO_14 => Str::title('14'),

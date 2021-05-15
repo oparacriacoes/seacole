@@ -28,14 +28,13 @@
             },
             plugins: {
                 datalabels: {
-                    // backgroundColor: 'rgb(75, 192, 192)',
                     borderRadius: 4,
                     color: 'black',
                     font: {
                         weight: 'normal'
                     },
                     padding: 2,
-                    formatter: (value, ctx) => Math.abs(value),
+                    formatter: (value, ctx) => value != '0' ? Math.abs(value) : '',
                 }
             }
         }

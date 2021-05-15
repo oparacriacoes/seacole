@@ -91,25 +91,25 @@ class FaixaEtariaPorGenero extends ChartComponent
 
         $collection = collect($collection);
 
-        // $collectionToChartDataset = new CollectionToChartDatasets('identidade_genero', 'cor_raca', 'total', $collection);
-
         return [
             'labels' => $collection->pluck('idade'),
             'datasets' => [
-                [
-                    'label' => 'Homens CIS',
-                    'data' => $collection->pluck('homens')->map(function ($item) { return $item * -1; }),
-                    'barThickness' => 15,
-                    'maxBarThickness' => 15,
-                    'minBarLength' => 2,
-                ],
                 [
                     'label' => 'Mulheres CIS',
                     'data' => $collection->pluck('mulheres'),
                     'barThickness' => 15,
                     'maxBarThickness' => 15,
                     'minBarLength' => 2,
-                ]
+                ],
+                [
+                    'label' => 'Homens CIS',
+                    'data' => $collection->pluck('homens')->map(function ($item) {
+                        return $item * -1;
+                    }),
+                    'barThickness' => 15,
+                    'maxBarThickness' => 15,
+                    'minBarLength' => 2,
+                ],
             ],
         ];
     }

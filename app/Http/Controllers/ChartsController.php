@@ -499,7 +499,7 @@ class ChartsController extends Controller
         , CASE WHEN cor_raca = 'Indígena'THEN COUNT(id) END AS indigena
       FROM
         (SELECT
-        TIMESTAMPDIFF (YEAR,STR_TO_DATE(data_nascimento,'%d/%m/%Y'),CURDATE()) AS idade
+        TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade
         , id
         , cor_raca
         FROM pacientes)TB
@@ -572,7 +572,7 @@ class ChartsController extends Controller
         , CASE WHEN cor_raca = 'Indígena'THEN COUNT(id) END AS indigena
         FROM
         (SELECT
-          TIMESTAMPDIFF (YEAR,STR_TO_DATE(data_nascimento,'%d/%m/%Y'),CURDATE()) AS idade
+            TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade
           , id
           , cor_raca
         FROM pacientes)TB

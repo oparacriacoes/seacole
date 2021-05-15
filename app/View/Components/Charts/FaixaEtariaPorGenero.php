@@ -2,7 +2,6 @@
 
 namespace App\View\Components\Charts;
 
-use App\Paciente;
 use Illuminate\Support\Facades\DB;
 
 class FaixaEtariaPorGenero extends ChartComponent

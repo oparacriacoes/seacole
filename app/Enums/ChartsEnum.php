@@ -20,8 +20,8 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_11 = 'pessoas-residencia-raca-cor';
     public const GRAFICO_12_A = 'classe-social-por-renda-familiar';
     public const GRAFICO_12_B = 'classe-social-renda-per-capta-raca-cor';
+    public const GRAFICO_13 = 'raca-cor-auxilio-emergencial';
 
-    public const GRAFICO_14 = '14';
     public const GRAFICO_15 = '15';
     public const GRAFICO_16 = '16';
     public const GRAFICO_17 = '17';
@@ -85,6 +85,8 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_11,
             self::GRAFICO_12_A,
             self::GRAFICO_12_B,
+            self::GRAFICO_13,
+
             // self::GRAFICO_14,
             // self::GRAFICO_15,
             // self::GRAFICO_16,
@@ -151,6 +153,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_11 => Str::title('11 NÚMERO DE PESSOAS/RESIDÊNCIA POR RAÇA/COR'),
             self::GRAFICO_12_A => Str::title('12a CLASSE SOCIAL POR RENDA BRUTA FAMILIAR'),
             self::GRAFICO_12_B => Str::title('12b CLASSE SOCIAL RENDA PER-CAPTA POR RAÇA/COR'),
+            self::GRAFICO_13 => Str::title('13 RAÇA/COR POR AUXÍLIO EMERGENCIAL'),
 
             // self::GRAFICO_14 => Str::title('14'),
             // self::GRAFICO_15 => Str::title('15'),

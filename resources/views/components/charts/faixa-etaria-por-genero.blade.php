@@ -28,7 +28,7 @@
             },
             plugins: {
                 datalabels: {
-                    borderRadius: 4,
+                    borderRadius: 1,
                     color: 'black',
                     font: {
                         weight: 'normal'

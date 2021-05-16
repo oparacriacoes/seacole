@@ -1,8 +1,6 @@
 <script type="text/javascript">
     const chart_data = @json($chart_data);
 
-    console.log(chart_data)
-
     for(let dataset of chart_data.datasets) {
         dataset.backgroundColor = peopleColor(dataset.label)
     }
@@ -27,13 +25,14 @@
             plugins: {
                 datalabels: {
                     backgroundColor: 'rgb(75, 192, 192)',
-                    borderRadius: 4,
+                    borderRadius: 1,
                     color: 'white',
-                    font: {
-                        weight: 'bold'
+                    formatter: (value, ctx) => value != '0' ? Math.abs(value) : '',
+                    padding: 2,
+                    display: function(context) {
+                        return context.dataset.data[context.dataIndex] > 0 ? 'auto' : false;
                     },
-                    formatter: Math.round,
-                    padding: 6
+                    clamp: true
                 }
             },
             scales: {

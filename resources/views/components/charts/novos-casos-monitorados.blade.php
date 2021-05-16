@@ -21,13 +21,13 @@
             plugins: {
                 datalabels: {
                     backgroundColor: 'rgb(75, 192, 192)',
-                    borderRadius: 4,
+                    borderRadius: 1,
                     color: 'white',
                     font: {
                         weight: 'bold'
                     },
                     formatter: Math.round,
-                    padding: 6
+                    padding: 2
                 }
             }
         }

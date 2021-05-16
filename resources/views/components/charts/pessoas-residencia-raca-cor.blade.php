@@ -32,7 +32,7 @@
             },
             plugins: {
                 datalabels: {
-                    borderRadius: 4,
+                    borderRadius: 1,
                     color: 'white',
                     font: {
                         weight: 'normal'

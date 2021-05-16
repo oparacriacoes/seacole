@@ -29,7 +29,7 @@
             plugins: {
                 datalabels: {
                     backgroundColor: 'rgb(75, 192, 192)',
-                    borderRadius: 4,
+                    borderRadius: 1,
                     color: 'white',
                     font: {
                         weight: 'bold'
@@ -39,7 +39,7 @@
                         let percentage = (value * 100 / sum).toFixed(2) + "%";
                         return percentage;
                     },
-                    padding: 6
+                    padding: 2
                 }
             }
         }

@@ -704,11 +704,11 @@ class ChartsController extends Controller
     FROM
       (SELECT
         CASE
-          WHEN renda_residencia > 0 AND renda_residencia <= 1.254 THEN ' Classe E'
-          WHEN renda_residencia >= 1.255 AND renda_residencia <= 2.004 THEN ' Classe D'
-          WHEN renda_residencia >= 2.005 AND renda_residencia <= 8.640 THEN ' Classe C'
-          WHEN renda_residencia >= 8.641 AND renda_residencia <= 11.261 THEN ' Classe B'
-          WHEN renda_residencia >= 11.262 THEN ' Classe A'
+          WHEN renda_residencia > 0 AND renda_residencia <= 1254 THEN ' Classe E'
+          WHEN renda_residencia >= 1255 AND renda_residencia <= 2004 THEN ' Classe D'
+          WHEN renda_residencia >= 2005 AND renda_residencia <= 8640 THEN ' Classe C'
+          WHEN renda_residencia >= 8641 AND renda_residencia <= 11261 THEN ' Classe B'
+          WHEN renda_residencia >= 11262 THEN ' Classe A'
           ELSE ' Sem inf.'
         END AS renda_residencia
         , CASE WHEN cor_raca IS NULL THEN COUNT(id) END AS sem_informacao
@@ -741,11 +741,11 @@ class ChartsController extends Controller
     FROM
       (SELECT
         CASE
-          WHEN renda_residencia/numero_pessoas_residencia > 0 AND renda_residencia/numero_pessoas_residencia <= 1.254 THEN 'Classe E'
-          WHEN renda_residencia/numero_pessoas_residencia >= 1.255 AND renda_residencia/numero_pessoas_residencia <= 2.004 THEN 'Classe D'
-          WHEN renda_residencia/numero_pessoas_residencia >= 2.005 AND renda_residencia/numero_pessoas_residencia <= 8.640 THEN 'Classe C'
-          WHEN renda_residencia/numero_pessoas_residencia >= 8.641 AND renda_residencia/numero_pessoas_residencia <= 11.261 THEN 'Classe B'
-          WHEN renda_residencia/numero_pessoas_residencia >= 11.262 THEN 'Classe A'
+          WHEN renda_residencia/numero_pessoas_residencia > 0 AND renda_residencia/numero_pessoas_residencia <= 1254 THEN 'Classe E'
+          WHEN renda_residencia/numero_pessoas_residencia >= 1255 AND renda_residencia/numero_pessoas_residencia <= 2004 THEN 'Classe D'
+          WHEN renda_residencia/numero_pessoas_residencia >= 2005 AND renda_residencia/numero_pessoas_residencia <= 8640 THEN 'Classe C'
+          WHEN renda_residencia/numero_pessoas_residencia >= 8641 AND renda_residencia/numero_pessoas_residencia <= 11261 THEN 'Classe B'
+          WHEN renda_residencia/numero_pessoas_residencia >= 11262 THEN 'Classe A'
           ELSE 'Sim inf.'
         END AS renda_residencia
         , CASE WHEN cor_raca IS NULL THEN COUNT(id) END AS sem_informacao

@@ -28,12 +28,10 @@
             },
             plugins: {
                 datalabels: {
-                    borderRadius: 1,
-                    color: 'black',
+                    color: 'white',
                     font: {
                         weight: 'normal'
                     },
-                    padding: 2,
                     formatter: (value, ctx) => value != '0' ? Math.abs(value) : '',
                 }
             }

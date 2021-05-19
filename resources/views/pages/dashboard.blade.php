@@ -10,7 +10,7 @@
                     </i>
                 </div>
                 <div>Dashboard Analítico
-                    <div class="page-title-subheading">This is an example dashboard created using build-in elements and components.</div>
+                    <div class="page-title-subheading">As informações mais importantes e detalhadas disponíveis em um só lugar</div>
                 </div>
             </div>
         </div>

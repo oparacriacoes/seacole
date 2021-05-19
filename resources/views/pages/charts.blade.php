@@ -10,7 +10,7 @@
                     </i>
                 </div>
                 <div>Gráficos
-                    <div class="page-title-subheading">Veja as informações algum texto aqui depois pois estou sem criatividade //TODO</div>
+                    <div class="page-title-subheading">Gráficos detalhados para análise e observação dos principais dados no sistema</div>
                 </div>
             </div>
         </div>

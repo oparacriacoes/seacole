@@ -1,8 +1,10 @@
 <form id="internacao_form" action="{{ route('paciente.internacao', $paciente->id) }}" method="post">
     @csrf
-    <div class="form-row">
+    <div class="form-row pt-4">
         <div class="col-md-6">
-            <x-forms.choices.servico-saude :value="$servico_internacao->precisou_servico ?? []" property="precisou_servico"/>
+            <x-forms.choices.servico-saude :value="$servico_internacao->precisou_servico ?? []" property="precisou_servico">
+                <b>A pessoa precisou ir a algum serviço de saúde?</b>
+            </x-forms.choices.servico-saude>
             <div class="form-check form-check-inline">
                 <input name="precisou_servico_outro" class="form-control" type="text" placeholder="Outro" value="{{ old('precisou_servico_outro', $servico_internacao->precisou_servico_outro) }}">
             </div>
@@ -42,7 +44,9 @@
 
     <div class="form-row">
         <div class="col-md-6">
-            <x-forms.choices.servico-saude :value="$servico_internacao->teve_algum_problema ?? []" property="teve_algum_problema"/>
+            <x-forms.choices.servico-saude :value="$servico_internacao->teve_algum_problema ?? []" property="teve_algum_problema">
+                <b>A pessoa teve algum problema com serviços de referência?</b>
+            </x-forms.choices.sevico-saude>
         </div>
         <div class="col-md-6">
             <div class="form-group">
@@ -91,7 +95,7 @@
         </div>
         <div class="col-md-3">
             <x-forms.input-date property="data_alta_hospitalar" :value="$servico_internacao->data_alta_hospitalar">
-                Início monitoramento Agentes
+                Data da alta hospitalar
             </x-forms.input-date>
         </div>
         <div class="col-md-12 mt-2">

@@ -8,7 +8,7 @@ install-composer:
 	php -r "unlink('composer-setup.php');"
 
 install-dependencies:
-	php composer.phar install --dev
+	php composer.phar install
 	php composer.phar require --working-dir=tools/php-cs-fixer friendsofphp/php-cs-fixer
 
 run-dev:

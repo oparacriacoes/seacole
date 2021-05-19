@@ -64,12 +64,6 @@
                                 {{ ucfirst(Auth::user()->role) }}
                             </div>
                         </div>
-                        <div class="widget-content-right header-user-info ml-3">
-                            <a type="button" title="Sair" class="btn-shadow p-1 btn btn-danger btn-sm" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
-                                <i class="text-white fas fa-sign-out-alt pr-1 pl-1"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

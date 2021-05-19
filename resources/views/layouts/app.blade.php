@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <div id="app-container" class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         @include('layouts.dashboard.shared.header')
         <div class="app-main">
             @include('layouts.dashboard.shared.sidebar')
@@ -33,8 +33,6 @@
             </div>
         </div>
     </div>
-
-    <script src="{{ asset('js/architectui.js') }}"></script>
 
     <script>
         const API_URL = "{{ env(" APP_URL ") }}" + "/api";

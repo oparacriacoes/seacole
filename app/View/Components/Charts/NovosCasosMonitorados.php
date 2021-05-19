@@ -6,6 +6,8 @@ use App\Paciente;
 
 class NovosCasosMonitorados extends ChartComponent
 {
+    protected string $componentView = 'components.charts.novos-casos-monitorados';
+
     public function chartData(): array
     {
         $collection = Paciente::selectRaw("DATE_FORMAT(coalesce(least(data_inicio_monitoramento, data_inicio_ac_psicologico), data_inicio_monitoramento, data_inicio_ac_psicologico), '%Y-%m') date, count(id) total")
@@ -19,15 +21,5 @@ class NovosCasosMonitorados extends ChartComponent
             'labels' => $collection->pluck('date'),
             'data' => $collection->pluck('total'),
         ];
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render()
-    {
-        return view('components.charts.novos-casos-monitorados')->with(['chart_data' => $this->chartData()]);
     }
 }

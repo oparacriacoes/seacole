@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Agente;
-use App\Http\Controllers\API\AgenteController;
 use App\Paciente;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

@@ -84,6 +84,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link @if(session('tab') == 'vacinacao') active @endif" id="tab7" data-toggle="tab" href="#tab-vacinacao">
+                <span>Vacinação</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" id="tab6" data-toggle="tab" href="#tab-content-6">
                 <span>Prontuário</span>
             </a>
@@ -147,6 +152,10 @@
                     @include('pages.paciente._forms_edit.insumos', ['paciente' => $paciente, 'insumos' => $paciente->insumos_oferecidos])
                 </div>
             </div>
+        </div>
+
+        <div class="tab-pane tabs-animation fade @if(session('tab') == 'vacinacao') show active @endif" id="tab-vacinacao" role="tabpanel">
+            @include('pages.paciente._forms_edit.vacinacao', ['paciente' => $paciente, 'vacinacao' => $paciente->vacinacao])
         </div>
 
         <div class="tab-pane tabs-animation fade" id="tab-content-6" role="tabpanel">

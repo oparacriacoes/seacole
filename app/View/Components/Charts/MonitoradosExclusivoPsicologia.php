@@ -2,32 +2,30 @@
 
 namespace App\View\Components\Charts;
 
+use App\Paciente;
 
 class MonitoradosExclusivoPsicologia extends ChartComponent
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
+    protected string $componentView = 'components.charts.monitorados-exclusivo-psicologia';
 
     public function chartData(): array
     {
-        return [];
-    }
+        // CHART::2 O REAL SIGNIFICADO DA SEGUNDA INFORMACAO
+        $pacientes = Paciente::select(['id', 'agente_id', 'psicologo_id'])->get();
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render()
-    {
-        return view('components.charts.monitorados-exclusivo-psicologia');
+        $labels = [
+            'Casos totais monitorados exclusivamente por equipe de psicologia',
+            'Casos totais monitorados por agentes populares de saúde por equipe de psicologia',
+        ];
+
+        $data = [
+            $pacientes->whereNull('agente_id')->whereNotNull('psicologo_id')->count(),
+            $pacientes->count() - $pacientes->whereNull('agente_id')->whereNotNull('psicologo_id')->count(),
+        ];
+
+        return [
+            'labels' => $labels,
+            'data' => $data,
+        ];
     }
 }

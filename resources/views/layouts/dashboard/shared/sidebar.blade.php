@@ -33,6 +33,7 @@
     <div class="scrollbar-sidebar ps">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu metismenu pt-2">
+                @if(Auth::user()->is_admin)
                 <li class="app-sidebar__heading">Dados & Análises</li>
                 <li>
                     <a href="{{ route('dashboard.index') }}">
@@ -47,23 +48,34 @@
                     </a>
                 </li>
 
+                <li class="app-sidebar__heading">Gerenciamento</li>
+                <li>
+                    <a href="{{ route('vacinas.index') }}">
+                        <i class="metismenu-icon fas fa-syringe nav-icon""></i>
+                        Vacinas
+                    </a>
+                    <a href="{{ route('pacientes.index') }}">
+                        <i class="metismenu-icon fas fa-procedures nav-icon""></i>
+                        Pacientes
+                    </a>
+                </li>
+                @endif
+
+                @unless(Auth::user()->is_admin)
                 <li class="app-sidebar__heading">Pacientes</li>
                 <li>
                     <a href="{{ route('pacientes.index') }}">
                         <i class="metismenu-icon fas fa-procedures nav-icon"></i>
                         Todos
                     </a>
+                </li>
+                <li>
                     <a href="{{ route('pacientes.create') }}">
                         <i class="metismenu-icon fa fa-plus-circle nav-icon"></i>
                         Novo Paciente
                     </a>
-                    @if(Auth::user()->is_admin)
-                    <a href="{{ route('pacientes.exportar') }}">
-                        <i class="metismenu-icon fas fa-file-export nav-icon"></i>
-                        Exportar
-                    </a>
-                    @endif
                 </li>
+                @endunless
 
                 @if(Auth::user()->is_admin)
                 <li class="app-sidebar__heading">Profissionais</li>

@@ -13,6 +13,8 @@ use App\Http\Controllers\PsicologoController;
 use App\Http\Controllers\QuadroAtualController;
 use App\Http\Controllers\SaudeMentalController;
 use App\Http\Controllers\ServicoInternacaoController;
+use App\Http\Controllers\VacinacaoController;
+use App\Http\Controllers\VacinaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
@@ -54,9 +56,14 @@ Route::prefix('admin')->middleware(['auth', 'professional'])->group(function () 
     Route::post('paciente/saude-mental/{id}', SaudeMentalController::class)->name('paciente.saude-mental');
     Route::post('paciente/internacao/{paciente}', ServicoInternacaoController::class)->name('paciente.internacao');
     Route::post('paciente/insumos/{paciente}', InsumosOferecidoController::class)->name('paciente.insumos');
+    Route::post('paciente/vacinacao/{paciente}', VacinacaoController::class)->name('paciente.vacinacao');
 
     Route::get('pacientes/exportar', [PacienteController::class, 'ExportarExcelPacientes'])->name('pacientes.exportar')->middleware(['admin']);
     Route::resource('pacientes', PacienteController::class)->except(['show']);
+
+    Route::prefix('gerenciamento')->middleware(['admin']) ->group(function () {
+        Route::resource('vacinas', VacinaController::class);
+    });
 
 
     // Route::get('/admin/paciente/notify/dismiss/{notification_id}/{paciente_id}', 'NotifyController@dismiss')->name('paciente/notify/dismiss');
@@ -123,10 +130,4 @@ Route::prefix('admin')->middleware(['auth', 'professional'])->group(function () 
     Route::get('chart/sintomas_manifestados_situacao_raca_cor_2', [ChartsController::class, 'sintomas_manifestados_situacao_raca_cor_2'])->name('chart.sintomas_manifestados_situacao_raca_cor_2');
     Route::get('chart/sintomas_manifestados_situacao_raca_cor_3', [ChartsController::class, 'sintomas_manifestados_situacao_raca_cor_3'])->name('chart.sintomas_manifestados_situacao_raca_cor_3');
     Route::get('chart/sintomas_manifestados_situacao_raca_cor_4', [ChartsController::class, 'sintomas_manifestados_situacao_raca_cor_4'])->name('chart.sintomas_manifestados_situacao_raca_cor_4');
-
-
-    if (Config::get('app.ft_normalize_data')) {
-        Route::get('normalize', [NormalizeData::class, 'index'])->name('normalize.index');
-        Route::post('normalize', [NormalizeData::class, 'update'])->name('normalize.update');
-    }
 });

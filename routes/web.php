@@ -3,6 +3,7 @@
 use App\Http\Controllers\AgenteController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ChartsController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InsumosOferecidoController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\MonitoramentoController;
@@ -38,8 +39,11 @@ Auth::routes([
 
 Route::prefix('admin')->middleware(['auth', 'professional'])->group(function () {
     Route::get('/', function () {
-        return view('dashboard');
+        return view('graphs');
     })->name('admin');
+
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('charts', [ChartController::class, 'index'])->name('charts.index');
 
     Route::resource('agentes', AgenteController::class)->except(['show'])->middleware(['admin']);
     Route::resource('medicos', MedicoController::class)->except(['show'])->middleware(['admin']);
@@ -57,8 +61,7 @@ Route::prefix('admin')->middleware(['auth', 'professional'])->group(function () 
 
     // Route::get('/admin/paciente/notify/dismiss/{notification_id}/{paciente_id}', 'NotifyController@dismiss')->name('paciente/notify/dismiss');
 
-    Route::get('charts/{chart_id}', [ChartController::class, 'index'])->name('charts');
-    Route::get('chart/novos_casos_monitorados', [ChartController::class ,'novos_casos_monitorados'])->name('chart.novos-casos');
+    Route::get('charts/{chart_id}', [ChartsController::class, 'index'])->name('charts.secondary');
 
     Route::get('chart/monitorados_exclusivo_psicologia', [ChartsController::class, 'monitorados_exclusivo_psicologia'])->name('chart.monitorados-exclusivo-psicologia');
     Route::get('chart/situacao_total_casos_monitorados', [ChartsController::class, 'situacao_total_casos_monitorados'])->name('chart.situacao-total-casos-monitorados');

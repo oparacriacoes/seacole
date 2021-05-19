@@ -2,28 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Paciente;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Enums\ChartsEnum;
+use Elao\Enum\Exception\InvalidValueException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ChartController extends Controller
 {
-    public function index($chart_id)
+    public function index()
     {
-        $chart_view = 'graph-' . $chart_id;
-        return view('pages.graficos.' . $chart_view);
-    }
+        $charts = ChartsEnum::readables();
+        $chart = ChartsEnum::CASOS_MONITORADOS;
 
-    public function novos_casos_monitorados()
-    {
-        $data = Paciente::selectRaw("DATE_FORMAT(data_inicio_monitoramento, '%Y-%m') date, count(id) value")
-            ->groupBy('date')
-            ->orderBy('date', 'desc')
-            ->whereNotNull('data_inicio_monitoramento')
-            ->get();
+        try {
+            $chart = ChartsEnum::get(request('chart'), ChartsEnum::CASOS_MONITORADOS)->getValue();
+        } catch (InvalidValueException $ex) {
+            Log::warning($ex->getMessage(), [
+                'user_id' => Auth::user()->id
+            ]);
+        }
 
-        // quem é mais velho data_inicio_monitoramento ou data_inicio_ac_psicologico
-
-        return response()->json($data);
+        return view('pages.charts', [
+            'charts' => $charts
+        ])->with([
+            'datefrom' => request('datefrom', '2020-03-01'),
+            'dateto' => request('dateto', now()->format('Y-m-d')),
+            'chart' => $chart,
+            'chartComponent' => 'charts.' . $chart,
+        ]);
     }
 }

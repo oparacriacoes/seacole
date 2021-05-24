@@ -68,5 +68,8 @@
         let optionSelected = $(e.currentTarget).find(":selected")[0]
         $('#dose').attr('max', optionSelected.dataset['dose'])
     });
+
+    let optionSelected = $('#vacina_id').find(":selected")[0]
+    $('#dose').attr('max', optionSelected.dataset['dose'])
 </script>
 @endsection

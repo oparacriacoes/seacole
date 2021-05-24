@@ -3,7 +3,7 @@
     <div class="col-12 col-sm-6 col-md-4">
         <div class="card mb-2">
             <div class="card-body">
-                <h5 class="card-title">Data: {{ $prontuario->data_monitoramento ? $prontuario->data_monitoramento->format('d/m/Y') - 'Data não definida' }} - Hora: {{ $prontuario->horario_monitoramento }}</h5>
+                <h5 class="card-title">Data: {{ $prontuario->data_monitoramento ? $prontuario->data_monitoramento->format('d/m/Y') : 'Data não definida' }} - Hora: {{ $prontuario->horario_monitoramento }}</h5>
                 <p class="card-text">
                     <strong>Sintomas: </strong>
                     {{ implode(", ", $prontuario->sintomas_atuais ?? []) }}

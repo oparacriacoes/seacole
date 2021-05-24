@@ -11,6 +11,7 @@ final class LocaisInternacaoEnum extends ReadableEnum
     public const HOSPITAL_PARTICULAR_REFERENCIA = 'Hospital particular de referência';
     public const HOSPITAL_MUNICIPAL_IPIRANGA = 'Hospital municipal do Ipiranga (encaminhado pelo projeto)';
     public const HOSPITAL_PRIVADO_PROJETO = 'Hospital privado financiado pelo projeto';
+    public const HOSPITAL_OUTRO_HOSPITAL_PUBLICO = 'Outro hospital público';
 
     public static function values(): array
     {
@@ -20,7 +21,7 @@ final class LocaisInternacaoEnum extends ReadableEnum
             self::HOSPITAL_PARTICULAR_REFERENCIA,
             self::HOSPITAL_MUNICIPAL_IPIRANGA,
             self::HOSPITAL_PRIVADO_PROJETO,
-
+            self::HOSPITAL_OUTRO_HOSPITAL_PUBLICO
         ];
     }
 
@@ -32,6 +33,7 @@ final class LocaisInternacaoEnum extends ReadableEnum
             self::HOSPITAL_PARTICULAR_REFERENCIA => 'Hospital particular de referência',
             self::HOSPITAL_MUNICIPAL_IPIRANGA => 'Hospital municipal do Ipiranga (encaminhado pelo projeto)',
             self::HOSPITAL_PRIVADO_PROJETO => 'Hospital privado financiado pelo projeto',
+            self::HOSPITAL_OUTRO_HOSPITAL_PUBLICO => 'Outro hospital público'
         ];
     }
 }

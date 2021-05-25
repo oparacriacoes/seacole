@@ -5,14 +5,16 @@
         dataset.backgroundColor = peopleColor(dataset.label)
     }
 
+    const data = {
+        labels: chart_data.labels,
+        datasets: chart_data.datasets
+    }
+
     const ctx = document.getElementById('chartjs').getContext('2d');
 
     let chartjs = new Chart(ctx, {
         type: 'bar',
-        data: {
-            labels: chart_data.labels,
-            datasets: chart_data.datasets,
-        },
+        data: data,
         options: {
             title: {
                 display: true,
@@ -23,12 +25,18 @@
                 position: 'bottom',
             },
             scales: {
-                yAxes: [{
-                    stacked: true
-                }],
                 xAxes: [{
-                    stacked: true
-                }]
+                    labels: chart_data.xAxes
+                },
+                {
+                    id: 'xAxis1',
+                    type: 'category',
+                    offset: true,
+                    gridLines: {
+                        offsetGridLines: true
+                    }
+                }
+                ]
             },
             plugins: {
                 datalabels: {

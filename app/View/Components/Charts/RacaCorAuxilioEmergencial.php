@@ -2,8 +2,8 @@
 
 namespace App\View\Components\Charts;
 
+use App\Helpers\CollectionToChartDatasets;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class RacaCorAuxilioEmergencial extends ChartComponent
 {
@@ -12,77 +12,35 @@ class RacaCorAuxilioEmergencial extends ChartComponent
     public function chartData(): array
     {
         $collection = collect(DB::select($this->query));
-
-        $datasets = [];
-        $labels = array_filter(array_keys((array)$collection->first()), function ($label) {
-            return $label != 'label';
-        });
-
-        foreach ($labels as $label) {
-            array_push($datasets, [
-                'label' => (string)Str::of($label)->replace('_', ' ')->title(),
-                'data' => $collection->pluck($label)
-            ]);
-        }
+        $colletionToChartDataset = new CollectionToChartDatasets(
+            'auxilio_emergencial',
+            'cor_raca',
+            'total',
+            $collection
+        );
 
         return [
-            'labels' => $collection->pluck('label'),
-            'datasets' => [
-
-            ],
+            'xAxes' => join_colors_to_black($collection),
+            'labels' => $colletionToChartDataset->getLabels(),
+            'datasets' => stack_black_colors($colletionToChartDataset->getDatasets())
         ];
     }
 
     private $query = "
-        SELECT
-            cor_raca as label,
-            COALESCE(SUM(sem_informacao), 0) AS sem_informacao,
-            COALESCE(SUM(sim), 0) AS sim,
-            COALESCE(SUM(nao), 0) AS nao,
-            COALESCE(SUM(sim_preta), 0) AS sim_preta,
-            COALESCE(SUM(nao_preta), 0) AS nao_preta,
-            COALESCE(SUM(sim_parda), 0) AS sim_parda,
-            COALESCE(SUM(nao_parda), 0) AS nao_parda
-        FROM
-            (
-            SELECT
-                CASE
-                    WHEN cor_raca IS NULL THEN 'Sem info.'
-                    WHEN cor_raca IN ('Preta', 'Parda') THEN 'Negra'
-                    ELSE cor_raca
-                END AS cor_raca,
-                CASE
-                    WHEN auxilio_emergencial IS NULL THEN COUNT(id)
-                END AS sem_informacao,
-                CASE
-                    WHEN auxilio_emergencial = true
-                AND cor_raca NOT IN ('Preta', 'Parda') THEN COUNT(id)
-                END AS sim,
-                CASE
-                    WHEN auxilio_emergencial = false
-                AND cor_raca NOT IN ('Preta', 'Parda') THEN COUNT(id)
-                END AS nao,
-                CASE
-                    WHEN auxilio_emergencial = true
-                AND cor_raca = 'Preta' THEN COUNT(id)
-                END AS sim_preta,
-                CASE
-                    WHEN auxilio_emergencial = false
-                AND cor_raca = 'Preta' THEN COUNT(id)
-                END AS nao_preta,
-                CASE
-                    WHEN auxilio_emergencial = true
-                AND cor_raca = 'Parda' THEN COUNT(id)
-                END AS sim_parda,
-                CASE
-                    WHEN auxilio_emergencial = false
-                AND cor_raca = 'Parda' THEN COUNT(id)
-                END AS nao_parda
-            FROM
-                pacientes
-            GROUP BY auxilio_emergencial, cor_raca
-            ) TBB
-        GROUP BY cor_raca
-        ORDER BY cor_raca;
+        select
+            count(id) as total,
+            CASE
+                WHEN auxilio_emergencial is null then null
+                WHEN auxilio_emergencial is true then 'Sim'
+                WHEN auxilio_emergencial is false then 'Não'
+                ELSE auxilio_emergencial
+            END as auxilio_emergencial,
+            CASE 
+                WHEN cor_raca is null then 'Sem Informação'
+                ELSE cor_raca
+            END as cor_raca
+        from pacientes
+        group by cor_raca, auxilio_emergencial
+        order by auxilio_emergencial, cor_raca desc;
     ";
 }

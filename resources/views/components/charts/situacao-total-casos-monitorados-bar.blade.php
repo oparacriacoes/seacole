@@ -1,8 +1,5 @@
 <script type="text/javascript">
     const chart_data = @json($chart_data);
-
-    console.log(chart_data)
-
     const ctx = document.getElementById('chartjs').getContext('2d');
 
     let chartjs = new Chart(ctx, {

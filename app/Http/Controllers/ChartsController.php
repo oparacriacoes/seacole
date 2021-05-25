@@ -1970,38 +1970,29 @@ class ChartsController extends Controller
         GROUP BY cor_raca;
         ");*/
         $dias_sintoma_mais_menos_dez_dias = DB::select("
-    SELECT
-      quantidade_dias
-        , SUM(pacientes) AS pacientes
+        SELECT
+        quantidade_dias,
+        SUM(count_pacientes) AS pacientes
     FROM
-        (SELECT
-        CASE
-          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) > 10 THEN 'Mais de dez dias'
-          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) <= 10 THEN 'Menos de dez dias'
-          END AS quantidade_dias
-          , COUNT(id) AS pacientes
-      FROM
-        (SELECT
-          id
-          , CAST(CONCAT(SUBSTRING(data_inicio_monitoramento,7,4),'-',SUBSTRING(data_inicio_monitoramento,4,2),'-',SUBSTRING(data_inicio_monitoramento,1,2)) AS DATE) AS data_inicio_monitoramento
-          , CAST(CONCAT(SUBSTRING(data_inicio_sintoma,7,4),'-',SUBSTRING(data_inicio_sintoma,4,2),'-',SUBSTRING(data_inicio_sintoma,1,2)) AS DATE) AS data_inicio_sintoma
+        (
+        SELECT
+            CASE
+            WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) > 10 THEN 'Mais de dez dias'
+            WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) <= 10 THEN 'Menos de dez dias'
+            END AS quantidade_dias,
+            COUNT(id) AS count_pacientes
         FROM
-        (SELECT
-          id
-          , CASE
-            WHEN LENGTH(data_inicio_monitoramento) = 8 THEN CONCAT(SUBSTRING(data_inicio_monitoramento,1,6),20,SUBSTRING(data_inicio_monitoramento,7,2))
-            ELSE data_inicio_monitoramento
-          END AS data_inicio_monitoramento
-          , CASE
-            WHEN LENGTH(data_inicio_sintoma) = 8 THEN CONCAT(SUBSTRING(data_inicio_sintoma,1,6),20,SUBSTRING(data_inicio_sintoma,7,2))
-            ELSE data_inicio_sintoma
-          END AS data_inicio_sintoma
-        FROM pacientes
-        WHERE situacao IN (1,2,3,6,7,8,9,10,11,12))TB)TBB
-        GROUP BY data_inicio_monitoramento, data_inicio_sintoma)TBBB
-    WHERE quantidade_dias IS NOT NULL
-    GROUP BY quantidade_dias
-    ;
+            pacientes
+        WHERE
+            situacao IN (1, 2, 3, 6, 7, 8, 9, 10, 11, 12)
+        GROUP BY
+            data_inicio_monitoramento,
+            data_inicio_sintoma
+        ) as TBBB
+    WHERE
+        quantidade_dias IS NOT NULL
+    GROUP BY
+        quantidade_dias;
     ");
         return $dias_sintoma_mais_menos_dez_dias;
     }

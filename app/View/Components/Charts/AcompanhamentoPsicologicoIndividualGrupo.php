@@ -29,7 +29,7 @@ class AcompanhamentoPsicologicoIndividualGrupo extends ChartComponent
             } else {
                 $row->acompanhamento_psicologico = 'Sem acompanhamento psicológico';
             }
-            
+
             return $row;
         });
 

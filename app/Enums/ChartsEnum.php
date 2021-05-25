@@ -30,7 +30,7 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_20 = 'dias-sintomas-mais-menos-dias';
     public const GRAFICO_21 = '21';
     public const GRAFICO_22 = 'casos-monitorados-por-agentes';
-    public const GRAFICO_23 = '23';
+    public const GRAFICO_23 = 'casos-avaliados-por-equipe-medica';
     public const GRAFICO_24 = '24';
     public const GRAFICO_25 = '25';
     public const GRAFICO_26 = '26';
@@ -96,7 +96,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_20,
             // self::GRAFICO_21,
             self::GRAFICO_22,
-            // self::GRAFICO_23,
+            self::GRAFICO_23,
             // self::GRAFICO_24,
             // self::GRAFICO_25,
             // self::GRAFICO_26,
@@ -164,7 +164,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_20 => Str::title('20 DIAS DE SINTOMAS - MAIS OU MENOS DE 10 DIAS'),
             // self::GRAFICO_21 => Str::title('21'),
             self::GRAFICO_22 => Str::title('22 CASOS MONITORADOS POR AGENTES'),
-            // self::GRAFICO_23 => Str::title('23'),
+            self::GRAFICO_23 => Str::title('23 CASOS AVALIADOS POR EQUIPE MÉDICA'),
             // self::GRAFICO_24 => Str::title('24'),
             // self::GRAFICO_25 => Str::title('25'),
             // self::GRAFICO_26 => Str::title('26'),

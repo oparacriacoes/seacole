@@ -17,7 +17,7 @@ final class TiposAjudaEnum extends Enum
         return [
             self::COMPRA_REMEDIO_USO_CONTINUO,
             self::COMPRA_REMEDIO_TRATAMENTO_QUADRO_ATUAL,
-            self::COMPRA_REMEDIO_TRATAMENTO_QUADRO_ATUAL,
+            self::COMPRA_ALIMENTO_CESTA_BASICA,
             self::OUTROS,
         ];
     }

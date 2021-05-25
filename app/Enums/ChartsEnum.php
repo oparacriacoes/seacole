@@ -26,7 +26,7 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_16 = '16';
     public const GRAFICO_17 = '17';
     public const GRAFICO_18 = '18';
-    public const GRAFICO_19 = '19';
+    public const GRAFICO_19 = 'dias-sintomas-raca-cor';
     public const GRAFICO_20 = '20';
     public const GRAFICO_21 = '21';
     public const GRAFICO_22 = '22';
@@ -92,7 +92,7 @@ final class ChartsEnum extends ReadableEnum
             // self::GRAFICO_16,
             // self::GRAFICO_17,
             // self::GRAFICO_18,
-            // self::GRAFICO_19,
+            self::GRAFICO_19,
             // self::GRAFICO_20,
             // self::GRAFICO_21,
             // self::GRAFICO_22,
@@ -160,7 +160,7 @@ final class ChartsEnum extends ReadableEnum
             // self::GRAFICO_16 => Str::title('16'),
             // self::GRAFICO_17 => Str::title('17'),
             // self::GRAFICO_18 => Str::title('18'),
-            // self::GRAFICO_19 => Str::title('19'),
+            self::GRAFICO_19 => Str::title('19 DIAS DE SINTOMAS POR RAÇA/COR'),
             // self::GRAFICO_20 => Str::title('20'),
             // self::GRAFICO_21 => Str::title('21'),
             // self::GRAFICO_22 => Str::title('22'),

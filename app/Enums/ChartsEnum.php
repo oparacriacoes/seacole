@@ -33,8 +33,8 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_23 = 'casos-avaliados-por-equipe-medica';
     public const GRAFICO_24 = 'acompanhamento-psicologico';
     public const GRAFICO_25 = 'acompanhamento-psicologico-individual-grupo';
-    public const GRAFICO_26 = '26';
-    public const GRAFICO_27 = '27';
+    public const GRAFICO_26 = 'avaliacao-medica-raca-cor';
+    public const GRAFICO_27 = 'avaliacao-psicologos-raca-cor';
     public const GRAFICO_28 = '28';
     public const GRAFICO_29 = '29';
     public const GRAFICO_30 = '30';
@@ -99,8 +99,8 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_23,
             self::GRAFICO_24,
             self::GRAFICO_25,
-            // self::GRAFICO_26,
-            // self::GRAFICO_27,
+            self::GRAFICO_26,
+            self::GRAFICO_27,
             // self::GRAFICO_28,
             // self::GRAFICO_29,
             // self::GRAFICO_30,
@@ -167,8 +167,8 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_23 => Str::title('23 CASOS AVALIADOS POR EQUIPE MÉDICA'),
             self::GRAFICO_24 => Str::title('24 ACOMPANHAMENTO PSICOLÓGICO'),
             self::GRAFICO_25 => Str::title('25 ACOMPANHAMENTO PSICOLÓGICO: INDIVIDUAL X EM GRUPO'),
-            // self::GRAFICO_26 => Str::title('26'),
-            // self::GRAFICO_27 => Str::title('27'),
+            self::GRAFICO_26 => Str::title('26 CASOS AVALIADOS POR EQUIPE MÉDICA'),
+            self::GRAFICO_27 => Str::title('27 AVALIAÇÃO PSICÓLOGOS POR RAÇA/COR'),
             // self::GRAFICO_28 => Str::title('28'),
             // self::GRAFICO_29 => Str::title('29'),
             // self::GRAFICO_30 => Str::title('30'),

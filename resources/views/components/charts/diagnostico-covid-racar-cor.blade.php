@@ -1,29 +1,62 @@
 <script type="text/javascript">
+    const ctx = document.getElementById('chartjs').getContext('2d')
     const chart_data = @json($chart_data);
-    const ctx = document.getElementById('chartjs').getContext('2d');
+
+    for (let dataset of chart_data.datasets) {
+        dataset.backgroundColor = peopleColor(dataset.label)
+    }
+
+    let labels = []
+    const data = {
+        labels: chart_data.labels,
+        datasets: chart_data.datasets
+    }
+
+    chart_data.sublabels.forEach((index) => {
+        labels = labels.concat(data.labels)
+    })
 
     let chartjs = new Chart(ctx, {
         type: 'bar',
-        data: {
-            labels: chart_data.labels,
-            datasets: [{
-                label: 'Diagnóstico Coid-19 por Raça/Cor',
-                data: chart_data.data,
-            }],
-        },
+        data: data,
         options: {
+            title: {
+                display: true,
+                text: 'Diagnóstico Covid-19 por Raça/Cor',
+                position: 'top'
+            },
+            legend: {
+                position: 'bottom',
+            },
             plugins: {
                 datalabels: {
-                    backgroundColor: 'rgb(75, 192, 192)',
                     borderRadius: 1,
                     color: 'white',
                     font: {
-                        weight: 'bold'
+                        weight: 'normal'
                     },
-                    formatter: Math.round,
-                    padding: 2
+                    padding: 2,
+                    formatter: (value, ctx) => value != '0' ? Math.abs(value) : '',
                 }
-            }
+            },
+            scales: {
+                xAxes: [
+                    {
+                        id: 'labels',
+                        labels: labels
+                    },
+                    {
+                        id: 'sublabels',
+                        type: 'category',
+                        offset: true,
+                        gridLines: {
+                            offsetGridLines: true
+                        },
+                        labels: chart_data.sublabels
+                    },
+                ]
+            },
         }
     });
+
 </script>

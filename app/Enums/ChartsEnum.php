@@ -133,7 +133,7 @@ final class ChartsEnum extends ReadableEnum
             // self::GRAFICO_57,
             // self::GRAFICO_58,
             // self::GRAFICO_59,
-            // self::GRAFICO_60,
+            self::GRAFICO_60,
         ];
     }
 
@@ -201,7 +201,7 @@ final class ChartsEnum extends ReadableEnum
             // self::GRAFICO_57 => Str::title('57'),
             // self::GRAFICO_58 => Str::title('58'),
             // self::GRAFICO_59 => Str::title('59'),
-            // self::GRAFICO_60 => Str::title('Diagnóstico Covid-19 por Raça/Cor'),
+            self::GRAFICO_60 => Str::title('60 Diagnóstico Covid-19 por Raça/Cor'),
         ];
     }
 }

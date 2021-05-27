@@ -2,8 +2,8 @@
 
 namespace App\View\Components\Charts;
 
-use App\Paciente;
-use Illuminate\View\Component;
+use App\Helpers\CollectionToChartDatasets;
+use Illuminate\Support\Facades\DB;
 
 class DiagnosticoCovidRacarCor extends ChartComponent
 {
@@ -11,23 +11,37 @@ class DiagnosticoCovidRacarCor extends ChartComponent
 
     public function chartData(): array
     {
-        $collection = Paciente::selectRaw('endereco_cidade, count(id) as total')
-            ->groupBy('cor_raca', '')
-            ->orderBy('total', 'desc')
-            ->get();
-
-        dd($collection);
-
-        // $collection->transform(function ($item, $key) {
-        //     if (is_null($item['endereco_cidade'])) {
-        //         $item['endereco_cidade'] = 'Sem informação';
-        //     }
-        //     return $item;
-        // });
+        $collection = collect(DB::select($this->query));
+        $colletionToChartDataset = new CollectionToChartDatasets(
+            'sintomas_iniciais',
+            'cor_raca',
+            'total',
+            $collection
+        );
 
         return [
-            'labels' => $collection->pluck('endereco_cidade'),
-            'data' => $collection->pluck('total'),
+            'labels' => array_values(array_unique(join_colors_to_black($collection))),
+            'sublabels' => $colletionToChartDataset->getLabels(),
+            // 'datasets' => $colletionToChartDataset->getDatasets()
+            'datasets' => stack_black_colors($colletionToChartDataset->getDatasets())
         ];
     }
+
+    private $query = "
+        select
+            count(id) as total,
+            sintomas_iniciais,
+            cor_raca,
+            concat(sintomas_iniciais, cor_raca) label
+        from
+            pacientes
+        where cor_raca is not null
+        and sintomas_iniciais is not null
+        group by
+            cor_raca,
+            sintomas_iniciais
+        order by
+            sintomas_iniciais,
+            cor_raca;
+    ";
 }

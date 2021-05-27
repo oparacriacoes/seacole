@@ -44,7 +44,9 @@ class CollectionToChartDatasets
     {
         return [
             'label' => $this->titleLabel($label),
-            'data' => $data
+            'data' => $data,
+            'barPercentage' => 0.5,
+            'categoryPercentage' => 1.0,
         ];
     }
 

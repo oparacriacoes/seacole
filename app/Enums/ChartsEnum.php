@@ -54,8 +54,8 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_44 = '44';
     public const GRAFICO_45 = '45';
     public const GRAFICO_46 = '46';
-    public const GRAFICO_47 = '47';
-    public const GRAFICO_48 = '48';
+    public const GRAFICO_47 = 'desfecho-cor-raca';
+    public const GRAFICO_48 = 'sequelas-cor-raca';
     public const GRAFICO_49 = 'idas-servico-referencia-internacao';
     public const GRAFICO_50 = 'deslocamento-servico-saude';
     public const GRAFICO_51 = 'medicacoes-covid-19';
@@ -120,8 +120,8 @@ final class ChartsEnum extends ReadableEnum
             // self::GRAFICO_44,
             // self::GRAFICO_45,
             // self::GRAFICO_46,
-            // self::GRAFICO_47,
-            // self::GRAFICO_48,
+            self::GRAFICO_47,
+            self::GRAFICO_48,
             self::GRAFICO_49,
             self::GRAFICO_50,
             self::GRAFICO_51,
@@ -188,8 +188,8 @@ final class ChartsEnum extends ReadableEnum
             // self::GRAFICO_44 => Str::title('44'),
             // self::GRAFICO_45 => Str::title('45'),
             // self::GRAFICO_46 => Str::title('46'),
-            // self::GRAFICO_47 => Str::title('47'),
-            // self::GRAFICO_48 => Str::title('48'),
+            // self::GRAFICO_47 => Str::title('47 - DESFECHO'),
+            self::GRAFICO_48 => Str::title('48 - SEQUELAS'),
             self::GRAFICO_49 => Str::title('49 - SERVIÇOS DE REFERÊNCIA E INTERNAÇÃO'),
             self::GRAFICO_50 => Str::title('50 - PRECISOU IR A ALGUM SERVIÇO DE SAÚDE?'),
             self::GRAFICO_51 => Str::title('51 - RECEBEU MEDICAÇÕES PARA COVID-19?'),

@@ -20,8 +20,8 @@ class AvaliacaoPsicologosRacaCor extends ChartComponent
         );
 
         return [
-            'xAxes' => join_colors_to_black($collection),
-            'labels' => $colletionToChartDataset->getLabels(),
+            'labels' => array_values(array_unique(join_colors_to_black($collection))),
+            'sublabels' => $colletionToChartDataset->getLabels(),
             'datasets' => stack_black_colors($colletionToChartDataset->getDatasets())
         ];
     }

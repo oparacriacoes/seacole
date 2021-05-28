@@ -13,7 +13,7 @@ class MedicacoesCovid19 extends ChartComponent
     public function chartData(): array
     {
         $collection = collect();
-        $medicacoes = MedicacoesTratamentoCovidEnum::readables();
+        $medicacoes = MedicacoesTratamentoCovidEnum::values();
 
         foreach ($medicacoes as $medicacao) {
             $collection = $collection->merge(DB::select(

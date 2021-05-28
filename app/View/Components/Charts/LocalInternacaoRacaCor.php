@@ -13,7 +13,7 @@ class LocalInternacaoRacaCor extends ChartComponent
     public function chartData(): array
     {
         $collection = collect();
-        $locais_internacao = LocaisInternacaoEnum::readables();
+        $locais_internacao = LocaisInternacaoEnum::values();
 
         foreach ($locais_internacao as $local_internacao) {
             $collection = $collection->merge(DB::select(

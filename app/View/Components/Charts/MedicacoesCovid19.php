@@ -41,7 +41,7 @@ class MedicacoesCovid19 extends ChartComponent
 
     private $query = "
         select 
-            count(total) as total,
+            sum(total) as total,
             cor_raca,
             medicacao 
         from (

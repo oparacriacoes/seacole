@@ -58,11 +58,11 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_48 = '48';
     public const GRAFICO_49 = '49';
     public const GRAFICO_50 = '50';
-    public const GRAFICO_51 = '51';
+    public const GRAFICO_51 = 'medicacoes-covid-19';
     public const GRAFICO_52 = '52';
     public const GRAFICO_53 = '53';
     public const GRAFICO_54 = '54';
-    public const GRAFICO_55 = '55';
+    public const GRAFICO_55 = 'ida-sistema-saude-prescricoes-medicas';
     public const GRAFICO_56 = 'problema-servico-referencia-raca-cor';
     public const GRAFICO_57 = 'internacao-quadro-raca-cor';
     public const GRAFICO_58 = 'local-internacao-raca-cor';
@@ -124,11 +124,11 @@ final class ChartsEnum extends ReadableEnum
             // self::GRAFICO_48,
             // self::GRAFICO_49,
             // self::GRAFICO_50,
-            // self::GRAFICO_51,
+            self::GRAFICO_51,
             // self::GRAFICO_52,
             // self::GRAFICO_53,
             // self::GRAFICO_54,
-            // self::GRAFICO_55,
+            self::GRAFICO_55,
             self::GRAFICO_56,
             self::GRAFICO_57,
             self::GRAFICO_58,
@@ -192,11 +192,11 @@ final class ChartsEnum extends ReadableEnum
             // self::GRAFICO_48 => Str::title('48'),
             // self::GRAFICO_49 => Str::title('49'),
             // self::GRAFICO_50 => Str::title('50'),
-            // self::GRAFICO_51 => Str::title('51'),
+            self::GRAFICO_51 => Str::title('51 RECEBEU MEDICAÇÕES PARA COVID-19?'),
             // self::GRAFICO_52 => Str::title('52'),
             // self::GRAFICO_53 => Str::title('53'),
             // self::GRAFICO_54 => Str::title('54'),
-            // self::GRAFICO_55 => Str::title('55'),
+            self::GRAFICO_55 => Str::title('55 IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS'),
             self::GRAFICO_56 => Str::title('56 PROBLEMAS COM SERVIÇOS DE REFERÊNCIA'),
             self::GRAFICO_57 => Str::title('57 INTERNAÇÃO PELO QUADRO por Raça Cor'),
             self::GRAFICO_58 => Str::title('58 LOCAL DE INTERNAÇÃO por Raça Cor'),

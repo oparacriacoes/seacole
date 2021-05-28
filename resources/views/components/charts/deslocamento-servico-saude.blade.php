@@ -6,15 +6,10 @@
         dataset.backgroundColor = peopleColor(dataset.label)
     }
 
-    let labels = []
     const data = {
         labels: chart_data.labels,
         datasets: chart_data.datasets
     }
-
-    chart_data.sublabels.forEach((index) => {
-        labels = labels.concat(data.labels)
-    })
 
     let chartjs = new Chart(ctx, {
         type: 'bar',
@@ -38,24 +33,7 @@
                     padding: 2,
                     formatter: (value, ctx) => value != '0' ? Math.abs(value) : '',
                 }
-            },
-            scales: {
-                xAxes: [
-                    {
-                        id: 'labels',
-                        labels: labels
-                    },
-                    {
-                        id: 'sublabels',
-                        type: 'category',
-                        offset: true,
-                        gridLines: {
-                            offsetGridLines: true
-                        },
-                        labels: chart_data.sublabels
-                    },
-                ]
-            },
+            }
         }
     });
 

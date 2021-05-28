@@ -35,7 +35,7 @@ class DeslocamentoServicoSaude extends ChartComponent
         return [
             'labels' => array_values(array_unique(join_colors_to_black($collection))),
             'sublabels' => $colletionToChartDataset->getLabels(),
-            'datasets' => stack_black_colors($colletionToChartDataset->getDatasets())
+            'datasets' => $colletionToChartDataset->getDatasets()
         ];
     }
 

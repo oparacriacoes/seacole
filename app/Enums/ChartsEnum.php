@@ -43,7 +43,7 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_34 = 'informacao-gravidez';
     public const GRAFICO_35 = 'gestacao-alto-risco';
     public const GRAFICO_36 = 'trismeste-gestacao-raca-cor';
-    public const GRAFICO_37 = '37';
+    public const GRAFICO_37 = 'acompanhamento-sistema-saude';
     public const GRAFICO_38 = '38';
     public const GRAFICO_39 = '39';
     public const GRAFICO_40 = '40';
@@ -108,7 +108,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_34,
             self::GRAFICO_35,
             self::GRAFICO_36,
-            // self::GRAFICO_37,
+            self::GRAFICO_37,
             // self::GRAFICO_38,
             // self::GRAFICO_39,
             // self::GRAFICO_40,
@@ -175,7 +175,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_34 => Str::title('34 - GESTANTE + PÓS-PARTO + AMAMENTA'),
             self::GRAFICO_35 => Str::title('35 - GESTAÇÃO É OU FOI DE ALTO RISCO?'),
             self::GRAFICO_36 => Str::title('36 - TRIMESTRE DA GESTAÇÃO NO INÍCIO DO MONITORAMENTO'),
-            // self::GRAFICO_37 => Str::title('37'),
+            self::GRAFICO_37 => Str::title('37 - ACOMPANHAMENTO DO SISTEMA DE SAÚDE'),
             // self::GRAFICO_38 => Str::title('38'),
             // self::GRAFICO_39 => Str::title('39'),
             // self::GRAFICO_40 => Str::title('40'),

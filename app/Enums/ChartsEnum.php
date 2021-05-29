@@ -39,8 +39,7 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_29 = 'condicoes-saude-b';
     public const GRAFICO_30 = 'condicoes-saude-c';
     public const GRAFICO_31 = 'condicoes-saude-d';
-    public const GRAFICO_32 = '32';
-    public const GRAFICO_33 = '33';
+    public const GRAFICO_33 = 'uso-drogas-alcool';
     public const GRAFICO_34 = '34';
     public const GRAFICO_35 = '35';
     public const GRAFICO_36 = '36';
@@ -105,8 +104,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_29,
             self::GRAFICO_30,
             self::GRAFICO_31,
-            // self::GRAFICO_32,
-            // self::GRAFICO_33,
+            self::GRAFICO_33,
             // self::GRAFICO_34,
             // self::GRAFICO_35,
             // self::GRAFICO_36,
@@ -173,8 +171,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_29 => Str::title('29 - CONDIÇÕES DE SAÚDE - B'),
             self::GRAFICO_30 => Str::title('30 - CONDIÇÕES DE SAÚDE - C'),
             self::GRAFICO_31 => Str::title('31 - CONDIÇÕES DE SAÚDE - SAUDE MENTAL  '),
-            // self::GRAFICO_32 => Str::title('32'),
-            // self::GRAFICO_33 => Str::title('33'),
+            self::GRAFICO_33 => Str::title('33 - USO CRÔNICO ALCOOL/DROGAS X RAÇA/COR'),
             // self::GRAFICO_34 => Str::title('34'),
             // self::GRAFICO_35 => Str::title('35'),
             // self::GRAFICO_36 => Str::title('36'),

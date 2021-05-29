@@ -28,19 +28,19 @@ class DiagnosticoCovidRacarCor extends ChartComponent
 
     private $query = "
         select
-            count(id) as total,
-            sintomas_iniciais,
+            count(p.id) as total,
             cor_raca,
-            concat(sintomas_iniciais, cor_raca) label
+            sintomas_iniciais
         from
-            pacientes
-        where cor_raca is not null
-        and sintomas_iniciais is not null
+            pacientes p
+        where
+            sintomas_iniciais is not null
+            and cor_raca is not null
         group by
             cor_raca,
             sintomas_iniciais
         order by
-            sintomas_iniciais,
+            sintomas_iniciais desc,
             cor_raca;
     ";
 }

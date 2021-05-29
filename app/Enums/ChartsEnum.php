@@ -46,7 +46,7 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_37 = 'acompanhamento-sistema-saude';
     public const GRAFICO_38 = 'acesso-sistema-saude';
     public const GRAFICO_39 = 'quadro-atual-intensifica-medos';
-    public const GRAFICO_40 = '40';
+    public const GRAFICO_40 = 'diagnostico-covid-racar-cor';
     public const GRAFICO_41 = '41';
     public const GRAFICO_42 = '42';
     public const GRAFICO_43 = '43';
@@ -111,7 +111,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_37,
             self::GRAFICO_38,
             self::GRAFICO_39,
-            // self::GRAFICO_40,
+            self::GRAFICO_40,
             // self::GRAFICO_41,
             // self::GRAFICO_42,
             // self::GRAFICO_43,
@@ -177,8 +177,8 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_36 => Str::title('36 - TRIMESTRE DA GESTAÇÃO NO INÍCIO DO MONITORAMENTO'),
             self::GRAFICO_37 => Str::title('37 - ACOMPANHAMENTO DO SISTEMA DE SAÚDE'),
             self::GRAFICO_38 => Str::title('38 - COMO ACESSA O SISTEMA DE SAÚDE?'),
-            self::GRAFICO_39 => Str::title('39 -  QUADRO ATUAL INTENSIFICA MEDOS, ANGÚSTIAS, ANSIEDADE, TRISTEZAS OU PREOCUPAÇÃO?'),
-            // self::GRAFICO_40 => Str::title('40'),
+            self::GRAFICO_39 => Str::title('39 - QUADRO ATUAL INTENSIFICA MEDOS, ANGÚSTIAS, ANSIEDADE, TRISTEZAS OU PREOCUPAÇÃO?'),
+            self::GRAFICO_40 => Str::title('40 - DIAGNÓSTICO DE COVID-19'),
             // self::GRAFICO_41 => Str::title('41'),
             // self::GRAFICO_42 => Str::title('42'),
             // self::GRAFICO_43 => Str::title('43'),
@@ -198,7 +198,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_57 => Str::title('57 - INTERNAÇÃO PELO QUADRO por Raça Cor'),
             self::GRAFICO_58 => Str::title('58 - LOCAL DE INTERNAÇÃO por Raça Cor'),
             self::GRAFICO_59 => Str::title('59 - TEMPO DE INTERNAÇÃO por Raça Cor'),
-            self::GRAFICO_60 => Str::title('60 - Diagnóstico Covid-19 por Raça/Cor'),
+            // self::GRAFICO_60 => Str::title('Diagnóstico Covid-19 por Raça/Cor'),
         ];
     }
 }

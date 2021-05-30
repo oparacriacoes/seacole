@@ -6,14 +6,14 @@ use Elao\Enum\ReadableEnum;
 
 class MateriaisEntreguesEnum extends ReadableEnum
 {
-    public const CARTILHA = 'Cartilha de cuidados';
-    public const TERMOMETRO = 'Termometro';
-    public const DIPIRONA = 'Dipirona';
-    public const PARACETAMOL = 'Paracetamol';
-    public const OXIMETRO = 'Oximetro';
-    public const MASCARAS_TECIDO = 'Mascaras de tecido';
-    public const MATERIAL_LIMPEZA = 'Material de limpeza';
-    public const CESTA_BASICA = 'Cesta basica';
+    public const CARTILHA = 'cartilha-cuidados';
+    public const TERMOMETRO = 'termometro';
+    public const DIPIRONA = 'dipirona';
+    public const PARACETAMOL = 'paracetamol';
+    public const OXIMETRO = 'oximetro';
+    public const MASCARAS_TECIDO = 'mascaras-tecido';
+    public const MATERIAL_LIMPEZA = 'material-limpeza';
+    public const CESTA_BASICA = 'cesta-basica';
 
 
     public static function values(): array

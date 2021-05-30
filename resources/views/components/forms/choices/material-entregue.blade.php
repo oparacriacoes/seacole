@@ -3,5 +3,5 @@
         <strong>Foi entregue:</strong>
     </label>
     <br>
-    <x-forms.check-group-array :items="$materiais_entregues" property="material_entregue" :value="$value" />
+    <x-forms.check-group :items="$materiais_entregues" property="material_entregue" :value="$value" />
 </div>

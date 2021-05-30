@@ -1,5 +1,5 @@
 @props([
-    'items' => ['Alopático (medicamentos convencionais)', 'PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)'],
+    'items' => ['alopaticos' => 'Alopático (medicamentos convencionais)', 'pics' => 'PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)'],
     'value' => []
 ])
 
@@ -8,5 +8,5 @@
         <strong>Precisa de algum tipo de ajuda?</strong>
     </label>
     <br>
-    <x-forms.check-group-array :items="$items" property="tratamento_financiado" :value="$value"/>
+    <x-forms.check-group :items="$items" property="tratamento_financiado" :value="$value"/>
 </div>

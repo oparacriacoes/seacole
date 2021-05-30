@@ -3,5 +3,5 @@
         <strong>Precisa de algum tipo de ajuda?</strong>
     </label>
     <br>
-    <x-forms.check-group-array :items="$tipos_ajuda" property="precisa_tipo_ajuda" :value="$value" />
+    <x-forms.check-group :items="$tipos_ajuda" property="precisa_tipo_ajuda" :value="$value" />
 </div>

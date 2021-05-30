@@ -6,11 +6,11 @@ use Elao\Enum\ReadableEnum;
 
 final class ServicosSaudeEnum extends ReadableEnum
 {
-    public const UBS = 'UBS (Unidade Básica de Saúde - posto de saúde)';
-    public const UPA = 'UPA (Unidade de Pronto Atendimento)';
+    public const UBS = 'ubs';
+    public const UPA = 'upa';
     public const AMA = 'ama';
-    public const HOSPITAL_PUBLICO = 'Hospital público';
-    public const HOSPITAL_PRIVADO = 'hospital privado';
+    public const HOSPITAL_PUBLICO = 'hospital-publico';
+    public const HOSPITAL_PRIVADO = 'hospital-privado';
     public const OUTRO = 'outro';
 
 

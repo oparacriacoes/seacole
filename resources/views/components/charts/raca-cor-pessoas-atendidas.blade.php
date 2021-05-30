@@ -1,44 +1,38 @@
-<script type="text/javascript">
-    const chart_data = @json($chart_data);
-    const ctx = document.getElementById('chartjs').getContext('2d');
+@section('script')
+    @parent
+    @include('layouts.chartjs')
 
-    let chartjs = new Chart(ctx, {
-        type: 'pie',
-        data: {
+    <script type="text/javascript">
+        const chart_data = @json($chart_data);
+        const ctx = document.getElementById('chartjs').getContext('2d');
+        const backgroundColors  = []
+
+        for (let label of chart_data.labels) {
+            backgroundColors.push(peopleColor(label))
+        }
+
+        const data = {
             labels: chart_data.labels,
             datasets: [{
-                label: 'Pacientes Monitorados x Paciente Exclusivo Psicologia',
                 data: chart_data.data,
-                backgroundColor: [
-                    PEOPLE_COLORS.PRETA,
-                    PEOPLE_COLORS.PARDA,
-                    PEOPLE_COLORS.BRANCA,
-                    PEOPLE_COLORS.SEM_INFORMACAO,
-                ]
+                backgroundColor: backgroundColors
             }],
-        },
-        options: {
-            title: {
-                display: true,
-                text: chart_data.title,
-                position: 'bottom'
-            },
+        }
+
+        const options = {
+            ...CHARTJS_CONFIG.DEFAULT_OPTIONS,
             plugins: {
-                datalabels: {
-                    backgroundColor: 'rgb(75, 192, 192)',
-                    borderRadius: 1,
-                    color: 'white',
-                    font: {
-                        weight: 'bold'
-                    },
-                    formatter: (value, ctx) => {
-                        let sum = ctx.dataset._meta[0].total;
-                        let percentage = (value * 100 / sum).toFixed(2) + "%";
-                        return percentage;
-                    },
-                    padding: 2
-                }
+                datalabels: CHARTJS_CONFIG.DATALABEL.PERCENTUAL
             }
         }
-    });
-</script>
+
+        options.title.text = chart_data.title
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: options
+        });
+
+    </script>
+@endsection

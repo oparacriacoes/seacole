@@ -18,7 +18,7 @@
 
         const options = {
             plugins: {
-                datalabels: CHARTJS_CONFIG.datalabels_default
+                datalabels: CHARTJS_CONFIG.DATALABEL.DEFAULT
             }
         }
 

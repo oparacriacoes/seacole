@@ -18,15 +18,65 @@
     })
 
     const CHARTJS_CONFIG = {
-        datalabels_default: {
-            backgroundColor: 'rgb(75, 192, 192)',
-            borderRadius: 3,
-            color: 'white',
-            font: {
-                weight: 'bold'
+        DEFAULT_OPTIONS: {
+            title: {
+                text: '',
+                display: true,
+                position: 'top'
             },
-            formatter: (value, ctx) => value != '0' ? Math.abs(value) : '',
-            padding: 3
+            legend: {
+                position: 'bottom'
+            },
+        },
+        STACKED_OPTIONS: {
+            title: {
+                text: '',
+                display: true,
+                position: 'top'
+            },
+            legend: {
+                position: 'bottom'
+            },
+            scales: {
+                yAxes: [{
+                    stacked: true
+                }],
+                xAxes: [{
+                    stacked: true
+                }]
+            }
+        },
+        DATALABEL: {
+            DEFAULT: {
+                font: {
+                    weight: 'bold'
+                },
+                color: 'white',
+                padding: 2,
+                backgroundColor: 'rgb(75, 192, 192)',
+                borderRadius: 3,
+                formatter: (value, ctx) => value != '0' ? Math.abs(value) : '',
+                display: function(context) {
+                    return context.dataset.data[context.dataIndex] > 0 ? 'auto' : false;
+                },
+            },
+            PERCENTUAL: {
+                font: {
+                    weight: 'bold'
+                },
+                color: 'white',
+                padding: 2,
+                borderRadius: 3,
+                backgroundColor: 'rgb(75, 192, 192)',
+                formatter: (value, ctx) => {
+                    let sum = ctx.dataset._meta[0].total;
+                    let percentage = (value * 100 / sum).toFixed(2) + "%";
+                    return percentage;
+                },
+                display: function(context) {
+                    return context.dataset.data[context.dataIndex] > 0 ? 'auto' : false;
+                },
+            }
         }
     }
 

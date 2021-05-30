@@ -6,14 +6,14 @@ use Elao\Enum\ReadableEnum;
 
 final class SequelasEnum extends ReadableEnum
 {
-    public const PERDA_OLFATO = 'perda persistente de olfato';
-    public const PERDA_PALADAR = 'perda persistente de paladar';
-    public const TOSSE_PERSISTENTE = 'tosse persistente';
-    public const FALTA_AR_PERSISTENTE = 'falta de ar persistente';
-    public const DOR_CABECA_PESISTENTE = 'dor de cabeça persistente';
-    public const EVENTOS_TROMBOLITICOS = 'eventos tromboliticos';
-    public const DANOS_RENAIS = 'danos renais';
-    public const OUTRO = 'outros: quais?';
+    public const PERDA_OLFATO = 'perda-persistente-olfato';
+    public const PERDA_PALADAR = 'perda-persistente-paladar';
+    public const TOSSE_PERSISTENTE = 'tosse-persistente';
+    public const FALTA_AR_PERSISTENTE = 'falta-ar-persistente';
+    public const DOR_CABECA_PESISTENTE = 'dor-cabeca-persistente';
+    public const EVENTOS_TROMBOLITICOS = 'eventos-tromboliticos';
+    public const DANOS_RENAIS = 'danos-renais';
+    public const OUTROS = 'outros?';
 
 
 
@@ -27,7 +27,7 @@ final class SequelasEnum extends ReadableEnum
             self::DOR_CABECA_PESISTENTE,
             self::EVENTOS_TROMBOLITICOS,
             self::DANOS_RENAIS,
-            self::OUTRO,
+            self::OUTROS,
         ];
     }
 
@@ -41,7 +41,7 @@ final class SequelasEnum extends ReadableEnum
             self::DOR_CABECA_PESISTENTE => 'Dor de cabeça persistente',
             self::EVENTOS_TROMBOLITICOS => 'Eventos tromboliticos',
             self::DANOS_RENAIS => 'Danos renais',
-            self::OUTRO => 'Outros',
+            self::OUTROS => 'Outros',
         ];
     }
 }

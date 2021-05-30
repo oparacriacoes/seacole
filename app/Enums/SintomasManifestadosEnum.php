@@ -7,18 +7,18 @@ use Elao\Enum\ReadableEnum;
 final class SintomasManifestadosEnum extends ReadableEnum
 {
     public const TOSSE = 'tosse';
-    public const FALTA_AR = 'falta de ar';
+    public const FALTA_AR = 'falta-ar';
     public const FEBRE = 'febre';
-    public const DOR_CABECA = 'dor de cabeça';
-    public const PERDA_OLFATO = 'perda de olfato';
-    public const PERDA_PALADAR = 'perda do paladar';
+    public const DOR_CABECA = 'dor-cabeca';
+    public const PERDA_OLFATO = 'perda-olfato';
+    public const PERDA_PALADAR = 'perda-paladar';
     public const ENJOO = 'enjoo';
     public const DIARREIA = 'diarreia';
-    public const AUMENTO_PRESSAO = 'aumento da pressão';
-    public const QUEDA_PRESSAO = 'queda brusca de Pressão';
-    public const PRESSAO_BAIXA = 'pressão baixa';
-    public const SONOLENCIA = 'sonolência ou cansaço importantes';
-    public const CONFUSAO_MENTAL = 'confusão mental';
+    public const AUMENTO_PRESSAO = 'aumento-pressao';
+    public const QUEDA_PRESSAO = 'queda-brusca-pressao';
+    public const PRESSAO_BAIXA = 'pressao-baixa';
+    public const SONOLENCIA = 'sonolencia';
+    public const CONFUSAO_MENTAL = 'confusao-mental';
     public const DESMAIO = 'desmaio';
     public const CONVULSAO = 'convulsao';
     public const OUTRO = 'outros';

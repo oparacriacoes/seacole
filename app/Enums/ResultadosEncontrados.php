@@ -6,12 +6,12 @@ use Elao\Enum\ReadableEnum;
 
 final class ResultadosEncontrados extends ReadableEnum
 {
-    public const PCR_POSITIVO = 'PCR positivo';
-    public const PCR_NEGATIVO = 'PCR negativo';
-    public const IGM_POSITIVO = 'IgM positivo';
-    public const IGM_NEGATIVO = 'IgM negativo';
-    public const IGG_POSITIVO = 'IgG positivo';
-    public const IGG_NEGATIVO = 'IgG negativo';
+    public const PCR_POSITIVO = 'pcr-positivo';
+    public const PCR_NEGATIVO = 'pcr-negativo';
+    public const IGM_POSITIVO = 'igm-positivo';
+    public const IGM_NEGATIVO = 'igm-negativo';
+    public const IGG_POSITIVO = 'igg-positivo';
+    public const IGG_NEGATIVO = 'igg-negativo';
 
     public static function values(): array
     {

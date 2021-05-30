@@ -28,7 +28,7 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_18 = 'tratamento-financiado';
     public const GRAFICO_19 = 'dias-sintomas-raca-cor';
     public const GRAFICO_20 = 'dias-sintomas-mais-menos-dias';
-    public const GRAFICO_21 = '21';
+    public const GRAFICO_21 = 'total-dias-monitoramento';
     public const GRAFICO_22 = 'casos-monitorados-por-agentes';
     public const GRAFICO_23 = 'casos-avaliados-por-equipe-medica';
     public const GRAFICO_24 = 'acompanhamento-psicologico';
@@ -92,7 +92,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_18,
             self::GRAFICO_19,
             self::GRAFICO_20,
-            // self::GRAFICO_21,
+            self::GRAFICO_21,
             self::GRAFICO_22,
             self::GRAFICO_23,
             self::GRAFICO_24,
@@ -158,7 +158,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_18 => Str::title('18 - TRATAMENTO FINANCIADO'),
             self::GRAFICO_19 => Str::title('19 - DIAS DE SINTOMAS POR RAÇA/COR'),
             self::GRAFICO_20 => Str::title('20 - DIAS DE SINTOMAS - MAIS OU MENOS DE 10 DIAS'),
-            // self::GRAFICO_21 => Str::title('21'),
+            self::GRAFICO_21 => Str::title('21 - TOTAL DE DIAS DE MONITORAMENTO (RELAÇÃO COVID-19)'),
             self::GRAFICO_22 => Str::title('22 - CASOS MONITORADOS POR AGENTES'),
             self::GRAFICO_23 => Str::title('23 - CASOS AVALIADOS POR EQUIPE MÉDICA'),
             self::GRAFICO_24 => Str::title('24 - ACOMPANHAMENTO PSICOLÓGICO'),

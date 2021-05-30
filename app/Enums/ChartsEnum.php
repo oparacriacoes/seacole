@@ -48,10 +48,10 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_39 = 'quadro-atual-intensifica-medos';
     public const GRAFICO_40 = 'diagnostico-covid-racar-cor';
     public const GRAFICO_41 = 'testes-realizados-raca-cor';
-    public const GRAFICO_42 = '42';
-    public const GRAFICO_43 = '43';
-    public const GRAFICO_44 = '44';
-    public const GRAFICO_45 = '45';
+    public const GRAFICO_42 = 'sintomas-manifestados-por-situacao';
+    public const GRAFICO_43 = 'sintomas-manifestados-por-situacao-2';
+    public const GRAFICO_44 = 'sintomas-manifestados-por-situacao-3';
+    public const GRAFICO_45 = 'sintomas-manifestados-por-situacao-4';
     public const GRAFICO_46 = 'acumulos-sintomas';
     public const GRAFICO_47 = 'desfechos-cor-raca';
     public const GRAFICO_48 = 'sequelas-cor-raca';
@@ -113,10 +113,10 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_39,
             self::GRAFICO_40,
             self::GRAFICO_41,
-            // self::GRAFICO_42,
-            // self::GRAFICO_43,
-            // self::GRAFICO_44,
-            // self::GRAFICO_45,
+            self::GRAFICO_42,
+            self::GRAFICO_43,
+            self::GRAFICO_44,
+            self::GRAFICO_45,
             self::GRAFICO_46,
             self::GRAFICO_47,
             self::GRAFICO_48,
@@ -180,10 +180,10 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_39 => Str::title('39 - QUADRO ATUAL INTENSIFICA MEDOS, ANGÚSTIAS, ANSIEDADE, TRISTEZAS OU PREOCUPAÇÃO?'),
             self::GRAFICO_40 => Str::title('40 - DIAGNÓSTICO DE COVID-19'),
             self::GRAFICO_41 => Str::title('41 - TESTES REALIZADOS?'),
-            // self::GRAFICO_42 => Str::title('42'),
-            // self::GRAFICO_43 => Str::title('43'),
-            // self::GRAFICO_44 => Str::title('44'),
-            // self::GRAFICO_45 => Str::title('45'),
+            self::GRAFICO_42 => Str::title('42 - SINTOMAS MANIFESTADOS POR SITUAÇÃO (1)'),
+            self::GRAFICO_43 => Str::title('43 - SINTOMAS MANIFESTADOS POR SITUAÇÃO (2)'),
+            self::GRAFICO_44 => Str::title('44 - SINTOMAS MANIFESTADOS POR SITUAÇÃO (3)'),
+            self::GRAFICO_45 => Str::title('45 - SINTOMAS MANIFESTADOS POR SITUAÇÃO (4)'),
             self::GRAFICO_46 => Str::title('46 - ACUMULO SINTOMAS'),
             self::GRAFICO_47 => Str::title('47 - DESFECHO'),
             self::GRAFICO_48 => Str::title('48 - SEQUELAS'),

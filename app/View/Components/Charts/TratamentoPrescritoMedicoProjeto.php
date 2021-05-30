@@ -3,7 +3,7 @@
 namespace App\View\Components\Charts;
 
 use App\Helpers\CollectionToChartDatasets;
-use App\Paciente;
+use App\Models\Paciente;
 use Illuminate\Support\Facades\DB;
 
 class TratamentoPrescritoMedicoProjeto extends ChartComponent

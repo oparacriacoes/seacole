@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Paciente;
+use App\Models\Paciente;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Articuladora;
+use App\Models\Articuladora;
 use Illuminate\Database\Seeder;
 
 class ArticuladoraSeeder extends Seeder

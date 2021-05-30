@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ServicoInternacaoUpdateRequest;
-use App\Paciente;
-use App\ServicoInternacao;
+use App\Models\Paciente;
+use App\Models\ServicoInternacao;
 use Illuminate\Support\Facades\Log;
 
 class ServicoInternacaoController extends Controller

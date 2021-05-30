@@ -5,8 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Hash;
-use App\User;
-use App\Agente;
+use App\Models\User;
+use App\Models\Agente;
 use DB;
 
 class AgenteController extends Controller

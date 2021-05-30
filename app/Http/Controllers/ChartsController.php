@@ -7,8 +7,8 @@ use Khill\Lavacharts\Lavacharts;
 use Lava;
 use DB;
 use Carbon\Carbon;
-use App\Monitoramento;
-use App\Paciente;
+use App\Models\Monitoramento;
+use App\Models\Paciente;
 
 class ChartsController extends Controller
 {

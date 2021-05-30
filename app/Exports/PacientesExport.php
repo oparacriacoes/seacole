@@ -2,8 +2,8 @@
 
 namespace App\Exports;
 
-use App\Paciente;
-use App\Articuladora;
+use App\Models\Paciente;
+use App\Models\Articuladora;
 use App\Enums\SituacoesCaso;
 use App\Exports\Headings\PacientesHeadings;
 

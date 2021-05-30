@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Paciente;
+use App\Models\Paciente;
 use App\Policies\PacientePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;

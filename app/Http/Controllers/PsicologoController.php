@@ -7,8 +7,8 @@ use App\Actions\UpdateUserSaude;
 use App\Enums\RolesEnum;
 use App\Http\Requests\UserSaudeStoreRequest;
 use App\Http\Requests\UserSaudeUpdateRequest;
-use App\Psicologo;
-use App\User;
+use App\Models\Psicologo;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 

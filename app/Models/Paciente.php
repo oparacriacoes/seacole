@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Enums\SituacoesCaso;
 use App\Models\Vacinacao;
@@ -135,64 +135,35 @@ class Paciente extends Model
      * Relations
      */
 
+    // DEPREDACTED
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     public function agente()
     {
-        return $this->belongsTo('App\Agente');
+        return $this->belongsTo(Agente::class);
     }
 
     public function medico()
     {
-        return $this->belongsTo('App\Medico');
+        return $this->belongsTo(Medico::class);
     }
 
     public function psicologo()
     {
-        return $this->belongsTo('App\Psicologo');
+        return $this->belongsTo(Psicologo::class);
     }
 
     public function articuladora()
     {
-        return $this->belongsTo('App\Articuladora');
-    }
-
-    public function sintomas()
-    {
-        return $this->hasMany('App\Sintoma');
-    }
-
-    public function tipos_ajuda()
-    {
-        return $this->hasMany('App\AjudaTipo');
-    }
-
-    public function estado_emocional()
-    {
-        return $this->hasOne('App\EstadoEmocional');
-    }
-
-    public function observacao()
-    {
-        return $this->hasOne('App\Observacao');
-    }
-
-    public function doencas_cronicas()
-    {
-        return $this->hasMany('App\DoencaCronica');
-    }
-
-    public function items()
-    {
-        return $this->hasOne('App\Item');
+        return $this->belongsTo(Articuladora::class);
     }
 
     public function dados()
     {
-        return $this->hasMany('App\EvolucaoSintoma');
+        return $this->hasMany(EvolucaoSintoma::class);
     }
 
     public function monitoramento()

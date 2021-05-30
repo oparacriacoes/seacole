@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Vacina;
-use App\Paciente;
+use App\Models\Paciente;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\CreateTestSamples;
 use Tests\TestCase;

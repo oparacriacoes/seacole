@@ -5,15 +5,15 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\User;
-use App\Paciente;
+use App\Models\User;
+use App\Models\Paciente;
 use App\Sintoma;
 use App\AjudaTipo;
 use App\EstadoEmocional;
 use App\Observacao;
 use App\DoencaCronica;
 use App\Events\SintomaEvolucao;
-use App\EvolucaoSintoma;
+use App\Models\EvolucaoSintoma;
 use Illuminate\Support\Facades\DB;
 
 class PacienteController extends Controller

@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Medico;
-use App\User;
+use App\Models\Medico;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MedicoFactory extends Factory

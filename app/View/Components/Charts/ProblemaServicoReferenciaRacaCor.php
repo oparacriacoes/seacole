@@ -6,7 +6,7 @@ use App\Enums\ServicosSaudeEnum;
 use App\Helpers\CollectionToChartDatasets;
 use Illuminate\Support\Facades\DB;
 
-class ProblemaServicoreferenciaRacaCor extends ChartComponent
+class ProblemaServicoReferenciaRacaCor extends ChartComponent
 {
     protected string $componentView = 'components.charts.problema-servico-referencia-raca-cor';
 

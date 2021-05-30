@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Articuladora;
-use App\Monitoramento;
-use App\Paciente;
-use App\QuadroAtual;
-use App\ServicoInternacao;
+use App\Models\Articuladora;
+use App\Models\Monitoramento;
+use App\Models\Paciente;
+use App\Models\QuadroAtual;
+use App\Models\ServicoInternacao;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 

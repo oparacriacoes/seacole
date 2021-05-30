@@ -8,8 +8,8 @@ use App\Enums\RolesEnum;
 use App\Http\Requests\UserSaudeStoreRequest;
 use App\Http\Requests\UserSaudeUpdateRequest;
 use Illuminate\Http\Request;
-use App\Medico;
-use App\User;
+use App\Models\Medico;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 

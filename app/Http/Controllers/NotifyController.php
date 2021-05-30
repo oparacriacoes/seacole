@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Log;
-use App\Paciente;
+use App\Models\Paciente;
 use App\Notifications\AlertaAgente;
 
 class NotifyController extends Controller

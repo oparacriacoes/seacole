@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Enums\DesfechosEnum;
 use App\Enums\SintomasIniciais;
-use App\Paciente;
-use App\QuadroAtual;
+use App\Models\Paciente;
+use App\Models\QuadroAtual;
 
 class DashboardController extends Controller
 {

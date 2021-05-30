@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Agente;
-use App\User;
+use App\Models\Agente;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AgenteFactory extends Factory

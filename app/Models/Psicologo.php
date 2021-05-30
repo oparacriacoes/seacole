@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Medico extends Model
+class Psicologo extends Model
 {
     use HasFactory;
 
@@ -15,11 +15,11 @@ class Medico extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     public function pacientes()
     {
-        return $this->hasMany('App\Paciente');
+        return $this->hasMany(Paciente::class);
     }
 }

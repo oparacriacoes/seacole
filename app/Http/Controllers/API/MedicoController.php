@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Hash;
 use DB;
-use App\User;
-use App\Medico;
+use App\Models\User;
+use App\Models\Medico;
 
 class MedicoController extends Controller
 {

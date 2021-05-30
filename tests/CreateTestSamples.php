@@ -2,11 +2,11 @@
 
 namespace Tests;
 
-use App\Agente;
-use App\Medico;
-use App\Paciente;
-use App\Psicologo;
-use App\User;
+use App\Models\Agente;
+use App\Models\Medico;
+use App\Models\Paciente;
+use App\Models\Psicologo;
+use App\Models\User;
 
 class CreateTestSamples
 {

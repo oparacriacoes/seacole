@@ -1,4 +1,7 @@
-<script type="text/javascript">
+@section('script')
+    @parent
+    @include('layouts.chartjs')
+    <script type="text/javascript">
     const chart_data = @json($chart_data);
 
     for(let dataset of chart_data.datasets) {
@@ -59,4 +62,5 @@
             }
         }
     });
-</script>
+    </script>
+@endsection

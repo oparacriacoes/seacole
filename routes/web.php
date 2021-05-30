@@ -18,6 +18,8 @@ use App\Http\Controllers\VacinacaoController;
 use App\Http\Controllers\VacinaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +34,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    DB::listen(function($query) {
+        Log::info(
+            $query->bindings
+        );
+    });
+
+    $var = 'PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)';
+
+    $encoded_replace = str_replace('"', '', json_encode($var));
+    $encoded_search = addslashes(str_replace('"', '', json_encode($var)));
+
+    $query = "update insumos_oferecidos set
+    precisa_tipo_ajuda = replace(precisa_tipo_ajuda, ?, 'remedio-uso-continuo')
+    where precisa_tipo_ajuda like ? and id = 8;";
+
+    return DB::select($query, [$encoded_replace, "%$encoded_search%"]);
+
+    //return view('welcome');
 });
 
 Auth::routes([

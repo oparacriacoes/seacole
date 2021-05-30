@@ -62,5 +62,5 @@
             }
         });
 
-    </script>
+        </script>
 @endsection

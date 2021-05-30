@@ -1,5 +1,9 @@
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100"></script>
-<script type="text/javascript">
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100">    </script>
+@endsection
+@section('script')
+    @parent
+    @include('layouts.chartjs')
+    <script type="text/javascript">
     const chart_data = @json($chart_data);
 
     const ctx = document.getElementById('chartjs').getContext('2d');
@@ -46,4 +50,5 @@
         }
     });
 
-</script>
+    </script>
+@endsection

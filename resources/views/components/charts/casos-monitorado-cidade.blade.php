@@ -29,5 +29,5 @@
             options: options
         });
 
-    </script>
+        </script>
 @endsection

@@ -1,4 +1,7 @@
-<script type="text/javascript">
+@section('script')
+    @parent
+    @include('layouts.chartjs')
+    <script type="text/javascript">
     const chart_data = @json($chart_data);
     const ctx = document.getElementById('chartjs').getContext('2d');
 
@@ -58,4 +61,5 @@
             }
         }
     });
-</script>
+    </script>
+@endsection

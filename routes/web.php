@@ -7,7 +7,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InsumosOferecidoController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\MonitoramentoController;
-use App\Http\Controllers\NormalizeData;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PsicologoController;
@@ -17,9 +16,6 @@ use App\Http\Controllers\ServicoInternacaoController;
 use App\Http\Controllers\VacinacaoController;
 use App\Http\Controllers\VacinaController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,24 +30,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    DB::listen(function($query) {
-        Log::info(
-            $query->bindings
-        );
-    });
-
-    $var = 'PICs (Práticas Integrativas Complementares - Ex: Medicina Chinesa)';
-
-    $encoded_replace = str_replace('"', '', json_encode($var));
-    $encoded_search = addslashes(str_replace('"', '', json_encode($var)));
-
-    $query = "update insumos_oferecidos set
-    precisa_tipo_ajuda = replace(precisa_tipo_ajuda, ?, 'remedio-uso-continuo')
-    where precisa_tipo_ajuda like ? and id = 8;";
-
-    return DB::select($query, [$encoded_replace, "%$encoded_search%"]);
-
-    //return view('welcome');
+    return view('welcome');
 });
 
 Auth::routes([
@@ -85,7 +64,7 @@ Route::prefix('admin')->middleware(['auth', 'professional'])->group(function () 
     Route::get('pacientes/exportar', [PacienteController::class, 'ExportarExcelPacientes'])->name('pacientes.exportar')->middleware(['admin']);
     Route::resource('pacientes', PacienteController::class)->except(['show']);
 
-    Route::prefix('gerenciamento')->middleware(['admin']) ->group(function () {
+    Route::prefix('gerenciamento')->middleware(['admin'])->group(function () {
         Route::resource('vacinas', VacinaController::class);
     });
 

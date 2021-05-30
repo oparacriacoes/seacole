@@ -7,11 +7,11 @@ use Elao\Enum\ReadableEnum;
 final class SintomasAtuaisEnum extends ReadableEnum
 {
     public const TOSSE = 'tosse';
-    public const FALTA_AR = 'falta de ar';
+    public const FALTA_AR = 'falta-ar';
     public const FEBRE = 'febre';
-    public const DOR_CABECA = 'dor de cabeça';
-    public const PERDA_OLFATO = 'perda de olfato';
-    public const PERDA_PALADAR = 'perda do paladar';
+    public const DOR_CABECA = 'dor-cabeça';
+    public const PERDA_OLFATO = 'perda-olfato';
+    public const PERDA_PALADAR = 'perda-paladar';
     public const OUTRO = 'outros';
 
     public static function values(): array

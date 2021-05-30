@@ -21,9 +21,9 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_12_A = 'classe-social-por-renda-familiar';
     public const GRAFICO_12_B = 'classe-social-renda-per-capta-raca-cor';
     public const GRAFICO_13 = 'raca-cor-auxilio-emergencial';
-
-    public const GRAFICO_15 = '15';
-    public const GRAFICO_16 = '16';
+    public const GRAFICO_14 = 'insumos-oferecidos-projeto1';
+    public const GRAFICO_15 = 'insumos-oferecidos-projeto2';
+    public const GRAFICO_16 = 'insumos-oferecidos-projeto3';
     public const GRAFICO_17 = 'tratamento-prescrito-medico-projeto';
     public const GRAFICO_18 = 'tratamento-financiado';
     public const GRAFICO_19 = 'dias-sintomas-raca-cor';
@@ -85,10 +85,9 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_12_A,
             self::GRAFICO_12_B,
             self::GRAFICO_13,
-
-            // self::GRAFICO_14,
-            // self::GRAFICO_15,
-            // self::GRAFICO_16,
+            self::GRAFICO_14,
+            self::GRAFICO_15,
+            self::GRAFICO_16,
             self::GRAFICO_17,
             self::GRAFICO_18,
             self::GRAFICO_19,
@@ -152,10 +151,9 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_12_A => Str::title('12a - CLASSE SOCIAL POR RENDA BRUTA FAMILIAR'),
             self::GRAFICO_12_B => Str::title('12b - CLASSE SOCIAL RENDA PER-CAPTA POR RAÇA/COR'),
             self::GRAFICO_13 => Str::title('13 - RAÇA/COR POR AUXÍLIO EMERGENCIAL'),
-
-            // self::GRAFICO_14 => Str::title('14'),
-            // self::GRAFICO_15 => Str::title('15'),
-            // self::GRAFICO_16 => Str::title('16'),
+            self::GRAFICO_14 => Str::title('14 - INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (1)'),
+            self::GRAFICO_15 => Str::title('15 - INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (2)'),
+            self::GRAFICO_16 => Str::title('16 - INSUMOS OFERECIDOS PELO PROJETO X RAÇA/COR (3)'),
             self::GRAFICO_17 => Str::title('17 - TRATAMENTO PRESCRITO POR MÉDICO DO PROJETO'),
             self::GRAFICO_18 => Str::title('18 - TRATAMENTO FINANCIADO'),
             self::GRAFICO_19 => Str::title('19 - DIAS DE SINTOMAS POR RAÇA/COR'),

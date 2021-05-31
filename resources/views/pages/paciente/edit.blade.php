@@ -159,11 +159,7 @@
         </div>
 
         <div class="tab-pane tabs-animation fade" id="tab-content-6" role="tabpanel">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    @include('pages.paciente.components.prontuario', ['paciente' => $paciente, 'prontuarios' => $paciente->prontuarios])
-                </div>
-            </div>
+            @include('pages.paciente.components.prontuario', ['paciente' => $paciente, 'prontuarios' => $paciente->prontuarios])
         </div>
 
     </div>

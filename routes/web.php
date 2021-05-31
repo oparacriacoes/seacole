@@ -62,7 +62,7 @@ Route::prefix('admin')->middleware(['auth', 'professional'])->group(function () 
     Route::post('paciente/insumos/{paciente}', InsumosOferecidoController::class)->name('paciente.insumos');
     Route::post('paciente/vacinacao/{paciente}', VacinacaoController::class)->name('paciente.vacinacao');
 
-    Route::resource('pacientes-export', PacienteExportController::class)->only(['index', 'store'])->middleware(['admin']);
+    Route::resource('pacientes-export', PacienteExportController::class)->only(['index', 'store', 'update'])->middleware(['admin']);
 
     Route::resource('pacientes', PacienteController::class)->except(['show']);
 

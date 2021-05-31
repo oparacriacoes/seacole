@@ -76,8 +76,8 @@ class PacientesExport implements FromArray, WithTitle, WithHeadings, WithMultipl
                 }
 
                 //DETERMINA A RAÇA (PARDA & PRETA = NEGRA)
-                if ($paciente->cor_raca === 'Preta' || $paciente->cor_raca === 'Parda') {
-                    $raca_cor = 'Negra';
+                if ($paciente->cor_raca === 'preta' || $paciente->cor_raca === 'parda') {
+                    $raca_cor = 'negra';
                 } else {
                     $raca_cor = $paciente->cor_raca;
                 };

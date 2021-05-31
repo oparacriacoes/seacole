@@ -12,21 +12,9 @@ class DesfechosCorRaca extends ChartComponent
 
     public function chartData(): array
     {
-        $collection = collect();
-        $sequelas = DesfechosEnum::values();
-
-        foreach ($sequelas as $sequela) {
-            $collection = $collection->merge(DB::select(
-                $this->query,
-                [
-                    $sequela,
-                    strtolower('%' . $sequela . '%')
-                ]
-            ));
-        }
-
+        $collection = collect(DB::select($this->query));
         $colletionToChartDataset = new CollectionToChartDatasets(
-            'sequela',
+            'desfecho',
             'cor_raca',
             'total',
             $collection
@@ -41,32 +29,15 @@ class DesfechosCorRaca extends ChartComponent
 
     private $query = "
         select
-            sum(total) as total,
+            count(p.id) as total,
             cor_raca,
             desfecho
         from
-            (
-            select
-                count(p.id) as total,
-                cor_raca,
-                desfecho as desfechos,
-                CASE
-                WHEN desfecho is not null THEN ?
-                END AS desfecho
-            from
-                pacientes p
-                LEFT JOIN quadro_atual qa ON p.id = qa.paciente_id
-            where
-                cor_raca is not null
-                and situacao NOT IN (5, 14)
-                and LOWER(desfecho) LIKE ?
-            group by
-                cor_raca,
-                desfecho
-            order by
-                desfecho,
-                cor_raca
-            ) tb
+            pacientes p
+            LEFT JOIN quadro_atual qa ON p.id = qa.paciente_id
+        where
+            cor_raca is not null
+            and situacao NOT IN (5, 14)
         group by
             cor_raca,
             desfecho

@@ -1,52 +1,34 @@
 @section('script')
     @parent
     @include('layouts.chartjs')
+
     <script type="text/javascript">
-    const ctx = document.getElementById('chartjs').getContext('2d')
-    const chart_data = @json($chart_data);
+        const chart_data = @json($chart_data);
+        const ctx = document.getElementById('chartjs').getContext('2d');
 
-    for (let dataset of chart_data.datasets) {
-        dataset.backgroundColor = peopleColor(dataset.label)
-    }
-    
-    const data = {
-        labels: chart_data.labels,
-        datasets: chart_data.datasets
-    }
+        for (let dataset of chart_data.datasets) {
+            dataset.backgroundColor = peopleColor(dataset.label)
+        }
 
-    let chartjs = new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: {
-            title: {
-                display: true,
-                text: 'TEMPO DE INTERNAÇÃO POR RAÇA COR',
-                position: 'top'
-            },
-            legend: {
-                position: 'bottom',
-            },
-            scales: {
-                yAxes: [{
-                    stacked: true
-                }],
-                xAxes: [{
-                    stacked: true
-                }]
-            },
+        const data = {
+            labels: chart_data.labels,
+            datasets: chart_data.datasets
+        }
+
+        const options = {
+            ...CHARTJS_CONFIG.STACKED_OPTIONS,
             plugins: {
-                datalabels: {
-                    borderRadius: 1,
-                    color: 'white',
-                    font: {
-                        weight: 'normal'
-                    },
-                    padding: 2,
-                    formatter: (value, ctx) => value != '0' ? Math.abs(value) : '',
-                }
+                datalabels: CHARTJS_CONFIG.DATALABEL.DEFAULT
             }
         }
-    });
+
+        options.title.text = 'TEMPO DE INTERNAÇÃO POR RAÇA COR (EM DIAS)'
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
 
     </script>
 @endsection

@@ -13,14 +13,14 @@ class ProblemaServicoReferenciaRacaCor extends ChartComponent
     public function chartData(): array
     {
         $collection = collect();
-        $servicos_saude = ServicosSaudeEnum::values();
+        $filters = ServicosSaudeEnum::readables();
 
-        foreach ($servicos_saude as $servico_saude) {
+        foreach ($filters as $key => $value) {
             $collection = $collection->merge(DB::select(
                 $this->query,
                 [
-                    $servico_saude,
-                    strtolower('%' . $servico_saude . '%')
+                    $value,
+                    strtolower('%' . $key . '%')
                 ]
             ));
         }

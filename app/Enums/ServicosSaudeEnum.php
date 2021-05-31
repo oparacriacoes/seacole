@@ -29,11 +29,11 @@ final class ServicosSaudeEnum extends ReadableEnum
     public static function readables(): array
     {
         return [
-            self::UBS => 'UBS (Unidade Básica de Saúde - posto de saúde)',
-            self::UPA => 'UPA (Unidade de Pronto Atendimento)',
             self::AMA => 'AMA',
             self::HOSPITAL_PUBLICO => 'Hospital Público',
             self::HOSPITAL_PRIVADO => 'Hospital Privado',
+            self::UBS => 'UBS (Unidade Básica de Saúde)',
+            self::UPA => 'UPA (Unidade de Pronto Atendimento)',
             self::OUTRO => 'Outro',
         ];
     }

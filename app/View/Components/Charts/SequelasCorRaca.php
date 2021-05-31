@@ -2,7 +2,6 @@
 
 namespace App\View\Components\Charts;
 
-use App\Enums\MedicacoesTratamentoCovidEnum;
 use App\Enums\SequelasEnum;
 use App\Helpers\CollectionToChartDatasets;
 use Illuminate\Support\Facades\DB;
@@ -14,14 +13,14 @@ class SequelasCorRaca extends ChartComponent
     public function chartData(): array
     {
         $collection = collect();
-        $sequelas = SequelasEnum::values();
+        $filters = SequelasEnum::readables();
 
-        foreach ($sequelas as $sequela) {
+        foreach ($filters as $key => $value) {
             $collection = $collection->merge(DB::select(
                 $this->query,
                 [
-                    $sequela,
-                    strtolower('%' . $sequela . '%')
+                    $value,
+                    strtolower('%' . $key . '%')
                 ]
             ));
         }

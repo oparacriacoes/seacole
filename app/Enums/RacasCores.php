@@ -6,11 +6,11 @@ use Elao\Enum\ReadableEnum;
 
 final class RacasCores extends ReadableEnum
 {
-    public const PRETA = 'Preta';
-    public const PARDA = 'Parda';
-    public const BRANCA = 'Branca';
-    public const AMARELA = 'Amarela';
-    public const INDIGENA = 'Indígena';
+    public const PRETA = 'preta';
+    public const PARDA = 'parda';
+    public const BRANCA = 'branca';
+    public const AMARELA = 'amarela';
+    public const INDIGENA = 'indígena';
 
 
     public static function values(): array

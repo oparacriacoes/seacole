@@ -1,8 +1,5 @@
 <script type="text/javascript">
     const chart_data = @json($chart_data);
-
-    console.log(chart_data)
-
     const ctx = document.getElementById('chartjs').getContext('2d');
 
     let chartjs = new Chart(ctx, {
@@ -13,10 +10,10 @@
                 label: 'Pacientes Monitorados x Paciente Exclusivo Psicologia',
                 data: chart_data.data,
                 backgroundColor: [
-                    'rgb(0, 0, 0)',
-                    'rgb(109, 76, 65)',
-                    'rgb(240, 240, 240)',
-                    'rgb(75, 192, 192)',
+                    PEOPLE_COLORS.PRETA,
+                    PEOPLE_COLORS.PARDA,
+                    PEOPLE_COLORS.BRANCA,
+                    PEOPLE_COLORS.SEM_INFORMACAO,
                 ]
             }],
         },
@@ -29,7 +26,7 @@
             plugins: {
                 datalabels: {
                     backgroundColor: 'rgb(75, 192, 192)',
-                    borderRadius: 4,
+                    borderRadius: 1,
                     color: 'white',
                     font: {
                         weight: 'bold'
@@ -39,7 +36,7 @@
                         let percentage = (value * 100 / sum).toFixed(2) + "%";
                         return percentage;
                     },
-                    padding: 6
+                    padding: 2
                 }
             }
         }

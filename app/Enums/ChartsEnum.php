@@ -13,28 +13,28 @@ final class ChartsEnum extends ReadableEnum
     public const SITUACAO_TOTAL_CASOS_MONITORADOS_PIE = 'situacao-total-casos-monitorados-pie';
     public const CASOS_MONITORADOS_CIDADE = 'casos-monitorado-cidade';
     public const RACA_COR_PESSOAS_ATENDIDAS = 'raca-cor-pessoas-atendidas';
+    public const GRAFICO_07 = 'genero-por-raca-cor';
+    public const GRAFICO_08 = 'faixa-etaria-por-genero';
+    public const GRAFICO_09 = 'faixa-etaria-por-genero-b';
+    public const GRAFICO_10 = 'faixa-etaria-por-raca-cor';
+    public const GRAFICO_11 = 'pessoas-residencia-raca-cor';
+    public const GRAFICO_12_A = 'classe-social-por-renda-familiar';
+    public const GRAFICO_12_B = 'classe-social-renda-per-capta-raca-cor';
+    public const GRAFICO_13 = 'raca-cor-auxilio-emergencial';
 
-    public const GRAFICO_07 = '07';
-    public const GRAFICO_08 = '08';
-    public const GRAFICO_09 = '09';
-    public const GRAFICO_10 = '10';
-    public const GRAFICO_11 = '11';
-    public const GRAFICO_12 = '12';
-    public const GRAFICO_13 = '13';
-    public const GRAFICO_14 = '14';
     public const GRAFICO_15 = '15';
     public const GRAFICO_16 = '16';
-    public const GRAFICO_17 = '17';
+    public const GRAFICO_17 = 'tratamento-prescrito-medico-projeto';
     public const GRAFICO_18 = '18';
-    public const GRAFICO_19 = '19';
-    public const GRAFICO_20 = '20';
+    public const GRAFICO_19 = 'dias-sintomas-raca-cor';
+    public const GRAFICO_20 = 'dias-sintomas-mais-menos-dias';
     public const GRAFICO_21 = '21';
-    public const GRAFICO_22 = '22';
-    public const GRAFICO_23 = '23';
-    public const GRAFICO_24 = '24';
-    public const GRAFICO_25 = '25';
-    public const GRAFICO_26 = '26';
-    public const GRAFICO_27 = '27';
+    public const GRAFICO_22 = 'casos-monitorados-por-agentes';
+    public const GRAFICO_23 = 'casos-avaliados-por-equipe-medica';
+    public const GRAFICO_24 = 'acompanhamento-psicologico';
+    public const GRAFICO_25 = 'acompanhamento-psicologico-individual-grupo';
+    public const GRAFICO_26 = 'avaliacao-medica-raca-cor';
+    public const GRAFICO_27 = 'avaliacao-psicologos-raca-cor';
     public const GRAFICO_28 = '28';
     public const GRAFICO_29 = '29';
     public const GRAFICO_30 = '30';
@@ -78,27 +78,29 @@ final class ChartsEnum extends ReadableEnum
             self::SITUACAO_TOTAL_CASOS_MONITORADOS_PIE,
             self::CASOS_MONITORADOS_CIDADE,
             self::RACA_COR_PESSOAS_ATENDIDAS,
-            // self::GRAFICO_07,
-            // self::GRAFICO_08,
-            // self::GRAFICO_09,
-            // self::GRAFICO_10,
-            // self::GRAFICO_11,
-            // self::GRAFICO_12,
-            // self::GRAFICO_13,
+            self::GRAFICO_07,
+            self::GRAFICO_08,
+            self::GRAFICO_09,
+            self::GRAFICO_10,
+            self::GRAFICO_11,
+            self::GRAFICO_12_A,
+            self::GRAFICO_12_B,
+            self::GRAFICO_13,
+
             // self::GRAFICO_14,
             // self::GRAFICO_15,
             // self::GRAFICO_16,
-            // self::GRAFICO_17,
+            self::GRAFICO_17,
             // self::GRAFICO_18,
-            // self::GRAFICO_19,
-            // self::GRAFICO_20,
+            self::GRAFICO_19,
+            self::GRAFICO_20,
             // self::GRAFICO_21,
-            // self::GRAFICO_22,
-            // self::GRAFICO_23,
-            // self::GRAFICO_24,
-            // self::GRAFICO_25,
-            // self::GRAFICO_26,
-            // self::GRAFICO_27,
+            self::GRAFICO_22,
+            self::GRAFICO_23,
+            self::GRAFICO_24,
+            self::GRAFICO_25,
+            self::GRAFICO_26,
+            self::GRAFICO_27,
             // self::GRAFICO_28,
             // self::GRAFICO_29,
             // self::GRAFICO_30,
@@ -138,33 +140,35 @@ final class ChartsEnum extends ReadableEnum
     public static function readables(): array
     {
         return [
-            self::CASOS_MONITORADOS => Str::title('NOVOS CASOS MONITORADOS'),
-            self::MONITORADOS_EXCLUSIVO_PSICOLOGIA => Str::title('MONITORADOS X EXCLUSIVO PSICOLOGIA'),
-            self::SITUACAO_TOTAL_CASOS_MONITORADOS_BAR => Str::title('SITUAÇÃO TOTAL DE CASOS MONITORADOS - Barras'),
-            self::SITUACAO_TOTAL_CASOS_MONITORADOS_PIE => Str::title('SITUAÇÃO TOTAL DE CASOS MONITORADOS - Pizza'),
-            self::CASOS_MONITORADOS_CIDADE => Str::title('CASOS MONITORADOS POR CIDADE'),
-            SELF::RACA_COR_PESSOAS_ATENDIDAS => Str::title('RAÇA-COR GERAL DAS PESSOAS ATENDIDAS'),
-            // self::GRAFICO_07 => Str::title('07'),
-            // self::GRAFICO_08 => Str::title('08'),
-            // self::GRAFICO_09 => Str::title('09'),
-            // self::GRAFICO_10 => Str::title('10'),
-            // self::GRAFICO_11 => Str::title('11'),
-            // self::GRAFICO_12 => Str::title('12'),
-            // self::GRAFICO_13 => Str::title('13'),
+            self::CASOS_MONITORADOS => Str::title('01 NOVOS CASOS MONITORADOS'),
+            self::MONITORADOS_EXCLUSIVO_PSICOLOGIA => Str::title('02 MONITORADOS X EXCLUSIVO PSICOLOGIA'),
+            self::SITUACAO_TOTAL_CASOS_MONITORADOS_BAR => Str::title('03 SITUAÇÃO TOTAL DE CASOS MONITORADOS - Barras'),
+            self::SITUACAO_TOTAL_CASOS_MONITORADOS_PIE => Str::title('04 SITUAÇÃO TOTAL DE CASOS MONITORADOS - Pizza'),
+            self::CASOS_MONITORADOS_CIDADE => Str::title('05 CASOS MONITORADOS POR CIDADE'),
+            self::RACA_COR_PESSOAS_ATENDIDAS => Str::title('06 RAÇA-COR GERAL DAS PESSOAS ATENDIDAS'),
+            self::GRAFICO_07 => Str::title('07 GÊNERO POR RAÇA-COR'),
+            self::GRAFICO_08 => Str::title('08 FAIXA ETÁRIA POR GÊNERO - Pirâmide'),
+            self::GRAFICO_09 => Str::title('09 FAIXA ETÁRIA POR GÊNERO - Barras'),
+            self::GRAFICO_10 => Str::title('10 FAIXA ETÁRIA POR RAÇA COR'),
+            self::GRAFICO_11 => Str::title('11 NÚMERO DE PESSOAS/RESIDÊNCIA POR RAÇA/COR'),
+            self::GRAFICO_12_A => Str::title('12a CLASSE SOCIAL POR RENDA BRUTA FAMILIAR'),
+            self::GRAFICO_12_B => Str::title('12b CLASSE SOCIAL RENDA PER-CAPTA POR RAÇA/COR'),
+            self::GRAFICO_13 => Str::title('13 RAÇA/COR POR AUXÍLIO EMERGENCIAL'),
+
             // self::GRAFICO_14 => Str::title('14'),
             // self::GRAFICO_15 => Str::title('15'),
             // self::GRAFICO_16 => Str::title('16'),
-            // self::GRAFICO_17 => Str::title('17'),
+            self::GRAFICO_17 => Str::title('17 TRATAMENTO PRESCRITO POR MÉDICO DO PROJETO'),
             // self::GRAFICO_18 => Str::title('18'),
-            // self::GRAFICO_19 => Str::title('19'),
-            // self::GRAFICO_20 => Str::title('20'),
+            self::GRAFICO_19 => Str::title('19 DIAS DE SINTOMAS POR RAÇA/COR'),
+            self::GRAFICO_20 => Str::title('20 DIAS DE SINTOMAS - MAIS OU MENOS DE 10 DIAS'),
             // self::GRAFICO_21 => Str::title('21'),
-            // self::GRAFICO_22 => Str::title('22'),
-            // self::GRAFICO_23 => Str::title('23'),
-            // self::GRAFICO_24 => Str::title('24'),
-            // self::GRAFICO_25 => Str::title('25'),
-            // self::GRAFICO_26 => Str::title('26'),
-            // self::GRAFICO_27 => Str::title('27'),
+            self::GRAFICO_22 => Str::title('22 CASOS MONITORADOS POR AGENTES'),
+            self::GRAFICO_23 => Str::title('23 CASOS AVALIADOS POR EQUIPE MÉDICA'),
+            self::GRAFICO_24 => Str::title('24 ACOMPANHAMENTO PSICOLÓGICO'),
+            self::GRAFICO_25 => Str::title('25 ACOMPANHAMENTO PSICOLÓGICO: INDIVIDUAL X EM GRUPO'),
+            self::GRAFICO_26 => Str::title('26 CASOS AVALIADOS POR EQUIPE MÉDICA'),
+            self::GRAFICO_27 => Str::title('27 AVALIAÇÃO PSICÓLOGOS POR RAÇA/COR'),
             // self::GRAFICO_28 => Str::title('28'),
             // self::GRAFICO_29 => Str::title('29'),
             // self::GRAFICO_30 => Str::title('30'),

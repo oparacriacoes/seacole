@@ -6,13 +6,21 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-graph text-success">
+                    <i class="fas fa-procedures text-primary">
                     </i>
                 </div>
                 <div>Pacientes
                     <div class="page-title-subheading">Projeto Agentes Populares de Saúde.
                     </div>
                 </div>
+            </div>
+            <div class="page-title-actions">
+                <a href="{{route('pacientes.create')}}" role="button" data-toggle="tooltip" title="" data-placement="bottom" class="btn-shadow mr-3 btn btn-primary" data-original-title="Adiciona Paciente">
+                    <i class="fa fa-plus-circle"></i>
+                </a>
+                <a href="{{route('pacientes.exportar')}}" role="button" data-toggle="tooltip" title="" data-placement="bottom" class="btn-shadow mr-3 btn btn-info" data-original-title="Exportar Dados">
+                    <i class="fas fa-file-download"></i>
+                </a>
             </div>
           </div>
       </div>

@@ -335,7 +335,7 @@ class ChartsController extends Controller
         END AS mulher
       FROM
         (SELECT
-          TIMESTAMPDIFF (YEAR,STR_TO_DATE(data_nascimento,'%d/%m/%Y'),CURDATE()) AS idade
+            TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade
           , id
                 , identidade_genero
         FROM pacientes)TB
@@ -418,7 +418,7 @@ class ChartsController extends Controller
 
           FROM
             (SELECT
-              TIMESTAMPDIFF (YEAR,STR_TO_DATE(data_nascimento,'%d/%m/%Y'),CURDATE()) AS idade
+                TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade
               , id
               , identidade_genero
             FROM pacientes)TB
@@ -499,7 +499,7 @@ class ChartsController extends Controller
         , CASE WHEN cor_raca = 'Indígena'THEN COUNT(id) END AS indigena
       FROM
         (SELECT
-        TIMESTAMPDIFF (YEAR,STR_TO_DATE(data_nascimento,'%d/%m/%Y'),CURDATE()) AS idade
+        TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade
         , id
         , cor_raca
         FROM pacientes)TB
@@ -572,7 +572,7 @@ class ChartsController extends Controller
         , CASE WHEN cor_raca = 'Indígena'THEN COUNT(id) END AS indigena
         FROM
         (SELECT
-          TIMESTAMPDIFF (YEAR,STR_TO_DATE(data_nascimento,'%d/%m/%Y'),CURDATE()) AS idade
+            TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade
           , id
           , cor_raca
         FROM pacientes)TB
@@ -668,11 +668,11 @@ class ChartsController extends Controller
     FROM
       (SELECT
         CASE
-          WHEN renda_residencia > 0 AND renda_residencia <= 1.254 THEN 'Classe E'
-          WHEN renda_residencia >= 1.255 AND renda_residencia <= 2.004 THEN 'Classe D'
-          WHEN renda_residencia >= 2.005 AND renda_residencia <= 8.640 THEN 'Classe C'
-          WHEN renda_residencia >= 8.641 AND renda_residencia <= 11.261 THEN 'Classe B'
-          WHEN renda_residencia >= 11.262 THEN 'Classe A'
+          WHEN renda_residencia > 0 AND renda_residencia <= 1254 THEN 'Classe E'
+          WHEN renda_residencia >= 1255 AND renda_residencia <= 2004 THEN 'Classe D'
+          WHEN renda_residencia >= 2005 AND renda_residencia <= 8640 THEN 'Classe C'
+          WHEN renda_residencia >= 8641 AND renda_residencia <= 11261 THEN 'Classe B'
+          WHEN renda_residencia >= 11262 THEN 'Classe A'
           ELSE 'Sim inf.'
         END AS renda_residencia
         , CASE WHEN cor_raca IS NULL THEN COUNT(id) END AS sem_informacao
@@ -704,11 +704,11 @@ class ChartsController extends Controller
     FROM
       (SELECT
         CASE
-          WHEN renda_residencia > 0 AND renda_residencia <= 1.254 THEN ' Classe E'
-          WHEN renda_residencia >= 1.255 AND renda_residencia <= 2.004 THEN ' Classe D'
-          WHEN renda_residencia >= 2.005 AND renda_residencia <= 8.640 THEN ' Classe C'
-          WHEN renda_residencia >= 8.641 AND renda_residencia <= 11.261 THEN ' Classe B'
-          WHEN renda_residencia >= 11.262 THEN ' Classe A'
+          WHEN renda_residencia > 0 AND renda_residencia <= 1254 THEN ' Classe E'
+          WHEN renda_residencia >= 1255 AND renda_residencia <= 2004 THEN ' Classe D'
+          WHEN renda_residencia >= 2005 AND renda_residencia <= 8640 THEN ' Classe C'
+          WHEN renda_residencia >= 8641 AND renda_residencia <= 11261 THEN ' Classe B'
+          WHEN renda_residencia >= 11262 THEN ' Classe A'
           ELSE ' Sem inf.'
         END AS renda_residencia
         , CASE WHEN cor_raca IS NULL THEN COUNT(id) END AS sem_informacao
@@ -741,11 +741,11 @@ class ChartsController extends Controller
     FROM
       (SELECT
         CASE
-          WHEN renda_residencia/numero_pessoas_residencia > 0 AND renda_residencia/numero_pessoas_residencia <= 1.254 THEN 'Classe E'
-          WHEN renda_residencia/numero_pessoas_residencia >= 1.255 AND renda_residencia/numero_pessoas_residencia <= 2.004 THEN 'Classe D'
-          WHEN renda_residencia/numero_pessoas_residencia >= 2.005 AND renda_residencia/numero_pessoas_residencia <= 8.640 THEN 'Classe C'
-          WHEN renda_residencia/numero_pessoas_residencia >= 8.641 AND renda_residencia/numero_pessoas_residencia <= 11.261 THEN 'Classe B'
-          WHEN renda_residencia/numero_pessoas_residencia >= 11.262 THEN 'Classe A'
+          WHEN renda_residencia/numero_pessoas_residencia > 0 AND renda_residencia/numero_pessoas_residencia <= 1254 THEN 'Classe E'
+          WHEN renda_residencia/numero_pessoas_residencia >= 1255 AND renda_residencia/numero_pessoas_residencia <= 2004 THEN 'Classe D'
+          WHEN renda_residencia/numero_pessoas_residencia >= 2005 AND renda_residencia/numero_pessoas_residencia <= 8640 THEN 'Classe C'
+          WHEN renda_residencia/numero_pessoas_residencia >= 8641 AND renda_residencia/numero_pessoas_residencia <= 11261 THEN 'Classe B'
+          WHEN renda_residencia/numero_pessoas_residencia >= 11262 THEN 'Classe A'
           ELSE 'Sim inf.'
         END AS renda_residencia
         , CASE WHEN cor_raca IS NULL THEN COUNT(id) END AS sem_informacao
@@ -1970,38 +1970,29 @@ class ChartsController extends Controller
         GROUP BY cor_raca;
         ");*/
         $dias_sintoma_mais_menos_dez_dias = DB::select("
-    SELECT
-      quantidade_dias
-        , SUM(pacientes) AS pacientes
+        SELECT
+        quantidade_dias,
+        SUM(count_pacientes) AS pacientes
     FROM
-        (SELECT
-        CASE
-          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) > 10 THEN 'Mais de dez dias'
-          WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) <= 10 THEN 'Menos de dez dias'
-          END AS quantidade_dias
-          , COUNT(id) AS pacientes
-      FROM
-        (SELECT
-          id
-          , CAST(CONCAT(SUBSTRING(data_inicio_monitoramento,7,4),'-',SUBSTRING(data_inicio_monitoramento,4,2),'-',SUBSTRING(data_inicio_monitoramento,1,2)) AS DATE) AS data_inicio_monitoramento
-          , CAST(CONCAT(SUBSTRING(data_inicio_sintoma,7,4),'-',SUBSTRING(data_inicio_sintoma,4,2),'-',SUBSTRING(data_inicio_sintoma,1,2)) AS DATE) AS data_inicio_sintoma
+        (
+        SELECT
+            CASE
+            WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) > 10 THEN 'Mais de dez dias'
+            WHEN DATEDIFF(data_inicio_monitoramento, data_inicio_sintoma) <= 10 THEN 'Menos de dez dias'
+            END AS quantidade_dias,
+            COUNT(id) AS count_pacientes
         FROM
-        (SELECT
-          id
-          , CASE
-            WHEN LENGTH(data_inicio_monitoramento) = 8 THEN CONCAT(SUBSTRING(data_inicio_monitoramento,1,6),20,SUBSTRING(data_inicio_monitoramento,7,2))
-            ELSE data_inicio_monitoramento
-          END AS data_inicio_monitoramento
-          , CASE
-            WHEN LENGTH(data_inicio_sintoma) = 8 THEN CONCAT(SUBSTRING(data_inicio_sintoma,1,6),20,SUBSTRING(data_inicio_sintoma,7,2))
-            ELSE data_inicio_sintoma
-          END AS data_inicio_sintoma
-        FROM pacientes
-        WHERE situacao IN (1,2,3,6,7,8,9,10,11,12))TB)TBB
-        GROUP BY data_inicio_monitoramento, data_inicio_sintoma)TBBB
-    WHERE quantidade_dias IS NOT NULL
-    GROUP BY quantidade_dias
-    ;
+            pacientes
+        WHERE
+            situacao IN (1, 2, 3, 6, 7, 8, 9, 10, 11, 12)
+        GROUP BY
+            data_inicio_monitoramento,
+            data_inicio_sintoma
+        ) as TBBB
+    WHERE
+        quantidade_dias IS NOT NULL
+    GROUP BY
+        quantidade_dias;
     ");
         return $dias_sintoma_mais_menos_dez_dias;
     }

@@ -1,8 +1,5 @@
 <script type="text/javascript">
     const chart_data = @json($chart_data);
-
-    console.log(chart_data)
-
     const ctx = document.getElementById('chartjs').getContext('2d');
 
     let chartjs = new Chart(ctx, {
@@ -18,7 +15,7 @@
             plugins: {
                 datalabels: {
                     backgroundColor: 'rgb(75, 192, 192)',
-                    borderRadius: 4,
+                    borderRadius: 1,
                     color: 'white',
                     font: {
                         weight: 'bold'
@@ -28,7 +25,7 @@
                         let percentage = (value * 100 / sum).toFixed(2) + "%";
                         return percentage;
                     },
-                    padding: 6
+                    padding: 2
                 }
             }
         }

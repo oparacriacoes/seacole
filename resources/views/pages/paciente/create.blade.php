@@ -5,7 +5,7 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-graph text-success"></i>
+                    <i class="fas fa-user text-primary"></i>
                 </div>
                 <div>Pacientes
                     <div class="page-title-subheading">Projeto Agentes Populares de Saúde.</div>

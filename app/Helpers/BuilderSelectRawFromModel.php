@@ -10,13 +10,37 @@ class BuilderSelectRawFromModel
 
     private Model $model;
     private array $mapFillableEnum;
-    private string $selectRaw;
+    private array $mapSelectRaw;
 
     public function __construct(Model $model)
     {
         $this->model = $model;
         $this->mapFillableEnum = [];
+        $this->columns = [];
         $this->selectRaw = "";
+        $this->mapSelectRaw = [];
+    }
+
+    public function mount(): void
+    {
+        foreach ($this->mountAttributesMap() as $fillable => $type) {
+            if ($fillable == 'id' || Str::endsWith($fillable, '_id')) {
+                continue;
+            }
+
+            switch ($type) {
+                case 'boolean':
+                    $this->mapSelectRaw[$fillable] = $this->booleanFillable($fillable);
+                    break;
+                case 'generic':
+                case 'int':
+                    $this->mapSelectRaw[$fillable] = $this->genericFillable($fillable);
+                    break;
+                case 'array':
+                    $this->arrayFillable($fillable);
+                    break;
+            }
+        }
     }
 
     public function loadEnums(string $fillable, array $enum)
@@ -25,6 +49,20 @@ class BuilderSelectRawFromModel
         return $this;
     }
 
+    public function getHeadings(): array
+    {
+        return array_keys($this->mapSelectRaw);
+    }
+
+    public function getSelectRaws(): array
+    {
+        return array_values($this->mapSelectRaw);
+    }
+
+    public function getSelectRaw(): string
+    {
+        return implode(', ', array_values($this->mapSelectRaw));
+    }
 
     private function mountAttributesMap(): array
     {
@@ -35,41 +73,6 @@ class BuilderSelectRawFromModel
             ),
             $this->model->getCasts()
         );
-    }
-
-    public function getSelect(): string
-    {
-        if ($this->selectRaw != "") {
-            return $this->selectRaw;
-        }
-
-        $selectsRaw = [];
-
-        foreach ($this->mountAttributesMap() as $fillable => $type) {
-            if ($fillable == 'id') {
-                continue;
-            }
-
-            switch ($type) {
-                case 'boolean':
-                    $selectsRaw[] = $this->booleanFillable($fillable);
-                    break;
-                case 'generic':
-                case 'int':
-                    $selectsRaw[] = $this->genericFillable($fillable);
-                    break;
-                case 'array':
-                    $selectsRaw[] = $this->arrayFillable($fillable);
-                    break;
-            }
-        }
-
-        return implode(', ', $selectsRaw);
-    }
-
-    public function getTable(): string
-    {
-        return $this->model->getTable();
     }
 
     private function booleanFillable(string $fillable): string
@@ -83,20 +86,17 @@ class BuilderSelectRawFromModel
         return $this->model->getTable() . "." . $fillable;
     }
 
-    private function arrayFillable(string $fillable): string
+    private function arrayFillable(string $fillable): void
     {
         if (!key_exists($fillable, $this->mapFillableEnum)) {
-            return $this->model->getTable() . "." . $fillable;
+            $this->mapSelectRaw[$fillable] = $this->model->getTable() . "." . $fillable;
         }
 
-        $cases = [];
         $column = $this->model->getTable() . "." . $fillable;
 
         foreach ($this->mapFillableEnum[$fillable] as $key => $value) {
             $as_column = (string)Str::of($value)->slug()->replace('-', '_');
-            $cases[] = "IF ($column like '%\"$key\"%', 'Sim', 'Não') as $as_column";
+            $this->mapSelectRaw[$as_column] = "IF ($column like '%\"$key\"%', 'Sim', 'Não') as $as_column";
         }
-
-        return implode(', ', $cases);
     }
 }

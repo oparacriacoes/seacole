@@ -111,8 +111,28 @@
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Histórico de Vacinação
+                    </div>
+                    <div class="card-body">
+                        <form action="{{route('pacientes-export.store')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="export_vacinacao" value="true">
 
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-primary">Exportar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

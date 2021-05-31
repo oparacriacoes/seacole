@@ -17,10 +17,10 @@ function join_colors_to_black($collection): array
 {
     return $collection->pluck('cor_raca')
         ->filter(function ($cor_raca) {
-            return $cor_raca != 'Parda';
+            return $cor_raca != 'parda';
         })
         ->map(function ($cor_raca) {
-            return $cor_raca == 'Preta' ? 'Negra' : $cor_raca;
+            return $cor_raca == 'preta' ? 'negra' : $cor_raca;
         })->values()->toArray();
 }
 

@@ -158,7 +158,7 @@ function peopleColor(color = '') {
             return PEOPLE_COLORS.PARDA;
         case 'Indígena':
         case 'Indigena':
-            return PEOPLE_COLORS.info;
+            return PEOPLE_COLORS.INDIGENA;
         case 'Branca':
             return PEOPLE_COLORS.BRANCA;
         case 'Amarela':

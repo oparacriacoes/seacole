@@ -13,7 +13,7 @@ function human_boolean($value): ?string
     throw new Exception("Por favor insira apenas valores booleanos ou null", 1);
 }
 
-function join_colors_to_black($collection)
+function join_colors_to_black($collection): array
 {
     return $collection->pluck('cor_raca')
         ->filter(function ($cor_raca) {
@@ -21,13 +21,16 @@ function join_colors_to_black($collection)
         })
         ->map(function ($cor_raca) {
             return $cor_raca == 'Preta' ? 'Negra' : $cor_raca;
-        })->values();
+        })->values()->toArray();
 }
 
-function stack_black_colors(array $datasets)
+function stack_black_colors(array $datasets, bool $useAxis = true): array
 {
-    return array_map(function ($dataset) {
-        $dataset['xAxisID'] = 'xAxis1';
+    return array_map(function ($dataset) use ($useAxis) {
+        if ($useAxis) {
+            $dataset['xAxisID'] = 'sublabels';
+        }
+
         if ($dataset['label'] == 'Preta' || $dataset['label'] == 'Parda') {
             $dataset['stack'] = 'Stack Negra';
         } else {

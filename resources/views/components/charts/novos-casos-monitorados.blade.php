@@ -1,10 +1,11 @@
-<script type="text/javascript">
-    const chart_data = @json($chart_data);
-    const ctx = document.getElementById('chartjs').getContext('2d');
+@section('script')
+    @parent
+    @include('layouts.chartjs')
+    <script type="text/javascript">
+        const chart_data = @json($chart_data);
+        const ctx = document.getElementById('chartjs').getContext('2d');
 
-    let chartjs = new Chart(ctx, {
-        type: 'line',
-        data: {
+        const data = {
             labels: chart_data.labels,
             datasets: [{
                 label: 'Novos Casos Monitorados',
@@ -13,20 +14,18 @@
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             }],
-        },
-        options: {
+        }
+
+        const options = {
             plugins: {
-                datalabels: {
-                    backgroundColor: 'rgb(75, 192, 192)',
-                    borderRadius: 1,
-                    color: 'white',
-                    font: {
-                        weight: 'bold'
-                    },
-                    formatter: Math.round,
-                    padding: 2
-                }
+                datalabels: CHARTJS_CONFIG.DATALABEL.DEFAULT
             }
         }
-    });
-</script>
+
+        new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    </script>
+@endsection

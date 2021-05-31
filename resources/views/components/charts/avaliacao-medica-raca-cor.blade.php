@@ -5,10 +5,15 @@
         dataset.backgroundColor = peopleColor(dataset.label)
     }
 
+    let labels = []
     const data = {
         labels: chart_data.labels,
         datasets: chart_data.datasets
     }
+
+    chart_data.sublabels.forEach((index) => {
+        labels = labels.concat(data.labels)
+    })
 
     const ctx = document.getElementById('chartjs').getContext('2d');
 
@@ -25,17 +30,20 @@
                 position: 'bottom',
             },
             scales: {
-                xAxes: [{
-                    labels: chart_data.xAxes
-                },
-                {
-                    id: 'xAxis1',
-                    type: 'category',
-                    offset: true,
-                    gridLines: {
-                        offsetGridLines: true
-                    }
-                }
+                xAxes: [
+                    {
+                        id: 'labels',
+                        labels: labels
+                    },
+                    {
+                        id: 'sublabels',
+                        type: 'category',
+                        offset: true,
+                        gridLines: {
+                            offsetGridLines: true
+                        },
+                        labels: chart_data.sublabels
+                    },
                 ]
             },
             plugins: {

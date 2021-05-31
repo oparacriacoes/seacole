@@ -10,12 +10,11 @@ class MonitoradosExclusivoPsicologia extends ChartComponent
 
     public function chartData(): array
     {
-        // CHART::2 O REAL SIGNIFICADO DA SEGUNDA INFORMACAO
         $pacientes = Paciente::select(['id', 'agente_id', 'psicologo_id'])->get();
 
         $labels = [
             'Casos totais monitorados exclusivamente por equipe de psicologia',
-            'Casos totais monitorados por agentes populares de saúde por equipe de psicologia',
+            'Casos totais monitorados por agentes populares de saúde',
         ];
 
         $data = [

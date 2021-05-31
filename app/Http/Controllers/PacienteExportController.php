@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Exports\HistoricoMonitoramentoExport;
 use App\Exports\HistoricoVacinacaoExport;
+use App\Exports\PacientesExport;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PacienteExportController extends Controller
 {
@@ -34,6 +36,9 @@ class PacienteExportController extends Controller
         } elseif ($request->has('export_vacinacao')) {
             $filename = 'historico_vacinacao_' . now()->format('d_m_Y') . '.xlsx';
             return (new HistoricoVacinacaoExport())->download($filename);
+        } elseif ($request->has('export_pacientes')) {
+            $filename = 'pacientes_' . now()->format('d_m_Y') . '.xlsx';
+            return Excel::download(new PacientesExport(), $filename);
         }
 
         return back();

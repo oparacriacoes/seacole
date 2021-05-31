@@ -39,7 +39,7 @@
                                         </label>
                                     </div>
                                     <div class="form-check mt-2">
-                                        <input class="form-check-input" name="export_models[]" type="checkbox"
+                                        <input class="form-check-input" disabled name="export_models[]" type="checkbox"
                                             value="quadro_atual" id="export_quadro_atual">
                                         <label class="form-check-label" for="export_quadro_atual">
                                             Quadro Atual
@@ -48,14 +48,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" name="export_models[]" type="checkbox"
+                                        <input class="form-check-input" disabled name="export_models[]" type="checkbox"
                                             value="monitoramentos" id="export_monitoramentos">
                                         <label class="form-check-label" for="export_monitoramentos">
                                             Monitoramentos
                                         </label>
                                     </div>
                                     <div class="form-check mt-2">
-                                        <input class="form-check-input" name="export_models[]" type="checkbox"
+                                        <input class="form-check-input" disabled name="export_models[]" type="checkbox"
                                             value="saude_mental" id="export_saude_mental">
                                         <label class="form-check-label" for="export_saude_mental">
                                             Saúde Mental
@@ -64,14 +64,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" name="export_models[]" type="checkbox"
+                                        <input class="form-check-input" disabled name="export_models[]" type="checkbox"
                                             value="servico_referencia" id="export_servico_referencia">
                                         <label class="form-check-label" for="export_servico_referencia">
                                             Serviços de Referência e Internação
                                         </label>
                                     </div>
                                     <div class="form-check mt-2">
-                                        <input class="form-check-input" name="export_models[]" type="checkbox"
+                                        <input class="form-check-input" disabled name="export_models[]" type="checkbox"
                                             value="insumos_oferecidos" id="export_insumos_oferecidos">
                                         <label class="form-check-label" for="export_insumos_oferecidos">
                                             Insumos Oferecidos

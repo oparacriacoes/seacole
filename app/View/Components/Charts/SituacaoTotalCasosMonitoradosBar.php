@@ -3,7 +3,7 @@
 namespace App\View\Components\Charts;
 
 use App\Enums\SituacoesCaso;
-use App\Paciente;
+use App\Models\Paciente;
 
 class SituacaoTotalCasosMonitoradosBar extends ChartComponent
 {

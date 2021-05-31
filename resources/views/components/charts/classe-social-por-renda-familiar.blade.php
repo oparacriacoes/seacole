@@ -1,46 +1,34 @@
-<script type="text/javascript">
-    const chart_data = @json($chart_data);
+@section('script')
+    @parent
+    @include('layouts.chartjs')
 
-    for(let dataset of chart_data.datasets) {
-        dataset.backgroundColor = peopleColor(dataset.label)
-    }
+    <script type="text/javascript">
+        const chart_data = @json($chart_data);
+        const ctx = document.getElementById('chartjs').getContext('2d');
 
-    const ctx = document.getElementById('chartjs').getContext('2d');
+        for (let dataset of chart_data.datasets) {
+            dataset.backgroundColor = peopleColor(dataset.label)
+        }
 
-    let chartjs = new Chart(ctx, {
-        type: 'bar',
-        data: {
+        const data = {
             labels: chart_data.labels,
             datasets: chart_data.datasets,
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'CLASSE SOCIAL POR RENDA BRUTA FAMILIAR',
-                position: 'top'
-            },
-            legend: {
-                position: 'bottom',
-            },
-            scales: {
-                yAxes: [{
-                    stacked: true
-                }],
-                xAxes: [{
-                    stacked: true
-                }]
-            },
+        }
+
+        const options = {
+            ...CHARTJS_CONFIG.STACKED_OPTIONS,
             plugins: {
-                datalabels: {
-                    borderRadius: 1,
-                    color: 'white',
-                    font: {
-                        weight: 'normal'
-                    },
-                    padding: 2,
-                    formatter: (value, ctx) => value != '0' ? Math.abs(value) : '',
-                }
+                datalabels: CHARTJS_CONFIG.DATALABEL.DEFAULT
             }
         }
-    });
-</script>
+
+        options.title.text = 'CLASSE SOCIAL POR RENDA BRUTA FAMILIAR'
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+
+    </script>
+@endsection

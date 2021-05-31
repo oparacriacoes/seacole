@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Psicologo;
-use App\User;
+use App\Models\Psicologo;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PsicologoFactory extends Factory

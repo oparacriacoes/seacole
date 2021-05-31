@@ -6,17 +6,17 @@ use Elao\Enum\ReadableEnum;
 
 final class MedicacoesTratamentoCovidEnum extends ReadableEnum
 {
-    public const AZITROMICINA = 'Azitromicina';
-    public const ANTIBIOTICO = 'outro antibiótico';
+    public const AZITROMICINA = 'azitromicina';
+    public const ANTIBIOTICO = 'antibiotico';
     public const IVERMECTINA = 'ivermectina';
-    public const CLOROQUINA = 'cloroquina/hidroxicloroquina';
-    public const OSELTAMIVIR = 'oseltamivir (tamiflu)';
-    public const ALERGICO = 'algum antialérgico';
-    public const CORTICOIDE = 'algum corticóide';
-    public const ANTIINFLAMATORIO = 'algum antiinflamatório';
-    public const VITAMINA_D = 'vitamina D';
+    public const CLOROQUINA = 'cloroquina-hidroxicloroquina';
+    public const OSELTAMIVIR = 'oseltamivir';
+    public const ALERGICO = 'antialergico';
+    public const CORTICOIDE = 'corticoide';
+    public const ANTIINFLAMATORIO = 'antiinflamatorio';
+    public const VITAMINA_D = 'vitamina-d';
     public const ZINCO = 'zinco';
-    public const OUTRO = 'outro medicamento';
+    public const OUTRO = 'outro';
 
 
     public static function values(): array

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Events\SintomaEvolucao;
-use App\EvolucaoSintoma;
+use App\Models\EvolucaoSintoma;
 use App\Http\Requests\MonitoramentoUpdateRequest;
-use App\Paciente;
+use App\Models\Paciente;
 use Illuminate\Support\Facades\Log;
 
 class MonitoramentoController extends Controller

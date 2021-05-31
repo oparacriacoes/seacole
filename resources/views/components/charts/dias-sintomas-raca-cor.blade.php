@@ -1,44 +1,34 @@
-<script type="text/javascript">
-    const chart_data = @json($chart_data);
+@section('script')
+    @parent
+    @include('layouts.chartjs')
 
-    for(let dataset of chart_data.datasets) {
-        dataset.backgroundColor = peopleColor(dataset.label)
-    }
+    <script type="text/javascript">
+        const chart_data = @json($chart_data);
+        const ctx = document.getElementById('chartjs').getContext('2d');
 
-    const ctx = document.getElementById('chartjs').getContext('2d');
+        for(let dataset of chart_data.datasets) {
+            dataset.backgroundColor = peopleColor(dataset.label)
+        }
 
-    let chartjs = new Chart(ctx, {
-        type: 'bar',
-        data: {
+        const data = {
             labels: chart_data.labels,
             datasets: chart_data.datasets,
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'DIAS DE SINTOMAS POR RAÇA/COR',
-                position: 'top'
-            },
-            legend: {
-                position: 'bottom',
-            },
-            scales: {
-                xAxes: [{
-                    stacked: true
-                }],
-                yAxes: [{
-                    stacked: true
-                }]
-            },
+        }
+
+        const options = {
+            ...CHARTJS_CONFIG.STACKED_OPTIONS,
             plugins: {
-                datalabels: {
-                    color: 'white',
-                    font: {
-                        weight: 'normal'
-                    },
-                    formatter: (value, ctx) => value != '0' ? Math.abs(value) : '',
-                }
+                datalabels: CHARTJS_CONFIG.DATALABEL.DEFAULT
             }
         }
-    });
-</script>
+
+        options.title.text = 'DIAS DE SINTOMAS POR RAÇA/COR'
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+
+        </script>
+@endsection

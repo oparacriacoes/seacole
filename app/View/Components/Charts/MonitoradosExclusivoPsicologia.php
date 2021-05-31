@@ -2,7 +2,7 @@
 
 namespace App\View\Components\Charts;
 
-use App\Paciente;
+use App\Models\Paciente;
 
 class MonitoradosExclusivoPsicologia extends ChartComponent
 {

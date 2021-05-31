@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\VacinacaoRequest;
 use App\Models\Vacina;
 use App\Models\Vacinacao;
-use App\Paciente;
+use App\Models\Paciente;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;

@@ -13,14 +13,14 @@ class DeslocamentoServicoSaude extends ChartComponent
     public function chartData(): array
     {
         $collection = collect();
-        $servicos_saude = ServicosSaudeEnum::values();
+        $filters = ServicosSaudeEnum::readables();
 
-        foreach ($servicos_saude as $servico_saude) {            
+        foreach ($filters as $key => $value) {            
             $collection = $collection->merge(DB::select(
                 $this->query,
                 [
-                    $servico_saude,
-                    strtolower('%' . $servico_saude . '%')
+                    $value,
+                    strtolower('%' . $key . '%')
                 ]
             ));
         }
@@ -35,7 +35,7 @@ class DeslocamentoServicoSaude extends ChartComponent
         return [
             'labels' => array_values(array_unique(join_colors_to_black($collection))),
             'sublabels' => $colletionToChartDataset->getLabels(),
-            'datasets' => $colletionToChartDataset->getDatasets()
+            'datasets' => stack_black_colors($colletionToChartDataset->getDatasets())
         ];
     }
 

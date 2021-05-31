@@ -27,6 +27,6 @@ class TipoAjuda extends Component
     public function render()
     {
         return view('components.forms.choices.tipo-ajuda')
-            ->with(['tipos_ajuda' => TiposAjudaEnum::values()]);
+            ->with(['tipos_ajuda' => TiposAjudaEnum::readables()]);
     }
 }

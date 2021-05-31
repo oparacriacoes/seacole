@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Vacina;
 use App\Models\Vacinacao;
-use App\Paciente;
+use App\Models\Paciente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VacinacaoFactory extends Factory

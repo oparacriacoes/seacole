@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Agente;
-use App\Medico;
-use App\Paciente;
-use App\Psicologo;
+use App\Models\Agente;
+use App\Models\Medico;
+use App\Models\Paciente;
+use App\Models\Psicologo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PacienteFactory extends Factory

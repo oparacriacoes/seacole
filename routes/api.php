@@ -1,6 +1,6 @@
 <?php
 
-use App\Paciente;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;

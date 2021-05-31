@@ -2,8 +2,8 @@
 
 namespace App\Exports;
 
-use App\ServicoInternacao;
-use App\Paciente;
+use App\Models\ServicoInternacao;
+use App\Models\Paciente;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;

@@ -2,7 +2,7 @@
 
 namespace App\View\Components\Charts;
 
-use App\Paciente;
+use App\Models\Paciente;
 
 class NovosCasosMonitorados extends ChartComponent
 {

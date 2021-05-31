@@ -53,7 +53,7 @@ class ClasseSocialRendaPerCaptaRacaCor extends ChartComponent
                     WHEN renda_residencia / numero_pessoas_residencia >= 8641
                     AND renda_residencia / numero_pessoas_residencia <= 11261 THEN 'Classe B'
                     WHEN renda_residencia / numero_pessoas_residencia >= 11262 THEN 'Classe A'
-                    ELSE 'Sim inf.'
+                    ELSE 'Sem informação'
                 END AS renda_residencia,
                 CASE
                     WHEN cor_raca IS NULL THEN COUNT(id)

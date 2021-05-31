@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Paciente;
+use App\Models\Paciente;
 use App\Http\Requests\QuadroAtualUpdateRequest;
 use Illuminate\Support\Facades\Log;
 

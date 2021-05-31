@@ -8,8 +8,8 @@ final class TestesRealizados extends ReadableEnum
 {
     public const PCR = 'pcr';
     public const SOROLOGIA = 'sorologias';
-    public const TESTE_RAPIDO = 'teste rápido';
-    public const NAO_INFORMADO = 'não informado';
+    public const TESTE_RAPIDO = 'teste-rapido';
+    public const NAO_INFORMADO = 'nao-informado';
 
 
     public static function values(): array

@@ -6,21 +6,21 @@ use App\Enums\ServicosSaudeEnum;
 use App\Helpers\CollectionToChartDatasets;
 use Illuminate\Support\Facades\DB;
 
-class ProblemaServicoreferenciaRacaCor extends ChartComponent
+class ProblemaServicoReferenciaRacaCor extends ChartComponent
 {
     protected string $componentView = 'components.charts.problema-servico-referencia-raca-cor';
 
     public function chartData(): array
     {
         $collection = collect();
-        $servicos_saude = ServicosSaudeEnum::values();
+        $filters = ServicosSaudeEnum::readables();
 
-        foreach ($servicos_saude as $servico_saude) {
+        foreach ($filters as $key => $value) {
             $collection = $collection->merge(DB::select(
                 $this->query,
                 [
-                    $servico_saude,
-                    strtolower('%' . $servico_saude . '%')
+                    $value,
+                    strtolower('%' . $key . '%')
                 ]
             ));
         }

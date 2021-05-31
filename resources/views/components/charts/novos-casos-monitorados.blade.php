@@ -27,5 +27,5 @@
             data: data,
             options: options
         });
-    </script>
+        </script>
 @endsection

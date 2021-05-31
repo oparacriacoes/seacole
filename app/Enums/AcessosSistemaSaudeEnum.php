@@ -6,10 +6,10 @@ use Elao\Enum\ReadableEnum;
 
 final class AcessosSistemaSaudeEnum extends ReadableEnum
 {
-    public const USA_SUS = 'É usuária/o do SUS (público)';
-    public const TEM_CONVENIO = 'Tem convênio/plano de saúde';
-    public const USA_SERVICOS_PAGOS_POPULAR = 'Usuária/o de serviços pagos "populares" (Ex: Dr Consulta)';
-    public const USA_SERVICOS_PAGOS_SEM_CONVENIO = 'Usuária/o de serviços particulares não cobertos por convênios';
+    public const USA_SUS = 'sus';
+    public const TEM_CONVENIO = 'convenio-plano';
+    public const USA_SERVICOS_PAGOS_POPULAR = 'servico-popular-pago';
+    public const USA_SERVICOS_PAGOS_SEM_CONVENIO = 'servico-privado';
 
 
     public static function values(): array

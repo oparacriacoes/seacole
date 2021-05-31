@@ -12,6 +12,6 @@ class Observacao extends Model
 
     public function paciente()
     {
-        return $this->belongsTo('App\Paciente');
+        return $this->belongsTo('App\Models\Paciente');
     }
 }

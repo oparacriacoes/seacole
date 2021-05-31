@@ -2,8 +2,8 @@
 
 namespace App\Exports;
 
-use App\QuadroAtual;
-use App\Paciente;
+use App\Models\QuadroAtual;
+use App\Models\Paciente;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;

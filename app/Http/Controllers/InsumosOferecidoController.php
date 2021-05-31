@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\SerializerFields;
 use App\Http\Requests\InsumosOferecidoUpdateRequest;
-use App\Paciente;
+use App\Models\Paciente;
 use Illuminate\Support\Facades\Log;
 
 class InsumosOferecidoController extends Controller

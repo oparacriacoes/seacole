@@ -1,29 +1,33 @@
-<script type="text/javascript">
-    const chart_data = @json($chart_data);
-    const ctx = document.getElementById('chartjs').getContext('2d');
+@section('script')
+    @parent
+    @include('layouts.chartjs')
 
-    let chartjs = new Chart(ctx, {
-        type: 'bar',
-        data: {
+    <script type="text/javascript">
+        const chart_data = @json($chart_data);
+        const ctx = document.getElementById('chartjs').getContext('2d');
+
+        const data = {
             labels: chart_data.labels,
             datasets: [{
                 label: 'Número de idas ao servico de saúde',
                 data: chart_data.data,
             }],
-        },
-        options: {
+        }
+
+        const options = {
+            ...CHARTJS_CONFIG.DEFAULT_OPTIONS,
             plugins: {
-                datalabels: {
-                    backgroundColor: 'rgb(75, 192, 192)',
-                    borderRadius: 1,
-                    color: 'white',
-                    font: {
-                        weight: 'bold'
-                    },
-                    formatter: Math.round,
-                    padding: 2
-                }
+                datalabels: CHARTJS_CONFIG.DATALABEL.DEFAULT
             }
         }
-    });
-</script>
+
+        options.title.text = 'Número de idas ao servico de saúde'
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+
+        </script>
+@endsection

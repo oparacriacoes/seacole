@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Articuladora;
+use App\Models\Articuladora;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ArticuladoraFactory extends Factory

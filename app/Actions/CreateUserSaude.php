@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class CreateUserSaude {

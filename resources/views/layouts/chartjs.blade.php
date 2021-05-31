@@ -80,4 +80,34 @@
         }
     }
 
+    const STACKED_RACE_OPTIONS = (labels = [], sublabels = []) => {
+        let xAxesLabels = []
+
+        sublabels.forEach((index) => {
+            xAxesLabels = xAxesLabels.concat(labels)
+        })
+
+
+        return {
+            ...CHARTJS_CONFIG.DEFAULT_OPTIONS,
+            scales: {
+                xAxes: [{
+                        id: 'labels',
+                        labels: xAxesLabels
+                    },
+                    {
+                        id: 'sublabels',
+                        type: 'category',
+                        offset: true,
+                        gridLines: {
+                            offsetGridLines: true,
+                            lineWidth: 2
+                        },
+                        labels: sublabels
+                    },
+                ]
+            }
+        }
+    }
+
 </script>

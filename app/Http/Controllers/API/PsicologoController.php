@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Hash;
 use DB;
-use App\User;
-use App\Psicologo;
+use App\Models\User;
+use App\Models\Psicologo;
 
 class PsicologoController extends Controller
 {

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaudeMentalRequest;
-use App\Paciente;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
-use App\SaudeMental;
+use App\Models\SaudeMental;
 use DB;
 use Illuminate\Support\Facades\Log;
 

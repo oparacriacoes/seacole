@@ -8,6 +8,7 @@ use App\Http\Controllers\InsumosOferecidoController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\MonitoramentoController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\PacienteExportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PsicologoController;
 use App\Http\Controllers\QuadroAtualController;
@@ -61,7 +62,8 @@ Route::prefix('admin')->middleware(['auth', 'professional'])->group(function () 
     Route::post('paciente/insumos/{paciente}', InsumosOferecidoController::class)->name('paciente.insumos');
     Route::post('paciente/vacinacao/{paciente}', VacinacaoController::class)->name('paciente.vacinacao');
 
-    Route::get('pacientes/exportar', [PacienteController::class, 'ExportarExcelPacientes'])->name('pacientes.exportar')->middleware(['admin']);
+    Route::resource('pacientes-export', PacienteExportController::class)->only(['index', 'store', 'update'])->middleware(['admin']);
+
     Route::resource('pacientes', PacienteController::class)->except(['show']);
 
     Route::prefix('gerenciamento')->middleware(['admin'])->group(function () {

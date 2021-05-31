@@ -47,6 +47,12 @@
                         Gráficos
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('pacientes-export.index') }}">
+                        <i class="metismenu-icon fas fa-download"></i>
+                        Exportação
+                    </a>
+                </li>
 
                 <li class="app-sidebar__heading">Gerenciamento</li>
                 <li>

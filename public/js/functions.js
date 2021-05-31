@@ -151,17 +151,17 @@ const PEOPLE_COLORS = {
 }
 
 function peopleColor(color = '') {
-    switch (color) {
-        case 'Preta':
+    switch (color.toLowerCase()) {
+        case 'preta':
             return PEOPLE_COLORS.PRETA;
-        case 'Parda':
+        case 'parda':
             return PEOPLE_COLORS.PARDA;
-        case 'Indígena':
-        case 'Indigena':
+        case 'indígena':
+        case 'indigena':
             return PEOPLE_COLORS.INDIGENA;
-        case 'Branca':
+        case 'branca':
             return PEOPLE_COLORS.BRANCA;
-        case 'Amarela':
+        case 'amarela':
             return PEOPLE_COLORS.AMARELA;
         default:
             return PEOPLE_COLORS.SEM_INFORMACAO;

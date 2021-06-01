@@ -79,7 +79,8 @@ class AlterColumnsInPacientes extends Migration
         DB::commit();
     }
 
-    private function booleanValue ($value) {
+    private function booleanValue($value)
+    {
         if ($value === 'sim') {
             return 1;
         } elseif ($value === 'não') {

@@ -66,8 +66,7 @@ class VacinaController extends Controller
         $pacientes_vacinados = 0;
         $pacientes_parcialmente_vacinados = 0;
 
-        if ($vacina->doses === 1)
-        {
+        if ($vacina->doses === 1) {
             $pacientes_vacinados = Vacinacao::where('vacina_id', $vacina->id)->count();
         } else {
             $rows = Vacinacao::where('vacina_id', $vacina->id)

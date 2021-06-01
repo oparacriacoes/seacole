@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 
 class BuilderSelectRawFromModel
 {
-
     private Model $model;
     private array $mapFillableEnum;
     private array $mapSelectRaw;

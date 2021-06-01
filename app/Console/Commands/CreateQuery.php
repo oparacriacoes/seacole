@@ -38,13 +38,13 @@ class CreateQuery extends Command
      */
     public function handle()
     {
-        DB::listen(function($query) {
+        DB::listen(function ($query) {
             $p1 = json_encode($query->bindings[0]);
             $p3 = json_encode($query->bindings[2]);
-            
+
             $column = $this->argument('column');
             $table = $this->argument('table');
-    
+
             $updateQuery = "UPDATE $table SET
 $column = REPLACE( $column, {$p1}, '{$query->bindings[1]}')
 WHERE $column like '%{$p3}%';";

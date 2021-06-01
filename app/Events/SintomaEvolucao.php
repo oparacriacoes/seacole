@@ -13,7 +13,9 @@ use App\Models\EvolucaoSintoma;
 
 class SintomaEvolucao
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     public $sintomas;
 

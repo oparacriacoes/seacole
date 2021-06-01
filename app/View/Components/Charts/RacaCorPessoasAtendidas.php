@@ -6,7 +6,6 @@ use App\Models\Paciente;
 
 class RacaCorPessoasAtendidas extends ChartComponent
 {
-
     protected string $componentView = 'components.charts.raca-cor-pessoas-atendidas';
 
     public function chartData(): array

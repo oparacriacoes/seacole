@@ -8,7 +8,8 @@ use Illuminate\Notifications\Notifiable;
 
 class Agente extends Model
 {
-    use Notifiable, HasFactory;
+    use Notifiable;
+    use HasFactory;
 
     protected $fillable = [
         'user_id', 'fone_celular_1', 'fone_celular_2',

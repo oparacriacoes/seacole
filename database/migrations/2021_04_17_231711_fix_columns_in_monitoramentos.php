@@ -6,7 +6,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-
 class FixColumnsInMonitoramentos extends Migration
 {
     /**
@@ -61,7 +60,8 @@ class FixColumnsInMonitoramentos extends Migration
         DB::commit();
     }
 
-    private function booleanValue ($value) {
+    private function booleanValue($value)
+    {
         if ($value === 'sim') {
             return 1;
         } elseif ($value === 'não') {

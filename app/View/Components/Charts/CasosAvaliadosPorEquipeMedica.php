@@ -4,10 +4,8 @@ namespace App\View\Components\Charts;
 
 use Illuminate\Support\Facades\DB;
 
-
 class CasosAvaliadosPorEquipeMedica extends ChartComponent
 {
-
     protected string $componentView = 'components.charts.casos-avaliados-por-equipe-medica';
 
     public function chartData(): array

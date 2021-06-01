@@ -4,10 +4,8 @@ namespace App\View\Components\Charts;
 
 use Illuminate\Support\Facades\DB;
 
-
 class AcompanhamentoPsicologico extends ChartComponent
 {
-
     protected string $componentView = 'components.charts.acompanhamento-psicologico';
 
     public function chartData(): array

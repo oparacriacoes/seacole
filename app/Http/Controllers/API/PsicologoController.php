@@ -31,7 +31,7 @@ class PsicologoController extends Controller
     {
         DB::beginTransaction();
         try {
-            $user = new User;
+            $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->email);
@@ -47,7 +47,7 @@ class PsicologoController extends Controller
         if ($user) {
             DB::beginTransaction();
             try {
-                $psicologo = new Psicologo;
+                $psicologo = new Psicologo();
                 $psicologo->user_id = $user->id;
                 $psicologo->fone_celular_1 = $request->fone_celular_1;
                 $psicologo->fone_celular_2 = $request->fone_celular_2;

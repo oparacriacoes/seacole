@@ -6,7 +6,6 @@ use App\Models\Vacina;
 
 class UpdateVacina
 {
-
     public static function update(Vacina $vacina, $dataForm = [])
     {
         if ($dataForm['doses'] == 1) {

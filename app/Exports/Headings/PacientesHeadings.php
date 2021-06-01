@@ -2,8 +2,8 @@
 
 namespace App\Exports\Headings;
 
-class PacientesHeadings {
-
+class PacientesHeadings
+{
     public function headings(): array
     {
         return [
@@ -241,5 +241,4 @@ class PacientesHeadings {
 
         ];
     }
-
 }

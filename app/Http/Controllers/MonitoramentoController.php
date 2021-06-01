@@ -22,7 +22,6 @@ class MonitoramentoController extends Controller
 
             $evolucao_sintoma = $paciente->prontuarios()->create($dataForm);
             event(new SintomaEvolucao($evolucao_sintoma));
-
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return back()

@@ -22,7 +22,6 @@ class BuilderQuery
 
     private function addModule(ModuleQuery $module): void
     {
-
     }
 
     public function build(): string

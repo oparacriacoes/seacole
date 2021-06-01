@@ -5,8 +5,8 @@ namespace App\Actions;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class CreateUserSaude {
-
+class CreateUserSaude
+{
     public static function create($model, $dataForm = [], $role)
     {
         $user = new User([

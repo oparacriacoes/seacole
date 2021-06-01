@@ -12,7 +12,7 @@ class TempoInternacaoRacaCor extends ChartComponent
     public function chartData(): array
     {
         $collection = collect(DB::select($this->query));
-        
+
         $datasets = [];
         $labels = array_filter(array_keys((array)$collection->first()), function ($label) {
             return $label != 'label';

@@ -31,7 +31,7 @@ class ItemController extends Controller
         for ($n = 0; $n < count($nomes_input); $n++) {
             array_push($nomes, $nomes_input[$n]);
         }
-        $item = new Item;
+        $item = new Item();
         $item->paciente_id = $request->input('paciente_id');
         $item->nome_item = json_encode($nomes);
         try {

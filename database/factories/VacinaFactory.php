@@ -22,7 +22,7 @@ class VacinaFactory extends Factory
      */
     public function definition()
     {
-        $doses = random_int(1,2);
+        $doses = random_int(1, 2);
         $name = $this->faker->colorName();
 
         return [

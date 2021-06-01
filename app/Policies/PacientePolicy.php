@@ -16,9 +16,9 @@ class PacientePolicy
     {
         if ($user->role == RolesEnum::AGENTE) {
             return $paciente->agente_id;
-        } else if ($user->role == RolesEnum::MEDICO) {
+        } elseif ($user->role == RolesEnum::MEDICO) {
             return $paciente->medico_id;
-        } else if ($user->role == RolesEnum::PSICOLOGO) {
+        } elseif ($user->role == RolesEnum::PSICOLOGO) {
             return $paciente->psicologo_id;
         }
 
@@ -105,7 +105,6 @@ class PacientePolicy
      */
     public function restore(User $user, Paciente $paciente)
     {
-
     }
 
     /**
@@ -117,6 +116,5 @@ class PacientePolicy
      */
     public function forceDelete(User $user, Paciente $paciente)
     {
-
     }
 }

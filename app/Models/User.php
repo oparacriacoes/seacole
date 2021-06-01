@@ -9,7 +9,8 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -73,9 +74,9 @@ class User extends Authenticatable
     {
         if ($this->role === RolesEnum::AGENTE) {
             return $this->agente();
-        } else if ($this->role === RolesEnum::MEDICO) {
+        } elseif ($this->role === RolesEnum::MEDICO) {
             return $this->medico();
-        } else if ($this->role === RolesEnum::PSICOLOGO) {
+        } elseif ($this->role === RolesEnum::PSICOLOGO) {
             return $this->psicologo();
         }
 

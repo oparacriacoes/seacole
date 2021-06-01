@@ -25,7 +25,7 @@ class TratamentoPrescritoMedicoProjeto extends ChartComponent
             'labels' => array_values(array_unique(join_colors_to_black($collection))),
             'sublabels' => $colletionToChartDataset->getLabels(),
             'datasets' => stack_black_colors($colletionToChartDataset->getDatasets())
-        ];  
+        ];
     }
 
     private $query = "

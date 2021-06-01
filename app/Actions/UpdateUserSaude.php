@@ -5,8 +5,8 @@ namespace App\Actions;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class UpdateUserSaude {
-
+class UpdateUserSaude
+{
     public static function update($model, $dataForm = [])
     {
         $model->update([

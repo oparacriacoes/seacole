@@ -4,10 +4,8 @@ namespace App\View\Components\Charts;
 
 use Illuminate\Support\Facades\DB;
 
-
 class CasosMonitoradosPorAgentes extends ChartComponent
 {
-
     protected string $componentView = 'components.charts.casos-monitorados-por-agentes';
 
     public function chartData(): array

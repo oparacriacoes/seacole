@@ -14,8 +14,7 @@ use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
 class PacientesExport implements FromArray, WithTitle, WithHeadings, WithMultipleSheets
 {
-
-    private ?int $pacienteId; 
+    private ?int $pacienteId;
 
     public function __construct(?int $pacienteId = null)
     {
@@ -49,10 +48,9 @@ class PacientesExport implements FromArray, WithTitle, WithHeadings, WithMultipl
             ->when($this->pacienteId, function ($query, $pacienteId) {
                 return $query->where('id', $pacienteId);
             })
-            ->orderBy('name')  
+            ->orderBy('name')
             ->chunk(100, function ($pacientes) use (&$pacientes_rows) {
                 foreach ($pacientes as $paciente) {
-
                     $doenca = $paciente->doenca_cronica ?? [];
                     in_array('1', $doenca) ? $has = 'Sim' : $has = 'Não';
                     in_array('2', $doenca) ? $dm = 'Sim' : $dm = 'Não';

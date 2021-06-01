@@ -15,7 +15,7 @@ class DeslocamentoServicoSaude extends ChartComponent
         $collection = collect();
         $filters = ServicosSaudeEnum::readables();
 
-        foreach ($filters as $key => $value) {            
+        foreach ($filters as $key => $value) {
             $collection = $collection->merge(DB::select(
                 $this->query,
                 [

@@ -30,7 +30,7 @@ class AgenteController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        $user = new User;
+        $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->email);
@@ -47,7 +47,7 @@ class AgenteController extends Controller
         }
 
         if ($user) {
-            $agente = new Agente;
+            $agente = new Agente();
             $agente->user_id = $user->id;
             $agente->fone_celular_1 = $request->fone_celular_1;
             $agente->fone_celular_2 = $request->fone_celular_2;

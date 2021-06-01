@@ -32,7 +32,7 @@ class MedicoController extends Controller
         //dd($request->all());
         DB::beginTransaction();
         try {
-            $user = new User;
+            $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->email);
@@ -48,7 +48,7 @@ class MedicoController extends Controller
         if ($user) {
             DB::beginTransaction();
             try {
-                $medico = new Medico;
+                $medico = new Medico();
                 $medico->user_id = $user->id;
                 $medico->fone_celular_1 = $request->fone_celular_1;
                 $medico->fone_celular_2 = $request->fone_celular_2;

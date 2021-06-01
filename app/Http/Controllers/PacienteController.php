@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\AjudaTipo;
-use App\Exports\PacientesExport;
-use App\Sintoma;
 use App\Models\Paciente;
 use App\Models\Agente;
 use App\Models\Medico;
 use App\Models\Psicologo;
-use App\Models\User;
 use App\Models\Articuladora;
 use App\Enums\RolesEnum;
 use App\Enums\SituacoesCaso;
 use App\Http\Requests\PacienteRequest;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -140,27 +135,8 @@ class PacienteController extends Controller
     public function destroy($id)
     {
         $paciente = Paciente::find($id);
-        $user = User::find($paciente->user_id);
-        $sintoma = Sintoma::where('paciente_id', $id)->first();
-        if ($sintoma) {
-            $delete_sintoma = Sintoma::destroy($sintoma->id);
-        }
-
-        $ajuda_tipo = AjudaTipo::where('paciente_id', $paciente->id)->first();
-        if ($ajuda_tipo) {
-            $delete_ajuda_tipo = AjudaTipo::destroy($ajuda_tipo->id);
-        }
-
-        $delete_paciente = Paciente::destroy($paciente->id);
-        $delete_user = User::destroy($user->id);
+        Paciente::destroy($paciente->id);
 
         return redirect()->back()->with('success', 'Paciente excluído com sucesso.');
-    }
-
-    public function ExportarExcelPacientes()
-    {
-        $date = now();
-
-        return Excel::download(new PacientesExport(), 'pacientes_' . $date->format('d-m-Y-h:m') . '.xlsx');
     }
 }

@@ -70,6 +70,7 @@ final class ChartsEnum extends ReadableEnum
 
     public const VACINACAO_GERAL = 'vacinacao-geral';
     public const VACINACAO_POR_VACINA = 'vacinacao-vacina';
+    public const VACINACAO_DOSE = 'vacinacao-doses-';
 
     public static function values(): array
     {
@@ -136,6 +137,7 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_60,
             self::VACINACAO_GERAL,
             self::VACINACAO_POR_VACINA,
+            self::VACINACAO_DOSE,
         ];
     }
 
@@ -204,6 +206,7 @@ final class ChartsEnum extends ReadableEnum
             // self::GRAFICO_60 => Str::title('Diagnóstico Covid-19 por Raça/Cor'),
             self::VACINACAO_GERAL => '61 - Vacinação Geral',
             self::VACINACAO_POR_VACINA => '62 - Vacinados por Vacina',
+            self::VACINACAO_DOSE => '63 - Vacinação Dose'
         ];
     }
 }

@@ -1,7 +1,7 @@
 @section('script')
     @parent
     @include('layouts.chartjs')
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100"></script>
+    <script src="{{asset('js/chartjs/chartjs-plugin-stacked100.js')}}"></script>
 
     <script type="text/javascript">
         const chart_data = @json($chart_data);

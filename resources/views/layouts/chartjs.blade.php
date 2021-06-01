@@ -1,6 +1,6 @@
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-colorschemes"></script>
+<script src="{{asset('js/chartjs/Chart.min.js')}}"></script>
+<script src="{{asset('js/chartjs/chartjs-plugin-datalabels.js')}}"></script>
+<script src="{{asset('js/chartjs/chartjs-plugin-colorschemes.js')}}"></script>
 
 <script type="text/javascript">
     Chart.plugins.register(ChartDataLabels);

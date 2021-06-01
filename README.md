@@ -77,7 +77,7 @@ Caso queira apenas criar as tabelas sem nenhum processo para popular o banco de 
 make migrate
 ```
 
-### Verificando o projeto
+### Verificando se os containers subiram corretamente
 
 Após realizar os passos acima você pode verificar se o projeto está corretamente funcionando acessando os links abaixo
 
@@ -86,4 +86,47 @@ Após realizar os passos acima você pode verificar se o projeto está corretame
 
 O MailHog funciona como uma caixa de email local, que recebe todos os email enviados durante o processo de desenvolvimento
 
-### Outros comandos
+### Regras de desenvolvimento
+
+#### Enums
+
+Para campos com options, por enquanto, se usa o sistema de enums para salvar os valores no banco de dados e a apresentacação no front ou relatórios. Sendo assim TODOS os campos de select, radio group ou checkbox devem vir ou de classes Enums ou do banco de dados.
+Como o sistema está utilizando a versão 7.4 do PHP, o pacote [elao/enum](https://github.com/Elao/PhpEnums) fornece essa estrutura.
+Todas classes Enum devem ficar na pasta `app/Enums` com o pósfixo `Enum`, ficando `NomeClasseEnum.php`
+
+#### Gráficos
+
+O sistema utiliza o conceito de components do Laravel para renderizar os gráficos. A relação entre o gráfico e o seu componente está no arquivo `app/Enums/CharstEnum.php`.
+Os components de gráficos devem ficar na pasta `app/View/Components/Charts` e `resources/views/components/charts`.
+Para criar um componente de gráfico dentro das pastas apontadas, basta usar o comando 
+```bash
+artisan make:component Charts/NomeDoGrafico
+```
+
+Os gráficos da classe herdam de `app/View/Components/Chart/ChartComponent.php` ficando com a seguinte estrutura
+
+```php
+<?php
+
+namespace App\View\Components\Charts;
+
+use App\Helpers\CollectionToChartDatasets;
+use Illuminate\Support\Facades\DB;
+
+class NomeDoGrafico extends ChartComponent
+{
+    protected string $componentView = 'components.charts.nome-do-grafico';
+
+    public function chartData(): array
+    {
+        $collection = collect(DB::select($this->query));
+        // código que estrutura os dados para serem apresentados no gráfico...
+        return [
+            'labels' => '',
+            'datasets' => ''.
+        ];
+    }
+
+    private $query = "SELECT COUNT(id), cor_raca FROM pacientes WHERE cor_raca IS NOT NULL GROUP BY cor_raca ORDER BY cor_raca";
+}
+```

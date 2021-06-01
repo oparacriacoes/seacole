@@ -68,6 +68,9 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_59 = 'tempo-internacao-raca-cor';
     public const GRAFICO_60 = 'diagnostico-covid-racar-cor';
 
+    public const VACINACAO_GERAL = 'vacinacao-geral';
+    public const VACINACAO_POR_VACINA = 'vacinacao-vacina';
+
     public static function values(): array
     {
         return [
@@ -131,6 +134,8 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_58,
             self::GRAFICO_59,
             self::GRAFICO_60,
+            self::VACINACAO_GERAL,
+            self::VACINACAO_POR_VACINA,
         ];
     }
 
@@ -197,6 +202,8 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_58 => Str::title('58 - LOCAL DE INTERNAÇÃO por Raça Cor'),
             self::GRAFICO_59 => Str::title('59 - TEMPO DE INTERNAÇÃO por Raça Cor'),
             // self::GRAFICO_60 => Str::title('Diagnóstico Covid-19 por Raça/Cor'),
+            self::VACINACAO_GERAL => '61 - Vacinação Geral',
+            self::VACINACAO_POR_VACINA => '62 - Vacinados por Vacina',
         ];
     }
 }

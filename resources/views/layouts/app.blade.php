@@ -13,6 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Seacole') }}</title>
+    <link rel="icon" href="{{ asset('images/logo-icon.png')}}">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

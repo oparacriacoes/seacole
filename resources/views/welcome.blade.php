@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="icon" href="{{ asset('images/logo-icon.png')}}">
 
         <!-- Styles -->
         <style>
@@ -44,8 +45,8 @@
                 text-align: center;
             }
 
-            .title {
-                font-size: 84px;
+            .logo {
+                width: 480px;
             }
 
             .links > a {
@@ -81,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Seacole
+                    <img class="logo" src="{{asset('images/logo-full.png')}}" />
                 </div>
 
                 <div class="links">

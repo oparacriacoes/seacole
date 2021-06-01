@@ -9013,6 +9013,7 @@ button,
     height: 23px;
     width: 97px;
     background: url(images/logo.png);
+    background-size: cover;
 }
 .app-header__menu,
 .app-header__mobile-menu {
@@ -9114,6 +9115,7 @@ button,
 }
 .app-header.header-text-light .app-header__logo .logo-src {
     background: url(images/logo.png);
+    background-size: cover;
 }
 .app-header.header-text-light .app-header__mobile-menu .hamburger-inner,
 .app-header.header-text-light .app-header__mobile-menu .hamburger-inner::before,
@@ -9192,6 +9194,7 @@ button,
 }
 .app-header.header-text-dark .app-header__logo .logo-src {
     background: url(images/logo.png);
+    background-size: cover;
 }
 .app-sidebar {
     width: 280px;
@@ -9425,6 +9428,7 @@ button,
 }
 .app-sidebar.sidebar-text-light .app-header__logo .logo-src {
     background: url(images/logo.png);
+    background-size: cover;
 }
 .app-sidebar.sidebar-text-light .app-header__logo .hamburger-inner,
 .app-sidebar.sidebar-text-light .app-header__logo .hamburger-inner::before,

@@ -40,9 +40,9 @@ class VacinacaoVacina extends ChartComponent
             v.dose = 1
         group by
             p.cor_raca,
-            v.vacina_id
+            vac.name
         order by
-            v.vacina_id,
+            vac.name,
             p.cor_raca;
         ";
 }

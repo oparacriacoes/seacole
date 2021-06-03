@@ -18,7 +18,7 @@
             }
         }
 
-        options.title.text = 'SINTOMAS MANIFESTADOS POR SITUAÇÃO (4)'
+        options.title.text = 'SINTOMAS MANIFESTADOS POR DIAGNÓSTICO (2)'
 
         new Chart(ctx, {
             type: 'bar',

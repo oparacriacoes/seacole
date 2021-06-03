@@ -6,9 +6,9 @@ use App\Enums\SintomasManifestadosEnum;
 use App\Helpers\CollectionToChartDatasets;
 use Illuminate\Support\Facades\DB;
 
-class SintomasManifestadosPorSituacao3 extends ChartComponent
+class SintomasManifestadosPorDiagnostico extends ChartComponent
 {
-    protected string $componentView = 'components.charts.sintomas-manifestados-por-situacao3';
+    protected string $componentView = 'components.charts.sintomas-manifestados-por-diagnostico';
 
     public function chartData(): array
     {
@@ -43,29 +43,25 @@ class SintomasManifestadosPorSituacao3 extends ChartComponent
         select
             count(id) as total,
             sintoma,
-            info
+            sintomas_iniciais as info
         from
             (
             select
                 p.id,
                 ? as sintoma,
                 qa.sintomas_manifestados,
-                CASE
-                WHEN p.situacao in ('1', '6', '10') THEN 'GRAVE'
-                WHEN p.situacao in ('2', '7', '11') THEN 'LEVE'
-                END as info
+                p.sintomas_iniciais
             from
                 pacientes p
                 inner join quadro_atual qa on qa.paciente_id = p.id
             where
                 lower(qa.sintomas_manifestados) like ?
-                and p.situacao in ('1', '10', '6', '2', '11', '7')
             ) as tb
         group by
             sintoma,
-            info
+            sintomas_iniciais
         order by
-            info desc,
+            sintomas_iniciais,
             sintoma;
             ";
 }

@@ -23,11 +23,12 @@ class PacienteController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $pacienteQuery = Paciente::query();
 
-        if ($user->role === RolesEnum::AGENTE || $user->role === RolesEnum::PSICOLOGO) {
-            $pacienteQuery = $user->professional->pacientes->toQuery();
-        } else {
-            $pacienteQuery = Paciente::query();
+        if ($user->role === RolesEnum::AGENTE) {
+            $pacienteQuery->where('agente_id', $user->professional->id);
+        } elseif ($user->role === RolesEnum::PSICOLOGO) {
+            $pacienteQuery->where('psicologo_id', $user->professional->id);
         }
 
         $callbackUser = function ($query) {
@@ -49,6 +50,14 @@ class PacienteController extends Controller
     public function create()
     {
         $paciente = new Paciente();
+
+        if (Auth::user()->role === RolesEnum::AGENTE) {
+            $paciente->agente_id = Auth::user()->professional->id;
+        } elseif (Auth::user()->role === RolesEnum::MEDICO) {
+            $paciente->medico_id = Auth::user()->professional->id;
+        } elseif (Auth::user()->role === RolesEnum::PSICOLOGO) {
+            $paciente->psicologo_id = Auth::user()->professional->id;
+        }
 
         $situacoes = SituacoesCaso::readables();
         $agentes =  Agente::with('user:id,name')->select(['id', 'user_id'])->get();

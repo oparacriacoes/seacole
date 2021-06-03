@@ -63,7 +63,7 @@ final class ChartsEnum extends ReadableEnum
     // public const GRAFICO_54 = '54';
     public const GRAFICO_55 = 'ida-sistema-saude-prescricoes-medicas';
     public const GRAFICO_56 = 'problema-servico-referencia-raca-cor';
-    public const GRAFICO_57 = 'internacao-quadro-raca-cor';
+    public const GRAFICO_57 = 'ambulancia-financiada-projeto';
     public const GRAFICO_58 = 'local-internacao-raca-cor';
     public const GRAFICO_59 = 'tempo-internacao-raca-cor';
     public const GRAFICO_60 = 'diagnostico-covid-racar-cor';
@@ -198,7 +198,7 @@ final class ChartsEnum extends ReadableEnum
             // self::GRAFICO_54 => Str::title('54'),
             self::GRAFICO_55 => Str::title('55 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS'),
             self::GRAFICO_56 => Str::title('56 - PROBLEMAS COM SERVIÇOS DE REFERÊNCIA'),
-            self::GRAFICO_57 => Str::title('57 - INTERNAÇÃO PELO QUADRO por Raça Cor'),
+            self::GRAFICO_57 => Str::title('57 - AMBULÂNCIA FINANCIADA PELO PROJETO'),
             self::GRAFICO_58 => Str::title('58 - LOCAL DE INTERNAÇÃO por Raça Cor'),
             self::GRAFICO_59 => Str::title('59 - TEMPO DE INTERNAÇÃO por Raça Cor'),
             // self::GRAFICO_60 => Str::title('Diagnóstico Covid-19 por Raça/Cor'),

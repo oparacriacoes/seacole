@@ -22,7 +22,7 @@
             }
         }
 
-        options.title.text = 'Internação Pelo Quadro Raça/Cor'
+        options.title.text = 'Ambulância financiada pelo projeto'
 
         new Chart(ctx, {
             type: 'bar',

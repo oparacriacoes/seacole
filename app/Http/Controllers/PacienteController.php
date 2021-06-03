@@ -149,21 +149,9 @@ class PacienteController extends Controller
     public function destroy($id)
     {
         $paciente = Paciente::find($id);
-        $user = User::find($paciente->user_id);
-        $sintoma = Sintoma::where('paciente_id', $id)->first();
-        if ($sintoma) {
-            $delete_sintoma = Sintoma::destroy($sintoma->id);
-        }
-
-        $ajuda_tipo = AjudaTipo::where('paciente_id', $paciente->id)->first();
-        if ($ajuda_tipo) {
-            $delete_ajuda_tipo = AjudaTipo::destroy($ajuda_tipo->id);
-        }
-
         $delete_paciente = Paciente::destroy($paciente->id);
-        $delete_user = User::destroy($user->id);
 
-        return redirect()->back()->with('success', 'Paciente excluído com sucesso.');
+        return back()->with('success', 'Paciente excluído com sucesso.');
     }
 
     public function ExportarExcelPacientes()

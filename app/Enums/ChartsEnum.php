@@ -59,9 +59,9 @@ final class ChartsEnum extends ReadableEnum
     public const GRAFICO_50 = 'deslocamento-servico-saude';
     public const GRAFICO_51 = 'medicacoes-covid-19';
     // public const GRAFICO_52 = '52';
-    // public const GRAFICO_53 = '53';
-    // public const GRAFICO_54 = '54';
-    public const GRAFICO_55 = 'ida-sistema-saude-prescricoes-medicas';
+    public const GRAFICO_53 = 'ida-sistema-saude-prescricoes-medicas1';
+    public const GRAFICO_54 = 'ida-sistema-saude-prescricoes-medicas2';
+    public const GRAFICO_55 = 'ida-sistema-saude-prescricoes-medicas3';
     public const GRAFICO_56 = 'problema-servico-referencia-raca-cor';
     public const GRAFICO_57 = 'ambulancia-financiada-projeto';
     public const GRAFICO_58 = 'local-internacao-raca-cor';
@@ -126,8 +126,8 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_50,
             self::GRAFICO_51,
             // self::GRAFICO_52,
-            // self::GRAFICO_53,
-            // self::GRAFICO_54,
+            self::GRAFICO_53,
+            self::GRAFICO_54,
             self::GRAFICO_55,
             self::GRAFICO_56,
             self::GRAFICO_57,
@@ -194,16 +194,16 @@ final class ChartsEnum extends ReadableEnum
             self::GRAFICO_50 => Str::title('50 - PRECISOU IR A ALGUM SERVIÇO DE SAÚDE?'),
             self::GRAFICO_51 => Str::title('51 - RECEBEU MEDICAÇÕES PARA COVID-19?'),
             // self::GRAFICO_52 => Str::title('52'),
-            // self::GRAFICO_53 => Str::title('53'),
-            // self::GRAFICO_54 => Str::title('54'),
-            self::GRAFICO_55 => Str::title('55 - PRESCRIÇÕES MEDICAMENTOS DE QUEM FOI AO SISTEMA DE SAÚDE'),
+            self::GRAFICO_53 => Str::title('53 PRESCRIÇÕES MEDICAMENTOS DE QUEM FOI AO SISTEMA DE SAÚDE (PESSOAS PRETAS)'),
+            self::GRAFICO_54 => Str::title('54 PRESCRIÇÕES MEDICAMENTOS DE QUEM FOI AO SISTEMA DE SAÚDE (PESSOAS PARDAS)'),
+            self::GRAFICO_55 => Str::title('55 - PRESCRIÇÕES MEDICAMENTOS DE QUEM FOI AO SISTEMA DE SAÚDE (PESSOAS BRANCA)'),
             self::GRAFICO_56 => Str::title('56 - PROBLEMAS COM SERVIÇOS DE REFERÊNCIA'),
             self::GRAFICO_57 => Str::title('57 - AMBULÂNCIA FINANCIADA PELO PROJETO'),
             self::GRAFICO_58 => Str::title('58 - LOCAL DE INTERNAÇÃO por Raça Cor'),
             self::GRAFICO_59 => Str::title('59 - TEMPO DE INTERNAÇÃO por Raça Cor'),
             // self::GRAFICO_60 => Str::title('Diagnóstico Covid-19 por Raça/Cor'),
             self::VACINACAO_GERAL => '61 - Vacinação Geral',
-            self::VACINACAO_POR_VACINA => '62 - Vacinados por Vacina',
+            // self::VACINACAO_POR_VACINA => '62 - Vacinados por Vacina',
         ];
     }
 }

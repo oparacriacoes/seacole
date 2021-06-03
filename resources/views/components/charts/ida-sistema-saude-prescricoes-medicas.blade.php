@@ -22,7 +22,7 @@
             }
         }
 
-        options.title.text = 'IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS'
+        options.title.text = 'PRESCRIÇÕES MEDICAMENTOS DE QUEM FOI AO SISTEMA DE SAÚDE'
 
         new Chart(ctx, {
             type: 'bar',

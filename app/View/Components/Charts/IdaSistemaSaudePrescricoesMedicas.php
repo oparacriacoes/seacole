@@ -37,23 +37,17 @@ class IdaSistemaSaudePrescricoesMedicas extends ChartComponent
             SELECT
                 cor_raca,
                 CASE
-                WHEN medicamento IS NULL THEN 'Não recebeu nenhum medicamento'
-                WHEN medicamento IN (
-                    'Medico do SUS receitou, Azitromicina',
-                    'médico hospital, Azitromicina',
-                    'médico sus, Azitromicina',
-                    'Último dia de Azitromicina'
-                ) THEN 'Recebeu somente azitromicina'
-                WHEN medicamento LIKE '%azitromicina%' THEN 'Azitromicina e outros medicamentos'
-                ELSE 'Somente outros medicamentos'
+                WHEN si.recebeu_med_covid NOT LIKE '%azitromicina%' THEN 'Somente outros medicamentos'
+                WHEN si.recebeu_med_covid LIKE '%azitromicina%' and si.recebeu_med_covid LIKE '%,%' THEN 'Azitromicina e outros medicamentos'
+                WHEN si.recebeu_med_covid LIKE '%azitromicina%' and si.recebeu_med_covid NOT LIKE '%,%' THEN 'Somente Azitromicina'
                 END AS medicamento,
                 pac.id
             FROM
                 pacientes pac
-                LEFT JOIN monitoramentos mon ON mon.paciente_id = pac.id
                 LEFT JOIN servico_internacaos si ON si.paciente_id = pac.id
             WHERE
-                quant_ida_servico > 1
+                si.quant_ida_servico > 0
+                and si.recebeu_med_covid is not null
             ORDER BY
                 1
             ) TB
@@ -62,7 +56,6 @@ class IdaSistemaSaudePrescricoesMedicas extends ChartComponent
             medicamento
         order by
             medicamento,
-            cor_raca; 
-            ;
+            cor_raca;
     ";
 }

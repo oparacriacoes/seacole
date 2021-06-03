@@ -196,7 +196,7 @@ final class ChartsEnum extends ReadableEnum
             // self::GRAFICO_52 => Str::title('52'),
             // self::GRAFICO_53 => Str::title('53'),
             // self::GRAFICO_54 => Str::title('54'),
-            self::GRAFICO_55 => Str::title('55 - IDAS AO SISTEMA DE SAÚDE X % DE PRESCRIÇÕES MEDICAMENTOS'),
+            self::GRAFICO_55 => Str::title('55 - PRESCRIÇÕES MEDICAMENTOS DE QUEM FOI AO SISTEMA DE SAÚDE'),
             self::GRAFICO_56 => Str::title('56 - PROBLEMAS COM SERVIÇOS DE REFERÊNCIA'),
             self::GRAFICO_57 => Str::title('57 - AMBULÂNCIA FINANCIADA PELO PROJETO'),
             self::GRAFICO_58 => Str::title('58 - LOCAL DE INTERNAÇÃO por Raça Cor'),

@@ -22,7 +22,7 @@
             }
         }
 
-        options.title.text = 'Diagnóstico Covid-19 por Raça/Cor'
+        options.title.text = 'Medicações Recebidas para Covid-19'
 
         new Chart(ctx, {
             type: 'bar',

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 function human_boolean($value): ?string
 {
     if (is_null($value)) {
@@ -44,4 +46,9 @@ function stack_black_colors(array $datasets, bool $useAxis = true): array
 function in_array_all($needles, $haystack)
 {
     return empty(array_diff($needles, $haystack));
+}
+
+function titleLabel(string $label): string
+{
+    return  $label == '' ? 'Não Informado' : Str::title($label);
 }

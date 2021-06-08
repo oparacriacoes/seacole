@@ -22,7 +22,7 @@ class TratamentoPrescritoMedicoProjeto extends ChartComponent
         );
 
         return [
-            'labels' => array_values(array_unique(join_colors_to_black($collection))),
+            'labels' => array_map('titleLabel', array_values(array_unique(join_colors_to_black($collection)))),
             'sublabels' => $colletionToChartDataset->getLabels(),
             'datasets' => stack_black_colors($colletionToChartDataset->getDatasets())
         ];
@@ -37,17 +37,17 @@ class TratamentoPrescritoMedicoProjeto extends ChartComponent
                 WHEN io.tratamento_prescrito is false then 'Não'
             END as tratamento_prescrito,
             CASE
-                WHEN cor_raca is null then 'Sem Informação'
+                WHEN cor_raca is null then 'sem informação'
                 ELSE cor_raca
             END as cor_raca
         from
             pacientes p
             LEFT JOIN insumos_oferecidos io ON io.paciente_id = p.id
         group by
-            cor_raca,
-            tratamento_prescrito
-        order by
             tratamento_prescrito,
-            cor_raca desc;
+            cor_raca
+        order by
+            tratamento_prescrito desc,
+            cor_raca;
     ";
 }

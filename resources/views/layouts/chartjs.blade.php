@@ -80,6 +80,15 @@
         }
     }
 
+    CHARTJS_CONFIG.DATALABEL.PERCENTUAL_VALUE = {
+        ...CHARTJS_CONFIG.DATALABEL.PERCENTUAL,
+        formatter: (value, ctx) => {
+            let sum = ctx.dataset._meta[0].total;
+            let percentage = (value * 100 / sum).toFixed(2) + "%";
+            return `${percentage} (${value})`;
+        }
+    }
+
     const STACKED_RACE_OPTIONS = (labels = [], sublabels = []) => {
         let xAxesLabels = []
 

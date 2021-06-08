@@ -20,7 +20,7 @@ class AvaliacaoMedicaRacaCor extends ChartComponent
         );
 
         return [
-            'labels' => array_values(array_unique(join_colors_to_black($collection))),
+            'labels' => array_map('titleLabel', array_values(array_unique(join_colors_to_black($collection)))),
             'sublabels' => $colletionToChartDataset->getLabels(),
             'datasets' => stack_black_colors($colletionToChartDataset->getDatasets())
         ];
@@ -42,10 +42,10 @@ class AvaliacaoMedicaRacaCor extends ChartComponent
         from
             pacientes
         group by
-            cor_raca,
-            acompanhamento_medico
-        order by
             acompanhamento_medico,
-            cor_raca desc;
+            cor_raca
+        order by
+            acompanhamento_medico desc,
+            cor_raca;
     ";
 }

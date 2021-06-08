@@ -13,7 +13,7 @@ class SintomasManifestadosPorSituacao2 extends ChartComponent
     public function chartData(): array
     {
         $collection = collect();
-        $filters = array_slice(SintomasManifestadosEnum::readables(), 4, 4, true);
+        $filters = array_slice(SintomasManifestadosEnum::readables(), 8, 8, true);
 
         foreach ($filters as $key => $values) {
             $collection = $collection->merge(DB::select(

@@ -8,20 +8,25 @@
 
         const data = {
             labels: chart_data.labels,
-            datasets: chart_data.datasets,
+            datasets: [{
+                label: 'Casos Monitorados',
+                data: chart_data.data,
+            }],
         }
 
+        console.log(chart_data.data)
+
         const options = {
-            ...CHARTJS_CONFIG.STACKED_OPTIONS,
+            ...CHARTJS_CONFIG.DEFAULT_OPTIONS,
             plugins: {
-                datalabels: CHARTJS_CONFIG.DATALABEL.DEFAULT
+                datalabels: CHARTJS_CONFIG.DATALABEL.PERCENTUAL_VALUE
             }
         }
 
-        options.title.text = 'SINTOMAS MANIFESTADOS POR SITUAÇÃO (3)'
+        options.title.text = 'PRESCRIÇÕES MEDICAMENTOS DE QUEM FOI AO SISTEMA DE SAÚDE (PESSOAS PARDAS)'
 
         new Chart(ctx, {
-            type: 'bar',
+            type: 'pie',
             data: data,
             options: options
         });

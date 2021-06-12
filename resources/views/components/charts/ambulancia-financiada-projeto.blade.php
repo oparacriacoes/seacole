@@ -6,19 +6,23 @@
         const chart_data = @json($chart_data);
         const ctx = document.getElementById('chartjs').getContext('2d');
 
+        for (let dataset of chart_data.datasets) {
+            dataset.backgroundColor = peopleColor(dataset.label)
+        }
+
         const data = {
             labels: chart_data.labels,
-            datasets: chart_data.datasets,
+            datasets: chart_data.datasets
         }
 
         const options = {
-            ...CHARTJS_CONFIG.STACKED_OPTIONS,
+            ...STACKED_RACE_OPTIONS(chart_data.labels, chart_data.sublabels),
             plugins: {
                 datalabels: CHARTJS_CONFIG.DATALABEL.DEFAULT
             }
         }
 
-        options.title.text = 'SINTOMAS MANIFESTADOS POR SITUAÇÃO (4)'
+        options.title.text = 'Ambulância financiada pelo projeto'
 
         new Chart(ctx, {
             type: 'bar',

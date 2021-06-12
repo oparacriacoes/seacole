@@ -6,23 +6,19 @@
         const chart_data = @json($chart_data);
         const ctx = document.getElementById('chartjs').getContext('2d');
 
-        for (let dataset of chart_data.datasets) {
-            dataset.backgroundColor = peopleColor(dataset.label)
-        }
-
         const data = {
             labels: chart_data.labels,
-            datasets: chart_data.datasets
+            datasets: chart_data.datasets,
         }
 
         const options = {
-            ...STACKED_RACE_OPTIONS(chart_data.labels, chart_data.sublabels),
+            ...CHARTJS_CONFIG.STACKED_OPTIONS,
             plugins: {
                 datalabels: CHARTJS_CONFIG.DATALABEL.DEFAULT
             }
         }
 
-        options.title.text = 'Internação Pelo Quadro Raça/Cor'
+        options.title.text = 'SINTOMAS MANIFESTADOS POR DIAGNÓSTICO'
 
         new Chart(ctx, {
             type: 'bar',

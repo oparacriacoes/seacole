@@ -75,13 +75,13 @@
                         Todos
                     </a>
                 </li>
+                @endunless
                 <li>
                     <a href="{{ route('pacientes.create') }}">
                         <i class="metismenu-icon fa fa-plus-circle nav-icon"></i>
                         Novo Paciente
                     </a>
                 </li>
-                @endunless
 
                 @if(Auth::user()->is_admin)
                 <li class="app-sidebar__heading">Profissionais</li>

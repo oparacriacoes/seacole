@@ -20,7 +20,7 @@ class RacaCorAuxilioEmergencial extends ChartComponent
         );
 
         return [
-            'labels' => array_values(array_unique(join_colors_to_black($collection))),
+            'labels' => array_map('titleLabel', array_values(array_unique(join_colors_to_black($collection)))),
             'sublabels' => $colletionToChartDataset->getLabels(),
             'datasets' => stack_black_colors($colletionToChartDataset->getDatasets())
         ];
@@ -40,7 +40,7 @@ class RacaCorAuxilioEmergencial extends ChartComponent
                 ELSE cor_raca
             END as cor_raca
         from pacientes
-        group by cor_raca, auxilio_emergencial
-        order by auxilio_emergencial, cor_raca desc;
+        group by auxilio_emergencial, cor_raca
+        order by auxilio_emergencial desc, cor_raca;
     ";
 }

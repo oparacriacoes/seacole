@@ -22,7 +22,7 @@
             }
         }
 
-        options.title.text = 'CASOS AVALIADOS POR EQUIPE MÉDICA'
+        options.title.text = 'PRECISOU IR AO SERVIÇO DE SAÚDE?'
 
         new Chart(ctx, {
             type: 'bar',

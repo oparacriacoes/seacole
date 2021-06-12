@@ -6,26 +6,27 @@
         const chart_data = @json($chart_data);
         const ctx = document.getElementById('chartjs').getContext('2d');
 
-        for (let dataset of chart_data.datasets) {
-            dataset.backgroundColor = peopleColor(dataset.label)
-        }
-
         const data = {
             labels: chart_data.labels,
-            datasets: chart_data.datasets
+            datasets: [{
+                label: 'Casos Monitorados',
+                data: chart_data.data,
+            }],
         }
 
+        console.log(chart_data.data)
+
         const options = {
-            ...STACKED_RACE_OPTIONS(chart_data.labels, chart_data.sublabels),
+            ...CHARTJS_CONFIG.DEFAULT_OPTIONS,
             plugins: {
-                datalabels: CHARTJS_CONFIG.DATALABEL.DEFAULT
+                datalabels: CHARTJS_CONFIG.DATALABEL.PERCENTUAL_VALUE
             }
         }
 
-        options.title.text = 'Medicações Recebidas para Covid-19'
+        options.title.text = 'PRESCRIÇÕES MEDICAMENTOS DE QUEM FOI AO SISTEMA DE SAÚDE (PESSOAS BRANCAS)'
 
         new Chart(ctx, {
-            type: 'bar',
+            type: 'pie',
             data: data,
             options: options
         });

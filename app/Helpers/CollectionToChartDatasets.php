@@ -25,7 +25,7 @@ class CollectionToChartDatasets
 
     public function getLabels(): array
     {
-        return array_map(array($this, 'titleLabel'), array_keys($this->pairValues));
+        return array_map("titleLabel", array_keys($this->pairValues));
     }
 
     public function getDatasets(): array
@@ -34,7 +34,7 @@ class CollectionToChartDatasets
             $pair_values = $item->pluck($this->fieldValues, $this->fieldLabels)->toArray();
             $merged_labels = array_merge($this->pairValues, $pair_values);
 
-            $this->datasets[] = $this->dataset($key, array_values($merged_labels));
+            $this->datasets[] = $this->dataset(Str::title($key), array_values($merged_labels));
         });
 
         return $this->datasets;
@@ -43,15 +43,10 @@ class CollectionToChartDatasets
     private function dataset($label, $data): array
     {
         return [
-            'label' => $this->titleLabel($label),
+            'label' => titleLabel($label),
             'data' => $data,
             'barPercentage' => 0.5,
             'categoryPercentage' => 1.0,
         ];
-    }
-
-    private function titleLabel(string $label): string
-    {
-        return  $label == '' ? 'Sem Informação' : Str::title($label);
     }
 }

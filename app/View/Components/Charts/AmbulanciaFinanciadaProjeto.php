@@ -5,9 +5,9 @@ namespace App\View\Components\Charts;
 use App\Helpers\CollectionToChartDatasets;
 use Illuminate\Support\Facades\DB;
 
-class VacinacaoVacina extends ChartComponent
+class AmbulanciaFinanciadaProjeto extends ChartComponent
 {
-    protected string $componentView = 'components.charts.vacinacao-vacina';
+    protected string $componentView = 'components.charts.ambulancia-financiada-projeto';
 
     public function chartData(): array
     {
@@ -27,22 +27,22 @@ class VacinacaoVacina extends ChartComponent
         ];
     }
 
-    private $query = "
+    private $query = '
         select
-            count(v.id) as total,
-            p.cor_raca,
-            vac.name as info
+            count(p.id) as total,
+            cor_raca,
+            if (precisou_ambulancia=true, "Sim", "Não") as info
         from
-            vacinacoes v
-            join pacientes p on p.id = v.paciente_id
-            join vacinas vac on vac.id = v.vacina_id
+            pacientes p
+            LEFT JOIN servico_internacaos si ON p.id = si.paciente_id
         where
-            v.dose = 1
+            cor_raca is not null
+            and precisou_ambulancia is not null
         group by
-            p.cor_raca,
-            vac.name
+            precisou_ambulancia,
+            cor_raca
         order by
-            vac.name,
-            p.cor_raca;
-        ";
+            precisou_ambulancia desc,
+            cor_raca;
+    ';
 }

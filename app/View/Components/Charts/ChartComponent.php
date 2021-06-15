@@ -13,8 +13,8 @@ abstract class ChartComponent extends Component
 
     public function __construct(string $datefrom, string $dateto)
     {
-        $this->date_from = Carbon::parse($datefrom);
-        $this->date_to = Carbon::parse($dateto);
+        $this->date_from = Carbon::parse($datefrom)->startOfDay();
+        $this->date_to = Carbon::parse($dateto)->endOfDay();
     }
 
     abstract public function chartData(): array;

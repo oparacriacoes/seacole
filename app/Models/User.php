@@ -50,11 +50,6 @@ class User extends Authenticatable
     /**
      * Relations
      */
-    public function paciente()
-    {
-        return $this->hasOne(Paciente::class);
-    }
-
     public function agente()
     {
         return $this->hasOne(Agente::class);

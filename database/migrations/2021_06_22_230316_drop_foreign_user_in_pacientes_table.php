@@ -13,13 +13,16 @@ class DropForeignUserInPacientesTable extends Migration
      * @return void
      */
     public function up()
-    {        
-        Schema::table('pacientes', function (Blueprint $table) {
-            $table->dropForeign('pacientes_user_id_foreign');
-            $table->dropColumn('user_id');
-        });
+    {   
+        if (!app()->environment('testing'))
+        {
+            Schema::table('pacientes', function (Blueprint $table) {
+                $table->dropForeign('pacientes_user_id_foreign');
+                $table->dropColumn('user_id');
+            });
 
-        DB::table('users')->where('role', '=', 'paciente')->delete();
+            DB::table('users')->where('role', '=', 'paciente')->delete();
+        }
     }
 
     /**

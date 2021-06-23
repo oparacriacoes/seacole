@@ -27,13 +27,13 @@ class IdaSistemaSaudePrescricoesMedicas2 extends ChartComponent
                 and si.recebeu_med_covid LIKE '%,%' THEN 'Azitromicina e outros medicamentos'
                 WHEN si.recebeu_med_covid LIKE '%azitromicina%'
                 and si.recebeu_med_covid NOT LIKE '%,%' THEN 'Somente Azitromicina'
+                WHEN si.recebeu_med_covid is null THEN 'Nenhum medicamento prescrito'
             END AS medicamento
         FROM
             pacientes pac
             LEFT JOIN servico_internacaos si ON si.paciente_id = pac.id
         WHERE
             si.quant_ida_servico > 0
-            and si.recebeu_med_covid is not null
             and pac.cor_raca = 'parda'
         group by medicamento
         ORDER BY

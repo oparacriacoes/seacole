@@ -135,12 +135,6 @@ class Paciente extends Model
      * Relations
      */
 
-    // DEPREDACTED
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function agente()
     {
         return $this->belongsTo(Agente::class);
@@ -159,11 +153,6 @@ class Paciente extends Model
     public function articuladora()
     {
         return $this->belongsTo(Articuladora::class);
-    }
-
-    public function dados()
-    {
-        return $this->hasMany(EvolucaoSintoma::class);
     }
 
     public function monitoramento()

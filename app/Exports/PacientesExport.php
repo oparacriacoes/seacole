@@ -15,10 +15,12 @@ use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 class PacientesExport implements FromArray, WithTitle, WithHeadings, WithMultipleSheets
 {
     private ?int $pacienteId;
+    private array $relations;
 
-    public function __construct(?int $pacienteId = null)
+    public function __construct(?int $pacienteId = null, array $relations = [])
     {
         $this->pacienteId = $pacienteId;
+        $this->relations = $relations;
     }
 
     public function sheets(): array
